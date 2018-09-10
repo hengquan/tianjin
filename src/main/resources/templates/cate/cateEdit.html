@@ -121,8 +121,7 @@
 <br>
 <script>
 $(function () {
-  $('form').on("success.form.bv", function(e){
-    alert("ABC");
+  $('form').on("success.form.bv", function(e)
     var formData=$('#mainForm').serialize();
     formData=decodeURIComponent(formData,true);
     console.log(formData);

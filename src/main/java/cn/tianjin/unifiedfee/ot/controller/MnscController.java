@@ -45,7 +45,8 @@ public class MnscController {
 		// 放入分页
 		PageInfo<Mnsc> pageList = new PageInfo<Mnsc>(mnscs);
 		// 返回
-		map.put("dataList", pageList);
+		map.put("total", pageList.getPageSize());
+		map.put("rows", pageList.getList());
 		return map;
 	}
 
