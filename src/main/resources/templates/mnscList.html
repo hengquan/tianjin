@@ -145,7 +145,7 @@
                         </div>
 
                         <div class="column pt-btn-line">
-                            <button type="button" class="btn w120 btn-default btn-primary">新增</button>
+                            <button type="button" class="btn w120 btn-default btn-primary" onclick="addItem()">新增</button>
                             <!--
                             <button type="button" class="btn w120 btn-default">批量停用</button>
                             <button type="button" class="btn w120 btn-default">批量启用</button>
@@ -199,6 +199,19 @@ function deleteItem(e) {
     alert('删除操作，序号' + e)
 }
 
+function addItem() {
+  layer.open({
+      type: 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+      title: '<span class="text-color">121321</span>',//请修改span中间的内容
+      shadeClose: true,//开启阴影关闭
+      closeBtn: 1, //不显示关闭按钮
+      shade: 0.6,
+      maxmin: false,//开启最大化最小化按钮
+      area: ['62.5%', '83%'],//此处可以改为100%，该数值按UI图比例算出
+      content: 'content.html'//如果不想出现滚动条['content.html', 'no']
+  });
+}
+
 function editItem(e) {
     layer.open({
         type: 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
@@ -225,13 +238,13 @@ function lookItem(e) {
   });
 }
 
-TableInit().Init('http://localhost:8080/getdata/cataList',
+TableInit().Init('http://localhost:18080/mnsc/getPageData',
 [{
-  field: 'name',
+  field: 'mnscName',
   title: '分类名称',
   sortable: true
 },{
-  field: 'parentName',
+  field: 'mnscCatNames',
   title: '上级分类',
   sortable: true
 },{

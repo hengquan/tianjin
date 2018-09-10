@@ -17,7 +17,8 @@
 		<result column="create_name" property="createName" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, mnsc_name, mnsc_cat_id, mnsc_cat_names, expire_date, mnsc_url,
+		id, mnsc_name, mnsc_cat_id, mnsc_cat_names, expire_date,
+		mnsc_url,
 		remarks, state, score, create_date, create_by, create_name
 	</sql>
 	<select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -105,4 +106,54 @@
 			</if>
 		</trim>
 	</insert>
+	<update id="update" parameterType="cn.tianjin.unifiedfee.ot.entity.Mnsc">
+		update ts_MNSC
+		<set>
+			<if test="mnscName != null">
+				mnsc_name = #{mnscName}
+			</if>
+			<if test="mnscCatId != null">
+				mnsc_cat_id = #{mnscCatId}
+			</if>
+			<if test="mnscCatNames != null">
+				mnsc_cat_names = #{mnscCatNames}
+			</if>
+			<if test="expireDate != null">
+				expire_date = #{expireDate}
+			</if>
+			<if test="mnscUrl != null">
+				mnsc_url = #{mnscUrl}
+			</if>
+			<if test="remarks != null">
+				remarks = #{remarks}
+			</if>
+			<if test="state != null">
+				state = #{state}
+			</if>
+			<if test="score != null">
+				score = #{score}
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate}
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy}
+			</if>
+			<if test="createName != null">
+				create_name = #{createName}
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.String">
+		delete from ts_MNSC
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	
+	<select id="getPageData" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ts_MNSC
+	</select>
 </mapper>
