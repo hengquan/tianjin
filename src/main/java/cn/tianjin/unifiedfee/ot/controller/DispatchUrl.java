@@ -27,17 +27,32 @@ public class DispatchUrl {
         return "/index";
     }
 
-    /*分类列表页*/
-    @RequestMapping("cataList")
-    public String toCataList() {
-        return "/cataList";
+    //--分类管理
+    @RequestMapping("cateList")
+    public String toCateList() {
+        return "/cate/cateList";
     }
-
+    @RequestMapping("cate/edit")
+    public String toCateEdit() {
+        return "/cate/cateEdit";
+    }
+    @RequestMapping("cate/view")
+    public String toCateView() {
+        return "/cate/cateView";
+    }
+    
     /*模拟实操表页*/
     @RequestMapping("mnscList")
     public String toMnscList() {
         return "/mnscList";
     }
+
+    /*测试页面*/
+    @RequestMapping("testTt")
+    public String toTestPage() {
+        return "/treeTableDemo";
+    }
+   
 //=============================以上为页面跳转
 
 /*

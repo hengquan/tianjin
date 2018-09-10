@@ -113,12 +113,12 @@
                             <!--cell-->
                             <li class="pt-menu-child">
                                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toCATA()">分类管理</a></h3>
+                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toCATE()">分类管理</a></h3>
                             </li>
                             <!--cell-->
                             <li class="pt-menu-child">
                                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                                <h3 class="pt-menu-title"><a href="#">字典管理</a></h3>
+                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toDICT()">字典管理</a></h3>
                             </li>
                         </ul>
                     </li>
@@ -145,11 +145,15 @@
 
   //模拟实操
   function toMNSC(){
-    $("#mainIframe").attr("src","mnscList")
+    $("#mainIframe").attr("src","mnscList");
   }
   //分类管理
-  function toCATA(){
-    $("#mainIframe").attr("src","cataList")
+  function toCATE(){
+    $("#mainIframe").attr("src","cateList");
+  }
+  //字典管理
+  function toDICT(){
+    $("#mainIframe").attr("src","testTt");
   }
 </script>
 

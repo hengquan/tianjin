@@ -54,6 +54,7 @@
     <link href="./libs/layer/layer-new.css" rel="stylesheet" >
     <!-- 11 页面js -->
     <script src="./src/js/main.js"></script>
+    <script src="./libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 </head>
 <body>
 <div class="pt-page">
@@ -143,7 +144,7 @@
                         </div>
 
                         <div class="column pt-btn-line">
-                            <button type="button" class="btn w120 btn-default btn-primary">新增</button>
+                            <button type="button" class="btn w120 btn-default btn-primary" onclick='editItem()'>新增</button>
                             <!--
                             <button type="button" class="btn w120 btn-default">批量停用</button>
                             <button type="button" class="btn w120 btn-default">批量启用</button>
@@ -187,43 +188,49 @@ $("#ptsearchfilter").click(function() {
 function operateFormatter(value, row, index) {
     return [
         '<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick="lookItem('+index+')">查看</button>',
-        '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick="editItem('+index+')">修改</button>',
+        '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick="editItem('+index+', 2)">修改</button>',
         '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="deleteItem('+index+')">删除</button>'
     ].join('');
 }
 
 // 操作模版调用的方法
 function deleteItem(e) {
-    alert('删除操作，序号' + e)
+  alert('删除操作，序号' + e)
 }
 
-function editItem(e) {
-    layer.open({
-        type: 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title: '<span class="text-color">121321</span>',//请修改span中间的内容
-        shadeClose: true,//开启阴影关闭
-        closeBtn: 1, //不显示关闭按钮
-        shade: 0.6,
-        maxmin: false,//开启最大化最小化按钮
-        area: ['62.5%', '83%'],//此处可以改为100%，该数值按UI图比例算出
-        content: 'content.html'//如果不想出现滚动条['content.html', 'no']
-    });
-}
-
-function lookItem(e) {
+function editItem(e, type) {
+  var title='新增分类信息';
+  if (type==2) title='修改分类信息';
   layer.open({
     type: 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-    title: '<span class="text-color">查看费项信息</span>',//请修改span中间的内容
+    title: '<span class="text-color">'+title+'</span>',//请修改span中间的内容
     shadeClose: true,//开启阴影关闭
     closeBtn: 1, //不显示关闭按钮
     shade: 0.6,
     maxmin: false,//开启最大化最小化按钮
-    area: ['62.5%', '83%'],//此处可以改为100%，该数值按UI图比例算出
-    content: 'look.html'//如果不想出现滚动条['content.html', 'no']
+    area: ['80%', '83%'],//此处可以改为100%，该数值按UI图比例算出
+    content: 'cate/edit'//如果不想出现滚动条['content.html', 'no']
   });
 }
 
-TableInit().Init('http://localhost:8080/getdata/cataList',
+function lookItem(e) {
+  alert(e);
+  layer.open({
+    type: 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+    title: '<span class="text-color">查看分类信息</span>',//请修改span中间的内容
+    shadeClose: true,//开启阴影关闭
+    closeBtn: 1, //不显示关闭按钮
+    shade: 0.6,
+    maxmin: false,//开启最大化最小化按钮
+    area: ['80%', '83%'],//此处可以改为100%，该数值按UI图比例算出
+    content: 'cate/view'//如果不想出现滚动条['content.html', 'no']
+  });
+}
+
+function refresh() {
+  alert("EEEE");
+}
+TableInit().Init('/getdata/cateList_deeptree',
 [{
   field: 'name',
   title: '分类名称',

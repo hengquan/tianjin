@@ -17,11 +17,11 @@ import cn.tianjin.unifiedfee.ot.entity.Category;
 public class CategoryNode extends TreeNodeBean implements Serializable, ModelSwapPo {
     private static final long serialVersionUID = -1955635556689723791L;
 
-    private String id;          //主键
-    private String parentId;    //父级编号
+    //private String id;          //主键
+    //private String parentId;    //父级编号
     private String parentIds;   //所有父级编号
-    private String name ;       //字典项名称
-    private int sort;           //排序，大者靠前
+    //private String name ;       //字典项名称
+    //private int sort;           //排序，大者靠前
     private int isvalid;        //是否有效，是否显示,1有效，0无效
     private String createId;    //创建者Id
     private String createName;  //创建者名称
@@ -31,36 +31,18 @@ public class CategoryNode extends TreeNodeBean implements Serializable, ModelSwa
     private Date updateDate;    //最后修改时间
     private String remarks;     //说明
 
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id=id;
-    }
-    public String getParentId() {
-        return parentId;
-    }
-    public void setParentId(String parentId) {
-        this.parentId=parentId;
-    }
     public String getParentIds() {
         return parentIds;
     }
     public void setParentIds(String parentIds) {
         this.parentIds=parentIds;
     }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name=name;
-    }
-    public int getSort() {
-        return sort;
-    }
-    public void setSort(int sort) {
-        this.sort=sort;
-    }
+//    public int getSort() {
+//        return sort;
+//    }
+//    public void setSort(int sort) {
+//        this.sort=sort;
+//    }
     public int getIsvalid() {
         return isvalid;
     }
@@ -119,9 +101,9 @@ public class CategoryNode extends TreeNodeBean implements Serializable, ModelSwa
 
         ret.setParentId(this.getParentId());
         ret.setParentIds(this.getParentIds());
-        ret.setName(this.getName());
-        ret.setSort(this.getOrder());
+        ret.setName(this.getNodeName());
         ret.setIsvalid(this.getIsvalid());
+        ret.setSort(this.getOrder());
         ret.setCreateId(this.getCreateId());
         ret.setCreateName(this.getCreateName());
         ret.setCreateDate(this.getCreateDate());
@@ -140,8 +122,8 @@ public class CategoryNode extends TreeNodeBean implements Serializable, ModelSwa
         this.setId(_po.getId());
         this.setParentId(_po.getParentId());
         this.setParentIds(_po.getParentIds());
-        this.setName(_po.getName());
-        this.setSort(_po.getSort());
+        this.setNodeName(_po.getName());
+        this.setOrder(_po.getSort());
         this.setIsvalid(_po.getIsvalid());
         this.setCreateId(_po.getCreateId());
         this.setCreateName(_po.getCreateName());
@@ -157,8 +139,8 @@ public class CategoryNode extends TreeNodeBean implements Serializable, ModelSwa
         ret.put("id", this.getId());
         ret.put("parentId", this.getParentId());
         ret.put("parentIds", this.getParentIds());
-        ret.put("name", this.getName());
-        ret.put("sort", this.getSort());
+        ret.put("name", this.getNodeName());
+        ret.put("sort", this.getOrder());
         ret.put("isvalid", this.getIsvalid());
         ret.put("createName", this.getCreateName());
         ret.put("createDate", DateUtils.convert2LongLocalStr(this.getCreateDate()));
