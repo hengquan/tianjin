@@ -1,21 +1,21 @@
 <project
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>cn.taiji</groupId>
-        <artifactId>taiji-pom</artifactId>
-        <version>1.0.3-RELEASES</version>
-        <relativePath />
-    </parent>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>cn.taiji</groupId>
+		<artifactId>taiji-pom</artifactId>
+		<version>1.0.3-RELEASES</version>
+		<relativePath />
+	</parent>
+	<artifactId>tianjin-unifiedfee-ot</artifactId>
+	<name>tianjin-unifiedfee-ot</name>
+	<url>http://maven.apache.org</url>
 
-    <artifactId>tianjin-unifiedfee-ot</artifactId>
-    <name>tianjin-train</name>
-    <url>http://maven.apache.org</url>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <localLibDir>D:\Work\projects\tianjin\extlibs</localLibDir>
-    </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<localLibDir>D:\Work\projects\tianjin\extlibs\</localLibDir>
+	</properties>
 
     <dependencies>
         <!-- 异常处理模块 -->
@@ -77,41 +77,41 @@
   <artifactId>spring-boot-devtools</artifactId>
   <optional>true</optional> 
 </dependency>
-        <!-- 引入平台包 -->
-        <dependency>
-            <groupId>com.spiritdata</groupId>
-            <artifactId>BasicPlat</artifactId>
-            <version>0.2.0.01</version>
-            <scope>system</scope>
-            <systemPath>${localLibDir}/BasicPlat-0.2.0.01.jar</systemPath>
-        </dependency>
-    </dependencies>
+		<!-- 引入平台包 -->
+		<dependency>
+			<groupId>com.spiritdata</groupId>
+			<artifactId>BasicPlat</artifactId>
+			<version>0.2.0.01</version>
+			<scope>system</scope>
+			<systemPath>${localLibDir}/BasicPlat-0.2.0.01.jar</systemPath>
+		</dependency>
+	</dependencies>
 
-    <build>
-        <finalName>tjTrainAdmin</finalName>
-        <!--扫描类路径下的 xml文件, used by mybatis mapper -->
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.*</include>
-                </includes>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <fork>true</fork>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<build>
+		<finalName>tjTrainAdmin</finalName>
+		<!--扫描类路径下的 xml文件, used by mybatis mapper -->
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
