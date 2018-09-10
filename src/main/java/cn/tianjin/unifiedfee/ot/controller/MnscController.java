@@ -3,6 +3,7 @@ package cn.tianjin.unifiedfee.ot.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,6 +59,12 @@ public class MnscController {
 		HttpPush.responseInfo(response);
 		try {
 			// 添加数据
+		    String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+		    mnsc.setId(uuid);
+		    mnsc.setMnscCatId("1");
+		    mnsc.setMnscCatNames("1");
+		    mnsc.setCreateBy("Admin");
+		    mnsc.setCreateName("Admin");
 			boolean result = mnscService.insert(mnsc);
 			if (result)
 				map.put("resultCode", "100");

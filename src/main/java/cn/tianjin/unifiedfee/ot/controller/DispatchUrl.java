@@ -38,6 +38,12 @@ public class DispatchUrl {
     public String toMnscList() {
         return "/mnscList";
     }
+    
+    /*模拟实操表添加页*/
+    @RequestMapping("addMnsc")
+    public String addMnsc() {
+        return "/content";
+    }
 //=============================以上为页面跳转
 
 /*

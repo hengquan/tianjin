@@ -71,13 +71,14 @@
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
-				<form class="form-horizontal pt-form-full" role="form">
+				<form class="form-horizontal pt-form-full" role="form" id="form">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
 									※ </span>摸拟实操名称</label>
 							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
-								<input type="text" class="form-control" name="name" id="name" />
+								<input type="text" class="form-control" name="mnscName"
+									id="name" />
 							</div>
 						</div>
 					</div>
@@ -100,7 +101,7 @@
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
 									※ </span>摸拟实操URL</label>
 							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
-								<input type="text" class="form-control" name="name" id="name" />
+								<input type="text" class="form-control" name="mnscUrl" id="name" />
 							</div>
 						</div>
 					</div>
@@ -109,7 +110,7 @@
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
 									※ </span>学分</label>
 							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
-								<input type="text" class="form-control" name="name" id="name" />
+								<input type="text" class="form-control" name="score" id="score" />
 							</div>
 						</div>
 					</div>
@@ -119,8 +120,9 @@
 								class="cfff"> ※ </span>过期时间</label>
 							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6"
 								data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-								<input class="form-control" size="16" type="text" value="">
-								<span class="add-on"><i class="icon-th"></i></span>
+								<input class="form-control" name="expireDate" size="16"
+									type="text" value=""> <span class="add-on"><i
+									class="icon-th"></i></span>
 							</div>
 						</div>
 					</div>
@@ -130,7 +132,7 @@
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun"><span>
 									※ </span>说明</label>
 							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
-								<textarea id="biaozhun" class="form-control" name="biaozhun"
+								<textarea id="remarks" class="form-control" name="remarks"
 									style="min-height: 108px"></textarea>
 							</div>
 						</div>
@@ -173,7 +175,7 @@
 					</div>
 
 					<div class="form-group pt-btn-submit-layer">
-						<button type="submit"
+						<button onclick="addMnsc()"
 							class="btn w160 btn-lg btn-default btn-primary">保存</button>
 						<button class="btn w160 btn-lg btn-default btn-default">取消</button>
 						<button type="submit" class="btn w160 btn-lg btn-default">保存并提交</button>
@@ -187,109 +189,124 @@
 	<br>
 	<br>
 	<script>
-		function sh(type) {
-			console.log(type)
-		}
-		$(function() {
-			$("input:radio[name='wenjian']").bind('click', function() {
-				console.log($(this).attr('value'))
-			})
-			$('form').bootstrapValidator({
-				message : 'This value is not valid',
-				feedbackIcons : {
-					valid : 'glyphicon glyphicon-ok',
-					invalid : 'glyphicon glyphicon-remove',
-					validating : 'glyphicon glyphicon-refresh'
-				},
-				fields : {
-					name : {
-						message : '模拟实操名称验证失败',
-						validators : {
-							notEmpty : {
-								message : '模拟实操名称不能为空'
-							}
-						}
-					},
-					reg : {
-						validators : {
-							notEmpty : {
-								message : '用户名不能为空'
-							},
-							stringLength : {
-								min : 6,
-								max : 18,
-								message : '用户名长度必须在6到18位之间'
-							},
-							regexp : {
-								regexp : /^[a-zA-Z0-9_]+$/,
-								message : '用户名只能包含大写、小写、数字和下划线'
-							}
-						}
-					},
-					dingjia : {
-						message : '定价形式验证失败',
-						validators : {
-							notEmpty : {
-								message : '定价形式不能为空'
-							}
-						}
-					},
-					dingjia2 : {
-						message : '定价形式验证失败',
-						validators : {
-							notEmpty : {
-								message : '定价形式不能为空'
-							}
-						}
-					},
-					biaozhun : {
-						message : '服务内容及标准验证失败',
-						validators : {
-							notEmpty : {
-								message : '服务内容及标准不能为空'
-							}
-						}
-					}
-				}
-			});
+    function sh(type) {
+      console.log(type)
+    }
+    $(function() {
+      $("input:radio[name='wenjian']").bind('click', function() {
+        console.log($(this).attr('value'))
+      })
+      $('form').bootstrapValidator({
+        message : 'This value is not valid',
+        feedbackIcons : {
+          valid : 'glyphicon glyphicon-ok',
+          invalid : 'glyphicon glyphicon-remove',
+          validating : 'glyphicon glyphicon-refresh'
+        },
+        fields : {
+          name : {
+            message : '模拟实操名称验证失败',
+            validators : {
+              notEmpty : {
+                message : '模拟实操名称不能为空'
+              }
+            }
+          },
+          reg : {
+            validators : {
+              notEmpty : {
+                message : '用户名不能为空'
+              },
+              stringLength : {
+                min : 6,
+                max : 18,
+                message : '用户名长度必须在6到18位之间'
+              },
+              regexp : {
+                regexp : /^[a-zA-Z0-9_]+$/,
+                message : '用户名只能包含大写、小写、数字和下划线'
+              }
+            }
+          },
+          dingjia : {
+            message : '定价形式验证失败',
+            validators : {
+              notEmpty : {
+                message : '定价形式不能为空'
+              }
+            }
+          },
+          dingjia2 : {
+            message : '定价形式验证失败',
+            validators : {
+              notEmpty : {
+                message : '定价形式不能为空'
+              }
+            }
+          },
+          biaozhun : {
+            message : '服务内容及标准验证失败',
+            validators : {
+              notEmpty : {
+                message : '服务内容及标准不能为空'
+              }
+            }
+          }
+        }
+      });
 
-			// 时间选择
-			$('.datetimepicker').datetimepicker({
-				language : 'zh', // 语言选择
-				format : 'yyyy-mm-dd hh:ii:ss', // 选择格式
-				todayBtn : true,
-				autoclose : true
-			});
-			$('.aaa .datetimepicker-dropdown-bottom-right').css('margin-top',
-					'0px')
-			//icheck 单选多选
-			$('input').iCheck({
-				checkboxClass : 'icheckbox_square-blue',
-				radioClass : 'iradio_square-blue',
-				increaseArea : '20%' // optional
-			});
-			$("input:radio[name='wenjian']").on('ifChecked', function(event) {
-				// alert($(this).val());
-				if ($(this).val() == 'option1') {
-					$('.Bshow').addClass('disnone')
-				} else {
-					$('.Bshow').removeClass('disnone')
-				}
-			});
+      // 时间选择
+      $('.datetimepicker').datetimepicker({
+        language : 'zh', // 语言选择
+        format : 'yyyy-mm-dd hh:ii:ss', // 选择格式
+        todayBtn : true,
+        autoclose : true
+      });
+      $('.aaa .datetimepicker-dropdown-bottom-right').css('margin-top', '0px')
+      //icheck 单选多选
+      $('input').iCheck({
+        checkboxClass : 'icheckbox_square-blue',
+        radioClass : 'iradio_square-blue',
+        increaseArea : '20%' // optional
+      });
+      $("input:radio[name='wenjian']").on('ifChecked', function(event) {
+        // alert($(this).val());
+        if ($(this).val() == 'option1') {
+          $('.Bshow').addClass('disnone')
+        } else {
+          $('.Bshow').removeClass('disnone')
+        }
+      });
 
-			//上传文件
-			$("#file-1").fileinput({
-				uploadUrl : '#', // you must set a valid URL here else you will get an error
-				// allowedFileExtensions : ['jpg', 'png','gif'],
-				overwriteInitial : false,
-				maxFileSize : 1000,
-				maxFilesNum : 10,
-				//allowedFileTypes: ['image', 'video', 'flash'],
-				slugCallback : function(filename) {
-					return filename.replace('(', '_').replace(']', '_');
-				}
-			});
-		});
-	</script>
+      //上传文件
+      $("#file-1").fileinput({
+        uploadUrl : '#', // you must set a valid URL here else you will get an error
+        // allowedFileExtensions : ['jpg', 'png','gif'],
+        overwriteInitial : false,
+        maxFileSize : 1000,
+        maxFilesNum : 10,
+        //allowedFileTypes: ['image', 'video', 'flash'],
+        slugCallback : function(filename) {
+          return filename.replace('(', '_').replace(']', '_');
+        }
+      });
+    });
+    function addMnsc() {
+      alert("23234234234234");
+      $.ajax({
+        type : 'post',
+        url : "http://localhost:18080/mnsc/insert",
+        data : $("#form").serialize(),
+        dataType : 'json',
+        cache : false,
+        success : function(data) {
+          alert("成功");
+        },
+        error : function() { //失败回调函数
+          alert("失败");
+        }
+      });
+    }
+  </script>
 </body>
 </html>
