@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.tianjin.unifiedfee.ot.mapper.CategoryMapper" >
-  <resultMap id="BaseResultMap" type="cn.tianjin.unifiedfee.ot.entity.Category">
+  <resultMap id="BaseResultMap" type="cn.tianjin.unifiedfee.ot.entity.Category" >
     <result column="id" property="id" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
     <result column="parent_ids" property="parentIds" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="isvalid" property="isvalid" jdbcType="INTEGER" />
-    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_by" property="createId" jdbcType="VARCHAR" />
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
     <result column="create_date" property="createDate" jdbcType="DATE" />
-    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_by" property="updateId" jdbcType="VARCHAR" />
     <result column="update_name" property="updateName" jdbcType="VARCHAR" />
     <result column="update_date" property="updateDate" jdbcType="DATE" />
     <result column="remarks" property="remarks" jdbcType="VARCHAR" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     id, parent_id, parent_ids, name, sort, isvalid, create_by, create_name, create_date, update_by, update_name, update_date, remarks
   </sql>
 
-  <select id="findAllList" resultType="cn.tianjin.unifiedfee.ot.entity.Category">
-    select * from category
+  <select id="getAllList" resultType="cn.tianjin.unifiedfee.ot.entity.Category">
+    select <include refid="Base_Column_List"/> from category
+  </select>
+
+  <select id="getAllListWithMap" resultType="java.util.HashMap">
+    select <include refid="Base_Column_List"/> from category
   </select>
 
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.Category" >
@@ -32,8 +37,8 @@
       remarks)
     values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{parentIds,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{isvalid,jdbcType=INTEGER}, 
-      #{createBy,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, 
-      #{updateBy,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, #{updateDate,jdbcType=DATE}, 
+      #{createId,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, 
+      #{updateId,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, #{updateDate,jdbcType=DATE}, 
       #{remarks,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.tianjin.unifiedfee.ot.entity.Category" >
@@ -57,7 +62,7 @@
       <if test="isvalid != null" >
         isvalid,
       </if>
-      <if test="createBy != null" >
+      <if test="createId != null" >
         create_by,
       </if>
       <if test="createName != null" >
@@ -66,7 +71,7 @@
       <if test="createDate != null" >
         create_date,
       </if>
-      <if test="updateBy != null" >
+      <if test="updateId != null" >
         update_by,
       </if>
       <if test="updateName != null" >
@@ -98,8 +103,8 @@
       <if test="isvalid != null" >
         #{isvalid,jdbcType=INTEGER},
       </if>
-      <if test="createBy != null" >
-        #{createBy,jdbcType=VARCHAR},
+      <if test="createId != null" >
+        #{createId,jdbcType=VARCHAR},
       </if>
       <if test="createName != null" >
         #{createName,jdbcType=VARCHAR},
@@ -107,8 +112,8 @@
       <if test="createDate != null" >
         #{createDate,jdbcType=DATE},
       </if>
-      <if test="updateBy != null" >
-        #{updateBy,jdbcType=VARCHAR},
+      <if test="updateId != null" >
+        #{updateId,jdbcType=VARCHAR},
       </if>
       <if test="updateName != null" >
         #{updateName,jdbcType=VARCHAR},
@@ -121,4 +126,47 @@
       </if>
     </trim>
   </insert>
+
+  <update id="update"  parameterType="cn.tianjin.unifiedfee.ot.entity.Category">
+    update category
+    <trim suffixOverrides="," >
+      <if test="parentId != null" >
+        pId = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentIds != null" >
+        parentIds = #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        sort = #{order,jdbcType=INTEGER},
+      </if>
+      <if test="isvalid != null" >
+        isvalid = #{isvalid,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        create_by = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null" >
+        create_mame = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateId != null" >
+        update_by = #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null" >
+        update_mame = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
 </mapper>
