@@ -229,8 +229,9 @@ function lookItem(e) {
 
 function refresh() {
   alert("EEEE");
+  $("#tb_departments").bootstrapTable('refresh');
 }
-TableInit().Init('/getdata/cateList_deeptree',
+var bt=TableInit().Init('/cate/getPageData',
 [{
   field: 'name',
   title: '分类名称',
