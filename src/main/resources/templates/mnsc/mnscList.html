@@ -202,13 +202,13 @@ function deleteItem(e) {
 function addItem() {
   layer.open({
       type: 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-      title: '<span class="text-color">121321</span>',//请修改span中间的内容
+      title: '<span class="text-color">添加</span>',//请修改span中间的内容
       shadeClose: true,//开启阴影关闭
       closeBtn: 1, //不显示关闭按钮
       shade: 0.6,
       maxmin: false,//开启最大化最小化按钮
-      area: ['62.5%', '83%'],//此处可以改为100%，该数值按UI图比例算出
-      content: 'content.html'//如果不想出现滚动条['content.html', 'no']
+      area: ['65%', '83%'],//此处可以改为100%，该数值按UI图比例算出
+      content: 'mnsc/edit'//如果不想出现滚动条['content.html', 'no']
   });
 }
 
@@ -221,7 +221,7 @@ function editItem(e) {
         shade: 0.6,
         maxmin: false,//开启最大化最小化按钮
         area: ['62.5%', '83%'],//此处可以改为100%，该数值按UI图比例算出
-        content: 'content.html'//如果不想出现滚动条['content.html', 'no']
+        content: 'mnsc/edit'//如果不想出现滚动条['content.html', 'no']
     });
 }
 
@@ -248,12 +248,12 @@ TableInit().Init('http://localhost:18080/mnsc/getPageData',
   title: '上级分类',
   sortable: true
 },{
-  field: 'sort',
-  title: '本级排序',
+  field: 'mnscUrl',
+  title: 'URL地址',
   sortable: true
 },{
-  field: 'valid',
-  title: '是否有效',
+  field: 'expireDate',
+  title: '过期时间',
   sortable: true
 },{
   field: 'createName',
@@ -268,6 +268,9 @@ TableInit().Init('http://localhost:18080/mnsc/getPageData',
   title: '操作',
   formatter: operateFormatter
 }]);
+function refresh() {
+  $("#tb_departments").bootstrapTable('refresh');
+}
 </script>
 </body>
 </html>

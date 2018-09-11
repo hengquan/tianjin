@@ -41,16 +41,18 @@ public class DispatchUrl {
         return "/cate/cateView";
     }
     
-    /*模拟实操表页*/
+    //--摸拟实操管理
     @RequestMapping("mnscList")
     public String toMnscList() {
-        return "/mnscList";
+        return "/mnsc/mnscList";
     }
-    
-    /*模拟实操表添加页*/
-    @RequestMapping("addMnsc")
-    public String addMnsc() {
-        return "/content";
+    @RequestMapping("mnsc/edit")
+    public String toMnscEdit() {
+        return "/mnsc/mnscEdit";
+    }
+    @RequestMapping("mnsc/view")
+    public String toMnscView() {
+        return "/mnsc/mnscView";
     }
 
     /*测试页面*/

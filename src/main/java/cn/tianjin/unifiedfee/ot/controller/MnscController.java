@@ -31,8 +31,8 @@ public class MnscController {
 	// 获取分页数据
 	@RequestMapping("getPageData")
 	@ResponseBody
-	public Map<String, Object> getPageData(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
-			@RequestParam(value = "pageSize", defaultValue = "10") int pageSize, HttpServletRequest request,
+	public Map<String, Object> getPageData(@RequestParam(value = "offset", defaultValue = "1") int pageNum,
+			@RequestParam(value = "limit", defaultValue = "10") int pageSize, HttpServletRequest request,
 			HttpServletResponse response) {
 		// 返回数据
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -45,7 +45,7 @@ public class MnscController {
 		// 放入分页
 		PageInfo<Mnsc> pageList = new PageInfo<Mnsc>(mnscs);
 		// 返回
-		map.put("total", pageList.getPageSize());
+        map.put("total", pageList.getTotal());
 		map.put("rows", pageList.getList());
 		return map;
 	}
