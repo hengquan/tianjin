@@ -54,6 +54,20 @@ public class DispatchUrl {
     public String toMnscView() {
         return "/mnsc/mnscView";
     }
+    
+    //--课件管理
+    @RequestMapping("kjList")
+    public String toKjList() {
+        return "/kj/kjList";
+    }
+    @RequestMapping("kj/edit")
+    public String toKjEdit() {
+        return "/kj/kjEdit";
+    }
+    @RequestMapping("kj/view")
+    public String toKjView() {
+        return "/kj/kjView";
+    }
 
     /*测试页面*/
     @RequestMapping("testTt")

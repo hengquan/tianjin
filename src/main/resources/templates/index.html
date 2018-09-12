@@ -58,12 +58,12 @@
                             <!--cell-->
                             <li class="pt-menu-child">
                                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toMNSC()"">模拟实操</a></h3>
+                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toMNSC()">模拟实操</a></h3>
                             </li>
                             <!--cell-->
                             <li class="pt-menu-child">
                                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                                <h3 class="pt-menu-title"><a href="#">学习课件</a></h3>
+                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toKJ()">学习课件</a></h3>
                             </li>
                         </ul>
                     </li>
@@ -146,6 +146,10 @@
   //模拟实操
   function toMNSC(){
     $("#mainIframe").attr("src","mnscList");
+  }
+  //课件
+  function toKJ(){
+    $("#mainIframe").attr("src","kjList");
   }
   //分类管理
   function toCATE(){
