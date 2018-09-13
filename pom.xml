@@ -12,73 +12,75 @@
 	<name>tianjin-unifiedfee-ot</name>
 	<url>http://maven.apache.org</url>
 
-  <!-- E:\workSpace\tianjin-unifiedfee-ot\extlibs\ -->
-  <!-- D:\Work\projects\tianjin\extlibs\ -->
+	<!-- E:\workSpace\tianjin-unifiedfee-ot\extlibs\ -->
+	<!-- D:\Work\projects\tianjin\extlibs\ -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<localLibDir>E:\workSpace\tianjin-unifiedfee-ot\extlibs\</localLibDir>
 	</properties>
 
-    <dependencies>
-        <!-- 异常处理模块 -->
-        <dependency>
-            <groupId>cn.taiji</groupId>
-            <artifactId>taiji-exception</artifactId>
-        </dependency>
-        <!-- 工具包 -->
-        <dependency>
-            <groupId>cn.taiji</groupId>
-            <artifactId>taiji-util</artifactId>
-        </dependency>
-        <!-- jpa持久层模块 -->
-        <dependency>
-            <groupId>cn.taiji</groupId>
-            <artifactId>taiji-jpa</artifactId>
-        </dependency>
-        <!-- web模块 -->
-        <dependency>
-            <groupId>cn.taiji</groupId>
-            <artifactId>taiji-web</artifactId>
-        </dependency>
-        <!-- 服务间调用模块 -->
-        <dependency>
-            <groupId>cn.taiji</groupId>
-            <artifactId>taiji-interaction</artifactId>
-        </dependency>
-        <!-- 权限管理模块 -->
-        <dependency>
-            <groupId>cn.taiji</groupId>
-            <artifactId>taiji-security</artifactId>
-        </dependency>
-        <!-- 日志模块 -->
-        <dependency>
-            <groupId>cn.taiji</groupId>
-            <artifactId>taiji-logging</artifactId>
-        </dependency>
-        <!-- redis缓存
-        <dependency>
-            <groupId>cn.taiji</groupId>
-            <artifactId>taiji-redis</artifactId>
-        </dependency> -->
-        <!-- 分页 -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.2.5</version>
-        </dependency>
-        <!-- mysql -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-<!-- 这个需要为 optional = true 热部署才有效 -->
-<dependency>
-  <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-devtools</artifactId>
-  <optional>true</optional> 
-</dependency>
+	<dependencies>
+		<!-- 异常处理模块 -->
+		<dependency>
+			<groupId>cn.taiji</groupId>
+			<artifactId>taiji-exception</artifactId>
+		</dependency>
+		<!-- 工具包 -->
+		<dependency>
+			<groupId>cn.taiji</groupId>
+			<artifactId>taiji-util</artifactId>
+		</dependency>
+		<!-- jpa持久层模块 -->
+		<dependency>
+			<groupId>cn.taiji</groupId>
+			<artifactId>taiji-jpa</artifactId>
+		</dependency>
+		<!-- web模块 -->
+		<dependency>
+			<groupId>cn.taiji</groupId>
+			<artifactId>taiji-web</artifactId>
+		</dependency>
+		<!-- 服务间调用模块 -->
+		<dependency>
+			<groupId>cn.taiji</groupId>
+			<artifactId>taiji-interaction</artifactId>
+		</dependency>
+		<!-- 权限管理模块 -->
+		<dependency>
+			<groupId>cn.taiji</groupId>
+			<artifactId>taiji-security</artifactId>
+		</dependency>
+		<!-- 文件管理模块，引入依赖 -->
+		<!-- <dependency>
+			<groupId>cn.taiji</groupId>
+			<artifactId>taiji-file</artifactId>
+			<version>1.0.3-RELEASE</version>
+		</dependency> -->
+		<!-- 日志模块 -->
+		<dependency>
+			<groupId>cn.taiji</groupId>
+			<artifactId>taiji-logging</artifactId>
+		</dependency>
+		<!-- redis缓存 <dependency> <groupId>cn.taiji</groupId> <artifactId>taiji-redis</artifactId> 
+			</dependency> -->
+		<!-- 分页 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+		<!-- mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- 这个需要为 optional = true 热部署才有效 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
 		<!-- 引入平台包 -->
 		<dependency>
 			<groupId>com.spiritdata</groupId>

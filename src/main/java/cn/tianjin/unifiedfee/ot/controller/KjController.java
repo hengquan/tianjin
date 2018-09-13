@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,11 @@ public class KjController {
 
     @Autowired
     private KjService kjService;
+    //文件管理服务
+    //@Autowired
+    //private FileObjectService fileObjectService;
+    @Value("${taiji.file.manage.download-endpoint}")
+    private String downloadEndpoint;
 
     // 获取分页数据
     @RequestMapping("getPageData")

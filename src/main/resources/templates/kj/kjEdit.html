@@ -47,7 +47,8 @@
 <!-- 3 treeview树js -->
 <script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
 <!-- 4 datetimepicker时间选择js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+<script
+	src="../libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
 <!-- 5 select选择框js -->
 <script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <!-- 6 fileinput上传文件js -->
@@ -72,7 +73,7 @@
 		<div class="row clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
 				<form class="form-horizontal pt-form-full" role="form" id="form">
-				  <input type="hidden" name="id" id="objId">
+					<input type="hidden" name="id" id="objId">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="title"><span>
@@ -110,10 +111,11 @@
 						<div class="form-group">
 							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="biaozhun"><span
 								class="cfff"> ※ </span>过期时间</label>
-							<div class="date datetimepicker col-lg-6 col-md-6 col-sm-6 col-xs-6"
+							<div
+								class="date datetimepicker col-lg-6 col-md-6 col-sm-6 col-xs-6"
 								data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-								<input class="form-control" name="expireDate" id="expireDate" size="16"
-									type="text" value=""> <span class="add-on"><i
+								<input class="form-control" name="expireDate" id="expireDate"
+									size="16" type="text" value=""> <span class="add-on"><i
 									class="icon-th"></i></span>
 							</div>
 						</div>
@@ -129,6 +131,36 @@
 							</div>
 						</div>
 					</div>
+
+
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="wenjian"><span
+								class="cfff"> ※ </span>文件选择</label>
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
+								<label class="radio-inline"> <input type="radio"
+									name="wenjian" id="wenjian" value="option1" checked>
+									选择文件
+								</label> <label class="radio-inline"> <input type="radio"
+									name="wenjian" id="wenjian2" value="option2">
+									录入新文件(录入新文件时显示下方内容)
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 disnone Bshow">
+						<div class="form-group">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"></div>
+							<!-- 占位2格 -->
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
+								<input id="file-1" type="file" multiple class="file"
+									data-overwrite-initial="false" data-min-file-count="2">
+							</div>
+						</div>
+					</div>
+
+
 					<div class="form-group pt-btn-submit-layer">
 						<button onclick="addKj()" id="baocun"
 							class="btn w160 btn-lg btn-default btn-primary">保存</button>
@@ -245,15 +277,17 @@
       });
       //获取参数
       var url = location.search;
-      if(url != ''){
+      if (url != '') {
         //变成修改
-        $("#baocun").attr("onclick","editKj()");
+        $("#baocun").attr("onclick", "editKj()");
         url = url.substr(1);
         var split = url.split("=");
         $.ajax({
           type : 'post',
           url : "http://localhost:18080/kj/get",
-          data : {"id":split[1]},
+          data : {
+            "id" : split[1]
+          },
           dataType : 'json',
           cache : false,
           success : function(data) {
@@ -304,7 +338,7 @@
       });
     }
     function closeMy() {
-      var index=parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
       parent.layer.close(index); //再执行关闭
     }
   </script>
