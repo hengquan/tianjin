@@ -142,9 +142,6 @@
 	<br>
 	<br>
 	<script>
-    function sh(type) {
-      console.log(type)
-    }
     $(function() {
       var url = location.search;
       if(url != ''){
@@ -152,7 +149,7 @@
         var split = url.split("=");
         $.ajax({
           type : 'post',
-          url : "http://localhost:18080/kj/get",
+          url : "/kj/get",
           data : {"id":split[1]},
           dataType : 'json',
           cache : false,
@@ -171,6 +168,7 @@
         });
       }
     });
+
     function updateMnsc() {
       alert($("#form").serialize());
       $.ajax({
