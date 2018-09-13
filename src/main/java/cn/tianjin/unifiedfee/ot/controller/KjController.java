@@ -105,7 +105,7 @@ public class KjController {
         // 跨域
         HttpPush.responseInfo(response);
         try {
-            // 添加数据
+            // 更新数据
             boolean result = kjService.update(kj);
             if (result)
                 map.put("resultCode", "100");
