@@ -73,7 +73,6 @@
 		<div class="row clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
 				<form class="form-horizontal pt-form-full" role="form" id="form">
-				  <input type="hidden" name="id" id="kjId">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="title"><span>
@@ -86,14 +85,9 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="dingjia"><span>
-									※ </span>选择分类</label>
+									※ </span>分类名称</label>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-								<select id="kjCatNames" name="kjCatNames" class="selectpicker"
-									data-live-search="true" title="请选择">
-									<option>政府指导价</option>
-									<option>政府定价</option>
-									<option>市场调节价</option>
-								</select>
+							  <input type="text" class="form-control" name="kjCatNames" id="kjCatNames" />
 							</div>
 						</div>
 					</div>
@@ -129,11 +123,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group pt-btn-submit-layer">
-						<button onclick="updateMnsc()"
-							class="btn w160 btn-lg btn-default btn-primary">保存</button>
-						<button class="btn w160 btn-lg btn-default btn-default">取消</button>
-					</div>
 				</form>
 			</div>
 		</div>
@@ -148,45 +137,42 @@
     $(function() {
       var url = location.search;
       if(url != ''){
-        url = url.substr(1);
-        var split = url.split("=");
-        $.ajax({
-          type : 'post',
-          url : "http://localhost:18080/kj/get",
-          data : {"id":split[1]},
-          dataType : 'json',
-          cache : false,
-          success : function(data) {
-            var kj = data.data;
-            $("#kjId").val(kj.id);
-            $("#kjName").val(kj.kjName);
-            $("#kjCatNames").val(kj.kjCatNames);
-            $("#expireDate").val(kj.expireDate);
-            $("#score").val(kj.score);
-            $("#remarks").val(kj.remarks);
-          },
-          error : function() { //失败回调函数
-            alert("获取信息失败");
-          }
-        });
+	      url = url.substr(1);
+	      var split = url.split("=");
+	      $.ajax({
+	        type : 'post',
+	        url : "http://localhost:18080/kj/get",
+	        data : {"id":split[1]},
+	        dataType : 'json',
+	        cache : false,
+	        success : function(data) {
+	          var kj = data.data;
+	          $("#kjName").val(kj.kjName);
+	          $("#kjCatNames").val(kj.kjCatNames);
+	          $("#expireDate").val(kj.expireDate);
+	          $("#score").val(kj.score);
+	          $("#remarks").val(kj.remarks);
+	        },
+	        error : function() { //失败回调函数
+	          alert("获取信息失败");
+	        }
+	      });
       }
     });
-    function updateMnsc() {
-      alert($("#form").serialize());
+    function addMnsc() {
       $.ajax({
         type : 'post',
-        url : "/kj/update",
+        url : "http://localhost:18080/kj/insert",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
         success : function(data) {
           alert("成功");
-          closeMy();
           parent.refresh();
+          closeMy();
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) { //失败回调函数
-          var m="系统错误：\nstatu=" + XMLHttpRequest.status + "\nreadyState=" + XMLHttpRequest.readyState + "\ntext=" + textStatus + "\nerrThrown=" + errorThrown;
-          alert(m);
+        error : function() { //失败回调函数
+          alert("失败");
         }
       });
     }
