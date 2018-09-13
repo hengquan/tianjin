@@ -74,7 +74,7 @@
 			<div class="pt-view pt-open" style="padding-left: 10px;">
 				<!--带横线标题-->
 				<div class="pt-bread">
-					<h3>模拟实操</h3>
+					<h3>课件列表</h3>
 					<!-- 添加展开按钮 -->
 					<button type="button" id="ptsearchfilter"
 						class="btn btn-primary pt-zkbtn">展开</button>
@@ -227,7 +227,7 @@
       var data = {
         "id":e
       }
-      var mymessage=confirm("确实要删除该信息吗？");
+      var mymessage=confirm("确定要删除该课件信息吗？");
       if(mymessage==true){
         $.ajax({
           type : 'post',
@@ -236,7 +236,6 @@
           dataType : 'json',
           cache : false,
           success : function(data) {
-            alert("删除成功");
             $("#tb_departments").bootstrapTable('refresh');
           },
           error : function() { //失败回调函数
@@ -249,22 +248,22 @@
     }
 
     function addItem() {
-      layer.open({
+      top.layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title : '<span class="text-color">添加</span>',//请修改span中间的内容
+        title : '<span class="text-color">添加课件信息</span>',//请修改span中间的内容
         shadeClose : true,//开启阴影关闭
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '65%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'kj/edit'//如果不想出现滚动条['content.html', 'no']
+        content : ['kj/edit','yes']//如果不想出现滚动条['content.html', 'no']
       });
     }
 
     function editItem(e) {
-      layer.open({
+      top.layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title : '<span class="text-color">修改</span>',//请修改span中间的内容
+        title : '<span class="text-color">修改课件信息</span>',//请修改span中间的内容
         shadeClose : true,//开启阴影关闭
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
@@ -275,10 +274,9 @@
     }
 
     function lookItem(e) {
-      console.log(e);
-      layer.open({
+      top.layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title : '<span class="text-color">查看费项信息</span>',//请修改span中间的内容
+        title : '<span class="text-color">查看课件信息</span>',//请修改span中间的内容
         shadeClose : true,//开启阴影关闭
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
