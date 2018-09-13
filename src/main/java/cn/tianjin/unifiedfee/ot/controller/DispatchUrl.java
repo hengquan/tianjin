@@ -1,5 +1,7 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -61,11 +63,11 @@ public class DispatchUrl {
         return "/kj/kjList";
     }
     @RequestMapping("kj/edit")
-    public String toKjEdit() {
+    public String toKjEdit(HttpServletRequest request) {
         return "/kj/kjEdit";
     }
     @RequestMapping("kj/view")
-    public String toKjView() {
+    public String toKjView(HttpServletRequest request) {
         return "/kj/kjView";
     }
 

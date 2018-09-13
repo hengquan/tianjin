@@ -1,4 +1,4 @@
-var TableInit = function () {
+var TableInit = function (queryParams) {
     var oTableInit = new Object();
     //初始化Table
     oTableInit.Init = function (url,columns) {
@@ -10,7 +10,7 @@ var TableInit = function () {
             pagination: true,                   //是否显示分页（*）
             sortable: true,                     //是否启用排序
             sortOrder: "asc",                   //排序方式
-            queryParams: oTableInit.queryParams,//传递参数（*）
+            queryParams: queryParams,//传递参数（*）
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber:1,                       //初始化加载第一页，默认第一页
             pageSize: 10,                       //每页的记录行数（*）
@@ -20,15 +20,15 @@ var TableInit = function () {
     };
 
     //得到查询的参数
-    oTableInit.queryParams = function (params) {
-        var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-            limit: params.limit,   //页面大小
-            offset: params.offset,  //页码
-            sortName: params.sort,
-            sortType: params.order
-        };
-        return temp;
-    };
+//    oTableInit.queryParams = function (params) {
+//        var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+//            limit: params.limit,   //页面大小
+//            offset: params.offset,  //页码
+//            sortName: params.sort,
+//            sortType: params.order
+//        };
+//        return temp;
+//    };
     return oTableInit;
 };
 

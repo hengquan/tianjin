@@ -64,6 +64,7 @@
 <link href="./libs/layer/layer-new.css" rel="stylesheet">
 <!-- 11 页面js -->
 <script src="./src/js/main.js"></script>
+<!-- <script src="./src/js/pt-tables.js"></script> -->
 
 </head>
 <body>
@@ -213,17 +214,38 @@
     // 2.返回操作模版[按钮颜色暂不确定]
     function operateFormatter(value, row, index) {
       return [
-          '<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick="lookItem('
-              + index + ')">查看</button>',
-          '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick="editItem('
-              + index + ')">修改</button>',
-          '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="deleteItem('
-              + index + ')">删除</button>' ].join('');
+          '<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick=lookItem("'
+              + value + '")>查看</button>',
+          '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
+              + value + '")>修改</button>',
+          '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
+              + value + '")>删除</button>' ].join('');
     }
 
     // 操作模版调用的方法
     function deleteItem(e) {
-      alert('删除操作，序号' + e)
+      var data = {
+        "id":e
+      }
+      var mymessage=confirm("确实要删除该信息吗？");
+      if(mymessage==true){
+        $.ajax({
+          type : 'post',
+          url : "http://localhost:18080/kj/delete",
+          data : data,
+          dataType : 'json',
+          cache : false,
+          success : function(data) {
+            alert("删除成功");
+            $("#tb_departments").bootstrapTable('refresh');
+          },
+          error : function() { //失败回调函数
+            alert("删除失败");
+          }
+        });
+      } else if(mymessage==false){
+        return false;
+      }
     }
 
     function addItem() {
@@ -248,11 +270,12 @@
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '62.5%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'kj/edit'//如果不想出现滚动条['content.html', 'no']
+        content : 'kj/edit?id='+e//如果不想出现滚动条['content.html', 'no']
       });
     }
 
     function lookItem(e) {
+      console.log(e);
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
         title : '<span class="text-color">查看费项信息</span>',//请修改span中间的内容
@@ -261,11 +284,11 @@
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '62.5%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'look.html'//如果不想出现滚动条['content.html', 'no']
+        content : 'kj/view?id='+e//如果不想出现滚动条['content.html', 'no']
       });
     }
 
-    TableInit().Init('http://localhost:18080/kj/getPageData', [ {
+    TableInit(queryParams).Init('http://localhost:18080/kj/getPageData', [ {
       field : 'kjName',
       title : '课件名称',
       sortable : true
@@ -286,11 +309,11 @@
       title : '状态',
       sortable : true
     }, {
-      field : 'createDate',
+      field : 'createdate',
       title : '创建时间',
       sortable : true
     }, {
-      field : 'methods',
+      field : 'id',
       title : '操作',
       formatter : operateFormatter
     }, ]);
@@ -304,20 +327,6 @@
       var data = {
         "kjName" : kjName
       }
-      $.ajax({
-        type : 'post',
-        url : "http://localhost:18080/kj/getPageData",
-        data : data,
-        dataType : 'json',
-        cache : false,
-        success : function(data) {
-          alert("成功");
-        },
-        error : function() { //失败回调函数
-          alert("失败");
-        }
-      });
-      $("#tb_departments").bootstrapTable('refresh');
     }
     function queryParams(params) {
       return {
@@ -327,6 +336,10 @@
         offset : params.offset
       //页码
       };
+    }
+
+    function sel() {
+      $("#tb_departments").bootstrapTable('refresh');
     }
   </script>
 </body>

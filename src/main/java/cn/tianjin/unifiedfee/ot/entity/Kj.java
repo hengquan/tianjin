@@ -21,11 +21,21 @@ public class Kj {
 
     private Date createDate;
 
+    private String createdate;
+
     private String createBy;
 
     private String createName;
 
     private String kjHtml;
+
+    public String getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(String createdate) {
+        this.createdate = createdate;
+    }
 
     public String getId() {
         return id;
