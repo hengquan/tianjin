@@ -1,0 +1,86 @@
+/*搜素*/
+.search_input{
+    width: 1080px;
+    margin-left: -75px;
+    height:123px;
+    line-height: 123px;
+    text-align: center;
+}
+.search_left input{
+    height: 50px;
+    width: 450px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #C3C3C3;
+}
+.search_right{
+    display: inline-block;
+    background:#2e66bd;
+    height: 51px;
+    width: 108px;
+    line-height: 44px;
+    margin-left: -4px;
+    border: 1px solid #C3C3C3;
+    border-radius: 0 5px 5px 0;
+    padding-top: 2px;
+}
+.search_right img{
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    color: white;
+    margin-left: -14px;
+}
+.search_right .search{
+    font-size: 16px;
+    color: white;
+}
+
+/*内容展示区域的样式*/
+.tab-content{
+    width: 1080px;
+    margin-left: -180px;
+}
+.row img{
+    width: 300px;
+    height: 222px;
+    display: inline-block;
+    border-radius: 5px 5px 0 0;
+    margin-left: 154px;
+}
+.col-md-4{
+    width: 300px;
+    margin-left:31px;
+}
+.name_title{
+    width: 300px;
+    height: 105px;
+    display: inline-block;
+    border-radius: 0 0  5px 5px;
+    background-color: #f8f8f8;
+    line-height: 105px;
+    margin-left: 154px;
+}
+.name_top p{
+    font-size: 16px;
+    margin-left: 15px;
+}
+.name_detail img{
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+}
+.name_detail{
+    margin-top: -20px;
+    margin-left: 34px;
+}
+.name_detail span{
+    color: #C3C3C3;
+}
+.name_detail .rs{
+    margin-right: 50px;
+}
+html{
+    height:855px;
+    overflow: scroll;
+}
+

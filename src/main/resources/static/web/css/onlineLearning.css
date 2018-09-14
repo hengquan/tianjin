@@ -1,0 +1,109 @@
+body{
+  background: #F2F2F2;
+}
+html{
+  overflow: auto;
+  height: 830px;
+}
+.learn{
+  width: 1200px;
+  margin: 0 auto; 
+}
+.core{
+  width: 1200px;
+  margin: 0 auto;
+  height: 60px;
+  line-height: 60px;
+  background:white;
+}
+.core span{
+  font-size: 16px;
+  margin-left: 26px;
+  font-weight: bold;
+}
+.core div{
+  border: 2px solid #2d65c2;
+  width:64px;
+  margin-top: -4px;
+  margin-left: 26px;
+}
+.core_content{
+  width: 1200px;
+  height: 660px;
+  margin: 35px auto 0;
+  display: flex;
+  justify-content: space-around;
+}
+.core_left{
+  width: 944px;
+  height: 900px;
+  border: 1px solid #C3C3C3;
+  background: white;
+}
+.core_right{
+  text-align: center;
+  width: 248px;
+  margin-top: 0px;
+  background: white;
+  height: 600px;
+  padding-top: 20px;
+  border-radius: 5px;
+  position:relative ;
+  font-size: 18px;
+}
+.core_right p{
+  font-size: 14px;
+}
+.core_right span{
+  font-size: 14px;
+  color: #C3C3C3;
+}
+.core_title{
+  margin-top:8px;
+  height: 160px;
+}
+.sub{
+  width: 88px;
+  height: 30px;
+  color: white;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  background: #f46227;
+  border-radius: 18px;
+  margin-left: 82px;
+}
+.video{
+  width: 940px;
+  margin-top: 0px;
+  background: white;
+  height: 600px;
+  padding-top: 20px;
+  border-radius: 5px;
+  position:relative ;
+   font-size: 18px;
+}
+
+/*横线*/
+.border{
+  display: inline-block;
+  width: 1200px;
+  height: 0.5px;
+  background: #F2F2F2;
+  margin-top: 5px;
+}
+.courseName p{
+   margin-left: 20px;
+    font-size: 18px;
+    color: #148bff;
+	text-align: left;
+}
+.courseConten{
+	 height: 460px;
+}
+.courseConten p{
+   margin-left: 12px;
+  font-size: 16px;
+  color:#707070;
+  text-align: left;
+}

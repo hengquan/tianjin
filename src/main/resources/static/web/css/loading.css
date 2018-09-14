@@ -1,0 +1,179 @@
+/*模拟加载内容*/
+body{
+  background: #F2F2F2;
+}
+html{
+  height:1150px;
+  overflow: auto;
+}
+.load{
+  width: 1200px;
+  margin: 35px auto 0;
+  height: 980px;
+  border-radius: 5px;
+  background: white;
+  padding-top: 50px;
+  box-sizing: border-box;
+}
+.load_content{
+  height: 940px;
+  margin-top: -20px;
+}
+.load p{
+  font-size: 24px;
+  font-weight:800;
+  width: 375px;
+  margin: 0 auto;
+}
+.load span{
+  font-size: 28px;
+}
+.load_left,.load_mid,.load_right{
+  float: left;
+  position: relative;
+}
+ .load_left{
+   margin-left: 20px;
+ }
+ .load_step .load_num{
+   position: absolute;
+   font-size: 55px;
+   font-weight: 400;
+   color: #faa249;
+ }
+ .load_step .load_text{
+   position: absolute;
+   font-size: 24px;
+   color: white;
+ }
+ /*左部分实操步骤*/
+ /*第一步*/
+ .load_one_step .load_num{
+   left: 20px;
+   top: 12px;
+ }
+.load_one_step .load_text{
+  left: 133px;
+  top: 34px;
+}
+/*第三步*/
+.load_three_step .load_num{
+   left: 20px;
+   top: 15px;
+ }
+.load_three_step .load_text{
+  left: 133px;
+  top: 35px;
+}
+/*第五步*/
+.load_five_step .load_num{
+  left: 20px;
+  top: 15px;
+}
+.load_five_step .load_text{
+  left: 102px;
+  top: 35px;
+}
+
+/*右部分实操步骤*/
+.load_right .load_num{
+  color: #f35e65;
+}
+/*第二步*/
+.load_two_step .load_num{
+  top:15px;
+  left: 278px;
+}
+.load_two_step .load_text{
+  top:34px;
+  left: 84px;
+}
+
+/*第四步*/
+.load_four_step .load_num{
+  top:15px;
+  left: 278px;
+}
+.load_four_step .load_text{
+  top:35px;
+  left: 68px;
+}
+
+/*第六步*/
+.load_six_step .load_num{
+  top:15px;
+  left: 278px;
+}
+.load_six_step .load_text{
+  top:35px;
+  left: 84px;
+}
+.load_mid{
+  height: 590px;
+  width: 2px;
+  background: #494949;
+  left: 215px;
+  top:130px ;
+}
+.load_left{
+  left: 215px;
+  top: 200px;
+}
+.load_right{
+  right: -215px;
+  top: 200px;
+}
+.load_step{
+  position: relative;
+}
+.load_one_step{
+  top: -139px;
+  left: 18px;
+}
+.load_three_step{
+  top: -5px;
+  left: 18px;
+  z-index: 9999;
+}
+.load_five_step{
+  top: 121px;
+  left: 18px;
+  z-index: 9999;
+}
+.load_two_step{
+  top: -14px;
+  left: -18px;
+  z-index: 9999;
+}
+.load_four_step{
+  top: 102px;
+  left: -18px;
+  z-index: 9999;
+}
+.load_six_step{
+  top: 243px;
+  left: -18px;
+  z-index: 9999;
+}
+.load_start{
+  width: 300px;
+  height: 40px;
+  position: relative;
+}
+.load_start span{
+  display: inline-block;
+  width: 300px;
+  height: 40px;
+  border-radius: 22px;
+  line-height: 40px;
+  text-align: center;
+  background: #148bff;
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  top: -125px;
+  left: 457px;
+}
+.pt-footer{
+  z-index: 9999;
+}

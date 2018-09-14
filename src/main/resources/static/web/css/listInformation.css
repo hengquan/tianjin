@@ -1,0 +1,235 @@
+/*实操内容*/
+body{
+  background: #F2F2F2;
+}
+html{
+  overflow: auto;
+  height: 1240px;
+}
+.list{
+  width: 1200px;
+  margin: 0 auto 20px;
+}
+.paymentList {
+  margin: 35px auto 0;
+  background: white;
+  position: relative;
+  width: 1200px;
+  padding-top: 20px;
+  height:750px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.paymentList .table{
+  width: 1150px;
+  margin: 0 auto;
+}
+.table>thead>tr>td{
+  text-align: left;
+}
+.table>tbody>tr>td{
+  text-align: left;
+  width: 200px;
+  font-size: 14px;
+}
+.table>thead>tr{
+  font-size: 16px;
+}
+.paymentList tr{
+  height: 45px;
+}
+.message  button{
+  text-align: center;
+  margin-left: 30px;
+  font-size: 14px;
+}
+.message .message1{
+  background: yellowgreen;
+}
+.message .message2{
+  background:lightblue;
+}
+.message .message3{
+  background: yellowgreen;
+}
+.ladingNumber strong{
+  color: red;
+  font-size: 16px;
+}
+.button span:first-child{
+  margin-left: 290px;
+}
+.button span{
+  margin-left: 30px;
+  display:inline-block;
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background: #2d65c2 ;
+}
+.table>tbody>tr>td>input{
+  margin-left: 60px;
+}
+.pay_button span{
+  margin-top: 66px;
+}
+/*底部相关*/
+.paymentList_bottom{
+  position: absolute;
+  width: 1200px;
+  margin: 20px auto 0;
+  height: 250px;
+  background: white;
+}
+.relevant span{
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color:white;
+  background: gainsboro;
+  border-radius: 0 0 5px 5px;
+  margin-left: 25px;
+  font-size: 14px;
+}
+.relevant a{
+  color: white;
+}
+.relevant .active{
+  background: #f46227;
+}
+.relevant_practice{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+.practice_title p{
+  font-size: 16px;
+}
+.practice_title span{
+  font-size: 16px;
+  color: #C3C3C3;
+}
+.relevant_practice div:first-child{
+  margin-left: -30px;
+}
+
+/*气泡*/
+.model_bg{
+  position: absolute;
+  top: 131px;
+  left:68px;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,255,.5);
+  z-index: 999;
+  display:none;
+  width: 240px;
+  height: 150px;
+  border-radius:5px;
+}
+.triangle{
+  position: absolute;
+  top: 113px;
+  left: 100px;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  display:none;
+  width: 0;
+  height: 0;
+  border-left:18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 18px solid rgba(0,0,255,.5);
+}
+.model_bg span{
+  color: white;
+  font-size: 14px;
+}
+.model_text{
+  width: 220px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top:20px;
+}
+.mandatory .star{
+   display: inline-block;
+    margin-left: 24px;
+    color: red;
+    font-size: 24px;
+}
+.model_bg p{
+  width: 60px;
+  height: 25px;
+  border: 1px solid white;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 5px;
+  margin-top:34px;
+  font-size: 14px;
+  color: white;
+  margin-left: 75px;
+}
+.model_bg1{
+  position: absolute;
+  top: 123px;
+  left:260px;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,255,.5);
+  z-index: 999;
+  display: none;
+  width: 240px;
+  height: 150px;
+  border-radius:5px;
+  padding-top: 40px;
+}
+.triangle1{
+  position: absolute;
+  top: 105px;
+  left: 322px;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  display: none;
+  width: 0;
+  height: 0;
+  border-left:18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 18px solid rgba(0,0,255,.5);
+}
+.model_bg1 span{
+  color: white;
+  font-size: 14px;
+  margin-left: 15px;
+  display: inline-block;
+  width: 220px;
+  margin-right: 10px;
+  text-indent: 22px;
+}
+.model_bg1 p{
+  width: 60px;
+  height: 25px;
+  border: 1px solid white;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 5px;
+  margin-top:27px;
+  font-size: 14px;
+  color: white;
+  margin-left: 95px;
+}
+.message .message1{
+  display: inline-block;
+  width: 75px;
+  height: 25px;
+  border-radius: 5px;
+  margin-left: 30px;
+  background: #2d65c2;
+  color: white;
+  font-size: 14px;
+  line-height: 25px;
+  text-align: center;
+}

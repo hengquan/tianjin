@@ -1,0 +1,239 @@
+body,html{
+    font-size:14px ;
+    height: 1230px;
+}
+.greatePaper{
+    display: inline-block;
+    width: 120px;
+    height: 30px;
+    color: white;
+    line-height: 30px;
+    text-align: center;
+    background: #148bff ;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+.paper{
+    margin-left: 26px;
+}
+.paper span{
+    margin-right:25px;
+}
+.courseName{
+    margin-left:26px;
+}
+.courseName p{
+    font-size: 18px;
+    color: #148bff;
+}
+.paper_btn{
+    margin-left: 120px;
+}
+.practice_result{
+    float: right;
+    margin-right: 300px;
+}
+.practice_result .timer{
+    margin-top: -380px;
+    font-size: 16px;
+}
+.practice_result .test_result{
+    margin-top: 100px;
+    font-size: 16px;
+}
+.practice_result .timer img{
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+.test_result .right{
+    color:#3bec2b;
+}
+.test_result .wrong{
+    color: red;
+}
+.nav_bar .border{
+    width: 128px;
+}
+.nav_bar span{
+  border-bottom: 4px solid #2d65c2;
+  padding-bottom: 16px;
+}
+.pay{
+    height: 500px;
+}
+.paymentList{
+  height: 1000px;
+}
+.pay_button .previousPage {
+  margin-left: 515px;
+}
+.pay_button .repractice{
+  margin-top: 0;
+  margin-left: 0;
+}
+.pay_button .nextPage{
+  margin-top: 0;
+  margin-left: 0;
+}
+.paymentList .pay_button span {
+  margin-top: 174px;
+}
+
+/*生成练习之前页面*/
+.empty{
+  margin-top: 220px;
+  padding-left:484px;
+}
+.empty img{
+    margin-left: 60px;
+}
+.empty p{
+  font-size: 16px;
+   margin-left: 10px;
+}
+select{
+  width: 89px;
+  height: 23px;
+}
+
+/*横线*/
+.border{
+  display: inline-block;
+  width: 1200px;
+  border-bottom: 0.3px solid #F2F2F2;
+  margin-top: 5px;
+}
+.startTime{
+  display: inline-block;
+  width: 130px;
+  height: 35px;
+  border: 1px solid #F2F2F2;
+  color: #148bff;
+  line-height: 35px;
+  border-radius: 15px;
+  text-align: center;
+  margin-left: 560px;
+  margin-top: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.paymentList{
+  margin-top: 35px;
+}
+.answer{
+  margin-top: 6px;
+}
+.paper_title{
+  margin-top: 20px;
+}
+.pay_button span{
+  height: 30px;
+  line-height: 30px;
+}
+.pay_button .previousPage{
+  background-color: #148bff;
+}
+.pay_button .nextPage{
+  background-color: #148bff;
+}
+.paper_content1 .previousPage{
+  background-color: #cacaca;
+}
+
+/*练习完成答案*/
+.pay_button span{
+  display: inline-block;
+  width: 110px;
+}
+.rightResult{
+  color: #35af26;
+  margin-left: -1px;
+}
+.result{
+  color: #f50f2b;
+  margin-left: 15px;
+}
+.paymentList1{
+  background: white;
+  margin-top: 35px;
+  padding-top: 20px;
+  height: 1000px;
+   margin-bottom: 10px;
+}
+.endResult{
+  width: 130px;
+  height: 35px;
+  border: 1px solid #F2F2F2;
+  line-height: 35px;
+  border-radius: 15px;
+  text-align: center;
+  margin-left: 560px;
+  font-size: 18px;
+}
+.key{
+  margin-left: 500px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.key .right1{
+  color: #35af26;
+  margin-left: 8px;
+}
+.key .wrong1{
+  color: #f50f2b;
+  margin-left: 8px;
+}
+.key .useTime{
+  margin-left: 8px;
+}
+.paper_content1 .pay_button .previousPage{
+  margin-left: 515px;
+}
+.paymentList1{
+  display:none;
+}
+.paper_content{
+  display: none;
+}
+.empty{
+  display: block;
+}
+.paper_content1{
+  display: none;
+}
+
+/*计时样式*/
+.timeInput input{
+  outline: none;
+  border: none;
+  width: 18px;
+}
+.timers{
+  display: inline-block;
+  width: 130px;
+  height: 35px;
+  border: 1px solid #F2F2F2;
+  line-height: 35px;
+  border-radius: 15px;
+  text-align: center;
+  margin-top: -44px;
+  padding-left: 10px;
+}
+ .startTime1{
+  margin-left: 473px;
+  display: inline-block;
+  width: 130px;
+  height: 35px;
+  border: 1px solid #F2F2F2;
+  color: #148bff;
+  line-height: 35px;
+  border-radius: 15px;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.timeInput{
+   display: none;
+ }

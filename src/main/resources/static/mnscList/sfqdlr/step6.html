@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>实操-收费清单汇总表</title>
+  <!-- <!-- 1 bootstrap的css -->
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+  <!--公共css-->
+  <link rel="stylesheet" href="../../css/pt-main.css">
+  <link rel="stylesheet" href="../../css/index1.css">
+  <!--页面css-->
+  <link rel="stylesheet" href="../../css/summaryInformation.css">
+  <!--引入字体的css-->
+  <link rel="stylesheet" href="../../bootstrap/fonts/iconfont.css">
+
+  <script type="text/javascript" src="../../js/jquery-1.12.4.js"></script>
+  <!--bootstrap的js-->
+  <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
+  <!--表格table.js-->
+  <script type="text/javascript" src="../../bootstrap/js/bootstrap-table.min.js"></script>
+  <!--页面js-->
+  <script type="text/javascript" src="../../js/main.js"></script>
+  <script>
+    $(function(){
+      setTimeout(function () {
+        $(".model_bg").fadeIn("slow");
+        $(".triangle").fadeIn("slow");
+      },2000);
+    })
+  </script>
+</head>
+<body>
+<!-- 头部条 -->
+<div class="pt-topbar">
+  <div class="nav_header">
+    <!--左侧系统名称-->
+    <div class="pt-fl pt-system-info">
+      <div class="pt-logo pt-fl"><img src="../../images/LOGO@2x.png" alt=""></div>
+      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>企业中心</strong></div>
+    </div>
+    <!--右侧用户信息-->
+    <div class="pt-fr pt-user-info">
+      <div class="pt-settings pt-fr"><img src="" alt=""></div>
+    </div>
+  </div>
+</div>
+<!-- 头部条  结束 -->
+<!--汇总内容-->
+<div class="summary">
+  <div class="nav_bar">
+    <span>收费清单录入</span>
+    <div class="border"></div>
+  </div>
+  <div class="paymentList">
+    <!--底部相关-->
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <td colspan="12">收费清单汇总表</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td colspan="12" class="sure">
+          <span>确认</span>
+          <div class="model_bg">
+          <div class="model_text">
+            <span>恭喜您完成费项清单添加，可以进行打印导出！</span>
+            <p onclick="toHide()">知道了</p>
+          </div>
+          </div>
+          <div class="triangle"></div>
+          <span>导出</span>
+          <span>打印</span>
+        </td>
+      </tr>
+      <tr >
+        <td>序号</td>
+        <td>费项类别</td>
+        <td>收费项目</td>
+        <td>收费子项</td>
+        <td>计费规格</td>
+        <td>计费单位</td>
+        <td>单价</td>
+        <td>数量</td>
+        <td>金额</td>
+        <td>币制</td>
+        <td>定价形式</td>
+        <td>操作</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>常规</td>
+        <td>一级费项</td>
+        <td>二级费项</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>非常规</td>
+        <td>一级费项</td>
+        <td>二级费项</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="9" style="text-align: center">合计</td>
+        <td>600</td>
+        <td colspan="2">xxx</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="pay_button">
+      <span class="previousPage" onclick="previousPage()">上一页</span>
+      <span class="repractice" onclick="repractice()">重新练习</span>
+    </div>
+  </div>
+  <!--底部相关-->
+  <iframe src="../../relevant.html" frameborder="0" id="main" style="width: 100%;height: 260px"></iframe>
+</div>
+<!--公共底部-->
+<div class="pt-footer">
+  <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+</div>
+<script>
+  $(function(){
+    $('.relevant span').click(function(){
+      $(this).addClass('active').siblings().removeClass('active')
+    })
+  })
+  function show1() {
+    $(this).addClass('active').siblings().removeClass('active')
+    $("#show1").show()
+    $("#show").hide()
+  }
+  function show2() {
+    $(this).addClass('active').siblings().removeClass('active')
+    $("#show1").hide()
+    $("#show").show()
+  }
+
+  //气泡消失
+  function toHide() {
+    $(".model_bg").hide()
+    $(".triangle").hide()
+  }
+//  上一页
+  function previousPage() {
+    window.location.href ='step5.html'
+  }
+</script>
+</body>
+</html>

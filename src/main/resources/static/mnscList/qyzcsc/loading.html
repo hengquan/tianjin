@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>实操-企业注册模拟实操</title>
+  <!-- <!-- 1 bootstrap的css -->
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+  <!--公共css-->
+  <link rel="stylesheet" href="../../css/pt-main.css">
+  <!--页面css-->
+  <link rel="stylesheet" href="../../css/loading.css">
+  <link rel="stylesheet" href="src/css/registerLoad.css">
+  <!--引入字体的css-->
+  <link rel="stylesheet" href="../../bootstrap/fonts/iconfont.css">
+
+  <script type="text/javascript" src="../../js/jquery-1.12.4.js"></script>
+  <!--bootstrap的js-->
+  <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
+  <!--表格table.js-->
+  <script type="text/javascript" src="../../bootstrap/js/bootstrap-table.min.js"></script>
+  <!--页面js-->
+  <script type="text/javascript" src="../../js/main.js"></script>
+</head>
+<body>
+<!-- 头部条 -->
+<div class="pt-topbar">
+  <div class="nav_header">
+    <!--左侧系统名称-->
+    <div class="pt-fl pt-system-info">
+      <div class="pt-logo pt-fl"><img src="../../images/LOGO@2x.png" alt=""></div>
+      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>企业中心</strong></div>
+    </div>
+    <!--右侧用户信息-->
+    <div class="pt-fr pt-user-info">
+      <div class="pt-settings pt-fr"><img src="" alt=""></div>
+    </div>
+  </div>
+</div>
+<!--模拟加载内容区-->
+ <div class="load">
+   <p>欢迎进入本次实操:
+     <span>企业信息录入</span>
+   </p>
+   <div class="load_content">
+     <div class="load_left">
+       <div class="load_one_step load_step">
+         <div class="load_num">01</div>
+         <div class="load_text">企业注册入口</div>
+         <img src="../../images/left.png" alt="">
+       </div>
+       <div class="load_three_step load_step">
+         <div class="load_num">03</div>
+         <div class="load_text">企业信息填写</div>
+         <img src="../../images/left.png" alt="">
+       </div>
+       <div class="load_five_step load_step">
+         <div class="load_num">05</div>
+         <div class="load_text">注册成功</div>
+         <img src="../../images/left.png" alt="">
+       </div>
+     </div>
+     <div class="load_mid"></div>
+     <div class="load_right">
+       <div class="load_two_step load_step">
+         <div class="load_num">02</div>
+         <div class="load_text">基础信息填写</div>
+         <img src="../../images/right.png" alt="">
+       </div>
+       <div class="load_four_step load_step">
+         <div class="load_num">04</div>
+         <div class="load_text">银行信息填写</div>
+         <img src="../../images/right.png" alt="">
+       </div>
+     </div>
+   </div>
+   <div class="load_start">
+     <span onclick="toStudy()">开始注册信息填写</span>
+   </div>
+ </div>
+<!--公共底部-->
+<div class="pt-footer">
+  <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+</div>
+<script>
+  function toStudy () {
+    window.location.href="step1.html"
+  }
+</script>
+</body>
+</html>
