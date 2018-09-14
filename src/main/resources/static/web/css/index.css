@@ -41,7 +41,7 @@
     margin: 0 auto;
 }
 
-/*æ¨¡æ‹Ÿå®æ“æ ‡é¢˜*/
+/*Ä£ÄâÊµ²Ù±êÌâ*/
 .action{
     width: 920px;
     height: 60px;
@@ -63,7 +63,7 @@
     margin-left: -100px;
 }
 
-/*æ¨¡æ‹Ÿå®æ“çš„å†…å®¹*/
+/*Ä£ÄâÊµ²ÙµÄÄÚÈİ*/
 .tab-content{
     margin-top: 30px;
 }
@@ -76,12 +76,13 @@
     width: 230px;
     height: 175px;
     margin-left: -6px;
-}
+  }
 .tab-content .col-md-3{
     width: 25%;
 }
 .tab-content .model_bg{
     margin-left: -48px;
+    cursor: pointer;
 }
 .tab-content .col-md-3.explain{
     width: 230px;

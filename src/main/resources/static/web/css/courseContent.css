@@ -1,7 +1,7 @@
 .courseware{
   width: 1200px;
   margin: 0 auto;
-  height:1110px;
+  height:1055px;
 }
 body{
   background: #f2f2f2;
@@ -63,7 +63,7 @@ body{
 .pt-root-container{
   background-color: #F2F2F2;
 }
-/*è¯¾ä»¶ä¸­å¿ƒ*/
+/*¿Î¼þÖÐÐÄ*/
 .courseware_center{
   height: 60px;
   font-size: 16px;
@@ -84,7 +84,7 @@ body{
   margin-top: -3px;
   border: none;
 }
-/*ä¸Šéƒ¨åˆ†å†…å®¹*/
+/*ÉÏ²¿·ÖÄÚÈÝ*/
 .detail_top {
   height: 270px;
   width: 1200px;
@@ -144,7 +144,7 @@ body{
   color: white;
   background: #f46227;
 }
-/*ç©ºéš™*/
+/*¿ÕÏ¶*/
 .gap{
   width: 1200px;
   height: 66px;
@@ -158,14 +158,14 @@ body{
   font-weight: bold;
 }
 .gap .border{
-  width: 65px;
+  width: 70px;
   height:4px;
   background-color:#2d65c2 ;
   margin-left:21px;
   margin-top: -3px;
   border: none;
 }
-/*ä¸‹éƒ¨åˆ†å†…å®¹*/
+/*ÏÂ²¿·ÖÄÚÈÝ*/
 .detail_bottom{
   height: 259px;
   width: 1200px;
@@ -199,7 +199,7 @@ body{
 .name_title p{
   font-size: 18px;
 }
-/*åº•éƒ¨*/
+/*µ×²¿*/
 .pt_footer{
   width: 1200px;
   margin: 0 auto;
@@ -208,10 +208,10 @@ body{
   margin-left: 500px;
   font-size: 14px;
 }
-/*ç›¸å…³ç»ƒä¹ */
+/*Ïà¹ØÁ·Ï°*/
 .related_exercises{
   width: 1200px;
-  margin: 0 auto;
+  margin: -18px auto 0;
   height: 66px;
   background: white;
   line-height: 66px;
@@ -227,11 +227,11 @@ body{
   height: 38px;
 }
 .related_exercises .border{
-  width: 65px;
+  width: 70px;
   height:4px;
   background-color:#2d65c2 ;
-  margin-left:21px;
-  margin-top: -3px;
+  margin-left:24px;
+  margin-top: -5px;
   border: none;
 }
 .related_exercises .submit {
@@ -241,7 +241,7 @@ body{
   margin-top: -52px;
   margin-right: 78px;
 }
-/*ç»ƒä¹ é¢˜ç›®*/
+/*Á·Ï°ÌâÄ¿*/
 .topics{
   width: 1200px;
   margin: 15px auto 10px;
@@ -309,4 +309,8 @@ html{
 }
 .practice_title1 .answer1{
   margin-top: 10px;
+}
+
+.paymentList_bottom{
+  margin-top: -40px;
 }

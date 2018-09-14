@@ -1,4 +1,4 @@
-/*璐告槗绫诲瀷*/
+/*贸易类型*/
 html{
   overflow: auto;
   height: 1120px;
@@ -82,7 +82,7 @@ body{
   font-size: 18px;
   border-radius: 5px;
 }
-/*搴曢儴鐩稿叧*/
+/*底部相关*/
 .paymentList_bottom{
   width: 1200px;
   margin: 25px auto 0;
@@ -122,7 +122,7 @@ body{
 .relevant_practice div:first-child{
   margin-left: -30px;
 }
-/*姘旀场*/
+/*气泡*/
 .model_bg{
   position: absolute;
   top: 226px;
@@ -152,14 +152,14 @@ body{
 }
 .model_bg p{
   display: inline-block;
-  margin-left: 135px;
-  width: 80px;
-  height:40px;
+  margin-left: 154px;
+  width: 50px;
+  height:25px;
   border: 1px solid white;
-  line-height: 40px;
+  line-height: 25px;
   text-align: center;
   border-radius: 5px;
-  margin-top: 25px;
+  margin-top: 27px;
   font-size: 14px;
   color: white;
 }
@@ -168,7 +168,7 @@ body{
   font-size: 14px;
   color: white;
    width: 300px;
-  margin-top: 50px;
+  margin-top: 26px;
   text-indent: 20px;
   margin-left: 15px;
   margin-right: 15px;
@@ -179,7 +179,7 @@ body{
   text-indent: 5px;
 }
 
-/*缁冧範鎸夐挳*/
+/*练习按钮*/
 .pay_button{
   display: flex;
   height: 40px;
@@ -209,6 +209,17 @@ body{
 }
 .pay_button .nextPage{
   background-color: #f46227;
+}
+
+.model_bg .notes {
+  display: inline-block;
+  font-size: 14px;
+  color: white;
+  width: 300px;
+  margin-top: 26px;
+  text-indent: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 

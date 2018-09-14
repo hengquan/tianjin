@@ -1,4 +1,4 @@
-/*瀹炴搷鍐呭*/
+/*实操内容*/
 body{
   background:#F2F2F2;
 }
@@ -65,7 +65,7 @@ html{
   color:white;
 }
 
-/*搴曢儴鐩稿叧*/
+/*底部相关*/
 .paymentList_bottom{
   width: 1200px;
   margin: 25px auto 0;
@@ -104,11 +104,11 @@ html{
   color: #C3C3C3;
 }
 
-/*姘旀场*/
+/*气泡*/
 .model_bg{
   position: absolute;
-  top: 211px;
-  left: 671px;
+  top: 323px;
+  left:581px;
   bottom: 0;
   right: 0;
   background: rgba(0,0,0,.5);
@@ -144,17 +144,17 @@ html{
 }
 .triangle{
   position: absolute;
-  top: 272px;
-  left: 653px;
+  top: 305px;
+  left: 609px;
   bottom: 0;
   right: 0;
   z-index: 999;
   display: none;
   width: 0;
   height: 0;
-  border-top:18px solid transparent;
-  border-bottom: 18px solid transparent;
-  border-right: 18px solid rgba(0,0,0,.5);
+  border-left:18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 18px solid rgba(0,0,0,.5);
 }
 .model_bg1{
   position: absolute;
@@ -209,7 +209,7 @@ html{
   border-right: 18px solid transparent;
   border-bottom: 18px solid rgba(0,0,255,0.5);
 }
-/*璋冩暣鎸夐挳鏍峰紡*/
+/*调整按钮样式*/
 .pay_button .repractice{
   margin-left: 452px;
 }
