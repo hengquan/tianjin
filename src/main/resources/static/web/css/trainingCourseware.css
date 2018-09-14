@@ -1,4 +1,4 @@
-/*æœç´ */
+/*ËÑËØ*/
 .search_input{
     width: 1080px;
     margin-left: -75px;
@@ -11,6 +11,9 @@
     width: 450px;
     border-radius: 5px 0 0 5px;
     border: 1px solid #C3C3C3;
+}
+.search_left input{
+  border-right: none;
 }
 .search_right{
     display: inline-block;
@@ -35,7 +38,7 @@
     color: white;
 }
 
-/*å†…å®¹å±•ç¤ºåŒºåŸŸçš„æ ·å¼*/
+/*ÄÚÈİÕ¹Ê¾ÇøÓòµÄÑùÊ½*/
 .tab-content{
     width: 1080px;
     margin-left: -180px;
@@ -46,6 +49,7 @@
     display: inline-block;
     border-radius: 5px 5px 0 0;
     margin-left: 154px;
+    cursor: pointer;
 }
 .col-md-4{
     width: 300px;

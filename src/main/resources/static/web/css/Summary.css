@@ -40,6 +40,7 @@
 }
 .practice_left .row img{
   margin-left: 26px;
+  cursor: pointer;
 }
 .practice_left .col-md-6 .row_img{
   margin-left: 8px;
@@ -49,6 +50,7 @@
 }
 .practice_right .row img{
   margin-left: -5px;
+  cursor: pointer;
 }
 .practice_right .col-md-6 .row_img{
   margin-left: -22px;
