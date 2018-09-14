@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>学员概况</title>
+  <!-- <!-- 1 bootstrap的css -->
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+  <!--公共css-->
+  <link rel="stylesheet" href="css/pt-main.css">
+  <link rel="stylesheet" href="css/index1.css">
+  <!--页面-->
+  <link rel="stylesheet" href="css/Summary.css">
+  <!--引入字体的css-->
+  <link rel="stylesheet" href="./bootstrap/fonts/iconfont.css">
+
+  <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+  <!--bootstrap的js-->
+  <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+  <!--页面js-->
+  <script type="text/javascript" src="./js/main.js"></script>
+  <style>
+    body{
+      background: white;
+    }
+  html{
+   overflow: hidden;
+  }
+  </style>
+</head>
+<body>
+<!--主菜单内容-->
+<div class="pt-view pt-open" >
+    <!--内容头部-->
+    <div class="practice_top">
+      <!--头部的学习概况-->
+      <div class="row">
+        <div class="col-md-4">
+          <img src="./images/01.jpg" alt="">
+          <span>666次</span>
+        </div>
+        <div class="col-md-4">
+          <img src="./images/02.jpg" alt="">
+          <span>666次</span>
+        </div>
+        <div class="col-md-4">
+          <img src="./images/03.jpg" alt="">
+          <span>666次</span>
+        </div>
+      </div>
+      <!--课件的详细介绍-->
+      <div class="upcoming">
+        <!--内容左部分-->
+        <div class="practice_left">
+          <div class="practice_title">
+            <span>最新体验模拟实操</span>
+            <div class="border"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <img src="./images/zxc.png" alt="" onclick="toLoading()">
+            </div>
+            <div class="col-md-6">
+              <img src="./images/zxc.png" alt="" onclick="toLoading()" class="row_img">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 practice_content">
+              <span>尚巍手书及课程预告</span>
+              <div class="rs">
+                <span>
+                  <img src="./images/rs.jpg" alt="" class="title_img">
+                  <span>10人</span>
+                </span>
+                <span class="time">2018年8月14日发布</span>
+              </div>
+            </div>
+            <div class="col-md-6 practice_content img1">
+              <span>尚巍手书及课程预告</span>
+              <div  class="rs">
+                <span>
+                  <img src="./images/rs.jpg" alt="" class="title_img">
+                  <span>10人</span>
+                </span>
+                <span class="time">2018年8月14日发布</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--内容右部分-->
+        <div class="practice_right">
+          <div class="practice_title">
+            <span>最新在线学习课件</span>
+            <div class="border"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <img src="./images/zxc.png" alt="" onclick="toCourse()">
+            </div>
+            <div class="col-md-6">
+              <img src="./images/zxc.png" alt="" onclick="toCourse()" class="row_img">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 practice_content">
+              <span>尚巍手书及课程预告</span>
+              <div class="rs">
+                <span>
+                  <img src="./images/rs.jpg" alt=""  class="title_img1">
+                  <span>10人</span>
+                </span>
+                <span class="time">2018年8月14日发布</span>
+              </div>
+            </div>
+            <div class="col-md-6 practice_content img1">
+              <span>尚巍手书及课程预告</span>
+              <div  class="rs">
+                <span>
+                  <img src="./images/rs.jpg" alt=""  class="title_img1">
+                  <span>10人</span>
+                </span>
+                <span class="time">2018年8月14日发布</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--内容底部-->
+    <div class="practice_bottom">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <td >我的日志</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>我观看了：xxxxx的模拟实操 <p>2018-8-14</p></td>
+        </tr>
+        <tr>
+          <td>我观看了：xxxxx的模拟实操 <p>2018-8-14</p></td>
+        </tr>
+        <tr>
+          <td>我观看了：xxxxx的模拟实操 <p>2018-8-14</p></td>
+        </tr>
+        <tr>
+          <td>我观看了：xxxxx的模拟实操 <p>2018-8-14</p></td>
+        </tr>
+        <tr>
+          <td>我观看了：xxxxx的模拟实操 <p>2018-8-14</p></td>
+        </tr>
+        <tr>
+          <td>我观看了：xxxxx的模拟实操 <p>2018-8-14</p></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<script>
+  function toLoading() {
+    window.open("./mnscList/sfqdlr/loading.html")
+  }
+  function toCourse() {
+    window.open("courseContent.html")
+  }
+</script>
+</body>
+</html>

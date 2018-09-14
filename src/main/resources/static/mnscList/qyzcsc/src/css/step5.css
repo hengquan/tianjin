@@ -1,0 +1,45 @@
+html,body{
+    height: 1095px;
+}
+.model{
+    width: 1000px;
+    height: 350px;
+    background: #2E75B6;
+    float: left;
+    border-radius: 20px;
+    margin-left: 100px;
+    margin-top: 85px;
+}
+.page-main{
+    height: 600px;
+    color: white;
+    font-size: 16px;
+}
+.model p:first-child{
+    font-size: 42px;
+    margin-left: 445px;
+    margin-top: 50px;
+}
+.danger{
+    font-size: 24px;
+    margin-left: 219px;
+    margin-top: 36px;
+}
+.danger span{
+    font-size: 32px;
+    color: orange;
+    margin-left: 15px;
+}
+.model .name{
+    margin-left: 294px;
+    font-size: 32px;
+    color: orange;
+    margin-top: 26px;
+}
+.pay_button .repractice{
+    margin-top: 528px;
+    margin-left: -550px;
+}
+p{
+  display: block;
+}

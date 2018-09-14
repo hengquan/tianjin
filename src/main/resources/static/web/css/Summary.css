@@ -1,0 +1,185 @@
+.col-md-4{
+  width: 298px;
+  margin-left: 30px;
+}
+.col-md-4 img{
+  display: inline-block;
+  width: 298px;
+  height: 115px;
+}
+.practice_top{
+  width: 1080px;
+}
+.row{
+  margin-top: 40px;
+  margin-left: -72px;
+}
+.col-md-4 span{
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+  font-size: 25px;
+  color: white;
+  position: absolute;
+  left:148px;
+  top:19px;
+  font-weight: 800;
+}
+/*课件的详细内容*/
+.upcoming{
+  display: flex;
+}
+.practice_left{
+  width: 520px;
+  height: 300px;
+  margin-left: 35px;
+  margin-right: 10px;
+}
+.practice_left .row{
+  width: 520px;
+}
+.practice_left .row img{
+  margin-left: 26px;
+}
+.practice_left .col-md-6 .row_img{
+  margin-left: 8px;
+}
+.practice_right .row{
+  width: 520px;
+}
+.practice_right .row img{
+  margin-left: -5px;
+}
+.practice_right .col-md-6 .row_img{
+  margin-left: -22px;
+}
+.practice_right{
+  width: 520px;
+  height: 300px;
+}
+.col-md-6 img{
+  width: 226px;
+  height: 174px;
+}
+.col-md-6 span{
+  font-size: 18px;
+}
+.practice_content{
+  width: 226px;
+  height: 100px;
+  border-radius: 0 0 5px 5px;
+  background:#f8f8f8;
+}
+.practice_left .practice_content{
+  margin-top: -40px;
+  margin-left: 26px;
+}
+.practice_right .practice_content{
+  margin-top: -40px;
+  margin-left: -5px;
+}
+.practice_content img{
+  display: inline-block;
+  width: 22px;
+  height:16px;
+  margin-left: 5px;
+}
+.practice_left .img1{
+  margin-left: 16px;
+  margin-top: -40px;
+}
+.practice_right .img1{
+  margin-left: 17px;
+  margin-top: -40px;
+}
+.practice_content span:first-child{
+  font-size: 18px;
+  margin-left: 8px;
+  line-height: 47px;
+}
+.practice_content .rs{
+  font-size: 14px;
+  color: #C3C3C3;
+}
+.rs span{
+  font-size: 14px;
+  color: #C3C3C3;
+}
+.rs span:first-child{
+  margin-left: -10px;
+}
+.rs .time{
+  margin-left: 9px;
+}
+.practice_title {
+  margin-left: -66px;
+  margin-top: 36px;
+}
+/*内容底部*/
+.practice_bottom{
+  width: 966px;
+  position: absolute;
+  left: 25px;
+  top: 588px;
+}
+.practice_bottom table{
+  margin-left: 5px;
+}
+.practice_bottom thead{
+  font-size: 18px;
+}
+.practice_bottom tbody{
+  font-size: 16px;
+}
+.table > thead > tr > td{
+  text-align: left;
+}
+.table > tbody > tr > td{
+  text-align: left;
+}
+.table > tbody > tr > td>span{
+  font-size: 14px;
+  color: #C3C3C3;
+}
+.table > tbody > tr >td>p{
+  float: right;
+}
+
+/*调整布局后添加样式*/
+.practice_left .practice_content .title_img{
+  margin-left: 15px;
+}
+.practice_right .practice_content .title_img1{
+  margin-left: 15px;
+}
+.practice_title span{
+  display: inline-block;
+  font-size: 18px;
+  border-bottom: 4px solid #2e66bd;
+  padding-bottom: 11px;
+}
+.practice_left .practice_title span{
+  margin-left: 23px;
+}
+.practice_right .practice_title span{
+  margin-left:-7px;
+}
+.practice_left .border{
+  border: 0.5px solid #94cbe7;
+  width: 458px;
+  margin-top: 0px;
+  margin-left: 24px;
+}
+.practice_right .border{
+  border: 0.5px solid #94cbe7;
+  width: 458px;
+  margin-top: 0px;
+  margin-left: -9px;
+}
+.pt_content{
+  height:1050px;
+}
+html{
+  height: 1050px;
+  overflow: scroll;
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>实操-收费清单基本信息</title>
+  <!-- <!-- 1 bootstrap的css -->
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+  <!--公共css-->
+  <link rel="stylesheet" href="../../css/pt-main.css">
+  <link rel="stylesheet" href="../../css/index1.css">
+  <!--页面css-->
+  <link rel="stylesheet" href="../../css/listInformation.css">
+  <!--引入字体的css-->
+  <link rel="stylesheet" href="../../bootstrap/fonts/iconfont.css">
+
+  <script type="text/javascript" src="../../js/jquery-1.12.4.js"></script>
+  <!--bootstrap的js-->
+  <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
+  <!--表格table.js-->
+  <script type="text/javascript" src="../../bootstrap/js/bootstrap-table.min.js"></script>
+  <!--页面js-->
+  <script type="text/javascript" src="../../js/main.js"></script>
+  <script>
+    $(function(){
+      setTimeout(function () {
+        $(".model_bg").fadeIn("slow");
+        $(".triangle").fadeIn("slow");
+      },2000);
+    })
+  </script>
+</head>
+<body>
+<!-- 头部条 -->
+<div class="pt-topbar">
+  <div class="nav_header">
+    <!--左侧系统名称-->
+    <div class="pt-fl pt-system-info">
+      <div class="pt-logo pt-fl"><img src="../../images/LOGO@2x.png" alt=""></div>
+      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>企业中心</strong></div>
+    </div>
+    <!--右侧用户信息-->
+    <div class="pt-fr pt-user-info">
+      <div class="pt-settings pt-fr"><img src="" alt=""></div>
+    </div>
+  </div>
+</div>
+<!-- 头部条  结束 -->
+<div class="list">
+  <div class="nav_bar">
+  <span>收费清单录入</span>
+  <div class="border"></div>
+</div>
+  <!--提单信息-->
+  <div class="paymentList">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <td colspan="6">收费清单基本信息</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td colspan="6" class="message">
+          <sapn onclick="init()" class="message1">保存</sapn>
+          <span>取消</span>
+          <div class="model_bg">
+            <div class="model_text">
+              <span class="mandatory"> <span class="star">*</span>号为必选项，选好币种、检查信息无误、点击保存按钮进行保存</span>
+              <p onclick="toHide()">知道了</p>
+            </div>
+          </div>
+          <div class="triangle"></div>
+          <div class="model_bg1">
+            <div class="model1_text">
+                <span>
+             点击费项设置按钮，进行费项信息设置
+            </span>
+              <p onclick="toHide1()">知道了</p>
+            </div>
+          </div>
+          <div class="triangle1"></div>
+          <span onclick="toEssential()">费项设置</span>
+        </td>
+      </tr>
+      <tr>
+        <td>缴费清单号</td>
+        <td>xxxx</td>
+        <td>清单类型</td>
+        <td>缴费清单</td>
+        <td>凭据xx</td>
+        <td>xxx</td>
+      </tr>
+      <tr>
+        <td>关联清单号</td>
+        <td>xxxx</td>
+        <td class="ladingNumber">币制
+          <strong>*</strong>
+        </td>
+        <td>
+          <select>
+            <option value="">人民币</option>
+            <option value="">美元</option>
+          </select>
+        </td>
+        <td>凭据xx</td>
+        <td>xxx</td>
+      </tr>
+      <tr>
+        <td>是否账期放行</td>
+        <td>xxxx</td>
+        <td colspan="4">账期截止日期</td>
+      </tr>
+      <tr>
+        <td>备注信息</td>
+        <td colspan="5"></td>
+      </tr>
+      <tr>
+        <td colspan="6" style="text-align:center">缴费企业信息</td>
+      </tr>
+      <tr >
+        <td>企业名称</td>
+        <td></td>
+        <td >统一社会信用代码</td>
+        <td colspan="3"></td>
+      </tr>
+      <tr>
+        <td colspan="6" style="text-align:center">收费企业信息</td>
+      </tr>
+      <tr >
+        <td>企业名称</td>
+        <td></td>
+        <td >统一社会信用代码</td>
+        <td></td>
+        <td >企业信息</td>
+        <td ></td>
+      </tr>
+      <tr >
+        <td>开户行</td>
+        <td></td>
+        <td>开户名称</td>
+        <td></td>
+        <td>开户信息</td>
+        <td></td>
+      </tr>
+      <tr >
+        <td>联系人</td>
+        <td></td>
+        <td>联系电话</td>
+        <td></td>
+        <td>邮编</td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="pay_button">
+      <span class="previousPage" onclick="previousPage()">上一页</span>
+      <span class="repractice" onclick="repractice()">重新练习</span>
+      <span class="nextPage" onclick="nextPage()">下一页</span>
+    </div>
+  </div>
+  <!--底部相关-->
+  <iframe src="../../relevant.html" frameborder="0" id="main" style="width: 100%;height: 260px"></iframe>
+</div>
+<!--公共底部-->
+<div class="pt-footer">
+  <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+</div>
+<script>
+  $(function(){
+    $('.relevant span').click(function(){
+      $(this).addClass('active').siblings().removeClass('active')
+    })
+  })
+  function show1() {
+    $(this).addClass('active').siblings().removeClass('active')
+    $("#show1").show()
+    $("#show").hide()
+  }
+  function show2() {
+    $(this).addClass('active').siblings().removeClass('active')
+    $("#show1").hide()
+    $("#show").show()
+  }
+  function toEssential() {
+    window.location.href ='step5.html'
+  }
+  //气泡消失
+  function toHide() {
+    $(".model_bg").hide()
+    $(".triangle").hide()
+  }
+  function toHide1() {
+      $(".model_bg1").hide()
+      $(".triangle1").hide()
+  }
+  function init() {
+      $(".model_bg1").show()
+      $(".triangle1").show()
+  }
+  function nextPage() {
+    window.location.href ='step5.html'
+  }
+  function previousPage() {
+    window.location.href ='step3.html'
+  }
+</script>
+</body>
+</html>

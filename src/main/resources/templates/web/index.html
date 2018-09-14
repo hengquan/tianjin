@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟实操</title>
+    <!-- <!-- 1 bootstrap的css -->
+    <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
+    <!--公共页面css-->
+    <link rel="stylesheet" href="./webcss/pt-main.css">
+    <link rel="stylesheet" href="./webcss/index1.css">
+    <!--独立页面css-->
+    <link rel="stylesheet" href="./webcss/index.css">
+    <!--引入字体颜色-->
+    <link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
+    <!--引入js-->
+    <script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
+    <!--bootstrap的js-->
+    <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
+    <!--页面js-->
+    <script type="text/javascript" src="./web/js/main.js"></script>
+    <style>
+        iframe{
+            width: 100%;
+            height: 1000px;
+        }
+    </style>
+</head>
+<body>
+<!-- 头部条 -->
+<div class="pt-topbar">
+    <div class="nav_header">
+        <!--左侧系统名称-->
+        <div class="pt-fl pt-system-info">
+            <div class="pt-logo pt-fl"><img src="./images/LOGO@2x.png" alt=""></div>
+            <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>企业中心</strong></div>
+        </div>
+        <!--右侧用户信息-->
+        <div class="pt-fr pt-user-info">
+            <div class="pt-settings pt-fr"><img src="" alt=""></div>
+        </div>
+    </div>
+</div>
+<!-- 头部条  结束 -->
+<div class="pt_content">
+    <!--左侧菜单-->
+    <div class="pt-nav pt-open" >
+        <!--头部点击条-->
+        <div class="pt-bar" id="pt-bar"><img src="./images/Group15.png" alt=""></div>
+        <!--菜单列表-->
+        <div class="pt-menu">
+            <ul>
+                <!--cell-->
+                <!--pt-menu-open-->
+                <li class="pt-menu-list">
+                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                    <h3 class="pt-menu-title"><a href="#">企业情况</a></h3>
+                </li>
+                <!--cell-->
+                <li class="pt-menu-list">
+                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                    <h3 class="pt-menu-title"><a href="#">价格管理</a></h3>
+                </li>
+                <!--cell-->
+                <!--pt-menu-open-->
+                <li class="pt-menu-list ">
+                    <!--一级菜单-->
+                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                    <h3 class="pt-menu-title"><a href="javascript:;">缴费管理</a></h3>
+
+                </li>
+                <!--cell-->
+                <li class="pt-menu-list">
+                    <!--一级菜单-->
+                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                    <h3 class="pt-menu-title"><a href="javascript:;">旅行管理</a></h3>
+                </li>
+                <li class="pt-menu-list">
+                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                    <h3 class="pt-menu-title"><a href="#">财务管理</a></h3>
+                </li>
+                <li class="pt-menu-list pt-menu-open ">
+                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                    <h3 class="pt-menu-title"><a href="#">培训中心</a></h3>
+                    <!--二级菜单-->
+                    <ul class="pt-second-menu">
+                        <!--cell-->
+                        <li class="pt-menu-child pt-menu-selected">
+                            <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                            <h3 class="pt-menu-title"><a href="#" class="student" onclick="toSummary()">学员概况</a></h3>
+                        </li>
+                        <!--cell-->
+                        <li class="pt-menu-child">
+                            <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                            <h3 class="pt-menu-title"><a href="#" class="simulation" onclick="toSimulation()">模拟实操</a></h3>
+                        </li>
+                        <!--cell-->
+                        <li class="pt-menu-child">
+                            <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                            <h3 class="pt-menu-title"><a href="#" class="online" onclick="toOnline()">在线学习</a></h3>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--左侧菜单 结束-->
+    <!--主菜单内容-->
+    <iframe src="" frameborder="0" id="mainIframe"></iframe>
+</div>
+<!--公共底部-->
+<div class="pt-footer">
+    <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+</div>
+<script>
+ $(document).ready(function () {
+     toSummary()
+ })
+  //学员概况
+  function toSummary() {
+      $("#mainIframe").attr("src","summary.html")
+  }
+  //  模拟实操
+  function toSimulation() {
+      $("#mainIframe").attr("src","practice.html")
+  }
+  //在线学习
+  function toOnline() {
+      $("#mainIframe").attr("src","courseware.html")
+  }
+</script>
+</body>
+</html>

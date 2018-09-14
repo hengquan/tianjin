@@ -1,0 +1,64 @@
+.practice_img img{
+    display: inline-block;
+    width: 210px;
+    height: 150px;
+}
+.practice_img{
+    margin-top: -23px;
+}
+.practice_img img:first-child{
+    margin-left: 3px;
+}
+.practice_title .practice_img .img1{
+    margin-left:-20px;
+}
+.practice_title .p1{
+    margin-left: -20px;
+}
+
+/*相关练习*/
+.practice_title .answer{
+    margin-left: 95px;
+}
+#show1 .practice_title .practice_btn{
+    display: inline-block;
+     width: 160px;
+     height: 30px;
+     background:#148bff ;
+     border-radius: 15px;
+     text-align: center;
+     line-height: 30px;
+    color: white;
+}
+.practice_title2{
+    padding-left: 317px;
+    margin-top: 30px;
+}
+.practice_title2:hover{
+    cursor: pointer;
+}
+.practice_title1 p{
+  font-size: 20px;
+  color: black;
+  margin-left:252px;
+}
+.practice_title1 .left{
+  margin-left: 28px;
+}
+.practice_title1 .answer1{
+  margin-top: 10px;
+}
+.study_btn{
+  float: right;
+  width: 100px;
+  height:30px;
+  border-radius: 22px;
+  line-height: 30px;
+  text-align: center;
+  color: white;
+  background: #f46227;
+  font-size: 14px;
+  margin-top: -60px;
+  margin-left: -120px;
+  cursor: pointer;
+}

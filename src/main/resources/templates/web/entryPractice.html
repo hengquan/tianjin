@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实操-收费清单列表</title>
+    <!-- <!-- 1 bootstrap的css -->
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+    <!--公共css-->
+    <link rel="stylesheet" href="css/pt-main.css">
+    <link rel="stylesheet" href="css/index1.css">
+    <!--页面css-->
+    <link rel="stylesheet" href="css/paymentList.css">
+    <link rel="stylesheet" href="css/entryPractice.css">
+    <!--引入字体的css-->
+    <link rel="stylesheet" href="./bootstrap/fonts/iconfont.css">
+    <link rel="stylesheet" href="./css/bootstrap-select.css">
+
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+    <!--bootstrap的js-->
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <!--表格table.js-->
+    <script type="text/javascript" src="bootstrap/js/bootstrap-table.min.js"></script>
+    <!--页面js-->
+    <script type="text/javascript" src="./js/main.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-select.min.js"></script>
+    <script type="text/javascript">
+    var c=0;var c1=60;var c2=0;
+
+    var runing=0;var stop=0;
+
+    function timedCount()
+    {
+      document.getElementById('txt').value=c;
+      document.getElementById('txt1').value=c1;
+      document.getElementById('txt2').value=c2;
+      c2=c2-5;
+      if(c2<0)
+      { c=c-1;c2=c2+100;}
+      if(c<0)
+      {c1=c1-1;c=c+60;}
+      if(stop==0)
+        setTimeout("timedCount()",50)
+      else
+        return;
+    }
+    function start()
+    {
+      stop=0;
+      if(runing==0)
+        timedCount();
+      runing=1;
+      $(".timeInput").show()
+      $(".startTime").hide()
+      $(".s")
+      return;
+
+    }
+
+    function stop1()
+    {
+      stop=1;runing=0;
+    }
+
+  </script>
+</head>
+<body>
+<!-- 头部条 -->
+<div class="pt-topbar">
+    <div class="nav_header">
+        <!--左侧系统名称-->
+        <div class="pt-fl pt-system-info">
+            <div class="pt-logo pt-fl"><img src="./images/LOGO@2x.png" alt=""></div>
+            <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>企业中心</strong></div>
+        </div>
+        <!--右侧用户信息-->
+        <div class="pt-fr pt-user-info">
+            <div class="pt-settings pt-fr"><img src="" alt=""></div>
+        </div>
+    </div>
+</div>
+<!-- 头部条  结束 -->
+<div class="pay">
+    <div class="nav_bar">
+        <span>收费清单录入练习</span>
+    </div>
+    <div class="paymentList">
+        <div class="paper">
+           <span>模拟实操试卷</span>
+           <span>
+               <select name="">
+                    <option value="">练习课件1</option>
+                    <option value="">练习课件2</option>
+                    <option value="">练习课件3</option>
+               </select>
+           </span>
+           <span>课件试卷</span>
+           <span>
+               <select name="" id="">
+                    <option value="">练习课件1</option>
+                    <option value="">练习课件2</option>
+                    <option value="">练习课件3</option>
+               </select>
+           </span>
+           <span>难易程度</span>
+           <span>
+               <select name="" id="">
+                    <option value="">难</option>
+                    <option value="">简单</option>
+                    <option value="">一般</option>
+               </select>
+           </span>
+           <span>题目数量</span>
+           <span>
+               <select name="" id="">
+                    <option value="">123</option>
+                    <option value="">456</option>
+                    <option value="">789</option>
+               </select>
+           </span>
+           <span class="greatePaper" onclick="toGreatePaper()">生成试卷</span>
+       </div>
+      <!--横线-->
+        <span class="border"></span>
+      <!--生成练习之前的页面-->
+        <div class="empty">
+          <span>
+            <img src="./images/lianxi.jpg" alt="">
+          </span>
+           <p>还没有练习题，马上生成练习吧！</p>
+        </div>
+      <!--生成练习之后的页面-->
+       <div class="paper_content">
+         <form action="">
+           <span class="startTime" onclick="start()">开始计时</span>
+           <div class="timeInput">
+             <span class="startTime1" onclick="stop1()" >停止计时</span>
+             <span class="timers">
+               <input type="text" id="txt1">:
+               <input type="text" id="txt"/>:
+               <input type="text" id="txt2"/></span>
+           </div>
+         </form>
+         <div class="courseName">
+          <p>课件名称难易程度试卷</p>
+          <div>
+            <span>一、试题名称1</span>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>A 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>B 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>C 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>D 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+          </div>
+          <div class="paper_title">
+            <span>二、试题名称1</span>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>A 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>B 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>C 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>D 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+          </div>
+          <div class="paper_title">
+            <span>三、试题名称1</span>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>A 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>B 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>C 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>D 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+          </div>
+          <div class="paper_title">
+            <span>四、试题名称1</span>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>A 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>B 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>C 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer">
+              <span><input type="checkbox"></span>
+              <span>D 答案xxxxxxxxxxxxxxxxx</span>
+            </div>
+          </div>
+        </div>
+         <div class="pay_button">
+          <span class="previousPage" onclick="toSave()">保存</span>
+          <span class="nextPage" onclick="nextPage()">重新练习</span>
+        </div>
+      </div>
+    </div>
+    <div class="paymentList1">
+    <div class="paper">
+      <span>模拟实操试卷</span>
+      <span>
+               <select name="">
+                    <option value="">练习课件1</option>
+                    <option value="">练习课件2</option>
+                    <option value="">练习课件3</option>
+               </select>
+           </span>
+      <span>课件试卷</span>
+      <span>
+               <select name="" id="">
+                    <option value="">练习课件1</option>
+                    <option value="">练习课件2</option>
+                    <option value="">练习课件3</option>
+               </select>
+           </span>
+      <span>难易程度</span>
+      <span>
+               <select name="" id="">
+                    <option value="">难</option>
+                    <option value="">简单</option>
+                    <option value="">一般</option>
+               </select>
+           </span>
+      <span>题目数量</span>
+      <span>
+               <select name="" id="">
+                    <option value="">123</option>
+                    <option value="">456</option>
+                    <option value="">789</option>
+               </select>
+           </span>
+      <span class="greatePaper" onclick="toGreatePaper()">生成试卷</span>
+    </div>
+    <!--横线-->
+    <span class="border"></span>
+     <!--练习完成答案-->
+    <div class="paper_content1">
+      <div class="startTime">01:23:23</div>
+      <div class="courseName">
+        <p>课件名称难易程度试卷</p>
+        <div>
+          <span>一、试题名称1</span>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>A 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>B 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>C 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>D 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span class="rightResult">正确答案：C</span>
+            <span class="result">您的答案：D</span>
+          </div>
+        </div>
+        <div class="paper_title">
+          <span>二、试题名称1</span>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>A 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>B 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>C 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>D 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span class="rightResult">正确答案：C</span>
+            <span class="result">您的答案：D</span>
+          </div>
+        </div>
+        <div class="paper_title">
+          <span>三、试题名称1</span>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>A 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>B 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>C 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>D 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span class="rightResult">正确答案：C</span>
+            <span class="result">您的答案：D</span>
+          </div>
+        </div>
+        <div class="paper_title">
+          <span>四、试题名称1</span>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>A 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>B 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>C 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span><input type="checkbox"></span>
+            <span>D 答案xxxxxxxxxxxxxxxxx</span>
+          </div>
+          <div class="answer">
+            <span class="rightResult">正确答案：C</span>
+            <span class="result">您的答案：D</span>
+          </div>
+        </div>
+      </div>
+      <div class="endResult">练习结果</div>
+      <div class="key">
+        <span class="total">共10题</span>
+        <span class="right1">答对6题</span>
+        <span class="wrong1">答错4题</span>
+        <span class="useTime">用时01:23:23</span>
+      </div>
+      <div class="pay_button">
+        <span class="previousPage">保存</span>
+        <span class="nextPage" onclick="nextPage()">重新练习</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!--公共底部-->
+<div class="pt-footer">
+    <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+</div>
+<script>
+    function toGreatePaper() {
+      $(".paper_content").show()
+      $(".empty").hide()
+    }
+    function toSave() {
+      $(".empty").hide()
+      $(".paymentList").hide()
+      $(".paymentList1").show()
+      $(".paper_content1").show()
+    }
+    function nextPage() {
+      window.location.reload();
+    }
+</script>
+</body>
+</html>
