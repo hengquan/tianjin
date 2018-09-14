@@ -267,87 +267,12 @@ html {
           $('.Bshow').removeClass('disnone')
         }
       });
-
-      //上传文件
-       //$("#file-1").fileinput();
-         // $(function() {
-$('#file-1').fileinput({
-  uploadurl:'/file/upload',
- 
-}).on('fileuploaded', function(e,d) {
-  console.log(d)
-})
-          //})
-      //获取参数
-      /**
-      var url = location.search;
-      if (url != '') {
-        //变成修改
-        $("#baocun").attr("onclick", "editKj()");
-        url = url.substr(1);
-        var split = url.split("=");
-        $.ajax({
-          type : 'post',
-          url : "http://localhost:18080/kj/get",
-          data : {
-            "id" : split[1]
-          },
-          dataType : 'json',
-          cache : false,
-          success : function(data) {
-            var kj = data.data;
-            $("#objId").val(kj.id);
-            $("#kjName").val(kj.kjName);
-            $("#kjCatNames").val(kj.kjCatNames);
-            $("#expireDate").val(kj.expireDate);
-            $("#score").val(kj.score);
-            $("#remarks").val(kj.remarks);
-          },
-          error : function() { //失败回调函数
-            alert("获取信息失败");
-          }
-        });
-      }
     });
-    function addKj() {
-      $.ajax({
-        type : 'post',
-        url : "http://localhost:18080/kj/insert",
-        data : $("#form").serialize(),
-        dataType : 'json',
-        cache : false,
-        success : function(data) {
-          alert("a");
-          parent.refresh();
-          closeMy();
-        },
-        error : function() { //失败回调函数
-          alert("保存失败");
-        }
-      });
-    }
-    function editKj() {
-      $.ajax({
-        type : 'post',
-        url : "http://localhost:18080/kj/update",
-        data : $("#form").serialize(),
-        dataType : 'json',
-        cache : false,
-        success : function(data) {
-          alert("b");
-          parent.refresh();
-          closeMy();
-        },
-        error : function() { //失败回调函数
-          alert("修改失败");
-        }
-      });
-    }
-    function closeMy() {
-      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-      parent.layer.close(index); //再执行关闭
-    }
-    */
+    $('#file-1').fileinput({
+      uploadUrl : '/file/upLoad',
+    }).on('fileuploaded', function(e, d) {
+      console.log(d)
+    })
   </script>
 </body>
 </html>

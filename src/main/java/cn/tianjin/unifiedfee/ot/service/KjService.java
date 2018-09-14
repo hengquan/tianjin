@@ -6,9 +6,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.taiji.oauthbean.dto.UserInfo;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.entity.Mnsc;
 import cn.tianjin.unifiedfee.ot.mapper.KjMapper;
+import cn.tianjin.unifiedfee.ot.util.Onlylogo;
 
 @Service
 public class KjService {
@@ -21,8 +23,11 @@ public class KjService {
 	}
 
 	// 添加
-	public boolean insert(Kj entity) throws Exception {
-		return dao.insert(entity) > 0 ? true : false;
+	public boolean insert(Kj kj,UserInfo user) throws Exception {
+	    kj.setId(Onlylogo.getUUID());
+        kj.setCreateBy(user.getUserId());
+        kj.setCreateName(user.getUsername());
+		return dao.insert(kj) > 0 ? true : false;
 	}
 
 	// 更新

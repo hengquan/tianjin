@@ -22,9 +22,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import cn.taiji.file.service.FileObjectService;
+import cn.taiji.oauthbean.dto.UserInfo;
+import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.service.KjService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
+import cn.tianjin.unifiedfee.ot.util.Onlylogo;
 
 @RequestMapping("/kj")
 @Controller
@@ -32,11 +35,8 @@ public class KjController {
 
     @Autowired
     private KjService kjService;
-    //文件管理服务
     @Autowired
-    private FileObjectService fileObjectService;
-    @Value("${taiji.file.manage.download-endpoint}")
-    private String downloadEndpoint;
+    public UserService userService;
 
     // 获取分页数据
     @RequestMapping("getPageData")
@@ -79,20 +79,15 @@ public class KjController {
     @RequestMapping("insert")
     @ResponseBody
     public Map<String, Object> insert(Kj kj, HttpServletRequest request, HttpServletResponse response) {
+        //获取用户数据
+        UserInfo user=userService.getUserInfo();
         // 返回数据
         Map<String, Object> map = new HashMap<String, Object>();
         // 跨域
         HttpPush.responseInfo(response);
         try {
             // 添加数据
-            String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-            kj.setId(uuid);
-            kj.setKjCatId("1");
-            kj.setKjCatNames("1");
-            kj.setCreateBy("Admin");
-            kj.setKjHtml("12312312312");
-            kj.setCreateName("Admin");
-            boolean result = kjService.insert(kj);
+            boolean result = kjService.insert(kj,user);
             if (result)
                 map.put("resultCode", "100");
             else
