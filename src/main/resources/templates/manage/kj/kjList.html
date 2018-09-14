@@ -116,9 +116,13 @@
 													<select id="lunch" multiple class="selectpicker"
 														data-actions-box="true" data-live-search="true"
 														title="请选择">
-														<option>操作1</option>
-														<option>操作2</option>
-														<option>操作3</option>
+														<option value="1">法规类</option>
+														<option value="2">政策类</option>
+														<option value="3">收费类</option>
+														<option value="4">放行类</option>
+														<option value="5">理货类</option>
+														<option value="6">出口类</option>
+														<option value="7">进口类</option>
 													</select>
 												</div>
 											</div>
@@ -248,7 +252,7 @@
     }
 
     function addItem() {
-      top.layer.open({
+      layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
         title : '<span class="text-color">添加课件信息</span>',//请修改span中间的内容
         shadeClose : true,//开启阴影关闭
@@ -261,7 +265,7 @@
     }
 
     function editItem(e) {
-      top.layer.open({
+      layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
         title : '<span class="text-color">修改课件信息</span>',//请修改span中间的内容
         shadeClose : true,//开启阴影关闭
@@ -274,7 +278,7 @@
     }
 
     function lookItem(e) {
-      top.layer.open({
+      layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
         title : '<span class="text-color">查看课件信息</span>',//请修改span中间的内容
         shadeClose : true,//开启阴影关闭
@@ -315,17 +319,6 @@
       title : '操作',
       formatter : operateFormatter
     }, ]);
-    function refresh() {
-      $("#tb_departments").bootstrapTable('refresh');
-    }
-    //搜索
-    function sel123() {
-      var kjName = $("#kjName").val();
-      alert(kjName);
-      var data = {
-        "kjName" : kjName
-      }
-    }
     function queryParams(params) {
       return {
         kjName : $("#kjName").val(),
@@ -335,8 +328,11 @@
       //页码
       };
     }
-
+    //搜索
     function sel() {
+      $("#tb_departments").bootstrapTable('refresh');
+    }
+    function refresh() {
       $("#tb_departments").bootstrapTable('refresh');
     }
   </script>
