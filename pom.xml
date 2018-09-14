@@ -51,11 +51,11 @@
 			<artifactId>taiji-security</artifactId>
 		</dependency>
 		<!-- 文件管理模块，引入依赖 -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>cn.taiji</groupId>
 			<artifactId>taiji-file</artifactId>
-			<version>1.0.3-RELEASE</version>
-		</dependency> -->
+			<version>1.0.3-RELEASES</version>
+		</dependency>
 		<!-- 日志模块 -->
 		<dependency>
 			<groupId>cn.taiji</groupId>

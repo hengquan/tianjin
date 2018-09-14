@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import cn.taiji.file.service.FileObjectService;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.service.KjService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
@@ -32,8 +33,8 @@ public class KjController {
     @Autowired
     private KjService kjService;
     //文件管理服务
-    //@Autowired
-    //private FileObjectService fileObjectService;
+    @Autowired
+    private FileObjectService fileObjectService;
     @Value("${taiji.file.manage.download-endpoint}")
     private String downloadEndpoint;
 

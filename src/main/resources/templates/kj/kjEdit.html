@@ -164,7 +164,7 @@
 					<div class="form-group pt-btn-submit-layer">
 						<button onclick="addKj()" id="baocun"
 							class="btn w160 btn-lg btn-default btn-primary">保存</button>
-						<button class="btn w160 btn-lg btn-default btn-default">取消</button>
+						<button class="btn w160 btn-lg btn-default btn-default" onclick="quxiao()">取消</button>
 					</div>
 				</form>
 			</div>
@@ -336,6 +336,9 @@
           alert("修改失败");
         }
       });
+    }
+    function quxiao(){
+      closeMy();
     }
     function closeMy() {
       var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
