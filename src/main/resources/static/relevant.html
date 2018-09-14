@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <title>实操-收费清单列表</title>
     <!-- <!-- 1 bootstrap的css -->
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
     <!--公共css-->
-    <link rel="stylesheet" href="css/pt-main.css">
-    <link rel="stylesheet" href="css/index1.css">
+    <link rel="stylesheet" href="./web/css/pt-main.css">
+    <link rel="stylesheet" href="./web/css/index1.css">
     <!--页面css-->
-    <link rel="stylesheet" href="css/paymentList.css">
-    <link rel="stylesheet" href="css/relevant.css">
-
+    <link rel="stylesheet" href="./web/css/paymentList.css">
+    <link rel="stylesheet" href="./web/css/relevant.css">
     <!--引入字体的css-->
-    <link rel="stylesheet" href="./bootstrap/fonts/iconfont.css">
-    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
+    <script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
     <!--bootstrap的js-->
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
     <!--表格table.js-->
-    <script type="text/javascript" src="bootstrap/js/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="./web/bootstrap/js/bootstrap-table.min.js"></script>
     <!--页面js-->
-    <script type="text/javascript" src="./js/main.js"></script>
+    <script type="text/javascript" src="./web/js/main.js"></script>
     <style>
         html,body{
             overflow: hidden;
@@ -37,71 +36,71 @@
 </head>
 <body>
 <div class="paymentList_bottom">
-        <div class="relevant" >
-            <span class="active" onclick="show1()" id="relative">相关练习</span>
-            <span onclick="show2()">相关课件</span>
+    <div class="relevant" >
+        <span class="active" onclick="show1()" id="relative">相关练习</span>
+        <span onclick="show2()">相关课件</span>
+    </div>
+    <div class="relevant_practice" id="show1">
+      <div class="practice_title practice_title1">
+            <p>练习题目xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+            <div class="answer">
+                <span><input type="checkbox"></span>
+                <span>答案xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+                <span class="left"><input type="checkbox"></span>
+                <span>答案xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+            </div>
+            <div class="answer answer1">
+                <span><input type="checkbox"></span>
+                <span>答案xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+                <span class="left"><input type="checkbox"></span>
+                <span>答案xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+            </div>
+      </div>
+      <div class="study_btn" onclick="toStartPractice()">现在开始练习</div>
+    </div>
+    <div class="relevant_practice" style="display: none" id="show">
+        <div class="practice_title">
+         <div class="practice_img">
+             <img src="./web/images/zxc.png" alt="" onclick="toContent()">
+         </div>
+         <div>
+            <p>尚巍手书及课程报告</p>
         </div>
-        <div class="relevant_practice" id="show1">
-          <div class="practice_title practice_title1">
-                <p>练习题目xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-                <div class="answer">
-                    <span><input type="checkbox"></span>
-                    <span>答案xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
-                    <span class="left"><input type="checkbox"></span>
-                    <span>答案xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
-                </div>
-                <div class="answer answer1">
-                    <span><input type="checkbox"></span>
-                    <span>答案xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
-                    <span class="left"><input type="checkbox"></span>
-                    <span>答案xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
-                </div>
-          </div>
-          <div class="study_btn" onclick="toStartPractice()">现在开始练习</div>
         </div>
-        <div class="relevant_practice" style="display: none" id="show">
-            <div class="practice_title">
-             <div class="practice_img">
-                 <img src="./images/zxc.png" alt="" onclick="toContent()">
-             </div>
-             <div>
-                <p>尚巍手书及课程报告</p>
+        <div class="practice_title">
+            <div class="practice_img">
+                <img src="./web/images/zxc.png" alt="" class="img1" onclick="toContent()">
             </div>
+            <div>
+                <p class="p1">尚巍手书及课程报告</p>
             </div>
-            <div class="practice_title">
-                <div class="practice_img">
-                    <img src="./images/zxc.png" alt="" class="img1" onclick="toContent()">
-                </div>
-                <div>
-                    <p class="p1">尚巍手书及课程报告</p>
-                </div>
+        </div>
+        <div class="practice_title">
+            <div class="practice_img">
+                <img src="./web/images/zxc.png" alt="" class="img1" onclick="toContent()">
             </div>
-            <div class="practice_title">
-                <div class="practice_img">
-                    <img src="./images/zxc.png" alt="" class="img1" onclick="toContent()">
-                </div>
-                <div>
-                    <p class="p1">尚巍手书及课程报告</p>
-                </div>
+            <div>
+                <p class="p1">尚巍手书及课程报告</p>
             </div>
-            <div class="practice_title">
-                <div class="practice_img">
-                    <img src="./images/zxc.png" alt="" class="img1" onclick="toContent()">
-                </div>
-                <div>
-                    <p class="p1">尚巍手书及课程报告</p>
-                </div>
+        </div>
+        <div class="practice_title">
+            <div class="practice_img">
+                <img src="./web/images/zxc.png" alt="" class="img1" onclick="toContent()">
             </div>
-            <div class="practice_title">
-                <div class="practice_img">
-                    <img src="./images/zxc.png" alt="" class="img1" onclick="toContent()">
-                </div>
-                <div>
-                    <p class="p1">尚巍手书及课程报告</p>
-                </div>
+            <div>
+                <p class="p1">尚巍手书及课程报告</p>
+            </div>
+        </div>
+        <div class="practice_title">
+            <div class="practice_img">
+                <img src="./web/images/zxc.png" alt="" class="img1" onclick="toContent()">
+            </div>
+            <div>
+                <p class="p1">尚巍手书及课程报告</p>
             </div>
         </div>
     </div>
+</div>
 <script>
     $(function(){
         $('.relevant span').click(function(){

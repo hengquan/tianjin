@@ -49,7 +49,7 @@ html,body{
     color: #3092f6;
 }
 .page-top .page-margin{
-    background: url("../images/top-bg.jpg") center top;
+    background: url("../../mnscList/qyzcsc/src/images/top-bg.jpg") center top;
 }
 .page-top{
     height:46px;
@@ -348,7 +348,7 @@ html,body{
     line-height:40px;
     border: 1px solid #0656a6;
     position: relative;
-    background: #fff url(../images/icon-sanjiao.png) no-repeat right 30px center;
+    background: #fff url(../../mnscList/qyzcsc/src/images/icon-sanjiao.png) no-repeat right 30px center;
 }
 .nice-select input{
     display: block;
