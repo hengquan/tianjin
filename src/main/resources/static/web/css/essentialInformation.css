@@ -1,0 +1,181 @@
+/*实操内容*/
+body{
+  background: #F2F2F2;
+}
+html{
+  overflow: auto;
+  height: 1335px;
+}
+.essential{
+  width: 1200px;
+  margin: 0 auto;
+}
+.paymentList{
+  margin: 35px auto 0;
+  background: white;
+  position: relative;
+  padding-top: 20px;
+  height: 850px;
+  border-radius: 5px;
+}
+ .paymentList .table{
+   width: 1150px;
+   margin: 0 auto;
+ }
+.table>thead>tr>td{
+  text-align: left;
+}
+.table>tbody>tr>td{
+  text-align: left;
+  font-size: 14px;
+}
+.table>thead>tr{
+   font-size: 16px;
+}
+.paymentList tr{
+  height: 40px;
+}
+.message button{
+  text-align: center;
+  margin-left: 30px;
+  font-size: 14px;
+  background: #2d65c2;  color: white;
+}
+.message button:hover{
+  color: white;
+}
+.ladingNumber span{
+  color: red;
+  font-size: 16px;
+}
+.button span:first-child{
+  margin-left: 290px;
+}
+.button span{
+  margin-left: 30px;
+  display:inline-block;
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background: #2d65c2 ;
+}
+.table>tbody>tr>td>input{
+  margin-left: 60px;
+}
+.delete button{
+  text-align: center;
+  background: #2d65c2;
+  font-size: 14px;
+  color: white;
+}
+.delete button:hover{
+  color: white;
+}
+/*底部相关*/
+.paymentList_bottom{
+  width: 1200px;
+  height: 250px;
+  background: white;
+  margin-top: 25px;
+}
+#sss{
+  margin-bottom: 30px;
+}
+.relevant span{
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color:white;
+  background: gainsboro;
+  border-radius: 0 0 5px 5px;
+  margin-left: 25px;
+  font-size: 14px;
+}
+.relevant a{
+  color: white;
+}
+.relevant .active{
+  background: #f46227;
+}
+.relevant_practice{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+.practice_title p{
+  font-size: 16px;
+}
+.practice_title span{
+  font-size: 16px;
+  color: #C3C3C3;
+}
+.relevant_practice div:first-child{
+  margin-left: -30px;
+}
+
+/*气泡*/
+.model_text{
+  width: 220px;
+  margin: 0 auto;
+}
+.model_bg{
+  position: absolute;
+  top: 115px;
+  left:570px;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,255,.5);
+  z-index: 999;
+  display: none;
+  width: 240px;
+  height: 150px;
+  border-radius:5px;
+  padding-top: 40px;
+  color: white;
+}
+.triangle{
+  position: absolute;
+  top: 97px;
+  left:600px;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  display: none;
+  width: 0;
+  height: 0;
+  border-left:18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 18px solid rgba(0,0,255,.5);
+}
+.model_text p{
+  display: inline-block;
+  margin-top: -7px;
+  margin-right: 15px;
+  margin-left: 15px;
+  text-indent: 24px;
+}
+.model_text span{
+  display: inline-block;
+  margin-left: 85px;
+  width: 50px;
+  height: 25px;
+  border: 1px solid white;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 25px;
+  font-size: 14px;
+  color: white;
+}
+.table>tbody>tr>td>span{
+  width: 90px;
+}
+.table>tbody>tr>.delete>span{
+  width: 60px;
+}
+.pay_button span{
+  margin-top: 50px;
+}

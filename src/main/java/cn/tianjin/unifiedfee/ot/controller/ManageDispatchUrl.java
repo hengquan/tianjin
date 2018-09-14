@@ -20,55 +20,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //import cn.tianjin.unifiedfee.ot.service.UserInfoService;
 
 @Controller
-public class DispatchUrl {
-
+public class ManageDispatchUrl {
 //=============================以下为页面跳转
     /*后台管理首页 index页*/
     @RequestMapping("page")
     public String page() {
-        return "/index";
+        return "/manage/index";
     }
 
     //--分类管理
     @RequestMapping("cateList")
     public String toCateList() {
-        return "/cate/cateList";
+        return "/manage/cate/cateList";
     }
     @RequestMapping("cate/edit")
     public String toCateEdit() {
-        return "/cate/cateEdit";
+        return "/manage/cate/cateEdit";
     }
     @RequestMapping("cate/view")
     public String toCateView() {
-        return "/cate/cateView";
+        return "/manage/cate/cateView";
     }
     
     //--摸拟实操管理
     @RequestMapping("mnscList")
     public String toMnscList() {
-        return "/mnsc/mnscList";
+        return "/manage/mnsc/mnscList";
     }
     @RequestMapping("mnsc/edit")
     public String toMnscEdit() {
-        return "/mnsc/mnscEdit";
+        return "/manage/mnsc/mnscEdit";
     }
     @RequestMapping("mnsc/view")
     public String toMnscView() {
-        return "/mnsc/mnscView";
+        return "/manage/mnsc/mnscView";
     }
     
     //--课件管理
     @RequestMapping("kjList")
     public String toKjList() {
-        return "/kj/kjList";
+        return "/manage/kj/kjList";
     }
     @RequestMapping("kj/edit")
     public String toKjEdit(HttpServletRequest request) {
-        return "/kj/kjEdit";
+        return "/manage/kj/kjEdit";
     }
     @RequestMapping("kj/view")
     public String toKjView(HttpServletRequest request) {
-        return "/kj/kjView";
+        return "/manage/kj/kjView";
     }
 
     /*测试页面*/
