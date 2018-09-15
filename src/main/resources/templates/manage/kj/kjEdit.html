@@ -94,13 +94,14 @@ html {
 							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="dingjia"><span>
 									※ </span>选择分类</label>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-								<select id="kjCatId" name="kjCatId" class="selectpicker" onchange="classify()">
+								<select id="kjCatId" name="kjCatId" class="selectpicker" onchange="classify()"
+								 title="请选择">
 									<option value="1">法规类</option>
 									<option value="2">政策类</option>
 									<option value="3">收费类</option>
 									<option value="4">放行类</option>
 									<option value="5">理货类</option>
-									<option value="6" selected>出口类</option>
+									<option value="6">出口类</option>
 									<option value="7">进口类</option>
 								</select>
 							</div>
@@ -300,14 +301,8 @@ html {
             $("#remarks").val(kj.remarks);
             $("#kjHtml").val(kj.kjHtml);
             $("#kjCatId").val(kjCatNames);
-            //select赋值
-            /* var count=$("#kjCatId option").length;
-            for(var i=0;i<count;i++){
-              if($("#kjCatId").get(0).options[i].text == kjCatNames){
-                $("#kjCatId").get(0).options[i].selected = true;
-                  break;
-              }
-            } */
+            $("#kjCatId").selectpicker('val', kj.kjCatId);
+            $("#kjCatId").selectpicker('text', kjCatNames);
           },
           error : function() { //失败回调函数
             alert("获取信息失败");
