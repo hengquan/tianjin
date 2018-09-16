@@ -23,7 +23,6 @@ import cn.tianjin.unifiedfee.ot.entity.Tmp;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
 import cn.tianjin.unifiedfee.ot.model.UIBootstrapTreeTable4Category;
 import cn.tianjin.unifiedfee.ot.service.CatagoryService;
-import cn.tianjin.unifiedfee.ot.service.TmpService;
 
 @Controller
 @RequestMapping(value="/getdata")

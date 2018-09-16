@@ -40,8 +40,6 @@ public class ApiController {
     public UserService userService;
     @Autowired
     private KjService kjService;
-    @Autowired
-    private TmService tmService;
 
 //    @RequestMapping("getCateData")
 //    @ResponseBody
@@ -250,7 +248,7 @@ public class ApiController {
                 retMap.put("messageInfo","相关对象Id为空");
                 return retMap;
             }
-            List<Tm> tmpSjTmList=tmService.getTempSj(retType, retId, tmCount);
+            //List<Tm> tmpSjTmList=tmService.getTempSj(retType, retId, tmCount);
         } catch(Exception e) {
             e.printStackTrace();
             retMap.put("returnCode","01");
