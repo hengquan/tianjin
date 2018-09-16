@@ -80,7 +80,7 @@
                             <!--cell-->
                             <li class="pt-menu-child">
                                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                                <h3 class="pt-menu-title"><a href="#">试题管理</a></h3>
+                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toST()">试题管理</a></h3>
                             </li>
                         </ul>
                     </li>
@@ -151,6 +151,11 @@
   function toKJ(){
     $("#mainIframe").attr("src","kjList");
   }
+  //试题
+   function toST(){
+    $("#mainIframe").attr("src","tmList");
+  }
+ 
   //分类管理
   function toCATE(){
     $("#mainIframe").attr("src","cateList");

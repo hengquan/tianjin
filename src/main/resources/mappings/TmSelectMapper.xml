@@ -6,6 +6,7 @@
     <result column="tm_id" property="tmId" jdbcType="VARCHAR" />
     <result column="tm_select_sign" property="tmSelectSign" jdbcType="VARCHAR" />
     <result column="tm_select_desc" property="tmSelectDesc" jdbcType="VARCHAR" />
+    <result column="is_answer" property="isAnswer" jdbcType="INTEGER" />
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="create_date" property="createDate" jdbcType="DATE" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
@@ -13,10 +14,10 @@
   </resultMap>
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.TmSelect" >
     insert into q_TM_select (id, tm_id, tm_select_sign, 
-      tm_select_desc, sort, create_date, 
+      tm_select_desc,is_answer, sort, create_date, 
       create_by, create_name)
     values (#{id,jdbcType=VARCHAR}, #{tmId,jdbcType=VARCHAR}, #{tmSelectSign,jdbcType=VARCHAR}, 
-      #{tmSelectDesc,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, 
+      #{tmSelectDesc,jdbcType=VARCHAR}, #{isAnswer,jdbcType=INTEGER},#{sort,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, 
       #{createBy,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.tianjin.unifiedfee.ot.entity.TmSelect" >
@@ -33,6 +34,9 @@
       </if>
       <if test="tmSelectDesc != null" >
         tm_select_desc,
+      </if>
+      <if test="sort != null" >
+        is_Answer,
       </if>
       <if test="sort != null" >
         sort,
@@ -59,6 +63,9 @@
       </if>
       <if test="tmSelectDesc != null" >
         #{tmSelectDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isAnswer != null" >
+        #{isAnswer,jdbcType=INTEGER},
       </if>
       <if test="sort != null" >
         #{sort,jdbcType=INTEGER},

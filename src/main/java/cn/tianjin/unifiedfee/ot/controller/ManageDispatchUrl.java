@@ -47,6 +47,10 @@ public class ManageDispatchUrl {
     public String toMnscList() {
         return "/manage/mnsc/mnscList";
     }
+    @RequestMapping("mnsc/mnscList4st")
+    public String toMnscList4st() {
+        return "/manage/mnsc/mnscList4st";
+    }
     @RequestMapping("mnsc/edit")
     public String toMnscEdit() {
         return "/manage/mnsc/mnscEdit";
@@ -68,6 +72,23 @@ public class ManageDispatchUrl {
     @RequestMapping("kj/view")
     public String toKjView(HttpServletRequest request) {
         return "/manage/kj/kjView";
+    }
+    @RequestMapping("kj/kjList4st")
+    public String toKjList4st() {
+        return "/manage/kj/kjList4st";
+    }
+  //--试题管理
+    @RequestMapping("tmList")
+    public String toTmList() {
+        return "/manage/st/tmList";
+    }
+    @RequestMapping("st/edit")
+    public String toStEdit(HttpServletRequest request) {
+        return "/manage/st/tmEdit";
+    }
+    @RequestMapping("st/view")
+    public String toTmView(HttpServletRequest request) {
+        return "/manage/st/tmView";
     }
 
     /*测试页面*/

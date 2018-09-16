@@ -11,12 +11,15 @@
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Blob_Column_List">
+		id, tm_type,tm_html,score,diff_score,create_date,create_by,create_name 
+	</sql>
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.Tm" >
     insert into q_TM (id, tm_type, tm_html, 
-      score, diff_score, create_date, 
+      score, diff_score,  
       create_by, create_name)
     values (#{id,jdbcType=VARCHAR}, #{tmType,jdbcType=VARCHAR}, #{tmHtml,jdbcType=VARCHAR}, 
-      #{score,jdbcType=INTEGER}, #{diffScore,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, 
+      #{score,jdbcType=INTEGER}, #{diffScore,jdbcType=INTEGER},
       #{createBy,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.tianjin.unifiedfee.ot.entity.Tm" >
@@ -74,4 +77,41 @@
       </if>
     </trim>
   </insert>
+  <update id="update">
+    update Q_tm
+    <set>
+     <if test="tmType != null" >
+        tm_type = #{tmType},
+      </if>
+      <if test="tmHtml != null" >
+        tm_html = #{tmHtml},
+      </if>
+      <if test="score != null" >
+        score = #{score},
+      </if>
+      <if test="diffScore != null" >
+        diff_score = #{diffScore},
+      </if>             
+      <if test="createBy != null" >
+        create_by = #{createBy} ,
+      </if>
+      <if test="createName != null" >
+        create_name = #{createName},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <select id="getPageData" resultMap="BaseResultMap">
+		select
+		<include refid="Blob_Column_List" />
+		from q_tm
+		where 1=1
+		
+	</select>
+	<select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Blob_Column_List" />
+		from q_tm
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
 </mapper>
