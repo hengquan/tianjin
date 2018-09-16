@@ -7,6 +7,9 @@
     <result column="ref_tabname" property="refTabname" jdbcType="VARCHAR" />
     <result column="ref_id" property="refId" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Blob_Column_List">
+		id, tm_id,ref_tabname,ref_id 
+	</sql>
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.TmRefSource" >
     insert into q_TM_ref_source (id, tm_id, ref_tabname, 
       ref_id)
@@ -44,4 +47,16 @@
       </if>
     </trim>
   </insert>
+  <select id="getBytmid" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Blob_Column_List" />
+		from q_tm_ref_source
+		where tm_id = #{tmId,jdbcType=VARCHAR}
+  </select>  
+  <delete id="deleteBytmid" parameterType="java.lang.String">
+		delete from q_tm_ref_source
+		where tm_id =
+		#{tmId,jdbcType=VARCHAR}
+	</delete>
+  
 </mapper>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>列表页</title>
+<!-- 1 bootstrap基础css -->
+<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap.css"
+	rel="stylesheet">
+<!-- 2 table表格css -->
+<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
+	rel="stylesheet">
+<!-- 3 treeview树css -->
+<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
+	rel="stylesheet">
+<!-- 4 datetimepicker时间选择css -->
+<link
+	href="./libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
+	rel="stylesheet">
+<!-- 5 select选择框css -->
+<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
+	rel="stylesheet">
+<!-- 6 fileinput上传文件css -->
+<link href="./libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
+	rel="stylesheet">
+<!-- 7 icheck单选+多选css -->
+<link href="./libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
+	rel="stylesheet">
+<!-- 8 Validator验证css -->
+<link href="./libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
+	rel="stylesheet">
+<!-- 9 layer弹框css -->
+<link href="./libs/layer/layer-new.css" rel="stylesheet">
+<!-- 10 引入字体css -->
+<link href="./libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
+	rel="stylesheet">
+<!-- 11 页面样式css -->
+<link href="./src/css/pt-main.css" rel="stylesheet">
+
+<!-- 优先引入jquery1.12.4版本 -->
+<script src="./libs/jquery/jquery-1.12.4.js"></script>
+<!-- 1 bootstrap基础js -->
+<script src="./libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<!-- 2 table表格js -->
+<script src="./libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<!-- 2 table列表数据js simple-table -->
+<script src="./libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<!-- 3 treeview树js -->
+<script src="./libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<!-- 4 datetimepicker时间选择js -->
+<script src="./libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+<!-- 5 select选择框js -->
+<script src="./libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
+<!-- 6 fileinput上传文件js -->
+<script src="./libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
+<!-- 6 fileinput中文包js -->
+<script src="./libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
+<!-- 7 icheck单选+多选js -->
+<script src="./libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
+<!-- 8 Validator验证js -->
+<script src="./libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
+<!-- 9 layer弹框js -->
+<script src="./libs/layer/layer.js"></script>
+<!-- 9 以下是覆盖layer.js中的css样式，必须放在layer.js下面 -->
+<link href="./libs/layer/layer-new.css" rel="stylesheet">
+<!-- 11 页面js -->
+<script src="./src/js/main.js"></script>
+<!-- <script src="./src/js/pt-tables.js"></script> -->
+
+</head>
+<body>
+	<div class="pt-page">
+		<div class="pt-root-container">
+			<!--主视口 -->
+			<div class="pt-view pt-open" style="padding-left: 10px;">
+				<!--带横线标题-->
+				<div class="pt-bread">
+					<h3>题目列表</h3>
+					<!-- 添加展开按钮 -->
+					<button type="button" id="ptsearchfilter"
+						class="btn btn-primary pt-zkbtn">展开</button>
+				</div>
+				<div class="pt-main pt-padding">
+					<!--搜索条-->
+					<div class="pt-section-search">
+						<div class="row clearfix">
+							<div class="col-lg-16 col-md-12 col-sm-12 col-xs-12 column">
+								<form class="form-inline">
+									<!-- 示例 input-->
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+										<div class="form-group">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6"
+												for="exampleInputName2">试题名称</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+												<input type="text" class="form-control" id="kjName"
+													placeholder="试题名称">
+											</div>
+										</div>
+									</div>
+									<!-- 隐藏部分包裹 -->
+									<span class="hiddenorshow pt-search-filter"> <!-- 示例 input-->
+										<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+											<div class="form-group">
+												<label class="col-lg-2 col-md-4 col-sm-4 col-xs-6"
+													for="exampleInputName2">课件名称</label>
+												<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
+													<input type="text" class="form-control"
+														id="kjid" placeholder="课件名称">
+												</div>
+												<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+													<div class="form-group">
+														<button type="button"
+															class="btn btn-default btn-primary w80" onclick="sel()">选择</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+											<div class="form-group">
+												<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6"
+													for="lunch">模拟实操</label>
+												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+													<select id="lunch" multiple class="selectpicker"
+														data-actions-box="true" data-live-search="true"
+														title="请选择">
+														<option value="1">法规类</option>
+														<option value="2">政策类</option>
+														<option value="3">收费类</option>
+														<option value="4">放行类</option>
+														<option value="5">理货类</option>
+														<option value="6">出口类</option>
+														<option value="7">进口类</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<button type="button"
+															class="btn btn-default btn-primary w80" onclick="sel()">选择</button>
+												</div>
+											</div>
+										</div>																				
+									</span>
+									<!-- 示例搜索按钮 -->
+									<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+										<div class="form-group">
+											<button type="button"
+												class="btn btn-default btn-primary w120" onclick="sel()">搜索</button>
+										</div>
+									</div>
+								</form>
+							</div>
+
+							<div class="column pt-btn-line">
+								<button type="button" class="btn w120 btn-default btn-primary"
+									onclick="addItem()">新增</button>
+							</div>
+						</div>
+					</div>
+					<!--内容区容器-->
+					<div class="pt-main">
+						<!--bootstrap 表格-->
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="table-wrap">
+									<table id="tb_departments"></table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--主视口 结束-->
+		</div>
+	</div>
+
+	<script src="./src/js/pt-tree.js"></script>
+	<script>
+    // 时间选择
+    $('.datetimepicker').datetimepicker({
+      language : 'zh',
+      format : 'yyyy-mm-dd hh:ii:ss',
+      todayBtn : true,
+      autoclose : true
+    });
+    //搜索扩展
+    $("#ptsearchfilter").click(function() {
+      $(this).text($(".hiddenorshow").is(":hidden") ? "收起" : "展开");
+      $(".hiddenorshow").toggleClass('pt-search-filter');
+    });
+    // table
+    // 2.返回操作模版[按钮颜色暂不确定]
+    function operateFormatter(value, row, index) {
+      return [
+          '<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick=lookItem("'
+              + value + '")>查看</button>',
+          '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
+              + value + '")>修改</button>',
+          '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
+              + value + '")>删除</button>' ].join('');
+    }
+
+    // 操作模版调用的方法
+    function deleteItem(e) {
+      var data = {
+        "id":e
+      }
+      var mymessage=confirm("确定要删除该课件信息吗？");
+      if(mymessage==true){
+        $.ajax({
+          type : 'post',
+          url : "http://localhost:18080/kj/delete",
+          data : data,
+          dataType : 'json',
+          cache : false,
+          success : function(data) {
+            $("#tb_departments").bootstrapTable('refresh');
+          },
+          error : function() { //失败回调函数
+            alert("删除失败");
+          }
+        });
+      } else if(mymessage==false){
+        return false;
+      }
+    }
+
+    function addItem() {
+      layer.open({
+        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        title : '<span class="text-color">添加试题题目信息</span>',//请修改span中间的内容
+        shadeClose : true,//开启阴影关闭
+        closeBtn : 1, //不显示关闭按钮
+        shade : 0.6,
+        maxmin : false,//开启最大化最小化按钮
+        area : [ '83%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : ['st/edit','yes']//如果不想出现滚动条['content.html', 'no']
+      });
+    }
+
+    function editItem(e) {
+        layer.open({
+        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        title : '<span class="text-color">修改题目信息</span>',//请修改span中间的内容
+        shadeClose : true,//开启阴影关闭
+        closeBtn : 1, //不显示关闭按钮
+        shade : 0.6,
+        maxmin : false,//开启最大化最小化按钮
+        area : [ '83%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : 'st/edit?id='+e//如果不想出现滚动条['content.html', 'no']
+      });
+    }
+
+    function lookItem(e) {
+      layer.open({
+        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        title : '<span class="text-color">查看课件信息</span>',//请修改span中间的内容
+        shadeClose : true,//开启阴影关闭
+        closeBtn : 1, //不显示关闭按钮
+        shade : 0.6,
+        maxmin : false,//开启最大化最小化按钮
+        area : [ '62.5%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : 'kj/view?id='+e//如果不想出现滚动条['content.html', 'no']
+      });
+    }
+
+    TableInit(queryParams).Init('http://localhost:18080/st/getPageData', [ {
+      field : 'tmHtml',
+      title : '题目名称称',
+      sortable : true
+    }, {
+      field : 'tmType',
+      title : '分类名称',
+      sortable : true
+    }, {
+      field : 'diffScore',
+      title : '难度系数',
+      sortable : true
+    }, {
+      field : 'score',
+      title : '学分',
+      sortable : true
+    },  {
+      field : 'strcreatedate',
+      title : '创建时间',
+      sortable : true
+    }, {
+      field : 'id',
+      title : '操作',
+      formatter : operateFormatter
+    }, ]);
+    function queryParams(params) {
+      return {
+        kjName : $("#tmName").val(),
+        // 使用page size分页
+        limit : params.limit, //页面大小
+        offset : params.offset
+      //页码
+      };
+    }
+    //搜索
+    function sel() {
+      $("#tb_departments").bootstrapTable('refresh');
+    }
+    function refresh() {
+      $("#tb_departments").bootstrapTable('refresh');
+    }
+  </script>
+</body>
+</html>
