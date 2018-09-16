@@ -163,4 +163,15 @@
 		and kj_name like '%${kjName}%'
 		</if>
 	</select>
+
+  <select id="find4Web" resultMap="BaseResultMap" parameterType="Map">
+  select <include refid="Blob_Column_List" /> from ts_KJ
+  where 1=1
+  <if test="flQuery!=null and flQuery!=''">
+  and (${kjName})
+  </if>
+  <if test="searchStr!=null and searchStr!=''">
+  and (kj_name like '%${searchStr}%' or kj_cat_names like '%${searchStr}%' or remarks like '%${searchStr}%')
+  </if>
+  </select>
 </mapper>

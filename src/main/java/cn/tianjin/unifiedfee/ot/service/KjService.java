@@ -54,4 +54,8 @@ public class KjService {
 	public List<Kj> selectAllMsg() {
 		return dao.selectAllMsg();
 	}
+
+    public List<Kj> find4Web(Map<String, Object> param) {
+        return dao.find4Web(param);
+    }
 }
