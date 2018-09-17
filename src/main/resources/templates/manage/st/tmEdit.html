@@ -5,34 +5,34 @@
 <title>input</title>
 <!-- 1 bootstrap基础css -->
 <link href="../libs/bootstrap-3.3.7-dist/css/bootstrap.css"
-	rel="stylesheet">
+    rel="stylesheet">
 <!-- 2 table表格css -->
 <link href="../libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
-	rel="stylesheet">
+    rel="stylesheet">
 <!-- 3 treeview树css -->
 <link href="../libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
-	rel="stylesheet">
+    rel="stylesheet">
 <!-- 4 datetimepicker时间选择css -->
 <link
-	href="../libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
-	rel="stylesheet">
+    href="../libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
+    rel="stylesheet">
 <!-- 5 select选择框css -->
 <link href="../libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
-	rel="stylesheet">
+    rel="stylesheet">
 <!-- 6 fileinput上传文件css -->
 <link href="../libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
-	rel="stylesheet">
+    rel="stylesheet">
 <!-- 7 icheck单选+多选css -->
 <link href="../libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
-	rel="stylesheet">
+    rel="stylesheet">
 <!-- 8 Validator验证css -->
 <link href="../libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
-	rel="stylesheet">
+    rel="stylesheet">
 <!-- 9 layer弹框css -->
 <link href="../libs/layer/layer-new.css" rel="stylesheet">
 <!-- 10 引入字体css -->
 <link href="../libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
-	rel="stylesheet">
+    rel="stylesheet">
 <!-- 11 页面样式css -->
 <link href="../src/css/pt-main.css" rel="stylesheet">
 
@@ -48,7 +48,7 @@
 <script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
 <!-- 4 datetimepicker时间选择js -->
 <script
-	src="../libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+    src="../libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
 <!-- 5 select选择框js -->
 <script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <!-- 6 fileinput上传文件js -->
@@ -65,236 +65,315 @@
 <script src="../src/js/main.js"></script>
 <style>
 html {
-	overflow: scroll;
+    overflow: scroll;
 }
 </style>
 </head>
 <body>
-	<div class="container">			
-		<div class="row clearfix">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
-				<form class="form-horizontal pt-form-full" role="form" id="form">
-					<input type="hidden" name="id" id="objId">
-					<div class="column pt-btn-line">
-						<button onclick="addTm()" id="baocun"
-							class="btn w80  btn-default btn-primary">保存</button>							
-						<button class="btn w80  btn-default btn-default">取消</button>						
-					</div>					
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="form-group">
-							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="title"><span>
-									※ </span>题目名称</label>
-							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">								
-								<textarea id="tmHtml" class="form-control" name="tmHtml"
-									style="min-height: 108px"></textarea>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="form-group">
-							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="dingjia"><span>
-									※ </span>选择分类</label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-								<select id="tmType" name="tmType" class="selectpicker" onchange="classify(this)"
-									data-live-search="true" title="请选择" >
-									<option value="单选题">单选题</option>
-									<option value="多选题">多选题</option>
-									<option value="判断题">判断题</option>								
-								</select>
-							</div>
-						
-							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="title"><span>
-									※ </span>分数</label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-								<input type="text" class="form-control" name="score" id="score" />
-							</div>						
-							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="biaozhun">
-								<span> ※ </span>难度系数
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-								<input type="text" class="form-control" name="diffScore" id="diffScore" />							
-							</div>							
-						</div>
-					</div>
-					
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">
-								<span> ※ </span>所属课件内容列表
-							</label>
-							<div class="col-lg-7 col-md-7 col-sm-6 col-xs-6">
-								<input type="hidden" class="form-control" name="kjList" id="kjList" />	
-								<textarea id="kjnameList" class="form-control" name="kjnameList"
-									style="min-height: 60px"></textarea>	
-							</div>
-							<span class="input-group-btn">
-							        <button class="btn btn-info" style="height: 30px;margin-right: 8px;line-height: 0px; float: left;"	type="button" onclick="openKj()" >
-								        +
-							        </button>
-							    </span>					
-						</div>
-					</div>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-11 col-sm-12 col-xs-2 column">
+                <form class="form-horizontal pt-form-full" role="form" id="form">
+                    <input type="hidden" name="id" id="objId">
+                    <div class="col-lg-12 col-md-11 col-sm-11 col-xs-12">
+	                    <div class="column pt-btn-line">
+	                        <button onclick="addTm()" id="baocun"
+	                            class="btn w80  btn-default btn-primary">保存</button>
+	                        <button class="btn w80  btn-default btn-default">取消</button>
+	                    </div>
+	                </div>
+                    <div class="col-lg-12 col-md-11 col-sm-11 col-xs-12">
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span> ※ </span>题目名称</label>
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                <textarea id="tmHtml" class="form-control" name="tmHtml"
+                                    style="min-height: 108px"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="col-lg-1 col-md-2 col-sm-2 col-xs-6" for="dingjia"><span>
+                                    ※ </span>选择分类</label>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <select id="tmType" name="tmType" class="selectpicker"
+                                    onchange="classify(this)" data-live-search="true" title="请选择">
+                                    <option value="单选题">单选题</option>
+                                    <option value="多选题">多选题</option>
+                                    <option value="判断题">判断题</option>
+                                </select>
+                            </div>
+
+                            <label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="title"><span>
+                                    ※ </span>分数</label>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <input type="text" class="form-control" name="score" id="score" />
+                            </div>
+                            <label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="biaozhun">
+                                <span> ※ </span>难度系数
+                            </label>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <input type="text" class="form-control" name="diffScore"
+                                    id="diffScore" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">
+                                <span> ※ </span>所属课件内容列表
+                            </label>
+                            <div class="col-lg-7 col-md-7 col-sm-6 col-xs-6">
+                                <input type="hidden" class="form-control" name="kjList"
+                                    id="kjList" />
+                                <textarea id="kjnameList" class="form-control" name="kjnameList"
+                                    style="min-height: 60px"></textarea>
+                            </div>
+                            <span class="input-group-btn">
+                                <button class="btn btn-info"
+                                    style="height: 30px; margin-right: 8px; line-height: 0px; float: left;"
+                                    type="button" onclick="openKj()">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="biaozhun">
+                                <span> ※ </span>所属模拟实操列表
+                            </label>
+                            <div class="col-lg-7 col-md-7 col-sm-6 col-xs-6">
+                                <input type="hidden" class="form-control" name="mnscList"
+                                    id="mnscList" />
+                                <textarea id="mnscnameList" class="form-control"
+                                    name="mnscnameList" style="min-height: 60px"></textarea>
+                            </div>
+                            <span class="input-group-btn">
+                                <button class="btn btn-info"
+                                    style="height: 30px; margin-right: 8px; line-height: 0px; float: left;"
+                                    type="button" onclick="openMnsc()">+</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12" id="xzanswer"
+                        style="display: none;">
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="answer">
+                                <span> ※ </span>判断题答案
+                            </label>
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
+                                <label class="radio-inline"> <input type="radio"
+                                    name="isAnswer" id="isAnswer" value="1" checked> 正确
+                                </label> <label class="radio-inline"> <input type="radio"
+                                    name="isAnswer" id="isAnswer" value="2"> 错误
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="button"
+                                    onclick="openAddSelect()">添加</button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="pt-main">
+                <!--bootstrap 表格-->
+                <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="biaozhun">
-								<span> ※ </span>所属模拟实操列表
-							</label>
-							<div class="col-lg-7 col-md-7 col-sm-6 col-xs-6">
-								<input type="hidden" class="form-control" name="mnscList" id="mnscList" />		
-								<textarea id="mnscnameList" class="form-control" name="mnscnameList"
-									style="min-height: 60px"></textarea>						
-							</div>		
-							<span class="input-group-btn">
-							        <button class="btn btn-info" style="height: 30px;margin-right: 8px;line-height: 0px; float: left;"	type="button" onclick="openMnsc()">
-								        +
-							        </button>
-							    </span>					
-						</div>						
-					</div>	
-					
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id = "xzanswer" style="display:none;" >
-						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="answer">
-							<span> ※ </span>判断题答案</label>
-							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
-								<label class="radio-inline"> <input type="radio"
-									name="isAnswer" id="isAnswer" value="1" checked>
-									正确
-								</label> <label class="radio-inline"> <input type="radio"
-									name="isAnswer" id="isAnswer" value="2">
-									错误
-								</label>
-							</div>
-						</div>
-					</div>				
-				</form>
-			</div>
-		</div>			
-	</div>		    
-	<br>
-	<script>
-    $(function() {      
-     
+                        <div class="table-wrap">
+                            <table id="tb_departments"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <script>
+    //table
+    // 2.返回操作模版[按钮颜色暂不确定]
+    function operateFormatter(value, row, index) {
+      return [
+          '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
+              + value + '")>修改</button>',
+          '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
+              + value + '")>删除</button>' ].join('');
+    }
+
+    $(function() {
       //icheck 单选多选
       $('input').iCheck({
         checkboxClass : 'icheckbox_square-blue',
         radioClass : 'iradio_square-blue',
         increaseArea : '20%' // optional
-      }); 
+      });
 
       //获取参数
-      var url = location.search;	  
-  	  if (url != '') {
-  	    //变成修改
-  	    $("#baocun").attr("onclick", "editTm()");
-  	    url = url.substr(1);	    
-  	    var split = url.split("=");	    
-  	    $.ajax({
-  	      type : 'post',
-  	      url : "/st/get",
-  	      data : {
-  	        "id" : split[1]
-  	      },
-  	      dataType : 'json',
-  	      cache : false,	     
-  	      success : function(data) {
-  	        var tm = data.data;
-  	        $("#objId").val(tm.id);
-  	        $("#tmHtml").val(tm.tmHtml);
-  	        $("#tmType").selectpicker('val',tm.tmType);
-  	        $("#score").val(tm.score);
-  	        $("#diffScore").val(tm.diffScore);
-  	        $("#kjList").val(tm.kjList);
-  	        $("#mnscList").val(tm.mnscList);
-  	      },
-  	      error : function() { //失败回调函数
-  	        alert("获取信息失败");
-  	      }
-  	    });
-  	  }
-  	});
-     function addTm() {
-       alert( $("#isAnswer:checked").val());
-       $.ajax({
-         type : 'post',
-         url : "http://localhost:18080/st/insert",
-         data : $("#form").serialize(),
-         dataType : 'json',
-         cache : false,
-         success : function(data) {
-           alert("a");
-           parent.refresh();
-           closeMy();
-         },
-         error : function() { //失败回调函数
-           alert("保存失败");
-         }
-       });
-       parent.refresh();
-       closeMy();
-      }
-      function editTm() {
+      var url = location.search;
+      if (url != '') {
+        //变成修改
+        $("#baocun").attr("onclick", "editTm()");
+        url = url.substr(1);
+        var split = url.split("=");
         $.ajax({
           type : 'post',
-          url : "http://localhost:18080/st/update",
-          data : $("#form").serialize(),
+          url : "/st/get",
+          data : {
+            "id" : split[1]
+          },
           dataType : 'json',
           cache : false,
           success : function(data) {
-            alert("b");
-            parent.refresh();
-            closeMy();
+            var tm = data.data;
+            $("#objId").val(tm.id);
+            $("#tmHtml").val(tm.tmHtml);
+            $("#tmType").selectpicker('val', tm.tmType);
+            $("#score").val(tm.score);
+            $("#diffScore").val(tm.diffScore);
+            $("#kjList").val(tm.kjList);
+            $("#mnscList").val(tm.mnscList);
+            getDetailData(split[1]);
           },
           error : function() { //失败回调函数
-            alert("修改失败");
+            alert("获取信息失败");
           }
         });
-        parent.refresh();
-        closeMy();
       }
-      function closeMy() {
-        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-        parent.layer.close(index); //再执行关闭
+    });
+
+    function getDetailData(tmId) {
+      TableInit().Init('http://localhost:18080/st/getselctData?id=' + tmId, [ {
+        checkbox : true
+      }, {
+        field : 'tmSelectSign',
+        title : '选项标号',
+        sortable : true
+      }, {
+        field : 'tmSelectDesc',
+        title : '选项描述',
+        sortable : true
+      }, {
+        field : 'sort',
+        title : '显示顺序',
+        sortable : true
+      }, {
+        field : 'isAnswer',
+        title : '是否答案',
+        sortable : true
+      }, {
+        field : 'id',
+        title : '操作',
+        formatter : operateFormatter
+      } ]);
+    }
+
+    function addTm() {
+      $.ajax({
+        type : 'post',
+        url : "http://localhost:18080/st/insert",
+        data : $("#form").serialize(),
+        dataType : 'json',
+        cache : false,
+        success : function(data) {
+          alert("a");
+          parent.refresh();
+          closeMy();
+        },
+        error : function() { //失败回调函数
+          alert("保存失败");
+        }
+      });
+      parent.refresh();
+      closeMy();
+    }
+    function editTm() {
+      $.ajax({
+        type : 'post',
+        url : "http://localhost:18080/st/update",
+        data : $("#form").serialize(),
+        dataType : 'json',
+        cache : false,
+        success : function(data) {
+          parent.refresh();
+          closeMy();
+        },
+        error : function() { //失败回调函数
+          alert("修改失败");
+        }
+      });      
+    }
+    function closeMy() {
+      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+      parent.layer.close(index); //再执行关闭
+    }
+    function openKj() {
+      layer.open({
+        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        title : '<span class="text-color">选择课件</span>',//请修改span中间的内容
+        shadeClose : true,//开启阴影关闭
+        closeBtn : 1, //不显示关闭按钮
+        shade : 0.6,
+        maxmin : false,//开启最大化最小化按钮
+        area : [ '80%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : [ '../kj/kjList4st', 'yes' ]
+      //如果不想出现滚动条['content.html', 'no']
+      });
+    }
+    function openMnsc() {
+      layer.open({
+        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        title : '<span class="text-color">选择课件</span>',//请修改span中间的内容
+        shadeClose : true,//开启阴影关闭
+        closeBtn : 1, //不显示关闭按钮
+        shade : 0.6,
+        maxmin : false,//开启最大化最小化按钮
+        area : [ '80%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : [ '../mnsc/mnscList4st', 'yes' ]
+      //如果不想出现滚动条['content.html', 'no']
+      });
+    }
+    function openAddSelect() {
+      layer.open({
+        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        title : '<span class="text-color">添加选项及答案</span>',//请修改span中间的内容
+        shadeClose : true,//开启阴影关闭
+        closeBtn : 1, //不显示关闭按钮
+        shade : 0.6,
+        maxmin : false,//开启最大化最小化按钮
+        area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : [ '../st/selectEdit?id='+$("#objId").val(), 'yes' ]
+      //如果不想出现滚动条['content.html', 'no']
+      });
+    }
+    function setVal(_valList, _vanamelList) {
+      $("#kjList").val(_valList);
+      $("#kjnameList").val(_vanamelList);
+    }
+    function setValmnsc(_valList, _vanamelList) {
+      $("#mnscList").val(_valList);
+      $("#mnscnameList").val(_vanamelList);
+    }
+    function classify(obj) {
+      if (obj.selectedIndex == 3) {
+        document.getElementById("xzanswer").style.display = "block";
+      } else {
+        document.getElementById("xzanswer").style.display = "none";
       }
-      function  openKj() {      
-        layer.open({
-          type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-          title : '<span class="text-color">选择课件</span>',//请修改span中间的内容
-          shadeClose : true,//开启阴影关闭
-          closeBtn : 1, //不显示关闭按钮
-          shade : 0.6,
-          maxmin : false,//开启最大化最小化按钮
-          area : [ '80%', '100%' ],//此处可以改为100%，该数值按UI图比例算出
-          content : ['../kj/kjList4st','yes']//如果不想出现滚动条['content.html', 'no']
-        });
+      if (obj.selectedIndex == 1) {
+        document.getElementById("pt-main").style.display = "block";
+      } else if (obj.selectedIndex == 2) {
+        document.getElementById("pt-main").style.display = "block";
+      } else {
+        document.getElementById("pt-main").style.display = "none";
       }
-      function  openMnsc() {      
-        layer.open({
-          type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-          title : '<span class="text-color">选择课件</span>',//请修改span中间的内容
-          shadeClose : true,//开启阴影关闭
-          closeBtn : 1, //不显示关闭按钮
-          shade : 0.6,
-          maxmin : false,//开启最大化最小化按钮
-          area : [ '80%', '100%' ],//此处可以改为100%，该数值按UI图比例算出
-          content : ['../mnsc/mnscList4st','yes']//如果不想出现滚动条['content.html', 'no']
-        });
-      }
-     function setVal(_valList,_vanamelList) {
-       $("#kjList").val(_valList);
-       $("#kjnameList").val(_vanamelList);
-     }
-     function setValmnsc(_valList,_vanamelList) {       
-       $("#mnscList").val(_valList);
-       $("#mnscnameList").val(_vanamelList);
-     }
-     function classify(obj){
-       if (obj.selectedIndex==3){
-         document.getElementById("xzanswer").style.display = "block";
-       }else{
-         document.getElementById("xzanswer").style.display = "none";
-       }
-     }
-    </script>
+    }
+  </script>
 </body>
 </html>

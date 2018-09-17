@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>input</title>
+<!-- 1 bootstrap基础css -->
+<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap.css"
+	rel="stylesheet">
+<!-- 2 table表格css -->
+<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
+	rel="stylesheet">
+<!-- 3 treeview树css -->
+<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
+	rel="stylesheet">
+<!-- 4 datetimepicker时间选择css -->
+<link
+	href="../libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
+	rel="stylesheet">
+<!-- 5 select选择框css -->
+<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
+	rel="stylesheet">
+<!-- 6 fileinput上传文件css -->
+<link href="../libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
+	rel="stylesheet">
+<!-- 7 icheck单选+多选css -->
+<link href="../libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
+	rel="stylesheet">
+<!-- 8 Validator验证css -->
+<link href="../libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
+	rel="stylesheet">
+<!-- 9 layer弹框css -->
+<link href="../libs/layer/layer-new.css" rel="stylesheet">
+<!-- 10 引入字体css -->
+<link href="../libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
+	rel="stylesheet">
+<!-- 11 页面样式css -->
+<link href="../src/css/pt-main.css" rel="stylesheet">
+
+<!-- 优先引入jquery1.12.4版本 -->
+<script src="../libs/jquery/jquery-1.12.4.js"></script>
+<!-- 1 bootstrap基础js -->
+<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<!-- 2 table表格js -->
+<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<!-- 2 table列表数据js 可删除？ -->
+<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<!-- 3 treeview树js -->
+<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<!-- 4 datetimepicker时间选择js -->
+<script
+	src="../libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+<!-- 5 select选择框js -->
+<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
+<!-- 6 fileinput上传文件js -->
+<script src="../libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
+<!-- 6 fileinput中文包js -->
+<script src="../libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
+<!-- 7 icheck单选+多选js -->
+<script src="../libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
+<!-- 8 Validator验证js -->
+<script src="../libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
+<!-- 9 layer弹框js -->
+<script src="../libs/layer/layer.js"></script>
+<!-- 11 页面js -->
+<script src="../src/js/main.js"></script>
+<style>
+html {
+	overflow: scroll;
+}
+</style>
+</head>
+<body>
+	<div class="container">			
+		<div class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
+				<form class="form-horizontal pt-form-full" role="form" id="form">
+					<input type="hidden" name="id" id="objId">
+					<div class="column pt-btn-line">
+						<button onclick="addSelect()" id="baocun"
+							class="btn w80  btn-default btn-primary">保存</button>							
+						<button class="btn w80  btn-default btn-default">取消</button>						
+					</div>					
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span>
+									※ </span>选项描述</label>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-6">								
+								<textarea id="tmSelectDesc" class="form-control" name="tmSelectDesc"
+									style="min-height: 108px"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-10 col-xs-8">
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="dingjia"><span>
+									※ </span>是否是答案</label>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+								<select id="isAnswer" name="isAnswer" class="selectpicker" onchange="classify(this)"
+									data-live-search="true" title="请选择" >
+									<option value="1">是</option>
+									<option value="0">否</option>																
+								</select>
+							</div>						
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span>
+									※ </span>标号</label>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+								<input type="text" class="form-control" name="tmSelectSign" id="tmSelectSign" />
+							</div>						
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="biaozhun">
+								<span> ※ </span>顺序
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+								<input type="text" class="form-control" name="sort" id="sort" />							
+							</div>							
+						</div>
+					</div>		                    			
+				</form>
+			</div>
+		</div>			
+	</div>	
+		    
+	<br>
+	<script>
+	function getUrlParam(name) {
+	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+	    if (r != null) return unescape(r[2]); return null; //返回参数值
+	}
+    $(function() {      
+      $("#objId").val(getUrlParam("id"));     
+      //icheck 单选多选
+      $('input').iCheck({
+        checkboxClass : 'icheckbox_square-blue',
+        radioClass : 'iradio_square-blue',
+        increaseArea : '20%' // optional
+      }); 
+
+      //获取参数
+      var url = location.search;	  
+  	 
+  	});
+     function addSelect() {    
+       $.ajax({
+         type : 'post',
+         url : "http://localhost:18080/st/insertselect",
+         data : $("#form").serialize(),
+         dataType : 'json',
+         cache : false,
+         success : function(data) {
+           alert("a");
+           parent.refresh();
+           closeMy();
+         },
+         error : function() { //失败回调函数
+           alert("保存失败");
+         }
+       });
+
+      }
+      function editTm() {
+        $.ajax({
+          type : 'post',
+          url : "http://localhost:18080/st/update",
+          data : $("#form").serialize(),
+          dataType : 'json',
+          cache : false,
+          success : function(data) {
+            parent.refresh();
+            closeMy();
+          },
+          error : function() { //失败回调函数
+            alert("修改失败");
+          }
+        });
+        parent.refresh();
+        closeMy();
+      }
+      function closeMy() {
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.layer.close(index); //再执行关闭
+      }     
+     
+    </script>
+</body>
+</html>

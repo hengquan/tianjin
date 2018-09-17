@@ -33,8 +33,9 @@ public class Tm {
     
     private Integer isAnswer;
     
-    private String tmSelectSign;
+    private String tmSelectSign;   
     
+    private Integer sort;      
 
     public String getId() {
         return id;
@@ -162,5 +163,13 @@ public class Tm {
 
     public void setIsAnswer(Integer isAnswer) {
         this.isAnswer = isAnswer;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 }

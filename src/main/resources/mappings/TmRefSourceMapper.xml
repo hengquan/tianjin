@@ -9,7 +9,7 @@
   </resultMap>
   <sql id="Blob_Column_List">
 		id, tm_id,ref_tabname,ref_id 
-	</sql>
+  </sql>
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.TmRefSource" >
     insert into q_TM_ref_source (id, tm_id, ref_tabname, 
       ref_id)

@@ -26,6 +26,7 @@ import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.entity.Tm;
+import cn.tianjin.unifiedfee.ot.entity.TmSelect;
 import cn.tianjin.unifiedfee.ot.service.KjService;
 import cn.tianjin.unifiedfee.ot.service.StService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
@@ -100,6 +101,29 @@ public class StController {
         }
         return map;
     }
+ // 添加
+    @RequestMapping("insertselect")
+    @ResponseBody
+    public Map<String, Object> insertselect(Tm tm, HttpServletRequest request, HttpServletResponse response) {
+        //获取用户数据
+        UserInfo user=userService.getUserInfo();
+        // 返回数据
+        Map<String, Object> map = new HashMap<String, Object>();
+        // 跨域
+        HttpPush.responseInfo(response);
+        try {
+            // 添加数据
+            boolean result = stService.insertselect(tm,user);
+            if (result)
+                map.put("resultCode", "100");
+            else
+                map.put("resultCode", "101");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
 
     // 修改
     @RequestMapping("update")
@@ -158,6 +182,20 @@ public class StController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return map;
+    }
+ // 获取分页数据
+    @RequestMapping("getselctData")
+    @ResponseBody
+    public Map<String, Object> getselectData(Tm tm, HttpServletRequest request, HttpServletResponse response) {
+        // 返回数据
+        Map<String, Object> map = new HashMap<String, Object>();    
+        // 跨域
+        HttpPush.responseInfo(response);
+        List<TmSelect> Tms = stService.getselectData(tm);        
+        // 返回
+        map.put("total", 1);
+        map.put("rows", Tms);
         return map;
     }
 }
