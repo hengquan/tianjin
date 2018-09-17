@@ -55,4 +55,8 @@ public class KjService {
 	public List<Kj> selectAllMsg() {
 		return dao.selectAllMsg();
 	}
+
+    public List<Kj> getDataListByIds(Kj kj) {
+        return dao.getDataListByIds(kj);
+    }
 }

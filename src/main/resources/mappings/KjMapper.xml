@@ -163,4 +163,16 @@
 		and kj_name like '%${kjName}%'
 		</if>
 	</select>
+	
+	
+  <select id="getDataListByIds" resultMap="BaseResultMap">
+    select
+    <include refid="Blob_Column_List" />
+    from ts_KJ
+    where 1=1
+    <if test="id != null">
+    and instr(#{id},id)>0
+    </if>
+  </select>
+	
 </mapper>

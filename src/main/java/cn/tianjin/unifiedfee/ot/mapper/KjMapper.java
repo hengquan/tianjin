@@ -19,4 +19,6 @@ public interface KjMapper {
     Kj get(String id);
 
     List<Kj> selectAllMsg();
+
+    List<Kj> getDataListByIds(Kj kj);
 }
