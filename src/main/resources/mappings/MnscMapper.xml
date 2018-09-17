@@ -110,37 +110,37 @@
 		update ts_MNSC
 		<set>
 			<if test="mnscName != null">
-				mnsc_name = #{mnscName}
+				mnsc_name = #{mnscName},
 			</if>
 			<if test="mnscCatId != null">
-				mnsc_cat_id = #{mnscCatId}
+				mnsc_cat_id = #{mnscCatId},
 			</if>
 			<if test="mnscCatNames != null">
-				mnsc_cat_names = #{mnscCatNames}
+				mnsc_cat_names = #{mnscCatNames},
 			</if>
 			<if test="expireDate != null">
-				expire_date = #{expireDate}
+				expire_date = #{expireDate},
 			</if>
 			<if test="mnscUrl != null">
-				mnsc_url = #{mnscUrl}
+				mnsc_url = #{mnscUrl},
 			</if>
 			<if test="remarks != null">
-				remarks = #{remarks}
+				remarks = #{remarks},
 			</if>
 			<if test="state != null">
-				state = #{state}
+				state = #{state},
 			</if>
 			<if test="score != null">
-				score = #{score}
+				score = #{score},
 			</if>
 			<if test="createDate != null">
-				create_date = #{createDate}
+				create_date = #{createDate},
 			</if>
 			<if test="createBy != null">
-				create_by = #{createBy}
+				create_by = #{createBy},
 			</if>
 			<if test="createName != null">
-				create_name = #{createName}
+				create_name = #{createName},
 			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
