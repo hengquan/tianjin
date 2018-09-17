@@ -12,8 +12,8 @@
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Blob_Column_List">
-		id, tm_type,tm_html,score,diff_score,create_date,create_by,create_name 
-	</sql>
+    id, tm_type,tm_html,score,diff_score,create_date,create_by,create_name 
+  </sql>
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.Tm" >
     insert into q_TM (id, tm_type, tm_html, 
       score, diff_score,  
@@ -102,16 +102,14 @@
     where id = #{id}
   </update>
   <select id="getPageData" resultMap="BaseResultMap">
-		select
-		<include refid="Blob_Column_List" />
-		from q_tm
-		where 1=1
-		
-	</select>
-	<select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
-		select
-		<include refid="Blob_Column_List" />
-		from q_tm
-		where id = #{id,jdbcType=VARCHAR}
-	</select>
+    select <include refid="Blob_Column_List" />
+    from q_tm
+    where 1=1
+  </select>
+  <select id="getTmListByObjInfo" resultMap="BaseResultMap" parameterType="java.lang.String">
+   select a.id, a.tm_type, a.tm_html, a.score, a.diff_score, a.create_date, a.create_by, a.create_name
+   from q_tm a, q_TM_ref_source b
+   where b.tm_id=a.id and b.ref_tabName=#{refTabName} and b.ref_id=#{refId}
+   order by a.diff_score desc, a.create_name desc
+  </select>
 </mapper>

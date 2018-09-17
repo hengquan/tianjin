@@ -194,8 +194,10 @@ public class ApiController {
                 }
                 flQuery+=" or kj_cat_id='"+c.getId()+"'";
                 List<TreeNode<? extends TreeNodeBean>> l=TreeUtils.getDeepList(c);
-                for (TreeNode<? extends TreeNodeBean> _n: l) {
-                    flQuery+=" or kj_cat_id='"+_n.getId()+"'";
+                if (l!=null&&l.size()>0) {
+                    for (TreeNode<? extends TreeNodeBean> _n: l) {
+                        flQuery+=" or kj_cat_id='"+_n.getId()+"'";
+                    }
                 }
             }
             if (!StringUtils.isBlank(flQuery)) flQuery=flQuery.substring(4);
@@ -208,6 +210,11 @@ public class ApiController {
             param.put("searchStr", searchStr);
             // 查询数据
             List<Kj> kjs=kjService.find4Web(param);
+            if (kjs==null||kjs.size()==0) {
+                retMap.put("returnCode","99");
+                retMap.put("messageInfo","列表为空");
+                return retMap;
+            }
             //查询相关图片
             String orSql="";
             for (Kj kj: kjs) {
@@ -231,13 +238,8 @@ public class ApiController {
                 }
                 retL.add(m);
             }
-            if (kjs==null||kjs.size()==0) {
-                retMap.put("returnCode","99");
-                retMap.put("messageInfo","列表为空");
-            } else {
-                retMap.put("returnCode","00");
-                retMap.put("data",retL);
-            }
+            retMap.put("returnCode","00");
+            retMap.put("data",retL);
         } catch(Exception e) {
             e.printStackTrace();
             retMap.put("returnCode","01");
@@ -351,7 +353,7 @@ public class ApiController {
                 retMap.put("messageInfo","无用户登录");
                 return retMap;
             }
-            if (!StringUtils.isBlank(kjId)) {
+            if (StringUtils.isBlank(kjId)) {
                 retMap.put("returnCode","03");
                 retMap.put("messageInfo","课件Id为空");
                 return retMap;
@@ -436,7 +438,7 @@ public class ApiController {
                 retMap.put("messageInfo","相关对象Id为空");
                 return retMap;
             }
-            List<Tm> tmpSjTmList=sjService.getTempSj(refType, refId, tmCount);
+            List<Map<String,Object>> tmpSjTmList=sjService.getTempSj(refType, refId, tmCount);
             retMap.put("", tmpSjTmList);
         } catch(Exception e) {
             e.printStackTrace();
