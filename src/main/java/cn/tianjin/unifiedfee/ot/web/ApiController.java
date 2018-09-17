@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -205,6 +204,7 @@ public class ApiController {
             // 获取参数
             Map<String, Object> param=new HashMap<String, Object>();
             param.put("flQuery", flQuery);
+            if (!StringUtils.isBlank(searchStr)) searchStr=searchStr.replaceAll("'", "");
             param.put("searchStr", searchStr);
             // 查询数据
             List<Kj> kjs=kjService.find4Web(param);
@@ -283,7 +283,7 @@ public class ApiController {
                 retMap.put("messageInfo","无用户登录");
                 return retMap;
             }
-            if (!StringUtils.isBlank(kjId)) {
+            if (StringUtils.isBlank(kjId)) {
                 retMap.put("returnCode","03");
                 retMap.put("messageInfo","课件Id为空");
                 return retMap;
@@ -357,38 +357,40 @@ public class ApiController {
                 return retMap;
             }
 
-            Kj kj=new Kj();
-            kj.setId(kjId);
-            kj.setState(2);//正式课件
-            kj=kjService.get(kj);
-            if (kj==null) {
-                retMap.put("returnCode","04");
-                retMap.put("messageInfo","课件Id无对应课件");
-                return retMap;
+            // 查询数据
+            Map<String, Object> param=new HashMap<String, Object>();
+            param.put("kjId", kjId);
+            List<Kj> kjs=kjService.findRefKj4Web(param);
+            //查询相关图片
+            String orSql="";
+            for (Kj kj: kjs) {
+                orSql+=" or obj_id='"+kj.getId()+"'";
             }
-
-            Map<String, Object> m=_getKjMapDetail(kj);
-            //查询相关图片或主内容
-            String orSql="obj_id='"+kj.getId()+"'";
-            List<CommArchive> al=archiveService.getArchiveByObjIds("ts_KJ", "", orSql);
-            if (al!=null) {
-                for (CommArchive ca: al) {
-                    if (ca.getObjId().equals(kj.getId())&&ca.getArchiveType().equals("img")&&m.get("imgUrl")==null) {
-                        m.put("imgUrl", ca.getFileUrl());
-                    }
-                    if (ca.getObjId().equals(kj.getId())&&ca.getArchiveType().equals("main")&&m.get("kjUrl")==null) {
-                        m.put("kjUrl", ca.getFileUrl());
+            if (!StringUtils.isBlank(orSql)) orSql=orSql.substring(4);
+            List<CommArchive> al=archiveService.getArchiveByObjIds("ts_KJ", "img", orSql);
+            List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+            for (Kj kj:kjs) {
+                Map<String, Object> m=_getKjMap(kj);
+                if (al!=null) {
+                    for (CommArchive ca: al) {
+                        if (ca.getObjId().equals(kj.getId())) {
+                            m.put("imgUrl", ca.getFileUrl());
+                        }
                     }
                 }
+                if (m.get("imgUrl")==null) {//默认图片
+//                    m.put("imgUrl", "/images/defaultKJ.png");
+                    m.put("imgUrl", "");
+                }
+                retL.add(m);
             }
-            if (m.get("imgUrl")==null) {//默认图片
-//              m.put("imgUrl", "/images/defaultKJ.png");
-                m.put("imgUrl", "");
+            if (kjs==null||kjs.size()==0) {
+                retMap.put("returnCode","99");
+                retMap.put("messageInfo","列表为空");
+            } else {
+                retMap.put("returnCode","00");
+                retMap.put("data",retL);
             }
-            if (m.get("kjUrl")==null) m.put("kjUrl", "");
-            
-            retMap.put("returnCode","00");
-            retMap.put("data", m);
         } catch(Exception e) {
             e.printStackTrace();
             retMap.put("returnCode","01");
@@ -407,9 +409,9 @@ public class ApiController {
      * @param resultType =0列表形式；=1树形式，默认为0
      * @return
      */
-    @RequestMapping("getKjInfo")
+    @RequestMapping("getTempSj")
     @ResponseBody
-    public Map<String, Object> getKjInfo(HttpServletRequest request, HttpServletResponse response,
+    public Map<String, Object> getTempSj(HttpServletRequest request, HttpServletResponse response,
         @RequestParam(required=false) String refType,
         @RequestParam(required=false) String refId,
         @RequestParam(defaultValue="5",required=false) int tmCount) {
@@ -435,7 +437,7 @@ public class ApiController {
                 return retMap;
             }
             List<Tm> tmpSjTmList=sjService.getTempSj(refType, refId, tmCount);
-            
+            retMap.put("", tmpSjTmList);
         } catch(Exception e) {
             e.printStackTrace();
             retMap.put("returnCode","01");
