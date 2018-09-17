@@ -94,10 +94,9 @@ html,body{
     font-weight: bold;
 }
 .nav .active .active1{
-    color: white;
+    color:black;
     font-weight: bold;
-   /*  background:#f01c00; */
-    border-radius: 5px;
+   border-radius: 5px;
 }
 .nav li a{
     padding: 0;

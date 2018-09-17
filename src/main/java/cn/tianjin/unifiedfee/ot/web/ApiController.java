@@ -194,8 +194,10 @@ public class ApiController {
                 }
                 flQuery+=" or kj_cat_id='"+c.getId()+"'";
                 List<TreeNode<? extends TreeNodeBean>> l=TreeUtils.getDeepList(c);
-                for (TreeNode<? extends TreeNodeBean> _n: l) {
-                    flQuery+=" or kj_cat_id='"+_n.getId()+"'";
+                if (l!=null&&l.size()>0) {
+                    for (TreeNode<? extends TreeNodeBean> _n: l) {
+                        flQuery+=" or kj_cat_id='"+_n.getId()+"'";
+                    }
                 }
             }
             if (!StringUtils.isBlank(flQuery)) flQuery=flQuery.substring(4);
