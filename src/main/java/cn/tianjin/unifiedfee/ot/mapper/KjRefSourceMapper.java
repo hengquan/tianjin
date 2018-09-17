@@ -1,9 +1,19 @@
 package cn.tianjin.unifiedfee.ot.mapper;
 
+import java.util.List;
+
 import cn.tianjin.unifiedfee.ot.entity.KjRefSource;
 
 public interface KjRefSourceMapper {
     int insert(KjRefSource record);
 
-    int insertSelective(KjRefSource record);
+    int deleteByKjId(String ids);
+
+    int update(KjRefSource record);
+
+    int delete(KjRefSource kjRefSource);
+
+    KjRefSource get(String id);
+
+    List<KjRefSource> getDataListByKjId(String kjId);
 }

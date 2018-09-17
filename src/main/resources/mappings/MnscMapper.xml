@@ -155,5 +155,12 @@
 		select
 		<include refid="Base_Column_List" />
 		from ts_MNSC
+		where 1=1
+		<if test="categoryId != ''">
+		  and mnsc_cat_id = #{categoryId}
+		</if>
+		<if test="categoryId != ''">
+		  and instr(mnsc_name,#{searchStr})>0
+		</if>
 	</select>
 </mapper>

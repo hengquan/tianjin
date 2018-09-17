@@ -170,7 +170,7 @@
 		from ts_KJ
 		where 1=1
 		<if test="id != null">
-			and instr(#{id},id)>0
+			and instr(#{ids},id)>0
 		</if>
 	</select>
 

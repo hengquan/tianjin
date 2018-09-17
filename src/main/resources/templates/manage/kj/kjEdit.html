@@ -77,7 +77,8 @@ html {
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
 				<form class="form-horizontal pt-form-full" role="form" id="form">
 					<input type="hidden" name="id" id="objId"> <input
-						type="hidden" name="kjCatNames" id="kjCatNames">
+						type="hidden" name="ids" id="ids"> <input type="hidden"
+						name="kjCatNames" id="kjCatNames">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
@@ -167,8 +168,8 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
-								<table class="table table-striped">
-									<tr id="firstTr">
+								<table class="table table-striped" id="theTable">
+									<tr>
 										<th>课件名称</th>
 										<th>分类名称</th>
 										<th>学分</th>
@@ -194,6 +195,13 @@ html {
 	<br>
 	<br>
 	<script>
+    var html = '<tr>'
+        + '<th>课件名称</th>'
+        + '<th>分类名称</th>'
+        + '<th>学分</th>'
+        + '<th>过期时间</th>'
+        + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
+        + '</tr>';
     $(function() {
       $("input:radio[name='wenjian']").bind('click', function() {
         console.log($(this).attr('value'))
@@ -286,29 +294,51 @@ html {
         $("#baocun").attr("onclick", "editKj()");
         url = url.substr(1);
         var split = url.split("=");
-        $.ajax({
-          type : 'post',
-          url : "/kj/get",
-          data : {
-            "id" : split[1]
-          },
-          dataType : 'json',
-          cache : false,
-          success : function(data) {
-            var kj = data.data;
-            $("#objId").val(kj.id);
-            $("#kjName").val(kj.kjName);
-            $("#expireDate").val(kj.expireDate);
-            $("#score").val(kj.score);
-            $("#remarks").val(kj.remarks);
-            $("#kjCatNames").val(kj.kjCatNames);
-            $("#kjCatId").selectpicker('val', kj.kjCatId);
-            $("#kjCatId").selectpicker('text', kj.kjCatNames);
-          },
-          error : function() { //失败回调函数
-            alert("获取信息失败");
-          }
-        });
+        $
+            .ajax({
+              type : 'post',
+              url : "/kj/get",
+              data : {
+                "id" : split[1]
+              },
+              dataType : 'json',
+              cache : false,
+              success : function(data) {
+                var kj = data.data;
+                $("#objId").val(kj.id);
+                $("#kjName").val(kj.kjName);
+                $("#expireDate").val(kj.expireDate);
+                $("#score").val(kj.score);
+                $("#remarks").val(kj.remarks);
+                $("#kjCatNames").val(kj.kjCatNames);
+                $("#kjCatId").selectpicker('val', kj.kjCatId);
+                $("#kjCatId").selectpicker('text', kj.kjCatNames);
+                //获取相关课件列表
+                $("#ids").val(kj.ids);
+                var dataList = kj.kjs;
+                for (var i = 0; i < dataList.length; i++) {
+                  html += '<tr>'
+                      + '<td>'
+                      + dataList[i].kjName
+                      + '</td>'
+                      + '<td>'
+                      + dataList[i].kjCatNames
+                      + '</td>'
+                      + '<td>'
+                      + dataList[i].score
+                      + '</td>'
+                      + '<td>'
+                      + dataList[i].expireDate
+                      + '</td>'
+                      + '<th onclick="removeTr(this)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+                      + '</tr>';
+                }
+                $("#theTable").html(html);
+              },
+              error : function() { //失败回调函数
+                alert("获取信息失败");
+              }
+            });
       }
     });
     function addKj() {
@@ -381,13 +411,28 @@ html {
 
     //把选择的课件列表放到表格中
     function setKj(ids) {
-      var html = '';
+      var kjIds = $("#ids").val();
+      if (kjIds == '') {
+        kjIds = ids;
+      } else {
+        var kjid = '';
+        var split = ids.split(",");
+        for (var i = 0; i < split.length; i++) {
+          var id = split[i];
+          if (kjIds.indexOf(id) == -1) {
+            kjid += "," + id;
+          }
+        }
+        kjIds = kjIds + kjid;
+      }
+      $("#ids").val(kjIds);
+      //处理显示
       $
           .ajax({
             type : 'post',
             url : "/kj/getDataList",
             data : {
-              "id" : ids
+              "ids" : kjIds
             },
             dataType : 'json',
             cache : false,
@@ -395,14 +440,22 @@ html {
               var dataList = data.dataList;
               for (var i = 0; i < dataList.length; i++) {
                 html += '<tr>'
-                    + '<td>'+ dataList[i].kjName +'</td>'
-                    + '<td>'+ dataList[i].kjCatNames +'</td>'
-                    + '<td>'+ dataList[i].score +'</td>'
-                    + '<td>'+ dataList[i].expireDate +'</td>'
+                    + '<td>'
+                    + dataList[i].kjName
+                    + '</td>'
+                    + '<td>'
+                    + dataList[i].kjCatNames
+                    + '</td>'
+                    + '<td>'
+                    + dataList[i].score
+                    + '</td>'
+                    + '<td>'
+                    + dataList[i].expireDate
+                    + '</td>'
                     + '<th onclick="removeTr(this)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
                     + '</tr>';
               }
-              $("#firstTr").after(html);
+              $("#theTable").html(html);
             },
             error : function() { //失败回调函数
               alert("查询失败")
