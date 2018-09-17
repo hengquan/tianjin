@@ -153,4 +153,22 @@ public class KjController {
         }
         return map;
     }
+    
+    // 查单条记录
+    @RequestMapping("getDataList")
+    @ResponseBody
+    public Map<String, Object> getDataList(Kj kj, HttpServletRequest request, HttpServletResponse response) {
+        // 返回数据
+        Map<String, Object> map = new HashMap<String, Object>();
+        // 跨域
+        HttpPush.responseInfo(response);
+        try {
+            // 获取数据
+            List<Kj> kjs = kjService.getDataListByIds(kj);
+            map.put("dataList", kjs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
 }

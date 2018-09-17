@@ -9,7 +9,8 @@
 		<result column="expire_date" property="expireDate" jdbcType="VARCHAR" />
 		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
 		<result column="state" property="state" jdbcType="INTEGER" />
-		<result column="score" property="score" jdbcType="INTEGER" />
+        <result column="score" property="score" jdbcType="INTEGER" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
 		<result column="create_date" property="createDate" jdbcType="DATE" />
 		<result column="create_by" property="createBy" jdbcType="VARCHAR" />
 		<result column="create_name" property="createName" jdbcType="VARCHAR" />
@@ -18,7 +19,7 @@
 	<sql id="Blob_Column_List">
 		id, kj_name, kj_cat_id,
 		kj_cat_names, expire_date, remarks,
-		state, score, create_date,
+		state, score, sort, create_date,
 		create_by, create_name, kj_html
 	</sql>
 	<insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.Kj">
@@ -45,9 +46,12 @@
 			<if test="state != null">
 				state,
 			</if>
-			<if test="score != null">
-				score,
-			</if>
+            <if test="score != null">
+                score,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
 			<if test="createDate != null">
 				create_date,
 			</if>
@@ -83,9 +87,12 @@
 			<if test="state != null">
 				#{state,jdbcType=INTEGER},
 			</if>
-			<if test="score != null">
-				#{score,jdbcType=INTEGER},
-			</if>
+            <if test="score != null">
+                #{score,jdbcType=INTEGER},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=INTEGER},
+            </if>
 			<if test="createDate != null">
 				#{createDate,jdbcType=DATE},
 			</if>
@@ -125,6 +132,9 @@
       <if test="score != null">
         score = #{score},
       </if>
+      <if test="sort != null">
+        sort = #{sort},
+      </if>
       <if test="createDate != null">
         create_date =#{createDate},
       </if>
@@ -160,7 +170,32 @@
 		from ts_KJ
 		where 1=1
 		<if test="kjName != null">
-		and kj_name like '%${kjName}%'
+			and kj_name like '%${kjName}%'
 		</if>
+	</select>
+
+	<select id="getDataListByIds" resultMap="BaseResultMap">
+		select
+		<include refid="Blob_Column_List" />
+		from ts_KJ
+		where 1=1
+		<if test="id != null">
+			and instr(#{id},id)>0
+		</if>
+	</select>
+
+	<select id="find4Web" resultMap="BaseResultMap" parameterType="Map">
+		select
+		<include refid="Blob_Column_List" />
+		from ts_KJ
+		where 1=1
+		<if test="flQuery!=null and flQuery!=''">
+			and (${flQuery})
+		</if>
+		<if test="searchStr!=null and searchStr!=''">
+			and (kj_name like '%${searchStr}%' or kj_cat_names like '%${searchStr}%' or remarks like '%${searchStr}%')
+		</if>
+		and state=2
+		order by order, create_date desc
 	</select>
 </mapper>
