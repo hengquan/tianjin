@@ -74,7 +74,7 @@
 			<div class="pt-view pt-open" style="padding-left: 10px;">
 				<!--带横线标题-->
 				<div class="pt-bread">
-					<h3>课件列表</h3>
+					<h3>题目列表</h3>
 					<!-- 添加展开按钮 -->
 					<button type="button" id="ptsearchfilter"
 						class="btn btn-primary pt-zkbtn">展开</button>
@@ -83,37 +83,45 @@
 					<!--搜索条-->
 					<div class="pt-section-search">
 						<div class="row clearfix">
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
+							<div class="col-lg-16 col-md-12 col-sm-12 col-xs-12 column">
 								<form class="form-inline">
 									<!-- 示例 input-->
 									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 										<div class="form-group">
-											<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-												for="exampleInputName2">课件名称</label>
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6"
+												for="exampleInputName2">试题名称</label>
 											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input type="text" class="form-control" id="kjName"
-													placeholder="课件名称">
+													placeholder="试题名称">
 											</div>
 										</div>
 									</div>
 									<!-- 隐藏部分包裹 -->
 									<span class="hiddenorshow pt-search-filter"> <!-- 示例 input-->
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+										<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-													for="exampleInputName2">学分</label>
-												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+												<label class="col-lg-2 col-md-4 col-sm-4 col-xs-6"
+													for="exampleInputName2">课件名称</label>
+												<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
 													<input type="text" class="form-control"
-														id="exampleInputName2" placeholder="学分">
+														id="kjid" placeholder="课件名称">
+												</div>
+												<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+													<div class="form-group">
+														<button type="button"
+															class="btn btn-default btn-primary w80" onclick="sel()">选择</button>
+													</div>
 												</div>
 											</div>
-										</div> <!-- 示例select -->
+										</div>
 										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-													for="lunch">分类</label>
+												<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6"
+													for="lunch">模拟实操</label>
 												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-													<select id="lunch" class="selectpicker" title="请选择">
+													<select id="lunch" multiple class="selectpicker"
+														data-actions-box="true" data-live-search="true"
+														title="请选择">
 														<option value="1">法规类</option>
 														<option value="2">政策类</option>
 														<option value="3">收费类</option>
@@ -124,49 +132,16 @@
 													</select>
 												</div>
 											</div>
-										</div> <!-- 示例时间选择 -->
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-													for="exampleInputName2">过期时间</label>
-												<div
-													class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
-													data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-													<input class="form-control" size="16" type="text" value="">
-													<span class="add-on" style="height: 40px"><i
-														class="icon-th"></i></span>
+											<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<button type="button"
+															class="btn btn-default btn-primary w80" onclick="sel()">选择</button>
 												</div>
 											</div>
-										</div> <!-- 示例时间区间选择 -->
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-													for="exampleInputName2">创建时间</label>
-												<div
-													class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
-													data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-													<input class="form-control" size="16" type="text" value="">
-													<span class="add-on" style="height: 40px"><i
-														class="icon-th"></i></span>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-													style="text-align: center">~</label>
-												<div
-													class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
-													data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-													<input class="form-control" size="16" type="text" value="">
-													<span class="add-on" style="height: 40px"><i
-														class="icon-th"></i></span>
-												</div>
-											</div>
-										</div>
+										</div>																				
 									</span>
 									<!-- 示例搜索按钮 -->
-									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+									<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 										<div class="form-group">
 											<button type="button"
 												class="btn btn-default btn-primary w120" onclick="sel()">搜索</button>
@@ -227,10 +202,10 @@
     // 操作模版调用的方法
     function deleteItem(e) {
       var data = {
-        "id" : e
+        "id":e
       }
-      var mymessage = confirm("确定要删除该课件信息吗？");
-      if (mymessage == true) {
+      var mymessage=confirm("确定要删除该课件信息吗？");
+      if(mymessage==true){
         $.ajax({
           type : 'post',
           url : "http://localhost:18080/kj/delete",
@@ -244,7 +219,7 @@
             alert("删除失败");
           }
         });
-      } else if (mymessage == false) {
+      } else if(mymessage==false){
         return false;
       }
     }
@@ -252,26 +227,26 @@
     function addItem() {
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title : '<span class="text-color">添加课件信息</span>',//请修改span中间的内容
+        title : '<span class="text-color">添加试题题目信息</span>',//请修改span中间的内容
         shadeClose : true,//开启阴影关闭
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
-        area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'kj/edit'//如果不想出现滚动条['content.html', 'no']
+        area : [ '83%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : ['st/edit','yes']//如果不想出现滚动条['content.html', 'no']
       });
     }
 
     function editItem(e) {
-      layer.open({
+        layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title : '<span class="text-color">修改课件信息</span>',//请修改span中间的内容
+        title : '<span class="text-color">修改题目信息</span>',//请修改span中间的内容
         shadeClose : true,//开启阴影关闭
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
-        area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'kj/edit?id=' + e//如果不想出现滚动条['content.html', 'no']
+        area : [ '83%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : 'st/edit?id='+e//如果不想出现滚动条['content.html', 'no']
       });
     }
 
@@ -283,40 +258,29 @@
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
-        area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'kj/view?id=' + e//如果不想出现滚动条['content.html', 'no']
+        area : [ '62.5%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : 'kj/view?id='+e//如果不想出现滚动条['content.html', 'no']
       });
     }
 
-    TableInit(queryParams).Init('http://localhost:18080/kj/getPageData', [ {
-      field : 'kjName',
-      title : '课件名称',
+    TableInit(queryParams).Init('http://localhost:18080/st/getPageData', [ {
+      field : 'tmHtml',
+      title : '题目名称称',
       sortable : true
     }, {
-      field : 'kjCatNames',
+      field : 'tmType',
       title : '分类名称',
       sortable : true
     }, {
-      field : 'expireDate',
-      title : '过期时间',
+      field : 'diffScore',
+      title : '难度系数',
       sortable : true
     }, {
       field : 'score',
       title : '学分',
       sortable : true
-    }, {
-      field : 'state',
-      title : '状态',
-      sortable : true,
-      formatter:function(value){
-        if(value==2){
-          return '有效';
-        }else{
-          return '无效';
-        }
-      }
-    }, {
-      field : 'createdate',
+    },  {
+      field : 'strcreatedate',
       title : '创建时间',
       sortable : true
     }, {
@@ -326,7 +290,7 @@
     }, ]);
     function queryParams(params) {
       return {
-        kjName : $("#kjName").val(),
+        kjName : $("#tmName").val(),
         // 使用page size分页
         limit : params.limit, //页面大小
         offset : params.offset

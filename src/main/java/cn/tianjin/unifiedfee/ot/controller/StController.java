@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,18 +21,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import cn.taiji.file.service.FileObjectService;
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
+import cn.tianjin.unifiedfee.ot.entity.Tm;
 import cn.tianjin.unifiedfee.ot.service.KjService;
+import cn.tianjin.unifiedfee.ot.service.StService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
+import cn.tianjin.unifiedfee.ot.util.Onlylogo;
 
-@RequestMapping("/kj")
+@RequestMapping("/st")
 @Controller
-public class KjController {
+public class StController {
 
     @Autowired
-    private KjService kjService;
+    private StService stService;
     @Autowired
     public UserService userService;
 
@@ -49,22 +55,23 @@ public class KjController {
         // 设置page
         PageHelper.offsetPage(offset, limit);
         // 获取参数
-        String kjName = request.getParameter("kjName");
+        String tmName = request.getParameter("tmName");
         // 传参
-        param.put("kjName", kjName);
+        param.put("tmName", tmName);
         // 查询数据
-        List<Kj> kjs = kjService.getPageData(param);
-        if (kjs != null && kjs.size() > 0) {
+        List<Tm> Tms = stService.getPageData(param);
+        if (Tms != null && Tms.size() > 0) {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            for (Kj kj : kjs) {
-                Date createDate = kj.getCreateDate();
-                String createdate = format.format(createDate);
-                if (StringUtils.isNotEmpty(createdate))
-                    kj.setCreatedate(createdate);
+            for (Tm tm : Tms) {
+                Date createDate = tm.getCreateDate();
+                String strcreatedate = format.format(createDate);
+                System.out.print(strcreatedate+"================");
+                if (StringUtils.isNotEmpty(strcreatedate))
+                    tm.setStrcreatedate(strcreatedate);
             }
         }
         // 放入分页
-        PageInfo<Kj> pageList = new PageInfo<Kj>(kjs);
+        PageInfo<Tm> pageList = new PageInfo<Tm>(Tms);
         // 返回
         map.put("total", pageList.getTotal());
         map.put("rows", pageList.getList());
@@ -74,7 +81,7 @@ public class KjController {
     // 添加
     @RequestMapping("insert")
     @ResponseBody
-    public Map<String, Object> insert(Kj kj, HttpServletRequest request, HttpServletResponse response) {
+    public Map<String, Object> insert(Tm tm, HttpServletRequest request, HttpServletResponse response) {
         //获取用户数据
         UserInfo user=userService.getUserInfo();
         // 返回数据
@@ -83,7 +90,7 @@ public class KjController {
         HttpPush.responseInfo(response);
         try {
             // 添加数据
-            boolean result = kjService.insert(kj,user);
+            boolean result = stService.insert(tm,user);
             if (result)
                 map.put("resultCode", "100");
             else
@@ -97,14 +104,14 @@ public class KjController {
     // 修改
     @RequestMapping("update")
     @ResponseBody
-    public Map<String, Object> update(Kj kj,String id, HttpServletRequest request, HttpServletResponse response) {
+    public Map<String, Object> update(Tm tm,String id, HttpServletRequest request, HttpServletResponse response) {
         // 返回数据
         Map<String, Object> map = new HashMap<String, Object>();
         // 跨域
         HttpPush.responseInfo(response);
         try {
             // 更新数据
-            boolean result = kjService.update(kj);
+            boolean result = stService.update(tm);
             if (result)
                 map.put("resultCode", "100");
             else
@@ -118,14 +125,14 @@ public class KjController {
     // 删除
     @RequestMapping("delete")
     @ResponseBody
-    public Map<String, Object> delete(Kj kj, HttpServletRequest request, HttpServletResponse response) {
+    public Map<String, Object> delete(Tm tm, HttpServletRequest request, HttpServletResponse response) {
         // 返回数据
         Map<String, Object> map = new HashMap<String, Object>();
         // 跨域
         HttpPush.responseInfo(response);
         try {
             // 添加数据
-            boolean result = kjService.delete(kj);
+            boolean result = stService.delete(tm);
             if (result)
                 map.put("resultCode", "100");
             else
@@ -139,15 +146,15 @@ public class KjController {
     // 查单条记录
     @RequestMapping("get")
     @ResponseBody
-    public Map<String, Object> get(Kj kj, HttpServletRequest request, HttpServletResponse response) {
+    public Map<String, Object> get(Tm tm, HttpServletRequest request, HttpServletResponse response) {
         // 返回数据
         Map<String, Object> map = new HashMap<String, Object>();
         // 跨域
         HttpPush.responseInfo(response);
         try {
             // 获取数据
-            kj = kjService.get(kj);
-            map.put("data", kj);
+            tm = stService.get(tm);
+            map.put("data", tm);
         } catch (Exception e) {
             e.printStackTrace();
         }

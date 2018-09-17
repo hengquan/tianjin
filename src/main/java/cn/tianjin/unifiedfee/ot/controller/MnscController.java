@@ -3,7 +3,6 @@ package cn.tianjin.unifiedfee.ot.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import cn.taiji.oauthbean.dto.UserInfo;
+import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.Mnsc;
 import cn.tianjin.unifiedfee.ot.service.MnscService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
@@ -27,6 +28,8 @@ public class MnscController {
 
 	@Autowired
 	private MnscService mnscService;
+	@Autowired
+    public UserService userService;
 
 	// 获取分页数据
 	@RequestMapping("getPageData")
@@ -54,19 +57,15 @@ public class MnscController {
 	@RequestMapping("insert")
 	@ResponseBody
 	public Map<String, Object> insert(Mnsc mnsc, HttpServletRequest request, HttpServletResponse response) {
+	  //获取用户数据
+        UserInfo user=userService.getUserInfo();
 		// 返回数据
 		Map<String, Object> map = new HashMap<String, Object>();
 		// 跨域
 		HttpPush.responseInfo(response);
 		try {
 			// 添加数据
-		    String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-		    mnsc.setId(uuid);
-		    mnsc.setMnscCatId("1");
-		    mnsc.setMnscCatNames("1");
-		    mnsc.setCreateBy("Admin");
-		    mnsc.setCreateName("Admin");
-			boolean result = mnscService.insert(mnsc);
+			boolean result = mnscService.insert(mnsc,user);
 			if (result)
 				map.put("resultCode", "100");
 			else
