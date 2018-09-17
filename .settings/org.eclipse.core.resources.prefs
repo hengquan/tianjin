@@ -3,6 +3,7 @@ encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/main/resources/application-dev.properties=UTF-8
 encoding//src/main/resources/application-train.properties=UTF-8
+encoding//src/main/resources/static/src/css/pt-main.css=UTF-8
 encoding//src/main/resources/static/web/css/Summary.css=UTF-8
 encoding//src/test/java=UTF-8
 encoding/<project>=UTF-8
