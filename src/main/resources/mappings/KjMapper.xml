@@ -101,45 +101,45 @@
 		</trim>
 	</insert>
 
-  <update id="update">
-    update ts_KJ
-    <set>
-      <if test="kjName != null">
-        kj_name = #{kjName},
-      </if>
-      <if test="kjCatId != null">
-        kj_cat_id = #{kjCatId},
-      </if>
-      <if test="kjCatNames != null">
-        kj_cat_names = #{kjCatNames},
-      </if>
-      <if test="expireDate != null">
-        expire_date = #{expireDate},
-      </if>
-      <if test="remarks != null">
-        remarks =#{remarks},
-      </if>
-      <if test="state != null">
-        state = #{state},
-      </if>
-      <if test="score != null">
-        score = #{score},
-      </if>
-      <if test="createDate != null">
-        create_date =#{createDate},
-      </if>
-      <if test="createBy != null">
-        create_by = #{createBy},
-      </if>
-      <if test="createName != null">
-        create_name =#{createName},
-      </if>
-      <if test="kjHtml != null">
-        kj_html = #{kjHtml},
-      </if>
-    </set>
-    where id = #{id}
-  </update>
+	<update id="update">
+		update ts_KJ
+		<set>
+			<if test="kjName != null">
+				kj_name = #{kjName},
+			</if>
+			<if test="kjCatId != null">
+				kj_cat_id = #{kjCatId},
+			</if>
+			<if test="kjCatNames != null">
+				kj_cat_names = #{kjCatNames},
+			</if>
+			<if test="expireDate != null">
+				expire_date = #{expireDate},
+			</if>
+			<if test="remarks != null">
+				remarks =#{remarks},
+			</if>
+			<if test="state != null">
+				state = #{state},
+			</if>
+			<if test="score != null">
+				score = #{score},
+			</if>
+			<if test="createDate != null">
+				create_date =#{createDate},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy},
+			</if>
+			<if test="createName != null">
+				create_name =#{createName},
+			</if>
+			<if test="kjHtml != null">
+				kj_html = #{kjHtml},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
 
 	<select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
@@ -160,19 +160,33 @@
 		from ts_KJ
 		where 1=1
 		<if test="kjName != null">
-		and kj_name like '%${kjName}%'
+			and kj_name like '%${kjName}%'
 		</if>
 	</select>
-	
-	
-  <select id="getDataListByIds" resultMap="BaseResultMap">
-    select
-    <include refid="Blob_Column_List" />
-    from ts_KJ
-    where 1=1
-    <if test="id != null">
-    and instr(#{id},id)>0
-    </if>
-  </select>
-	
+
+	<select id="getDataListByIds" resultMap="BaseResultMap">
+		select
+		<include refid="Blob_Column_List" />
+		from ts_KJ
+		where 1=1
+		<if test="id != null">
+			and instr(#{id},id)>0
+		</if>
+	</select>
+
+	<select id="find4Web" resultMap="BaseResultMap" parameterType="Map">
+		select
+		<include refid="Blob_Column_List" />
+		from ts_KJ
+		where 1=1
+		<if test="flQuery!=null and flQuery!=''">
+			and (${flQuery})
+		</if>
+		<if test="searchStr!=null and searchStr!=''">
+			and (kj_name like '%${searchStr}%' or kj_cat_names like '%${searchStr}%'
+			or remarks like '%${searchStr}%')
+		</if>
+		and state=2
+		order by create_date desc
+	</select>
 </mapper>

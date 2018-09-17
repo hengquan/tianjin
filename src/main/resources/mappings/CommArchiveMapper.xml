@@ -13,6 +13,9 @@
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="create_date" property="createDate" jdbcType="DATE" />
   </resultMap>
+  <sql id="Blob_Column_List">
+    id, file_name, file_path, file_url, is_show, obj_tabname,obj_id, archive_type, sort, create_date
+  </sql>
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.CommArchive" >
     insert into comm_archive (id, file_name, file_path, 
       file_url, is_show, obj_tabname, 
@@ -90,4 +93,13 @@
       </if>
     </trim>
   </insert>
+
+  <select id="getArchiveByObjIds" resultMap="BaseResultMap" parameterType="Map">
+  select <include refid="Blob_Column_List" /> from comm_archive
+  where upper(obj_tabname)=upper(#{objTabName}) and (${objIdSql})
+  <if test="archiveType!=null and archiveType!=''" >
+  and upper(archive_type)=upper(#{archiveType})
+  </if>
+  order by obj_id, archive_type, sort desc
+  </select>
 </mapper>

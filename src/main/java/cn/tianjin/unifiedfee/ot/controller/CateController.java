@@ -24,7 +24,7 @@ import cn.tianjin.unifiedfee.ot.service.CatagoryService;
 
 @RequestMapping("/cate")
 @Controller
-public class CateController extends BaseController{
+public class CateController extends BaseController {
     @Autowired
     private CatagoryService categoryService;
     @Autowired // 注入Service
