@@ -138,4 +138,8 @@ public class KjService {
     public List<Kj> find4Web(Map<String, Object> param) {
         return dao.find4Web(param);
     }
+
+    public List<Kj> findRefKj4Web(Map<String, Object> param) {
+        return dao.findRefKj4Web(param);
+    }
 }

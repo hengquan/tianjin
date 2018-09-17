@@ -96,7 +96,7 @@ html,body{
 .nav .active .active1{
     color: white;
     font-weight: bold;
-    background:#f01c00;
+   /*  background:#f01c00; */
     border-radius: 5px;
 }
 .nav li a{

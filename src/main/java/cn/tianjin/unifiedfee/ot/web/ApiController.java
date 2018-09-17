@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -159,7 +158,9 @@ public class ApiController {
      * @param request
      * @param response
      * @param categoryId 上级分类，若为空，获得所有分类
-     * @param resultType =0列表形式；=1树形式，默认为0
+     * @param searchStr 搜索串
+     * @param pageNo 页码
+     * @param pageSize 每页份数
      * @return
      */
     @RequestMapping("getKjList")
@@ -203,6 +204,7 @@ public class ApiController {
             // 获取参数
             Map<String, Object> param=new HashMap<String, Object>();
             param.put("flQuery", flQuery);
+            if (!StringUtils.isBlank(searchStr)) searchStr=searchStr.replaceAll("'", "");
             param.put("searchStr", searchStr);
             // 查询数据
             List<Kj> kjs=kjService.find4Web(param);
@@ -215,7 +217,7 @@ public class ApiController {
             List<CommArchive> al=archiveService.getArchiveByObjIds("ts_KJ", "img", orSql);
             List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
             for (Kj kj:kjs) {
-                Map<String, Object> m=_getKjMap1(kj);
+                Map<String, Object> m=_getKjMap(kj);
                 if (al!=null) {
                     for (CommArchive ca: al) {
                         if (ca.getObjId().equals(kj.getId())) {
@@ -223,7 +225,7 @@ public class ApiController {
                         }
                     }
                 }
-                if (m.get("imgUrl")==null) {//导入默认图片
+                if (m.get("imgUrl")==null) {//默认图片
 //                    m.put("imgUrl", "/images/defaultKJ.png");
                     m.put("imgUrl", "");
                 }
@@ -243,15 +245,158 @@ public class ApiController {
         }
         return retMap;
     }
-    private Map<String, Object> _getKjMap1(Kj kj) {
+    private Map<String, Object> _getKjMap(Kj kj) {
         Map<String, Object> m=new HashMap<String, Object>();
         m.put("id", kj.getId());
         m.put("catNames", kj.getKjCatNames());
         m.put("name", kj.getKjName());
-        m.put("score", kj.getScore());
         m.put("remarks", kj.getRemarks());
         m.put("createDate", DateUtils.convert2LocalStr("yyyy-MM-dd HH:mm:ss", kj.getCreateDate()));
         return m;
+    }
+    private Map<String, Object> _getKjMapDetail(Kj kj) {
+        Map<String, Object> m=_getKjMap(kj);
+        m.put("score", kj.getScore());
+        m.put("createName", kj.getCreateName());
+        return m;
+    }
+
+    /**
+     * 1.2.2、获得课件详细信息<br>
+     * 获得课件信息，包括所有的附件
+     * @param request
+     * @param response
+     * @param kjId 课件Id
+     * @return
+     */
+    @RequestMapping("getKjInfo")
+    @ResponseBody
+    public Map<String, Object> getKjInfo(HttpServletRequest request, HttpServletResponse response,
+        @RequestParam(required=false) String kjId) {
+        HttpPush.responseInfo(response);//跨域
+
+        Map<String, Object> retMap=new HashMap<String, Object>();
+        try {
+            UserInfo ui=userService.getUserInfo();
+            if (ui==null) {
+                retMap.put("returnCode","02");
+                retMap.put("messageInfo","无用户登录");
+                return retMap;
+            }
+            if (StringUtils.isBlank(kjId)) {
+                retMap.put("returnCode","03");
+                retMap.put("messageInfo","课件Id为空");
+                return retMap;
+            }
+
+            Kj kj=new Kj();
+            kj.setId(kjId);
+            kj.setState(2);//正式课件
+            kj=kjService.get(kj);
+            if (kj==null) {
+                retMap.put("returnCode","04");
+                retMap.put("messageInfo","课件Id无对应课件");
+                return retMap;
+            }
+
+            Map<String, Object> m=_getKjMapDetail(kj);
+            //查询相关图片或主内容
+            String orSql="obj_id='"+kj.getId()+"'";
+            List<CommArchive> al=archiveService.getArchiveByObjIds("ts_KJ", "", orSql);
+            if (al!=null) {
+                for (CommArchive ca: al) {
+                    if (ca.getObjId().equals(kj.getId())&&ca.getArchiveType().equals("img")&&m.get("imgUrl")==null) {
+                        m.put("imgUrl", ca.getFileUrl());
+                    }
+                    if (ca.getObjId().equals(kj.getId())&&ca.getArchiveType().equals("main")&&m.get("kjUrl")==null) {
+                        m.put("kjUrl", ca.getFileUrl());
+                    }
+                }
+            }
+            if (m.get("imgUrl")==null) {//默认图片
+//              m.put("imgUrl", "/images/defaultKJ.png");
+                m.put("imgUrl", "");
+            }
+            if (m.get("kjUrl")==null) m.put("kjUrl", "");
+            
+            retMap.put("returnCode","00");
+            retMap.put("data", m);
+        } catch(Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode","01");
+            retMap.put("messageInfo",e.toString());
+        }
+        return retMap;
+    }
+
+    /**
+     * 1.2.3、获得相关课件列表<br>
+     * 获得课件相关课件列表信息
+     * @param request
+     * @param response
+     * @param kjId 主课件Id
+     * @return
+     */
+    @RequestMapping("getKjRefKjList")
+    @ResponseBody
+    public Map<String, Object> getKjRefKjList(HttpServletRequest request, HttpServletResponse response,
+        @RequestParam(required=false) String kjId) {
+        HttpPush.responseInfo(response);//跨域
+
+        Map<String, Object> retMap=new HashMap<String, Object>();
+        try {
+            UserInfo ui=userService.getUserInfo();
+            if (ui==null) {
+                retMap.put("returnCode","02");
+                retMap.put("messageInfo","无用户登录");
+                return retMap;
+            }
+            if (!StringUtils.isBlank(kjId)) {
+                retMap.put("returnCode","03");
+                retMap.put("messageInfo","课件Id为空");
+                return retMap;
+            }
+
+            // 查询数据
+            Map<String, Object> param=new HashMap<String, Object>();
+            param.put("kjId", kjId);
+            List<Kj> kjs=kjService.findRefKj4Web(param);
+            //查询相关图片
+            String orSql="";
+            for (Kj kj: kjs) {
+                orSql+=" or obj_id='"+kj.getId()+"'";
+            }
+            if (!StringUtils.isBlank(orSql)) orSql=orSql.substring(4);
+            List<CommArchive> al=archiveService.getArchiveByObjIds("ts_KJ", "img", orSql);
+            List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+            for (Kj kj:kjs) {
+                Map<String, Object> m=_getKjMap(kj);
+                if (al!=null) {
+                    for (CommArchive ca: al) {
+                        if (ca.getObjId().equals(kj.getId())) {
+                            m.put("imgUrl", ca.getFileUrl());
+                        }
+                    }
+                }
+                if (m.get("imgUrl")==null) {//默认图片
+//                    m.put("imgUrl", "/images/defaultKJ.png");
+                    m.put("imgUrl", "");
+                }
+                retL.add(m);
+            }
+            if (kjs==null||kjs.size()==0) {
+                retMap.put("returnCode","99");
+                retMap.put("messageInfo","列表为空");
+            } else {
+                retMap.put("returnCode","00");
+                retMap.put("data",retL);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode","01");
+            retMap.put("messageInfo",e.toString());
+        }
+        return retMap;
     }
 
     /**
@@ -264,9 +409,9 @@ public class ApiController {
      * @param resultType =0列表形式；=1树形式，默认为0
      * @return
      */
-    @RequestMapping("getKjInfo")
+    @RequestMapping("getTempSj")
     @ResponseBody
-    public Map<String, Object> getKjInfo(HttpServletRequest request, HttpServletResponse response,
+    public Map<String, Object> getTempSj(HttpServletRequest request, HttpServletResponse response,
         @RequestParam(required=false) String refType,
         @RequestParam(required=false) String refId,
         @RequestParam(defaultValue="5",required=false) int tmCount) {
@@ -292,7 +437,7 @@ public class ApiController {
                 return retMap;
             }
             List<Tm> tmpSjTmList=sjService.getTempSj(refType, refId, tmCount);
-            
+            retMap.put("", tmpSjTmList);
         } catch(Exception e) {
             e.printStackTrace();
             retMap.put("returnCode","01");

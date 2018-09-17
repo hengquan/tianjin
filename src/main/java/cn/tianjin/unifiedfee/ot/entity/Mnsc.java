@@ -21,6 +21,8 @@ public class Mnsc {
 
     private Integer score;
 
+    private Integer sort;
+
     private Date createDate;
 
     private String createBy;
@@ -97,6 +99,14 @@ public class Mnsc {
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 
     public Date getCreateDate() {
