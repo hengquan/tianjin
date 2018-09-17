@@ -84,6 +84,14 @@
 							</div>
 						</div>
 					</div>
+					<!-- ———————— -->
+					<div class="form-group pt-btn-submit-layer">
+						<button type="submit" onclick="addKj()"
+							class="btn w160 btn-lg btn-default btn-primary">保存</button>
+						<button type="button" class="btn w160 btn-lg btn-default"
+							onclick="closeMy()">取消</button>
+					</div>
+					<!-- ———————— -->
 				</div>
 			</div>
 			<!--主视口 结束-->
@@ -180,8 +188,8 @@
       });
     }
 
-    TableInit(queryParams).Init('http://localhost:18080/kj/getPageData', [{
-      checkbox: true
+    TableInit(queryParams).Init('http://localhost:18080/kj/getPageData', [ {
+      checkbox : true
     }, {
       field : 'kjName',
       title : '课件名称',
@@ -229,6 +237,26 @@
     }
     function refresh() {
       $("#tb_departments").bootstrapTable('refresh');
+    }
+    //添加
+    function addKj() {
+      var a = $("#tb_departments").bootstrapTable('getSelections');
+      var b = '';
+      if (a.length <= 0) {
+        alert("请选中一行");
+        return;
+      } else {
+        for (var i = 0; i < a.length; i++)
+          b += ',' + a[i].id;
+      }
+      b = b.substr(1);
+      parent.setKj(b);
+      closeMy();
+    }
+    //取消
+    function closeMy() {
+      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+      parent.layer.close(index); //再执行关闭
     }
   </script>
 </body>

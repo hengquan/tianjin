@@ -14,48 +14,52 @@ import cn.tianjin.unifiedfee.ot.util.Onlylogo;
 
 @Service
 public class KjService {
-	@Autowired
-	private KjMapper dao;
+    @Autowired
+    private KjMapper dao;
 
-	// 获取分页数据
-	public List<Kj> getPageData(Map<String, Object> param) {
-		return dao.getPageData(param);
-	}
+    // 获取分页数据
+    public List<Kj> getPageData(Map<String, Object> param) {
+        return dao.getPageData(param);
+    }
 
-	// 添加
-	public boolean insert(Kj kj,UserInfo user) throws Exception {
-	    kj.setId(Onlylogo.getUUID());
+    // 添加
+    public boolean insert(Kj kj, UserInfo user) throws Exception {
+        kj.setId(Onlylogo.getUUID());
         kj.setCreateBy(user.getUserId());
         kj.setKjHtml("null");
         kj.setCreateName(user.getUsername());
-		return dao.insert(kj) > 0 ? true : false;
-	}
+        return dao.insert(kj) > 0 ? true : false;
+    }
 
-	// 更新
-	public boolean update(Kj entity) throws Exception {
-		return dao.update(entity) > 0 ? true : false;
-	}
+    // 更新
+    public boolean update(Kj entity) throws Exception {
+        return dao.update(entity) > 0 ? true : false;
+    }
 
-	// 删除
-	public boolean delete(Kj entity) throws Exception {
-		return dao.delete(entity) > 0 ? true : false;
-	}
+    // 删除
+    public boolean delete(Kj entity) throws Exception {
+        return dao.delete(entity) > 0 ? true : false;
+    }
 
-	// 保存
-	public Mnsc save(Kj entity) throws Exception {
-		return null;
-	}
+    // 保存
+    public Mnsc save(Kj entity) throws Exception {
+        return null;
+    }
 
-	// 获取单条信息
-	public Kj get(Kj entity) throws Exception {
-		return dao.get(entity.getId());
-	}
+    // 获取单条信息
+    public Kj get(Kj entity) throws Exception {
+        return dao.get(entity.getId());
+    }
 
-	// 获取全部信息
-	public List<Kj> selectAllMsg() {
-		return dao.selectAllMsg();
-	}
+    // 获取全部信息
+    public List<Kj> selectAllMsg() {
+        return dao.selectAllMsg();
+    }
 
+    public List<Kj> getDataListByIds(Kj kj) {
+        return dao.getDataListByIds(kj);
+    }
+    
     public List<Kj> find4Web(Map<String, Object> param) {
         return dao.find4Web(param);
     }
