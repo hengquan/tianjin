@@ -13,10 +13,11 @@
 	<url>http://maven.apache.org</url>
 
 	<!-- E:\workSpace\tianjin-unifiedfee-ot\extlibs\ -->
-	<!-- D:\Work\projects\tianjin\extlibs\ -->
+	<!-- E:\workspace\tianjin-unifiedfee-ot\extlibs\ -->
+	<!-- D:\work\projects\tianjin\extlibs\ -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<localLibDir>D:\Work\projects\tianjin\extlibs\</localLibDir>
+		<localLibDir>D:\work\projects\tianjin\extlibs\</localLibDir>
 	</properties>
 
 	<dependencies>

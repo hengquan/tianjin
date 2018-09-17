@@ -5,14 +5,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,13 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import cn.taiji.file.service.FileObjectService;
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.service.KjService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
-import cn.tianjin.unifiedfee.ot.util.Onlylogo;
 
 @RequestMapping("/kj")
 @Controller
@@ -152,6 +148,24 @@ public class KjController {
             // 获取数据
             kj = kjService.get(kj);
             map.put("data", kj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+    
+    // 查单条记录
+    @RequestMapping("getDataList")
+    @ResponseBody
+    public Map<String, Object> getDataList(Kj kj, HttpServletRequest request, HttpServletResponse response) {
+        // 返回数据
+        Map<String, Object> map = new HashMap<String, Object>();
+        // 跨域
+        HttpPush.responseInfo(response);
+        try {
+            // 获取数据
+            List<Kj> kjs = kjService.getDataListByIds(kj);
+            map.put("dataList", kjs);
         } catch (Exception e) {
             e.printStackTrace();
         }

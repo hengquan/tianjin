@@ -19,4 +19,10 @@ public interface KjMapper {
     Kj get(String id);
 
     List<Kj> selectAllMsg();
+
+    List<Kj> getDataListByIds(Kj kj);
+
+    public List<Kj> find4Web(Map<String, Object> param);
+
+    public List<Kj> findRefKj4Web(Map<String, Object> param);
 }

@@ -1,13 +1,10 @@
-/*瀹炴搷鍐呭*/
+/*实操内容*/
 body{
   background: #F2F2F2;
 }
 html{
   height: 1110px;
   overflow: auto;
-}
-.ladingNumber{
-  height: 45px;
 }
 .bill{
   width: 1200px;
@@ -17,7 +14,7 @@ html{
   margin: 35px auto 0;
   background:white;
   padding-top: 20px;
-  height: 620px;
+ /* height: 620px;*/
   position: relative;
   border-radius: 5px;
 }
@@ -30,12 +27,9 @@ html{
 }
 .table>tbody>tr>td{
   text-align: left;
-  width: 200px;
   font-size: 14px;
 }
-.table>tbody>tr{
-  height: 45px;
-}
+
 .billList tr{
   height: 40px;
 }
@@ -58,7 +52,7 @@ html{
   font-size: 16px;
 }
 .ladingNumber>td>input{
-  width: 190px;
+
   height: 25px;
 }
 .button button:first-child{
@@ -75,7 +69,7 @@ html{
   color: white;
 }
 
-/*搴曢儴鐩稿叧*/
+/*底部相关*/
 .paymentList_bottom{
   width: 1200px;
   height: 250px;
@@ -116,7 +110,7 @@ html{
   margin-left: -30px;
 }
 
-/*姘旀场*/
+/*气泡*/
 .model_text{
   width: 220px;
   margin: 0 auto;
@@ -288,4 +282,47 @@ html{
 }
 .pay_button span{
   margin-top: 68px;
+}
+select{
+  width: 157px;
+  height: 25px;
+}
+.abstract{
+  display: inline-block;
+  width: 1000px;
+  height: 55px;
+}
+
+.table>tbody>tr>td>.add {
+  display: inline-block;
+  width: 30px;
+  height: 25px;
+  border-radius: 0 4px 4px 0;
+  margin-left: -4px;
+  background: #148bff;
+  color: white;
+  line-height: 25px;
+  text-align: center;
+}
+.nav{
+  left: 25px;
+  width: 1149px;
+}
+
+.table>tbody>tr>.term{
+  color: #5b9dde;
+}
+.pay_button{
+  padding-bottom: 25px;
+  padding-top: 0;
+}
+
+.nav li{
+  width: 75px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  background: #20c1ed;
+  border-radius: 5px;
+  color: black;
 }

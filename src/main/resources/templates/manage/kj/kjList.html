@@ -113,8 +113,7 @@
 												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
 													for="lunch">分类</label>
 												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-													<select id="lunch" class="selectpicker"
-														title="请选择">
+													<select id="lunch" class="selectpicker" title="请选择">
 														<option value="1">法规类</option>
 														<option value="2">政策类</option>
 														<option value="3">收费类</option>
@@ -228,10 +227,10 @@
     // 操作模版调用的方法
     function deleteItem(e) {
       var data = {
-        "id":e
+        "id" : e
       }
-      var mymessage=confirm("确定要删除该课件信息吗？");
-      if(mymessage==true){
+      var mymessage = confirm("确定要删除该课件信息吗？");
+      if (mymessage == true) {
         $.ajax({
           type : 'post',
           url : "http://localhost:18080/kj/delete",
@@ -245,7 +244,7 @@
             alert("删除失败");
           }
         });
-      } else if(mymessage==false){
+      } else if (mymessage == false) {
         return false;
       }
     }
@@ -258,8 +257,8 @@
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
-        area : [ '65%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : ['kj/edit','yes']//如果不想出现滚动条['content.html', 'no']
+        area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : 'kj/edit'//如果不想出现滚动条['content.html', 'no']
       });
     }
 
@@ -271,8 +270,8 @@
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
-        area : [ '62.5%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'kj/edit?id='+e//如果不想出现滚动条['content.html', 'no']
+        area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : 'kj/edit?id=' + e//如果不想出现滚动条['content.html', 'no']
       });
     }
 
@@ -284,8 +283,8 @@
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
-        area : [ '62.5%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'kj/view?id='+e//如果不想出现滚动条['content.html', 'no']
+        area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : 'kj/view?id=' + e//如果不想出现滚动条['content.html', 'no']
       });
     }
 
@@ -308,7 +307,14 @@
     }, {
       field : 'state',
       title : '状态',
-      sortable : true
+      sortable : true,
+      formatter:function(value){
+        if(value==2){
+          return '有效';
+        }else{
+          return '无效';
+        }
+      }
     }, {
       field : 'createdate',
       title : '创建时间',

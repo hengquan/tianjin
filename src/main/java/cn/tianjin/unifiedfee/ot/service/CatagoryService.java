@@ -63,9 +63,9 @@ public class CatagoryService {
         this.root=_root;
     }
     @SuppressWarnings({ "unused", "unchecked" })
-    private TreeNode<CategoryNode> getCategoryNodeById(String cId) {
+    public TreeNode<CategoryNode> getCategoryNodeById(String cId) {
         if (root==null) initRoot();
-        return (TreeNode<CategoryNode>)root.findNode(cId);
+        return StringUtils.isBlank(cId)?root:(TreeNode<CategoryNode>)root.findNode(cId);
     }
 
     public Map<String, Object> getTreeDate() {

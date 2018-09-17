@@ -2,7 +2,7 @@ html,body{
     font-size: 14px;
 }
 
-/*æ¨¡æ‹Ÿå®æ“å¯¼èˆªæ¡*/
+/*Ä£ÄâÊµ²Ùµ¼º½Ìõ*/
 .nav_bar{
     height: 60px;
     width: 1200px;
@@ -39,7 +39,7 @@ html,body{
     line-height: 25px;
     text-align: center;
 }
-/*æ¨¡æ‹Ÿå®æ“æŒ‰é’®*/
+/*Ä£ÄâÊµ²Ù°´Å¥*/
 .pay_button span{
     display: inline-block;
     width: 140px;
@@ -69,7 +69,7 @@ html,body{
     width: 1200px;
 }
 
-/*åˆ—è¡¨é¡µå¯¼èˆªæ¡*/
+/*ÁĞ±íÒ³µ¼º½Ìõ*/
 .nav {
     border-bottom: 2px solid #ABC3CF;
     height: 60px;
@@ -94,15 +94,16 @@ html,body{
     font-weight: bold;
 }
 .nav .active .active1{
-    color: black;
+    color:black;
     font-weight: bold;
+   border-radius: 5px;
 }
 .nav li a{
     padding: 0;
     color: #C3C3C3;
 }
 
-/*å†…å®¹å±•ç¤ºåŒºåŸŸçš„æ ·å¼*/
+/*ÄÚÈİÕ¹Ê¾ÇøÓòµÄÑùÊ½*/
 .row img{
     width: 280px;
     height: 180px;
@@ -163,7 +164,7 @@ h4{
     color: #C3C3C3;
 }
 
-/*è°ƒæ•´é¡µé¢æ¯”ä¾‹è°ƒæ•´ä»£ç */
+/*µ÷ÕûÒ³Ãæ±ÈÀıµ÷Õû´úÂë*/
 .pt_content{
     width: 1200px;
     margin: 0 auto;
