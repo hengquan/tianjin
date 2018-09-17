@@ -65,25 +65,24 @@
 <script src="../src/js/main.js"></script>
 <style>
 html {
-	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 </style>
 </head>
 <body>
 	<br>
-	<br>
-	<br>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
 				<form class="form-horizontal pt-form-full" role="form" id="form">
-					<input type="hidden" name="id" id="objId">
-					<input type="hidden" name="kjCatNames" id="kjCatNames">
+					<input type="hidden" name="id" id="objId"> <input
+						type="hidden" name="kjCatNames" id="kjCatNames">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="title"><span>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
 									※ </span>课件名称</label>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 								<input type="text" class="form-control" name="kjName"
 									id="kjName" />
 							</div>
@@ -91,11 +90,11 @@ html {
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="dingjia"><span>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="dingjia"><span>
 									※ </span>选择分类</label>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-								<select id="kjCatId" name="kjCatId" class="selectpicker" onchange="classify()"
-								 title="请选择">
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+								<select id="kjCatId" name="kjCatId" class="selectpicker"
+									onchange="classify()" title="请选择">
 									<option value="1">法规类</option>
 									<option value="2">政策类</option>
 									<option value="3">收费类</option>
@@ -109,20 +108,20 @@ html {
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="title"><span>
-									※ </span>学分</label>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
+									※ </span>学&emsp;&emsp;分</label>
+							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<input type="text" class="form-control" name="score" id="score" />
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="biaozhun">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">
 								<span> ※ </span>过期时间
 							</label>
 							<div
-								class="date datetimepicker col-lg-6 col-md-6 col-sm-6 col-xs-6"
+								class="date datetimepicker col-lg-8col-md-8 col-sm-8 col-xs-6"
 								data-date="12-02-2012" data-date-format="dd-mm-yyyy">
 								<input class="form-control" name="expireDate" id="expireDate"
 									size="16" type="text" value=""> <span class="add-on"><i
@@ -132,20 +131,10 @@ html {
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="biaozhun"><span>
-									※ </span>说明</label>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun"><span>
+									※ </span>说&emsp;&emsp;明</label>
+							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<textarea id="remarks" class="form-control" name="remarks"
-									style="min-height: 108px"></textarea>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="form-group">
-							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="biaozhun"><span>
-									※ </span>课件内容</label>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-								<textarea id="kjHtml" class="form-control" name="kjHtml"
 									style="min-height: 108px"></textarea>
 							</div>
 						</div>
@@ -154,7 +143,7 @@ html {
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="wenjian"><span
 								class="cfff"> ※ </span>文件选择</label>
-							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
+							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<label class="radio-inline"> <input type="radio"
 									name="wenjian" id="wenjian" value="option1" checked>
 									选择文件
@@ -165,21 +154,74 @@ html {
 							</div>
 						</div>
 					</div>
-
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 disnone Bshow">
 						<div class="form-group">
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"></div>
-							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
+							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<input id="file-1" type="file" multiple class="file"
 									name="files" data-overwrite-initial="false"
 									data-min-file-count="2">
 							</div>
 						</div>
 					</div>
-					<div class="pt-btn-submit-layer">
-						<button onclick="addKj()" id="baocun"
+
+
+
+
+
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="form-group">
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
+								<table class="table table-striped">
+									<tr>
+										<th>课件名称</th>
+										<th>分类名称</th>
+										<th>学分</th>
+										<th>过期时间</th>
+										<th><span class="glyphicon glyphicon-plus"
+											aria-hidden="true" onclick="selectItem()"></span></th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+										<td>4</td>
+										<th><span class="glyphicon glyphicon-minus"
+											aria-hidden="true"></span></th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+										<td>4</td>
+										<th><span class="glyphicon glyphicon-minus"
+											aria-hidden="true"></span></th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+										<td>4</td>
+										<th><span class="glyphicon glyphicon-minus"
+											aria-hidden="true"></span></th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+										<td>4</td>
+										<th><span class="glyphicon glyphicon-minus"
+											aria-hidden="true"></span></th>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="form-group pt-btn-submit-layer">
+						<button type="submit" onclick="addKj()"
 							class="btn w160 btn-lg btn-default btn-primary">保存</button>
-						<button class="btn w160 btn-lg btn-default btn-default">取消</button>
+						<button type="button" class="btn w160 btn-lg btn-default"
+							onclick="closeMy()">取消</button>
 					</div>
 				</form>
 			</div>
@@ -274,7 +316,6 @@ html {
           $('.Bshow').removeClass('disnone')
         }
       });
-
       //获取参数
       var url = location.search;
       if (url != '') {
@@ -292,17 +333,14 @@ html {
           cache : false,
           success : function(data) {
             var kj = data.data;
-            var kjCatNames = kj.kjCatNames;
             $("#objId").val(kj.id);
             $("#kjName").val(kj.kjName);
-            $("#kjCatNames").val(kj.kjCatNames);
             $("#expireDate").val(kj.expireDate);
             $("#score").val(kj.score);
             $("#remarks").val(kj.remarks);
-            $("#kjHtml").val(kj.kjHtml);
-            $("#kjCatId").val(kjCatNames);
+            $("#kjCatNames").val(kj.kjCatNames);
             $("#kjCatId").selectpicker('val', kj.kjCatId);
-            $("#kjCatId").selectpicker('text', kjCatNames);
+            $("#kjCatId").selectpicker('text', kj.kjCatNames);
           },
           error : function() { //失败回调函数
             alert("获取信息失败");
@@ -313,34 +351,34 @@ html {
     function addKj() {
       $.ajax({
         type : 'post',
-        url : "http://localhost:18080/kj/insert",
+        url : "/kj/insert",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
         success : function(data) {
-          alert("a");
           parent.refresh();
           closeMy();
         },
         error : function() { //失败回调函数
-          alert("保存失败");
+          parent.refresh();
+          closeMy();
         }
       });
     }
     function editKj() {
       $.ajax({
         type : 'post',
-        url : "http://localhost:18080/kj/update",
+        url : "/kj/update",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
         success : function(data) {
-          alert("b");
           parent.refresh();
           closeMy();
         },
         error : function() { //失败回调函数
-          alert("修改失败");
+          parent.refresh();
+          closeMy();
         }
       });
     }
@@ -349,7 +387,7 @@ html {
       parent.layer.close(index); //再执行关闭
     }
     //选择分类
-    function classify(){
+    function classify() {
       var kjCatNames = $('#kjCatId option:selected').text();//选中的值
       $("#kjCatNames").val(kjCatNames);
     }
@@ -365,6 +403,18 @@ html {
         return filename.replace('(', '_').replace(']', '_');
       }
     });
+    function selectItem() {
+      layer.open({
+        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        title : '<span class="text-color">选择课件信息</span>',//请修改span中间的内容
+        shadeClose : true,//开启阴影关闭
+        closeBtn : 1, //不显示关闭按钮
+        shade : 0.6,
+        maxmin : false,//开启最大化最小化按钮
+        area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : '/kjSelList'//如果不想出现滚动条['content.html', 'no']
+      });
+    }
   </script>
 </body>
 </html>

@@ -48,11 +48,11 @@ public class ManageDispatchUrl {
         return "/manage/mnsc/mnscList";
     }
     @RequestMapping("mnsc/edit")
-    public String toMnscEdit() {
+    public String toMnscEdit(HttpServletRequest request) {
         return "/manage/mnsc/mnscEdit";
     }
     @RequestMapping("mnsc/view")
-    public String toMnscView() {
+    public String toMnscView(HttpServletRequest request) {
         return "/manage/mnsc/mnscView";
     }
     
@@ -60,6 +60,10 @@ public class ManageDispatchUrl {
     @RequestMapping("kjList")
     public String toKjList() {
         return "/manage/kj/kjList";
+    }
+    @RequestMapping("kjSelList")
+    public String kjSelList() {
+        return "/manage/kj/kjSelList";
     }
     @RequestMapping("kj/edit")
     public String toKjEdit(HttpServletRequest request) {
