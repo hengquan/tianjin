@@ -19,14 +19,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.spiritdata.framework.core.model.tree.TreeNode;
 import com.spiritdata.framework.core.model.tree.TreeNodeBean;
+import com.spiritdata.framework.util.DateUtils;
 import com.spiritdata.framework.util.TreeUtils;
 
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
+import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
+import cn.tianjin.unifiedfee.ot.service.ArchiveService;
 import cn.tianjin.unifiedfee.ot.service.CatagoryService;
 import cn.tianjin.unifiedfee.ot.service.KjService;
+import cn.tianjin.unifiedfee.ot.service.SjService;
+import cn.tianjin.unifiedfee.ot.entity.Tm;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
 @Controller
@@ -40,8 +45,12 @@ public class ApiController {
     public UserService userService;
     @Autowired
     private KjService kjService;
+    @Autowired
+    private SjService sjService;
+    @Autowired
+    private ArchiveService archiveService;
 
-//    @RequestMapping("getCateData")
+    //    @RequestMapping("getCateData")
 //    @ResponseBody
 //    public Map<String, Object> getCateData(HttpServletRequest request, HttpServletResponse response,
 //        @RequestParam(required=false) String categoryId) {
@@ -182,6 +191,7 @@ public class ApiController {
                     retMap.put("messageInfo","分类Id无对应分类");
                     return retMap;
                 }
+                flQuery+=" or kj_cat_id='"+c.getId()+"'";
                 List<TreeNode<? extends TreeNodeBean>> l=TreeUtils.getDeepList(c);
                 for (TreeNode<? extends TreeNodeBean> _n: l) {
                     flQuery+=" or kj_cat_id='"+_n.getId()+"'";
@@ -196,12 +206,35 @@ public class ApiController {
             param.put("searchStr", searchStr);
             // 查询数据
             List<Kj> kjs=kjService.find4Web(param);
+            //查询相关图片
+            String orSql="";
+            for (Kj kj: kjs) {
+                orSql+=" or obj_id='"+kj.getId()+"'";
+            }
+            if (!StringUtils.isBlank(orSql)) orSql=orSql.substring(4);
+            List<CommArchive> al=archiveService.getArchiveByObjIds("ts_KJ", "img", orSql);
+            List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+            for (Kj kj:kjs) {
+                Map<String, Object> m=_getKjMap1(kj);
+                if (al!=null) {
+                    for (CommArchive ca: al) {
+                        if (ca.getObjId().equals(kj.getId())) {
+                            m.put("imgUrl", ca.getFileUrl());
+                        }
+                    }
+                }
+                if (m.get("imgUrl")==null) {//导入默认图片
+//                    m.put("imgUrl", "/images/defaultKJ.png");
+                    m.put("imgUrl", "");
+                }
+                retL.add(m);
+            }
             if (kjs==null||kjs.size()==0) {
                 retMap.put("returnCode","99");
                 retMap.put("messageInfo","列表为空");
             } else {
                 retMap.put("returnCode","00");
-                retMap.put("data",kjs);
+                retMap.put("data",retL);
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -209,6 +242,16 @@ public class ApiController {
             retMap.put("messageInfo",e.toString());
         }
         return retMap;
+    }
+    private Map<String, Object> _getKjMap1(Kj kj) {
+        Map<String, Object> m=new HashMap<String, Object>();
+        m.put("id", kj.getId());
+        m.put("catNames", kj.getKjCatNames());
+        m.put("name", kj.getKjName());
+        m.put("score", kj.getScore());
+        m.put("remarks", kj.getRemarks());
+        m.put("createDate", DateUtils.convert2LocalStr("yyyy-MM-dd HH:mm:ss", kj.getCreateDate()));
+        return m;
     }
 
     /**
@@ -248,7 +291,8 @@ public class ApiController {
                 retMap.put("messageInfo","相关对象Id为空");
                 return retMap;
             }
-            //List<Tm> tmpSjTmList=tmService.getTempSj(retType, retId, tmCount);
+            List<Tm> tmpSjTmList=sjService.getTempSj(refType, refId, tmCount);
+            
         } catch(Exception e) {
             e.printStackTrace();
             retMap.put("returnCode","01");
