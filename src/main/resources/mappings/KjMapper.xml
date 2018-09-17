@@ -196,6 +196,14 @@
 			and (kj_name like '%${searchStr}%' or kj_cat_names like '%${searchStr}%' or remarks like '%${searchStr}%')
 		</if>
 		and state=2
-		order by order, create_date desc
+		order by sort desc, create_date desc
 	</select>
+
+    <select id="findRefKj4Web" resultMap="BaseResultMap" parameterType="Map">
+        select a.id, a.kj_name, a.kj_cat_id, a.kj_cat_names, a.expire_date, a.remarks, a.state, a.score, a.sort, a.create_date, a.create_by, a.create_name, a.kj_html
+        from ts_KJ a, TS_KJ_REF_SOURCE b
+        where a.id=b.ref_id and upper(b.ref_tabname)='TS_KJ' and b.kj_id=#{kjId}
+        order by a.sort desc, a.create_date desc
+    </select>
+
 </mapper>
