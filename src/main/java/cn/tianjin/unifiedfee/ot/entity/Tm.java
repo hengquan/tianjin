@@ -14,10 +14,27 @@ public class Tm {
     private Integer diffScore;
 
     private Date createDate;
+    
+    private String strcreatedate;
 
     private String createBy;
 
     private String createName;
+    
+    private String kjList;
+    
+    private String mnscList;
+    
+    private String kjnameList;
+    
+    private String mnscnameList;
+    
+    private String tmSelectDesc;
+    
+    private Integer isAnswer;
+    
+    private String tmSelectSign;
+    
 
     public String getId() {
         return id;
@@ -81,5 +98,69 @@ public class Tm {
 
     public void setCreateName(String createName) {
         this.createName = createName == null ? null : createName.trim();
+    }
+
+    public String getStrcreatedate() {
+        return strcreatedate;
+    }
+
+    public void setStrcreatedate(String strcreatedate) {
+        this.strcreatedate = strcreatedate;
+    }
+
+    public String getKjList() {
+        return kjList;
+    }
+
+    public void setKjList(String kjList) {
+        this.kjList = kjList;
+    }
+
+    public String getMnscList() {
+        return mnscList;
+    }
+
+    public void setMnscList(String mnscList) {
+        this.mnscList = mnscList;
+    }
+
+    public String getKjnameList() {
+        return kjnameList;
+    }
+
+    public void setKjnameList(String kjnameList) {
+        this.kjnameList = kjnameList;
+    }
+
+    public String getMnscnameList() {
+        return mnscnameList;
+    }
+
+    public void setMnscnameList(String mnscnameList) {
+        this.mnscnameList = mnscnameList;
+    }
+
+    public String getTmSelectDesc() {
+        return tmSelectDesc;
+    }
+
+    public void setTmSelectDesc(String tmSelectDesc) {
+        this.tmSelectDesc = tmSelectDesc;
+    }
+
+    public String getTmSelectSign() {
+        return tmSelectSign;
+    }
+
+    public void setTmSelectSign(String tmSelectSign) {
+        this.tmSelectSign = tmSelectSign;
+    }
+
+    public Integer getIsAnswer() {
+        return isAnswer;
+    }
+
+    public void setIsAnswer(Integer isAnswer) {
+        this.isAnswer = isAnswer;
     }
 }

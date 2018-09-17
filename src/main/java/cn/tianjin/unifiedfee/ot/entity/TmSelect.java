@@ -12,6 +12,8 @@ public class TmSelect {
     private String tmSelectDesc;
 
     private Integer sort;
+    
+    private Integer isAnswer;
 
     private Date createDate;
 
@@ -81,5 +83,13 @@ public class TmSelect {
 
     public void setCreateName(String createName) {
         this.createName = createName == null ? null : createName.trim();
+    }
+
+    public Integer getIsAnswer() {
+        return isAnswer;
+    }
+
+    public void setIsAnswer(Integer isAnswer) {
+        this.isAnswer = isAnswer;
     }
 }
