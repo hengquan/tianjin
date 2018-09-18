@@ -168,8 +168,8 @@ public class ApiController {
     public Map<String, Object> getKjList(HttpServletRequest request, HttpServletResponse response,
         @RequestParam(required=false) String categoryId,
         @RequestParam(required=false) String searchStr,
-        @RequestParam(defaultValue="-1",required=false) int pageNo,
-        @RequestParam(defaultValue="-1",required=false) int pageSize) {
+        @RequestParam(defaultValue="0",required=false) int pageNo,
+        @RequestParam(defaultValue="10",required=false) int pageSize) {
         HttpPush.responseInfo(response);//跨域
 
         Map<String, Object> retMap=new HashMap<String, Object>();
@@ -181,7 +181,7 @@ public class ApiController {
                 return retMap;
             }
             //处理分页
-            if (pageNo==-1) pageNo=1;
+            if (pageNo==0) pageNo=1;
             if (pageSize==-1) pageSize=_DEFALT_PS;
             //处理分类
             String flQuery="";
@@ -201,8 +201,8 @@ public class ApiController {
                 }
             }
             if (!StringUtils.isBlank(flQuery)) flQuery=flQuery.substring(4);
-            // 设置page
-            PageHelper.offsetPage(pageNo,pageSize);
+            // 设置page，若pageNo=-1,则不分页
+            if (pageNo!=-1) PageHelper.offsetPage(pageNo,pageSize);
             // 获取参数
             Map<String, Object> param=new HashMap<String, Object>();
             param.put("flQuery", flQuery);

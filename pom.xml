@@ -17,7 +17,7 @@
 	<!-- D:\Work\projects\tianjin\extlibs\ -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<localLibDir>E:\workspace\tianjin-unifiedfee-ot\extlibs\</localLibDir>
+		<localLibDir>D:\Work\projects\tianjin\extlibs\</localLibDir>
 	</properties>
 
 	<dependencies>
