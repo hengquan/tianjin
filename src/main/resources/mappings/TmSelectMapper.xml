@@ -84,11 +84,48 @@
       </if>
     </trim>
   </insert>
-  
+   <update id="update" parameterType="cn.tianjin.unifiedfee.ot.entity.TmSelect" >
+    update  q_TM_select 
+     <set>
+	     <if test="tmSelectSign != null" >
+	        tm_select_sign= #{tmSelectSign,jdbcType=VARCHAR},
+	      </if>
+	      <if test="tmSelectDesc != null" >
+	        tm_select_desc=#{tmSelectDesc,jdbcType=VARCHAR},
+	      </if>
+	      <if test="isAnswer != null" >
+	        is_Answer= #{isAnswer,jdbcType=INTEGER},
+	      </if>
+	      <if test="sort != null" >
+	        sort=#{sort,jdbcType=INTEGER},
+	      </if>
+	      <if test="createDate != null" >
+	        create_date,
+	      </if>
+	      <if test="createBy != null" >
+	        create_by,
+	      </if>
+	      <if test="createName != null" >
+	        create_name,
+	      </if>
+    </set>
+    where id = #{id}
+  </update>
   <select id="getselectData" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Blob_Column_List" />
 		from q_TM_select
 		where tm_id = #{tmId,jdbcType=VARCHAR}
   </select>  
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Blob_Column_List" />
+		from q_TM_select
+		where id = #{Id}
+  </select>    
+  <select id="getselectBytmid" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select a.id, tm_id,tm_select_sign,tm_select_desc,is_answer,sort
+		from q_TM_select a,q_tm b
+		where tm_id = #{tmId} and a.tm_id = b.id and b.tm_type='判断题' and a.is_answer=1
+  </select>
 </mapper>

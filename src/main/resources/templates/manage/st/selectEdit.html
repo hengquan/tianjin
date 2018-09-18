@@ -90,10 +90,10 @@ html {
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-12 col-md-12 col-sm-10 col-xs-8">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="dingjia"><span>
-									※ </span>是否是答案</label>
+									※ </span>是否答案</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 								<select id="isAnswer" name="isAnswer" class="selectpicker" onchange="classify(this)"
 									data-live-search="true" title="请选择" >
@@ -101,12 +101,12 @@ html {
 									<option value="0">否</option>																
 								</select>
 							</div>						
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span>
+							<label class="col-lg-2 col-md-2 col-sm-1 col-xs-1" for="title"><span>
 									※ </span>标号</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 								<input type="text" class="form-control" name="tmSelectSign" id="tmSelectSign" />
 							</div>						
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="biaozhun">
+							<label class="col-lg-2 col-md-2 col-sm-1 col-xs-1" for="biaozhun">
 								<span> ※ </span>顺序
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -120,13 +120,8 @@ html {
 	</div>	
 		    
 	<br>
-	<script>
-	function getUrlParam(name) {
-	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-	    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-	    if (r != null) return unescape(r[2]); return null; //返回参数值
-	}
-    $(function() {      
+	<script>	
+    $(function() {
       $("#objId").val(getUrlParam("id"));     
       //icheck 单选多选
       $('input').iCheck({
@@ -134,11 +129,42 @@ html {
         radioClass : 'iradio_square-blue',
         increaseArea : '20%' // optional
       }); 
-
       //获取参数
-      var url = location.search;	  
-  	 
-  	});
+      var url = location.search;
+      alert(url);
+      if (url != '') {
+        //变成修改
+        $("#baocun").attr("onclick", "editSelect()");
+        url = url.substr(1);        
+        var split = url.split("=");
+        $.ajax({
+          type : 'post',
+          url : "/st/getselect",
+          data : {
+            "id" : split[1]
+          },
+          dataType : 'json',
+          cache : false,
+          success : function(data) {
+            var tm = data.data;
+            $("#objId").val(tm.id);
+            $("#tmSelectDesc").val(tm.tmSelectDesc);
+            $("#isAnswer").selectpicker('val', tm.isAnswer);
+            $("#tmSelectSign").val(tm.tmSelectSign); 
+            $("#sort").val(tm.sort);            
+          },
+          error : function() { //失败回调函数
+            alert("获取信息失败");
+          }
+        });
+      }
+    });  	 
+  
+  	function getUrlParam(name) {
+	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+	    if (r != null) return unescape(r[2]); return null; //返回参数值
+	}
      function addSelect() {    
        $.ajax({
          type : 'post',
@@ -157,10 +183,10 @@ html {
        });
 
       }
-      function editTm() {
+      function editSelect() {
         $.ajax({
           type : 'post',
-          url : "http://localhost:18080/st/update",
+          url : "http://localhost:18080/st/updateSelct",
           data : $("#form").serialize(),
           dataType : 'json',
           cache : false,

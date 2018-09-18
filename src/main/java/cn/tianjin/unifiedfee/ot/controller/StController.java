@@ -145,7 +145,27 @@ public class StController {
         }
         return map;
     }
-
+    //修改选项和答案    
+ // 修改
+    @RequestMapping("updateSelct")
+    @ResponseBody
+    public Map<String, Object> updateSelct(TmSelect tm,String id, HttpServletRequest request, HttpServletResponse response) {
+        // 返回数据
+        Map<String, Object> map = new HashMap<String, Object>();
+        // 跨域
+        HttpPush.responseInfo(response);
+        try {
+            // 更新数据
+            boolean result = stService.updateSelct(tm);
+            if (result)
+                map.put("resultCode", "100");
+            else
+                map.put("resultCode", "101");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
     // 删除
     @RequestMapping("delete")
     @ResponseBody
@@ -198,4 +218,23 @@ public class StController {
         map.put("rows", Tms);
         return map;
     }
+     // 获取分页数据
+    @RequestMapping("getselect")
+    @ResponseBody   
+    public Map<String, Object> getselect(TmSelect tmselect, HttpServletRequest request, HttpServletResponse response) {
+        // 返回数据
+        Map<String, Object> map = new HashMap<String, Object>();
+        // 跨域
+        HttpPush.responseInfo(response);
+        try {
+            // 获取数据
+            tmselect = stService.getselect(tmselect);
+            map.put("data", tmselect);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    } 
+    
+    
 }

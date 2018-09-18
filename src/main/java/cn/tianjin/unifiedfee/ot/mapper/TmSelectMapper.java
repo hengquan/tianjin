@@ -8,6 +8,9 @@ import cn.tianjin.unifiedfee.ot.entity.TmSelect;
 
 public interface TmSelectMapper {
     int insert(TmSelect record);
+    int update(TmSelect record);
     int insertSelective(TmSelect record);
     List<TmSelect> getselectData(String tmId);
+    TmSelect get(String id);
+    TmSelect getselectBytmid(String tmId);
 }
