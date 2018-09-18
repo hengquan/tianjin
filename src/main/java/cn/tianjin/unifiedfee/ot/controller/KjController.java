@@ -22,6 +22,7 @@ import com.github.pagehelper.PageInfo;
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
+import cn.tianjin.unifiedfee.ot.service.KjRefSourceService;
 import cn.tianjin.unifiedfee.ot.service.KjService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
@@ -33,6 +34,8 @@ public class KjController {
     private KjService kjService;
     @Autowired
     public UserService userService;
+    @Autowired
+    public KjRefSourceService kjRefSourceService;
 
     // 获取分页数据
     @RequestMapping("getPageData")
@@ -75,15 +78,15 @@ public class KjController {
     @RequestMapping("insert")
     @ResponseBody
     public Map<String, Object> insert(Kj kj, HttpServletRequest request, HttpServletResponse response) {
-        //获取用户数据
-        UserInfo user=userService.getUserInfo();
+        // 获取用户数据
+        UserInfo user = userService.getUserInfo();
         // 返回数据
         Map<String, Object> map = new HashMap<String, Object>();
         // 跨域
         HttpPush.responseInfo(response);
         try {
             // 添加数据
-            boolean result = kjService.insert(kj,user);
+            boolean result = kjService.insert(kj, user);
             if (result)
                 map.put("resultCode", "100");
             else
@@ -97,14 +100,16 @@ public class KjController {
     // 修改
     @RequestMapping("update")
     @ResponseBody
-    public Map<String, Object> update(Kj kj,String id, HttpServletRequest request, HttpServletResponse response) {
+    public Map<String, Object> update(Kj kj, String id, HttpServletRequest request, HttpServletResponse response) {
+        // 获取用户数据
+        UserInfo user = userService.getUserInfo();
         // 返回数据
         Map<String, Object> map = new HashMap<String, Object>();
         // 跨域
         HttpPush.responseInfo(response);
         try {
             // 更新数据
-            boolean result = kjService.update(kj);
+            boolean result = kjService.update(kj,user);
             if (result)
                 map.put("resultCode", "100");
             else
@@ -145,7 +150,7 @@ public class KjController {
         // 跨域
         HttpPush.responseInfo(response);
         try {
-            // 获取数据
+            // 获取主表数据
             kj = kjService.get(kj);
             map.put("data", kj);
         } catch (Exception e) {
@@ -153,8 +158,8 @@ public class KjController {
         }
         return map;
     }
-    
-    // 查单条记录
+
+    // 查多条记录跟据ids
     @RequestMapping("getDataList")
     @ResponseBody
     public Map<String, Object> getDataList(Kj kj, HttpServletRequest request, HttpServletResponse response) {

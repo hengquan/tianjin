@@ -79,7 +79,8 @@ html {
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
 				<form class="form-horizontal pt-form-full" role="form" id="form">
 					<input type="hidden" name="mnscCatNames" id="mnscCatNames">
-					<input type="hidden" name="id" id="objId">
+					<input type="hidden" name="id" id="objId"> <input
+						type="hidden" name="kjids" id="kjids">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
@@ -148,6 +149,22 @@ html {
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 								<textarea id="remarks" class="form-control" name="remarks"
 									style="min-height: 108px"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="form-group">
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
+								<table class="table table-striped" id="theTable">
+									<tr>
+                    <th>课件名称</th>
+                    <th>分类名称</th>
+                    <th>学分</th>
+                    <th>过期时间</th>
+                    <th><span class="glyphicon glyphicon-plus"
+                      aria-hidden="true" onclick="selectItem()"></span></th>
+                  </tr>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -266,6 +283,13 @@ html {
           dataType : 'json',
           cache : false,
           success : function(data) {
+            var html = '<tr>'
+              + '<th>课件名称</th>'
+              + '<th>分类名称</th>'
+              + '<th>学分</th>'
+              + '<th>过期时间</th>'
+              + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
+              + '</tr>';
             var mnsc = data.data;
             $("#objId").val(mnsc.id);
             $("#mnscName").val(mnsc.mnscName);
@@ -276,6 +300,29 @@ html {
             $("#mnscCatNames").val(mnsc.mnscCatNames);
             $("#mnscCatId").selectpicker('val', mnsc.mnscCatId);
             $("#mnscCatId").selectpicker('text', mnsc.mnscCatNames);
+            //获取相关课件列表
+            $("#kjids").val(mnsc.kjids);
+            var dataList = mnsc.kjs;
+            if(dataList!=null){
+	            for (var i = 0; i < dataList.length; i++) {
+	              html += '<tr>'
+	                  + '<td>'
+	                  + dataList[i].kjName
+	                  + '</td>'
+	                  + '<td>'
+	                  + dataList[i].kjCatNames
+	                  + '</td>'
+	                  + '<td>'
+	                  + dataList[i].score
+	                  + '</td>'
+	                  + '<td>'
+	                  + dataList[i].expireDate
+	                  + '</td>'
+	                  + '<th onclick="removeTr(this)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+	                  + '</tr>';
+	            }
+	            $("#theTable").html(html);
+            }
           },
           error : function() { //失败回调函数
             alert("获取信息失败");
@@ -338,6 +385,82 @@ html {
         return filename.replace('(', '_').replace(']', '_');
       }
     });
+    //选择摸拟实操-摸拟实操列表
+    function selectItem() {
+      layer.open({
+        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        title : '<span class="text-color">选择课件列表</span>',//请修改span中间的内容
+        shadeClose : true,//开启阴影关闭
+        closeBtn : 1, //不显示关闭按钮
+        shade : 0.6,
+        maxmin : false,//开启最大化最小化按钮
+        area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : '/kjSelList'//如果不想出现滚动条['content.html', 'no']
+      });
+    }
+    //把选择的课件列表放到表格中
+    function setKj(ids) {
+      var kjIds = $("#kjids").val();
+      if (kjIds == '') {
+        kjIds = ids;
+      } else {
+        var kjid = '';
+        var split = ids.split(",");
+        for (var i = 0; i < split.length; i++) {
+          var id = split[i];
+          if (kjIds.indexOf(id) == -1) {
+            kjid += "," + id;
+          }
+        }
+        kjIds = kjIds + kjid;
+      }
+      $("#kjids").val(kjIds);
+      //处理显示
+      $.ajax({
+        type : 'post',
+        url : "/kj/getDataList",
+        data : {
+          "ids" : kjIds
+        },
+        dataType : 'json',
+        cache : false,
+        success : function(data) {
+          var html = '<tr>'
+            + '<th>课件名称</th>'
+            + '<th>分类名称</th>'
+            + '<th>学分</th>'
+            + '<th>过期时间</th>'
+            + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
+            + '</tr>';
+          var dataList = data.dataList;
+          for (var i = 0; i < dataList.length; i++) {
+            html += '<tr>'
+                + '<td>'
+                + dataList[i].kjName
+                + '</td>'
+                + '<td>'
+                + dataList[i].kjCatNames
+                + '</td>'
+                + '<td>'
+                + dataList[i].score
+                + '</td>'
+                + '<td>'
+                + dataList[i].expireDate
+                + '</td>'
+                + '<th onclick="removeTr(this)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+                + '</tr>';
+          }
+          $("#theTable").html(html);
+        },
+        error : function() { //失败回调函数
+          alert("查询失败")
+        }
+      });
+    }
+    //删除一整行
+    function removeTr(obj) {
+      $(obj).parent().remove();
+    }
   </script>
 </body>
 </html>
