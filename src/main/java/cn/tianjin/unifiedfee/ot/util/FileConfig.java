@@ -13,9 +13,9 @@ public class FileConfig {
     public void setBucketPolicy() {
         try {
             // 设置为所有目录公共读
-            // fileObjectService.setReadOnly(null);
+            fileObjectService.setReadOnly(null);
             // 设置image/目录公共读
-            fileObjectService.setReadOnly("image/");
+            //fileObjectService.setReadOnly("ot/");
         } catch (Exception e) {
             e.printStackTrace();
         }

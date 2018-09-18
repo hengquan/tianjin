@@ -1,6 +1,7 @@
 package cn.tianjin.unifiedfee.ot.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Kj {
     private String id;
@@ -30,6 +31,26 @@ public class Kj {
     private String createName;
 
     private String kjHtml;
+
+    private String ids;
+
+    private List<Kj> kjs;
+
+    public List<Kj> getKjs() {
+        return kjs;
+    }
+
+    public void setKjs(List<Kj> kjs) {
+        this.kjs = kjs;
+    }
+
+    public String getIds() {
+        return ids;
+    }
+
+    public void setIds(String ids) {
+        this.ids = ids;
+    }
 
     public String getCreatedate() {
         return createdate;

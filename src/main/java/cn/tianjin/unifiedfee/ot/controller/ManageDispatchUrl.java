@@ -47,6 +47,10 @@ public class ManageDispatchUrl {
     public String toMnscList() {
         return "/manage/mnsc/mnscList";
     }
+    @RequestMapping("mnscSelList")
+    public String mnscSelList() {
+        return "/manage/mnsc/mnscSelList";
+    }
     @RequestMapping("mnsc/mnscList4st")
     public String toMnscList4st() {
         return "/manage/mnsc/mnscList4st";

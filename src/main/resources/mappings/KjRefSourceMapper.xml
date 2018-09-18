@@ -1,86 +1,111 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.tianjin.unifiedfee.ot.mapper.KjRefSourceMapper" >
-  <resultMap id="BaseResultMap" type="cn.tianjin.unifiedfee.ot.entity.KjRefSource" >
-    <result column="id" property="id" jdbcType="VARCHAR" />
-    <result column="kj_id" property="kjId" jdbcType="VARCHAR" />
-    <result column="ref_tabname" property="refTabname" jdbcType="VARCHAR" />
-    <result column="ref_id" property="refId" jdbcType="VARCHAR" />
-    <result column="sort" property="sort" jdbcType="INTEGER" />
-    <result column="memo" property="memo" jdbcType="VARCHAR" />
-    <result column="create_date" property="createDate" jdbcType="DATE" />
-    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
-    <result column="create_name" property="createName" jdbcType="VARCHAR" />
-  </resultMap>
-  <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.KjRefSource" >
-    insert into ts_KJ_ref_source (id, kj_id, ref_tabname, 
-      ref_id, sort, memo, 
-      create_date, create_by, create_name
-      )
-    values (#{id,jdbcType=VARCHAR}, #{kjId,jdbcType=VARCHAR}, #{refTabname,jdbcType=VARCHAR}, 
-      #{refId,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}, 
-      #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="cn.tianjin.unifiedfee.ot.entity.KjRefSource" >
-    insert into ts_KJ_ref_source
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="kjId != null" >
-        kj_id,
-      </if>
-      <if test="refTabname != null" >
-        ref_tabname,
-      </if>
-      <if test="refId != null" >
-        ref_id,
-      </if>
-      <if test="sort != null" >
-        sort,
-      </if>
-      <if test="memo != null" >
-        memo,
-      </if>
-      <if test="createDate != null" >
-        create_date,
-      </if>
-      <if test="createBy != null" >
-        create_by,
-      </if>
-      <if test="createName != null" >
-        create_name,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="kjId != null" >
-        #{kjId,jdbcType=VARCHAR},
-      </if>
-      <if test="refTabname != null" >
-        #{refTabname,jdbcType=VARCHAR},
-      </if>
-      <if test="refId != null" >
-        #{refId,jdbcType=VARCHAR},
-      </if>
-      <if test="sort != null" >
-        #{sort,jdbcType=INTEGER},
-      </if>
-      <if test="memo != null" >
-        #{memo,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null" >
-        #{createDate,jdbcType=DATE},
-      </if>
-      <if test="createBy != null" >
-        #{createBy,jdbcType=VARCHAR},
-      </if>
-      <if test="createName != null" >
-        #{createName,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+<mapper namespace="cn.tianjin.unifiedfee.ot.mapper.KjRefSourceMapper">
+	<resultMap id="BaseResultMap" type="cn.tianjin.unifiedfee.ot.entity.KjRefSource">
+		<result column="id" property="id" jdbcType="VARCHAR" />
+		<result column="kj_id" property="kjId" jdbcType="VARCHAR" />
+		<result column="ref_tabname" property="refTabname" jdbcType="VARCHAR" />
+		<result column="ref_id" property="refId" jdbcType="VARCHAR" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="memo" property="memo" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="DATE" />
+		<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+		<result column="create_name" property="createName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Blob_Column_List">
+		id, kj_id, ref_tabname,
+		ref_id, sort, memo,
+		create_date,
+		create_by,
+		create_name
+	</sql>
+	<insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.KjRefSource">
+		insert into ts_KJ_ref_source
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="kjId != null">
+				kj_id,
+			</if>
+			<if test="refTabname != null">
+				ref_tabname,
+			</if>
+			<if test="refId != null">
+				ref_id,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="memo != null">
+				memo,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="createBy != null">
+				create_by,
+			</if>
+			<if test="createName != null">
+				create_name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="kjId != null">
+				#{kjId,jdbcType=VARCHAR},
+			</if>
+			<if test="refTabname != null">
+				#{refTabname,jdbcType=VARCHAR},
+			</if>
+			<if test="refId != null">
+				#{refId,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=DATE},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="createName != null">
+				#{createName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="delete" parameterType="java.lang.String">
+		delete from ts_KJ_ref_source
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+
+	<delete id="deleteByKjId" parameterType="java.lang.String">
+		delete from
+		ts_KJ_ref_source
+		where kj_id = #{id}
+	</delete>
+
+	<select id="getDataListByKjId" resultMap="BaseResultMap">
+		select
+		<include refid="Blob_Column_List" />
+		from ts_KJ_ref_source
+		where
+		kj_id = #{kjId}
+	</select>
+
+	<select id="get" resultMap="BaseResultMap">
+		select
+		<include refid="Blob_Column_List" />
+		from ts_KJ_ref_source
+		where
+		id = #{id}
+	</select>
 </mapper>
