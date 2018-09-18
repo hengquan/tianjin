@@ -108,6 +108,13 @@
 					<include>**/*.*</include>
 				</includes>
 			</resource>
+      <resource>
+        <directory>extlibs</directory>
+        <targetPath>BOOT-INF/lib/</targetPath>
+        <includes>
+          <include>**/*.jar</include>
+        </includes>
+      </resource>
 		</resources>
 		<plugins>
 			<plugin>
