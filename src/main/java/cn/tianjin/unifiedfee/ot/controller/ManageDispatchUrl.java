@@ -95,10 +95,14 @@ public class ManageDispatchUrl {
         return "/manage/st/tmEdit";
     }
     @RequestMapping("st/view")
-    public String toTmView(HttpServletRequest request) {
+    public String toStView(HttpServletRequest request) {
         return "/manage/st/tmView";
     }
-
+    
+    @RequestMapping("st/selectEdit")
+    public String toStselectEdit(HttpServletRequest request) {
+        return "/manage/st/selectEdit";
+    }
     /*测试页面*/
     @RequestMapping("testTt")
     public String toTestPage() {

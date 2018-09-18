@@ -74,36 +74,32 @@
                 <!--搜索条-->
                 <div class="pt-section-search">
                     <div class="row clearfix">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
+                        <div class="col-lg-12 col-md-12 col-sm-11 col-xs-10 column">
                             <form class="form-inline">
                                 <!-- 示例 input-->
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                <div class="col-lg-8 col-md-8 col-sm-11 col-xs-10">
                                     <div class="form-group">
-                                        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6" for="exampleInputName2">模拟实操</label>
-                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-                                            <input type="text" class="form-control" id="exampleInputName2" placeholder="模拟实操">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 示例搜索按钮 -->
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-default btn-primary w120">搜索</button>
-                                    </div>
+                                        <label class="col-lg-2 col-md-2 col-sm-1 col-xs-1" for="exampleInputName2">模拟实操</label>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-5">
+                                            <input type="text" class="form-control" id="exampleInputName2" placeholder="模拟实操课件名称">
+                                        </div>                                                                   
+	                                <!-- 示例搜索按钮 -->
+		                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">		                                   
+		                                     <button type="button" class="btn btn-default btn-primary w80">搜索</button>
+		                                     <button type="button" class="btn w80 btn-default btn-primary" onclick="addMnsc()">添加</button>   
+		                                    
+		                                </div>
+	                                </div> 
                                 </div>
                             </form>
-                        </div>
-
-                        <div class="column pt-btn-line">
-                            <button type="button" class="btn w120 btn-default btn-primary" onclick="addMnsc()">添加</button>                           
-                        </div>
+                        </div>                        
                     </div>
                 </div>
                 <!--内容区容器-->
                 <div class="pt-main">
                     <!--bootstrap 表格-->
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
                             <div class="table-wrap">
                                 <table id="tb_departments"></table>
                             </div>
@@ -141,48 +137,8 @@ function operateFormatter(value, row, index) {
 }
 
 // 操作模版调用的方法
-function deleteItem(e) {
-    alert('删除操作，序号' + e)
-}
 
-function addItem() {
-  layer.open({
-      type: 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-      title: '<span class="text-color">添加</span>',//请修改span中间的内容
-      shadeClose: true,//开启阴影关闭
-      closeBtn: 1, //不显示关闭按钮
-      shade: 0.6,
-      maxmin: false,//开启最大化最小化按钮
-      area: ['65%', '83%'],//此处可以改为100%，该数值按UI图比例算出
-      content: 'mnsc/edit'//如果不想出现滚动条['content.html', 'no']
-  });
-}
 
-function editItem(e) {
-    layer.open({
-        type: 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title: '<span class="text-color">121321</span>',//请修改span中间的内容
-        shadeClose: true,//开启阴影关闭
-        closeBtn: 1, //不显示关闭按钮
-        shade: 0.6,
-        maxmin: false,//开启最大化最小化按钮
-        area: ['62.5%', '83%'],//此处可以改为100%，该数值按UI图比例算出
-        content: 'mnsc/edit'//如果不想出现滚动条['content.html', 'no']
-    });
-}
-
-function lookItem(e) {
-  layer.open({
-    type: 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-    title: '<span class="text-color">查看费项信息</span>',//请修改span中间的内容
-    shadeClose: true,//开启阴影关闭
-    closeBtn: 1, //不显示关闭按钮
-    shade: 0.6,
-    maxmin: false,//开启最大化最小化按钮
-    area: ['62.5%', '83%'],//此处可以改为100%，该数值按UI图比例算出
-    content: 'look.html'//如果不想出现滚动条['content.html', 'no']
-  });
-}
 function closeMy() {
   var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
   parent.layer.close(index); //再执行关闭
@@ -199,7 +155,6 @@ function addMnsc(){
       nameList[i]=mnscList[i].mnscName;      
     }      
   }
-  alert(nameList);
   parent.setValmnsc(idList,nameList);   
   closeMy();
 }
