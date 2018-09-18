@@ -40,7 +40,7 @@ public class KjService {
         String ids = kj.getIds();
         if (StringUtils.isNotEmpty(ids)) {
             // 删除
-            kjRefDao.deleteByKjId(ids);
+            kjRefDao.deleteByKjId(kj.getId());
             // 添加
             KjRefSource kjRefSource = new KjRefSource();
             String[] split = ids.split(",");
@@ -69,7 +69,7 @@ public class KjService {
         String ids = kj.getIds();
         if (StringUtils.isNotEmpty(ids)) {
             // 删除
-            kjRefDao.deleteByKjId(ids);
+            kjRefDao.deleteByKjId(kj.getId());
             // 添加
             KjRefSource kjRefSource = new KjRefSource();
             String[] split = ids.split(",");

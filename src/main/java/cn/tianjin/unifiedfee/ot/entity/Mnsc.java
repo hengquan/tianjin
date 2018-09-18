@@ -30,20 +30,30 @@ public class Mnsc {
 
     private String createName;
 
-    private String ids;
+    private String kjids;
+    
+    private List<Kj> kjs;
+
+    public List<Kj> getKjs() {
+        return kjs;
+    }
+
+    public void setKjs(List<Kj> kjs) {
+        this.kjs = kjs;
+    }
+
+    public String getKjids() {
+        return kjids;
+    }
+
+    public void setKjids(String kjids) {
+        this.kjids = kjids;
+    }
 
     private List<Mnsc> mnscs;
 
-    public String getIds() {
-        return ids;
-    }
-
     public List<Mnsc> getMnscs() {
         return mnscs;
-    }
-
-    public void setIds(String ids) {
-        this.ids = ids;
     }
 
     public void setMnscs(List<Mnsc> mnscs) {

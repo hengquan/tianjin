@@ -15,7 +15,8 @@
 	<sql id="Blob_Column_List">
 		id, mnsc_id, ref_tabname,
 		ref_id, sort, memo,
-		create_date, create_by, create_name
+		create_date,
+		create_by, create_name
 	</sql>
 	<insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.MnscRefSource">
 		insert into ts_MNSC_ref_source
@@ -79,14 +80,54 @@
 		</trim>
 	</insert>
 
+	<update id="update">
+		update ts_MNSC_ref_source
+		<set>
+			<if test="mnscId != null">
+				mnsc_id = #{mnscId},
+			</if>
+			<if test="refTabname != null">
+				ref_tabname = #{refTabname},
+			</if>
+			<if test="refId != null">
+				ref_id = #{refId},
+			</if>
+			<if test="sort != null">
+				sort = #{sort},
+			</if>
+			<if test="memo != null">
+				memo = #{memo},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy},
+			</if>
+			<if test="createName != null">
+				create_name = #{createName},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
 	<delete id="delete" parameterType="java.lang.String">
 		delete from ts_MNSC_ref_source
 		where id =
 		#{id,jdbcType=VARCHAR}
 	</delete>
-	
-	<delete id="deleteByKjId" parameterType="java.lang.String">
-		delete from ts_MNSC_ref_source
-		where instr(#{ids},kj_id)>0
+
+	<delete id="deleteByMnscId" parameterType="java.lang.String">
+		delete from
+		ts_MNSC_ref_source
+		where mnsc_id = #{mnscId}
 	</delete>
+	
+  <select id="getDataListByMnscId" resultMap="BaseResultMap">
+    select
+    <include refid="Blob_Column_List" />
+    from ts_MNSC_ref_source
+    where
+    mnsc_id = #{mnscId}
+  </select>
 </mapper>

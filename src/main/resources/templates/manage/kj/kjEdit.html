@@ -283,7 +283,6 @@ html {
       //获取参数
       var url = location.search;
       if (url != '') {
-        alert("修改");
         //变成修改
         $("#baocun").attr("onclick", "editKj()");
         url = url.substr(1);
@@ -316,24 +315,26 @@ html {
             //获取相关课件列表
             $("#ids").val(kj.ids);
             var dataList = kj.kjs;
-            for (var i = 0; i < dataList.length; i++) {
-              html += '<tr>'
-                  + '<td>'
-                  + dataList[i].kjName
-                  + '</td>'
-                  + '<td>'
-                  + dataList[i].kjCatNames
-                  + '</td>'
-                  + '<td>'
-                  + dataList[i].score
-                  + '</td>'
-                  + '<td>'
-                  + dataList[i].expireDate
-                  + '</td>'
-                  + '<th onclick="removeTr(this)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
-                  + '</tr>';
+            if(dataList!=null){
+	            for (var i = 0; i < dataList.length; i++) {
+	              html += '<tr>'
+	                  + '<td>'
+	                  + dataList[i].kjName
+	                  + '</td>'
+	                  + '<td>'
+	                  + dataList[i].kjCatNames
+	                  + '</td>'
+	                  + '<td>'
+	                  + dataList[i].score
+	                  + '</td>'
+	                  + '<td>'
+	                  + dataList[i].expireDate
+	                  + '</td>'
+	                  + '<th onclick="removeTr(this)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+	                  + '</tr>';
+	            }
+	            $("#theTable").html(html);
             }
-            $("#theTable").html(html);
           },
           error : function() { //失败回调函数
             alert("获取信息失败");
@@ -411,7 +412,6 @@ html {
 
     //把选择的课件列表放到表格中
     function setKj(ids) {
-      alert(ids);
       var kjIds = $("#ids").val();
       if (kjIds == '') {
         kjIds = ids;

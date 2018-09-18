@@ -44,7 +44,7 @@ public class MnscController {
         // 跨域
         HttpPush.responseInfo(response);
         // 设置page
-        PageHelper.startPage(pageNum, pageSize);
+        PageHelper.offsetPage(pageNum, pageSize);
         // 查询数据
         List<Mnsc> mnscs = mnscService.getPageData(map);
         // 放入分页
@@ -82,13 +82,15 @@ public class MnscController {
     @RequestMapping("update")
     @ResponseBody
     public Map<String, Object> update(Mnsc mnsc, HttpServletRequest request, HttpServletResponse response) {
+        // 获取用户数据
+        UserInfo user = userService.getUserInfo();
         // 返回数据
         Map<String, Object> map = new HashMap<String, Object>();
         // 跨域
         HttpPush.responseInfo(response);
         try {
-            // 添加数据
-            boolean result = mnscService.update(mnsc);
+            // 修改数据
+            boolean result = mnscService.update(mnsc,user);
             if (result)
                 map.put("resultCode", "100");
             else

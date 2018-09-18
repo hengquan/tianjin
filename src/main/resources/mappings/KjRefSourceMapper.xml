@@ -90,7 +90,7 @@
 	<delete id="deleteByKjId" parameterType="java.lang.String">
 		delete from
 		ts_KJ_ref_source
-		where instr(#{ids},kj_id)>0
+		where kj_id = #{id}
 	</delete>
 
 	<select id="getDataListByKjId" resultMap="BaseResultMap">

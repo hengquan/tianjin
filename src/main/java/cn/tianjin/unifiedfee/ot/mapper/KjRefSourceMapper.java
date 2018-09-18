@@ -7,7 +7,7 @@ import cn.tianjin.unifiedfee.ot.entity.KjRefSource;
 public interface KjRefSourceMapper {
     int insert(KjRefSource record);
 
-    int deleteByKjId(String ids);
+    int deleteByKjId(String id);
 
     int update(KjRefSource record);
 
