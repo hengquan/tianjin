@@ -137,4 +137,22 @@ public class MnscController {
         }
         return map;
     }
+
+    // 查多条记录跟据ids
+    @RequestMapping("getDataList")
+    @ResponseBody
+    public Map<String, Object> getDataList(Mnsc mnsc, HttpServletRequest request, HttpServletResponse response) {
+        // 返回数据
+        Map<String, Object> map = new HashMap<String, Object>();
+        // 跨域
+        HttpPush.responseInfo(response);
+        try {
+            // 获取数据
+            List<Mnsc> mnscs = mnscService.getDataListByIds(mnsc);
+            map.put("dataList", mnscs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
 }

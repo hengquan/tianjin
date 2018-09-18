@@ -17,4 +17,6 @@ public interface MnscMapper {
 	List<Mnsc> selectAllMsg();
 
 	Mnsc get(String id);
+
+    List<Mnsc> getDataListByIds(Mnsc mnsc);
 }

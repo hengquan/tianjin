@@ -159,7 +159,7 @@ public class KjController {
         return map;
     }
 
-    // 查单条记录
+    // 查多条记录跟据ids
     @RequestMapping("getDataList")
     @ResponseBody
     public Map<String, Object> getDataList(Kj kj, HttpServletRequest request, HttpServletResponse response) {

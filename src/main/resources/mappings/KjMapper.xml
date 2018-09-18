@@ -178,10 +178,7 @@
 		select
 		<include refid="Blob_Column_List" />
 		from ts_KJ
-		where 1=1
-		<if test="id != null">
-			and instr(#{ids},id)>0
-		</if>
+		where instr(#{ids},id)>0
 	</select>
 
 	<select id="find4Web" resultMap="BaseResultMap" parameterType="Map">

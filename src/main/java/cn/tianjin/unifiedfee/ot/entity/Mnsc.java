@@ -1,6 +1,7 @@
 package cn.tianjin.unifiedfee.ot.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Mnsc {
     private String id;
@@ -28,6 +29,26 @@ public class Mnsc {
     private String createBy;
 
     private String createName;
+
+    private String ids;
+
+    private List<Mnsc> mnscs;
+
+    public String getIds() {
+        return ids;
+    }
+
+    public List<Mnsc> getMnscs() {
+        return mnscs;
+    }
+
+    public void setIds(String ids) {
+        this.ids = ids;
+    }
+
+    public void setMnscs(List<Mnsc> mnscs) {
+        this.mnscs = mnscs;
+    }
 
     public String getId() {
         return id;

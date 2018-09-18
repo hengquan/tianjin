@@ -26,7 +26,9 @@ public class MnscService {
         mnsc.setId(Onlylogo.getUUID());
         mnsc.setCreateBy(user.getUserId());
         mnsc.setCreateName(user.getUsername());
-        return dao.insert(mnsc) > 0 ? true : false;
+        Boolean isok = dao.insert(mnsc) > 0 ? true : false;
+        //存
+        return isok;
     }
 
     // 更新
@@ -56,5 +58,9 @@ public class MnscService {
 
     public Mnsc get(String mnscId) {
         return dao.get(mnscId);
+    }
+
+    public List<Mnsc> getDataListByIds(Mnsc mnsc) {
+        return dao.getDataListByIds(mnsc);
     }
 }
