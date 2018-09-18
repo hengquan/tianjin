@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>在线学习</title>
+  <!-- <!-- 1 bootstrap的css -->
+  <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
+  <!--公共css-->
+  <link rel="stylesheet" href="./web/css/pt-main.css">
+  <link rel="stylesheet" href="./web/css/index1.css">
+  <!--页面css-->
+  <link rel="stylesheet" href="./web/css/trainingCourseware.css">
+  <!--引入字体的css-->
+  <link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
+  <script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
+  <!--bootstrap的js-->
+  <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
+  <!--页面js-->
+  <script type="text/javascript" src="./web/js/main.js"></script>
+  <style>
+    html{
+      overflow: hidden;
+    }
+    body{
+      background: white;
+    }
+  </style>
+</head>
+<body>
+<!--主视口 -->
+  <div class="pt-view pt-open">
+    <!--主窗口导航条开始-->
+    <ul class="nav" id="myTab">
+      <li class="active"><a href="#allClassification" data-toggle="tab" class="active1"></a></li>
+      <li><a href="#statuteClass" data-toggle="tab"></a></li>
+      <li><a href="#policyCategory" data-toggle="tab"></a></li>
+      <li><a href="#chargeClass" data-toggle="tab"></a></li>
+      <li><a href="#vogue" data-toggle="tab"></a></li>
+      <li><a href="#tallyClass" data-toggle="tab"></a></li>
+      <li><a href="#exportClass" data-toggle="tab"></a></li>
+      <li><a href="#importClass" data-toggle="tab"></a></li>
+    </ul>
+    <!--搜索框-->
+    <div class="search_input">
+       <span class="search_left">
+           <input type="text">
+       </span>
+      <span class="search_right">
+         <span>
+             <img src="./web/images/sousu1.png" alt="">
+             <span class="search">搜索</span>
+         </span>
+      </span>
+    </div>
+    <div class="tab-content">
+      <!--全部分类-->
+      <div class="tab-pane active" id="allClassification" >
+        <div class="top">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--法规类-->
+      <div class="tab-pane " id="statuteClass" >
+        <div>
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--政策类-->
+      <div class="tab-pane " id="policyCategory">
+        <div>
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/333.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/333.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/333.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/333.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/333.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/333.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--收费类-->
+      <div class="tab-pane " id="chargeClass">
+        <div>
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--风行类-->
+      <div class="tab-pane " id="vogue">
+        <div>
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--理货类-->
+      <div class="tab-pane " id="tallyClass">
+        <div>
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/111.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--出口类-->
+      <div class="tab-pane " id="exportClass">
+        <div>
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/222.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--进口类-->
+      <div class="tab-pane " id="importClass">
+        <div>
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/333.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/333.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/333.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="./web/images/333.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/333.jpg" alt="" onclick="toCourse1()">
+            </div>
+            <div class="col-md-4">
+              <img src="./web/images/333.jpg" alt="" onclick="toCourse1()">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="name_title">
+                <div class="name_top">
+                  <p>尚巍手书及课程报告</p>
+                  <div class="name_detail">
+                    <span class="img_left"><img src="./web/images/rs.jpg" alt=""></span>
+                    <span class="rs">2.5万</span>
+                    <span>2018年8月14日发布</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--主视口 结束-->
+</div>
+<script>
+var curCateId="";
+
+    $('#myTab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+        $(this).addClass('active1')
+    })
+    function toCourse1() {
+    window.open("courseContent.html")
+  }
+    $.ajax({
+      type: 'post',
+      url: "/train/getCateData",
+      success: function (data) { //成功后的回调函数
+        var returnCode= data.returnCode;
+        var str = "";
+        if (returnCode == '00') {
+          var data = data.data
+          var dataList = data.list
+          console.log(dataList);
+          var tabHtml="";
+          for(var i= 0;i<dataList.length;i++){
+            if (dataList[i].parentId=='0') {
+              tabHtml+="<li id='tabLi_"+dataList[i].id+"'><a href='changeTab(\""+dataList[i].id+"\")' data-toggle='tab'></a>"+dataList[i].name+"</li>"
+            }
+          }
+          tabHtml="<li id='tabLi_'><a href='changeTab('')' data-toggle='tab'>全部分类</a></li>"+tabHtml;
+          $("#myTab").html(tabHtml);
+        } else if (returnCode == '01') {
+
+        }
+      },
+      error: function (e) {
+        console.log("网络连接失败！");
+      }
+    })
+
+    function changeTab(cateId) {
+      curCateId=cateId;
+      $("#myTab li ").removeClass("active");
+      $("#tabLi"+cateId).addClass("active");
+
+      /* $.ajax({
+        type: 'post',
+        categoryId:2,
+        url: "/train/getKjList",
+        success: function (data) { //成功后的回调函数
+          var returnCode= data.returnCode;
+          var str = "";
+          if (returnCode == '00') {
+            console.log(data)
+          } else if (returnCode == '01') {
+          }
+        },
+        error: function (e) {
+          console.log("网络连接失败！");
+        }
+      })*/
+    }
+
+
+</script>
+</body>
+</html>
