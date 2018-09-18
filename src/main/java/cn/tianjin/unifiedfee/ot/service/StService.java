@@ -82,7 +82,7 @@ public class StService {
 	            tmSelect.setId(Onlylogo.getUUID());           
 	            tmSelect.setTmSelectSign("B");
 	            tmSelect.setTmSelectDesc("错误");
-	            if (tm.getIsAnswer().equals("1"))
+	            if (tm.getIsAnswer().equals("2"))
 	                tmSelect.setIsAnswer(0);
 	            else
 	                tmSelect.setIsAnswer(1);
@@ -138,6 +138,35 @@ public class StService {
                 refDao.insertSelective(tmRefSource);        
             }
         }
+        /*判断题的处理*/
+        TmSelect tmSelect = new TmSelect(); 
+        tmSelect.setTmId(tm.getId());
+        tmSelect.setCreateBy(tm.getCreateBy());
+        tmSelect.setCreateName(tm.getCreateName());
+        if (tm.getTmType().equals("判断题")){   
+            /*先进行删除操作*/
+            selectDao.deleteBytmid(tm.getId());
+            /*插入正确*/
+            tmSelect.setId(Onlylogo.getUUID());
+            tmSelect.setTmSelectSign("A");
+            tmSelect.setTmSelectDesc("正确");
+            if (tm.getIsAnswer().equals("1"))
+                tmSelect.setIsAnswer(1);
+            else
+                tmSelect.setIsAnswer(0);
+            tmSelect.setSort(1);
+            selectDao.insertSelective(tmSelect); 
+            /*插入错误*/
+            tmSelect.setId(Onlylogo.getUUID());           
+            tmSelect.setTmSelectSign("B");
+            tmSelect.setTmSelectDesc("错误");
+            if (tm.getIsAnswer().equals("2"))
+                tmSelect.setIsAnswer(0);
+            else
+                tmSelect.setIsAnswer(1);
+            tmSelect.setSort(2);
+            selectDao.insertSelective(tmSelect); 
+          }   
 		return dao.update(entity) > 0 ? true : false;
 	}
     //修改选项和答案 updateSelct

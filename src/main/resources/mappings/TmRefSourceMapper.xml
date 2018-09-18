@@ -48,15 +48,15 @@
     </trim>
   </insert>
   <select id="getBytmid" resultMap="BaseResultMap" parameterType="java.lang.String">
-		select
-		<include refid="Blob_Column_List" />
-		from q_tm_ref_source
-		where tm_id = #{tmId,jdbcType=VARCHAR}
+		select  a.id, tm_id,ref_tabname,ref_id ,b.kj_name refname
+		 
+		from q_tm_ref_source a,ts_kj b
+		where a.tm_id = #{tmId,jdbcType=VARCHAR} and a.ref_id = b.id
   </select>  
   <delete id="deleteBytmid" parameterType="java.lang.String">
 		delete from q_tm_ref_source
 		where tm_id =
 		#{tmId,jdbcType=VARCHAR}
-	</delete>
+  </delete>
   
 </mapper>

@@ -13,4 +13,5 @@ public interface TmSelectMapper {
     List<TmSelect> getselectData(String tmId);
     TmSelect get(String id);
     TmSelect getselectBytmid(String tmId);
+    void deleteBytmid(String tmid);
 }
