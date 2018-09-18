@@ -318,7 +318,7 @@ html {
 	                  + '<td>'
 	                  + dataList[i].expireDate
 	                  + '</td>'
-	                  + '<th onclick="removeTr(this)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+	                  + '<th onclick="removeTr(this)" thisval="'+ dataList[i].id +'"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
 	                  + '</tr>';
 	            }
 	            $("#theTable").html(html);
@@ -404,6 +404,7 @@ html {
       if (kjIds == '') {
         kjIds = ids;
       } else {
+        //正对比
         var kjid = '';
         var split = ids.split(",");
         for (var i = 0; i < split.length; i++) {
@@ -412,7 +413,19 @@ html {
             kjid += "," + id;
           }
         }
-        kjIds = kjIds + kjid;
+        //反对比
+        var kjid1 = '';
+        var split1 = kjIds.split(",");
+        for (var i = 0; i < split1.length; i++) {
+          var id = split1[i];
+          if (ids.indexOf(id) != -1) {
+            kjid1 += "," + id;
+          }
+        }
+        var kjidval = kjid1 + kjid;
+        if(kjidval!=''){
+          kjIds = kjidval.substr(1);
+        }
       }
       $("#kjids").val(kjIds);
       //处理显示
@@ -447,7 +460,7 @@ html {
                 + '<td>'
                 + dataList[i].expireDate
                 + '</td>'
-                + '<th onclick="removeTr(this)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+                + '<th onclick="removeTr(this)" thisval="'+ dataList[i].id +'"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
                 + '</tr>';
           }
           $("#theTable").html(html);
@@ -459,6 +472,25 @@ html {
     }
     //删除一整行
     function removeTr(obj) {
+    //去掉该ID
+      //获取所有课件id
+      var kjIds = $("#kjids").val();
+      //获取当前要删掉的课件id
+      var kjid = $(obj).attr("thisval");
+      //替换
+      var ides = kjIds.replace(kjid,"");
+      var idess = ides.split(",");
+      var zhids = '';
+      for(var i=0;i<idess.length;i++){
+        if(idess[i]!=''){
+          zhids+=","+idess[i];
+        }
+      }
+      if(zhids!=''){
+        zhids = zhids.substr(1);
+      }
+      $("#kjids").val(zhids);
+      //删除行
       $(obj).parent().remove();
     }
   </script>
