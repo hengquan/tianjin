@@ -14,10 +14,10 @@
 
 	<!-- E:\workSpace\tianjin-unifiedfee-ot\extlibs\ -->
 	<!-- E:\workspace\tianjin-unifiedfee-ot\extlibs\ -->
-	<!-- D:\Work\projects\tianjin\extlibs\ -->
+	<!-- D:\work\projects\tianjin\extlibs\ -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<localLibDir>E:\workSpace\tianjin-unifiedfee-ot\extlibs\</localLibDir>
+		<localLibDir>E:\workspace\tianjin-unifiedfee-ot\extlibs\</localLibDir>
 	</properties>
 
 	<dependencies>

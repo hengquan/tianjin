@@ -195,6 +195,10 @@ html {
 	<br>
 	<br>
 	<script>
+	$("input:radio[name='wenjian'][value='option2']").attr("checked", "checked").parent('label').addClass('active');
+	window.setTimeout(function(){
+	  $("input:radio[name='wenjian'][value='option1']").attr("checked", true);
+	}, 5000);
     $(function() {
       $("input:radio[name='wenjian']").bind('click', function() {
         console.log($(this).attr('value'))
