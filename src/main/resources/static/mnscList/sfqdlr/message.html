@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实操- 获取提单信息</title>
+    <!-- <!-- 1 bootstrap的css -->
+    <link rel="stylesheet" href="../../web/bootstrap/css/bootstrap.css">
+    <!--公共css-->
+    <link rel="stylesheet" href="../../web/css/pt-main.css">
+    <link rel="stylesheet" href="../../web/css/index1.css">
+    <!--页面css-->
+    <link rel="stylesheet" href="../../web/css/billInformation.css">
+    <!--引入字体的css-->
+    <link rel="stylesheet" href="../../web/bootstrap/fonts/iconfont.css">
+    <link rel="stylesheet" href="../../web/layer/layer-new.css">
+
+    <script type="text/javascript" src="../../web/js/jquery-1.12.4.js"></script>
+    <!--bootstrap的js-->
+    <script type="text/javascript" src="../../web/bootstrap/js/bootstrap.min.js"></script>
+    <!--表格table.js-->
+    <script type="text/javascript" src="../../web/bootstrap/js/bootstrap-table.min.js"></script>
+    <!--页面js-->
+    <script type="text/javascript" src="../../web/js/main.js"></script>
+    <script type="text/javascript" src="../../web/layer/layer.js"></script>
+    <style>
+        .table>thead>tr>td{
+            text-align: center;
+        }
+        .table>tbody>tr>td{
+            text-align: center;
+        }
+        html{
+            overflow: hidden;
+        }
+        .billList table{
+            width: 930px;
+        }
+        .table>thead>.cx{
+            background-color: white;
+        }
+        .table>thead>.cx>td>.input_center>input{
+            width: 507px;
+            height: 30px;
+            border-radius: 2px;
+            outline: none;
+            border: 1px solid #0656b3;
+        }
+        .table>thead>.cx>td>.input_center>span{
+            display: inline-block;
+             width: 125px;
+            color: #fff;
+            background-color: #20c1ed;
+            border-color: #1e9fff;
+            padding-top: 5px;
+            height: 29px;
+            border-radius: 2px;
+        }
+        .input_center{
+            width: 640px;
+            height: 35px;
+            border: 1px solid #0656b3;
+             background: #126cd5;
+            font-size: 14px;
+            padding-top: 1px;
+            padding-left: 1px;
+            margin: 0 auto;
+        }
+        .model1_text{
+          width: 268px;
+          margin:30px auto 0;
+        }
+        .model_bg1{
+          position: absolute;
+          top:170px;
+          left:674px;
+          bottom: 0;
+          right: 0;
+          background: rgba(0,0,255,.5);
+          z-index: 999;
+          display: none;
+          width: 289px;
+          height: 200px;
+          border-radius:5px;
+          padding-top: 15px;
+        }
+        .triangle1{
+          position: absolute;
+          top: 152px;
+          left: 786px;
+          bottom: 0;
+          right: 0;
+          z-index: 999;
+          display:none ;
+          width: 0;
+          height: 0;
+          border-left:18px solid transparent;
+          border-right: 18px solid transparent;
+          border-bottom: 18px solid rgba(0,0,255,.5);
+        }
+        .model1_text span{
+          color: white;
+          font-size: 14px;
+        }
+        .model1_text div{
+          color: white;
+          font-size: 14px;
+          margin-top: 4px;
+          margin-left: 16px;
+        }
+        .model1_text span:first-child{
+          margin-left: 15px;
+        }
+        .model1_text strong {
+          color: red;
+          margin-right: 5px;
+        }
+        .model1_text span:last-child{
+          display: inline-block;
+          color:#feef00 ;
+          margin-top: 10px;
+          margin-left: 30px;
+        }
+        .model1_text p{
+          display: inline-block;
+          margin-left: 105px;
+          width: 50px;
+          height: 25px;
+          border: 1px solid white;
+          line-height: 25px;
+          text-align: center;
+          border-radius: 5px;
+          color: white;
+          margin-top: 39px;
+        }
+
+    </style>
+  <script>
+    $(function(){
+      setTimeout(function () {
+        $(".model_bg1").fadeIn("slow");
+        $(".triangle1").fadeIn("slow");
+      },1000);
+    })
+  </script>
+</head>
+<body>
+<!-- 头部条  结束 -->
+<div class="bill" style="width: 1000px;margin-left: 0">
+    <div class="billList" style="margin-top: 0">
+        <div id="essential" class="tab-pane " style="height: 500px">
+            <table class="table table-bordered">
+                <!--基本信息-->
+                <thead>
+                <tr class="cx">
+                    <td colspan="3">
+                        <div class="input_center">
+                            <input type="text" placeholder="002">
+                            <span>查询</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>企业名称</td>
+                    <td>统一社会信用代码</td>
+                    <td>选择确认</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>中外运</td>
+                    <td>002</td>
+                    <td>
+                        <span>添加</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="model_bg1">
+            <div class="model1_text">
+                 <span>1.请先输入企业名称或统一社会信用代码进行查询、然后选择添加</span>
+                 <div>2.点击 <strong>x</strong>关闭此页面，并进行查看</div>
+                 <p onclick="toHide1()">知道了</p>
+            </div>
+        </div>
+          <div class="triangle1"></div>
+</div>
+<script>
+ function toHide1() {
+   $(".model_bg1").hide()
+   $(".triangle1").hide()
+ }
+</script>
+</body>
+</html>
