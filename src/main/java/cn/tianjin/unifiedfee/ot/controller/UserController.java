@@ -3,7 +3,6 @@ package cn.tianjin.unifiedfee.ot.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +27,8 @@ public class UserController {
     @Autowired // 注入Service
     public SecurityMenuService securityMenuService;
 
+    private String trainNameId="线上培训子系统";
+
     // 获取分页数据
     @RequestMapping("getUserMenu")
     @ResponseBody
@@ -42,9 +43,18 @@ public class UserController {
                 retMap.put("messageInfo","无用户登录");
                 return retMap;
             }
-            ObjectResponseResult<List<SysResource>> l=securityMenuService.findMenuByUsername(ui.getUsername());
-            retMap.put("returnCode", "00");
-            retMap.put("date", l);
+            ObjectResponseResult<List<SysResource>> result=securityMenuService.findMenuByUsername(ui.getUsername());
+            if (result!=null&&result.getData()!=null&&result.getData().size()>0) {
+                for (SysResource sr: result.getData()) {
+                    if (sr.getResourcesName().equals(trainNameId)) {
+                        retMap.put("returnCode", "00");
+                        retMap.put("data", sr.getChildren());
+                    }
+                }
+            } else {
+                retMap.put("returnCode", "99");
+                retMap.put("messageInfo", "未获得任何菜单");
+            }
         } catch(Exception e) {
             e.printStackTrace();
             retMap.put("returnCode","01");

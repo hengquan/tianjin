@@ -140,41 +140,25 @@
 </div>
 <script>
 $(document).ready(function() {
-  //组织页面
-  
   toMNSC();
+  initMenu();
 });
 
 function initMenu() {
+  alert("ABC");
   $.ajax({
     type: 'post',
-    url: "./train/getUserMenue",
-    data: _data,
+    url: "./user/getUserMenu",
     dataType:'json',
     success: function (data) { //成功后的回调函数
       var returnCode= data.returnCode;
     console.log(data);
-      $(".tab-content").html("");
-      if (returnCode == '00') {
-        var kjList = data.data;
-        console.log(kjList);
-        var kjPannelHtml=$("<div class='tab-pane active' id='allClassification'></div>");
-        var newRow, newTop;
-        for (var i=0; i<kjList.length; i++) {
-          if (i%3==0) {
-            if (i!=0) kjPannelHtml.append(newTop);
-            if (i==0) newTop=$("<div class='top'></div>");
-            else newTop=$("<div class='bottom'></div>");
-            newRow=$("<div class='row'></div>");
-            newTop.append(newRow);
-          }
-          var oneJqueryHtmlObj=getOneItem(kjList[i]);
-          newRow.append(oneJqueryHtmlObj);
+      $(".pt-menu").html("");
+      var menuHtml="";
+      if (returnCode=="00") {
+        for (var i=0; i<data.data.length; i++) {
+          menuHtml='<li class="pt-menu-list pt-menu-selected">'
         }
-        kjPannelHtml.append(newTop);
-        $(".tab-content").append(kjPannelHtml);
-      } else if (returnCode == '01') {
-
       }
     },
     error: function (e) {
