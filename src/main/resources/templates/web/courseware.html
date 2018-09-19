@@ -3,19 +3,19 @@
   <meta charset="UTF-8">
   <title>在线学习</title>
   <!-- <!-- 1 bootstrap的css -->
-  <link rel="stylesheet" href="/web/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
   <!--公共css-->
-  <link rel="stylesheet" href="/web/css/pt-main.css">
-  <link rel="stylesheet" href="/web/css/index1.css">
+  <link rel="stylesheet" href="./web/css/pt-main.css">
+  <link rel="stylesheet" href="./web/css/index1.css">
   <!--页面css-->
-  <link rel="stylesheet" href="/web/css/trainingCourseware.css">
+  <link rel="stylesheet" href="./web/css/trainingCourseware.css">
   <!--引入字体的css-->
-  <link rel="stylesheet" href="/web/bootstrap/fonts/iconfont.css">
-  <script type="text/javascript" src="/web/js/jquery-1.12.4.js"></script>
+  <link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
+  <script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
   <!--bootstrap的js-->
-  <script type="text/javascript" src="/web/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
   <!--页面js-->
-  <script type="text/javascript" src="/web/js/main.js"></script>
+  <script type="text/javascript" src="./web/js/main.js"></script>
 <style>
 html {overflow: hidden;}
 body {background: white;}
@@ -51,7 +51,7 @@ body {background: white;}
     <span class="search_left"><input type="text" id="searchStr" style="padding-left:10px;"></span>
     <span class="search_right">
       <span>
-        <img src="/web/images/sousu1.png"/>
+        <img src="./web/images/sousu1.png"/>
         <span class="search">搜索</span>
       </span>
     </span>
@@ -114,7 +114,7 @@ function getKjList(cateId, searchStr) {
   };
   $.ajax({
     type: 'post',
-    url: "/train/getKjList",
+    url: "./train/getKjList",
     data: _data,
     dataType:'json',
     success: function (data) { //成功后的回调函数
@@ -151,9 +151,9 @@ function getKjList(cateId, searchStr) {
 function getOneItem(itemData) {
   var $itemHtmlObj=$("<div class='col-md-4'></div>");
   if (itemData.imgUrl) $itemHtmlObj.append("<img src='"+itemData.imgUrl+"' alt='' onclick='toCourse1(\""+itemData.id+"\")'>");
-  else $itemHtmlObj.append("<img src='/web/images/111.jpg' alt='' onclick='toCourse1(\""+itemData.id+"\")'>");
+  else $itemHtmlObj.append("<img src='./web/images/111.jpg' alt='' onclick='toCourse1(\""+itemData.id+"\")'>");
   $itemHtmlObj.append('<div class="name_title"><div class="name_top"><p>'+itemData.name+'</p><div class="name_detail">'
-      +'<span class="img_left"><img src="/web/images/rs.jpg" alt=""></span><span class="rs">2.5万</span><span>'+itemData.createDate+'</span></div></div></div>');
+      +'<span class="img_left"><img src="./web/images/rs.jpg" alt=""></span><span class="rs">2.5万</span><span>'+itemData.createDate+'</span></div></div></div>');
   return $itemHtmlObj;
 }
 

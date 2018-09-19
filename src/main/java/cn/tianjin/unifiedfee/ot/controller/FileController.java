@@ -1,6 +1,5 @@
-package cn.tianjin.unifiedfee.ot.util;
+package cn.tianjin.unifiedfee.ot.controller;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import cn.taiji.file.service.FileObjectService;
 
 @Controller
-@RequestMapping("/fileTest")
-public class FileUpLoad {
+@RequestMapping("/file")
+public class FileController {
     // 文件管理服务
     @Autowired
     private FileObjectService fileObjectService;
@@ -27,35 +26,15 @@ public class FileUpLoad {
     // 文件类型
     public final String FILETYPE = "image/jpg";
 
-    @RequestMapping("/upLoad123")
-    public void fileUp123() throws Exception {
-        System.out.println(downloadEndpoint);
-        InputStream stream = new FileInputStream("D:\\123.jpg");
-        String objectName = fileObjectService.putObject(FILEPATH, "123.jpg", stream, FILETYPE);
-        System.out.println(objectName);
-        stream.close();
-    }
-
-    // 文件上传
-    public void fileUp(MultipartFile file) throws Exception {
-        if (file != null && file.getSize() > 0) {
-            InputStream stream = file.getInputStream();
-            String fileName = file.getOriginalFilename();
-            String objectName = fileObjectService.putObject(FILEPATH, fileName, stream, FILETYPE);
-            System.out.println("--------------------------------");
-            System.out.println(downloadEndpoint + objectName);
-            System.out.println("--------------------------------");
-        }
-    }
-    // 文件上传
-    @RequestMapping("/upLoad")
+    @RequestMapping("/upload")
     @ResponseBody
-    public void fileUps( MultipartFile[] files) throws Exception {
+    public String upload(MultipartFile[] files) throws Exception {
+        String fileName = "";
         if (files != null && files.length > 0) {
             for (MultipartFile file : files) {
                 if (file != null && file.getSize() > 0) {
                     InputStream stream = file.getInputStream();
-                    String fileName = file.getOriginalFilename();
+                    fileName = file.getOriginalFilename();
                     String objectName = fileObjectService.putObject(FILEPATH, fileName, stream, FILETYPE);
                     System.out.println("--------------------------------");
                     System.out.println(downloadEndpoint + objectName);
@@ -63,5 +42,6 @@ public class FileUpLoad {
                 }
             }
         }
+        return fileName;
     }
 }

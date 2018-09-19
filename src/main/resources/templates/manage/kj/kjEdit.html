@@ -387,13 +387,14 @@ html {
     }
     //上传文件
     $("#file-1").fileinput({
-      uploadUrl : '/file/upLoad', // you must set a valid URL here else you will get an error
+      uploadUrl : './fileTest/upLoad', // you must set a valid URL here else you will get an error
       // allowedFileExtensions : ['jpg', 'png','gif'],
       overwriteInitial : false,
       maxFileSize : 1000,
       maxFilesNum : 10,
       //allowedFileTypes: ['image', 'video', 'flash'],
       slugCallback : function(filename) {
+        console.log(filename);
         return filename.replace('(', '_').replace(']', '_');
       }
     });
