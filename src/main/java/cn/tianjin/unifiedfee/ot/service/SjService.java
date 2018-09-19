@@ -37,10 +37,21 @@ public class SjService {
             retTl.add(tl.get(rIndex));
             tl.remove(rIndex);
         }
+        //转换为Map，并选择每一道题目的选项，这个会比较慢，先这样实现。
         List<Map<String, Object>> ml=new ArrayList<Map<String, Object>>();
-        for (Tm tm: retTl) {
-            ;
+        for (int i=0; i<retTl.size(); i++) {
+            Map<String, Object> oneTm=getTmMap(retTl.get(i), i);
+            
+            ml.add(oneTm);
         }
         return ml;
+    }
+    private Map<String, Object> getTmMap(Tm tm, int i) {
+        Map<String, Object> m=new HashMap<String, Object>();
+        m.put("tmIdx", i);
+        m.put("tmDesc", tm.getTmHtml());
+        m.put("tmType", tm.getTmType());
+        m.put("tmScore", tm.getScore());
+        return m;
     }
 }
