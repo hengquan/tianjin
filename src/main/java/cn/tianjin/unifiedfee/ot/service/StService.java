@@ -34,62 +34,81 @@ public class StService {
 	public boolean insert(Tm tm,UserInfo user) throws Exception {
 	    tm.setId(Onlylogo.getUUID());
 	    tm.setCreateBy(user.getUserId());
-	    tm.setCreateName(user.getUsername());
-	    TmRefSource tmRefSource = new TmRefSource();
-	    String kjList ;	    
+        tm.setCreateName(user.getUsername());
+        TmRefSource tmRefSource = new TmRefSource();
+        TmSelect tmSelect = new TmSelect();      
+	    String kjList ;        
 	    String mnscList ;
 	    kjList = tm.getKjList();   
 	    mnscList = tm.getMnscList();    
 	    String[] tmp ;
 	    if (!kjList.equals("")){
-    	    tmp = kjList.split(",");    	    
-    	    for (int i=0;i<tmp.length;i++) {
-    	        tmRefSource.setRefId(tmp[i]);
-    	        tmRefSource.setRefTabname("ts_kj");
-    	        tmRefSource.setId(Onlylogo.getUUID());
-    	        tmRefSource.setTmId(tm.getId());
-    	        refDao.insertSelective(tmRefSource);
-    	    }
+	            tmp = kjList.split(",");            
+	            for (int i=0;i<tmp.length;i++) {
+	                tmRefSource.setRefId(tmp[i]);
+	                tmRefSource.setRefTabname("ts_kj");
+	                tmRefSource.setId(Onlylogo.getUUID());
+	                tmRefSource.setTmId(tm.getId());
+	                refDao.insertSelective(tmRefSource);
+	            }
 	    }
-	    if (!mnscList.equals("")){
-    	    tmp = mnscList.split(",");
-            for (int i=0;i<tmp.length;i++) {
-                tmRefSource.setRefId(tmp[i]);
-                tmRefSource.setRefTabname("ts_mnsc");
-                tmRefSource.setId(Onlylogo.getUUID());
-                tmRefSource.setTmId(tm.getId());
-                refDao.insertSelective(tmRefSource);        
-            }
-	    }
-	    if (tm.getTmType().equals("判断题")){
-	        TmSelect tmSelect = new TmSelect();
-	        tmSelect.setId(Onlylogo.getUUID());
+	        if (!mnscList.equals("")){
+	            tmp = mnscList.split(",");
+	            for (int i=0;i<tmp.length;i++) {
+	                tmRefSource.setRefId(tmp[i]);
+	                tmRefSource.setRefTabname("ts_mnsc");
+	                tmRefSource.setId(Onlylogo.getUUID());
+	                tmRefSource.setTmId(tm.getId());
+	                refDao.insertSelective(tmRefSource);        
+	            }
+	        }
+	        /*创建选项实例*/             
 	        tmSelect.setTmId(tm.getId());
-	        tmSelect.setTmSelectSign("A");
-	        tmSelect.setTmSelectDesc("正确");
-	        if (tm.getIsAnswer().equals("1"))
-	            tmSelect.setIsAnswer(1);
-	        else
-	            tmSelect.setIsAnswer(0);
-	        tmSelect.setSort(1);
-	        selectDao.insertSelective(tmSelect); 
-	        tmSelect.setId(Onlylogo.getUUID());
-            tmSelect.setTmId(tm.getId());
-            tmSelect.setTmSelectSign("B");
-            tmSelect.setTmSelectDesc("错误");
-            if (tm.getIsAnswer().equals("1"))
-                tmSelect.setIsAnswer(0);
-            else
-                tmSelect.setIsAnswer(1);
-            tmSelect.setSort(2);
-            selectDao.insertSelective(tmSelect); 
-	      }
-	    
-	    
-		return dao.insert(tm) > 0 ? true : false;
+	        tmSelect.setCreateBy(tm.getCreateBy());
+	        tmSelect.setCreateName(tm.getCreateName());
+	        /*判断题的处理*/
+	        if (tm.getTmType().equals("判断题")){          
+	            /*插入正确*/
+	            tmSelect.setId(Onlylogo.getUUID());
+	            tmSelect.setTmSelectSign("A");
+	            tmSelect.setTmSelectDesc("正确");
+	            if (tm.getIsAnswer().equals("1"))
+	                tmSelect.setIsAnswer(1);
+	            else
+	                tmSelect.setIsAnswer(0);
+	            tmSelect.setSort(1);
+	            selectDao.insertSelective(tmSelect); 
+	            /*插入错误*/
+	            tmSelect.setId(Onlylogo.getUUID());           
+	            tmSelect.setTmSelectSign("B");
+	            tmSelect.setTmSelectDesc("错误");
+	            if (tm.getIsAnswer().equals("1"))
+	                tmSelect.setIsAnswer(0);
+	            else
+	                tmSelect.setIsAnswer(1);
+	            tmSelect.setSort(2);
+	            selectDao.insertSelective(tmSelect); 
+	          }     
+	        return dao.insert(tm) > 0 ? true : false;
+	      
+	  }
+	//添加选项	
+	public boolean insertselect(Tm tm,UserInfo user) throws Exception {
+        tm.setCreateBy(user.getUserId());
+        tm.setCreateName(user.getUsername());
+        TmRefSource tmRefSource = new TmRefSource();
+        TmSelect tmSelect = new TmSelect(); 
+        tmSelect.setId(Onlylogo.getUUID());
+        tmSelect.setTmId(tm.getId());
+        tmSelect.setSort(tm.getSort());
+        tmSelect.setTmSelectDesc(tm.getTmSelectDesc());
+        tmSelect.setTmSelectSign(tm.getTmSelectSign());
+        tmSelect.setIsAnswer(tm.getIsAnswer());
+        tmSelect.setCreateBy(tm.getCreateBy());
+        tmSelect.setCreateName(tm.getCreateName());        
+        return selectDao.insert(tmSelect) > 0 ? true : false;
 	}
-
-	// 更新
+   	// 更新
 	public boolean update(Tm entity) throws Exception {
 	    String kjList ;
 	    Tm tm = entity;
@@ -100,25 +119,31 @@ public class StService {
         tmp = kjList.split(",");
         TmRefSource tmRefSource = new TmRefSource();
         refDao.deleteBytmid(tm.getId());
-        for (int i=0;i<tmp.length;i++) {
-            tmRefSource.setRefId(tmp[i]);
-            tmRefSource.setRefTabname("ts_kj");
-            tmRefSource.setId(Onlylogo.getUUID());
-            tmRefSource.setTmId(tm.getId());
-            refDao.insertSelective(tmRefSource);
+        if (!tmp[0].equals("")) {
+            for (int i=0;i<tmp.length;i++) {
+                tmRefSource.setRefId(tmp[i]);
+                tmRefSource.setRefTabname("ts_kj");
+                tmRefSource.setId(Onlylogo.getUUID());
+                tmRefSource.setTmId(tm.getId());
+                refDao.insertSelective(tmRefSource);
+            }
         }
         tmp = mnscList.split(",");
-        for (int i=0;i<tmp.length;i++) {
-            tmRefSource.setRefId(tmp[i]);
-            tmRefSource.setRefTabname("ts_mnsc");
-            tmRefSource.setId(Onlylogo.getUUID());
-            tmRefSource.setTmId(tm.getId());
-            refDao.insertSelective(tmRefSource);        
+        if (!tmp[0].equals("")) {
+            for (int i=0;i<tmp.length;i++) {
+                tmRefSource.setRefId(tmp[i]);
+                tmRefSource.setRefTabname("ts_mnsc");
+                tmRefSource.setId(Onlylogo.getUUID());
+                tmRefSource.setTmId(tm.getId());
+                refDao.insertSelective(tmRefSource);        
+            }
         }
-	    
 		return dao.update(entity) > 0 ? true : false;
 	}
-
+    //修改选项和答案 updateSelct
+	public boolean updateSelct(TmSelect entity) throws Exception {
+       return selectDao.update(entity) > 0 ? true : false;
+    }
 	// 删除
 	public boolean delete(Tm entity) throws Exception {
 		return dao.delete(entity) > 0 ? true : false;
@@ -149,11 +174,27 @@ public class StService {
 	        mnscList=mnscList.substring(1);
 	    tm.setKjList(kjList);
 	    tm.setMnscList(mnscList);
+	    TmSelect tmSelect ;
+	    //获得选择题的答案
+	    tmSelect = selectDao.getselectBytmid(tm.getId());
+	    if ( tmSelect != null ) {
+	        tm.setTmSelectDesc(tmSelect.getTmSelectDesc());
+	        tm.setIsAnswer(tmSelect.getIsAnswer());
+	    }
 		return tm;
 	}
 
 	// 获取全部信息
 	public List<Tm> selectAllMsg() {
 		return dao.selectAllMsg();
+	}
+	//获取选项信息
+	public List<TmSelect> getselectData (Tm tm) {	 
+	    return selectDao.getselectData(tm.getId());
+	}
+	public TmSelect getselect(TmSelect entity) throws Exception {
+	    TmSelect tm = new TmSelect();
+        tm = selectDao.get(entity.getId());
+        return tm; 
 	}
 }

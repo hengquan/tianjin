@@ -47,6 +47,10 @@ public class ManageDispatchUrl {
     public String toMnscList() {
         return "/manage/mnsc/mnscList";
     }
+    @RequestMapping("mnscSelList")
+    public String mnscSelList() {
+        return "/manage/mnsc/mnscSelList";
+    }
     @RequestMapping("mnsc/mnscList4st")
     public String toMnscList4st() {
         return "/manage/mnsc/mnscList4st";
@@ -91,10 +95,14 @@ public class ManageDispatchUrl {
         return "/manage/st/tmEdit";
     }
     @RequestMapping("st/view")
-    public String toTmView(HttpServletRequest request) {
+    public String toStView(HttpServletRequest request) {
         return "/manage/st/tmView";
     }
-
+    
+    @RequestMapping("st/selectEdit")
+    public String toStselectEdit(HttpServletRequest request) {
+        return "/manage/st/selectEdit";
+    }
     /*测试页面*/
     @RequestMapping("testTt")
     public String toTestPage() {

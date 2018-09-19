@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import cn.taiji.file.service.FileObjectService;
@@ -49,6 +49,7 @@ public class FileUpLoad {
     }
     // 文件上传
     @RequestMapping("/upLoad")
+    @ResponseBody
     public void fileUps( MultipartFile[] files) throws Exception {
         if (files != null && files.length > 0) {
             for (MultipartFile file : files) {
@@ -60,7 +61,6 @@ public class FileUpLoad {
                     System.out.println(downloadEndpoint + objectName);
                     System.out.println("--------------------------------");
                 }
-
             }
         }
     }

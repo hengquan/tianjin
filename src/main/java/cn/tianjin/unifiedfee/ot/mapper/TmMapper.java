@@ -14,4 +14,6 @@ public interface TmMapper {
     List<Tm> getPageData(Map<String, Object> param);
     Tm get(String id);
     List<Tm> selectAllMsg();
+
+    public List<Tm> getTmListByObjInfo(String objType, String objId);
 }

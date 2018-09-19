@@ -164,5 +164,20 @@
 		select
 		<include refid="Base_Column_List" />
 		from ts_MNSC
+		where 1=1
+		<if test="categoryId != '' and categoryId != null">
+		  and mnsc_cat_id = #{categoryId}
+		</if>
+		<if test="searchStr != '' and searchStr !=null">
+		  and instr(mnsc_name,#{searchStr})>0
+		</if>
+	</select>
+	
+	<select id="getDataListByIds" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ts_MNSC
+		where 
+    instr(#{ids},id)>0
 	</select>
 </mapper>
