@@ -119,6 +119,7 @@ function getKjList(cateId, searchStr) {
     dataType:'json',
     success: function (data) { //成功后的回调函数
       var returnCode= data.returnCode;
+    console.log(data);
       $(".tab-content").html("");
       if (returnCode == '00') {
         var kjList = data.data;
@@ -150,10 +151,12 @@ function getKjList(cateId, searchStr) {
 
 function getOneItem(itemData) {
   var $itemHtmlObj=$("<div class='col-md-4'></div>");
-  if (itemData.imgUrl) $itemHtmlObj.append("<img src='"+itemData.imgUrl+"' alt='' onclick='toCourse1(\""+itemData.id+"\")'>");
-  else $itemHtmlObj.append("<img src='./web/images/111.jpg' alt='' onclick='toCourse1(\""+itemData.id+"\")'>");
-  $itemHtmlObj.append('<div class="name_title"><div class="name_top"><p>'+itemData.name+'</p><div class="name_detail">'
-      +'<span class="img_left"><img src="./web/images/rs.jpg" alt=""></span><span class="rs">2.5万</span><span>'+itemData.createDate+'</span></div></div></div>');
+
+  if (itemData.imgUrl) $itemHtmlObj.append("<img src='"+itemData.imgUrl+"' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
+  else $itemHtmlObj.append("<img src='./web/images/111.jpg' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
+  $itemHtmlObj.append('<div class="name_title" style="cursor:pointer;" onclick=toCourse("'+itemData.id+'")><div class="name_top"><p>'+itemData.name+'</p><div class="name_detail">'
+      +'<span class="img_left"><img src="/web/images/rs.jpg" alt=""></span><span class="rs">2.5万</span><span>'+itemData.createDate+'</span></div></div></div>');
+
   return $itemHtmlObj;
 }
 

@@ -20,7 +20,9 @@ import com.github.pagehelper.PageInfo;
 
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
+import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.entity.Mnsc;
+import cn.tianjin.unifiedfee.ot.service.MnscRefSourceService;
 import cn.tianjin.unifiedfee.ot.service.MnscService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
@@ -32,6 +34,8 @@ public class Api2Controller {
     public UserService userService;
     @Autowired
     private MnscService mnscService;
+    @Autowired
+    private MnscRefSourceService mnscRefSourceService;
 
     /**
      * 1.3.1、获得模拟实操列表<br>
@@ -115,7 +119,7 @@ public class Api2Controller {
                 retMap.put("messageInfo", "无用户登录");
                 return retMap;
             }
-            if(StringUtils.isEmpty(mnscId)){
+            if (StringUtils.isEmpty(mnscId)) {
                 retMap.put("returnCode", "03");
                 retMap.put("messageInfo", "摸拟实操ID为空");
                 return retMap;
@@ -128,6 +132,52 @@ public class Api2Controller {
             } else {
                 retMap.put("returnCode", "00");
                 retMap.put("data", mnsc);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+
+    /**
+     * 1.3.3、获得模拟实操相关课件列表<br>
+     * 获得模拟实操相关课件列表,以列表形式无分页功能
+     * 
+     * @param request
+     * @param response
+     * @param mainId
+     *            摸拟实操ID，不允许为空
+     * @return
+     */
+    @RequestMapping("getMnscRefKjList")
+    @ResponseBody
+    public Map<String, Object> getMnscRefKjList(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(required = false) String mnscId) {
+        HttpPush.responseInfo(response);// 跨域
+        // 返回结果
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+            if (StringUtils.isEmpty(mnscId)) {
+                retMap.put("returnCode", "03");
+                retMap.put("messageInfo", "摸拟实操ID为空");
+                return retMap;
+            }
+            // 查询
+            List<Kj> kjList = mnscRefSourceService.getKjList(mnscId);
+            if (kjList == null || kjList.size()<=0) {
+                retMap.put("returnCode", "99");
+                retMap.put("messageInfo", "信息为空");
+            } else {
+                retMap.put("returnCode", "00");
+                retMap.put("data", kjList);
             }
         } catch (Exception e) {
             e.printStackTrace();
