@@ -113,8 +113,8 @@ html{
 /*ÆøÅÝ*/
 
 .model1_text{
-  width: 268px;
-  margin:30px auto 0;
+  width: 270px;
+  margin:15px auto 0 ;
 }
 .model2_text{
   width: 220px;
@@ -133,7 +133,7 @@ html{
   background: rgba(0,0,255,.5);
   z-index: 999;
   display: none;
-  width: 335px;
+  width: 300px;
   height: 210px;
   border-radius:5px;
   padding-top: 15px;
@@ -145,7 +145,7 @@ html{
   bottom: 0;
   right: 0;
   z-index: 999;
-  display:none ;
+  display: none ;
   width: 0;
   height: 0;
   border-left:18px solid transparent;
@@ -160,7 +160,7 @@ html{
     color: white;
     font-size: 14px;
     margin-top: 12px;
-    margin-left: 34px;
+    margin-left: 20px;
 }
 .model1_text span:first-child{
   margin-left: 15px;
@@ -188,7 +188,7 @@ html{
   text-align: center;
   border-radius: 5px;
   color: white;
-  margin-top: 19px;
+  margin-top: 32px;
 }
 
 .model_bg2{
@@ -350,4 +350,7 @@ select{
     float: right;
     border-radius: 5px;
 }
+
+
+
 

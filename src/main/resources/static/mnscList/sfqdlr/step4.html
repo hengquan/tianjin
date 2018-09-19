@@ -68,6 +68,7 @@
       margin-top: -21px;
       font-size: 14px;
       color: white;
+      margin-left: 29px;
     }
     .model_text .know{
       display: inline-block;
@@ -203,8 +204,7 @@
                 </tbody>
                 <div class="model_bg ">
                 <div class="model_text">
-
-                  <p class="entry">注：1. <strong style="color: red">※</strong>    部分为必填项，请分别填写：</p>
+                  <p class="entry">1. <strong style="color: red">※</strong>    部分为必填项，请分别填写：</p>
                   <p class="odd">“提单号、船名、船次”</p>
                   <div>2.船名信息可填写中文或船名，只填写一个</div>
                   <div>3.至少关联一个提单号，才能进行费项编辑</div>
@@ -251,7 +251,7 @@
                 </tbody>
                 <div class="model_bg4">
                 <div class="model_text4">
-                  <p class="entry">已提取提单信息,请进行下一步费项单元设置操作,点击<span style="color: #feef00">“知道了”</span>跳转到下一页</p>
+                  <p class="entry">已提取提单信息,请进行下一步费项单元设置操作,点击<span style="color: #feef00">“下一步”</span>进入下一页</p>
                   <span class="know" onclick="toKnow()">知道了</span>
                 </div>
               </div>
@@ -314,8 +314,6 @@
     function toKnow() {
       $(".model_bg4").hide()
       $(".triangle4").hide()
-      window.location.href = "step5.html"
-
     }
 
 //    点击取消信息，显示隐藏内容

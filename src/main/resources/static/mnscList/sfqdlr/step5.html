@@ -28,7 +28,7 @@
             },2000);
         })
     </script>
-  <style>
+    <style>
     .model_bg{
       position: absolute;
       top: 159px;
@@ -172,7 +172,7 @@
               <p class="entry">注：1.至少有一个费项单元，可以添加多个费项单元</p>
               <div>2.一个费项单元只能选择一种货物类型</div>
               <div>3.每个费项单元下有不同的费项明细、集装箱或货物信息</div>
-              <div>4.查看清单明细,点击 <span style="color: #feef00">“知道了”</span>跳入下一页</div>
+              <div>4.查看清单明细,点击 <span style="color: #feef00">“下一步”</span>进入下一页</div>
               <span onclick="toHide()" class="know">知道了</span>
             </div>
           </div>
@@ -305,7 +305,6 @@
     function toHide() {
         $(".model_bg").hide()
         $(".triangle").hide()
-      window.location.href = "step6.html"
     }
 
     /*下一页*/
