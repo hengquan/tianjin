@@ -145,26 +145,41 @@ $(document).ready(function() {
 });
 
 function initMenu() {
-  alert("ABC");
   $.ajax({
     type: 'post',
     url: "./user/getUserMenu",
     dataType:'json',
     success: function (data) { //成功后的回调函数
       var returnCode= data.returnCode;
-    console.log(data);
-      $(".pt-menu").html("");
-      var menuHtml="";
+      $(".pt-menu ul").html("");
+      var allHtml="";
       if (returnCode=="00") {
         for (var i=0; i<data.data.length; i++) {
-          menuHtml='<li class="pt-menu-list pt-menu-selected">'
+          var menu1Html='<li class="pt-menu-list'+((i==0)?' pt-menu-selected':'')+'"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>'
+                       +'<h3 class="pt-menu-title"><a href="#">'+data.data[i].resourcesName+'</a></h3>';
+          if (data.data[i].children!=null&&data.data[i].children.length>0) {
+            menu1Html+='<ul class="pt-second-menu">';
+            for (var j=0; j<data.data[i].children.length; j++) {
+              var oneMenu=data.data[i].children[j];
+              menu1Html+='<li class="pt-menu-child"><span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>'
+                        +'<h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="showMenu(\''+oneMenu.resourceUrl+'\')">'+oneMenu.resourcesName+'</a></h3></li>';
+            }
+            menu1Html+="</ul></li>";
+            allHtml+=menu1Html;
+          }
         }
+//        console.log(allHtml);
+        $(".pt-menu ul").html(allHtml);
       }
     },
     error: function (e) {
       console.log("网络连接失败！");
     }
   });
+}
+
+function showMenu(url) {
+  $("#mainIframe").attr("src",url);
 }
   //模拟实操
   function toMNSC(){

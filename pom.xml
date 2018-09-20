@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>cn.taiji</groupId>
 		<artifactId>taiji-pom</artifactId>
-		<version>1.0.3-RELEASES</version>
+		<version>1.0.6-RELEASES</version>
 		<relativePath />
 	</parent>
 	<artifactId>tianjin-unifiedfee-ot</artifactId>
@@ -17,7 +17,7 @@
 	<!-- D:\work\projects\tianjin\extlibs\ -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<localLibDir>E:\workspace\tianjin-unifiedfee-ot\extlibs\</localLibDir>
+		<localLibDir>D:\work\projects\tianjin\extlibs\</localLibDir>
 	</properties>
 
 	<dependencies>
@@ -77,8 +77,11 @@
 			<scope>runtime</scope>
 		</dependency>
 		<!-- 这个需要为 optional = true 热部署才有效 -->
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-devtools</artifactId> 
-			<optional>true</optional> </dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
 		<!-- 引入平台包 -->
 		<dependency>
 			<groupId>com.spiritdata</groupId>
