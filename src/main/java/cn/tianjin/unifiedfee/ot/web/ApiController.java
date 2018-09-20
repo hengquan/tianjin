@@ -439,7 +439,7 @@ public class ApiController {
                 return retMap;
             }
             List<Map<String,Object>> tmpSjTmList=sjService.getTempSj(refType, refId, tmCount);
-            retMap.put("", tmpSjTmList);
+            retMap.put("data", tmpSjTmList);
         } catch(Exception e) {
             e.printStackTrace();
             retMap.put("returnCode","01");
