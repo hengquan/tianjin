@@ -152,14 +152,18 @@ function getKjList(cateId, searchStr) {
 function getOneItem(itemData) {
   var $itemHtmlObj=$("<div class='col-md-4'></div>");
 
+  //./web/images/111.jpg
   if (itemData.imgUrl) $itemHtmlObj.append("<img src='"+itemData.imgUrl+"' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
-  else $itemHtmlObj.append("<img src='./web/images/111.jpg' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
+  else $itemHtmlObj.append("<img src='./web/images/kj_default.jpg' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
   $itemHtmlObj.append('<div class="name_title" style="cursor:pointer;" onclick=toCourse("'+itemData.id+'")><div class="name_top"><p>'+itemData.name+'</p><div class="name_detail">'
       +'<span class="img_left"><img src="/web/images/rs.jpg" alt=""></span><span class="rs">2.5万</span><span>'+itemData.createDate+'</span></div></div></div>');
 
   return $itemHtmlObj;
 }
 
+function toCourse(id) {
+  window.open("courseContent.html?id="+id, "_blank");
+}
 </script>
 </body>
 </html>

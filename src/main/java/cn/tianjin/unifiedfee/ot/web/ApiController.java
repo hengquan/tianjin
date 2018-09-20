@@ -368,23 +368,26 @@ public class ApiController {
             for (Kj kj: kjs) {
                 orSql+=" or obj_id='"+kj.getId()+"'";
             }
-            if (!StringUtils.isBlank(orSql)) orSql=orSql.substring(4);
-            List<CommArchive> al=archiveService.getArchiveByObjIds("ts_KJ", "img", orSql);
+
             List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
-            for (Kj kj:kjs) {
-                Map<String, Object> m=_getKjMap(kj);
-                if (al!=null) {
-                    for (CommArchive ca: al) {
-                        if (ca.getObjId().equals(kj.getId())) {
-                            m.put("imgUrl", ca.getFileUrl());
+            if (!StringUtils.isBlank(orSql)) {
+                orSql=orSql.substring(4);
+                List<CommArchive> al=archiveService.getArchiveByObjIds("ts_KJ", "img", orSql);
+                for (Kj kj:kjs) {
+                    Map<String, Object> m=_getKjMap(kj);
+                    if (al!=null) {
+                        for (CommArchive ca: al) {
+                            if (ca.getObjId().equals(kj.getId())) {
+                                m.put("imgUrl", ca.getFileUrl());
+                            }
                         }
                     }
+                    if (m.get("imgUrl")==null) {//默认图片
+//                        m.put("imgUrl", "/images/defaultKJ.png");
+                        m.put("imgUrl", "");
+                    }
+                    retL.add(m);
                 }
-                if (m.get("imgUrl")==null) {//默认图片
-//                    m.put("imgUrl", "/images/defaultKJ.png");
-                    m.put("imgUrl", "");
-                }
-                retL.add(m);
             }
             if (kjs==null||kjs.size()==0) {
                 retMap.put("returnCode","99");
