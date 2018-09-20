@@ -36,7 +36,7 @@
   </div>
 </div>
 
-<div class="courseware" style="display:yes;">
+<div class="courseware" style="display:none;">
   <!--课件中心-->
   <div class="gap" style="margin-top:0px;">
      <span>课件中心
@@ -45,18 +45,16 @@
   </div>
   <div class="detail_top">
     <div class="course_img">
-      <img src="./web/images/111.jpg" alt="">
+      <img src="./web/images/kj_default.jpg" alt="">
     </div>
     <div class="course_right">
-      <span class="course_name">尚巍手书及课程报告</span>
+      <span class="course_name"></span>
       <div class="course_mid">
         <span><img src="./web/images/rs.jpg" alt="" class="course_right_img"></span>
         <span class="course_count">2.5万</span>
-        <span class="course_time">2018年8月14发布</span>
+        <span class="course_time"></span>
       </div>
       <div class="course_description">
-        课程说明  课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明课程说明课程说明
-        课程说明  课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明课程说明课程说明
       </div>
       <div class="study_btn">
         <button class="start_study btn w120" onclick="toLearning()">开始学习</button>
@@ -67,6 +65,30 @@
   <div class="gap"><span>同类课程<div class="border"></div></span></div>
   <div class="detail_bottom">
     <div class="row">
+      <div class="col-md-3 tlkc">
+        <img src="./web/images/kj_default.jpg" alt="">
+        <div class="name_title">
+          <div class="name_top">
+            <p>尚巍手书及课程预告</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 tlkc">
+        <img src="./web/images/zxc.png" alt="">
+        <div class="name_title">
+          <div class="name_top">
+            <p>尚巍手书及课程预告</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 tlkc">
+        <img src="./web/images/zxc.png" alt="">
+        <div class="name_title">
+          <div class="name_top">
+            <p>尚巍手书及课程预告</p>
+          </div>
+        </div>
+      </div>
       <div class="col-md-3 tlkc">
         <img src="./web/images/zxc.png" alt="">
         <div class="name_title">
@@ -140,18 +162,20 @@
   <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
 </div>
 <script>
+
 function getUrlParam(name) {
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
   var r = window.location.search.substr(1).match(reg); //匹配目标参数
   if (r != null) return unescape(r[2]); return null; //返回参数值
 }
+
+var _data={"kjId":getUrlParam("id")};
+
 $(document).ready(function(){
-  console.log(getUrlParam("id"));
   initPage();
 });
 
 function initPage() {
-  var _data={"kjId":getUrlParam("id")};
   $.ajax({
     type: 'post',
     url: "./train/getKjInfo",
@@ -167,28 +191,67 @@ function initPage() {
         tmpVal=(data.data.name?data.data.name:"");
         $(".course_right .course_name").html(tmpVal);
         tmpVal=(data.data.createDate?data.data.createDate:"");
-        $(".course_right .course_time").html(tmpVal);
+        $(".course_right .course_time").html("发布时间:"+tmpVal);
         tmpVal=(data.data.remarks?data.data.remarks:"");
         $(".course_right .course_description").html(tmpVal);
       }
       if (data.data.imgUrl) img_url=data.data.imgUrl;
       $(".course_img img").attr("src", img_url);
       //获得同类课程
-      getTlkc
+      initTlkc();
+      $(".courseware").show();
     },
     error: function (e) {
       var img_url="./web/images/kj_default.jpg";
       $(".course_img img").attr("src", img_url);
       //提醒
+      $(".courseware").show();
     }
   });
 }
-  function toLearning() {
-    window.location.href ="onlineLearning.html"
-  }
-  function  toStartPractice() {
-      window.open("entryPractice.html")
-  }
+
+function initTlkc() {
+  $(".detail_bottom .row").html("");
+  var _data={"kjId":getUrlParam("id")};
+  $.ajax({
+    type: 'post',
+    url: "./train/getKjRefKjList",
+    data: _data,
+    dataType:'json',
+    success: function (data) { //成功后的回调函数
+      var returnCode=data.returnCode;
+      if (returnCode=='00') {
+        var kjList=data.data;
+        var tlkcHtml="";
+        for (var i=0; i<kjList.length; i++) {
+          var oneKj=kjList[i];
+          tlkcHtml+=getOneTlckHtml(oneKj);
+        }
+      }
+      $(".detail_bottom .row").html(tlkcHtml);
+    },
+    error: function (e) {
+    }
+  });
+}
+function getOneTlckHtml(oneKj) {
+  var _img_url=(oneKj.imgUrl?oneKj.imgUrl:"./web/images/kj_default.jpg");
+  var _html=
+  '<div class="col-md-3 tlkc">'+
+    '<img src="'+_img_url+'" alt="">'+
+    '<div class="name_title"><div class="name_top">'+
+      '<p>'+oneKj.name+'</p>'+
+    '</div></div>'+
+  '</div>';
+  return _html;
+}
+//进入学习的详细页面
+function toLearning() {
+  window.location.href="./onlineLearning.html?kjId="+getUrlParam("id");
+}
+function  toStartPractice() {
+  window.open("entryPractice.html")
+}
 </script>
 </body>
 </html>
