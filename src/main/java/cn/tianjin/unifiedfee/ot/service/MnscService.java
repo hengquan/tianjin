@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.taiji.oauthbean.dto.UserInfo;
+import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.entity.Mnsc;
 import cn.tianjin.unifiedfee.ot.entity.MnscRefSource;
+import cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper;
 import cn.tianjin.unifiedfee.ot.mapper.KjMapper;
 import cn.tianjin.unifiedfee.ot.mapper.MnscMapper;
 import cn.tianjin.unifiedfee.ot.mapper.MnscRefSourceMapper;
@@ -24,10 +26,32 @@ public class MnscService {
     private KjMapper kjDao;
     @Autowired
     private MnscRefSourceMapper mnscRefDao;
+    @Autowired
+    private CommArchiveMapper commArchiveMapper;
 
     // 获取分页数据
     public List<Mnsc> getPageData(Map<String, Object> retMap) {
-        return dao.getPageData(retMap);
+        List<Mnsc> mnscs = dao.getPageData(retMap);
+        if (mnscs != null && mnscs.size() > 0) {
+            for (Mnsc mnsc : mnscs) {
+                String id = mnsc.getId();
+                // 查附件表
+                List<CommArchive> commArchives = commArchiveMapper.selectByObjId(id);
+                if (commArchives != null && commArchives.size() > 0) {
+                    for (CommArchive commArchive : commArchives) {
+                        String archiveType = commArchive.getArchiveType();
+                        if (StringUtils.isNotEmpty(archiveType)) {
+                            if (archiveType.equals("main")) {
+                                String fileUrl = commArchive.getFileUrl();
+                                if (StringUtils.isNotEmpty(fileUrl))
+                                    mnsc.setMainUrl(fileUrl);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return mnscs;
     }
 
     // 添加
@@ -118,7 +142,7 @@ public class MnscService {
             if (StringUtils.isNotEmpty(kjids)) {
                 kjids = kjids.substring(1);
                 mnsc.setKjids(kjids);
-                //实例化课件
+                // 实例化课件
                 Kj kj = new Kj();
                 kj.setIds(kjids);
                 List<Kj> kjs = kjDao.getDataListByIds(kj);

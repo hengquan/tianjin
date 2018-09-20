@@ -1,6 +1,11 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import cn.taiji.file.service.FileObjectService;
+import cn.tianjin.unifiedfee.ot.entity.CommArchive;
+import cn.tianjin.unifiedfee.ot.service.CommArchiveService;
+import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
 @Controller
 @RequestMapping("/file")
@@ -17,6 +25,8 @@ public class FileController {
     // 文件管理服务
     @Autowired
     private FileObjectService fileObjectService;
+    @Autowired
+    private CommArchiveService commArchiveService;
     // 服务器地址
     @Value("${taiji.file.manage.download-endpoint}")
     private String downloadEndpoint;
@@ -28,8 +38,11 @@ public class FileController {
 
     @RequestMapping("/upload")
     @ResponseBody
-    public String upload(MultipartFile[] files) throws Exception {
+    public Map<String, Object> upload(CommArchive commArchive,MultipartFile[] files,HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpPush.responseInfo(response);// 跨域
+        Map<String,Object> map = new HashMap<String,Object>();
         String fileName = "";
+        String fileUrl = "";
         if (files != null && files.length > 0) {
             for (MultipartFile file : files) {
                 if (file != null && file.getSize() > 0) {
@@ -39,9 +52,16 @@ public class FileController {
                     System.out.println("--------------------------------");
                     System.out.println(downloadEndpoint + objectName);
                     System.out.println("--------------------------------");
+                    fileUrl = downloadEndpoint + objectName;
+                    //添加附件
+                    commArchive.setFileName(fileName);
+                    commArchive.setFilePath("/ot/image/");
+                    commArchive.setFileUrl(fileUrl);
+                    commArchiveService.insert(commArchive);
                 }
             }
         }
-        return fileName;
+        map.put("fileName", fileName);
+        return map;
     }
 }
