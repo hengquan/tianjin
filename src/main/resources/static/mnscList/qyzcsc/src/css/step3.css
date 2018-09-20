@@ -2,27 +2,26 @@ html{
   height: 1030px;
 }
 .page-main{
-  height: 525px;
+  height: 580px;
+  padding-top: 30px;
 }
-.page-container{
-  padding-top: 65px;
-}
+
 .page-form-list{
   padding-top: 35px;
 }
 .pay_button{
-  margin-top: 100px;
+  margin-top: 55px;
 }
 .page-form-list{
-  width: 650px;
+  width: 649px;
   height: 370px;
 }
 .model{
-  width: 450px;
+  width: 436px;
   height: 405px;
   border-radius: 20px;
   background:rgba(0,0,0,.6);
-  margin-left: 17px;
+  margin-left: 16px;
   margin-right: 22px;
   color: white;
   line-height: 55px;
@@ -58,3 +57,14 @@ html{
 #form-submit2{
   margin-left: 40px;
 }
+
+
+/*边框内容的样式*/
+.content_border1{
+  border: 1px solid #cccccc;
+  height: 450px;
+  width: 1180px;
+  margin: 0 auto;
+}
+
+

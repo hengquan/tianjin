@@ -30,7 +30,7 @@
     </script>
     <style>
       html{
-        height: 1205px;
+        height: 1425px;
       }
     .model_bg{
       position: absolute;
@@ -92,10 +92,13 @@
       margin-left: 73px;
       color: #feef00;
     }
-
+    .button1{
+      margin-top: -45px;
+      margin-bottom: 30px;
+    }
   </style>
 </head>
-<body>
+<tbody>
 <!-- 头部条 -->
 <div class="pt-topbar">
     <div class="nav_header">
@@ -121,151 +124,156 @@
     <div class="billList">
         <!--费项单元-->
      <div id="expenditure" class="tab-pane ">
-        <table class="table table-bordered">
-            <!--费项单元-->
-            <thead>
-            <tr>
-                <td colspan="13">费项单元</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td colspan="13" class="button">
-                    <span style="background:#20c1ed;width: 110px ">添加费项单元</span>
-                    <span style="background:#408eba;width: 110px ">保存费项单元</span>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td >费项单元编号</td>
-                <td>费项单元名称</td>
-                <td>集装箱信息</td>
-                <td>货物信息</td>
-                <td>费项信息</td>
-                <td>总价</td>
-                <td>费项单元类型</td>
-                <td colspan="5">操作</td>
-            </tr>
-            <tr>
-                <td><input type="radio"></td>
-                <td>1</td>
-                <td><input type="text" value="费项单元包_1"></td>
-                <td>1</td>
-                <td>0</td>
-                <td>1</td>
-                <td>0.10</td>
-                <td>集装箱</td>
-                <td class="button" colspan="5"><span>删除</span></td>
-            </tr>
-            <tr>
-                <td><input type="radio"></td>
-                <td>2</td>
-                <td><input type="text" value="费项单元包_2"></td>
-                <td>1</td>
-                <td>0</td>
-                <td>1</td>
-                <td>6000.00</td>
-                <td>集装箱</td>
-                <td class="button" colspan="5"><span>删除</span></td>
-            </tr>
-            </tbody>
-           <div class="model_bg ">
-            <div class="model_text">
-              <p style="color: white;margin-top: -14px;margin-bottom: 27px" >创建费项单元,设置相关属性,进行费项设置并添加货物信息</p>
-              <p class="entry">注：1.至少有一个费项单元，可以添加多个费项单元</p>
-              <div>2.一个费项单元只能选择一种货物类型</div>
-              <div>3.每个费项单元下有不同的费项明细、集装箱或货物信息</div>
-              <div>4.查看清单明细,点击 <span style="color: #feef00">“下一步”</span>进入下一页</div>
-              <span onclick="toHide()" class="know">知道了</span>
-            </div>
-          </div>
-           <div class="triangle"></div>
-            <!--费项信息-->
-            <thead>
-            <tr>
-                <td colspan="13">费项信息</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td colspan="13" class="button">
-                    <span style="background:#20c1ed;width: 110px ">标准费项</span>
-                    <span style="background:#408eba;width: 110px ">自定义模板</span>
-                    <span style="background:#20c1ed;width: 110px ">自定义费项</span>
-                    <span style="background:#408eba;width: 110px ">历史单据</span>
-                    <span style="background:#20c1ed;width: 110px ">保存</span>
-                    <span style="background:#db4c3f;width: 110px ">删除</span>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>收费类型</td>
-                <td>费项名称</td>
-                <td>子项名称</td>
-                <td>计费规格</td>
-                <td>计费单位</td>
-                <td>数量</td>
-                <td>单价</td>
-                <td>最低价</td>
-                <td>最高价</td>
-                <td>总价</td>
-                <td>定价类型</td>
-                <td>价格说明</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>常规收费</td>
-                <td>托轮费</td>
-                <td>托轮费</td>
-                <td>计费规格</td>
-                <td>(国际航线)220-260米</td>
-                <td><input type="text" style="width: 56px" value="1"></td>
-                <td><input type="text" style="width: 56px" value="0.10"></td>
-                <td>0.00</td>
-                <td>9000.00</td>
-                <td>6000.00</td>
-                <td>政府指导价</td>
-                <td></td>
-            </tr>
-            </tbody>
-        </table>
-        <table class="table table-bordered">
-            <!--集装箱信息-->
-            <thead>
-            <tr>
-                <td colspan="8">集装箱信息</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td colspan="8" class="button">
-                    <span style="background:#20c1ed;">添加</span>
-                    <span style="background:#db4c3f;">删除</span>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>集装箱号</td>
-                <td>拼箱标志</td>
-                <td>重箱或者空箱标识代码</td>
-                <td>集装箱尺寸和类型</td>
-                <td>舱单号</td>
-                <td>提运单</td>
-                <td>分提运单</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td class="term">6</td>
-                <td>不拼箱</td>
-                <td>重箱</td>
-                <td>40英尺</td>
-                <td>110</td>
-                <td>001</td>
-                <td></td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="pay_button">
+       <div class="head_title"><span id="msg">费项单元</span></div>
+       <div class="frame">
+         <!--费项信息-->
+         <div class="table_detail" style="border: none">
+           <div class="button1" style="margin-left: 1px">
+             <span style="background:#20c1ed;width: 130px ">添加费项单元</span>
+             <span style="background:#408eba;width: 130px ">保存费项单元</span>
+           </div>
+           <table class="table table-bordered" style="width: 1130px;margin: 0 auto ">
+             <thead>
+             <tr>
+               <td></td>
+               <td >费项单元编号</td>
+               <td>费项单元名称</td>
+               <td>集装箱信息</td>
+               <td>货物信息</td>
+               <td>费项信息</td>
+               <td>总价</td>
+               <td>费项单元类型</td>
+               <td>操作</td>
+             </tr>
+             </thead>
+             <tbody>
+             <tr>
+               <td><input type="radio"></td>
+               <td>1</td>
+               <td><input type="text" value="费项单元包_1"></td>
+               <td>1</td>
+               <td>0</td>
+               <td>1</td>
+               <td>0.10</td>
+               <td>集装箱</td>
+               <td ><span>删除</span></td>
+             </tr>
+             <tr>
+               <td><input type="radio"></td>
+               <td>2</td>
+               <td><input type="text" value="费项单元包_2"></td>
+               <td>1</td>
+               <td>0</td>
+               <td>1</td>
+               <td>6000.00</td>
+               <td>集装箱</td>
+               <td ><span>删除</span></td>
+             </tr>
+             </tbody>
+           </table>
+         </div>
+         <div class="model_bg ">
+           <div class="model_text">
+             <p style="color: white;margin-top: -14px;margin-bottom: 27px" >创建费项单元,设置相关属性,进行费项设置并添加货物信息</p>
+             <p class="entry">注：1.至少有一个费项单元，可以添加多个费项单元</p>
+             <div>2.一个费项单元只能选择一种货物类型</div>
+             <div>3.每个费项单元下有不同的费项明细、集装箱或货物信息</div>
+             <div>4.查看清单明细,点击 <span style="color: #feef00">“下一步”</span>进入下一页</div>
+             <span onclick="toHide()" class="know">知道了</span>
+           </div>
+         </div>
+         <div class="triangle"></div>
+         <div class="table_detail table_detail1" style="border: none;border-top: 1px solid #ccc;margin-top: 60px">
+           <div class="border1">
+             <span>费项信息</span>
+           </div>
+           <div class="button1" style="margin-top: -75px;margin-left: 10px">
+             <span style="background:#20c1ed;width: 110px ">标准费项</span>
+             <span style="background:#408eba;width: 110px ">自定义模板</span>
+             <span style="background:#20c1ed;width: 110px ">自定义费项</span>
+             <span style="background:#408eba;width: 110px ">历史单据</span>
+             <span style="background:#20c1ed;width: 110px ">保存</span>
+             <span style="background:#db4c3f;width: 110px ">删除</span>
+           </div>
+           <div>
+             <table class="table table-bordered" style="width: 1130px;margin-top: -43px">
+               <tbody>
+               <tr style="background-color:#EEF2F6 ">
+                 <td><input type="checkbox"></td>
+                 <td>收费类型</td>
+                 <td>费项名称</td>
+                 <td>子项名称</td>
+                 <td>计费规格</td>
+                 <td>计费单位</td>
+                 <td>数量</td>
+                 <td>单价</td>
+                 <td>最低价</td>
+                 <td>最高价</td>
+                 <td>总价</td>
+                 <td>定价类型</td>
+                 <td>价格说明</td>
+               </tr>
+               <tr>
+                 <td><input type="checkbox"></td>
+                 <td>常规收费</td>
+                 <td>托轮费</td>
+                 <td>托轮费</td>
+                 <td>计费规格</td>
+                 <td>(国际航线)220-260米</td>
+                 <td><input type="text" style="width: 56px" value="1"></td>
+                 <td><input type="text" style="width: 56px" value="0.10"></td>
+                 <td>0.00</td>
+                 <td>9000.00</td>
+                 <td>6000.00</td>
+                 <td>政府指导价</td>
+                 <td></td>
+               </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+         <div>
+           <span style="margin-left: 9px">显示第1到第1条记录，总共1条记录</span>
+         </div>
+         <!--集装箱信息-->
+         <div class="table_detail table_detail1" style="border: none;border-top: 1px solid #ccc;margin-top: 60px">
+           <div class="border1">
+             <span>集装箱信息</span>
+           </div>
+           <div class="button1" style="margin-top: -75px;margin-left: 10px">
+             <span style="background:#20c1ed;width: 110px ">添加</span>
+             <span style="background:#db4c3f;width: 110px ">删除</span>
+           </div>
+           <div>
+             <table class="table table-bordered" style="width: 1130px;margin-top: -43px">
+               <tbody>
+               <tr style="background-color: #EEF2F6">
+                 <td><input type="checkbox"></td>
+                 <td>集装箱号</td>
+                 <td>拼箱标志</td>
+                 <td>重箱或者空箱标识代码</td>
+                 <td>集装箱尺寸和类型</td>
+                 <td>舱单号</td>
+                 <td>提运单</td>
+                 <td>分提运单</td>
+               </tr>
+               <tr>
+                 <td><input type="checkbox"></td>
+                 <td class="term">6</td>
+                 <td>不拼箱</td>
+                 <td>重箱</td>
+                 <td>40英尺</td>
+                 <td>110</td>
+                 <td>001</td>
+                 <td></td>
+               </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+         <span style="margin-left: 9px">显示第1到第1条记录，总共1条记录</span>
+       </div>
+       <div class="pay_button">
             <span class="previousPage" onclick="previousPage()">上一步</span>
             <span class="repractice" onclick="repractice()">重新练习</span>
             <span class="nextPage" onclick="nextPage()">下一步</span>
