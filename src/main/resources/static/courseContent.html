@@ -19,16 +19,15 @@
   <!--bootstrap的js-->
   <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
   <!--页面js-->
-  <script type="text/javascript" src="./web/./js/main.js"></script>
+  <script type="text/javascript" src="./web/js/main.js"></script>
 </head>
 <body>
-<!-- 头部条 -->
 <div class="pt-topbar">
   <div class="nav_header">
     <!--左侧系统名称-->
     <div class="pt-fl pt-system-info">
       <div class="pt-logo pt-fl"><img src="./web/images/LOGO@2x.png" alt=""></div>
-      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>企业中心</strong></div>
+      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>在线学习</strong></div>
     </div>
     <!--右侧用户信息-->
     <div class="pt-fr pt-user-info">
@@ -36,107 +35,104 @@
     </div>
   </div>
 </div>
-<!-- 头部条  结束 -->
-<div class="courseware">
-    <!--课件中心-->
-    <div class="courseware_center">
-       <span>课件中心
-       <div class="border"></div>
-       </span>
+
+<div class="courseware" style="display:none;">
+  <!--课件中心-->
+  <div class="_gap" style="margin-top:0px;">
+     <span>课件中心
+     <div class="border"></div>
+     </span>
+  </div>
+  <div class="detail_top">
+    <div class="_course_img">
+      <img src="./web/images/kj_default.jpg" alt="">
     </div>
-    <!--上部分内容-->
-    <div class="detail_top">
-      <div class="course_img">
-        <img src="./web/images/111.jpg" alt="">
+    <div class="course_right">
+      <span class="course_name"></span>
+      <div class="course_mid">
+        <span><img src="./web/images/rs.jpg" alt="" class="course_right_img"></span>
+        <span class="course_count">2.5万</span>
+        <span class="course_time"></span>
       </div>
-      <div class="course_right">
-        <span class="course_name">尚巍手书及课程报告</span>
-        <div class="course_mid">
-          <span>
-              <img src="./web/images/rs.jpg" alt="" class="course_right_img">
-          </span>
-          <span class="course1">2.5万</span>
-          <span class="course_time">2018年8月14发布</span>
-        </div>
-        <div class="course_description">
-          课程说明  课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明课程说明课程说明
-          课程说明  课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明 课程说明课程说明课程说明
-        </div>
-        <div class="study_btn">
-          <button class="start_study btn w120" onclick="toLearning()">开始学习</button>
-          <button class="now_study btn w120"  onclick="toLearning()">马上练习</button>
-        </div>
+      <div class="course_description">
+      </div>
+      <div class="study_btn">
+        <button class="start_study btn w120" onclick="toLearning()">开始学习</button>
       </div>
     </div>
-    <!--空隙-->
-    <div class="gap">
-        <span>同类课程
-         <div class="border"> </div>
-        </span>
-    </div>
-    <!--下部分内容-->
-    <div class="detail_bottom">
-      <div class="row">
-        <div class="col-md-3">
-          <img src="./web/images/zxc.png" alt="">
-        </div>
-        <div class="col-md-3">
-          <img src="./web/images/zxc.png" alt="">
-        </div>
-        <div class="col-md-3">
-          <img src="./web/images/zxc.png" alt="">
-        </div>
-        <div class="col-md-3">
-          <img src="./web/images/zxc.png" alt="">
-        </div>
-        <div class="col-md-3">
-          <img src="./web/images/zxc.png" alt="">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="name_title">
-            <div class="name_top">
-              <p>尚巍手书及课程预告</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="name_title">
-            <div class="name_top">
-              <p>尚巍手书及课程预告</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="name_title">
-            <div class="name_top">
-              <p>尚巍手书及课程预告</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="name_title">
-            <div class="name_top">
-              <p>尚巍手书及课程预告</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="name_title">
-            <div class="name_top">
-              <p>尚巍手书及课程预告</p>
-            </div>
+  </div>
+  <!--同类课程-->
+  <div class="_gap"><span>同类课程<div class="border"></div></span></div>
+  <div class="_detail_bottom">
+    <div class="row">
+      <div class="col-md-3 tlkc">
+        <img src="./web/images/kj_default.jpg" alt="">
+        <div class="_name_title">
+          <div class="">
+            <p>尚巍手书及课程预告</p>
           </div>
         </div>
       </div>
+      <div class="col-md-3 tlkc">
+        <img src="./web/images/zxc.png" alt="">
+        <div class="_name_title">
+          <div class="">
+            <p>尚巍手书及课程预告</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 tlkc">
+        <img src="./web/images/zxc.png" alt="">
+        <div class="_name_title">
+          <div class="">
+            <p>尚巍234手书及课程预告</p>
+           </div>
+        </div>
+      </div>
+      <div class="col-md-3 tlkc">
+        <img src="./web/images/zxc.png" alt="">
+        <div class="_name_title">
+          <div class="">
+            <p>尚巍手书及课程预告</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 tlkc">
+        <img src="./web/images/zxc.png" alt="">
+        <div class="_name_title">
+          <div class="">
+            <p>尚巍手书及课程预告</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 tlkc">
+        <img src="./web/images/zxc.png" alt="">
+        <div class="_name_title">
+          <div class="">
+            <p>尚巍手书及课程预告</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 tlkc">
+        <img src="./web/images/zxc.png" alt="">
+        <div class="_name_title">
+          <div class="">
+            <p>尚巍手书及课程预告</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 tlkc">
+        <img src="./web/images/zxc.png" alt="">
+        <div class="_name_title">
+          <div class="">
+            <p>尚巍手书及课程预告</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <!--相关练习-->
-    <div class="related_exercises">
-        <span>相关练习
-            <div class="border"></div>
-        </span>
-    </div>
+  </div>
+  <!--相关练习-->
+  <div class="_gap"><span>相关练习<div class="border"></div></span></div>
   <div class="paymentList_bottom">
     <div class="relevant_practice" id="show1">
       <div class="practice_title practice_title1">
@@ -159,18 +155,115 @@
       </div>
     </div>
   </div>
-  </div>
+</div>
+
 <!--公共底部-->
 <div class="pt-footer">
   <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
 </div>
 <script>
-  function toLearning() {
-    window.location.href ="onlineLearning.html"
-  }
-  function  toStartPractice() {
-      window.open("entryPractice.html")
-  }
+
+function getUrlParam(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+  var r = window.location.search.substr(1).match(reg); //匹配目标参数
+  if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+
+var _data={"kjId":getUrlParam("id")};
+
+$(document).ready(function(){
+  initPage();
+});
+
+//主课件填充
+function initPage() {
+  $.ajax({
+    type: 'post',
+    url: "./train/getKjInfo",
+    data: _data,
+    dataType:'json',
+    success: function (data) { //成功后的回调函数
+      var img_url="./web/images/kj_default.jpg";
+      var returnCode=data.returnCode;
+      if (returnCode=='00') {
+        if (data.data.imgUrl) img_url=data.data.imgUrl;
+        $("._course_img img").attr("src", img_url);
+        var tmpVal="";
+        tmpVal=(data.data.name?data.data.name:"");
+        $(".course_right .course_name").html(tmpVal);
+        tmpVal=(data.data.createDate?data.data.createDate:"");
+        $(".course_right .course_time").html("发布时间:"+tmpVal);
+        tmpVal=(data.data.remarks?data.data.remarks:"");
+        $(".course_right .course_description").html(tmpVal);
+      }
+      if (data.data.imgUrl) img_url=data.data.imgUrl;
+      $("._course_img img").attr("src", img_url);
+      //获得同类课程
+      initTlkc();
+      $(".courseware").show();
+    },
+    error: function (e) {
+      var img_url="./web/images/kj_default.jpg";
+      $(".course_img img").attr("src", img_url);
+      //提醒
+      $(".courseware").show();
+    }
+  });
+}
+
+//相关课件填充
+function initTlkc() {
+  //$("._detail_bottom .row").html("");
+  var _data={"kjId":getUrlParam("id")};
+  $.ajax({
+    type: 'post',
+    url: "./train/getKjRefKjList",
+    data: _data,
+    dataType:'json',
+    success: function (data) { //成功后的回调函数
+      var returnCode=data.returnCode;
+      if (returnCode=='00') {
+        var kjList=data.data;
+        var tlkcHtml="";
+        for (var i=0; i<kjList.length; i++) {
+          var oneKj=kjList[i];
+          tlkcHtml+=getOneTlckHtml(oneKj);
+        }
+      }
+      //$("._detail_bottom .row").html(tlkcHtml);
+    },
+    error: function (e) {
+    }
+  });
+}
+function getOneTlckHtml(oneKj) {
+  var _img_url=(oneKj.imgUrl?oneKj.imgUrl:"./web/images/kj_default.jpg");
+  var _html=
+  '<div class="col-md-3 tlkc">'+
+    '<img src="'+_img_url+'" alt="">'+
+    '<div class="_name_title"><div style="margin-top:15px;">'+
+      '<p>'+oneKj.name+'</p>'+
+    '</div></div>'+
+  '</div>';
+  return _html;
+}
+
+//相关考题填充
+
+//进入学习的详细页面
+function toLearning() {
+  window.location.href="./onlineLearning.html?kjId="+getUrlParam("id");
+}
+function  toStartPractice() {
+  window.open("entryPractice.html")
+}
+/**
+ <span style="margin-left: -28px">
+ <img src="./web/images/es/rs.jpg" al" alt="" class="course_right_img">
+ </span>
+ <span class="course1" >2.5万</span>
+ <span class="course_time" style="margin-left: 12px">2018年8月14发布</span>
+ */
 </script>
 </body>
 </html>

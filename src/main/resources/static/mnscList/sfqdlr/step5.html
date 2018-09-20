@@ -1,280 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>实操-费项&收费明细设置</title>
-  <!-- <!-- 1 bootstrap的css -->
-  <link rel="stylesheet" href="../../web/bootstrap/css/bootstrap.css">
-  <!--公共css-->
-  <link rel="stylesheet" href="../../web/css/pt-main.css">
-  <link rel="stylesheet" href="../../web/css/index1.css">
-  <!--页面css-->
-  <link rel="stylesheet" href="../../web/css/essentialInformation.css">
-  <!--引入字体的css-->
-  <link rel="stylesheet" href="../../web/bootstrap/fonts/iconfont.css">
+    <meta charset="UTF-8">
+    <title>实操- 获取费项单元</title>
+    <!-- <!-- 1 bootstrap的css -->
+    <link rel="stylesheet" href="../../web/bootstrap/css/bootstrap.css">
+    <!--公共css-->
+    <link rel="stylesheet" href="../../web/css/pt-main.css">
+    <link rel="stylesheet" href="../../web/css/index1.css">
+    <!--页面css-->
+    <link rel="stylesheet" href="../../web/css/billInformation.css">
+    <!--引入字体的css-->
+    <link rel="stylesheet" href="../../web/bootstrap/fonts/iconfont.css">
 
-  <script type="text/javascript" src="../../web/js/jquery-1.12.4.js"></script>
-  <!--bootstrap的js-->
-  <script type="text/javascript" src="../../web/bootstrap/js/bootstrap.min.js"></script>
-  <!--表格table.js-->
-  <script type="text/javascript" src="../../web/bootstrap/js/bootstrap-table.min.js"></script>
-  <!--页面js-->
-  <script type="text/javascript" src="../../web/js/main.js"></script>
-  <script>
-    $(function(){
-      setTimeout(function () {
-        $(".model_bg").fadeIn("slow");
-        $(".triangle").fadeIn("slow");
-      },2000);
-    })
-  </script>
+    <script type="text/javascript" src="../../web/js/jquery-1.12.4.js"></script>
+    <!--bootstrap的js-->
+    <script type="text/javascript" src="../../web/bootstrap/js/bootstrap.min.js"></script>
+    <!--表格table.js-->
+    <script type="text/javascript" src="../../web/bootstrap/js/bootstrap-table.min.js"></script>
+    <!--页面js-->
+    <script type="text/javascript" src="../../web/js/main.js"></script>
+    <script>
+        $(function(){
+            setTimeout(function () {
+                $(".model_bg").fadeIn("slow");
+                $(".triangle").fadeIn("slow");
+            },2000);
+        })
+    </script>
+    <style>
+      html{
+        height: 1425px;
+      }
+    .model_bg{
+      position: absolute;
+      top: 159px;
+      left: 38px;
+      bottom: 0;
+      right: 0;
+      background: rgba(0,0,255,.5);
+      z-index: 999;
+      display: none;
+      width: 350px;
+      height:267px;
+      border-radius:5px;
+      padding-top: 45px;
+    }
+    .triangle{
+      position: absolute;
+      top: 141px;
+      left:88px;
+      bottom: 0;
+      right: 0;
+      z-index: 999;
+      display: none;
+      width: 0;
+      height: 0;
+      border-left:18px solid transparent;
+      border-right: 18px solid transparent;
+      border-bottom: 18px solid rgba(0,0,255,.5);
+    }
+    .model_text{
+      width:320px;
+      margin: 0 auto;
+    }
+    .model_text .entry{
+      margin-top: -21px;
+      font-size: 14px;
+      color: white;
+    }
+    .model_text .know{
+      display: inline-block;
+      margin-left: 135px;
+      width: 50px;
+      height: 25px;
+      border: 1px solid white;
+      line-height: 25px;
+      text-align: center;
+      border-radius: 5px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: white;
+    }
+    .model_text div{
+      font-size: 14px;
+      color: white;
+      margin-left: 30px;
+      margin-bottom: 5px;
+    }
+    .model_text .odd{
+      margin-left: 73px;
+      color: #feef00;
+    }
+    .button1{
+      margin-top: -45px;
+      margin-bottom: 30px;
+    }
+  </style>
 </head>
-<body>
+<tbody>
 <!-- 头部条 -->
 <div class="pt-topbar">
-  <div class="nav_header">
-    <!--左侧系统名称-->
-    <div class="pt-fl pt-system-info">
-      <div class="pt-logo pt-fl"><img src="../../web/images/LOGO@2x.png" alt=""></div>
-      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>企业中心</strong></div>
+    <div class="nav_header">
+        <!--左侧系统名称-->
+        <div class="pt-fl pt-system-info">
+            <div class="pt-logo pt-fl"><img src="../../web/images/LOGO@2x.png" alt=""></div>
+            <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>企业中心</strong></div>
+        </div>
+        <!--右侧用户信息-->
+        <div class="pt-fr pt-user-info">
+            <div class="pt-settings pt-fr"><img src="" alt=""></div>
+        </div>
     </div>
-    <!--右侧用户信息-->
-    <div class="pt-fr pt-user-info">
-      <div class="pt-settings pt-fr"><img src="" alt=""></div>
-    </div>
-  </div>
 </div>
 <!-- 头部条  结束 -->
-<div class="essential">
-  <div class="nav_bar">
-    <span>收费清单录入</span>
-    <div class="border"></div>
-  </div>
-  <div class="paymentList">
-    <table class="table table-bordered">
-      <!--费项信息-->
-      <thead>
-      <tr>
-        <td colspan="12">费项&收费明细设置</td>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td colspan="12" class="message">
-          <span>添加费项</span>
-          <div class="model_bg">
-            <div class="model_text">
-              <p>点击汇总按钮可以查看汇总详细信息</p>
-              <span onclick="toHide()">知道了</span>
-            </div>
-          </div>
-          <div class="triangle"></div>
-          <span >选择费项模板</span>
-          <span>选择历史数据</span>
-          <span>删除</span>
-          <span onclick="toSummary()">汇总</span>
-        </td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>序号</td>
-        <td>费项类别</td>
-        <td>收费项目</td>
-        <td>收费子项</td>
-        <td>计费规格</td>
-        <td>计费单位</td>
-        <td>单价</td>
-        <td>数量</td>
-        <td>金额</td>
-        <td>币种</td>
-        <td>价格说明</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>1</td>
-        <td>常规</td>
-        <td>一级项目</td>
-        <td>二级项目</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>2</td>
-        <td>非常规</td>
-        <td>一级项目</td>
-        <td>二级项目</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>3</td>
-        <td>xxx</td>
-        <td>一级项目</td>
-        <td>二级项目</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-      </tr>
-      </tbody>
-      <!--集装箱信息-->
-      <thead>
-      <tr>
-        <td colspan="12">集装箱信息</td>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td colspan="12" class="message">
-          <span >添加集装箱</span>
-          <span >删除</span>
-        </td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>序号</td>
-        <td>集装箱号</td>
-        <td>集装箱规格</td>
-        <td>毛重</td>
-        <td>拼箱标识</td>
-        <td>商品项号关系</td>
-        <td colspan="5">操作</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>1</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td colspan="5" class="delete">
-          <span>删除</span>
-        </td>
+<div class="bill">
 
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>1</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td colspan="5" class="delete">
-          <span>删除</span>
-        </td>
-      </tr>
-      </tbody>
-      <!--货物信息-->
-      <thead>
-      <tr>
-        <td colspan="12">货物信息</td>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td colspan="12" class="message">
-          <span >添加集装箱</span>
-          <span >删除</span>
-        </td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>序号</td>
-        <td>集装箱号</td>
-        <td>集装箱规格</td>
-        <td>毛重</td>
-        <td>拼箱标识</td>
-        <td>商品项号关系</td>
-        <td colspan="5">操作</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>1</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td colspan="5" class="delete">
-          <span>删除</span>
-        </td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>1</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td>xxx</td>
-        <td colspan="5" class="delete">
-          <span>删除</span>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <div class="pay_button">
-      <span class="previousPage" onclick="previousPage()">上一页</span>
-      <span class="repractice" onclick="repractice()">重新练习</span>
-      <span class="nextPage" onclick="nextPage()">下一页</span>
+    <div class="nav_bar">
+        <span>收费清单录入</span>
+        <div class="border"></div>
     </div>
-  </div>
-  <!--底部相关-->
-  <iframe src="../../relevant.html" frameborder="0" id="main" style="width: 100%;height: 260px"></iframe>
+    <!--提单信息-->
+    <div class="billList">
+        <!--费项单元-->
+     <div id="expenditure" class="tab-pane ">
+       <div class="head_title"><span id="msg">费项单元</span></div>
+       <div class="frame">
+         <!--费项信息-->
+         <div class="table_detail" style="border: none">
+           <div class="button1" style="margin-left: 1px">
+             <span style="background:#20c1ed;width: 130px ">添加费项单元</span>
+             <span style="background:#408eba;width: 130px ">保存费项单元</span>
+           </div>
+           <table class="table table-bordered" style="width: 1130px;margin: 0 auto ">
+             <thead>
+             <tr>
+               <td></td>
+               <td >费项单元编号</td>
+               <td>费项单元名称</td>
+               <td>集装箱信息</td>
+               <td>货物信息</td>
+               <td>费项信息</td>
+               <td>总价</td>
+               <td>费项单元类型</td>
+               <td>操作</td>
+             </tr>
+             </thead>
+             <tbody>
+             <tr>
+               <td><input type="radio"></td>
+               <td>1</td>
+               <td><input type="text" value="费项单元包_1"></td>
+               <td>1</td>
+               <td>0</td>
+               <td>1</td>
+               <td>0.10</td>
+               <td>集装箱</td>
+               <td ><span>删除</span></td>
+             </tr>
+             <tr>
+               <td><input type="radio"></td>
+               <td>2</td>
+               <td><input type="text" value="费项单元包_2"></td>
+               <td>1</td>
+               <td>0</td>
+               <td>1</td>
+               <td>6000.00</td>
+               <td>集装箱</td>
+               <td ><span>删除</span></td>
+             </tr>
+             </tbody>
+           </table>
+         </div>
+         <div class="model_bg ">
+           <div class="model_text">
+             <p style="color: white;margin-top: -14px;margin-bottom: 27px" >创建费项单元,设置相关属性,进行费项设置并添加货物信息</p>
+             <p class="entry">注：1.至少有一个费项单元，可以添加多个费项单元</p>
+             <div>2.一个费项单元只能选择一种货物类型</div>
+             <div>3.每个费项单元下有不同的费项明细、集装箱或货物信息</div>
+             <div>4.查看清单明细,点击 <span style="color: #feef00">“下一步”</span>进入下一页</div>
+             <span onclick="toHide()" class="know">知道了</span>
+           </div>
+         </div>
+         <div class="triangle"></div>
+         <div class="table_detail table_detail1" style="border: none;border-top: 1px solid #ccc;margin-top: 60px">
+           <div class="border1">
+             <span>费项信息</span>
+           </div>
+           <div class="button1" style="margin-top: -75px;margin-left: 10px">
+             <span style="background:#20c1ed;width: 110px ">标准费项</span>
+             <span style="background:#408eba;width: 110px ">自定义模板</span>
+             <span style="background:#20c1ed;width: 110px ">自定义费项</span>
+             <span style="background:#408eba;width: 110px ">历史单据</span>
+             <span style="background:#20c1ed;width: 110px ">保存</span>
+             <span style="background:#db4c3f;width: 110px ">删除</span>
+           </div>
+           <div>
+             <table class="table table-bordered" style="width: 1130px;margin-top: -43px">
+               <tbody>
+               <tr style="background-color:#EEF2F6 ">
+                 <td><input type="checkbox"></td>
+                 <td>收费类型</td>
+                 <td>费项名称</td>
+                 <td>子项名称</td>
+                 <td>计费规格</td>
+                 <td>计费单位</td>
+                 <td>数量</td>
+                 <td>单价</td>
+                 <td>最低价</td>
+                 <td>最高价</td>
+                 <td>总价</td>
+                 <td>定价类型</td>
+                 <td>价格说明</td>
+               </tr>
+               <tr>
+                 <td><input type="checkbox"></td>
+                 <td>常规收费</td>
+                 <td>托轮费</td>
+                 <td>托轮费</td>
+                 <td>计费规格</td>
+                 <td>(国际航线)220-260米</td>
+                 <td><input type="text" style="width: 56px" value="1"></td>
+                 <td><input type="text" style="width: 56px" value="0.10"></td>
+                 <td>0.00</td>
+                 <td>9000.00</td>
+                 <td>6000.00</td>
+                 <td>政府指导价</td>
+                 <td></td>
+               </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+         <div>
+           <span style="margin-left: 9px">显示第1到第1条记录，总共1条记录</span>
+         </div>
+         <!--集装箱信息-->
+         <div class="table_detail table_detail1" style="border: none;border-top: 1px solid #ccc;margin-top: 60px">
+           <div class="border1">
+             <span>集装箱信息</span>
+           </div>
+           <div class="button1" style="margin-top: -75px;margin-left: 10px">
+             <span style="background:#20c1ed;width: 110px ">添加</span>
+             <span style="background:#db4c3f;width: 110px ">删除</span>
+           </div>
+           <div>
+             <table class="table table-bordered" style="width: 1130px;margin-top: -43px">
+               <tbody>
+               <tr style="background-color: #EEF2F6">
+                 <td><input type="checkbox"></td>
+                 <td>集装箱号</td>
+                 <td>拼箱标志</td>
+                 <td>重箱或者空箱标识代码</td>
+                 <td>集装箱尺寸和类型</td>
+                 <td>舱单号</td>
+                 <td>提运单</td>
+                 <td>分提运单</td>
+               </tr>
+               <tr>
+                 <td><input type="checkbox"></td>
+                 <td class="term">6</td>
+                 <td>不拼箱</td>
+                 <td>重箱</td>
+                 <td>40英尺</td>
+                 <td>110</td>
+                 <td>001</td>
+                 <td></td>
+               </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+         <span style="margin-left: 9px">显示第1到第1条记录，总共1条记录</span>
+       </div>
+       <div class="pay_button">
+            <span class="previousPage" onclick="previousPage()">上一步</span>
+            <span class="repractice" onclick="repractice()">重新练习</span>
+            <span class="nextPage" onclick="nextPage()">下一步</span>
+        </div>
+    </div>
+    </div>
+    <!--底部相关-->
+    <iframe src="../../relevant.html" frameborder="0" id="main" style="width: 100%;height: 260px"></iframe>
 </div>
 <!--公共底部-->
 <div class="pt-footer">
-  <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+    <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
 </div>
 <script>
-  $(function(){
-    $('.relevant span').click(function(){
-      $(this).addClass('active').siblings().removeClass('active')
+    $('#myTab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+        $(this).addClass('active1')
     })
-  })
-  function show1() {
-    $(this).addClass('active').siblings().removeClass('active')
-    $("#show1").show()
-    $("#show").hide()
-  }
-  function show2() {
-    $(this).addClass('active').siblings().removeClass('active')
-    $("#show1").hide()
-    $("#show").show()
-  }
+    $(function(){
+        $('.relevant span').click(function(){
+            $(this).addClass('active').siblings().removeClass('active')
+        })
+    })
+    function show1() {
+        $(this).addClass('active').siblings().removeClass('active')
+        $("#show1").show()
+        $("#show").hide()
+    }
+    function show2() {
+        $(this).addClass('active').siblings().removeClass('active')
+        $("#show1").hide()
+        $("#show").show()
+    }
 
-  function toSummary() {
-    window.location.href ='step6.html'
-  }
-  //气泡消失
-  function toHide() {
-    $(".model_bg").hide()
-    $(".triangle").hide()
-  }
-  //  下一页
-  function nextPage() {
-    window.location.href ='step6.html'
-  }
-  function previousPage() {
-    window.location.href ='step4.html'
-  }
+    function toList() {
+        window.location.href = "step4.html"
+    }
+    //气泡消失
+    function toHide() {
+        $(".model_bg").hide()
+        $(".triangle").hide()
+    }
+
+    /*下一页*/
+    function nextPage() {
+        window.location.href = "step6.html"
+    }
+    function previousPage() {
+        window.location.href = "step4.html"
+    }
 </script>
 </body>
 </html>

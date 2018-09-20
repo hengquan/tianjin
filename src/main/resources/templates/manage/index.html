@@ -36,7 +36,7 @@
         <!--左侧系统名称-->
         <div class="pt-fl pt-system-info" >
             <div class="pt-logo pt-fl"><img src="./src/images/LOGO@2x.png" alt=""></div>
-            <div class="pt-slogen pt-fr">天津市港口统一收费服务平台 -<strong>企业中心</strong></div>
+            <div class="pt-slogen pt-fr">天津市港口统一收费服务平台 -<strong>培训管理</strong></div>
         </div>
     </div>
     <!-- 头部条  结束 -->
@@ -50,6 +50,28 @@
             <!--菜单列表-->
             <div class="pt-menu">
                 <ul>
+                    <!--cell-->
+                    <li class="pt-menu-list pt-menu-selected">
+                        <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                        <h3 class="pt-menu-title"><a href="#">企业端资源</a></h3>
+                        <ul class="pt-second-menu">
+                            <!--cell-->
+                            <li class="pt-menu-child">
+                                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toXYGK()">学员概况</a></h3>
+                            </li>
+                            <!--cell-->
+                            <li class="pt-menu-child">
+                                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toWebMNSC()">模拟实操</a></h3>
+                            </li>
+                            <!--cell-->
+                            <li class="pt-menu-child">
+                                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXXX()">在线学习</a></h3>
+                            </li>
+                        </ul>
+                    </li>
                     <!--cell-->
                     <li class="pt-menu-list pt-menu-selected">
                         <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
@@ -139,10 +161,48 @@
     </div>
 </div>
 <script>
-  $(document).ready(function() {
-    toMNSC();
-  });
+$(document).ready(function() {
+  toMNSC();
+  initMenu();
+});
 
+function initMenu() {
+  $.ajax({
+    type: 'post',
+    url: "./user/getUserMenu",
+    dataType:'json',
+    success: function (data) { //成功后的回调函数
+      var returnCode= data.returnCode;
+      //$(".pt-menu ul").html("");
+      var allHtml="";
+      if (returnCode=="00") {
+        for (var i=0; i<data.data.length; i++) {
+          var menu1Html='<li class="pt-menu-list'+((i==0)?' pt-menu-selected':'')+'"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>'
+                       +'<h3 class="pt-menu-title"><a href="#">'+data.data[i].resourcesName+'</a></h3>';
+          if (data.data[i].children!=null&&data.data[i].children.length>0) {
+            menu1Html+='<ul class="pt-second-menu">';
+            for (var j=0; j<data.data[i].children.length; j++) {
+              var oneMenu=data.data[i].children[j];
+              menu1Html+='<li class="pt-menu-child"><span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>'
+                        +'<h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="showMenu(\''+oneMenu.resourceUrl+'\')">'+oneMenu.resourcesName+'</a></h3></li>';
+            }
+            menu1Html+="</ul></li>";
+            allHtml+=menu1Html;
+          }
+        }
+//        console.log(allHtml);
+        //$(".pt-menu ul").html(allHtml);
+      }
+    },
+    error: function (e) {
+      console.log("网络连接失败！");
+    }
+  });
+}
+
+function showMenu(url) {
+  $("#mainIframe").attr("src",url);
+}
   //模拟实操
   function toMNSC(){
     $("#mainIframe").attr("src","mnscList");
@@ -163,6 +223,19 @@
   //字典管理
   function toDICT(){
     $("#mainIframe").attr("src","testTt");
+  }
+
+  //学员概况
+  function toXYGK(){
+    $("#mainIframe").attr("src","summary");
+  }
+  //模拟实操
+  function toWebMNSC(){
+    $("#mainIframe").attr("src","practice");
+  }
+  //在线学习
+  function toZXXX(){
+    $("#mainIframe").attr("src","courseware");
   }
 </script>
 

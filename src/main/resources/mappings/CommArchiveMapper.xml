@@ -1,105 +1,108 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper" >
-  <resultMap id="BaseResultMap" type="cn.tianjin.unifiedfee.ot.entity.CommArchive" >
-    <result column="id" property="id" jdbcType="VARCHAR" />
-    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
-    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
-    <result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
-    <result column="is_show" property="isShow" jdbcType="INTEGER" />
-    <result column="obj_tabname" property="objTabname" jdbcType="VARCHAR" />
-    <result column="obj_id" property="objId" jdbcType="VARCHAR" />
-    <result column="archive_type" property="archiveType" jdbcType="VARCHAR" />
-    <result column="sort" property="sort" jdbcType="INTEGER" />
-    <result column="create_date" property="createDate" jdbcType="DATE" />
-  </resultMap>
-  <sql id="Blob_Column_List">
-    id, file_name, file_path, file_url, is_show, obj_tabname,obj_id, archive_type, sort, create_date
-  </sql>
-  <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.CommArchive" >
-    insert into comm_archive (id, file_name, file_path, 
-      file_url, is_show, obj_tabname, 
-      obj_id, archive_type, sort, 
-      create_date)
-    values (#{id,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, 
-      #{fileUrl,jdbcType=VARCHAR}, #{isShow,jdbcType=INTEGER}, #{objTabname,jdbcType=VARCHAR}, 
-      #{objId,jdbcType=VARCHAR}, #{archiveType,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
-      #{createDate,jdbcType=DATE})
-  </insert>
-  <insert id="insertSelective" parameterType="cn.tianjin.unifiedfee.ot.entity.CommArchive" >
-    insert into comm_archive
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="fileName != null" >
-        file_name,
-      </if>
-      <if test="filePath != null" >
-        file_path,
-      </if>
-      <if test="fileUrl != null" >
-        file_url,
-      </if>
-      <if test="isShow != null" >
-        is_show,
-      </if>
-      <if test="objTabname != null" >
-        obj_tabname,
-      </if>
-      <if test="objId != null" >
-        obj_id,
-      </if>
-      <if test="archiveType != null" >
-        archive_type,
-      </if>
-      <if test="sort != null" >
-        sort,
-      </if>
-      <if test="createDate != null" >
-        create_date,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="fileName != null" >
-        #{fileName,jdbcType=VARCHAR},
-      </if>
-      <if test="filePath != null" >
-        #{filePath,jdbcType=VARCHAR},
-      </if>
-      <if test="fileUrl != null" >
-        #{fileUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="isShow != null" >
-        #{isShow,jdbcType=INTEGER},
-      </if>
-      <if test="objTabname != null" >
-        #{objTabname,jdbcType=VARCHAR},
-      </if>
-      <if test="objId != null" >
-        #{objId,jdbcType=VARCHAR},
-      </if>
-      <if test="archiveType != null" >
-        #{archiveType,jdbcType=VARCHAR},
-      </if>
-      <if test="sort != null" >
-        #{sort,jdbcType=INTEGER},
-      </if>
-      <if test="createDate != null" >
-        #{createDate,jdbcType=DATE},
-      </if>
-    </trim>
-  </insert>
+<mapper namespace="cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper">
+	<resultMap id="BaseResultMap" type="cn.tianjin.unifiedfee.ot.entity.CommArchive">
+		<result column="id" property="id" jdbcType="VARCHAR" />
+		<result column="file_name" property="fileName" jdbcType="VARCHAR" />
+		<result column="file_path" property="filePath" jdbcType="VARCHAR" />
+		<result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
+		<result column="is_show" property="isShow" jdbcType="INTEGER" />
+		<result column="obj_tabname" property="objTabname" jdbcType="VARCHAR" />
+		<result column="obj_id" property="objId" jdbcType="VARCHAR" />
+		<result column="archive_type" property="archiveType" jdbcType="VARCHAR" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="create_date" property="createDate" jdbcType="DATE" />
+	</resultMap>
+	<sql id="Blob_Column_List">
+		id, file_name, file_path, file_url, is_show,
+		obj_tabname,obj_id,
+		archive_type, sort, create_date
+	</sql>
+	<insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.CommArchive">
+		insert into comm_archive
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="fileName != null">
+				file_name,
+			</if>
+			<if test="filePath != null">
+				file_path,
+			</if>
+			<if test="fileUrl != null">
+				file_url,
+			</if>
+			<if test="isShow != null">
+				is_show,
+			</if>
+			<if test="objTabname != null">
+				obj_tabname,
+			</if>
+			<if test="objId != null">
+				obj_id,
+			</if>
+			<if test="archiveType != null">
+				archive_type,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="fileName != null">
+				#{fileName,jdbcType=VARCHAR},
+			</if>
+			<if test="filePath != null">
+				#{filePath,jdbcType=VARCHAR},
+			</if>
+			<if test="fileUrl != null">
+				#{fileUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="isShow != null">
+				#{isShow,jdbcType=INTEGER},
+			</if>
+			<if test="objTabname != null">
+				#{objTabname,jdbcType=VARCHAR},
+			</if>
+			<if test="objId != null">
+				#{objId,jdbcType=VARCHAR},
+			</if>
+			<if test="archiveType != null">
+				#{archiveType,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
 
-  <select id="getArchiveByObjIds" resultMap="BaseResultMap" parameterType="Map">
-  select <include refid="Blob_Column_List" /> from comm_archive
-  where upper(obj_tabname)=upper(#{objTabName}) and (${objIdSql})
-  <if test="archiveType!=null and archiveType!=''" >
-  and upper(archive_type)=upper(#{archiveType})
-  </if>
-  order by obj_id, archive_type, sort desc
-  </select>
+	<select id="getArchiveByObjIds" resultMap="BaseResultMap"
+		parameterType="Map">
+		select
+		<include refid="Blob_Column_List" />
+		from comm_archive
+		where upper(obj_tabname)=upper(#{objTabName}) and
+		(${objIdSql})
+		<if test="archiveType!=null and archiveType!=''">
+			and upper(archive_type)=upper(#{archiveType})
+		</if>
+		order by obj_id, archive_type, sort desc
+	</select>
+  <!-- 查所对应的所有的列表信息 -->
+	<select id="selectByObjId" resultMap="BaseResultMap">
+		select
+		<include refid="Blob_Column_List" />
+		from comm_archive
+		where obj_id = #{objId}
+	</select>
 </mapper>

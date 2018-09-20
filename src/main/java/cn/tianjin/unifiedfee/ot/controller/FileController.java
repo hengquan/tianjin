@@ -1,7 +1,11 @@
-package cn.tianjin.unifiedfee.ot.util;
+package cn.tianjin.unifiedfee.ot.controller;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,13 +15,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import cn.taiji.file.service.FileObjectService;
+import cn.tianjin.unifiedfee.ot.entity.CommArchive;
+import cn.tianjin.unifiedfee.ot.service.CommArchiveService;
+import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
 @Controller
-@RequestMapping("/fileTest")
-public class FileUpLoad {
+@RequestMapping("/file")
+public class FileController {
     // 文件管理服务
     @Autowired
     private FileObjectService fileObjectService;
+    @Autowired
+    private CommArchiveService commArchiveService;
     // 服务器地址
     @Value("${taiji.file.manage.download-endpoint}")
     private String downloadEndpoint;
@@ -27,41 +36,32 @@ public class FileUpLoad {
     // 文件类型
     public final String FILETYPE = "image/jpg";
 
-    @RequestMapping("/upLoad123")
-    public void fileUp123() throws Exception {
-        System.out.println(downloadEndpoint);
-        InputStream stream = new FileInputStream("D:\\123.jpg");
-        String objectName = fileObjectService.putObject(FILEPATH, "123.jpg", stream, FILETYPE);
-        System.out.println(objectName);
-        stream.close();
-    }
-
-    // 文件上传
-    public void fileUp(MultipartFile file) throws Exception {
-        if (file != null && file.getSize() > 0) {
-            InputStream stream = file.getInputStream();
-            String fileName = file.getOriginalFilename();
-            String objectName = fileObjectService.putObject(FILEPATH, fileName, stream, FILETYPE);
-            System.out.println("--------------------------------");
-            System.out.println(downloadEndpoint + objectName);
-            System.out.println("--------------------------------");
-        }
-    }
-    // 文件上传
-    @RequestMapping("/upLoad")
+    @RequestMapping("/upload")
     @ResponseBody
-    public void fileUps( MultipartFile[] files) throws Exception {
+    public Map<String, Object> upload(CommArchive commArchive,MultipartFile[] files,HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpPush.responseInfo(response);// 跨域
+        Map<String,Object> map = new HashMap<String,Object>();
+        String fileName = "";
+        String fileUrl = "";
         if (files != null && files.length > 0) {
             for (MultipartFile file : files) {
                 if (file != null && file.getSize() > 0) {
                     InputStream stream = file.getInputStream();
-                    String fileName = file.getOriginalFilename();
+                    fileName = file.getOriginalFilename();
                     String objectName = fileObjectService.putObject(FILEPATH, fileName, stream, FILETYPE);
                     System.out.println("--------------------------------");
                     System.out.println(downloadEndpoint + objectName);
                     System.out.println("--------------------------------");
+                    fileUrl = downloadEndpoint + objectName;
+                    //添加附件
+                    commArchive.setFileName(fileName);
+                    commArchive.setFilePath("/ot/image/");
+                    commArchive.setFileUrl(fileUrl);
+                    commArchiveService.insert(commArchive);
                 }
             }
         }
+        map.put("fileName", fileName);
+        return map;
     }
 }

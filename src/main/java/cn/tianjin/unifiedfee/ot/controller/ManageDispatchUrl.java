@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ManageDispatchUrl {
 //=============================以下为页面跳转
     /*后台管理首页 index页*/
-    @RequestMapping("page")
+    @RequestMapping("/")
     public String page() {
         return "/manage/index";
     }
@@ -85,7 +85,8 @@ public class ManageDispatchUrl {
     public String toKjList4st() {
         return "/manage/kj/kjList4st";
     }
-  //--试题管理
+
+    //--试题管理
     @RequestMapping("tmList")
     public String toTmList() {
         return "/manage/st/tmList";

@@ -140,28 +140,25 @@ html {
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="wenjian"><span
-								class="cfff"> ※ </span>文件选择</label>
-							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
-								<label class="radio-inline"> <input type="radio"
-									name="wenjian" id="wenjian" value="option1" checked>
-									选择文件
-								</label> <label class="radio-inline"> <input type="radio"
-									name="wenjian" id="wenjian2" value="option2">
-									录入新文件(录入新文件时显示下方内容)
-								</label>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 disnone Bshow">
-						<div class="form-group">
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"></div>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span
+								class="cfff"> ※ </span>上传课件</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<input id="file-1" type="file" multiple class="file"
 									name="files" data-overwrite-initial="false"
-									data-min-file-count="2">
+									data-min-file-count="1">
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span
+								class="cfff"> ※ </span>上传图片</label>
+							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
+								<input id="file-2" type="file" multiple class="file"
+									name="files" data-overwrite-initial="false"
+									data-min-file-count="1">
 							</div>
 						</div>
 					</div>
@@ -182,7 +179,7 @@ html {
 						</div>
 					</div>
 					<div class="form-group pt-btn-submit-layer">
-						<button type="submit" onclick="addKj()" id="baocun"
+						<button onclick="addKj()" id="baocun"
 							class="btn w160 btn-lg btn-default btn-primary">保存</button>
 						<button type="button" class="btn w160 btn-lg btn-default"
 							onclick="closeMy()">取消</button>
@@ -196,9 +193,6 @@ html {
 	<br>
 	<script>
     $(function() {
-      $("input:radio[name='wenjian']").bind('click', function() {
-        console.log($(this).attr('value'))
-      })
       $('form').bootstrapValidator({
         message : 'This value is not valid',
         feedbackIcons : {
@@ -257,7 +251,6 @@ html {
           }
         }
       });
-
       // 时间选择
       $('.datetimepicker').datetimepicker({
         language : 'zh', // 语言选择
@@ -272,14 +265,6 @@ html {
         radioClass : 'iradio_square-blue',
         increaseArea : '20%' // optional
       });
-      $("input:radio[name='wenjian']").on('ifChecked', function(event) {
-        // alert($(this).val());
-        if ($(this).val() == 'option1') {
-          $('.Bshow').addClass('disnone')
-        } else {
-          $('.Bshow').removeClass('disnone')
-        }
-      });
       //获取参数
       var url = location.search;
       if (url != '') {
@@ -287,59 +272,62 @@ html {
         $("#baocun").attr("onclick", "editKj()");
         url = url.substr(1);
         var split = url.split("=");
-        $.ajax({
-          type : 'post',
-          url : "/kj/get",
-          data : {
-            "id" : split[1]
-          },
-          dataType : 'json',
-          cache : false,
-          success : function(data) {
-            var html = '<tr>'
-              + '<th>课件名称</th>'
-              + '<th>分类名称</th>'
-              + '<th>学分</th>'
-              + '<th>过期时间</th>'
-              + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
-              + '</tr>';
-            var kj = data.data;
-            $("#objId").val(kj.id);
-            $("#kjName").val(kj.kjName);
-            $("#expireDate").val(kj.expireDate);
-            $("#score").val(kj.score);
-            $("#remarks").val(kj.remarks);
-            $("#kjCatNames").val(kj.kjCatNames);
-            $("#kjCatId").selectpicker('val', kj.kjCatId);
-            $("#kjCatId").selectpicker('text', kj.kjCatNames);
-            //获取相关课件列表
-            $("#ids").val(kj.ids);
-            var dataList = kj.kjs;
-            if(dataList!=null){
-	            for (var i = 0; i < dataList.length; i++) {
-	              html += '<tr>'
-	                  + '<td>'
-	                  + dataList[i].kjName
-	                  + '</td>'
-	                  + '<td>'
-	                  + dataList[i].kjCatNames
-	                  + '</td>'
-	                  + '<td>'
-	                  + dataList[i].score
-	                  + '</td>'
-	                  + '<td>'
-	                  + dataList[i].expireDate
-	                  + '</td>'
-	                  + '<th onclick="removeTr(this)" thisval="'+ dataList[i].id +'"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
-	                  + '</tr>';
-	            }
-	            $("#theTable").html(html);
-            }
-          },
-          error : function() { //失败回调函数
-            alert("获取信息失败");
-          }
-        });
+        $
+            .ajax({
+              type : 'post',
+              url : "/kj/get",
+              data : {
+                "id" : split[1]
+              },
+              dataType : 'json',
+              cache : false,
+              success : function(data) {
+                var html = '<tr>'
+                    + '<th>课件名称</th>'
+                    + '<th>分类名称</th>'
+                    + '<th>学分</th>'
+                    + '<th>过期时间</th>'
+                    + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
+                    + '</tr>';
+                var kj = data.data;
+                $("#objId").val(kj.id);
+                $("#kjName").val(kj.kjName);
+                $("#expireDate").val(kj.expireDate);
+                $("#score").val(kj.score);
+                $("#remarks").val(kj.remarks);
+                $("#kjCatNames").val(kj.kjCatNames);
+                $("#kjCatId").selectpicker('val', kj.kjCatId);
+                $("#kjCatId").selectpicker('text', kj.kjCatNames);
+                //获取相关课件列表
+                $("#ids").val(kj.ids);
+                var dataList = kj.kjs;
+                if (dataList != null) {
+                  for (var i = 0; i < dataList.length; i++) {
+                    html += '<tr>'
+                        + '<td>'
+                        + dataList[i].kjName
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].kjCatNames
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].score
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].expireDate
+                        + '</td>'
+                        + '<th onclick="removeTr(this)" thisval="'
+                        + dataList[i].id
+                        + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+                        + '</tr>';
+                  }
+                  $("#theTable").html(html);
+                }
+              },
+              error : function() { //失败回调函数
+                alert("获取信息失败");
+              }
+            });
       }
     });
     function addKj() {
@@ -350,6 +338,13 @@ html {
         dataType : 'json',
         cache : false,
         success : function(data) {
+          //上传附件
+          var objId = data.objId;
+          if (objId != '') {
+            $("#objId").val(objId);
+            $("#file-1").fileinput('upload');
+            $("#file-2").fileinput('upload');
+          }
           parent.refresh();
           closeMy();
         },
@@ -385,18 +380,6 @@ html {
       var kjCatNames = $('#kjCatId option:selected').text();//选中的值
       $("#kjCatNames").val(kjCatNames);
     }
-    //上传文件
-    $("#file-1").fileinput({
-      uploadUrl : '/file/upLoad', // you must set a valid URL here else you will get an error
-      // allowedFileExtensions : ['jpg', 'png','gif'],
-      overwriteInitial : false,
-      maxFileSize : 1000,
-      maxFilesNum : 10,
-      //allowedFileTypes: ['image', 'video', 'flash'],
-      slugCallback : function(filename) {
-        return filename.replace('(', '_').replace(']', '_');
-      }
-    });
     function selectItem() {
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
@@ -435,52 +418,55 @@ html {
           }
         }
         var kjidval = kjid1 + kjid;
-        if(kjidval!=''){
+        if (kjidval != '') {
           kjIds = kjidval.substr(1);
         }
       }
       $("#ids").val(kjIds);
       //处理显示
-      $.ajax({
-        type : 'post',
-        url : "/kj/getDataList",
-        data : {
-          "ids" : kjIds
-        },
-        dataType : 'json',
-        cache : false,
-        success : function(data) {
-          var html = '<tr>'
-            + '<th>课件名称</th>'
-            + '<th>分类名称</th>'
-            + '<th>学分</th>'
-            + '<th>过期时间</th>'
-            + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
-            + '</tr>';
-          var dataList = data.dataList;
-          for (var i = 0; i < dataList.length; i++) {
-            html += '<tr>'
-                + '<td>'
-                + dataList[i].kjName
-                + '</td>'
-                + '<td>'
-                + dataList[i].kjCatNames
-                + '</td>'
-                + '<td>'
-                + dataList[i].score
-                + '</td>'
-                + '<td>'
-                + dataList[i].expireDate
-                + '</td>'
-                + '<th onclick="removeTr(this)" thisval="'+ dataList[i].id +'"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
-                + '</tr>';
-          }
-          $("#theTable").html(html);
-        },
-        error : function() { //失败回调函数
-          alert("查询失败")
-        }
-      });
+      $
+          .ajax({
+            type : 'post',
+            url : "/kj/getDataList",
+            data : {
+              "ids" : kjIds
+            },
+            dataType : 'json',
+            cache : false,
+            success : function(data) {
+              var html = '<tr>'
+                  + '<th>课件名称</th>'
+                  + '<th>分类名称</th>'
+                  + '<th>学分</th>'
+                  + '<th>过期时间</th>'
+                  + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
+                  + '</tr>';
+              var dataList = data.dataList;
+              for (var i = 0; i < dataList.length; i++) {
+                html += '<tr>'
+                    + '<td>'
+                    + dataList[i].kjName
+                    + '</td>'
+                    + '<td>'
+                    + dataList[i].kjCatNames
+                    + '</td>'
+                    + '<td>'
+                    + dataList[i].score
+                    + '</td>'
+                    + '<td>'
+                    + dataList[i].expireDate
+                    + '</td>'
+                    + '<th onclick="removeTr(this)" thisval="'
+                    + dataList[i].id
+                    + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+                    + '</tr>';
+              }
+              $("#theTable").html(html);
+            },
+            error : function() { //失败回调函数
+              alert("查询失败")
+            }
+          });
     }
     //删除一整行
     function removeTr(obj) {
@@ -490,21 +476,102 @@ html {
       //获取当前要删掉的课件id
       var kjid = $(obj).attr("thisval");
       //替换
-      var ides = kjIds.replace(kjid,"");
+      var ides = kjIds.replace(kjid, "");
       var idess = ides.split(",");
       var zhids = '';
-      for(var i=0;i<idess.length;i++){
-        if(idess[i]!=''){
-          zhids+=","+idess[i];
+      for (var i = 0; i < idess.length; i++) {
+        if (idess[i] != '') {
+          zhids += "," + idess[i];
         }
       }
-      if(zhids!=''){
+      if (zhids != '') {
         zhids = zhids.substr(1);
       }
       $("#ids").val(zhids);
       //删除行
       $(obj).parent().remove();
     }
+
+    //上传课件
+    $("#file-1").fileinput({
+      theme : "explorer", //主题
+      language : 'zh',
+      uploadUrl : "/file/upload",// 上传请求路径
+      allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg', 'pdf','mp4' ],//允许上传的文件后缀       
+      uploadAsync : false, //是否允许异步上传
+      showUpload : false,//是否显示上传按钮
+      showCaption : false,//是否显示容器
+      dropZoneEnabled : false,//是否显示拖拽区域 
+      removeFromPreviewOnError : true,//是否移除校验文件失败的文件
+      uploadExtraData : function(previewId, index) { //额外参数 返回json数组  
+        var objId = $("#objId").val();
+        return {
+          'objId' : objId,
+          'objTabname' : 'ts_kj',
+          'archiveType' : 'main'
+        // commId 为全局变量，可以给控件上传额外参数  
+        };
+      },
+      layoutTemplates : { //取消上传按钮
+        actionUpload : '',
+      },
+      showPreview : true, //显示预览   
+      minFileCount : 1, //最低文件数量
+      maxFileCount : 3, //最多文件数量
+      maxFileSize : 0, //允许文件上传大小
+      overwriteInitial : false,
+      previewFileIcon : '<i class="fa fa-file"></i>',
+      initialPreviewAsData : true, // defaults markup  
+      preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片
+      previewFileIconSettings : { // configure your icon file extensions
+        'pdf' : '<i class="fa fa-file-pdf-o text-danger"></i>',
+        'jpg' : '<i class="fa fa-file-photo-o text-danger"></i>',
+        'gif' : '<i class="fa fa-file-photo-o text-muted"></i>',
+        'png' : '<i class="fa fa-file-photo-o text-primary"></i>',
+        'jpeg' : '<i class="fa fa-file-photo-o text-primary"></i>'
+      },
+    });
+    //上传文件
+    $("#file-2").fileinput({
+      theme : "explorer", //主题
+      language : 'zh',
+      uploadUrl : "/file/upload",// 上传请求路径
+      uploadAsync : false, //是否允许异步上传
+      showUpload : false,//是否显示上传按钮
+      showCaption : false,//是否显示容器
+      dropZoneEnabled : false,//是否显示拖拽区域 
+      removeFromPreviewOnError : true,//是否移除校验文件失败的文件
+      uploadExtraData : function(previewId, index) { //额外参数 返回json数组  
+        var objId = $("#objId").val();
+        return {
+          'objId' : objId,
+          'objTabname' : 'ts_kj',
+          'archiveType' : 'img'
+        // commId 为全局变量，可以给控件上传额外参数  
+        };
+      },
+      layoutTemplates : { //取消上传按钮
+        actionUpload : '',
+      },
+      showPreview : true, //显示预览   
+      minFileCount : 1, //最低文件数量
+      maxFileCount : 3, //最多文件数量
+      maxFileSize : 0, //允许文件上传大小
+      overwriteInitial : true,
+      initialPreview:[
+                      
+                      ],
+      previewFileIcon : '<i class="fa fa-file"></i>',
+      initialPreviewAsData : true, // defaults markup  
+      preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片
+      previewFileIconSettings : { // configure your icon file extensions
+        'pdf' : '<i class="fa fa-file-pdf-o text-danger"></i>',
+        'jpg' : '<i class="fa fa-file-photo-o text-danger"></i>',
+        'gif' : '<i class="fa fa-file-photo-o text-muted"></i>',
+        'png' : '<i class="fa fa-file-photo-o text-primary"></i>',
+        'jpeg' : '<i class="fa fa-file-photo-o text-primary"></i>'
+      },
+    });
   </script>
 </body>
 </html>

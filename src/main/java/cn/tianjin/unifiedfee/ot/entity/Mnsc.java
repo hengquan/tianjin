@@ -33,6 +33,16 @@ public class Mnsc {
     private String kjids;
     
     private List<Kj> kjs;
+    
+    private String mainUrl;
+
+    public String getMainUrl() {
+        return mainUrl;
+    }
+
+    public void setMainUrl(String mainUrl) {
+        this.mainUrl = mainUrl;
+    }
 
     public List<Kj> getKjs() {
         return kjs;

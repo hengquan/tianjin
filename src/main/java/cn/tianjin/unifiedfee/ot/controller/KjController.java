@@ -87,6 +87,11 @@ public class KjController {
         try {
             // 添加数据
             boolean result = kjService.insert(kj, user);
+            String id = kj.getId();
+            if (StringUtils.isNotEmpty(id))
+                map.put("objId", id);
+            else
+                map.put("objId", "");
             if (result)
                 map.put("resultCode", "100");
             else
@@ -109,7 +114,7 @@ public class KjController {
         HttpPush.responseInfo(response);
         try {
             // 更新数据
-            boolean result = kjService.update(kj,user);
+            boolean result = kjService.update(kj, user);
             if (result)
                 map.put("resultCode", "100");
             else

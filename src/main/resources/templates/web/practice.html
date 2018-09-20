@@ -1,113 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>模拟实操</title>
-  <!-- <!-- 1 bootstrap的css -->
-  <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
-  <!--公共页面css-->
-  <link rel="stylesheet" href="./web/css/pt-main.css">
-  <link rel="stylesheet" href="./web/css/index1.css">
-  <!--独立页面css-->
-  <link rel="stylesheet" href="./web/css/index.css">
-  <!--引入字体的css-->
-  <link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
-  <script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
-  <!--bootstrap的js-->
-  <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
-  <!--页面js-->
-  <script type="text/javascript" src="./web/js/main.js"></script>
-  <style>
-    body{
-      background: white;
-    }
-    html{
-      overflow: hidden;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>模拟实操</title>
+<!-- <!-- 1 bootstrap的css -->
+<link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
+<!--公共页面css-->
+<link rel="stylesheet" href="./web/css/pt-main.css">
+<link rel="stylesheet" href="./web/css/index1.css">
+<!--独立页面css-->
+<link rel="stylesheet" href="./web/css/index.css">
+<!--引入字体的css-->
+<link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
+<script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
+<!--bootstrap的js-->
+<script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
+<!--页面js-->
+<script type="text/javascript" src="./web/js/main.js"></script>
+<style>
+body {
+	background: white;
+}
+
+html {
+	overflow: hidden;
+}
+</style>
 </head>
 <body>
-<!--主菜单内容-->
-  <div class="pt-view pt-open">
-    <!--模拟实操标题-->
-    <div class="action">
-      <span>模拟实操</span>
-      <div class="border"></div>
-    </div>
-    <!--模拟实操内容-->
-    <div class="tab-content">
-      <div class="tab-pane active" id="basicPlatform" >
-        <div class="row">
-          <div class="col-md-3">
-            <img src="./web/images/111.jpg" alt="">
-             <div class="model_bg "  onclick="toSimulation2()">
-             <div class="explain ">
+	<!--主菜单内容-->
+	<div class="pt-view pt-open">
+		<!--模拟实操标题-->
+		<div class="action">
+			<span>模拟实操</span>
+			<div class="border"></div>
+		</div>
+		<!--模拟实操内容-->
+		<div class="tab-content" id="htmlContent"></div>
+	</div>
+	<script>
+    var top = '<div class="tab-pane active tab_bottom">' + '<div class="row">';
+    var btm = '</div>' + '</div>';
+    //初始化
+    $(function() {
+      var data = {};
+      $.ajax({
+        type : 'post',
+        url : "/train/getMnscList",
+        data : data,
+        dataType : 'json',
+        cache : false,
+        success : function(data) {
+          console.log(data);
+          //状态
+          var returnCode = data.returnCode;
+          if (returnCode == '00') {
+            var html = '';
+            var contentHtml = '';
+            var dataList = data.data;
+            for (var i = 0; i < dataList.length; i++) {
+              html += '<div class="col-md-3">'
+                  + '<img src="http://1.202.219.107:8082/ot-server/ot/image/156011110000017.jpg" alt="">'
+                  + '<div class="model_bg" onclick=toSimulation1("'
+                  + dataList[i].mnscUrl + '")></div>'
+                  + '<div class="explain">' + '<p>' + dataList[i].mnscName
+                  + '</p>' + '<div class="system">' + dataList[i].remarks
+                  + '</div>'
+                  + '<div class="start" onclick=toSimulation2("'
+                  + dataList[i].mnscUrl + '")>开始模拟实操</div>' + '</div>'
+                  + '</div>';
+              if (i % 4 == 0) {
+                contentHtml = '<div class="tab-pane active tab_bottom">'
+                    + '<div class="row">' + html + '</div>' + '</div>'
+                    + contentHtml;
+                html = '';
+              }
+            }
+            $("#htmlContent").html(contentHtml);
+          } else {
+            alert(data.messageInfo);
+          }
+        },
+        error : function() { //失败回调函数
+          alert("查询失败");
+        }
+      });
+    })
 
-                 <p>企业注册</p>
-                 <div class="system">系统说明系统说明系统说明系统说明系统说明系统说明</div>
-                 <div class="start" onclick="toSimulation2()">开始模拟实操</div>
-               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-     <!-- <div class="tab_bottom">
-        <div class="row">
-          <div class="col-md-3">
-            <img src="./web/images/111.jpg" alt="">
-            <div class="model_bg " >
-            </div>
-          </div>
-          <div class="col-md-3">
-            <img src="./web/images/111.jpg" alt="">
-            <div class="model_bg ">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <img src="./web/images/111.jpg" alt="">
-            <div class="model_bg ">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <img src="./web/images/111.jpg" alt="">
-            <div class="model_bg ">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3 explain ">
-            <p>平台登录</p>
-            <div class="system">系统说明系统说明系统说明系统说明系统说明系统说明</div>
-            <div class="start">开始模拟实操</div>
-          </div>
-          <div class="col-md-3 explain" style="margin-left: 10px">
-            <p>费项设置</p>
-            <div class="system">系统说明系统说明系统说明系统说明系统说明系统说明</div>
-            <div class="start">开始模拟实操</div>
-          </div>
-          <div class="col-md-3 explain explain1" style="margin-left: 10px">
-            <p>缴费清单</p>
-            <div class="system">系统说明系统说明系统说明系统说明系统说明系统说明</div>
-            <div class="start">开始模拟实操</div>
-          </div>
-          <div class="col-md-3 explain explain1" style="margin-left: 11px">
-            <p>作业放行</p>
-            <div class="system">系统说明系统说明系统说明系统说明系统说明系统说明</div>
-            <div class="start">开始模拟实操</div>
-          </div>
-        </div>
-      </div>-->
-    </div>
-  </div>
-<script>
     //  收费清单录入模拟实操
-  function toSimulation1() {
-    window.open("./mnscList/sfqdlr/loading.html")
-  }
-    //企业注册模拟实操
-    function toSimulation2() {
-        window.open("./mnscList/qyzcsc/loading.html")
+    function toSimulation1(url) {
+      window.open("./mnscList/sfqdlr/loading.html")
     }
-</script>
+    //企业注册模拟实操
+    function toSimulation2(url) {
+      window.open("./mnscList/qyzcsc/loading.html")
+    }
+  </script>
 </body>
 </html>

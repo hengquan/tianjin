@@ -84,7 +84,7 @@
     margin-left: -48px;
     cursor: pointer;
 }
-.tab-content .col-md-3.explain{
+.tab-content .col-md-3 .explain{
     width: 230px;
     height:145px;
     background: #f8f8f8;
