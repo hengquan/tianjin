@@ -2,6 +2,7 @@ package cn.tianjin.unifiedfee.ot.mapper;
 
 import java.util.List;
 
+import cn.tianjin.unifiedfee.ot.entity.KjRefSource;
 import cn.tianjin.unifiedfee.ot.entity.MnscRefSource;
 
 public interface MnscRefSourceMapper {
@@ -12,4 +13,10 @@ public interface MnscRefSourceMapper {
     int deleteByMnscId(String id);
 
     List<MnscRefSource> getDataListByMnscId(String mnscId);
+
+    int update(MnscRefSource mnscRefSource);
+
+    int delete(MnscRefSource mnscRefSource);
+
+    KjRefSource get(String id);
 }
