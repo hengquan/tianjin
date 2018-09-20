@@ -225,7 +225,7 @@ html {
         split=split[1].substring(0,32);
         $.ajax({
           type : 'post',
-          url : "/st/get",
+          url : "./st/get",
           data : {
             "id" : split
           },
@@ -267,7 +267,7 @@ html {
     });
 
     function getDetailData(tmId) {
-      TableInit().Init('http://localhost:18080/st/getselctData?id=' + tmId, [ {
+      TableInit().Init('./st/getselctData?id=' + tmId, [ {
         checkbox : true
       }, {
         field : 'tmSelectSign',
@@ -295,7 +295,7 @@ html {
     function addTm() {
       $.ajax({
         type : 'post',
-        url : "/st/insert",
+        url : "./st/insert",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
@@ -312,7 +312,7 @@ html {
     function editTm() {
       $.ajax({
         type : 'post',
-        url : "/st/update",
+        url : "./st/update",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
@@ -338,7 +338,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '../kj/kjList4st', 'yes' ]
+        content : [ '../../kj/kjList4st', 'yes' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -351,7 +351,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '../mnsc/mnscList4st', 'yes' ]
+        content : [ '../../mnsc/mnscList4st', 'yes' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -364,7 +364,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '../st/selectEdit?id='+$("#objId").val(), 'yes' ]
+        content : [ './st/selectEdit?id='+$("#objId").val(), 'yes' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -410,7 +410,7 @@ html {
       shade : 0.6,
       maxmin : false,//开启最大化最小化按钮
       area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-      content : 'selectEdit?id='+e//如果不想出现滚动条['content.html', 'no']
+      content : './st/selectEdit?id='+e//如果不想出现滚动条['content.html', 'no']
     });
   }
   function deleteItem(e) {
@@ -421,7 +421,7 @@ html {
       if (mymessage == true) {
         $.ajax({
           type : 'post',
-          url : "/st/deleteSelect",
+          url : "./st/deleteSelect",
           data : data,
           dataType : 'json',
           cache : false,
