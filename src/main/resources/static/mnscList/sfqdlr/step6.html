@@ -29,9 +29,12 @@
         })
     </script>
   <style>
+    html{
+      height: 1020px;
+    }
     .model_bg{
       position: absolute;
-      top: 119px;
+      top: 69px;
       left: 38px;
       bottom: 0;
       right: 0;
@@ -45,8 +48,8 @@
     }
     .triangle{
       position: absolute;
-      top: 101px;
-      left:88px;
+      top: 51px;
+      left:66px;
       bottom: 0;
       right: 0;
       z-index: 999;
@@ -111,78 +114,79 @@
         <span>收费清单录入</span>
         <div class="border"></div>
     </div>
-    <!--提单信息-->
+    <!--清单明细-->
     <div class="billList">
         <!--清单明细-->
         <div id="list" class="tab-pane ">
-            <table class="table table-bordered">
-                <!--清单明细-->
-                <thead>
-                <tr>
-                    <td colspan="10">清单明细</td>
-                </tr>
-                </thead>
+          <div class="head_title"><span id="msg">清单明细</span></div>
+          <div class="frame">
+            <!--清单明细-->
+            <div class="table_detail" style="border: none">
+              <div class="button1" style="margin-left: 1px;margin-top: -45px">
+                <span style="background:#408eba;">打印预览</span>
+                <span style="background:#408eba; ">导出表格</span>
+              </div>
+              <table class="table table-bordered" style="width: 1130px;margin: 20px auto 0">
                 <tbody>
                 <tr>
-                    <td colspan="10" class="button">
-                        <span style="background:#408eba;">打印预览</span>
-                        <span style="background:#408eba; ">导出表格</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>收费类型</td>
-                    <td >费项名称</td>
-                    <td>子项名称</td>
-                    <td>计费规格</td>
-                    <td>计费单位</td>
-                    <td>数量</td>
-                    <td>单价</td>
-                    <td>总价</td>
-                    <td >定价类型</td>
-                    <td>价格说明</td>
+                  <td>收费类型</td>
+                  <td >费项名称</td>
+                  <td>子项名称</td>
+                  <td>计费规格</td>
+                  <td>计费单位</td>
+                  <td>数量</td>
+                  <td>单价</td>
+                  <td>总价</td>
+                  <td >定价类型</td>
+                  <td>价格说明</td>
                 </tr>
                 <tr >
-                    <td rowspan="2">常规收费</td>
-                    <td >停泊费</td>
-                    <td>停泊费</td>
-                    <td>国际航线B</td>
-                    <td>元/计费吨/小时</td>
-                    <td>1</td>
-                    <td>0.10</td>
-                    <td>0.10</td>
-                    <td >政府指导价</td>
-                    <td></td>
+                  <td rowspan="2">常规收费</td>
+                  <td >停泊费</td>
+                  <td>停泊费</td>
+                  <td>国际航线B</td>
+                  <td>元/计费吨/小时</td>
+                  <td>1</td>
+                  <td>0.10</td>
+                  <td>0.10</td>
+                  <td >政府指导价</td>
+                  <td></td>
                 </tr>
                 <tr>
-                    <td >托轮费</td>
-                    <td>托轮费</td>
-                    <td>(国际航线)220-260米</td>
-                    <td>元/拖轮艘次</td>
-                    <td>1</td>
-                    <td>6000.00</td>
-                    <td>6000.00</td>
-                    <td >政府指导价</td>
-                    <td></td>
+                  <td >托轮费</td>
+                  <td>托轮费</td>
+                  <td>(国际航线)220-260米</td>
+                  <td>元/拖轮艘次</td>
+                  <td>1</td>
+                  <td>6000.00</td>
+                  <td>6000.00</td>
+                  <td >政府指导价</td>
+                  <td></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="text-align: right">小计：</td>
-                    <td colspan="6" style="text-align: left">6000.10</td>
+                  <td colspan="4" style="text-align: right">小计：</td>
+                  <td colspan="6" style="text-align: left">6000.10</td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="text-align: right">合计：</td>
-                    <td colspan="6" style="text-align: left">6000.10</td>
+                  <td colspan="4" style="text-align: right">合计：</td>
+                  <td colspan="6" style="text-align: left">6000.10</td>
                 </tr>
                 </tbody>
-               <div class="model_bg ">
-                <div class="model_text">
-                  <p class="entry">恭喜您清单录入完成.
-                    你可以进行打印,导出操作!</p>
-                  <span onclick="toHide()" class="know">知道了</span>
-                </div>
+              </table>
+            </div>
+            <div class="model_bg ">
+              <div class="model_text">
+                <p class="entry">恭喜您清单录入完成.
+                  你可以进行打印,导出操作!</p>
+                <span onclick="toHide()" class="know">知道了</span>
               </div>
-               <div class="triangle"></div>
-            </table>
-            <div class="pay_button">
+            </div>
+            <div class="triangle"></div>
+            <div>
+              <span style="margin-left: 9px">显示第1到第2条记录，总共2条记录</span>
+            </div>
+          </div>
+          <div class="pay_button">
                 <span class="previousPage" onclick="previousPage()" style="margin-left: 450px">上一步</span>
                 <span class="repractice" onclick="repractice()">重新练习</span>
             </div>

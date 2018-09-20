@@ -29,13 +29,16 @@
         })
     </script>
   <style>
-    .table >.show1{
+    html{
+     height: 1080px;
+    }
+    .show1{
       display: none;
     }
     .model_bg{
       position: absolute;
-      top: 159px;
-      left: 38px;
+      top: 100px;
+      left:10px;
       bottom: 0;
       right: 0;
       background: rgba(0,0,255,.5);
@@ -48,8 +51,8 @@
     }
     .triangle{
       position: absolute;
-      top: 141px;
-      left:88px;
+      top: 82px;
+      left:45px;
       bottom: 0;
       right: 0;
       z-index: 999;
@@ -93,12 +96,10 @@
       margin-left: 73px;
       color: #feef00;
     }
-
-
     .model_bg4{
       position: absolute;
-      top: 178px;
-      left: 504px;
+      top: 13px;
+      left: 536px;
       bottom: 0;
       right: 0;
       background: rgba(0,0,255,.5);
@@ -111,8 +112,8 @@
     }
     .triangle4{
       position: absolute;
-      top: 235px;
-      left:486px;
+      top: 71px;
+      left:518px;
       bottom: 0;
       right: 0;
       z-index: 999;
@@ -146,6 +147,18 @@
       font-size: 14px;
       color: white;
     }
+    .button1 span{
+      display: inline-block;
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 5px;
+    }
+    .button1 span:first-child{
+      margin-left: 630px;
+    }
+
   </style>
 </head>
 <body>
@@ -165,7 +178,6 @@
 </div>
 <!-- 头部条  结束 -->
 <div class="bill">
-
     <div class="nav_bar">
         <span>收费清单录入</span>
         <div class="border"></div>
@@ -173,97 +185,90 @@
     <!--提单信息-->
     <div class="billList">
         <!--提单信息-->
-      <div id="bill" class="tab-pane">
-            <table class="table table-bordered">
-                <!--提单信息-->
-                <thead>
-                <tr>
-                    <td colspan="7">提单信息</td>
-                </tr>
-                </thead>
+        <div id="bill" class="tab-pane">
+        <div class="head_title"><span id="msg">提单信息</span></div>
+        <div class="frame">
+          <!--提单信息-->
+          <div class="table_detail" style="border: none">
+            <div >
+              <span><strong>※</strong>提单号</span>
+              <span><input type="text"></span>
+              <span><strong>※</strong>船名</span>
+              <span><input type="text"></span>
+              <span><strong>※</strong>船次</span>
+              <span><input type="text"></span>
+            </div>
+            <div class="button1">
+              <span style="background:#20c1ed "onclick="toExtract()">提取信息</span>
+              <span style="background:#408eba ">查询</span>
+              <span style="background: #f01c00">删除</span>
+            </div>
+          </div>
+          <div class="model_bg ">
+            <div class="model_text">
+              <p class="entry">1. <strong style="color: red">※</strong>    部分为必填项，请分别填写：</p>
+              <p class="odd">“提单号、船名、船次”</p>
+              <div>2.船名信息可填写中文或船名，只填写一个</div>
+              <div>3.至少关联一个提单号，才能进行费项编辑</div>
+              <div>4.无法获取的提单，可通过模板上传，再次获取</div>
+              <div>5.点击<span style="color:#feef00 ">"提取信息"</span>,提取相应的提单信息</div>
+              <span onclick="toHide()" class="know">知道了</span>
+            </div>
+          </div>
+          <div class="triangle"></div>
+          <!--已提单信息-->
+          <div class="table_detail table_detail1 show1" style="border: none;border-top: 1px solid #ccc;margin-top: 60px">
+            <div class="border1">
+              <span>已提单信息</span>
+            </div>
+            <div>
+              <table class="table table-bordered" style="margin-top: -78px;width: 1130px">
                 <tbody>
-                <tr class="ladingNumber" >
-                    <td class="num"><strong>※</strong>提单号</td>
-                    <td>
-                        <input type="text">
-                    </td>
-                    <td class="num"><strong>※</strong>船名</td>
-                    <td>
-                        <input type="text">
-                    </td>
-                    <td class="num"><strong>※</strong>船次</td>
-                    <td colspan="2"><input type="text" ></td>
+                <tr style="background-color: #EEF2F6">
+                  <td><input type="checkbox"></td>
+                  <td>提单号</td>
+                  <td>中文船名</td>
+                  <td>英文船名</td>
+                  <td>航次</td>
+                  <td>集装箱信息</td>
+                  <td>散杂货信息</td>
                 </tr>
                 <tr>
-                    <td colspan="7" class="button">
-                        <span style="background:#20c1ed "onclick="toExtract()">提取信息</span>
-                        <span style="background:#106d5b ">查询</span>
-                        <span style="background: #f01c00">删除</span>
-                    </td>
-                </tr>
-                </tbody>
-                <div class="model_bg ">
-                <div class="model_text">
-                  <p class="entry">1. <strong style="color: red">※</strong>    部分为必填项，请分别填写：</p>
-                  <p class="odd">“提单号、船名、船次”</p>
-                  <div>2.船名信息可填写中文或船名，只填写一个</div>
-                  <div>3.至少关联一个提单号，才能进行费项编辑</div>
-                  <div>4.无法获取的提单，可通过模板上传，再次获取</div>
-                  <div>5.点击<span style="color:#feef00 ">"提取信息"</span>,提取相应的提单信息</div>
-                  <span onclick="toHide()" class="know">知道了</span>
-                </div>
-              </div>
-                <div class="triangle"></div>
-                <!--已选提单信息-->
-                <thead class="show1">
-                <tr>
-                    <td colspan="7">已选提单信息</td>
-                </tr>
-                </thead>
-                <tbody class="show1">
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>提单号</td>
-                    <td>中文船名</td>
-                    <td>英文船名</td>
-                    <td>航次</td>
-                    <td>集装箱信息</td>
-                    <td>散杂货信息</td>
+                  <td><input type="checkbox"></td>
+                  <td>002</td>
+                  <td>太阳号</td>
+                  <td>SUN</td>
+                  <td>12</td>
+                  <td class="term">1项</td>
+                  <td class="term">0项</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox"></td>
-                    <td>002</td>
-                    <td>太阳号</td>
-                    <td>SUN</td>
-                    <td>12</td>
-                    <td class="term">1项</td>
-                    <td class="term">0项</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>001</td>
-                    <td>太阳号</td>
-                    <td>SUN</td>
-                    <td>12</td>
-                    <td class="term">3项</td>
-                    <td class="term">0项</td>
+                  <td><input type="checkbox"></td>
+                  <td>001</td>
+                  <td>太阳号</td>
+                  <td>SUN</td>
+                  <td>12</td>
+                  <td class="term">3项</td>
+                  <td class="term">0项</td>
                 </tr>
                 </tbody>
                 <div class="model_bg4">
-                <div class="model_text4">
-                  <p class="entry">已提取提单信息,请进行下一步费项单元设置操作,点击<span style="color: #feef00">“下一步”</span>进入下一页</p>
-                  <span class="know" onclick="toKnow()">知道了</span>
+                  <div class="model_text4">
+                    <p class="entry">已提取提单信息,请进行下一步费项单元设置操作,点击<span style="color: #feef00">“下一步”</span>进入下一页</p>
+                    <span class="know" onclick="toKnow()">知道了</span>
+                  </div>
                 </div>
-              </div>
-               <div class="triangle4"></div>
-            </table>
-            <div class="pay_button">
+                <div class="triangle4"></div>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="pay_button">
                 <span class="previousPage" onclick="previousPage()">上一步</span>
                 <span class="repractice" onclick="repractice()">重新练习</span>
                 <span class="nextPage" onclick="nextPage()">下一步</span>
-            </div>
         </div>
-
+        </div>
     </div>
     <!--底部相关-->
     <iframe src="../../relevant.html" frameborder="0" id="main" style="width: 100%;height: 260px"></iframe>
@@ -318,7 +323,7 @@
 
 //    点击取消信息，显示隐藏内容
   function toExtract() {
-    $(".table>.show1").show()
+    $(".show1").show()
     $(".model_bg4").show()
     $(".triangle4").show()
   }

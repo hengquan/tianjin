@@ -1,7 +1,4 @@
 /*实操内容*/
-body{
-  background: #F2F2F2;
-}
 html{
   overflow: auto;
 }
@@ -13,40 +10,16 @@ html{
   margin: 35px auto 0;
   background:white;
   padding-top: 20px;
- /* height: 620px;*/
   position: relative;
   border-radius: 5px;
-}
-.billList table{
-  width: 1150px;
-  margin: 0 auto;
 }
 .table>thead>tr>td{
   text-align: left;
 }
-.table>tbody>tr>td{
-  text-align: left;
-  font-size: 14px;
-}
-
 .billList tr{
   height: 40px;
 }
-.message button{
-  text-align: center;
-  margin-left: 30px;
-  font-size: 14px;
-}
-.message .message1{
-  background: lightblue;
-}
-.message .message2{
-  background: yellowgreen;
-}
-.message .message3{
-  background: yellowgreen;
-}
-.ladingNumber strong {
+.table_detail strong {
   color: red;
   font-size: 16px;
 }
@@ -67,50 +40,7 @@ html{
 .button button:hover{
   color: white;
 }
-
-/*底部相关*/
-.paymentList_bottom{
-  width: 1200px;
-  height: 250px;
-  margin: 30px auto 0;
-  background: white;
-}
-.relevant span{
-  display: inline-block;
-  width: 120px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  color:white;
-  background: gainsboro;
-  border-radius: 0 0 5px 5px;
-  margin-left: 25px;
-  font-size: 14px;
-}
-.relevant a{
-  color: white;
-}
-.relevant .active{
-  background: #f46227;
-}
-.relevant_practice{
-  display: flex;
-  justify-content: space-around;
-  margin-top: 40px;
-}
-.practice_title p{
-  font-size: 16px;
-}
-.practice_title span{
-  font-size: 16px;
-  color: #C3C3C3;
-}
-.relevant_practice div:first-child{
-  margin-left: -30px;
-}
-
 /*气泡*/
-
 .model1_text{
   width: 270px;
   margin:15px auto 0 ;
@@ -125,7 +55,7 @@ html{
 }
 .model_bg1{
   position: absolute;
-  top:121px;
+  top:158px;
   left:695px;
   bottom: 0;
   right: 0;
@@ -139,8 +69,8 @@ html{
 }
 .triangle1{
   position: absolute;
-  top: 104px;
-  left: 770px;
+  top: 140px;
+  left: 728px;
   bottom: 0;
   right: 0;
   z-index: 999;
@@ -189,10 +119,9 @@ html{
   color: white;
   margin-top: 32px;
 }
-
 .model_bg2{
   position: absolute;
-  top: 330px;
+  top:426px;
   left: 400px;
   bottom: 0;
   right: 0;
@@ -206,8 +135,8 @@ html{
 }
 .triangle2{
   position: absolute;
-  top: 312px;
-  left:494px;
+  top: 408px;
+  left:481px;
   bottom: 0;
   right: 0;
   z-index: 999;
@@ -242,8 +171,8 @@ html{
 
 .model_bg3{
   position: absolute;
-  top: 77px;
-  left:922px;
+  top: 573px;
+  left:570px;
   bottom: 0;
   right: 0;
   background: rgba(0,0,255,.5);
@@ -256,8 +185,8 @@ html{
 }
 .triangle3{
   position: absolute;
-  top: 59px;
-  left:1103px;
+  top:723px;
+  left:586px;
   bottom: 0;
   right: 0;
   z-index: 999;
@@ -266,7 +195,7 @@ html{
   height: 0;
   border-left:18px solid transparent;
   border-right: 18px solid transparent;
-  border-bottom: 18px solid rgba(0,0,255,.5);
+  border-top: 18px solid rgba(0,0,255,.5);
 }
 .model3_text p{
   margin-top: -21px;
@@ -289,11 +218,6 @@ html{
   font-size: 14px;
   color: white;
 }
-
-
-
-
-
 .pay_button span{
   margin-top: 68px;
 }
@@ -303,26 +227,25 @@ select{
 }
 .abstract{
   display: inline-block;
-  width: 1000px;
+  width: 907px;
   height: 55px;
+  margin-right: 0;
 }
-
-.table>tbody>tr>td>.add {
+.add {
   display: inline-block;
   width: 30px;
-  height: 25px;
+  height: 26px;
   border-radius: 0 4px 4px 0;
-  margin-left: -4px;
-  background: #148bff;
+  margin-left: -105px;
+  background: #20c1ed;
   color: white;
-  line-height: 25px;
+  line-height: 26px;
   text-align: center;
 }
 .nav{
   left: 25px;
   width: 1149px;
 }
-
 .table>tbody>tr>.term{
   color: #5b9dde;
 }
@@ -330,12 +253,10 @@ select{
   padding-bottom: 25px;
   padding-top: 0;
 }
-
 .model2_text strong{
     color: red;
     font-size: 22px;
 }
-
 /*保存按钮样式*/
 .table .save{
     display: inline-block;
@@ -349,6 +270,108 @@ select{
     float: right;
     border-radius: 5px;
 }
+/*表格的重新调整*/
+.table_detail{
+  width: 1130px;
+  margin: 0 auto 30px;
+  border: 1px solid #cccccc;
+  position: relative;
+  top: 30px;
+}
+.table_detail>div{
+  padding-top: 30px;
+  margin-left:45px;
+}
+.table_detail>div>span>input{
+  margin-right: 100px;
+}
+
+.table_detail>div>span>select{
+  margin-right: 63px;
+}
+.one{
+  position: absolute;
+  color: #20c1ed;
+  font-size: 16px;
+  left: 0;
+  top: -41px;
+}
+.one span{
+  display: inline-block;
+  height: 20px;
+  background-color: white;
+  line-height: 15px;
+  width: 100px;
+  text-align: center;
+}
+.table_detail div:last-child{
+  margin-bottom: 30px;
+}
+.frame{
+  width: 1150px;
+  margin: 0 auto;
+  border: 1px solid #cccccc;
+  padding-bottom: 50px;
+  position: relative;
+}
+.button span{
+  display: inline-block;
+  width: 100px;
+  height: 35px;
+  color: white;
+  line-height: 35px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.button1 span{
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  color: white;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.button span{
+  margin-top: 40px;
+  margin-left: 550px;
+  background-color: #20c1ed;
+}
+.table_detail .table{
+  margin-left: -45px;
+}
+.head_title{
+  width: 1150px;
+  margin: 0 auto;
+  height: 40px;
+  background-color:#EEF2F6 ;
+  border:1px solid #ccc;
+  line-height: 40px;
+  border-bottom: none;
+  font-size: 16px;
+}
+.head_title span{
+  margin-left: 10px;
+}
+
+.border1 span{
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  padding-top: 7px;
+  border: 1px solid #ccc;
+  background-color: white;
+  position: relative;
+  top: -60px;
+  left: -34px;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  text-align: center;
+  color: #3d5c99;
+}
+
 
 
 
