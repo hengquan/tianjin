@@ -53,6 +53,28 @@
                     <!--cell-->
                     <li class="pt-menu-list pt-menu-selected">
                         <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                        <h3 class="pt-menu-title"><a href="#">企业端资源</a></h3>
+                        <ul class="pt-second-menu">
+                            <!--cell-->
+                            <li class="pt-menu-child">
+                                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toXYGK()">学员概况</a></h3>
+                            </li>
+                            <!--cell-->
+                            <li class="pt-menu-child">
+                                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toWebMNSC()">模拟实操</a></h3>
+                            </li>
+                            <!--cell-->
+                            <li class="pt-menu-child">
+                                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXXX()">在线学习</a></h3>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--cell-->
+                    <li class="pt-menu-list pt-menu-selected">
+                        <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
                         <h3 class="pt-menu-title"><a href="#">学习资料</a></h3>
                         <ul class="pt-second-menu">
                             <!--cell-->
@@ -151,7 +173,7 @@ function initMenu() {
     dataType:'json',
     success: function (data) { //成功后的回调函数
       var returnCode= data.returnCode;
-      $(".pt-menu ul").html("");
+      //$(".pt-menu ul").html("");
       var allHtml="";
       if (returnCode=="00") {
         for (var i=0; i<data.data.length; i++) {
@@ -169,7 +191,7 @@ function initMenu() {
           }
         }
 //        console.log(allHtml);
-        $(".pt-menu ul").html(allHtml);
+        //$(".pt-menu ul").html(allHtml);
       }
     },
     error: function (e) {
@@ -201,6 +223,19 @@ function showMenu(url) {
   //字典管理
   function toDICT(){
     $("#mainIframe").attr("src","testTt");
+  }
+
+  //学员概况
+  function toXYGK(){
+    $("#mainIframe").attr("src","summary");
+  }
+  //模拟实操
+  function toWebMNSC(){
+    $("#mainIframe").attr("src","practice");
+  }
+  //在线学习
+  function toZXXX(){
+    $("#mainIframe").attr("src","courseware");
   }
 </script>
 

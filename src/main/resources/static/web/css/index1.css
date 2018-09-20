@@ -2,7 +2,7 @@ html,body{
     font-size: 14px;
 }
 
-/*Ä£ÄâÊµ²Ùµ¼º½Ìõ*/
+/*Ä£ï¿½ï¿½Êµï¿½Ùµï¿½ï¿½ï¿½ï¿½ï¿½*/
 .nav_bar{
     height: 60px;
     width: 1200px;
@@ -39,7 +39,7 @@ html,body{
     line-height: 25px;
     text-align: center;
 }
-/*Ä£ÄâÊµ²Ù°´Å¥*/
+/*Ä£ï¿½ï¿½Êµï¿½Ù°ï¿½Å¥*/
 .pay_button span{
     display: inline-block;
     width: 140px;
@@ -69,7 +69,7 @@ html,body{
     width: 1200px;
 }
 
-/*ÁÐ±íÒ³µ¼º½Ìõ*/
+/*ï¿½Ð±ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .nav {
     border-bottom: 2px solid #ABC3CF;
     height: 60px;
@@ -103,7 +103,7 @@ html,body{
     color: #C3C3C3;
 }
 
-/*ÄÚÈÝÕ¹Ê¾ÇøÓòµÄÑùÊ½*/
+/*ï¿½ï¿½ï¿½ï¿½Õ¹Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½*/
 .row img{
     width: 280px;
     height: 180px;
@@ -164,17 +164,13 @@ h4{
     color: #C3C3C3;
 }
 
-/*µ÷ÕûÒ³Ãæ±ÈÀýµ÷Õû´úÂë*/
+/*ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .pt_content{
     width: 1200px;
     margin: 0 auto;
     position: relative;
     background: white;
 }
-.pt-view{
-    width: 1080px;
-    left: 180px;}
-
 .nav{
     left: -40px;
     width:988px;

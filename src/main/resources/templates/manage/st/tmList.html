@@ -207,7 +207,7 @@
       if(mymessage==true){
         $.ajax({
           type : 'post',
-          url : "http://localhost:18080/kj/delete",
+          url : "./kj/delete",
           data : data,
           dataType : 'json',
           cache : false,
@@ -262,7 +262,7 @@
       });
     }
 
-    TableInit(queryParams).Init('http://localhost:18080/st/getPageData', [ {
+    TableInit(queryParams).Init('./st/getPageData', [ {
       field : 'tmHtml',
       title : '题目名称称',
       sortable : true
