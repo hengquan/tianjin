@@ -151,7 +151,7 @@ function initMenu() {
     dataType:'json',
     success: function (data) { //成功后的回调函数
       var returnCode= data.returnCode;
-      //$(".pt-menu ul").html("");
+      $(".pt-menu ul").html("");
       var allHtml="";
       if (returnCode=="00") {
         for (var i=0; i<data.data.length; i++) {
@@ -169,7 +169,7 @@ function initMenu() {
           }
         }
 //        console.log(allHtml);
-        //$(".pt-menu ul").html(allHtml);
+        $(".pt-menu ul").html(allHtml);
       }
     },
     error: function (e) {
