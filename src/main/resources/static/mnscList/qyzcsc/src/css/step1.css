@@ -8,7 +8,7 @@ html,body{
 background: white;
 }
 .page-main{
-  height: 750px;
+  height: 680px;
   position: relative;
 }
 .pay_button{
@@ -26,13 +26,13 @@ iframe{
   height: 550px;
   margin-left: 100px;
 }
-/*æ°”æ³¡çš„è®¾ç½®*/
+/*ÆøÅİµÄÉèÖÃ*/
 .model{
   width: 330px;
   height: 220px;
   position: absolute;
-  top:94px;
-  left:763px;
+  top:429px;
+  left:641px;
   bottom: 0;
   right: 0;
   background: rgba(144,144,144,0.5);
@@ -63,8 +63,8 @@ iframe{
 }
 .triangle {
   position: absolute;
-  top: 76px;
-  left:1047px;
+  top: 412px;
+  left:692px;
   bottom: 0;
   right: 0;
   z-index: 999;
@@ -79,7 +79,7 @@ iframe{
   color: orange;
 }
 
-/*å†…å®¹åŒºå¤´éƒ¨å†…å®¹æ ·å¼çš„è®¾ç½®*/
+/*ÄÚÈİÇøÍ·²¿ÄÚÈİÑùÊ½µÄÉèÖÃ*/
 .page-main .header-wrap{
   width: 1000px;
   margin: 0 auto;
