@@ -153,7 +153,7 @@ function initMenu() {
     success: function (data) { //成功后的回调函数
       var returnCode= data.returnCode;
     console.log(data);
-      $(".pt-menu").html("");
+      //$(".pt-menu").html("");
       var menuHtml="";
       if (returnCode=="00") {
         for (var i=0; i<data.data.length; i++) {
