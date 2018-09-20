@@ -44,14 +44,18 @@ public class UserController {
                 return retMap;
             }
             ObjectResponseResult<List<SysResource>> result=securityMenuService.findMenuByUsername(ui.getUsername());
+            boolean hadTrain=false;
             if (result!=null&&result.getData()!=null&&result.getData().size()>0) {
                 for (SysResource sr: result.getData()) {
                     if (sr.getResourcesName().equals(trainNameId)) {
                         retMap.put("returnCode", "00");
                         retMap.put("data", sr.getChildren());
+                        hadTrain=true;
+                        break;
                     }
                 }
-            } else {
+            }
+            if (!hadTrain) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "未获得任何菜单");
             }
