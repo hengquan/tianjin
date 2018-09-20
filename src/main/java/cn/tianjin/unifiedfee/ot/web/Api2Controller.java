@@ -73,19 +73,19 @@ public class Api2Controller {
             if (pageSize == -1)
                 pageSize = _DEFALT_PS;
             // 设置分页
-            PageHelper.offsetPage(pageNo, pageSize);
+            //PageHelper.offsetPage(pageNo, pageSize);
             // 查询列表
             map.put("categoryId", categoryId);
             map.put("searchStr", searchStr);
             List<Mnsc> mnscs = mnscService.getPageData(map);
             // 放入分页
-            PageInfo<Mnsc> pageList = new PageInfo<Mnsc>(mnscs);
+            //PageInfo<Mnsc> pageList = new PageInfo<Mnsc>(mnscs);
             if (mnscs == null || mnscs.size() == 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "列表为空");
             } else {
                 retMap.put("returnCode", "00");
-                retMap.put("data", pageList);
+                retMap.put("data", mnscs);
             }
         } catch (Exception e) {
             e.printStackTrace();

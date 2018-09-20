@@ -1,5 +1,7 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,5 +29,12 @@ public class WebDispatchUrl {
     @RequestMapping("courseware")
     public String toOnline() {
         return "/web/courseware";
+    }
+    
+    /*播放课件*/
+    @RequestMapping("onlineLearning")
+    public String toOnlineLearning(HttpServletRequest request) {
+        System.out.println("12312312");
+        return "/web/onlineLearning";
     }
 }
