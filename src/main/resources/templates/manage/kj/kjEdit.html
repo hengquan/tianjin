@@ -497,7 +497,7 @@ html {
       theme : "explorer", //主题
       language : 'zh',
       uploadUrl : "/file/upload",// 上传请求路径
-      allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg', 'pdf' ],//允许上传的文件后缀       
+      allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg', 'pdf','mp4' ],//允许上传的文件后缀       
       uploadAsync : false, //是否允许异步上传
       showUpload : false,//是否显示上传按钮
       showCaption : false,//是否显示容器
@@ -518,8 +518,8 @@ html {
       showPreview : true, //显示预览   
       minFileCount : 1, //最低文件数量
       maxFileCount : 3, //最多文件数量
-      maxFileSize : 51200, //允许文件上传大小
-      overwriteInitial : true,
+      maxFileSize : 0, //允许文件上传大小
+      overwriteInitial : false,
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片
@@ -536,7 +536,6 @@ html {
       theme : "explorer", //主题
       language : 'zh',
       uploadUrl : "/file/upload",// 上传请求路径
-      allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg', 'pdf' ],//允许上传的文件后缀       
       uploadAsync : false, //是否允许异步上传
       showUpload : false,//是否显示上传按钮
       showCaption : false,//是否显示容器
@@ -557,8 +556,11 @@ html {
       showPreview : true, //显示预览   
       minFileCount : 1, //最低文件数量
       maxFileCount : 3, //最多文件数量
-      maxFileSize : 51200, //允许文件上传大小
+      maxFileSize : 0, //允许文件上传大小
       overwriteInitial : true,
+      initialPreview:[
+                      
+                      ],
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片
