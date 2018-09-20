@@ -82,79 +82,55 @@
 					<!--搜索条-->
 					<div class="pt-section-search">
 						<div class="row clearfix">
-							<div class="col-lg-16 col-md-12 col-sm-12 col-xs-12 column">
+							<div class="col-lg-16 col-md-16 col-sm-14 col-xs-14 column">
 								<form class="form-inline">
 									<!-- 示例 input-->
-									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+									<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 										<div class="form-group">
-											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6"
-												for="exampleInputName2">试题名称</label>
-											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-												<input type="text" class="form-control" id="kjName"
-													placeholder="试题名称">
-											</div>
+											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												for="exampleInputName2">试题名称</label>											
+												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+													<input type="text" class="form-control" name="tmHtml"  id="tmHtml" />
+												</div>											
 										</div>
 									</div>
 									<!-- 隐藏部分包裹 -->
 									<span class="hiddenorshow pt-search-filter"> <!-- 示例 input-->
-										<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+										<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 											<div class="form-group">
-												<label class="col-lg-2 col-md-4 col-sm-4 col-xs-6"
+												<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
 													for="exampleInputName2">课件名称</label>
-												<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
-													<input type="text" class="form-control"
-														id="kjid" placeholder="课件名称">
-												</div>
-												<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+													<input type="text" class="form-control" name="kjName"  id="kjName" />
+												</div>	
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 													<div class="form-group">
 														<button type="button"
 															class="btn btn-default btn-primary w80" onclick="sel()">选择</button>
 													</div>
 												</div>
 											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6"
-													for="lunch">模拟实操</label>
-												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-													<select id="lunch" multiple class="selectpicker"
-														data-actions-box="true" data-live-search="true"
-														title="请选择">
-														<option value="1">法规类</option>
-														<option value="2">政策类</option>
-														<option value="3">收费类</option>
-														<option value="4">放行类</option>
-														<option value="5">理货类</option>
-														<option value="6">出口类</option>
-														<option value="7">进口类</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-												<div class="form-group">
-													<button type="button"
-															class="btn btn-default btn-primary w80" onclick="sel()">选择</button>
-												</div>
-											</div>
-										</div>																				
+										</div>																												
 									</span>
 									<!-- 示例搜索按钮 -->
-									<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 										<div class="form-group">
 											<button type="button"
-												class="btn btn-default btn-primary w120" onclick="sel()">搜索</button>
+												class="btn btn-default btn-primary w80" onclick="sel()">搜索</button>
 										</div>
 									</div>
 								</form>
 							</div>
-
-							<div class="column pt-btn-line">
-								<button type="button" class="btn w120 btn-default btn-primary"
-									onclick="addItem()">新增</button>
-							</div>
+							
 						</div>
+						<div class="col-lg-14 col-md-14 col-sm-14 col-xs-14 column">
+								<div class="column pt-btn-line">
+									<button type="button" class="btn w80 btn-default btn-primary"
+										onclick="addItem()">新增</button>
+								</div>
+							</div>
 					</div>
+					
 					<!--内容区容器-->
 					<div class="pt-main">
 						<!--bootstrap 表格-->
@@ -190,9 +166,7 @@
     // 2.返回操作模版[按钮颜色暂不确定]
     function operateFormatter(value, row, index) {
       return [
-          '<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick=lookItem("'
-              + value + '")>查看</button>',
-          '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
+           '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
               + value + '")>修改</button>',
           '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
               + value + '")>删除</button>' ].join('');
@@ -232,10 +206,10 @@
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '100%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : ['st/edit','yes']//如果不想出现滚动条['content.html', 'no']
+        content : './st/edit'//如果不想出现滚动条['content.html', 'no']        
       });
     }
-
+    
     function editItem(e) {
         layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
@@ -244,8 +218,8 @@
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
-        area : [ '83%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'st/edit?id='+e//如果不想出现滚动条['content.html', 'no']
+        area : [ '80%', '100%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : './st/edit?id='+e//如果不想出现滚动条['content.html', 'no']
       });
     }
 

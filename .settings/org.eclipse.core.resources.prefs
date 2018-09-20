@@ -1,3 +1,5 @@
+=\=\=\=\=\=\=
+
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
@@ -7,5 +9,7 @@ encoding//src/main/resources/application-train.properties=UTF-8
 encoding//src/main/resources/static/src/css/pt-main.css=UTF-8
 encoding//src/main/resources/static/web/css/Summary.css=UTF-8
 encoding//src/main/resources/static/web/css/courseContent.css=UTF-8
+encoding//src/main/resources/static/web/css/index1.css=UTF-8
+encoding//src/main/resources/static/web/css/pt-main.css=UTF-8
 encoding//src/test/java=UTF-8
 encoding/<project>=UTF-8

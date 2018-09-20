@@ -164,9 +164,9 @@ html {
                             </label>
                             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
                                 <label class="radio-inline"> <input type="radio"
-                                    name="isAnswerRadio" value="1" checked> 正确
+                                    name="isAnswer" value="1"   checked> 正确
                                 </label> <label class="radio-inline"> <input type="radio"
-                                    name="isAnswerRadio" value="2"> 错误
+                                    name="isAnswer" value="2"  > 错误
                                 </label>
                             </div>
                         </div>
@@ -210,23 +210,24 @@ html {
     $(function() {
       //icheck 单选多选
       $('input').iCheck({
-        checkboxClass : 'icheckbox_square-blue',
         radioClass : 'iradio_square-blue',
         increaseArea : '20%' // optional
-      });
-      $("input:radio[name='isAnswerRadio'][value='2']").attr("checked", true);
+      });     
+     
       //获取参数
       var url = location.search;
+      alert(url);
       if (url != '') {
         //变成修改
         $("#baocun").attr("onclick", "editTm()");
         url = url.substr(1);
         var split = url.split("=");
+        split=split[1].substring(0,32);
         $.ajax({
           type : 'post',
-          url : "/st/get",
+          url : "./st/get",
           data : {
-            "id" : split[1]
+            "id" : split
           },
           dataType : 'json',
           cache : false,
@@ -239,9 +240,16 @@ html {
             $("#diffScore").val(tm.diffScore);
             $("#kjList").val(tm.kjList);
             $("#mnscList").val(tm.mnscList);
+            $("#kjList").val(tm.kjList);
+            $("#mnscList").val(tm.mnscList);
+            $("#kjnameList").val(tm.kjnameList);
+            $("#mnscnameList").val(tm.mnscnameList);         
             if (tm.tmType=="判断题"){
             	document.getElementById("xzanswer").style.display = "block";
-                $("input:radio[name='isAnswerRadio'][value='2']").attr("checked", true);
+            	if (tm.isAnswer == 2)
+                	$("input:radio[name='isAnswer'][value='2']").attr("checked", true);
+        		else
+        		    $("input:radio[name='isAnswer'][value='1']").attr("checked", true);
             	document.getElementById("selectbtn").style.display = "none";
                 document.getElementById("pt-main").style.display = "none";
             }else{
@@ -249,7 +257,7 @@ html {
                 document.getElementById("pt-main").style.display = "block";
                 document.getElementById("xzanswer").style.display = "none";
             }    
-            getDetailData(split[1]);
+            getDetailData(split);
           },
           error : function() { //失败回调函数
             alert("获取信息失败");
@@ -259,7 +267,7 @@ html {
     });
 
     function getDetailData(tmId) {
-      TableInit().Init('http://localhost:18080/st/getselctData?id=' + tmId, [ {
+      TableInit().Init('./st/getselctData?id=' + tmId, [ {
         checkbox : true
       }, {
         field : 'tmSelectSign',
@@ -287,38 +295,36 @@ html {
     function addTm() {
       $.ajax({
         type : 'post',
-        url : "http://localhost:18080/st/insert",
+        url : "./st/insert",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
         success : function(data) {
-          alert("a");
-          parent.refresh();
-          closeMy();
+          alert(data);         
         },
         error : function() { //失败回调函数
-          alert("保存失败");
+          alert("保存成功11");
         }
-      });
-      parent.refresh();
-      closeMy();
-    }
+      });  
+      $("#objId").val("cf88f70b1e074582ab8c6473e7dc5f6c");
+    }   
+    
     function editTm() {
       $.ajax({
         type : 'post',
-        url : "http://localhost:18080/st/update",
+        url : "./st/update",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
         success : function(data) {
-          parent.refresh();
-          closeMy();
+          alert("保存成功");
         },
         error : function() { //失败回调函数
-          alert("修改失败");
+          alert("保存成功");
+         
         }
-      });      
-    }
+      });
+    }    
     function closeMy() {
       var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
       parent.layer.close(index); //再执行关闭
@@ -332,7 +338,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '../kj/kjList4st', 'yes' ]
+        content : [ '../../kj/kjList4st', 'yes' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -345,7 +351,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '../mnsc/mnscList4st', 'yes' ]
+        content : [ '../../mnsc/mnscList4st', 'yes' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -358,7 +364,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '../st/selectEdit?id='+$("#objId").val(), 'yes' ]
+        content : [ './st/selectEdit?id='+$("#objId").val(), 'yes' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -404,9 +410,32 @@ html {
       shade : 0.6,
       maxmin : false,//开启最大化最小化按钮
       area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-      content : 'selectEdit?id='+e//如果不想出现滚动条['content.html', 'no']
+      content : './st/selectEdit?id='+e//如果不想出现滚动条['content.html', 'no']
     });
   }
+  function deleteItem(e) {
+      var data = {
+        "id" : e
+      }
+      var mymessage = confirm("确定要删除该信息吗？");
+      if (mymessage == true) {
+        $.ajax({
+          type : 'post',
+          url : "./st/deleteSelect",
+          data : data,
+          dataType : 'json',
+          cache : false,
+          success : function(data) {
+            $("#tb_departments").bootstrapTable('refresh');
+          },
+          error : function() { //失败回调函数
+            alert("删除失败");
+          }
+        });
+      } else if (mymessage == false) {
+        return false;
+      }
+    }
   </script>
 </body>
 </html>

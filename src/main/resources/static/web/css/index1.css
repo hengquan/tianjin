@@ -2,10 +2,10 @@ html,body{
     font-size: 14px;
 }
 
-/*ģ��ʵ�ٵ�����*/
+/*模锟斤拷实锟劫碉拷锟斤拷锟斤拷*/
 .nav_bar{
     height: 60px;
-    width: 1200px;
+    width: 96%;
     background: white;
     font-size: 16px;
     line-height: 60px;
@@ -39,7 +39,7 @@ html,body{
     line-height: 25px;
     text-align: center;
 }
-/*ģ��ʵ�ٰ�ť*/
+/*模锟斤拷实锟劫帮拷钮*/
 .pay_button span{
     display: inline-block;
     width: 140px;
@@ -66,10 +66,10 @@ html,body{
     background-color: #f46227;
 }
 .paymentList thead{
-    width: 1200px;
+    width: 96%;
 }
 
-/*�б�ҳ������*/
+/*锟叫憋拷页锟斤拷锟斤拷锟斤拷*/
 .nav {
     border-bottom: 2px solid #ABC3CF;
     height: 60px;
@@ -103,7 +103,7 @@ html,body{
     color: #C3C3C3;
 }
 
-/*����չʾ�������ʽ*/
+/*锟斤拷锟斤拷展示锟斤拷锟斤拷锟斤拷锟绞�*/
 .row img{
     width: 280px;
     height: 180px;
@@ -164,13 +164,14 @@ h4{
     color: #C3C3C3;
 }
 
-/*����ҳ�������������*/
+/*锟斤拷锟斤拷页锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�*/
 .pt_content{
-    width: 1200px;
+    width: 96%;
     margin: 0 auto;
     position: relative;
     background: white;
 }
+
 .nav{
     left: -40px;
     width:988px;
@@ -184,4 +185,3 @@ body{
 .pt-footer{
     z-index: 9999;
 }
-
