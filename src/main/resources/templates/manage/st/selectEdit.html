@@ -138,7 +138,7 @@ html {
         var split = url.split("=");
         $.ajax({
           type : 'post',
-          url : "./st/getselect",
+          url : "../../st/getselect",
           data : {
             "id" : split[1]
           },
@@ -168,7 +168,7 @@ html {
      function addSelect() {    
        $.ajax({
          type : 'post',
-         url : "./st/insertselect",
+         url : "../../st/insertselect",
          data : $("#form").serialize(),
          dataType : 'json',
          cache : false,
@@ -186,7 +186,7 @@ html {
       function editSelect() {
         $.ajax({
           type : 'post',
-          url : "./st/updateSelct",
+          url : "../../st/updateSelct",
           data : $("#form").serialize(),
           dataType : 'json',
           cache : false,
