@@ -30,10 +30,13 @@ public class SjService {
      * @param tmCount
      * @return
      */
-    public List<Map<String,Object>> getTempSj(String objType, String objId, int tmCount) {
+    public List<Map<String,Object>> getTempSj(String refType, String refId, int tmCount) {
         Random ran=new Random();
 
-        List<Tm> tl=dao.getTmListByObjInfo(objType, objId);
+        Map<String, Object> param=new HashMap<String, Object>();
+        param.put("refTabName", "ts_"+refType);
+        param.put("refId", refId);
+        List<Tm> tl=dao.getTmListByObjInfo(param);
         //随机排序，先不随机？
         List<Tm> retTl=new ArrayList<Tm>();
         while (tl.size()>0&&retTl.size()<tmCount) {

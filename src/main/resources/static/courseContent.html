@@ -192,6 +192,7 @@ $(document).ready(function(){
   initPage();
 });
 
+//主课件填充
 function initPage() {
   $.ajax({
     type: 'post',
@@ -227,6 +228,7 @@ function initPage() {
   });
 }
 
+//相关课件填充
 function initTlkc() {
   $(".detail_bottom .row").html("");
   var _data={"kjId":getUrlParam("id")};
@@ -262,6 +264,9 @@ function getOneTlckHtml(oneKj) {
   '</div>';
   return _html;
 }
+
+//相关考题填充
+
 //进入学习的详细页面
 function toLearning() {
   window.location.href="./onlineLearning.html?kjId="+getUrlParam("id");

@@ -15,5 +15,5 @@ public interface TmMapper {
     Tm get(String id);
     List<Tm> selectAllMsg();
 
-    public List<Tm> getTmListByObjInfo(String objType, String objId);
+    public List<Tm> getTmListByObjInfo(Map<String, Object> param);
 }

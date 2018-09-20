@@ -394,7 +394,7 @@ public class ApiController {
                 retMap.put("messageInfo","列表为空");
             } else {
                 retMap.put("returnCode","00");
-                retMap.put("data",retL);
+                retMap.put("data", retL);
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -442,6 +442,13 @@ public class ApiController {
                 return retMap;
             }
             List<Map<String,Object>> tmpSjTmList=sjService.getTempSj(refType, refId, tmCount);
+            if (tmpSjTmList==null||tmpSjTmList.size()==0) {
+                retMap.put("returnCode","99");
+                retMap.put("messageInfo","列表为空");
+            } else {
+                retMap.put("returnCode","00");
+                retMap.put("data", tmpSjTmList);
+            }
             retMap.put("data", tmpSjTmList);
         } catch(Exception e) {
             e.printStackTrace();
