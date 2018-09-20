@@ -89,7 +89,7 @@ public class StService {
 	            tmSelect.setSort(2);
 	            selectDao.insertSelective(tmSelect); 
 	          }     
-	        return dao.insert(tm) > 0 ? true : false;
+	        return dao.insert(tm) >  0 ? true : false;
 	      
 	  }
 	//添加选项	
@@ -189,20 +189,32 @@ public class StService {
 	    tm = dao.get(entity.getId());
 	    List<TmRefSource> tmRefSource ;
 	    tmRefSource = refDao.getBytmid(tm.getId());
+	    String kjName = "" ;
+	    String mnscName = "";
 	    String kjList = "" ;
-	    String mnscList = "";
+        String mnscList = "";
 	    for (int i=0;i<tmRefSource.size();i++) {
-	        if (tmRefSource.get(i).getRefTabname().equals("ts_kj"))
+	        if (tmRefSource.get(i).getRefTabname().equals("ts_kj")) {
 	            kjList += ","+tmRefSource.get(i).getRefId();
-	        if (tmRefSource.get(i).getRefTabname().equals("ts_mnsc"))
+	            kjName += ","+tmRefSource.get(i).getRefname();
+	        }
+	        if (tmRefSource.get(i).getRefTabname().equals("ts_mnsc")) {
 	            mnscList  += "," +tmRefSource.get(i).getRefId();
+	            mnscName += ","+tmRefSource.get(i).getRefname();
+	        }
 	    }
-	    if (!kjList.equals(""))
+	    if (!kjList.equals("")) {
 	        kjList=kjList.substring(1);
-	    if (!mnscList.equals(""))
+	        kjName=kjName.substring(1);
+	    }
+	    if (!mnscList.equals("")) {
 	        mnscList=mnscList.substring(1);
+	        mnscName=mnscName.substring(1);
+	    }
 	    tm.setKjList(kjList);
 	    tm.setMnscList(mnscList);
+	    tm.setKjnameList(kjName);
+	    tm.setMnscnameList(mnscName);
 	    TmSelect tmSelect ;
 	    //获得选择题的答案
 	    tmSelect = selectDao.getselectBytmid(tm.getId());
@@ -226,4 +238,7 @@ public class StService {
         tm = selectDao.get(entity.getId());
         return tm; 
 	}
+	public boolean deleteSelect(TmSelect entity) throws Exception {
+        return selectDao.delete(entity) > 0 ? true : false;   
+    }
 }

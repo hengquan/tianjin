@@ -133,4 +133,9 @@
 		where tm_id =
 		#{tmId,jdbcType=VARCHAR}
   </delete>
+  <delete id="delete" parameterType="java.lang.String">
+		delete from q_TM_select
+		where id =
+		#{id,jdbcType=VARCHAR}
+  </delete>  
 </mapper>

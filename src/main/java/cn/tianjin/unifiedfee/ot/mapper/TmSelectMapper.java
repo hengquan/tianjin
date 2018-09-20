@@ -14,4 +14,5 @@ public interface TmSelectMapper {
     TmSelect get(String id);
     TmSelect getselectBytmid(String tmId);
     void deleteBytmid(String tmid);
+    int  delete(TmSelect record);
 }
