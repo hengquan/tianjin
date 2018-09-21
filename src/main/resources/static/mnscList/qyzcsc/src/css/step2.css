@@ -2,10 +2,11 @@ html,body{
   height: 1125px;
 }
 .page-main{
-  height: 630px;
+  height: 680px;
+  padding-top: 30px;
 }
 .page-form-list{
-  width: 650px;
+  width: 646px;
   height: 500px;
   background:#f6f5f5;
   margin-bottom: 20px;
@@ -15,14 +16,14 @@ html,body{
   margin-right: 30px;
 }
 .model{
-  width: 450px;
+  width: 432px;
   height: 500px;
   background: rgba(0,0,0,0.6);
   border-radius: 20px;
   font-size: 18px;
   color: white;
   line-height: 60px;
-  margin-left: 17px;
+  margin-left:18px;
   margin-right: 25px;
 }
 .model p{
@@ -30,7 +31,7 @@ html,body{
 }
 .model,.page-form-list,.triangle{
   float: left;
-  margin-top: 20px;
+  margin-top: 25px;
   margin-bottom: 38px;
 }
 .model>p>span{
@@ -45,4 +46,16 @@ html,body{
 }
 .model .finger{
   margin-left:30px;
+}
+
+.pay_button{
+  margin-top: 55px;
+}
+
+/*边框内容区的样式*/
+.content_border1{
+  border: 1px solid #ccc;
+  height: 550px;
+  width:1180px;
+  margin: 0 auto;
 }

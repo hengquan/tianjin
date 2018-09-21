@@ -106,7 +106,14 @@
     from q_tm
     where 1=1
   </select>
-  <select id="getTmListByObjInfo" resultMap="BaseResultMap" parameterType="java.lang.String">
+
+  <select id="get" resultMap="BaseResultMap">
+    select <include refid="Blob_Column_List" />
+    from q_tm
+    where id= #{id}
+  </select>
+
+  <select id="getTmListByObjInfo" resultMap="BaseResultMap" parameterType="Map">
    select a.id, a.tm_type, a.tm_html, a.score, a.diff_score, a.create_date, a.create_by, a.create_name
    from q_tm a, q_TM_ref_source b
    where b.tm_id=a.id and b.ref_tabName=#{refTabName} and b.ref_id=#{refId}

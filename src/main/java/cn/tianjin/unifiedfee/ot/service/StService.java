@@ -82,14 +82,14 @@ public class StService {
 	            tmSelect.setId(Onlylogo.getUUID());           
 	            tmSelect.setTmSelectSign("B");
 	            tmSelect.setTmSelectDesc("错误");
-	            if (tm.getIsAnswer().equals("1"))
+	            if (tm.getIsAnswer().equals("2"))
 	                tmSelect.setIsAnswer(0);
 	            else
 	                tmSelect.setIsAnswer(1);
 	            tmSelect.setSort(2);
 	            selectDao.insertSelective(tmSelect); 
 	          }     
-	        return dao.insert(tm) > 0 ? true : false;
+	        return dao.insert(tm) >  0 ? true : false;
 	      
 	  }
 	//添加选项	
@@ -138,6 +138,35 @@ public class StService {
                 refDao.insertSelective(tmRefSource);        
             }
         }
+        /*判断题的处理*/
+        TmSelect tmSelect = new TmSelect(); 
+        tmSelect.setTmId(tm.getId());
+        tmSelect.setCreateBy(tm.getCreateBy());
+        tmSelect.setCreateName(tm.getCreateName());
+        if (tm.getTmType().equals("判断题")){   
+            /*先进行删除操作*/
+            selectDao.deleteBytmid(tm.getId());
+            /*插入正确*/
+            tmSelect.setId(Onlylogo.getUUID());
+            tmSelect.setTmSelectSign("A");
+            tmSelect.setTmSelectDesc("正确");
+            if (tm.getIsAnswer().equals("1"))
+                tmSelect.setIsAnswer(1);
+            else
+                tmSelect.setIsAnswer(0);
+            tmSelect.setSort(1);
+            selectDao.insertSelective(tmSelect); 
+            /*插入错误*/
+            tmSelect.setId(Onlylogo.getUUID());           
+            tmSelect.setTmSelectSign("B");
+            tmSelect.setTmSelectDesc("错误");
+            if (tm.getIsAnswer().equals("2"))
+                tmSelect.setIsAnswer(0);
+            else
+                tmSelect.setIsAnswer(1);
+            tmSelect.setSort(2);
+            selectDao.insertSelective(tmSelect); 
+          }   
 		return dao.update(entity) > 0 ? true : false;
 	}
     //修改选项和答案 updateSelct
@@ -160,20 +189,32 @@ public class StService {
 	    tm = dao.get(entity.getId());
 	    List<TmRefSource> tmRefSource ;
 	    tmRefSource = refDao.getBytmid(tm.getId());
+	    String kjName = "" ;
+	    String mnscName = "";
 	    String kjList = "" ;
-	    String mnscList = "";
+        String mnscList = "";
 	    for (int i=0;i<tmRefSource.size();i++) {
-	        if (tmRefSource.get(i).getRefTabname().equals("ts_kj"))
+	        if (tmRefSource.get(i).getRefTabname().equals("ts_kj")) {
 	            kjList += ","+tmRefSource.get(i).getRefId();
-	        if (tmRefSource.get(i).getRefTabname().equals("ts_mnsc"))
+	            kjName += ","+tmRefSource.get(i).getRefname();
+	        }
+	        if (tmRefSource.get(i).getRefTabname().equals("ts_mnsc")) {
 	            mnscList  += "," +tmRefSource.get(i).getRefId();
+	            mnscName += ","+tmRefSource.get(i).getRefname();
+	        }
 	    }
-	    if (!kjList.equals(""))
+	    if (!kjList.equals("")) {
 	        kjList=kjList.substring(1);
-	    if (!mnscList.equals(""))
+	        kjName=kjName.substring(1);
+	    }
+	    if (!mnscList.equals("")) {
 	        mnscList=mnscList.substring(1);
+	        mnscName=mnscName.substring(1);
+	    }
 	    tm.setKjList(kjList);
 	    tm.setMnscList(mnscList);
+	    tm.setKjnameList(kjName);
+	    tm.setMnscnameList(mnscName);
 	    TmSelect tmSelect ;
 	    //获得选择题的答案
 	    tmSelect = selectDao.getselectBytmid(tm.getId());
@@ -197,4 +238,7 @@ public class StService {
         tm = selectDao.get(entity.getId());
         return tm; 
 	}
+	public boolean deleteSelect(TmSelect entity) throws Exception {
+        return selectDao.delete(entity) > 0 ? true : false;   
+    }
 }

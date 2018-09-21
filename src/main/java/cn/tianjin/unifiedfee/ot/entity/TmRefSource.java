@@ -8,6 +8,8 @@ public class TmRefSource {
     private String refTabname;
 
     private String refId;
+    
+    private String refname;
 
     public String getId() {
         return id;
@@ -39,5 +41,13 @@ public class TmRefSource {
 
     public void setRefId(String refId) {
         this.refId = refId == null ? null : refId.trim();
+    }
+
+    public String getRefname() {
+        return refname;
+    }
+
+    public void setRefname(String refname) {
+        this.refname = refname;
     }
 }

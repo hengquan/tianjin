@@ -21,23 +21,6 @@
   <!--页面js-->
   <script type="text/javascript" src="./web/js/main.js"></script>
 </head>
-<style>
-.name_top .course_right_img{
-  display: inline-block;
-  width: 20px;
-  height: 15px;
-}
-.name_top p{
-  padding-top: 15px;
-  margin-left: -35px;
-  margin-bottom: 15px;
-}
-.name_top .course1{
-  font-size: 14px;
-  color: #C3C3C3;
-
-}
-</style>
 <body>
 <div class="pt-topbar">
   <div class="nav_header">
@@ -55,13 +38,13 @@
 
 <div class="courseware" style="display:none;">
   <!--课件中心-->
-  <div class="gap" style="margin-top:0px;">
+  <div class="_gap" style="margin-top:0px;">
      <span>课件中心
      <div class="border"></div>
      </span>
   </div>
   <div class="detail_top">
-    <div class="course_img">
+    <div class="_course_img">
       <img src="./web/images/kj_default.jpg" alt="">
     </div>
     <div class="course_right">
@@ -79,69 +62,69 @@
     </div>
   </div>
   <!--同类课程-->
-  <div class="gap"><span>同类课程<div class="border"></div></span></div>
-  <div class="detail_bottom">
+  <div class="_gap"><span>同类课程<div class="border"></div></span></div>
+  <div class="_detail_bottom">
     <div class="row">
       <div class="col-md-3 tlkc">
         <img src="./web/images/kj_default.jpg" alt="">
-        <div class="name_title">
-          <div class="name_top">
+        <div class="_name_title">
+          <div class="">
             <p>尚巍手书及课程预告</p>
           </div>
         </div>
       </div>
       <div class="col-md-3 tlkc">
         <img src="./web/images/zxc.png" alt="">
-        <div class="name_title">
-          <div class="name_top">
+        <div class="_name_title">
+          <div class="">
             <p>尚巍手书及课程预告</p>
           </div>
         </div>
       </div>
       <div class="col-md-3 tlkc">
         <img src="./web/images/zxc.png" alt="">
-        <div class="name_title">
-          <div class="name_top">
+        <div class="_name_title">
+          <div class="">
             <p>尚巍234手书及课程预告</p>
            </div>
         </div>
       </div>
       <div class="col-md-3 tlkc">
         <img src="./web/images/zxc.png" alt="">
-        <div class="name_title">
-          <div class="name_top">
+        <div class="_name_title">
+          <div class="">
             <p>尚巍手书及课程预告</p>
           </div>
         </div>
       </div>
       <div class="col-md-3 tlkc">
         <img src="./web/images/zxc.png" alt="">
-        <div class="name_title">
-          <div class="name_top">
+        <div class="_name_title">
+          <div class="">
             <p>尚巍手书及课程预告</p>
           </div>
         </div>
       </div>
       <div class="col-md-3 tlkc">
         <img src="./web/images/zxc.png" alt="">
-        <div class="name_title">
-          <div class="name_top">
+        <div class="_name_title">
+          <div class="">
             <p>尚巍手书及课程预告</p>
           </div>
         </div>
       </div>
       <div class="col-md-3 tlkc">
         <img src="./web/images/zxc.png" alt="">
-        <div class="name_title">
-          <div class="name_top">
+        <div class="_name_title">
+          <div class="">
             <p>尚巍手书及课程预告</p>
           </div>
         </div>
       </div>
       <div class="col-md-3 tlkc">
         <img src="./web/images/zxc.png" alt="">
-        <div class="name_title">
-          <div class="name_top">
+        <div class="_name_title">
+          <div class="">
             <p>尚巍手书及课程预告</p>
           </div>
         </div>
@@ -149,7 +132,7 @@
     </div>
   </div>
   <!--相关练习-->
-  <div class="gap"><span>相关练习<div class="border"></div></span></div>
+  <div class="_gap"><span>相关练习<div class="border"></div></span></div>
   <div class="paymentList_bottom">
     <div class="relevant_practice" id="show1">
       <div class="practice_title practice_title1">
@@ -192,6 +175,7 @@ $(document).ready(function(){
   initPage();
 });
 
+//主课件填充
 function initPage() {
   $.ajax({
     type: 'post',
@@ -203,7 +187,7 @@ function initPage() {
       var returnCode=data.returnCode;
       if (returnCode=='00') {
         if (data.data.imgUrl) img_url=data.data.imgUrl;
-        $(".course_img img").attr("src", img_url);
+        $("._course_img img").attr("src", img_url);
         var tmpVal="";
         tmpVal=(data.data.name?data.data.name:"");
         $(".course_right .course_name").html(tmpVal);
@@ -213,7 +197,7 @@ function initPage() {
         $(".course_right .course_description").html(tmpVal);
       }
       if (data.data.imgUrl) img_url=data.data.imgUrl;
-      $(".course_img img").attr("src", img_url);
+      $("._course_img img").attr("src", img_url);
       //获得同类课程
       initTlkc();
       $(".courseware").show();
@@ -227,8 +211,9 @@ function initPage() {
   });
 }
 
+//相关课件填充
 function initTlkc() {
-  $(".detail_bottom .row").html("");
+  //$("._detail_bottom .row").html("");
   var _data={"kjId":getUrlParam("id")};
   $.ajax({
     type: 'post',
@@ -245,7 +230,7 @@ function initTlkc() {
           tlkcHtml+=getOneTlckHtml(oneKj);
         }
       }
-      $(".detail_bottom .row").html(tlkcHtml);
+      //$("._detail_bottom .row").html(tlkcHtml);
     },
     error: function (e) {
     }
@@ -256,12 +241,15 @@ function getOneTlckHtml(oneKj) {
   var _html=
   '<div class="col-md-3 tlkc">'+
     '<img src="'+_img_url+'" alt="">'+
-    '<div class="name_title"><div class="name_top">'+
+    '<div class="_name_title"><div style="margin-top:15px;">'+
       '<p>'+oneKj.name+'</p>'+
     '</div></div>'+
   '</div>';
   return _html;
 }
+
+//相关考题填充
+
 //进入学习的详细页面
 function toLearning() {
   window.location.href="./onlineLearning.html?kjId="+getUrlParam("id");

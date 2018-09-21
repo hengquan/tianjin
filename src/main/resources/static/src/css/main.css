@@ -318,7 +318,7 @@ ul {
 ***********************/
 .pt-view {
   padding-left: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 200px;
   position: relative;
   overflow-y: auto;
   box-sizing: border-box;

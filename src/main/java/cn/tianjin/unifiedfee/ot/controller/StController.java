@@ -235,6 +235,25 @@ public class StController {
         }
         return map;
     } 
-    
-    
+        
+    // 删除
+    @RequestMapping("deleteSelect")
+    @ResponseBody
+    public Map<String, Object> deleteSelect(TmSelect tm, HttpServletRequest request, HttpServletResponse response) {
+        // 返回数据
+        Map<String, Object> map = new HashMap<String, Object>();
+        // 跨域
+        HttpPush.responseInfo(response);
+        try {
+            // 添加数据
+            boolean result = stService.deleteSelect(tm);
+            if (result)
+                map.put("resultCode", "100");
+            else
+                map.put("resultCode", "101");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
 }

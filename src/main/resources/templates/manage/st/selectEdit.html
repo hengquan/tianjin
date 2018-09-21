@@ -131,15 +131,14 @@ html {
       }); 
       //获取参数
       var url = location.search;
-      alert(url);
       if (url != '') {
         //变成修改
-        $("#baocun").attr("onclick", "editSelect()");
+       
         url = url.substr(1);        
         var split = url.split("=");
         $.ajax({
           type : 'post',
-          url : "/st/getselect",
+          url : "../../st/getselect",
           data : {
             "id" : split[1]
           },
@@ -151,7 +150,8 @@ html {
             $("#tmSelectDesc").val(tm.tmSelectDesc);
             $("#isAnswer").selectpicker('val', tm.isAnswer);
             $("#tmSelectSign").val(tm.tmSelectSign); 
-            $("#sort").val(tm.sort);            
+            $("#sort").val(tm.sort);      
+            $("#baocun").attr("onclick", "editSelect()");
           },
           error : function() { //失败回调函数
             alert("获取信息失败");
@@ -168,7 +168,7 @@ html {
      function addSelect() {    
        $.ajax({
          type : 'post',
-         url : "http://localhost:18080/st/insertselect",
+         url : "../../st/insertselect",
          data : $("#form").serialize(),
          dataType : 'json',
          cache : false,
@@ -186,7 +186,7 @@ html {
       function editSelect() {
         $.ajax({
           type : 'post',
-          url : "http://localhost:18080/st/updateSelct",
+          url : "../../st/updateSelct",
           data : $("#form").serialize(),
           dataType : 'json',
           cache : false,
@@ -204,8 +204,7 @@ html {
       function closeMy() {
         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
         parent.layer.close(index); //再执行关闭
-      }     
-     
+      }
     </script>
 </body>
 </html>

@@ -18,26 +18,25 @@
 <!--页面js-->
 <script type="text/javascript" src="./web/js/main.js"></script>
 <style>
-body {
-	background: white;
-}
-
-html {
-	overflow: hidden;
-}
+body { background: white; }
+html { overflow: hidden; }
 </style>
 </head>
 <body>
 	<!--主菜单内容-->
-	<div class="pt-view pt-open">
-		<!--模拟实操标题-->
-		<div class="action">
-			<span>模拟实操</span>
-			<div class="border"></div>
-		</div>
-		<!--模拟实操内容-->
-		<div class="tab-content" id="htmlContent"></div>
-	</div>
+<div class="pt-page">
+    <div class="pt-root-container">
+        <!--主视口 -->
+        <div class="pt-view pt-open" style="padding-left: 0px;">
+            <!--带横线标题-->
+            <div class="pt-bread">
+                <h3>模拟实操</h3>
+            </div>
+            <!--模拟实操内容-->
+            <div class="tab-content" id="htmlContent"></div>
+        </div>
+    </div>
+</div>
 	<script>
     var top = '<div class="tab-pane active tab_bottom">' + '<div class="row">';
     var btm = '</div>' + '</div>';

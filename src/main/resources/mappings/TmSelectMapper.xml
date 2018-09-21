@@ -128,4 +128,14 @@
 		from q_TM_select a,q_tm b
 		where tm_id = #{tmId} and a.tm_id = b.id and b.tm_type='判断题' and a.is_answer=1
   </select>
+   <delete id="deleteBytmid" parameterType="java.lang.String">
+		delete from q_TM_select
+		where tm_id =
+		#{tmId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="delete" parameterType="java.lang.String">
+		delete from q_TM_select
+		where id =
+		#{id,jdbcType=VARCHAR}
+  </delete>  
 </mapper>
