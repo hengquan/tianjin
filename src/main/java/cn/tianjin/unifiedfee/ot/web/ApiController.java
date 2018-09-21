@@ -313,6 +313,7 @@ public class ApiController {
                     if (ca.getObjId().equals(kj.getId())&&ca.getArchiveType().equals("main")&&m.get("kjUrl")==null) {
                         m.put("kjUrl", ca.getFileUrl());
                     }
+                    m.put("fileName", ca.getFileName());
                 }
             }
             if (m.get("imgUrl")==null) {//默认图片
@@ -320,6 +321,7 @@ public class ApiController {
                 m.put("imgUrl", "");
             }
             if (m.get("kjUrl")==null) m.put("kjUrl", "");
+            if (m.get("fileName")==null) m.put("fileName", "");
             
             retMap.put("returnCode","00");
             retMap.put("data", m);
