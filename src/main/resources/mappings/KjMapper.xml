@@ -166,10 +166,10 @@
 
 	<select id="getPageData" resultMap="BaseResultMap">
 		select
-		<include refid="Blob_Column_List" />
+		*
 		from ts_KJ
 		where 1=1
-		<if test="kjName != null">
+		<if test="kjName != null and kjName != ''">
 			and instr(kj_name,#{kjName})>0
 		</if>
 		order by create_date desc

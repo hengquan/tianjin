@@ -152,18 +152,29 @@ html {
 							</div>
 						</div>
 					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span
+								class="cfff"> ※ </span>上传文件</label>
+							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
+								<input id="file-1" type="file" multiple class="file"
+									name="files" data-overwrite-initial="false"
+									data-min-file-count="1">
+							</div>
+						</div>
+					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
 								<table class="table table-striped" id="theTable">
 									<tr>
-                    <th>课件名称</th>
-                    <th>分类名称</th>
-                    <th>学分</th>
-                    <th>过期时间</th>
-                    <th><span class="glyphicon glyphicon-plus"
-                      aria-hidden="true" onclick="selectItem()"></span></th>
-                  </tr>
+										<th>课件名称</th>
+										<th>分类名称</th>
+										<th>学分</th>
+										<th>过期时间</th>
+										<th><span class="glyphicon glyphicon-plus"
+											aria-hidden="true" onclick="selectItem()"></span></th>
+									</tr>
 								</table>
 							</div>
 						</div>
@@ -183,9 +194,6 @@ html {
 	<br>
 	<script>
     $(function() {
-      $("input:radio[name='wenjian']").bind('click', function() {
-        console.log($(this).attr('value'))
-      })
       $('form').bootstrapValidator({
         message : 'This value is not valid',
         feedbackIcons : {
@@ -258,15 +266,6 @@ html {
         radioClass : 'iradio_square-blue',
         increaseArea : '20%' // optional
       });
-      $("input:radio[name='wenjian']").on('ifChecked', function(event) {
-        // alert($(this).val());
-        if ($(this).val() == 'option1') {
-          $('.Bshow').addClass('disnone')
-        } else {
-          $('.Bshow').removeClass('disnone')
-        }
-      });
-
       //获取参数
       var url = location.search;
       if (url != '') {
@@ -274,60 +273,63 @@ html {
         $("#baocun").attr("onclick", "editMnsc()");
         url = url.substr(1);
         var split = url.split("=");
-        $.ajax({
-          type : 'post',
-          url : "./mnsc/get",
-          data : {
-            "id" : split[1]
-          },
-          dataType : 'json',
-          cache : false,
-          success : function(data) {
-            var html = '<tr>'
-              + '<th>课件名称</th>'
-              + '<th>分类名称</th>'
-              + '<th>学分</th>'
-              + '<th>过期时间</th>'
-              + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
-              + '</tr>';
-            var mnsc = data.data;
-            $("#objId").val(mnsc.id);
-            $("#mnscName").val(mnsc.mnscName);
-            $("#mnscUrl").val(mnsc.mnscUrl);
-            $("#expireDate").val(mnsc.expireDate);
-            $("#score").val(mnsc.score);
-            $("#remarks").val(mnsc.remarks);
-            $("#mnscCatNames").val(mnsc.mnscCatNames);
-            $("#mnscCatId").selectpicker('val', mnsc.mnscCatId);
-            $("#mnscCatId").selectpicker('text', mnsc.mnscCatNames);
-            //获取相关课件列表
-            $("#kjids").val(mnsc.kjids);
-            var dataList = mnsc.kjs;
-            if(dataList!=null){
-	            for (var i = 0; i < dataList.length; i++) {
-	              html += '<tr>'
-	                  + '<td>'
-	                  + dataList[i].kjName
-	                  + '</td>'
-	                  + '<td>'
-	                  + dataList[i].kjCatNames
-	                  + '</td>'
-	                  + '<td>'
-	                  + dataList[i].score
-	                  + '</td>'
-	                  + '<td>'
-	                  + dataList[i].expireDate
-	                  + '</td>'
-	                  + '<th onclick="removeTr(this)" thisval="'+ dataList[i].id +'"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
-	                  + '</tr>';
-	            }
-	            $("#theTable").html(html);
-            }
-          },
-          error : function() { //失败回调函数
-            alert("获取信息失败");
-          }
-        });
+        $
+            .ajax({
+              type : 'post',
+              url : "../mnsc/get",
+              data : {
+                "id" : split[1]
+              },
+              dataType : 'json',
+              cache : false,
+              success : function(data) {
+                var html = '<tr>'
+                    + '<th>课件名称</th>'
+                    + '<th>分类名称</th>'
+                    + '<th>学分</th>'
+                    + '<th>过期时间</th>'
+                    + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
+                    + '</tr>';
+                var mnsc = data.data;
+                $("#objId").val(mnsc.id);
+                $("#mnscName").val(mnsc.mnscName);
+                $("#mnscUrl").val(mnsc.mnscUrl);
+                $("#expireDate").val(mnsc.expireDate);
+                $("#score").val(mnsc.score);
+                $("#remarks").val(mnsc.remarks);
+                $("#mnscCatNames").val(mnsc.mnscCatNames);
+                $("#mnscCatId").selectpicker('val', mnsc.mnscCatId);
+                $("#mnscCatId").selectpicker('text', mnsc.mnscCatNames);
+                //获取相关课件列表
+                $("#kjids").val(mnsc.kjids);
+                var dataList = mnsc.kjs;
+                if (dataList != null) {
+                  for (var i = 0; i < dataList.length; i++) {
+                    html += '<tr>'
+                        + '<td>'
+                        + dataList[i].kjName
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].kjCatNames
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].score
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].expireDate
+                        + '</td>'
+                        + '<th onclick="removeTr(this)" thisval="'
+                        + dataList[i].id
+                        + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+                        + '</tr>';
+                  }
+                  $("#theTable").html(html);
+                }
+              },
+              error : function() { //失败回调函数
+                alert("获取信息失败");
+              }
+            });
       }
     });
     //选择分类
@@ -338,11 +340,17 @@ html {
     function addMnsc() {
       $.ajax({
         type : 'post',
-        url : "./mnsc/insert",
+        url : "../mnsc/insert",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
         success : function(data) {
+          //上传附件
+          var objId = data.objId;
+          if (objId != '') {
+            $("#objId").val(objId);
+            $("#file-1").fileinput('upload');
+          }
           parent.refresh();
           closeMy();
         },
@@ -355,7 +363,7 @@ html {
     function editMnsc() {
       $.ajax({
         type : 'post',
-        url : "./mnsc/update",
+        url : "../mnsc/update",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
@@ -373,18 +381,6 @@ html {
       var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
       parent.layer.close(index); //再执行关闭
     }
-    //上传文件
-    $("#file-1").fileinput({
-      uploadUrl : '#', // you must set a valid URL here else you will get an error
-      // allowedFileExtensions : ['jpg', 'png','gif'],
-      overwriteInitial : false,
-      maxFileSize : 1000,
-      maxFilesNum : 10,
-      //allowedFileTypes: ['image', 'video', 'flash'],
-      slugCallback : function(filename) {
-        return filename.replace('(', '_').replace(']', '_');
-      }
-    });
     //选择摸拟实操-摸拟实操列表
     function selectItem() {
       layer.open({
@@ -423,76 +419,118 @@ html {
           }
         }
         var kjidval = kjid1 + kjid;
-        if(kjidval!=''){
+        if (kjidval != '') {
           kjIds = kjidval.substr(1);
         }
       }
       $("#kjids").val(kjIds);
       //处理显示
-      $.ajax({
-        type : 'post',
-        url : "./kj/getDataList",
-        data : {
-          "ids" : kjIds
-        },
-        dataType : 'json',
-        cache : false,
-        success : function(data) {
-          var html = '<tr>'
-            + '<th>课件名称</th>'
-            + '<th>分类名称</th>'
-            + '<th>学分</th>'
-            + '<th>过期时间</th>'
-            + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
-            + '</tr>';
-          var dataList = data.dataList;
-          for (var i = 0; i < dataList.length; i++) {
-            html += '<tr>'
-                + '<td>'
-                + dataList[i].kjName
-                + '</td>'
-                + '<td>'
-                + dataList[i].kjCatNames
-                + '</td>'
-                + '<td>'
-                + dataList[i].score
-                + '</td>'
-                + '<td>'
-                + dataList[i].expireDate
-                + '</td>'
-                + '<th onclick="removeTr(this)" thisval="'+ dataList[i].id +'"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
-                + '</tr>';
-          }
-          $("#theTable").html(html);
-        },
-        error : function() { //失败回调函数
-          alert("查询失败")
-        }
-      });
+      $
+          .ajax({
+            type : 'post',
+            url : "../kj/getDataList",
+            data : {
+              "ids" : kjIds
+            },
+            dataType : 'json',
+            cache : false,
+            success : function(data) {
+              var html = '<tr>'
+                  + '<th>课件名称</th>'
+                  + '<th>分类名称</th>'
+                  + '<th>学分</th>'
+                  + '<th>过期时间</th>'
+                  + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
+                  + '</tr>';
+              var dataList = data.dataList;
+              for (var i = 0; i < dataList.length; i++) {
+                html += '<tr>'
+                    + '<td>'
+                    + dataList[i].kjName
+                    + '</td>'
+                    + '<td>'
+                    + dataList[i].kjCatNames
+                    + '</td>'
+                    + '<td>'
+                    + dataList[i].score
+                    + '</td>'
+                    + '<td>'
+                    + dataList[i].expireDate
+                    + '</td>'
+                    + '<th onclick="removeTr(this)" thisval="'
+                    + dataList[i].id
+                    + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+                    + '</tr>';
+              }
+              $("#theTable").html(html);
+            },
+            error : function() { //失败回调函数
+              alert("查询失败")
+            }
+          });
     }
     //删除一整行
     function removeTr(obj) {
-    //去掉该ID
+      //去掉该ID
       //获取所有课件id
       var kjIds = $("#kjids").val();
       //获取当前要删掉的课件id
       var kjid = $(obj).attr("thisval");
       //替换
-      var ides = kjIds.replace(kjid,"");
+      var ides = kjIds.replace(kjid, "");
       var idess = ides.split(",");
       var zhids = '';
-      for(var i=0;i<idess.length;i++){
-        if(idess[i]!=''){
-          zhids+=","+idess[i];
+      for (var i = 0; i < idess.length; i++) {
+        if (idess[i] != '') {
+          zhids += "," + idess[i];
         }
       }
-      if(zhids!=''){
+      if (zhids != '') {
         zhids = zhids.substr(1);
       }
       $("#kjids").val(zhids);
       //删除行
       $(obj).parent().remove();
     }
+    //上传文件
+    $("#file-1").fileinput({
+      theme : "explorer", //主题
+      language : 'zh',
+      uploadUrl : "/file/upload",// 上传请求路径
+      allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg', 'pdf', 'mp4' ],//允许上传的文件后缀       
+      uploadAsync : false, //是否允许异步上传
+      showUpload : false,//是否显示上传按钮
+      showCaption : false,//是否显示容器
+      dropZoneEnabled : false,//是否显示拖拽区域 
+      removeFromPreviewOnError : true,//是否移除校验文件失败的文件
+      uploadExtraData : function(previewId, index) { //额外参数 返回json数组  
+        var objId = $("#objId").val();
+        return {
+          'objId' : objId,
+          'objTabname' : 'ts_mnsc',
+          'archiveType' : 'main'
+        // commId 为全局变量，可以给控件上传额外参数  
+        };
+      },
+      layoutTemplates : { //取消上传按钮
+        actionUpload : '',
+      },
+      showPreview : true, //显示预览   
+      minFileCount : 1, //最低文件数量
+      maxFileCount : 3, //最多文件数量
+      maxFileSize : 0, //允许文件上传大小
+      overwriteInitial : false,
+      previewFileIcon : '<i class="fa fa-file"></i>',
+      initialPreviewAsData : true, // defaults markup  
+      preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片
+      previewFileIconSettings : { // configure your icon file extensions
+        'pdf' : '<i class="fa fa-file-pdf-o text-danger"></i>',
+        'jpg' : '<i class="fa fa-file-photo-o text-danger"></i>',
+        'gif' : '<i class="fa fa-file-photo-o text-muted"></i>',
+        'png' : '<i class="fa fa-file-photo-o text-primary"></i>',
+        'jpeg' : '<i class="fa fa-file-photo-o text-primary"></i>'
+      },
+    });
   </script>
 </body>
 </html>

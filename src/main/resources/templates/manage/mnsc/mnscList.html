@@ -263,7 +263,7 @@
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'mnsc/edit'//如果不想出现滚动条['content.html', 'no']
+        content : './mnsc/edit'//如果不想出现滚动条['content.html', 'no']
       });
     }
 
@@ -276,7 +276,7 @@
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'mnsc/edit?id=' + e//如果不想出现滚动条['content.html', 'no']
+        content : './mnsc/edit?id=' + e//如果不想出现滚动条['content.html', 'no']
       });
     }
 
@@ -289,11 +289,11 @@
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'mnsc/view?id=' + e//如果不想出现滚动条['content.html', 'no']
+        content : './mnsc/view?id=' + e//如果不想出现滚动条['content.html', 'no']
       });
     }
 
-    TableInit().Init('/mnsc/getPageData', [ {
+    TableInit().Init('./mnsc/getPageData', [ {
       field : 'mnscName',
       title : '分类名称',
       sortable : true

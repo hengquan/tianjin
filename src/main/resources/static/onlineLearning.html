@@ -97,12 +97,14 @@
             var returnCode = data.returnCode;
             if(returnCode=="00"){
               var data = data.data;
+              console.log(data);
               //课件名称
               $("#kjName").html(data.name);
               //文件名称
               $("#fileName").html(data.name);
               //文件Url
               var kjUrl = data.kjUrl;
+              console.log(kjUrl);
               if(kjUrl =='' || kjUrl==null){
                 $("#video").attr("src","mnsc.mp4");
               }else{

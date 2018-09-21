@@ -275,7 +275,7 @@ html {
         $
             .ajax({
               type : 'post',
-              url : "./kj/get",
+              url : "../kj/get",
               data : {
                 "id" : split[1]
               },
@@ -333,7 +333,7 @@ html {
     function addKj() {
       $.ajax({
         type : 'post',
-        url : "./kj/insert",
+        url : "../kj/insert",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
@@ -357,7 +357,7 @@ html {
     function editKj() {
       $.ajax({
         type : 'post',
-        url : "./kj/update",
+        url : "../kj/update",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
@@ -389,7 +389,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : '/kjSelList'//如果不想出现滚动条['content.html', 'no']
+        content : '../kjSelList'//如果不想出现滚动条['content.html', 'no']
       });
     }
 
@@ -427,7 +427,7 @@ html {
       $
           .ajax({
             type : 'post',
-            url : "./kj/getDataList",
+            url : "../kj/getDataList",
             data : {
               "ids" : kjIds
             },
@@ -496,7 +496,7 @@ html {
     $("#file-1").fileinput({
       theme : "explorer", //主题
       language : 'zh',
-      uploadUrl : "./file/upload",// 上传请求路径
+      uploadUrl : "/file/upload",// 上传请求路径
       allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg', 'pdf','mp4' ],//允许上传的文件后缀       
       uploadAsync : false, //是否允许异步上传
       showUpload : false,//是否显示上传按钮
@@ -535,7 +535,7 @@ html {
     $("#file-2").fileinput({
       theme : "explorer", //主题
       language : 'zh',
-      uploadUrl : "./file/upload",// 上传请求路径
+      uploadUrl : "/file/upload",// 上传请求路径
       uploadAsync : false, //是否允许异步上传
       showUpload : false,//是否显示上传按钮
       showCaption : false,//是否显示容器

@@ -133,7 +133,7 @@
       if (mymessage == true) {
         $.ajax({
           type : 'post',
-          url : "./kj/delete",
+          url : "../kj/delete",
           data : data,
           dataType : 'json',
           cache : false,
@@ -158,7 +158,7 @@
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'kj/edit'//如果不想出现滚动条['content.html', 'no']
+        content : '../kj/edit'//如果不想出现滚动条['content.html', 'no']
       });
     }
 
@@ -171,7 +171,7 @@
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'kj/edit?id=' + e//如果不想出现滚动条['content.html', 'no']
+        content : '../kj/edit?id=' + e//如果不想出现滚动条['content.html', 'no']
       });
     }
 
@@ -184,11 +184,11 @@
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'kj/view?id=' + e//如果不想出现滚动条['content.html', 'no']
+        content : '../kj/view?id=' + e//如果不想出现滚动条['content.html', 'no']
       });
     }
 
-    TableInit(queryParams).Init('http://localhost:18080/kj/getPageData', [ {
+    TableInit(queryParams).Init('../kj/getPageData', [ {
       checkbox : true
     }, {
       field : 'kjName',

@@ -31,6 +31,7 @@ public class KjService {
     public boolean insert(Kj kj, UserInfo user) throws Exception {
         kj.setId(Onlylogo.getUUID());
         kj.setCreateBy(user.getUserId());
+        kj.setState(2);
         kj.setKjHtml("null");
         kj.setCreateName(user.getUsername());
         Boolean isok = dao.insert(kj) > 0 ? true : false;
