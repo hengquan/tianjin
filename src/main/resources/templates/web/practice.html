@@ -46,7 +46,7 @@ html {
       var data = {};
       $.ajax({
         type : 'post',
-        url : "/train/getMnscList",
+        url : "./train/getMnscList",
         data : data,
         dataType : 'json',
         cache : false,
@@ -59,8 +59,13 @@ html {
             var contentHtml = '';
             var dataList = data.data;
             for (var i = 0; i < dataList.length; i++) {
+              //查主图片是否有值无值显示默认图
+              var mainUrl = dataList[i].mainUrl;
+              if(mainUrl=='' || mainUrl==null){
+                mainUrl = "./web/images/111.jpg";
+              }
               html += '<div class="col-md-3">'
-                  + '<img src="http://1.202.219.107:8082/ot-server/ot/image/156011110000017.jpg" alt="">'
+                  + '<img src="'+ mainUrl +'" alt="">'
                   + '<div class="model_bg" onclick=toSimulation1("'
                   + dataList[i].mnscUrl + '")></div>'
                   + '<div class="explain">' + '<p>' + dataList[i].mnscName

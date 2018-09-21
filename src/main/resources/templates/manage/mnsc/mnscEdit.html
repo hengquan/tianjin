@@ -276,7 +276,7 @@ html {
         var split = url.split("=");
         $.ajax({
           type : 'post',
-          url : "/mnsc/get",
+          url : "./mnsc/get",
           data : {
             "id" : split[1]
           },
@@ -338,7 +338,7 @@ html {
     function addMnsc() {
       $.ajax({
         type : 'post',
-        url : "/mnsc/insert",
+        url : "./mnsc/insert",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
@@ -355,7 +355,7 @@ html {
     function editMnsc() {
       $.ajax({
         type : 'post',
-        url : "/mnsc/update",
+        url : "./mnsc/update",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
@@ -431,7 +431,7 @@ html {
       //处理显示
       $.ajax({
         type : 'post',
-        url : "/kj/getDataList",
+        url : "./kj/getDataList",
         data : {
           "ids" : kjIds
         },
