@@ -342,11 +342,13 @@ html {
           var objId = data.objId;
           if (objId != '') {
             $("#objId").val(objId);
-            $("#file-1").fileinput('upload');
-            $("#file-2").fileinput('upload');
+            setTimeout(function() {
+              $("#file-1").fileinput('upload');
+              $("#file-2").fileinput('upload');
+		          parent.refresh();
+		          closeMy();
+            }, 500);
           }
-          parent.refresh();
-          closeMy();
         },
         error : function() { //失败回调函数
           parent.refresh();
@@ -496,8 +498,8 @@ html {
     $("#file-1").fileinput({
       theme : "explorer", //主题
       language : 'zh',
-      uploadUrl : "/file/upload",// 上传请求路径
-      allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg', 'pdf','mp4' ],//允许上传的文件后缀       
+      uploadUrl : "../file/upload",// 上传请求路径
+      allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg', 'pdf', 'mp4' ],//允许上传的文件后缀       
       uploadAsync : false, //是否允许异步上传
       showUpload : false,//是否显示上传按钮
       showCaption : false,//是否显示容器
@@ -535,7 +537,7 @@ html {
     $("#file-2").fileinput({
       theme : "explorer", //主题
       language : 'zh',
-      uploadUrl : "/file/upload",// 上传请求路径
+      uploadUrl : "../file/upload",// 上传请求路径
       uploadAsync : false, //是否允许异步上传
       showUpload : false,//是否显示上传按钮
       showCaption : false,//是否显示容器
@@ -558,9 +560,9 @@ html {
       maxFileCount : 3, //最多文件数量
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : true,
-      initialPreview:[
-                      
-                      ],
+      initialPreview : [
+
+      ],
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片

@@ -349,10 +349,12 @@ html {
           var objId = data.objId;
           if (objId != '') {
             $("#objId").val(objId);
-            $("#file-1").fileinput('upload');
+            setTimeout(function() {
+              $("#file-1").fileinput('upload');
+		          parent.refresh();
+		          closeMy();
+            }, 500);
           }
-          parent.refresh();
-          closeMy();
         },
         error : function() { //失败回调函数
           parent.refresh();
@@ -496,7 +498,7 @@ html {
     $("#file-1").fileinput({
       theme : "explorer", //主题
       language : 'zh',
-      uploadUrl : "/file/upload",// 上传请求路径
+      uploadUrl : "../file/upload",// 上传请求路径
       allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg', 'pdf', 'mp4' ],//允许上传的文件后缀       
       uploadAsync : false, //是否允许异步上传
       showUpload : false,//是否显示上传按钮
