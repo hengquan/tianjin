@@ -185,3 +185,7 @@ body{
 .pt-footer{
     z-index: 9999;
 }
+
+.pt-view {
+  padding-left:30px;
+}

@@ -225,7 +225,7 @@ html {
         split=split[1].substring(0,32);
         $.ajax({
           type : 'post',
-          url : "./st/get",
+          url : "../../st/get",
           data : {
             "id" : split
           },
@@ -267,7 +267,7 @@ html {
     });
 
     function getDetailData(tmId) {
-      TableInit().Init('./st/getselctData?id=' + tmId, [ {
+      TableInit().Init('../../st/getselctData?id=' + tmId, [ {
         checkbox : true
       }, {
         field : 'tmSelectSign',
