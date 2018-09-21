@@ -29,7 +29,7 @@ public class ManageDispatchUrl {
     }
 
     //--分类管理
-    @RequestMapping("cateList")
+    @RequestMapping("cate/List")
     public String toCateList() {
         return "/manage/cate/cateList";
     }
@@ -43,15 +43,15 @@ public class ManageDispatchUrl {
     }
     
     //--摸拟实操管理
-    @RequestMapping("mnscList")
+    @RequestMapping("mnsc/list")
     public String toMnscList() {
         return "/manage/mnsc/mnscList";
     }
-    @RequestMapping("mnscSelList")
+    @RequestMapping("mnsc/selList")
     public String mnscSelList() {
         return "/manage/mnsc/mnscSelList";
     }
-    @RequestMapping("mnsc/mnscList4st")
+    @RequestMapping("mnsc/list4st")
     public String toMnscList4st() {
         return "/manage/mnsc/mnscList4st";
     }
@@ -65,11 +65,11 @@ public class ManageDispatchUrl {
     }
     
     //--课件管理
-    @RequestMapping("kjList")
+    @RequestMapping("kj/list")
     public String toKjList() {
         return "/manage/kj/kjList";
     }
-    @RequestMapping("kjSelList")
+    @RequestMapping("kj/selList")
     public String kjSelList() {
         return "/manage/kj/kjSelList";
     }
@@ -81,7 +81,7 @@ public class ManageDispatchUrl {
     public String toKjView(HttpServletRequest request) {
         return "/manage/kj/kjView";
     }
-    @RequestMapping("kj/kjList4st")
+    @RequestMapping("kj/list4st")
     public String toKjList4st() {
         return "/manage/kj/kjList4st";
     }

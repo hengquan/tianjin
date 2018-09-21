@@ -4,65 +4,65 @@
 <meta charset="UTF-8">
 <title>input</title>
 <!-- 1 bootstrap基础css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
 	rel="stylesheet">
 <!-- 2 table表格css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
 	rel="stylesheet">
 <!-- 3 treeview树css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
 	rel="stylesheet">
 <!-- 4 datetimepicker时间选择css -->
 <link
-	href="../libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
 	rel="stylesheet">
 <!-- 5 select选择框css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
 	rel="stylesheet">
 <!-- 6 fileinput上传文件css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
 	rel="stylesheet">
 <!-- 7 icheck单选+多选css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
 	rel="stylesheet">
 <!-- 8 Validator验证css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
 	rel="stylesheet">
 <!-- 9 layer弹框css -->
-<link href="../libs/layer/layer-new.css" rel="stylesheet">
+<link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
 <!-- 10 引入字体css -->
-<link href="../libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
 	rel="stylesheet">
 <!-- 11 页面样式css -->
-<link href="../src/css/pt-main.css" rel="stylesheet">
+<link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
 <!-- 优先引入jquery1.12.4版本 -->
-<script src="../libs/jquery/jquery-1.12.4.js"></script>
+<script src="${gateway}/libs/jquery/jquery-1.12.4.js"></script>
 <!-- 1 bootstrap基础js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <!-- 2 table表格js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
 <!-- 2 table列表数据js 可删除？ -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
 <!-- 3 treeview树js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
 <!-- 4 datetimepicker时间选择js -->
 <script
-	src="../libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
 <!-- 5 select选择框js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <!-- 6 fileinput上传文件js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
 <!-- 6 fileinput中文包js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
 <!-- 7 icheck单选+多选js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
 <!-- 8 Validator验证js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <!-- 9 layer弹框js -->
-<script src="../libs/layer/layer.js"></script>
+<script src="${gateway}/libs/layer/layer.js"></script>
 <!-- 11 页面js -->
-<script src="../src/js/main.js"></script>
+<script src="${gateway}/src/js/main.js"></script>
 <style>
 html {
 	overflow-x: hidden;
@@ -275,7 +275,7 @@ html {
         $
             .ajax({
               type : 'post',
-              url : "/kj/get",
+              url : "${gateway}/kj/get",
               data : {
                 "id" : split[1]
               },
@@ -333,7 +333,7 @@ html {
     function addKj() {
       $.ajax({
         type : 'post',
-        url : "/kj/insert",
+        url : "${gateway}/kj/insert",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
@@ -357,7 +357,7 @@ html {
     function editKj() {
       $.ajax({
         type : 'post',
-        url : "/kj/update",
+        url : "${gateway}/kj/update",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
@@ -389,7 +389,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : '/kjSelList'//如果不想出现滚动条['content.html', 'no']
+        content : '${gateway}/kj/selList'//如果不想出现滚动条['content.html', 'no']
       });
     }
 
@@ -424,10 +424,9 @@ html {
       }
       $("#ids").val(kjIds);
       //处理显示
-      $
-          .ajax({
+      $.ajax({
             type : 'post',
-            url : "/kj/getDataList",
+            url : "${gateway}/kj/getDataList",
             data : {
               "ids" : kjIds
             },
@@ -496,7 +495,7 @@ html {
     $("#file-1").fileinput({
       theme : "explorer", //主题
       language : 'zh',
-      uploadUrl : "/file/upload",// 上传请求路径
+      uploadUrl : "${gateway}/file/upload",// 上传请求路径
       allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg', 'pdf','mp4' ],//允许上传的文件后缀       
       uploadAsync : false, //是否允许异步上传
       showUpload : false,//是否显示上传按钮
@@ -535,7 +534,7 @@ html {
     $("#file-2").fileinput({
       theme : "explorer", //主题
       language : 'zh',
-      uploadUrl : "/file/upload",// 上传请求路径
+      uploadUrl : "${gateway}/file/upload",// 上传请求路径
       uploadAsync : false, //是否允许异步上传
       showUpload : false,//是否显示上传按钮
       showCaption : false,//是否显示容器
