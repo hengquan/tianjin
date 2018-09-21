@@ -1,45 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>模拟实操</title>
-<!-- <!-- 1 bootstrap的css -->
-<link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
-<!--公共页面css-->
-<link rel="stylesheet" href="./web/css/pt-main.css">
-<link rel="stylesheet" href="./web/css/index1.css">
-<!--独立页面css-->
-<link rel="stylesheet" href="./web/css/index.css">
-<!--引入字体的css-->
-<link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
-<script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
-<!--bootstrap的js-->
-<script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
-<!--页面js-->
-<script type="text/javascript" src="./web/js/main.js"></script>
+  <meta charset="UTF-8">
+  <title>在线学习</title>
+  <!-- 1 bootstrap的css -->
+  <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
+  <!--公共css-->
+  <link rel="stylesheet" href="./web/css/pt-main.css">
+  <link rel="stylesheet" href="./web/css/index1.css">
+  <!--页面css-->
+  <link rel="stylesheet" href="./web/css/index.css">
+  <!--引入字体的css-->
+  <link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
+  <script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
+  <!--bootstrap的js-->
+  <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
+  <!--页面js-->
+  <script type="text/javascript" src="./web/js/main.js"></script>
 <style>
-body {
-	background: white;
-}
-
-html {
-	overflow: hidden;
-}
+html {overflow: hidden;}
+body {background: white;}
 </style>
 </head>
+
 <body>
-	<!--主菜单内容-->
-	<div class="pt-view pt-open">
-		<!--模拟实操标题-->
-		<div class="action">
-			<span>模拟实操</span>
-			<div class="border"></div>
-		</div>
+<!--主视口 -->
+<div class="pt-view pt-open">
+  <!--主窗口导航条开始-->
+  <ul class="nav" id="myTab">
+    <li><a href="javascript:void(0)" data-toggle="tab" class="active1" cateId="">模拟实操</a></li>    
+  </ul>
 		<!--模拟实操内容-->
 		<div class="tab-content" id="htmlContent"></div>
 	</div>
 	<script>
-    var top = '<div class="tab-pane active tab_bottom">' + '<div class="row">';
+	$(document).ready(function(){
+	  $("a[cateId='']").click();	 
+	});
+    var top = '<div class="tab-pane active tab_bottom">' + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">';
     var btm = '</div>' + '</div>';
     //初始化
     $(function() {
@@ -59,9 +56,9 @@ html {
             var contentHtml = '';
             var dataList = data.data;
             for (var i = 0; i < dataList.length; i++) {
-              html += '<div class="col-md-3">'
+              html += '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 column">'
                   + '<img src="http://1.202.219.107:8082/ot-server/ot/image/156011110000017.jpg" alt="">'
-                  + '<div class="model_bg" onclick=toSimulation1("'
+                  + '<div  onclick=toSimulation1("'
                   + dataList[i].mnscUrl + '")></div>'
                   + '<div class="explain">' + '<p>' + dataList[i].mnscName
                   + '</p>' + '<div class="system">' + dataList[i].remarks
@@ -69,14 +66,15 @@ html {
                   + '<div class="start" onclick=toSimulation2("'
                   + dataList[i].mnscUrl + '")>开始模拟实操</div>' + '</div>'
                   + '</div>';
+             
               if (i % 4 == 0) {
-                contentHtml = '<div class="tab-pane active tab_bottom">'
-                    + '<div class="row">' + html + '</div>' + '</div>'
+                contentHtml = '<div class="row">'
+                    + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">' + html + '</div>' + '</div>'
                     + contentHtml;
                 html = '';
               }
             }
-            $("#htmlContent").html(contentHtml);
+            $("#htmlContent").html(contentHtml);           
           } else {
             alert(data.messageInfo);
           }

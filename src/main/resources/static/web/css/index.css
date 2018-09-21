@@ -4,7 +4,7 @@
 .model_bg{
     position: absolute;
     top: 0;
-    left: 42px;
+    margin-left: 0px;
     bottom: 0;
     right: 0;
     background: rgba(0,0,0,.3);
@@ -39,6 +39,7 @@
 .tab-content{
     width: 1200px;
     margin: 0 auto;
+    left:180px;
 }
 
 /*模拟实操标题*/
@@ -65,23 +66,25 @@
 
 /*模拟实操的内容*/
 .tab-content{
-    margin-top: 30px;
+    margin-top: 30px;    
+    margin-left: 30px;
 }
 .tab-content .row{
     width: 1200px;
     margin: 0 auto;
+    
 }
 .tab-content img{
     display: inline-block;
     width: 230px;
     height: 175px;
-    margin-left: -6px;
+    margin-left: 10px;
   }
 .tab-content .col-md-3{
     width: 25%;
 }
 .tab-content .model_bg{
-    margin-left: -48px;
+    margin-left: 10px;
     cursor: pointer;
 }
 .tab-content .col-md-3 .explain{
@@ -89,7 +92,7 @@
     height:145px;
     background: #f8f8f8;
     border-radius: 0 0 5px 5px;
-    margin-left: -6px;
+    margin-left: 10px;
 }
 .explain1{
     margin-left: 5px;
@@ -116,16 +119,4 @@
     margin: 10px auto 0;
     border-radius: 15px;
     cursor: pointer;
-}
-
-/*1111*/
-.tab-content .col-md-3 {
-    width: 20%;
-}
-.tab_bottom{
-    margin-top: 35px;
-}
-html{
-    height: 450px;
-    overflow: scroll;
 }

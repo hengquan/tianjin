@@ -12,7 +12,7 @@
 }
 .row{
   margin-top: 40px;
-  margin-left: -72px;
+  margin-left: -24px;
 }
 .col-md-4 span{
   display: inline-block;
@@ -114,14 +114,14 @@
   margin-left: 9px;
 }
 .practice_title {
-  margin-left: -66px;
+  margin-left: -20px;
   margin-top: 36px;
 }
 /*内容底部*/
 .practice_bottom{
   width: 966px;
   position: absolute;
-  left: 25px;
+  left: 40px;
   top: 588px;
 }
 .practice_bottom table{

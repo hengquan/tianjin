@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <title>在线学习</title>
-  <!-- <!-- 1 bootstrap的css -->
+  <!-- 1 bootstrap的css -->
   <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
   <!--公共css-->
   <link rel="stylesheet" href="./web/css/pt-main.css">
@@ -27,16 +27,6 @@ body {background: white;}
 <div class="pt-view pt-open">
   <!--主窗口导航条开始-->
   <ul class="nav" id="myTab">
-  <!--
-    <li class="active"><a href="#allClassification" data-toggle="tab" class="active1">全部分类</a></li>
-    <li><a href="#statuteClass" data-toggle="tab">法规类</a></li>
-    <li><a href="#policyCategory" data-toggle="tab">政策类</a></li>
-    <li><a href="#chargeClass" data-toggle="tab">收费类</a></li>
-    <li><a href="#vogue" data-toggle="tab">风行类</a></li>
-    <li><a href="#tallyClass" data-toggle="tab">理货类</a></li>
-    <li><a href="#exportClass" data-toggle="tab">出口类</a></li>
-    <li><a href="#importClass" data-toggle="tab">进口类</a></li>
-  -->
     <li><a href="javascript:void(0)" data-toggle="tab" class="active1" cateId="">全部分类</a></li>
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="1">法规类</a></li>
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="2">政策类</a></li>
@@ -46,6 +36,7 @@ body {background: white;}
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="6">出口类</a></li>
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="7">进口类</a></li>
   </ul>
+ 
   <!--搜索框-->
   <div class="search_input">
     <span class="search_left"><input type="text" id="searchStr" style="padding-left:10px;"></span>
@@ -64,35 +55,6 @@ body {background: white;}
 
 <script>
 $(document).ready(function(){
-/*
-$.ajax({
-  type: 'post',
-  url: "/train/getCateData",
-  success: function (data) { //成功后的回调函数
-    var returnCode= data.returnCode;
-    var str = "";
-    if (returnCode == '00') {
-      var data = data.data;
-      var dataList = data.list;
-      console.log(dataList);
-      var tabHtml="";
-      for(var i= 0;i<dataList.length;i++){
-        if (dataList[i].parentId=='0') {
-          //tabHtml+="<li><a href='javascript:void(0);' onclick='changeTab(/""+dataList[i].id+"'/")' data-toggle='tab' id='"+dataList[i].id+"' aria-expanded=false></a>"+dataList[i].name+"</li>"
-        }
-      }
-      tabHtml="<li><a href='javascript:void(0);' onclick='changeTab(/"/")' data-toggle='tab' id='' aria-expanded=false>全部分类</a></li>"+tabHtml;
-      $("#myTab").html(tabHtml);
-    } else if (returnCode == '01') {
-
-    }
-  },
-  error: function (e) {
-    console.log("网络连接失败！");
-  }
-});
-*/
-
   $("a[cateId='']").click();
   $(".search").click(function(){
     getKjList($(".active1").attr("cateId"), $("#searchStr").val());

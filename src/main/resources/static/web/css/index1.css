@@ -5,7 +5,7 @@ html,body{
 /*模锟斤拷实锟劫碉拷锟斤拷锟斤拷*/
 .nav_bar{
     height: 60px;
-    width: 96%;
+    width: 100%;
     background: white;
     font-size: 16px;
     line-height: 60px;
@@ -96,7 +96,7 @@ html,body{
 .nav .active .active1{
     color:black;
     font-weight: bold;
-   border-radius: 5px;
+    border-radius: 5px;
 }
 .nav li a{
     padding: 0;
@@ -140,7 +140,7 @@ h4{
     height: 13px;
 }
 .name_title .img_left{
-    margin-left: -176px;
+    margin-left: 0px;
 }
 .name_top{
     height: 100px;
@@ -166,15 +166,15 @@ h4{
 
 /*锟斤拷锟斤拷页锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�*/
 .pt_content{
-    width: 96%;
+    width: 1200;
     margin: 0 auto;
     position: relative;
     background: white;
 }
 
 .nav{
-    left: -40px;
-    width:988px;
+    left: -10px;
+    width:1080px;
 }
 .row{
     width: 1080px;
