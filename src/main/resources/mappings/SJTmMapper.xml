@@ -6,6 +6,7 @@
     <result column="sj_id" property="sjId" jdbcType="VARCHAR" />
     <result column="tm_id" property="tmId" jdbcType="VARCHAR" />
     <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="tm_score" property="tmScore" jdbcType="INTEGER" />
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="in_type" property="inType" jdbcType="INTEGER" />
     <result column="create_date" property="createDate" jdbcType="DATE" />
@@ -14,11 +15,11 @@
   </resultMap>
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.SJTm" >
     insert into q_SJ_tm (id, sj_id, tm_id, 
-      score, sort, in_type, 
+      tm_score, score, sort, in_type, 
       create_date, create_by, create_name
       )
     values (#{id,jdbcType=VARCHAR}, #{sjId,jdbcType=VARCHAR}, #{tmId,jdbcType=VARCHAR}, 
-      #{score,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, #{inType,jdbcType=INTEGER}, 
+      #{tmScore,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, #{inType,jdbcType=INTEGER}, 
       #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}
       )
   </insert>
@@ -33,6 +34,9 @@
       </if>
       <if test="tmId != null" >
         tm_id,
+      </if>
+      <if test="tmScore != null" >
+        tm_score,
       </if>
       <if test="score != null" >
         score,
@@ -62,6 +66,9 @@
       </if>
       <if test="tmId != null" >
         #{tmId,jdbcType=VARCHAR},
+      </if>
+      <if test="tmScore != null" >
+        #{tmScore,jdbcType=INTEGER},
       </if>
       <if test="score != null" >
         #{score,jdbcType=INTEGER},

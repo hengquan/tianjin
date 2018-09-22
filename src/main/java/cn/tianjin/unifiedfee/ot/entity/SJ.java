@@ -21,7 +21,7 @@ public class SJ {
 
     private Integer tmCount;
 
-    private Integer diffType;
+    private String diffType;
 
     private Date beginTime;
 
@@ -107,11 +107,11 @@ public class SJ {
         this.tmCount = tmCount;
     }
 
-    public Integer getDiffType() {
+    public String getDiffType() {
         return diffType;
     }
 
-    public void setDiffType(Integer diffType) {
+    public void setDiffType(String diffType) {
         this.diffType = diffType;
     }
 

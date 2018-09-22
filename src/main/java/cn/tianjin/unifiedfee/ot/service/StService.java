@@ -10,7 +10,6 @@ import cn.taiji.oauthbean.dto.UserInfo;
 import cn.tianjin.unifiedfee.ot.entity.Tm;
 import cn.tianjin.unifiedfee.ot.entity.TmRefSource;
 import cn.tianjin.unifiedfee.ot.entity.TmSelect;
-import cn.tianjin.unifiedfee.ot.mapper.KjMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmRefSourceMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmSelectMapper;
@@ -96,7 +95,6 @@ public class StService {
 	public boolean insertselect(Tm tm,UserInfo user) throws Exception {
         tm.setCreateBy(user.getUserId());
         tm.setCreateName(user.getUsername());
-        TmRefSource tmRefSource = new TmRefSource();
         TmSelect tmSelect = new TmSelect(); 
         tmSelect.setId(Onlylogo.getUUID());
         tmSelect.setTmId(tm.getId());
