@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,6 +69,9 @@ public class MnscController {
         try {
             // 添加数据
             boolean result = mnscService.insert(mnsc, user);
+            String id = mnsc.getId();
+            if (StringUtils.isNotEmpty(id))
+                map.put("objId", id);
             if (result)
                 map.put("resultCode", "100");
             else
@@ -90,7 +94,7 @@ public class MnscController {
         HttpPush.responseInfo(response);
         try {
             // 修改数据
-            boolean result = mnscService.update(mnsc,user);
+            boolean result = mnscService.update(mnsc, user);
             if (result)
                 map.put("resultCode", "100");
             else

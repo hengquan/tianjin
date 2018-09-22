@@ -65,6 +65,7 @@
   <div class="_gap"><span>同类课程<div class="border"></div></span></div>
   <div class="_detail_bottom">
     <div class="row">
+<!-- 
       <div class="col-md-3 tlkc">
         <img src="./web/images/kj_default.jpg" alt="">
         <div class="_name_title">
@@ -129,29 +130,43 @@
           </div>
         </div>
       </div>
+ -->
     </div>
   </div>
   <!--相关练习-->
-  <div class="_gap"><span>相关练习<div class="border"></div></span></div>
-  <div class="paymentList_bottom">
-    <div class="relevant_practice" id="show1">
-      <div class="practice_title practice_title1">
-        <p>练习题目xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+  <div class="_gap">
+    <span>相关练习<div class="border"></div></span>
+    <div class="learnBtn" onclick="toStartPractice()">现在开始练习</div>
+  </div>
+  <div class="tm_area">
+    <div class="tmrow">
+      <div class="tm">
+        <p>练习题目：新企业用户注册后，下一步工作是什么？</p>
         <div class="answer">
           <span><input type="checkbox"></span>
-          <span>答案xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+          <span>A、退出系统</span>
           <span class="left"><input type="checkbox"></span>
-          <span>答案xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
-        </div>
-        <div class="answer answer1">
+          <span>B、登录后，新增用户</span>
           <span><input type="checkbox"></span>
-          <span>答案xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+          <span>C、登录后，配置企业用到的角色</span>
           <span class="left"><input type="checkbox"></span>
-          <span>答案xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+          <span>D、进行业务操作</span>
         </div>
       </div>
-      <div class="practice_title practice_title2">
-        <span class="practice_btn" onclick="toStartPractice()">现在开始练习</span>
+    </div>
+    <div class="tmrow">
+      <div class="tm">
+        <p>练习题目：新企业用户注册后，下一步工作是什么？</p>
+        <div class="answer">
+          <span><input type="checkbox"></span>
+          <span>A、退出系统</span>
+          <span class="left"><input type="checkbox"></span>
+          <span>B、登录后，新增用户</span>
+          <span><input type="checkbox"></span>
+          <span>C、登录后，配置企业用到的角色</span>
+          <span class="left"><input type="checkbox"></span>
+          <span>D、进行业务操作</span>
+        </div>
       </div>
     </div>
   </div>
@@ -192,6 +207,7 @@ function initPage() {
         tmpVal=(data.data.name?data.data.name:"");
         $(".course_right .course_name").html(tmpVal);
         tmpVal=(data.data.createDate?data.data.createDate:"");
+        if (tmpVal) tmpVal=tmpVal.substring(0,10);
         $(".course_right .course_time").html("发布时间:"+tmpVal);
         tmpVal=(data.data.remarks?data.data.remarks:"");
         $(".course_right .course_description").html(tmpVal);
@@ -200,6 +216,8 @@ function initPage() {
       $("._course_img img").attr("src", img_url);
       //获得同类课程
       initTlkc();
+      //获得临时题目
+      initTempSj();
       $(".courseware").show();
     },
     error: function (e) {
@@ -213,14 +231,14 @@ function initPage() {
 
 //相关课件填充
 function initTlkc() {
-  //$("._detail_bottom .row").html("");
+  $("._detail_bottom .row").html("");
   var _data={"kjId":getUrlParam("id")};
   $.ajax({
     type: 'post',
     url: "./train/getKjRefKjList",
     data: _data,
     dataType:'json',
-    success: function (data) { //成功后的回调函数
+    success: function (data) {
       var returnCode=data.returnCode;
       if (returnCode=='00') {
         var kjList=data.data;
@@ -230,7 +248,7 @@ function initTlkc() {
           tlkcHtml+=getOneTlckHtml(oneKj);
         }
       }
-      //$("._detail_bottom .row").html(tlkcHtml);
+      $("._detail_bottom .row").html(tlkcHtml);
     },
     error: function (e) {
     }
@@ -239,12 +257,62 @@ function initTlkc() {
 function getOneTlckHtml(oneKj) {
   var _img_url=(oneKj.imgUrl?oneKj.imgUrl:"./web/images/kj_default.jpg");
   var _html=
-  '<div class="col-md-3 tlkc">'+
+  '<div class="col-md-3 tlkc" style="cursor:pointer" onclick="toCourse(\''+oneKj.id+'\')">'+
     '<img src="'+_img_url+'" alt="">'+
-    '<div class="_name_title"><div style="margin-top:15px;">'+
+    '<div class="_name_title"><div style="padding-top:15px;">'+
       '<p>'+oneKj.name+'</p>'+
     '</div></div>'+
   '</div>';
+  return _html;
+}
+
+function toCourse(id) {
+  window.open("./courseContent.html?id="+id, "_blank");
+}
+//临时试题
+function initTempSj() {
+  $(".tm_area").html("");
+  var _data={"refType":"kj", "refId":getUrlParam("id"), "tmCount":"1"};
+  $.ajax({
+    type: 'post',
+    url: "./train/getTempSj",
+    data: _data,
+    dataType:'json',
+    success: function (data) { //成功后的回调函数
+      var returnCode=data.returnCode;
+      if (returnCode=='00') {
+        var tmList=data.data;
+        var tmHtml="";
+        for (var i=0; i<tmList.length; i++) {
+          var oneTm=tmList[i];
+          tmHtml+=getOneTmHtml(oneTm);
+        }
+        $(".tm_area").html(tmHtml);
+      } else {
+        $(".tm_area").css("height", "60px");
+      }
+    },
+    error: function (e) {
+    }
+  });
+}
+function getOneTmHtml(oneTm) {
+  var _html=
+  '<div class="tmrow"><div class="tm">'+
+    '<p>'+oneTm.tmIndex+'、'+oneTm.tmDesc+'</p>'+
+    '<div class="answer">';
+  if (oneTm.tmItems) {
+    for (var i=0; i<oneTm.tmItems.length; i++) {
+      if (oneTm.tmTyp=='多选题') {
+        _html+='<span class="oneItem"><input name="tm_'+oneTm.tmId+'" type="checkbox">';
+      } else {
+        _html+='<span class="oneItem"><input name="tm_'+oneTm.tmId+'" type="radio">';
+      }
+      _html+='<span>'+oneTm.tmItems[i].itemSign+'、'+oneTm.tmItems[i].itemDesc+'</span></span>';
+    }
+  }
+
+  _html+='</div></div></div>';
   return _html;
 }
 

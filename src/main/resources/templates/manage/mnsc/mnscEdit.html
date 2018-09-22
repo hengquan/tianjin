@@ -4,65 +4,65 @@
 <meta charset="UTF-8">
 <title>input</title>
 <!-- 1 bootstrap基础css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
 	rel="stylesheet">
 <!-- 2 table表格css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
 	rel="stylesheet">
 <!-- 3 treeview树css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
 	rel="stylesheet">
 <!-- 4 datetimepicker时间选择css -->
 <link
-	href="../libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
 	rel="stylesheet">
 <!-- 5 select选择框css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
 	rel="stylesheet">
 <!-- 6 fileinput上传文件css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
 	rel="stylesheet">
 <!-- 7 icheck单选+多选css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
 	rel="stylesheet">
 <!-- 8 Validator验证css -->
-<link href="../libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
 	rel="stylesheet">
 <!-- 9 layer弹框css -->
-<link href="../libs/layer/layer-new.css" rel="stylesheet">
+<link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
 <!-- 10 引入字体css -->
-<link href="../libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
 	rel="stylesheet">
 <!-- 11 页面样式css -->
-<link href="../src/css/pt-main.css" rel="stylesheet">
+<link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
 <!-- 优先引入jquery1.12.4版本 -->
-<script src="../libs/jquery/jquery-1.12.4.js"></script>
+<script src="${gateway}/libs/jquery/jquery-1.12.4.js"></script>
 <!-- 1 bootstrap基础js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <!-- 2 table表格js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
 <!-- 2 table列表数据js 可删除？ -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
 <!-- 3 treeview树js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
 <!-- 4 datetimepicker时间选择js -->
 <script
-	src="../libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
 <!-- 5 select选择框js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <!-- 6 fileinput上传文件js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
 <!-- 6 fileinput中文包js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
 <!-- 7 icheck单选+多选js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
 <!-- 8 Validator验证js -->
-<script src="../libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <!-- 9 layer弹框js -->
-<script src="../libs/layer/layer.js"></script>
+<script src="${gateway}/libs/layer/layer.js"></script>
 <!-- 11 页面js -->
-<script src="../src/js/main.js"></script>
+<script src="${gateway}/src/js/main.js"></script>
 <style>
 html {
 	overflow-x: hidden;
@@ -152,18 +152,29 @@ html {
 							</div>
 						</div>
 					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span
+								class="cfff"> ※ </span>上传文件</label>
+							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
+								<input id="file-1" type="file" multiple class="file"
+									name="files" data-overwrite-initial="false"
+									data-min-file-count="1">
+							</div>
+						</div>
+					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
 								<table class="table table-striped" id="theTable">
 									<tr>
-                    <th>课件名称</th>
-                    <th>分类名称</th>
-                    <th>学分</th>
-                    <th>过期时间</th>
-                    <th><span class="glyphicon glyphicon-plus"
-                      aria-hidden="true" onclick="selectItem()"></span></th>
-                  </tr>
+										<th>课件名称</th>
+										<th>分类名称</th>
+										<th>学分</th>
+										<th>过期时间</th>
+										<th><span class="glyphicon glyphicon-plus"
+											aria-hidden="true" onclick="selectItem()"></span></th>
+									</tr>
 								</table>
 							</div>
 						</div>
@@ -183,9 +194,6 @@ html {
 	<br>
 	<script>
     $(function() {
-      $("input:radio[name='wenjian']").bind('click', function() {
-        console.log($(this).attr('value'))
-      })
       $('form').bootstrapValidator({
         message : 'This value is not valid',
         feedbackIcons : {
@@ -259,7 +267,6 @@ html {
         increaseArea : '20%' // optional
       });
       $("input:radio[name='wenjian']").on('ifChecked', function(event) {
-        // alert($(this).val());
         if ($(this).val() == 'option1') {
           $('.Bshow').addClass('disnone')
         } else {
@@ -276,7 +283,7 @@ html {
         var split = url.split("=");
         $.ajax({
           type : 'post',
-          url : "/mnsc/get",
+          url : "${gateway}/mnsc/get",
           data : {
             "id" : split[1]
           },
@@ -338,13 +345,21 @@ html {
     function addMnsc() {
       $.ajax({
         type : 'post',
-        url : "/mnsc/insert",
+        url : "${gateway}/mnsc/insert",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
         success : function(data) {
-          parent.refresh();
-          closeMy();
+          //上传附件
+          var objId = data.objId;
+          if (objId != '') {
+            $("#objId").val(objId);
+            setTimeout(function() {
+              $("#file-1").fileinput('upload');
+		          parent.refresh();
+		          closeMy();
+            }, 500);
+          }
         },
         error : function() { //失败回调函数
           parent.refresh();
@@ -355,7 +370,7 @@ html {
     function editMnsc() {
       $.ajax({
         type : 'post',
-        url : "/mnsc/update",
+        url : "${gateway}/mnsc/update",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
@@ -373,18 +388,6 @@ html {
       var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
       parent.layer.close(index); //再执行关闭
     }
-    //上传文件
-    $("#file-1").fileinput({
-      uploadUrl : '#', // you must set a valid URL here else you will get an error
-      // allowedFileExtensions : ['jpg', 'png','gif'],
-      overwriteInitial : false,
-      maxFileSize : 1000,
-      maxFilesNum : 10,
-      //allowedFileTypes: ['image', 'video', 'flash'],
-      slugCallback : function(filename) {
-        return filename.replace('(', '_').replace(']', '_');
-      }
-    });
     //选择摸拟实操-摸拟实操列表
     function selectItem() {
       layer.open({
@@ -395,7 +398,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : '/kjSelList'//如果不想出现滚动条['content.html', 'no']
+        content : '${gateway}/kj/selList'//如果不想出现滚动条['content.html', 'no']
       });
     }
     //把选择的课件列表放到表格中
@@ -423,7 +426,7 @@ html {
           }
         }
         var kjidval = kjid1 + kjid;
-        if(kjidval!=''){
+        if (kjidval != '') {
           kjIds = kjidval.substr(1);
         }
       }
@@ -431,7 +434,7 @@ html {
       //处理显示
       $.ajax({
         type : 'post',
-        url : "/kj/getDataList",
+        url : "${gateway}/kj/getDataList",
         data : {
           "ids" : kjIds
         },
@@ -472,27 +475,66 @@ html {
     }
     //删除一整行
     function removeTr(obj) {
-    //去掉该ID
+      //去掉该ID
       //获取所有课件id
       var kjIds = $("#kjids").val();
       //获取当前要删掉的课件id
       var kjid = $(obj).attr("thisval");
       //替换
-      var ides = kjIds.replace(kjid,"");
+      var ides = kjIds.replace(kjid, "");
       var idess = ides.split(",");
       var zhids = '';
-      for(var i=0;i<idess.length;i++){
-        if(idess[i]!=''){
-          zhids+=","+idess[i];
+      for (var i = 0; i < idess.length; i++) {
+        if (idess[i] != '') {
+          zhids += "," + idess[i];
         }
       }
-      if(zhids!=''){
+      if (zhids != '') {
         zhids = zhids.substr(1);
       }
       $("#kjids").val(zhids);
       //删除行
       $(obj).parent().remove();
     }
+    //上传文件
+    $("#file-1").fileinput({
+      theme : "explorer", //主题
+      language : 'zh',
+      uploadUrl : "../file/upload",// 上传请求路径
+      allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg', 'pdf', 'mp4' ],//允许上传的文件后缀       
+      uploadAsync : false, //是否允许异步上传
+      showUpload : false,//是否显示上传按钮
+      showCaption : false,//是否显示容器
+      dropZoneEnabled : false,//是否显示拖拽区域 
+      removeFromPreviewOnError : true,//是否移除校验文件失败的文件
+      uploadExtraData : function(previewId, index) { //额外参数 返回json数组  
+        var objId = $("#objId").val();
+        return {
+          'objId' : objId,
+          'objTabname' : 'ts_mnsc',
+          'archiveType' : 'main'
+        // commId 为全局变量，可以给控件上传额外参数  
+        };
+      },
+      layoutTemplates : { //取消上传按钮
+        actionUpload : '',
+      },
+      showPreview : true, //显示预览   
+      minFileCount : 1, //最低文件数量
+      maxFileCount : 3, //最多文件数量
+      maxFileSize : 0, //允许文件上传大小
+      overwriteInitial : false,
+      previewFileIcon : '<i class="fa fa-file"></i>',
+      initialPreviewAsData : true, // defaults markup  
+      preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片
+      previewFileIconSettings : { // configure your icon file extensions
+        'pdf' : '<i class="fa fa-file-pdf-o text-danger"></i>',
+        'jpg' : '<i class="fa fa-file-photo-o text-danger"></i>',
+        'gif' : '<i class="fa fa-file-photo-o text-muted"></i>',
+        'png' : '<i class="fa fa-file-photo-o text-primary"></i>',
+        'jpeg' : '<i class="fa fa-file-photo-o text-primary"></i>'
+      },
+    });
   </script>
 </body>
 </html>

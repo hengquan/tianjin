@@ -57,6 +57,7 @@ public class MnscService {
     // 添加
     public boolean insert(Mnsc mnsc, UserInfo user) throws Exception {
         mnsc.setId(Onlylogo.getUUID());
+        mnsc.setState(2);
         mnsc.setCreateBy(user.getUserId());
         mnsc.setCreateName(user.getUsername());
         Boolean isok = dao.insert(mnsc) > 0 ? true : false;
