@@ -90,7 +90,7 @@
 													<button type="button"
 														class="btn btn-default btn-primary w80" onclick="sel()">搜索</button>
 													<button type="button"
-														class="btn btn-default btn-primary w80" onclick="addkj()">添加</button>	
+														class="btn btn-default btn-primary w80" onclick="addkj()">确定</button>	
 																				
 											</div>
 										</div>
@@ -118,37 +118,19 @@
 
 	<script src="${gateway}/src/js/pt-tree.js"></script>
 	<script>
+	
     // 时间选择
     $('.datetimepicker').datetimepicker({
       language : 'zh',
       format : 'yyyy-mm-dd hh:ii:ss',
       todayBtn : true,
       autoclose : true
-    });
-    function closeMy() {
-      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-      parent.layer.close(index); //再执行关闭
-    }
-    // 操作模版调用的方法
-    function addkj(){
-          var a= $("#tb_departments").bootstrapTable('getSelections');
-          var b=[];
-          var c=[];
-          if(a.length<=0){  
-            alert("请选中一行")  
-          }else{
-            for (var i=0;i<a.length;i++) {
-              b[i]=a[i].id;
-              c[i]=a[i].kjName;
-            }
-           } 
-            parent.setVal(b,c);
-             
-            closeMy() ;
-    }
+    });   
     TableInit(queryParams).Init('${gateway}/kj/getPageData', [ 
       {
-        checkbox: true       
+        
+        checkbox:getUrlParam("type")=='checkbox'?true:false,
+        radio: getUrlParam("type")=='checkbox'?false:true       
     },{
       field : 'kjName',
       title : '课件名称',
@@ -178,6 +160,33 @@
         offset : params.offset
       //页码
       };
+    }
+    function closeMy() {
+      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+      parent.layer.close(index); //再执行关闭
+    }
+    // 操作模版调用的方法
+    function addkj(){
+          alert("111111111111");
+          var a= $("#tb_departments").bootstrapTable('getSelections');
+          var b=[];
+          var c=[];
+          if(a.length<=0){  
+            alert("请选中一行")  
+          }else{
+            for (var i=0;i<a.length;i++) {
+              b[i]=a[i].id;
+              c[i]=a[i].kjName;
+            }
+           } 
+            alert(b);
+            parent.setVal(b,c);             
+            closeMy() ;
+    }
+    function getUrlParam(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+      var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+      if (r != null) return unescape(r[2]); return null; //返回参数值
     }
     //搜索
     function sel() {

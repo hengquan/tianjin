@@ -12,8 +12,8 @@ public interface TmMapper {
     int delete(Tm record);
     int insertSelective(Tm record);    
     List<Tm> getPageData(Map<String, Object> param);
+    List<Tm> getPageData4kj(Map<String, Object> param);    
     Tm get(String id);
     List<Tm> selectAllMsg();
-
-    public List<Tm> getTmListByObjInfo(Map<String, Object> param);
+   public List<Tm> getTmListByObjInfo(Map<String, Object> param);
 }

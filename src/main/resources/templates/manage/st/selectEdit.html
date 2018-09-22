@@ -73,13 +73,12 @@ html {
 	<div class="container">			
 		<div class="row clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
+				<div class="column pt-btn-line">
+					<button onclick="addSelect()" id="baocun" class="btn w80  btn-default btn-primary">保存</button>							
+					<button class="btn w80  btn-default btn-default">取消</button>						
+				</div>					
 				<form class="form-horizontal pt-form-full" role="form" id="form">
 					<input type="hidden" name="id" id="objId">
-					<div class="column pt-btn-line">
-						<button onclick="addSelect()" id="baocun"
-							class="btn w80  btn-default btn-primary">保存</button>							
-						<button class="btn w80  btn-default btn-default">取消</button>						
-					</div>					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span>
@@ -172,8 +171,7 @@ html {
          data : $("#form").serialize(),
          dataType : 'json',
          cache : false,
-         success : function(data) {
-           alert("a");
+         success : function(data) {           
            parent.refresh();
            closeMy();
          },
@@ -198,8 +196,6 @@ html {
             alert("修改失败");
           }
         });
-        parent.refresh();
-        closeMy();
       }
       function closeMy() {
         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引

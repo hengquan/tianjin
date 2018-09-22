@@ -73,15 +73,15 @@ html {
     <div class="container">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-11 col-sm-12 col-xs-2 column">
-                <form class="form-horizontal pt-form-full" role="form" id="form">
-                    <input type="hidden" name="id" id="objId">
-                    <div class="col-lg-12 col-md-11 col-sm-11 col-xs-12">
-	                    <div class="column pt-btn-line">
-	                        <button onclick="addTm()" id="baocun"
+            	<div class="col-lg-12 col-md-11 col-sm-11 col-xs-12">
+	                <div class="column pt-btn-line">
+	                     <button onclick="addTm()" id="baocun"
 	                            class="btn w80  btn-default btn-primary">保存</button>
-	                        <button class="btn w80  btn-default btn-default">取消</button>
-	                    </div>
-	                </div>
+	                     <button class="btn w80  btn-default btn-default">取消</button>
+	                 </div>
+	            </div>
+                <form class="form-horizontal pt-form-full" role="form" id="form">                
+                    <input type="hidden" name="id" id="objId">                    
                     <div class="col-lg-12 col-md-11 col-sm-11 col-xs-12">
                         <div class="form-group">
                             <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span> ※ </span>题目名称</label>
@@ -185,7 +185,7 @@ html {
             <div class="pt-main" id = "pt-main">
                 <!--bootstrap 表格-->
                 <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-12 col-md-10 col-sm-11 col-xs-12">
                         <div class="table-wrap">
                             <table id="tb_departments"></table>
                         </div>
@@ -216,7 +216,6 @@ html {
      
       //获取参数
       var url = location.search;
-      alert(url);
       if (url != '') {
         //变成修改
         $("#baocun").attr("onclick", "editTm()");
@@ -300,13 +299,19 @@ html {
         dataType : 'json',
         cache : false,
         success : function(data) {
-          alert(data);         
+          if (data.resultCode=='00') {
+            location.href='${gateway}/st/edit?id='+data.id;
+          } else {
+            layer.error("添加失败");
+          }
         },
         error : function() { //失败回调函数
-          alert("保存成功11");
+          alert("保存成功");
+          //parent.refresh();
+         // closeMy();
+         
         }
       });  
-      $("#objId").val("cf88f70b1e074582ab8c6473e7dc5f6c");
     }   
     
     function editTm() {
@@ -317,7 +322,7 @@ html {
         dataType : 'json',
         cache : false,
         success : function(data) {
-          alert("保存成功");
+          alert("保存成功");          
         },
         error : function() { //失败回调函数
           alert("保存成功");
@@ -338,7 +343,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '${gateway}/kj/kjList4st', 'yes' ]
+        content : [ '${gateway}/kj/list4st?type=checkbox', 'yes' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -351,7 +356,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '${gateway}/mnsc/mnscList4st', 'yes' ]
+        content : [ '${gateway}/mnsc/list4st', 'yes' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -436,6 +441,9 @@ html {
         return false;
       }
     }
+  function refresh() {
+    $("#tb_departments").bootstrapTable('refresh');
+  }
   </script>
 </body>
 </html>

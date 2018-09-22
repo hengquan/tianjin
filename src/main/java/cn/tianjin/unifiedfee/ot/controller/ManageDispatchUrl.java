@@ -87,9 +87,13 @@ public class ManageDispatchUrl {
     }
 
     //--试题管理
-    @RequestMapping("tmList")
-    public String toTmList() {
+    @RequestMapping("st/list")
+    public String toStList() {
         return "/manage/st/tmList";
+    }
+    @RequestMapping("st/list4kt")
+    public String toStList4kj() {
+        return "/manage/st/tmList4kj";
     }
     @RequestMapping("st/edit")
     public String toStEdit(HttpServletRequest request) {

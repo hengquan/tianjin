@@ -56,11 +56,50 @@ public class StController {
         // 设置page
         PageHelper.offsetPage(offset, limit);
         // 获取参数
-        String tmName = request.getParameter("tmName");
+        String tmHtml = request.getParameter("tmHtml");
         // 传参
-        param.put("tmName", tmName);
+        param.put("tmHtml", tmHtml);
         // 查询数据
         List<Tm> Tms = stService.getPageData(param);
+        if (Tms != null && Tms.size() > 0) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            for (Tm tm : Tms) {
+                Date createDate = tm.getCreateDate();
+                String strcreatedate = format.format(createDate);
+                System.out.print(strcreatedate+"================");
+                if (StringUtils.isNotEmpty(strcreatedate))
+                    tm.setStrcreatedate(strcreatedate);
+            }
+        }
+        // 放入分页
+        PageInfo<Tm> pageList = new PageInfo<Tm>(Tms);
+        // 返回
+        map.put("total", pageList.getTotal());
+        map.put("rows", pageList.getList());
+        return map;
+    }
+    //题目课件
+    @RequestMapping("getPageData4kj")
+    @ResponseBody
+    public Map<String, Object> getPageData4kj(@RequestParam(value = "offset", defaultValue = "1") int offset,
+            @RequestParam(value = "limit", defaultValue = "10") int limit, HttpServletRequest request,
+            HttpServletResponse response) {
+        // 返回数据
+        Map<String, Object> map = new HashMap<String, Object>();
+        // 请求数据
+        Map<String, Object> param = new HashMap<String, Object>();
+        // 跨域
+        HttpPush.responseInfo(response);
+        // 设置page
+        PageHelper.offsetPage(offset, limit);
+        // 获取参数
+        String refId = request.getParameter("kjid");
+        String tmHtml = request.getParameter("tmHtml");
+        // 传参       
+        param.put("refId", refId);
+        param.put("tmHtml", tmHtml);
+        // 查询数据
+        List<Tm> Tms = stService.getPageData4kj(param);
         if (Tms != null && Tms.size() > 0) {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             for (Tm tm : Tms) {
@@ -91,13 +130,13 @@ public class StController {
         HttpPush.responseInfo(response);
         try {
             // 添加数据
-            boolean result = stService.insert(tm,user);
-            if (result)
-                map.put("resultCode", "100");
-            else
-                map.put("resultCode", "101");
+            String newId = stService.insert(tm,user);
+            map.put("resultCode", "00");
+            map.put("id", newId);
         } catch (Exception e) {
             e.printStackTrace();
+            map.put("resultCode", "01");
+            map.put("messageInfo",e.toString());
         }
         return map;
     }

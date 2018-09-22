@@ -28,10 +28,12 @@ public class StService {
 	// 获取分页数据
 	public List<Tm> getPageData(Map<String, Object> param) {
 		return dao.getPageData(param);
-	}
-
+	}	
+	public List<Tm> getPageData4kj(Map<String, Object> param) {
+        return dao.getTmListByObjInfo(param);
+    }
 	// 添加
-	public boolean insert(Tm tm,UserInfo user) throws Exception {
+	public String insert(Tm tm,UserInfo user) throws Exception {
 	    tm.setId(Onlylogo.getUUID());
 	    tm.setCreateBy(user.getUserId());
         tm.setCreateName(user.getUsername());
@@ -89,9 +91,12 @@ public class StService {
 	            tmSelect.setSort(2);
 	            selectDao.insertSelective(tmSelect); 
 	          }     
-	        return dao.insert(tm) >  0 ? true : false;
+	        return dao.insert(tm) >  0 ? tm.getId() : "";
 	      
 	  }
+	
+	
+	
 	//添加选项	
 	public boolean insertselect(Tm tm,UserInfo user) throws Exception {
         tm.setCreateBy(user.getUserId());
