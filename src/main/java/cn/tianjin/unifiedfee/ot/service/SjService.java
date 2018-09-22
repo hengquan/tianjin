@@ -63,7 +63,8 @@ public class SjService {
     }
     private Map<String, Object> getTmMap(Tm tm, int i) {
         Map<String, Object> m=new HashMap<String, Object>();
-        m.put("tmIdx", i);
+        m.put("tmId", tm.getId());
+        m.put("tmIndex", i+1);
         m.put("tmDesc", tm.getTmHtml());
         m.put("tmType", tm.getTmType());
         m.put("tmScore", tm.getScore());

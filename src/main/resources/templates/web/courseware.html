@@ -26,17 +26,8 @@ body {background: white;}
 <!--主视口 -->
 <div class="pt-view pt-open">
   <!--主窗口导航条开始-->
+  <div class="pt-bread">
   <ul class="nav" id="myTab">
-  <!--
-    <li class="active"><a href="#allClassification" data-toggle="tab" class="active1">全部分类</a></li>
-    <li><a href="#statuteClass" data-toggle="tab">法规类</a></li>
-    <li><a href="#policyCategory" data-toggle="tab">政策类</a></li>
-    <li><a href="#chargeClass" data-toggle="tab">收费类</a></li>
-    <li><a href="#vogue" data-toggle="tab">风行类</a></li>
-    <li><a href="#tallyClass" data-toggle="tab">理货类</a></li>
-    <li><a href="#exportClass" data-toggle="tab">出口类</a></li>
-    <li><a href="#importClass" data-toggle="tab">进口类</a></li>
-  -->
     <li><a href="javascript:void(0)" data-toggle="tab" class="active1" cateId="">全部分类</a></li>
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="1">法规类</a></li>
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="2">政策类</a></li>
@@ -46,6 +37,7 @@ body {background: white;}
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="6">出口类</a></li>
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="7">进口类</a></li>
   </ul>
+  </div>
   <!--搜索框-->
   <div class="search_input">
     <span class="search_left"><input type="text" id="searchStr" style="padding-left:10px;"></span>
@@ -153,10 +145,12 @@ function getOneItem(itemData) {
   var $itemHtmlObj=$("<div class='col-md-4'></div>");
 
   //./web/images/111.jpg
+  var timeStr=itemData.createDate;
+  if (timeStr) timeStr=timeStr.substring(0,10)+"&nbsp;发布";
   if (itemData.imgUrl) $itemHtmlObj.append("<img src='"+itemData.imgUrl+"' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
   else $itemHtmlObj.append("<img src='./web/images/kj_default.jpg' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
   $itemHtmlObj.append('<div class="name_title" style="cursor:pointer;" onclick=toCourse("'+itemData.id+'")><div class="name_top"><p>'+itemData.name+'</p><div class="name_detail">'
-      +'<span class="img_left"><img src="/web/images/rs.jpg" alt=""></span><span class="rs">2.5万</span><span>'+itemData.createDate+'</span></div></div></div>');
+      +'<span class="img_left"><img src="/web/images/rs.jpg" alt=""></span><span class="rs">2.5万</span><span style="margin-left:40px;">'+timeStr+'</span></div></div></div>');
 
   return $itemHtmlObj;
 }

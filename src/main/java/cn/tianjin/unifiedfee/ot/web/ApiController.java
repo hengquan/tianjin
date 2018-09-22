@@ -30,7 +30,6 @@ import cn.tianjin.unifiedfee.ot.service.ArchiveService;
 import cn.tianjin.unifiedfee.ot.service.CatagoryService;
 import cn.tianjin.unifiedfee.ot.service.KjService;
 import cn.tianjin.unifiedfee.ot.service.SjService;
-import cn.tianjin.unifiedfee.ot.entity.Tm;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
 @Controller

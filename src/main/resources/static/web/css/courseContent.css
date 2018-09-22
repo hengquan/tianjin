@@ -109,7 +109,7 @@ body{
   margin-left: 40px;
 }
 .course_name{
-  font-size: 18px;
+  font-size: 24px;
   color: black;
 }
 .course_right .course_right_img{
@@ -382,8 +382,8 @@ html{
   font-size: 18px;
 }
 
-/*底部相关*/
-._paymentList_bottom{
+/*题目内容*/
+.tm_area {
   width: 1200px;
   margin: 0 auto 0;
   height: auto;
@@ -414,8 +414,11 @@ html{
   margin-left:100px;
   font-size:20px;
 }
-.tm .answer{
+.tm .answer {
   margin-top:8px;
   margin-left:100px;
   font-size:14px;
+}
+.oneItem {
+  margin-left:10px;
 }

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,18 +23,21 @@ import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
 @RequestMapping("/user")
 @Controller
+@Configuration
 public class UserController {
     @Autowired // 注入Service
     public UserService userService;
     @Autowired // 注入Service
     public SecurityMenuService securityMenuService;
 
-    private String trainNameId="线上培训子系统";
+    @Value("${ot-server.manage.role.name}")
+    private String trainNameId;
 
     // 获取分页数据
     @RequestMapping("getUserMenu")
     @ResponseBody
     public Map<String, Object> getPageData(HttpServletRequest request, HttpServletResponse response) {
+        this.trainNameId="企业门户（chenph）";
         HttpPush.responseInfo(response);//跨域
 
         Map<String, Object> retMap=new HashMap<String, Object>();
@@ -43,17 +48,17 @@ public class UserController {
                 retMap.put("messageInfo","无用户登录");
                 return retMap;
             }
+            retMap.put("username", ui.getUsername());
+            retMap.put("userImg", ui.getClass());
             ObjectResponseResult<List<SysResource>> result=securityMenuService.findMenuByUsername(ui.getUsername());
             boolean hadTrain=false;
             if (result!=null&&result.getData()!=null&&result.getData().size()>0) {
-                for (SysResource sr: result.getData()) {
-                    if (sr.getResourcesName().equals(trainNameId)) {
-                        retMap.put("returnCode", "00");
-                        retMap.put("data", sr.getChildren());
-                        hadTrain=true;
-                        break;
-                    }
-                }
+                List<SysResource> l=findTrainMenu(result.getData(), trainNameId);
+                if (l!=null) {
+                    retMap.put("returnCode", "00");
+                    retMap.put("data", l);
+                    hadTrain=true;
+               }
             }
             if (!hadTrain) {
                 retMap.put("returnCode", "99");
@@ -65,5 +70,19 @@ public class UserController {
             retMap.put("messageInfo",e.toString());
         }
         return retMap;
+    }
+
+    private List<SysResource> findTrainMenu(List<SysResource> lsr, String roleName) {
+        List<SysResource> retl=null;
+        for (SysResource sr: lsr) {
+            if (sr.getResourcesName().equals(roleName)) {
+                return sr.getChildren();
+            } else {
+                if (sr.getChildren()==null||sr.getChildren().size()==0) return null;
+                retl=findTrainMenu(sr.getChildren(), roleName);
+                if (retl!=null) return retl;
+            }
+        }
+        return null;
     }
 }

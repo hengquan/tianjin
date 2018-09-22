@@ -1,5 +1,7 @@
 package cn.tianjin.unifiedfee.ot.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
@@ -15,11 +17,17 @@ import java.util.Map;
 
 @Configuration
 public class AfMvcConfig implements WebMvcConfigurer {
+    private Logger logger=LoggerFactory.getLogger(WebMvcConfigurer.class);
+
     @Autowired
     private FreeMarkerViewResolver freeMarkerViewResolver;
 
     @Value("${ot-server.prefix}")
     private String prefix;
+    @Value("${inner-server-root-url}")
+    private String innerRoot;
+    @Value("${outer-server-root-url}")
+    private String outerRoot;
 
     /**
      * freemarker 全局变量管理
@@ -29,10 +37,19 @@ public class AfMvcConfig implements WebMvcConfigurer {
     public void configureViewResolvers(ViewResolverRegistry registry) {
         Map<String, Object> map = freeMarkerViewResolver.getAttributesMap();
         // 网关网址前缀
-        map.put("gateway", "/"+prefix);
+        logger.info("gateway prefix<gateway>: ["+prefix+"]");
+        map.put("gateway", prefix);
+
+        //外网门户地址
+        logger.info("outer root url<outer-root>: ["+outerRoot+"]");
+        map.put("outerRoot", outerRoot);
+
+        //内网门户地址
+        logger.info("inner root url<inner-root>: ["+innerRoot+"]");
+        map.put("innerRoot", innerRoot);
+
         registry.viewResolver(freeMarkerViewResolver);
     }
-
 
     /**
      * 自定义异常页
