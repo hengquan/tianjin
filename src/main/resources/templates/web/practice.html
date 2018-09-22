@@ -2,8 +2,14 @@
 <head>
   <meta charset="UTF-8">
   <title>在线学习</title>
-  <!-- 1 bootstrap的css -->
-  <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
+  <link href="./libs/bootstrap-3.3.7-dist/css/bootstrap.css"
+	rel="stylesheet">
+  <!-- 2 table表格css -->
+   <link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
+		rel="stylesheet">
+	<!-- 3 treeview树css -->
+	<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
+		rel="stylesheet">
   <!--公共css-->
   <link rel="stylesheet" href="./web/css/pt-main.css">
   <link rel="stylesheet" href="./web/css/index1.css">
@@ -26,9 +32,12 @@ body {background: white;}
 <!--主视口 -->
 <div class="pt-view pt-open">
   <!--主窗口导航条开始-->
-  <ul class="nav" id="myTab">
-    <li><a href="javascript:void(0)" data-toggle="tab" class="active1" cateId="">模拟实操</a></li>    
-  </ul>
+  <div class="pt-bread">
+		<h3>模拟实操</h3>
+					<!-- 添加展开按钮 -->
+					
+		</div>
+  
 		<!--模拟实操内容-->
 		<div class="tab-content" id="htmlContent"></div>
 	</div>
