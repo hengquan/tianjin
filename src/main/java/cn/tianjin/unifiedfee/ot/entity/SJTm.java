@@ -10,6 +10,7 @@ public class SJTm {
     private String tmId;
 
     private Integer score;
+    private Integer tmScore;
 
     private Integer sort;
 
@@ -91,5 +92,13 @@ public class SJTm {
 
     public void setCreateName(String createName) {
         this.createName = createName == null ? null : createName.trim();
+    }
+
+    public Integer getTmScore() {
+        return tmScore;
+    }
+
+    public void setTmScore(Integer tmScore) {
+        this.tmScore = tmScore;
     }
 }

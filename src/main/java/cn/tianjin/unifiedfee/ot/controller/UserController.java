@@ -1,5 +1,6 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,13 @@ public class UserController {
             boolean hadTrain=false;
             if (result!=null&&result.getData()!=null&&result.getData().size()>0) {
                 List<SysResource> l=findTrainMenu(result.getData(), trainNameId);
+                /**
+                 * 测试代码
+                 */
+                List<SysResource> _ret=new ArrayList<SysResource>();
+                for (SysResource s: l) if (s.getResourcesName().equals("培训中心")) {_ret.add(s);break;}
+                l=_ret;
+
                 if (l!=null) {
                     retMap.put("returnCode", "00");
                     retMap.put("data", l);

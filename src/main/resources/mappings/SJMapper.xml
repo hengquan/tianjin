@@ -11,7 +11,7 @@
     <result column="time_use" property="timeUse" jdbcType="INTEGER" />
     <result column="score" property="score" jdbcType="INTEGER" />
     <result column="tm_count" property="tmCount" jdbcType="INTEGER" />
-    <result column="diff_type" property="diffType" jdbcType="INTEGER" />
+    <result column="diff_type" property="diffType" jdbcType="VARCHAR" />
     <result column="begin_time" property="beginTime" jdbcType="DATE" />
     <result column="end_time" property="endTime" jdbcType="DATE" />
     <result column="state" property="state" jdbcType="INTEGER" />
@@ -19,6 +19,18 @@
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
   </resultMap>
+
+  <sql id="Blob_Column_List">
+    id, user_id, user_name, ref_tabname, ref_id, sj_name, 
+    time_use, score, tm_count, diff_type, begin_time, end_time, 
+    state, create_date, create_by, create_name
+  </sql>
+
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select <include refid="Blob_Column_List" />
+    from q_SJ where id=#{id,jdbcType=VARCHAR}
+  </select>
+
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.SJ" >
     insert into q_SJ (id, user_id, user_name, 
       ref_tabname, ref_id, sj_name, 

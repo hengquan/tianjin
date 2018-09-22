@@ -25,6 +25,7 @@ import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
+import cn.tianjin.unifiedfee.ot.entity.SJ;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
 import cn.tianjin.unifiedfee.ot.service.ArchiveService;
 import cn.tianjin.unifiedfee.ot.service.CatagoryService;
@@ -410,9 +411,9 @@ public class ApiController {
      * 随机获得某一课件或模拟实操相对应的试题。
      * @param request
      * @param response
-     * @param refType 上级分类，若为空，获得所有分类
-     * @param refType 上级分类，若为空，获得所有分类
-     * @param resultType =0列表形式；=1树形式，默认为0
+     * @param refType 相关类型，mnsc or kj
+     * @param refId 相关对象Id，模拟实操或课件的Id
+     * @param tmCount 题目数量，默认为10
      * @return
      */
     @RequestMapping("getTempSj")
@@ -420,7 +421,7 @@ public class ApiController {
     public Map<String, Object> getTempSj(HttpServletRequest request, HttpServletResponse response,
         @RequestParam(required=false) String refType,
         @RequestParam(required=false) String refId,
-        @RequestParam(defaultValue="5",required=false) int tmCount) {
+        @RequestParam(defaultValue="1",required=false) int tmCount) {
         HttpPush.responseInfo(response);//跨域
 
         Map<String, Object> retMap=new HashMap<String, Object>();
@@ -450,7 +451,139 @@ public class ApiController {
                 retMap.put("returnCode","00");
                 retMap.put("data", tmpSjTmList);
             }
-            retMap.put("data", tmpSjTmList);
+        } catch(Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode","01");
+            retMap.put("messageInfo",e.toString());
+        }
+        return retMap;
+    }
+
+    /**
+     * 1.4.2、获得临时试卷<br>
+     * 随机获得某一课件或模拟实操相对应的试题。
+     * @param request
+     * @param response
+     * @param cateIds 分类，可多选
+     * @param refType 相关类型，mnsc or kj
+     * @param refId 相关对象Id，模拟实操或课件的Id
+     * @param diffRange 难度范围，从1到10，逗号隔开
+     * @param tmCount 题目数量，默认为10
+     * @return
+     */
+    @RequestMapping("getSj")
+    @ResponseBody
+    public Map<String, Object> getSj(HttpServletRequest request, HttpServletResponse response,
+        @RequestParam(required=false) String cateIds,
+        @RequestParam(required=false) String refType,
+        @RequestParam(required=false) String refId,
+        @RequestParam(required=false) String diffRange,
+        @RequestParam(defaultValue="10",required=false) int tmCount) {
+        HttpPush.responseInfo(response);//跨域
+
+        Map<String, Object> retMap=new HashMap<String, Object>();
+        try {
+            UserInfo ui=userService.getUserInfo();
+            if (ui==null) {
+                retMap.put("returnCode","02");
+                retMap.put("messageInfo","无用户登录");
+                return retMap;
+            }
+            //1-处理参数
+            if (StringUtils.isBlank(cateIds)) {//若分类为空，则相关对象必须有
+                if (StringUtils.isBlank(refType)) {
+                    retMap.put("returnCode","03");
+                    retMap.put("messageInfo","相关对象类型为空");
+                    return retMap;
+                }
+                if (StringUtils.isBlank(refId)) {
+                    retMap.put("returnCode","03");
+                    retMap.put("messageInfo","相关对象Id为空");
+                    return retMap;
+                }
+            }
+            //2-处理难度系数
+            int diff1=1, diff2=10;
+            if (!StringUtils.isBlank(diffRange)) {
+                String[] sp=diffRange.split(",");
+                if (sp.length==1) {
+                    try {diff2=Integer.parseInt(sp[0].trim());} catch(Exception e) {}
+                } else {
+                    try {diff1=Integer.parseInt(sp[0].trim());} catch(Exception e) {};
+                    try {diff2=Integer.parseInt(sp[1].trim());} catch(Exception e) {};
+                    if (diff2<diff1) {
+                        int _i=diff2;
+                        diff2=diff1;
+                        diff1=_i;
+                    }
+                }
+            }
+            Map<String,Object> sjInfo=sjService.getSj(cateIds, refType, refId, diff1, diff2, tmCount, ui);
+            if (sjInfo==null) {
+                retMap.put("returnCode","99");
+                retMap.put("messageInfo","试卷为空");
+            } else {
+                retMap.put("returnCode","00");
+                retMap.put("data", sjInfo);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode","01");
+            retMap.put("messageInfo",e.toString());
+        }
+        return retMap;
+    }
+
+    /**
+     * 1.4.3、提交试卷<br>
+     * 学员答题后，提交试卷的答案。
+     * @param request
+     * @param response
+     * @param id 试卷Id
+     * @param beginTime 相关类型，mnsc or kj
+     * @param endTime 相关对象Id，模拟实操或课件的Id
+     * @param resultType 返回类型：=0仅返回分数，=1返回答案，默认1
+     * @param tmCount 题目数量，默认为10
+     * @return
+     */
+    @RequestMapping("commitSj")
+    @ResponseBody
+    public Map<String, Object> commitSj(HttpServletRequest request, HttpServletResponse response,
+        @RequestParam(required=false) String id,
+        @RequestParam(required=false) String beginTime,
+        @RequestParam(required=false) String endTime,
+        @RequestParam(defaultValue="1",required=false) int resultType,
+        @RequestParam(required=false) String answers) {
+        HttpPush.responseInfo(response);//跨域
+
+        Map<String, Object> retMap=new HashMap<String, Object>();
+        try {
+            UserInfo ui=userService.getUserInfo();
+            if (ui==null) {
+                retMap.put("returnCode","02");
+                retMap.put("messageInfo","无用户登录");
+                return retMap;
+            }
+            //1-处理参数
+            if (StringUtils.isBlank(id)) {//若分类为空，则相关对象必须有
+                retMap.put("returnCode","03");
+                retMap.put("messageInfo","试卷Id为空");
+                return retMap;
+            }
+            SJ sj=sjService.getSjById(id);
+            if (sj==null) {
+                retMap.put("returnCode","04");
+                retMap.put("messageInfo","试卷Id无对应试卷");
+                return retMap;
+            }
+            Map<String, Object> commitSjResult=sjService.commitSj(sj, answers, resultType);
+            if (commitSjResult==null) {
+                retMap.put("returnCode","99");
+                retMap.put("messageInfo","无法处理");
+            } else {
+                retMap.put("returnCode","00");
+                retMap.put("data", commitSjResult);
+            }
         } catch(Exception e) {
             e.printStackTrace();
             retMap.put("returnCode","01");
