@@ -64,9 +64,9 @@
 				</div>
 				<hr>
 				<div class="courseConten">
-					<p id="remarks">天津市港口统一管理中心 CopyRight 2018 技术支持电话天津市港口统一管理中心 CopyRight 2018
-						技术支持电话天津市港口统一管理中心 CopyRight 2018 技术支持电话天津市港口统一管理中心 CopyRight 2018
-						技术支持电话天津市港口统一管理中心 CopyRight 2018 技术支持电话</p>
+					<p id="remarks">天津市港口统一管理中心 CopyRight 2018 技术支持电话天津市港口统一管理中心
+						CopyRight 2018 技术支持电话天津市港口统一管理中心 CopyRight 2018 技术支持电话天津市港口统一管理中心
+						CopyRight 2018 技术支持电话天津市港口统一管理中心 CopyRight 2018 技术支持电话</p>
 				</div>
 				<div class="sub" onclick="toentryPractice()">我要做练习</div>
 			</div>
@@ -87,7 +87,7 @@
         var split = url.split("=");
         $.ajax({
           type : 'post',
-          url : "/train/getKjInfo",
+          url : "./train/getKjInfo",
           data : {
             "kjId" : split[1]
           },
@@ -97,12 +97,19 @@
             var returnCode = data.returnCode;
             if(returnCode=="00"){
               var data = data.data;
+              console.log(data);
               //课件名称
               $("#kjName").html(data.name);
               //文件名称
-              $("#fileName").html(data.name);
+              $("#fileName").html(data.fileName);
               //文件Url
-              $("#video").attr("src",data.kjUrl);
+              var kjUrl = data.kjUrl;
+              console.log(kjUrl);
+              if(kjUrl =='' || kjUrl==null){
+                $("#video").attr("src","mnsc.mp4");
+              }else{
+	              $("#video").attr("src",data.kjUrl);
+              }
               //文件介绍
               $("#remarks").html(data.remarks);
             }

@@ -342,11 +342,13 @@ html {
           var objId = data.objId;
           if (objId != '') {
             $("#objId").val(objId);
-            $("#file-1").fileinput('upload');
-            $("#file-2").fileinput('upload');
+            setTimeout(function() {
+              $("#file-1").fileinput('upload');
+              $("#file-2").fileinput('upload');
+		          parent.refresh();
+		          closeMy();
+            }, 500);
           }
-          parent.refresh();
-          closeMy();
         },
         error : function() { //失败回调函数
           parent.refresh();
@@ -557,9 +559,9 @@ html {
       maxFileCount : 3, //最多文件数量
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : true,
-      initialPreview:[
-                      
-                      ],
+      initialPreview : [
+
+      ],
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片

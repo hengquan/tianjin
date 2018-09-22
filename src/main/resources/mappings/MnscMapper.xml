@@ -171,6 +171,7 @@
 		<if test="searchStr != '' and searchStr !=null">
 		  and instr(mnsc_name,#{searchStr})>0
 		</if>
+		order by create_date desc
 	</select>
 	
 	<select id="getDataListByIds" resultMap="BaseResultMap">
