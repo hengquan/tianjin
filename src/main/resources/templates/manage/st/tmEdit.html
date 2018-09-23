@@ -70,21 +70,15 @@ html {
 </style>
 </head>
 <body>
+<br>
     <div class="container">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-11 col-sm-12 col-xs-2 column">
-            	<div class="col-lg-12 col-md-11 col-sm-11 col-xs-12">
-	                <div class="column pt-btn-line">
-	                     <button onclick="addTm()" id="baocun"
-	                            class="btn w80  btn-default btn-primary">保存</button>
-	                     <button class="btn w80  btn-default btn-default">取消</button>
-	                 </div>
-	            </div>
-                <form class="form-horizontal pt-form-full" role="form" id="form">                
+            	  <form class="form-horizontal pt-form-full" role="form" id="form">                
                     <input type="hidden" name="id" id="objId">                    
                     <div class="col-lg-12 col-md-11 col-sm-11 col-xs-12">
                         <div class="form-group">
-                            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span> ※ </span>题目名称</label>
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span> ※ </span>题目内容</label>
                             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                                 <textarea id="tmHtml" class="form-control" name="tmHtml"
                                     style="min-height: 108px"></textarea>
@@ -93,9 +87,8 @@ html {
                     </div>
                     <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label class="col-lg-1 col-md-2 col-sm-2 col-xs-6" for="dingjia"><span>
-                                    ※ </span>选择分类</label>
-                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="dingjia"><span>※ </span>选择分类</label>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                 <select id="tmType" name="tmType" class="selectpicker"
                                     onchange="classify(this)" data-live-search="true" title="请选择">
                                     <option value="单选题">单选题</option>
@@ -104,9 +97,8 @@ html {
                                 </select>
                             </div>
 
-                            <label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="title"><span>
-                                    ※ </span>分数</label>
-                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="title"><span>   ※ </span>分数</label>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                 <input type="text" class="form-control" name="score" id="score" />
                             </div>
                             <label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="biaozhun">
@@ -122,9 +114,9 @@ html {
                     <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">
-                                <span> ※ </span>所属课件内容列表
+                                <span> ※ </span>所属课件内容
                             </label>
-                            <div class="col-lg-7 col-md-7 col-sm-6 col-xs-6">
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                 <input type="hidden" class="form-control" name="kjList"
                                     id="kjList" />
                                 <textarea id="kjnameList" class="form-control" name="kjnameList"
@@ -140,9 +132,9 @@ html {
                     <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="biaozhun">
-                                <span> ※ </span>所属模拟实操列表
+                                <span> ※ </span>所属模拟实操
                             </label>
-                            <div class="col-lg-7 col-md-7 col-sm-6 col-xs-6">
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                 <input type="hidden" class="form-control" name="mnscList"
                                     id="mnscList" />
                                 <textarea id="mnscnameList" class="form-control"
@@ -171,27 +163,31 @@ html {
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12" id="selectbtn" style="display: none;">                       
-	                        <div class="form-group">
-	                            <span class="input-group-btn">
-	                                <button  class="btn w80  btn btn-info" type="button"
-	                                    onclick="openAddSelect()">添加</button>
-	                            </span>
-	                        </div>	                     
-                    </div>
-                </form>
-
-            </div>
-            <div class="pt-main" id = "pt-main">
-                <!--bootstrap 表格-->
-                <div class="row">
-                    <div class="col-lg-12 col-md-10 col-sm-11 col-xs-12">
-                        <div class="table-wrap">
-                            <table id="tb_departments"></table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </form>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" > 
+	                		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			                     <button onclick="addTm()" id="baocun"
+			                             class="btn w80  btn-default btn-primary">保存</button>
+			                     <button class="btn w80  btn-default btn-default">取消</button>
+		                     </div>
+		                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="selectbtn" style="display: none;">
+			                     <button onclick="openAddSelect()" 
+			                            class="btn w80  btn btn-info" >添加</button>	                 
+		                     </div>              
+                       </div>
+           		    </div>         
+	            <div class="pt-main" id = "pt-main">
+	                <!--bootstrap 表格-->
+	                <div class="row">
+	                    <div class="col-lg-12 col-md-10 col-sm-11 col-xs-12" >
+	                        <div class="table-wrap" >
+	                        	<br>
+	                            <table id="tb_departments"></table>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
         </div>
     </div>
 
@@ -335,6 +331,7 @@ html {
       parent.layer.close(index); //再执行关闭
     }
     function openKj() {
+      alert();
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
         title : '<span class="text-color">选择课件</span>',//请修改span中间的内容
@@ -356,7 +353,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '${gateway}/mnsc/list4st', 'yes' ]
+        content : [ '${gateway}/mnsc/list4st?type=checkbox', 'yes' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -369,7 +366,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '${gateway}/st/selectEdit?id='+$("#objId").val(), 'yes' ]
+        content : [ '${gateway}/st/selectEdit?id='+$("#objId").val(), 'no' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }

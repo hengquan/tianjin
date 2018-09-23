@@ -10,6 +10,7 @@
     <result column="create_date" property="createDate" jdbcType="DATE" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
+    <result column="isvalid" property="isvalid" jdbcType="INTEGER" />
   </resultMap>
   
   <sql id="Blob_Column_List">
@@ -99,6 +100,9 @@
       <if test="createName != null" >
         create_name = #{createName},
       </if>
+      <if test="isvalid != null" >
+        isvalid = #{isvalid},
+      </if>      
     </set>
     where id = #{id}
   </update>
@@ -121,7 +125,7 @@
   <select id="getTmListByObjInfo" resultMap="BaseResultMap" parameterType="Map">
 	   select distinct a.id, a.tm_type, a.tm_html, a.score, a.diff_score, a.create_date, a.create_by, a.create_name
 	   from q_tm a, q_TM_ref_source b
-	   where b.tm_id=a.id 
+	   where b.tm_id=a.id  and isvalid = 1
 	   <if test="refTabName != null and refTabName != ''">
 			 and b.ref_tabName=#{refTabName} 
 		</if>	  
@@ -149,7 +153,7 @@
         </if>
       </if>
     </if>
-    where diff_score between ${diff1} and ${diff2}
+    where diff_score between ${diff1} and ${diff2} 
     order by a.diff_score desc, a.create_name desc
   </select>
 </mapper>

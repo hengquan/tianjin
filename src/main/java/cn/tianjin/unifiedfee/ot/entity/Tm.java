@@ -36,6 +36,8 @@ public class Tm {
     private String tmSelectSign;   
     
     private Integer sort;      
+    
+    private Integer isvalid;
 
     public String getId() {
         return id;
@@ -171,5 +173,13 @@ public class Tm {
 
     public void setSort(Integer sort) {
         this.sort = sort;
+    }
+
+    public Integer getIsvalid() {
+        return isvalid;
+    }
+
+    public void setIsvalid(Integer isvalid) {
+        this.isvalid = isvalid;
     }
 }

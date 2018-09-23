@@ -86,7 +86,7 @@
 	                                <!-- 示例搜索按钮 -->
 		                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">		                                   
 		                                     <button type="button" class="btn btn-default btn-primary w80">搜索</button>
-		                                     <button type="button" class="btn w80 btn-default btn-primary" onclick="addMnsc()">添加</button>   
+		                                     <button type="button" class="btn w80 btn-default btn-primary" onclick="addMnsc()">确定</button>   
 		                                    
 		                                </div>
 	                                </div> 
@@ -161,7 +161,8 @@ function addMnsc(){
 TableInit().Init('${gateway}/mnsc/getPageData',
 [
   {
-    checkbox: true       
+    checkbox:getUrlParam("type")=='checkbox'?true:false,
+    radio: getUrlParam("type")=='checkbox'?false:true           
 },{
   field: 'mnscName',
   title: '课件名称',
@@ -181,6 +182,11 @@ TableInit().Init('${gateway}/mnsc/getPageData',
 }]);
 function refresh() {
   $("#tb_departments").bootstrapTable('refresh');
+}
+function getUrlParam(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+  var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+  if (r != null) return unescape(r[2]); return null; //返回参数值
 }
 </script>
 </body>
