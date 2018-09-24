@@ -166,13 +166,12 @@ function buildPaper() {
         sjData.beginTime=new Date();
         var _sjName=sjData.name;
         if (_sjName.indexOf("-")!=-1) _sjName=_sjName.substring(0, _sjName.indexOf("-"));
-        tmHtml="<p>"+sjData.name+"</p>";
+        tmHtml="<p>"+_sjName+"</p>";
         for (var i=0; i<sjData.tmList.length; i++) {
           var oneTm=sjData.tmList[i];
           tmHtml+=getOneTm4Sj1(oneTm);
         }
-//        console.log(tmHtml);
-        $(".tm-area").html(tmHtml);
+       $(".tm-area").html(tmHtml);
         $(".paper-content").show();
         $(".empty").hide();
         layer.closeAll();
@@ -187,7 +186,7 @@ function buildPaper() {
 /*生成试卷的html，为考试*/
 function getOneTm4Sj1(tm) {
   var retHtml="<div class='tm'>";
-  retHtml+="<span class='tm-desc'><span class='tm-sign'>"+tm.tmIndex+"、</span><span class='tm-context'>"+tm.tmDesc+"【"+tm.tmScore+"分】【"+tm.tmType+"】</span></span>";
+  retHtml+="<span class='tm-desc'><span class='tm-sign'>"+tm.tmIndex+"、【"+tm.tmType+"】</span><span class='tm-context'>"+tm.tmDesc+"【"+tm.tmScore+"分】</span></span>";
   if (tm.tmType=='判断题') {
     retHtml+="<div class='answer'>";
     for (var i=0; i<tm.tmItems.length; i++) {
@@ -223,18 +222,17 @@ function start() {
     var m=tmp%60;
     tmp=Math.floor(tmp/60);
     var h=tmp%60;
-    console.log(h+":"+m+":"+s);
     tmp=((100+h)+"").substring(1)+":"+((100+m)+"").substring(1)+":"+((100+s)+"").substring(1);
     $(".time-btn").html(tmp);
-  }, 10);
+  }, 1000);
 }
 //提交试卷
 function commitSj() {
   if ($("#commitSj").hasClass("disable-btn")) return;
   clearInterval(intervalHandler);
   count=0;
-  $("input[type='checkbox']").addAttr("disabled", "disabled");
-  $("input[type='radio']").addAttr("disabled", "disabled");
+  $("input[type='checkbox']").attr("disabled", "disabled");
+  $("input[type='radio']").attr("disabled", "disabled");
   if (sjData==null) {
     layer.msg("请先生成试卷");
     return;
@@ -270,7 +268,6 @@ function commitSj() {
     data: _data,
     dataType:'json',
     success: function (data) { //成功后的回调函数
-      console.log(data);
       var tmHtml="";
       var returnCode=data.returnCode;
       if (returnCode=='00') {

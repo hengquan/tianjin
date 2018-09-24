@@ -110,6 +110,7 @@ public class SjService {
         Random ran=new Random();
 
         Map<String, Object> param=new HashMap<String, Object>();
+        //获得名称
 
         String cateQuery_kj="", cateQuery_mnsc="";
         if (!StringUtils.isBlank(cateIds)) {
@@ -181,7 +182,7 @@ public class SjService {
             sj.setUserName(ui.getUsername());
             sj.setRefTabname(param.get("refTabName")==null?null:""+param.get("refTabName"));
             sj.setRefId(refId);
-            sj.setSjName("随机练习题-"+ui.getUsername()+"-"+DateUtils.convert2TimeChineseStr(now));
+            sj.setSjName("练习题-"+ui.getUsername()+"-"+DateUtils.convert2TimeChineseStr(now));
             sj.setTimeUse(0);
             sj.setScore(score);
             sj.setTmCount(ml.size());

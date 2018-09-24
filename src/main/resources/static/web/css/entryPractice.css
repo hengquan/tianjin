@@ -225,7 +225,7 @@ select{
 }
 /*生成练习之前页面*/
 .empty {
-  margin-top:5px;
+  margin-top:1px;
   width: 1200px;
   background: white;
   padding: 150px;
@@ -256,7 +256,7 @@ select{
 
 .paper-content {
   display:none;
-  margin-top:5px;
+  margin-top:1px;
   width: 1200px;
   background: white;
   padding-top:20px;
@@ -305,6 +305,10 @@ select{
   display:none;
   margin: 8px 0;
 }
+.tm-result span {
+  margin-right:10px;
+}
+
 .tm .answer {
   padding-left: 10px;
 }
