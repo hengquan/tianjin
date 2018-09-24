@@ -576,7 +576,7 @@ public class ApiController {
                 retMap.put("messageInfo","试卷Id无对应试卷");
                 return retMap;
             }
-            Map<String, Object> commitSjResult=sjService.commitSj(sj, answers, resultType);
+            Map<String, Object> commitSjResult=sjService.commitSj(sj, answers, resultType, beginTime, endTime);
             if (commitSjResult==null) {
                 retMap.put("returnCode","99");
                 retMap.put("messageInfo","无法处理");

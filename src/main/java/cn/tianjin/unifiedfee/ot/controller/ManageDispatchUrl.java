@@ -106,7 +106,7 @@ public class ManageDispatchUrl {
     }
 
     //--分类管理
-    @RequestMapping("cate/List")
+    @RequestMapping("cate/list")
     public String toCateList() {
         return "/manage/cate/cateList";
     }

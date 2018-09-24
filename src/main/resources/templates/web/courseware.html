@@ -32,7 +32,7 @@ body {background: white;}
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="1">法规类</a></li>
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="2">政策类</a></li>
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="3">收费类</a></li>
-    <li><a href="javascript:void(0)" data-toggle="tab" cateId="4">风行类</a></li>
+    <li><a href="javascript:void(0)" data-toggle="tab" cateId="4">放行类</a></li>
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="5">理货类</a></li>
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="6">出口类</a></li>
     <li><a href="javascript:void(0)" data-toggle="tab" cateId="7">进口类</a></li>
@@ -121,7 +121,7 @@ function getOneItem(itemData) {
   if (itemData.imgUrl) $itemHtmlObj.append("<img src='"+itemData.imgUrl+"' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
   else $itemHtmlObj.append("<img src='./web/images/kj_default.jpg' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
   $itemHtmlObj.append('<div class="name_title" style="cursor:pointer;" onclick=toCourse("'+itemData.id+'")><div class="name_top"><p>'+itemData.name+'</p><div class="name_detail">'
-      +'<span class="img_left"><img src="/web/images/rs.jpg" alt=""></span><span class="rs">2.5万</span><span style="margin-left:40px;">'+timeStr+'</span></div></div></div>');
+      +'<span class="img_left"><img src="/web/images/rs.jpg" style="margin-left:-10px;"></span><span class="rs">2.5万</span><span style="margin-left:40px;">'+timeStr+'</span></div></div></div>');
 
   return $itemHtmlObj;
 }

@@ -9,6 +9,7 @@
     <result column="ref_id" property="refId" jdbcType="VARCHAR" />
     <result column="sj_name" property="sjName" jdbcType="VARCHAR" />
     <result column="time_use" property="timeUse" jdbcType="INTEGER" />
+    <result column="sj_score" property="sjScore" jdbcType="INTEGER" />
     <result column="score" property="score" jdbcType="INTEGER" />
     <result column="tm_count" property="tmCount" jdbcType="INTEGER" />
     <result column="diff_type" property="diffType" jdbcType="VARCHAR" />
@@ -22,7 +23,7 @@
 
   <sql id="Blob_Column_List">
     id, user_id, user_name, ref_tabname, ref_id, sj_name, 
-    time_use, score, tm_count, diff_type, begin_time, end_time, 
+    time_use, sj_score, score, tm_count, diff_type, begin_time, end_time, 
     state, create_date, create_by, create_name
   </sql>
 
@@ -34,13 +35,13 @@
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.SJ" >
     insert into q_SJ (id, user_id, user_name, 
       ref_tabname, ref_id, sj_name, 
-      time_use, score, tm_count, 
+      time_use, sj_score, score, tm_count, 
       diff_type, begin_time, end_time, 
       state, create_date, create_by, 
       create_name)
     values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
       #{refTabname,jdbcType=VARCHAR}, #{refId,jdbcType=VARCHAR}, #{sjName,jdbcType=VARCHAR}, 
-      #{timeUse,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{tmCount,jdbcType=INTEGER}, 
+      #{timeUse,jdbcType=INTEGER}, #{sjScore,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{tmCount,jdbcType=INTEGER}, 
       #{diffType,jdbcType=INTEGER}, #{beginTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, 
       #{state,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, 
       #{createName,jdbcType=VARCHAR})
@@ -68,6 +69,9 @@
       </if>
       <if test="timeUse != null" >
         time_use,
+      </if>
+      <if test="sjScore != null" >
+        sj_score,
       </if>
       <if test="score != null" >
         score,
@@ -119,6 +123,9 @@
       <if test="timeUse != null" >
         #{timeUse,jdbcType=INTEGER},
       </if>
+      <if test="sjScore != null" >
+        #{sjScore,jdbcType=INTEGER},
+      </if>
       <if test="score != null" >
         #{score,jdbcType=INTEGER},
       </if>
@@ -148,4 +155,50 @@
       </if>
     </trim>
   </insert>
+
+  <update id="update">
+    update q_SJ
+    <set>
+      <if test="userId != null" >
+        user_id=#{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name=#{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="refTabname != null" >
+        ref_tabname=#{refTabname,jdbcType=VARCHAR},
+      </if>
+      <if test="refId != null" >
+        ref_id=#{refId,jdbcType=VARCHAR},
+      </if>
+      <if test="sjName != null" >
+        sj_name=#{sjName,jdbcType=VARCHAR},
+      </if>
+      <if test="timeUse != null" >
+        time_use=#{timeUse,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        sj_score=#{sjScore,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score=#{score,jdbcType=INTEGER},
+      </if>
+      <if test="tmCount != null" >
+        tm_count=#{tmCount,jdbcType=INTEGER},
+      </if>
+      <if test="diffType != null" >
+        diff_type=#{diffType,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null" >
+        begin_time=#{beginTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        end_time=#{endTime,jdbcType=DATE},
+      </if>
+      <if test="state != null" >
+        state=#{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id=#{id}
+  </update>
 </mapper>

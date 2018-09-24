@@ -1,0 +1,21 @@
+/*以下new*/
+._gap {
+  width: 1200px;
+  height: 66px;
+  margin: 20px auto 5px;
+  background-color: white;
+  line-height: 66px;
+}
+._gap span {
+  margin-left: 26px;
+  font-size: 16px;
+  font-weight: bold;
+}
+._gap .b-border {
+  width: 70px;
+  height:4px;
+  background-color:#2d65c2 ;
+  margin-left:21px;
+  margin-top: -5px;
+  border: none;
+}

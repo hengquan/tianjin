@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>培训中心-在线练习</title>
+  <title>天津市港口统一收费服务平台-培训-在线练习</title>
   <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
   <!--公共css-->
   <link rel="stylesheet" href="./web/css/pt-main.css">
@@ -11,20 +11,23 @@
   <link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
   <link rel="stylesheet" href="./web/css/bootstrap-select.css">
   <!--页面css-->
+  <link rel="stylesheet" href="./web/css/tjtrain.common.css">
   <link rel="stylesheet" href="./web/css/paymentList.css">
   <link rel="stylesheet" href="./web/css/entryPractice.css">
+  <link  rel="stylesheet"href="./web/layer/layer-new.css">
 
   <script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
   <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./web/bootstrap/js/bootstrap-table.min.js"></script>
   <script type="text/javascript" src="./web/js/main.js"></script>
   <script type="text/javascript" src="./web/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="./web/layer/layer.js"></script>
 </head>
 <body>
+
 <!-- 头部条 -->
 <div class="pt-topbar">
   <div class="nav_header">
-   <!--左侧系统名称-->
    <div class="pt-fl pt-system-info">
      <div class="pt-logo pt-fl"><img src="./web/images/LOGO@2x.png" alt=""></div>
      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>在线练习</strong></div>
@@ -32,66 +35,48 @@
   </div>
 </div>
 <!-- 头部条  结束 -->
+
 <div class="pay">
-  <div class="nav_bar"><span>在线练习</span></div>
-  <div class="paymentList">
-    <div class="paper">
-       <span>模拟实操试卷</span>
-       <span>
-           <select name="">
-                <option value="">练习课件1</option>
-                <option value="">练习课件2</option>
-                <option value="">练习课件3</option>
-           </select>
-       </span>
-       <span>课件试卷</span>
-       <span>
-           <select name="" id="">
-                <option value="">练习课件1</option>
-                <option value="">练习课件2</option>
-                <option value="">练习课件3</option>
-           </select>
-       </span>
-       <span>难易程度</span>
-       <span>
-           <select name="" id="">
-                <option value="">难</option>
-                <option value="">简单</option>
-                <option value="">一般</option>
-           </select>
-       </span>
-       <span>题目数量</span>
-       <span>
-           <select name="" id="">
-                <option value="">123</option>
-                <option value="">456</option>
-                <option value="">789</option>
-           </select>
-       </span>
-       <span class="greatePaper" onclick="toGreatePaper()">生成试卷</span>
+  <div class="_gap" style="margin-top:0px;">
+    <span>在线练习</span>
+    <div class="b-border"></div>
   </div>
-  <!--横线-->
-  <span class="border"></span>
+  <div class="buildpaper">
+    <span>业务分类:</span>
+    <span>
+      <select name="cateIds">
+        <option value="1">法规类</option>
+        <option value="2">政策类</option>
+        <option value="3">收费类</option>
+        <option value="4">放行类</option>
+        <option value="5">理货类</option>
+        <option value="6">出口类</option>
+        <option value="7">进口类</option>
+      </select>
+    </span>
+    <span>难易程度:</span>
+    <span>从<input name="diff1" type=text/>到<input name="diff2" type=text/></span>
+    <span>题目数量:</span>
+    <span>
+      <input name="tmCount" type=text/>
+    </span>
+    <span class=practice-btn onclick="buildPaper()">生成试卷</span>
+  </div>
   <!--生成练习之前的页面-->
   <div class="empty">
-    <span><img src="./web/images/lianxi.jpg" alt=""></span>
-    <p>还没有练习题，马上生成练习吧！</p>
-  </div>
-  <!--生成练习之后的页面-->
-  <div class="paper_content">
-    <span class="startTime" onclick="start()">开始计时</span>
-    <div class="timeInput">
-      <span class="startTime1" onclick="stop1()" >停止计时</span>
-      <span class="timers">
-        <input type="text" id="txt1">:
-        <input type="text" id="txt"/>:
-        <input type="text" id="txt2"/>
-      </span>
+    <div onclick="buildPaper()">
+      <span><img src="./web/images/lianxi.jpg" alt=""></span>
+      <p id="emptyMsg">马上生成练习吧！</p>
     </div>
-    <div class="courseName">
+  </div>
+  <div class="paper-content">
+    <div class="time-area" >
+      <span class="time-btn" onclick="start()">开始答卷</span>
+    </div>
+    <div class="tm-area">
       <p>课件名称难易程度试卷</p>
-      <div>
-        <span>一、试题名称1</span>
+      <div class="tm">
+        <span class="tmDesc"><span class="tmSign">三、</span><span class="tmContext">试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1试题名称1</span></span>
         <div class="answer">
           <span><input type="checkbox"></span>
           <span>A 答案xxxxxxxxxxxxxxxxx</span>
@@ -109,58 +94,203 @@
           <span>D 答案xxxxxxxxxxxxxxxxx</span>
         </div>
       </div>
-     <div class="pay_button">
-      <span class="previousPage" onclick="toSave()">保存</span>
-      <span class="nextPage" onclick="nextPage()">重新练习</span>
+      <div class="paper_title">
+        <span>三、试题名称1</span>
+        <div class="answer">
+          <span><input type="checkbox"></span>
+          <span>A 答案xxxxxxxxxxxxxxxxx</span>
+        </div>
+        <div class="answer">
+          <span><input type="checkbox"></span>
+          <span>B 答案xxxxxxxxxxxxxxxxx</span>
+        </div>
+        <div class="answer">
+          <span><input type="checkbox"></span>
+          <span>C 答案xxxxxxxxxxxxxxxxx</span>
+        </div>
+        <div class="answer">
+          <span><input type="checkbox"></span>
+          <span>D 答案xxxxxxxxxxxxxxxxx</span>
+        </div>
+      </div>
+      <div class="paper_title">
+        <span>四、试题名称1</span>
+        <div class="answer">
+          <span><input type="checkbox"></span>
+          <span>A 答案xxxxxxxxxxxxxxxxx</span>
+        </div>
+        <div class="answer">
+          <span><input type="checkbox"></span>
+          <span>B 答案xxxxxxxxxxxxxxxxx</span>
+        </div>
+        <div class="answer">
+          <span><input type="checkbox"></span>
+          <span>C 答案xxxxxxxxxxxxxxxxx</span>
+        </div>
+        <div class="answer">
+          <span><input type="checkbox"></span>
+          <span>D 答案xxxxxxxxxxxxxxxxx</span>
+        </div>
+      </div>
+    </div>
+    <div class="btn-area">
+      <span class="practice-btn disable-btn" onclick="commitSj()" disabled="disabled" id=commitSj>提交试卷</span>
+      <span class="practice-btn" onclick="buildPaper()" style="display:none;">重新练习</span>
     </div>
   </div>
 </div>
+
 <!--公共底部-->
 <div class="pt-footer">
   <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
 </div>
-</body>
 <script type="text/javascript">
-var c=0;var c1=60;var c2=0;
-var runing=0;var stop=0;
+var sjData=null;//试卷的缓存
 
-function timedCount()
-{
-  document.getElementById('txt').value=c;
-  document.getElementById('txt1').value=c1;
-  document.getElementById('txt2').value=c2;
-  c2=c2-5;
-  if(c2<0) { c=c-1;c2=c2+100;}
-  if(c<0) {c1=c1-1;c=c+60;}
-  if(stop==0) setTimeout("timedCount()",50)
-  else return;
+function buildPaper() {
+  layer.msg('试题生成中......', {
+    icon: 16 ,shade: 0.01
+  });
+  //获得参数
+  var _data={cateIds:"1,2", tmCount:10};
+  $.ajax({
+    type: 'post',
+    url: "./train/getSj",
+    data: _data,
+    dataType:'json',
+    success: function (data) { //成功后的回调函数
+      var tmHtml="";
+      var returnCode=data.returnCode;
+      if (returnCode=='00') {
+        sjData=data.data;
+        sjData.beginTime=new Date();
+        var _sjName=sjData.name;
+        if (_sjName.indexOf("-")!=-1) _sjName=_sjName.substring(0, _sjName.indexOf("-"));
+        tmHtml="<p>"+sjData.name+"</p>";
+        for (var i=0; i<sjData.tmList.length; i++) {
+          var oneTm=sjData.tmList[i];
+          tmHtml+=getOneTm4Sj1(oneTm);
+        }
+//        console.log(tmHtml);
+        $(".tm-area").html(tmHtml);
+        $(".paper-content").show();
+        $(".empty").hide();
+        layer.closeAll();
+      } else {
+        $("#emptyMsg").html("未生成试卷，请重新定义条件");
+      }
+    },
+    error: function (e) {
+    }
+  });
 }
+/*生成试卷的html，为考试*/
+function getOneTm4Sj1(tm) {
+  var retHtml="<div class='tm'>";
+  retHtml+="<span class='tm-desc'><span class='tm-sign'>"+tm.tmIndex+"、</span><span class='tm-context'>"+tm.tmDesc+"【"+tm.tmScore+"分】【"+tm.tmType+"】</span></span>";
+  if (tm.tmType=='判断题') {
+    retHtml+="<div class='answer'>";
+    for (var i=0; i<tm.tmItems.length; i++) {
+      retHtml+="<span class='one-answer'><input disabled=disabled type='radio' name='tm_answer_"+tm.tmId+"' value='"+tm.tmItems[i].itemSign+"'></span>";
+      retHtml+="<span>"+tm.tmItems[i].itemSign+"、"+tm.tmItems[i].itemDesc+"</span>";
+    }
+    retHtml+="</div>";
+  } else {
+    for (var i=0; i<tm.tmItems.length; i++) {
+      retHtml+="<div class='answer'>";
+      retHtml+="<span class='one-answer'><input type='checkbox' disabled=disabled name='tm_answer_"+tm.tmId+"' value='"+tm.tmItems[i].itemSign+"'></span>";
+      retHtml+="<span>"+tm.tmItems[i].itemSign+"、"+tm.tmItems[i].itemDesc+"</span>";
+      retHtml+="</div>";
+    }
+  }
+  //正确结果区
+  retHtml+="<div class='tm-result' id='tm-result-"+tm.tmId+"'><span class='get-score'>得分：5</span><span class='tm-right'>正确答案：A,B</span><span class='tm-youanswer'>您的答案:B,C</span></div>";
+  retHtml+="</div>";
+  return retHtml;
+}
+
+//开始练习
+var intervalHandler;
+var count=0;
 function start() {
-  stop=0;
-  if(runing==0) timedCount();
-  runing=1;
-  $(".timeInput").show()
-  $(".startTime").hide()
-  $(".s")
-  return;
+  $("#commitSj").removeClass("disable-btn");
+  $("input[type='checkbox']").removeAttr("disabled");
+  $("input[type='radio']").removeAttr("disabled");
+  intervalHandler=window.setInterval(function() {
+    count++;
+    var s=count%60;
+    var tmp=Math.floor(count/60);
+    var m=tmp%60;
+    tmp=Math.floor(tmp/60);
+    var h=tmp%60;
+    console.log(h+":"+m+":"+s);
+    tmp=((100+h)+"").substring(1)+":"+((100+m)+"").substring(1)+":"+((100+s)+"").substring(1);
+    $(".time-btn").html(tmp);
+  }, 10);
 }
-
-function stop1() {
-  stop=1;runing=0;
-}
-
-function toGreatePaper() {
-  $(".paper_content").show()
-  $(".empty").hide()
-}
-function toSave() {
-  $(".empty").hide()
-  $(".paymentList").hide()
-  $(".paymentList1").show()
-  $(".paper_content1").show()
-}
-function nextPage() {
-  window.location.reload();
+//提交试卷
+function commitSj() {
+  if ($("#commitSj").hasClass("disable-btn")) return;
+  clearInterval(intervalHandler);
+  count=0;
+  $("input[type='checkbox']").addAttr("disabled", "disabled");
+  $("input[type='radio']").addAttr("disabled", "disabled");
+  if (sjData==null) {
+    layer.msg("请先生成试卷");
+    return;
+  };
+  layer.msg('试卷提交中......', {
+    icon: 16 ,shade: 0.01
+  });
+  //获得参数
+  var _data={};
+  _data.id=sjData.id;
+  _data.beginTime=sjData.beginTime;
+  _data.endTime=new Date();
+  _data.resultType=1;
+  var allAnswer="";
+  for (var i=0; i<sjData.tmList.length; i++) {
+    var tm=sjData.tmList[i];
+    var answer="";
+    if (tm.tmType=="判断题") {
+      answer=$('input[name="tm_answer_'+tm.tmId+'"]:checked').val();
+    } else {
+      $('input[name="tm_answer_'+tm.tmId+'"]:checked').each(function(){
+        answer+="#"+$(this).val();
+      });
+      answer=answer.substring(1);
+    }
+    if (answer) allAnswer+=","+tm.tmId+":"+answer;
+  }
+  if (allAnswer) allAnswer=allAnswer.substring(1);
+  _data.answers=allAnswer;
+  $.ajax({
+    type: 'post',
+    url: "./train/commitSj",
+    data: _data,
+    dataType:'json',
+    success: function (data) { //成功后的回调函数
+      console.log(data);
+      var tmHtml="";
+      var returnCode=data.returnCode;
+      if (returnCode=='00') {
+        for (var i=0; i<data.data.tmList.length; i++) {
+          var oneTm=data.data.tmList[i];
+          $("#tm-result-"+oneTm.tmId).find(".tm-youanswer").html("您的答案:"+oneTm.answer);
+          $("#tm-result-"+oneTm.tmId).find(".tm-youanswer").css("color", oneTm.score>0?"green":"red");
+          $("#tm-result-"+oneTm.tmId).find(".get-score").html("得分:"+oneTm.score);
+          $("#tm-result-"+oneTm.tmId).find(".tm-right").html("正确答案:"+oneTm.tmAnswer);
+        }
+        if (_data.resultType!=1) $(".tm-right").hide();
+        $(".tm-result").show();
+      } else {
+        layer.msg("未获得答案!");
+      }
+    },
+    error: function (e) {
+    }
+  });
 }
 </script>
+</body>
 </html>
