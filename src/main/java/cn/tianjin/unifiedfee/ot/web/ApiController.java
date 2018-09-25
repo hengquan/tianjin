@@ -72,6 +72,62 @@ public class ApiController {
 //    }
 
     /**
+     * 1.1.0、获得分类树<br>
+     * 获得分类信息，以列表的形式或以树的形式，以列表形式无分页功能
+     * @param request
+     * @param response
+     * @param categoryId 上级分类，若为空，获得所有分类
+     * @param resultType =0列表形式；=1树形式，默认为0
+     * @return
+     */
+    @RequestMapping("/getTree/ptTree")
+    @ResponseBody
+    public Map<String, Object> getCateTree_ptTree(HttpServletRequest request, HttpServletResponse response,
+        @RequestParam(required=false) String categoryId) {
+        HttpPush.responseInfo(response);//跨域
+
+        Map<String, Object> retMap=new HashMap<String, Object>();
+        try {
+            UserInfo ui=userService.getUserInfo();
+            if (ui==null) {
+                retMap.put("returnCode","02");
+                retMap.put("messageInfo","无用户登录");
+                return retMap;
+            }
+            TreeNode<CategoryNode> c=categoryService.getCategoryNodeById(categoryId);
+            if (c==null) {
+                retMap.put("returnCode","03");
+                retMap.put("messageInfo","分类Id无对应分类");
+                return retMap;
+            }
+            Map<String, Object> data=new HashMap<String, Object>();
+            Map<String, Object> retTree=_toTreeMap_ptTree(c);
+            data.put("tree", retTree);
+            retMap.put("returnCode", "00");
+            retMap.put("data", data);
+        } catch(Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode","01");
+            retMap.put("messageInfo",e.toString());
+        }
+        return retMap;
+    }
+    private Map<String, Object> _toTreeMap_ptTree(TreeNode<? extends TreeNodeBean> treeNode) {
+        Map<String, Object> treeMap=new HashMap<String, Object>();
+        treeMap.put("id", treeNode.getId());
+        treeMap.put("text", treeNode.getNodeName());
+        treeMap.put("pathName", treeNode.getTreePathName("-", 0));
+        if (!treeNode.isLeaf()&&treeNode.getChildCount()>0) {
+            List<Map<String, Object>> new_cl=new ArrayList<Map<String, Object>>();
+            for (TreeNode<? extends TreeNodeBean> _c:treeNode.getChildren()) {
+                new_cl.add(_toTreeMap_ptTree(_c));
+            }
+            treeMap.put("nodes", new_cl);
+        }
+        return treeMap;
+    }
+
+    /**
      * 1.1.1、获得分类信息<br>
      * 获得分类信息，以列表的形式或以树的形式，以列表形式无分页功能
      * @param request
@@ -576,7 +632,7 @@ public class ApiController {
                 retMap.put("messageInfo","试卷Id无对应试卷");
                 return retMap;
             }
-            Map<String, Object> commitSjResult=sjService.commitSj(sj, answers, resultType);
+            Map<String, Object> commitSjResult=sjService.commitSj(sj, answers, resultType, beginTime, endTime);
             if (commitSjResult==null) {
                 retMap.put("returnCode","99");
                 retMap.put("messageInfo","无法处理");

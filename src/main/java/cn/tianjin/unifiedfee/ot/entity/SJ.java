@@ -17,6 +17,8 @@ public class SJ {
 
     private Integer timeUse;
 
+    private Integer sjScore;
+
     private Integer score;
 
     private Integer tmCount;
@@ -161,5 +163,13 @@ public class SJ {
 
     public void setCreateName(String createName) {
         this.createName = createName == null ? null : createName.trim();
+    }
+
+    public Integer getSjScore() {
+        return sjScore;
+    }
+
+    public void setSjScore(Integer sjScore) {
+        this.sjScore = sjScore;
     }
 }

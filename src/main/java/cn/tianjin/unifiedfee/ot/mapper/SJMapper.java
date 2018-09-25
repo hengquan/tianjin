@@ -8,4 +8,6 @@ public interface SJMapper {
     public int insertSelective(SJ record);
 
     public SJ getById(String id);
+
+    public int update(SJ sj);
 }

@@ -19,8 +19,6 @@
   <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css" rel="stylesheet">
   <!-- 8 Validator验证css -->
   <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css" rel="stylesheet">
-  <!-- 9 layer弹框css -->
-  <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet" >
   <!-- 10 引入字体css -->
   <link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css" rel="stylesheet">
   <!-- 11 页面样式css -->
@@ -50,6 +48,8 @@
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
   <!-- 11 layer弹框js -->
   <script src="${gateway}/libs/layer/layer.js"></script>
+  <!-- 9 layer弹框css -->
+  <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet" >
   <!-- 12 页面js -->
   <script src="${gateway}/src/js/main.js"></script>
 </head>
@@ -207,7 +207,7 @@ function editItem(e, type) {
     shade: 0.6,
     maxmin: false,//开启最大化最小化按钮
     area: ['80%', '83%'],//此处可以改为100%，该数值按UI图比例算出
-    content: 'cate/edit'//如果不想出现滚动条['content.html', 'no']
+    content: '${gateway}/cate/edit'//如果不想出现滚动条['content.html', 'no']
   });
 }
 
@@ -226,7 +226,6 @@ function lookItem(e) {
 }
 
 function refresh() {
-  alert("EEEE");
   $("#tb_departments").bootstrapTable('refresh');
 }
 var bt=TableInit().Init('${gateway}/cate/getPageData',

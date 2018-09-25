@@ -19,10 +19,12 @@ import cn.tianjin.unifiedfee.ot.entity.SJ;
 import cn.tianjin.unifiedfee.ot.entity.SJTm;
 import cn.tianjin.unifiedfee.ot.entity.Tm;
 import cn.tianjin.unifiedfee.ot.entity.TmSelect;
+import cn.tianjin.unifiedfee.ot.entity.TmUserAnswer;
 import cn.tianjin.unifiedfee.ot.mapper.SJMapper;
 import cn.tianjin.unifiedfee.ot.mapper.SJTmMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmSelectMapper;
+import cn.tianjin.unifiedfee.ot.mapper.TmUserAnswerMapper;
 import cn.tianjin.unifiedfee.ot.util.Onlylogo;
 
 /**
@@ -38,6 +40,8 @@ public class SjService {
     private SJTmMapper sjtmDao;
     @Autowired
     private TmSelectMapper selectDao;
+    @Autowired
+    private TmUserAnswerMapper tmAnswerDao;
 
     /**
      * 随机后的所给定的对象所对应题目的Id
@@ -106,6 +110,7 @@ public class SjService {
         Random ran=new Random();
 
         Map<String, Object> param=new HashMap<String, Object>();
+        //获得名称
 
         String cateQuery_kj="", cateQuery_mnsc="";
         if (!StringUtils.isBlank(cateIds)) {
@@ -177,7 +182,7 @@ public class SjService {
             sj.setUserName(ui.getUsername());
             sj.setRefTabname(param.get("refTabName")==null?null:""+param.get("refTabName"));
             sj.setRefId(refId);
-            sj.setSjName("随机练习题-"+ui.getUsername()+"-"+DateUtils.convert2TimeChineseStr(now));
+            sj.setSjName("练习题-"+ui.getUsername()+"-"+DateUtils.convert2TimeChineseStr(now));
             sj.setTimeUse(0);
             sj.setScore(score);
             sj.setTmCount(ml.size());
@@ -219,32 +224,38 @@ public class SjService {
     public SJ getSjById(String id) {
         return sjDao.getById(id);
     }
-    public Map<String, Object> commitSj(SJ sj, String answers, int resultType) {
+
+    /**
+     * 试卷提交
+     * @param sj 试卷对昂
+     * @param answers 答案字符串
+     * @param resultType 返回类型，是否返回答案，1返回，其他不返回
+     * @return
+     */
+    public Map<String, Object> commitSj(SJ sj, String answers, int resultType, String beginTime, String endTime) {
         //首先，得到试卷中的题目
         List<Tm> tmL=tmDao.getTmListTySjId(sj.getId());
         if (tmL==null||tmL.size()==0) return null;
         //处理用户答案
-        String[] sp=answers.split("##");
+        String[] sp=answers.split(",");
         Map<String, String> answerMap=new HashMap<String, String>();
         int i=0;
         for (; i<sp.length; i++) {
-            String[] sp2=sp[i].trim().split(",");
+            String[] sp2=sp[i].trim().split(":");
             if (sp2.length==2) {
                 String tmId=sp2[0].trim();
-                tmId=(tmId.indexOf(":")==-1?null:tmId.substring(tmId.indexOf(":")+1));
-                if (tmId!=null) {
+                if (!StringUtils.isBlank(tmId)) {
                     String answer=sp2[1].trim();
-                    answer=(answer.indexOf(":")==-1?null:answer.substring(answer.indexOf(":")+1));
-                    if (answer!=null) {
+                    if (!StringUtils.isBlank(answer)) {
                         answerMap.put(tmId, answer);
                     }
                 }
             }
         }
         List<Map<String, Object>> ml=new ArrayList<Map<String, Object>>();
-        int score=0;
-        String okAnswer="";
+        int score=0;//总分
         for (i=0; i<tmL.size(); i++) {
+            String okAnswer="";
             Map<String, String> okAnswerMap=new HashMap<String, String>();
             Map<String, Object> oneTm=getTmMap(tmL.get(i), i);
             List<TmSelect> selects=selectDao.getselectData(tmL.get(i).getId());
@@ -253,11 +264,7 @@ public class SjService {
                 for (int j=0; j<selects.size(); j++) {
                     tmSelects.add(getSelectMap(selects.get(j)));
                     if (selects.get(j).getIsAnswer()==1) {
-                        if (tmL.get(i).getTmType().equals("判断题")) {
-                            okAnswer=","+selects.get(j).getTmSelectDesc();
-                        } else {
-                            okAnswer+=","+selects.get(j).getTmSelectSign();
-                        }
+                        okAnswer+=","+selects.get(j).getTmSelectSign();
                         okAnswerMap.put(selects.get(j).getTmSelectSign(), selects.get(j).getTmSelectDesc());
                     }
                 }
@@ -267,10 +274,10 @@ public class SjService {
             if (resultType==1&&!StringUtils.isBlank(okAnswer)) {//需要返回答案
                 oneTm.put("tmAnswer", okAnswer.substring(1));
             }
-            //判断题目
+            //题目
             String _answer=answerMap.get(tmL.get(i).getId());
             if (_answer!=null) {
-                String[] sp3=_answer.split("^");
+                String[] sp3=_answer.split("#");
                 boolean correct=true;//题目默认都答对
                 for (int n=0; n<sp3.length; n++) {
                     if (okAnswerMap.get(sp3[n].trim())==null) {
@@ -287,7 +294,28 @@ public class SjService {
             } else {
                 oneTm.put("score", 0);
             }
+            oneTm.put("answer", _answer.replaceAll("#", ","));
+            //插入答题表
+            TmUserAnswer tua= new TmUserAnswer();
+            tua.setId(Onlylogo.getUUID());
+            tua.setSjId(sj.getId());
+            tua.setTmId(tmL.get(i).getId());
+            tua.setUserId(sj.getUserId());
+            tua.setUserName(sj.getUserName());
+            tua.setTmScore(tmL.get(i).getScore());
+            tua.setScore(Integer.parseInt(""+oneTm.get("score")));
+            tua.setCreateBy(sj.getCreateBy());
+            tua.setCreateName(sj.getCreateName());
+            tua.setCreateDate(new Date());
+            tua.setAnswer(_answer==null?"":_answer.replaceAll("#", ","));
+            tmAnswerDao.insertSelective(tua);
         }
+        //更新试卷表
+        sj.setScore(score);
+        sj.setEndTime(new Date());
+        sj.setBeginTime(new Date());
+        sj.setState(2);//答题完成
+        sjDao.update(sj);
         //组织返回值
         Map<String, Object> dataM=new HashMap<String, Object>();
         String refType=sj.getRefTabname();
