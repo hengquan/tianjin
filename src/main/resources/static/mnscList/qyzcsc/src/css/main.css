@@ -73,3 +73,16 @@ p{
   color: #f46227;
   font-size: 25px;
 }
+.head_title{
+  width: 1150px;
+  margin: 0 auto;
+  height: 40px;
+  background-color:#EEF2F6 ;
+  border:1px solid #ccc;
+  line-height: 40px;
+  border-bottom: none;
+  font-size: 16px;
+}
+.head_title span{
+  margin-left: 10px;
+}
