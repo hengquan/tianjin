@@ -1,254 +1,347 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.tianjin.unifiedfee.ot.mapper.LogVisitMapper" >
-  <resultMap id="BaseResultMap" type="cn.tianjin.unifiedfee.ot.entity.LogVisit" >
-    <result column="id" property="id" jdbcType="VARCHAR" />
-    <result column="serv_sys_type" property="servSysType" jdbcType="VARCHAR" />
-    <result column="serv_sys_id" property="servSysId" jdbcType="VARCHAR" />
-    <result column="visit_type" property="visitType" jdbcType="INTEGER" />
-    <result column="visit_sys_type" property="visitSysType" jdbcType="VARCHAR" />
-    <result column="visit_sys_id" property="visitSysId" jdbcType="VARCHAR" />
-    <result column="visit_modulel_id" property="visitModulelId" jdbcType="VARCHAR" />
-    <result column="obj_type" property="objType" jdbcType="VARCHAR" />
-    <result column="obj_id" property="objId" jdbcType="VARCHAR" />
-    <result column="api_name" property="apiName" jdbcType="VARCHAR" />
-    <result column="from_url" property="fromUrl" jdbcType="VARCHAR" />
-    <result column="req_url" property="reqUrl" jdbcType="VARCHAR" />
-    <result column="method" property="method" jdbcType="VARCHAR" />
-    <result column="req_param" property="reqParam" jdbcType="VARCHAR" />
-    <result column="visitor_type" property="visitorType" jdbcType="VARCHAR" />
-    <result column="visitor_id" property="visitorId" jdbcType="VARCHAR" />
-    <result column="visitor_name" property="visitorName" jdbcType="VARCHAR" />
-    <result column="client_ip" property="clientIp" jdbcType="VARCHAR" />
-    <result column="point_info" property="pointInfo" jdbcType="VARCHAR" />
-    <result column="device_type" property="deviceType" jdbcType="INTEGER" />
-    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
-    <result column="device_class" property="deviceClass" jdbcType="VARCHAR" />
-    <result column="screen_szie" property="screenSzie" jdbcType="VARCHAR" />
-    <result column="explore_name" property="exploreName" jdbcType="VARCHAR" />
-    <result column="explore_ver" property="exploreVer" jdbcType="VARCHAR" />
-    <result column="os_name" property="osName" jdbcType="VARCHAR" />
-    <result column="os_ver" property="osVer" jdbcType="VARCHAR" />
-    <result column="dealFlag" property="dealflag" jdbcType="INTEGER" />
-    <result column="returnData" property="returndata" jdbcType="VARCHAR" />
-    <result column="create_date" property="createDate" jdbcType="DATE" />
-    <result column="endTime" property="endtime" jdbcType="DATE" />
-  </resultMap>
-  <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.LogVisit" >
-    insert into log_Visit (id, serv_sys_type, serv_sys_id, 
-      visit_type, visit_sys_type, visit_sys_id, 
-      visit_modulel_id, obj_type, obj_id, 
-      api_name, from_url, req_url, 
-      method, req_param, visitor_type, 
-      visitor_id, visitor_name, client_ip, 
-      point_info, device_type, device_id, 
-      device_class, screen_szie, explore_name, 
-      explore_ver, os_name, os_ver, 
-      dealFlag, returnData, create_date, 
-      endTime)
-    values (#{id,jdbcType=VARCHAR}, #{servSysType,jdbcType=VARCHAR}, #{servSysId,jdbcType=VARCHAR}, 
-      #{visitType,jdbcType=INTEGER}, #{visitSysType,jdbcType=VARCHAR}, #{visitSysId,jdbcType=VARCHAR}, 
-      #{visitModulelId,jdbcType=VARCHAR}, #{objType,jdbcType=VARCHAR}, #{objId,jdbcType=VARCHAR}, 
-      #{apiName,jdbcType=VARCHAR}, #{fromUrl,jdbcType=VARCHAR}, #{reqUrl,jdbcType=VARCHAR}, 
-      #{method,jdbcType=VARCHAR}, #{reqParam,jdbcType=VARCHAR}, #{visitorType,jdbcType=VARCHAR}, 
-      #{visitorId,jdbcType=VARCHAR}, #{visitorName,jdbcType=VARCHAR}, #{clientIp,jdbcType=VARCHAR}, 
-      #{pointInfo,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, #{deviceId,jdbcType=VARCHAR}, 
-      #{deviceClass,jdbcType=VARCHAR}, #{screenSzie,jdbcType=VARCHAR}, #{exploreName,jdbcType=VARCHAR}, 
-      #{exploreVer,jdbcType=VARCHAR}, #{osName,jdbcType=VARCHAR}, #{osVer,jdbcType=VARCHAR}, 
-      #{dealflag,jdbcType=INTEGER}, #{returndata,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, 
-      #{endtime,jdbcType=DATE})
-  </insert>
-  <insert id="insertSelective" parameterType="cn.tianjin.unifiedfee.ot.entity.LogVisit" >
-    insert into log_Visit
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="servSysType != null" >
-        serv_sys_type,
-      </if>
-      <if test="servSysId != null" >
-        serv_sys_id,
-      </if>
-      <if test="visitType != null" >
-        visit_type,
-      </if>
-      <if test="visitSysType != null" >
-        visit_sys_type,
-      </if>
-      <if test="visitSysId != null" >
-        visit_sys_id,
-      </if>
-      <if test="visitModulelId != null" >
-        visit_modulel_id,
-      </if>
-      <if test="objType != null" >
-        obj_type,
-      </if>
-      <if test="objId != null" >
-        obj_id,
-      </if>
-      <if test="apiName != null" >
-        api_name,
-      </if>
-      <if test="fromUrl != null" >
-        from_url,
-      </if>
-      <if test="reqUrl != null" >
-        req_url,
-      </if>
-      <if test="method != null" >
-        method,
-      </if>
-      <if test="reqParam != null" >
-        req_param,
-      </if>
-      <if test="visitorType != null" >
-        visitor_type,
-      </if>
-      <if test="visitorId != null" >
-        visitor_id,
-      </if>
-      <if test="visitorName != null" >
-        visitor_name,
-      </if>
-      <if test="clientIp != null" >
-        client_ip,
-      </if>
-      <if test="pointInfo != null" >
-        point_info,
-      </if>
-      <if test="deviceType != null" >
-        device_type,
-      </if>
-      <if test="deviceId != null" >
-        device_id,
-      </if>
-      <if test="deviceClass != null" >
-        device_class,
-      </if>
-      <if test="screenSzie != null" >
-        screen_szie,
-      </if>
-      <if test="exploreName != null" >
-        explore_name,
-      </if>
-      <if test="exploreVer != null" >
-        explore_ver,
-      </if>
-      <if test="osName != null" >
-        os_name,
-      </if>
-      <if test="osVer != null" >
-        os_ver,
-      </if>
-      <if test="dealflag != null" >
-        dealFlag,
-      </if>
-      <if test="returndata != null" >
-        returnData,
-      </if>
-      <if test="createDate != null" >
-        create_date,
-      </if>
-      <if test="endtime != null" >
-        endTime,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="servSysType != null" >
-        #{servSysType,jdbcType=VARCHAR},
-      </if>
-      <if test="servSysId != null" >
-        #{servSysId,jdbcType=VARCHAR},
-      </if>
-      <if test="visitType != null" >
-        #{visitType,jdbcType=INTEGER},
-      </if>
-      <if test="visitSysType != null" >
-        #{visitSysType,jdbcType=VARCHAR},
-      </if>
-      <if test="visitSysId != null" >
-        #{visitSysId,jdbcType=VARCHAR},
-      </if>
-      <if test="visitModulelId != null" >
-        #{visitModulelId,jdbcType=VARCHAR},
-      </if>
-      <if test="objType != null" >
-        #{objType,jdbcType=VARCHAR},
-      </if>
-      <if test="objId != null" >
-        #{objId,jdbcType=VARCHAR},
-      </if>
-      <if test="apiName != null" >
-        #{apiName,jdbcType=VARCHAR},
-      </if>
-      <if test="fromUrl != null" >
-        #{fromUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="reqUrl != null" >
-        #{reqUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="method != null" >
-        #{method,jdbcType=VARCHAR},
-      </if>
-      <if test="reqParam != null" >
-        #{reqParam,jdbcType=VARCHAR},
-      </if>
-      <if test="visitorType != null" >
-        #{visitorType,jdbcType=VARCHAR},
-      </if>
-      <if test="visitorId != null" >
-        #{visitorId,jdbcType=VARCHAR},
-      </if>
-      <if test="visitorName != null" >
-        #{visitorName,jdbcType=VARCHAR},
-      </if>
-      <if test="clientIp != null" >
-        #{clientIp,jdbcType=VARCHAR},
-      </if>
-      <if test="pointInfo != null" >
-        #{pointInfo,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceType != null" >
-        #{deviceType,jdbcType=INTEGER},
-      </if>
-      <if test="deviceId != null" >
-        #{deviceId,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceClass != null" >
-        #{deviceClass,jdbcType=VARCHAR},
-      </if>
-      <if test="screenSzie != null" >
-        #{screenSzie,jdbcType=VARCHAR},
-      </if>
-      <if test="exploreName != null" >
-        #{exploreName,jdbcType=VARCHAR},
-      </if>
-      <if test="exploreVer != null" >
-        #{exploreVer,jdbcType=VARCHAR},
-      </if>
-      <if test="osName != null" >
-        #{osName,jdbcType=VARCHAR},
-      </if>
-      <if test="osVer != null" >
-        #{osVer,jdbcType=VARCHAR},
-      </if>
-      <if test="dealflag != null" >
-        #{dealflag,jdbcType=INTEGER},
-      </if>
-      <if test="returndata != null" >
-        #{returndata,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null" >
-        #{createDate,jdbcType=DATE},
-      </if>
-      <if test="endtime != null" >
-        #{endtime,jdbcType=DATE},
-      </if>
-    </trim>
-  </insert>
+<mapper namespace="cn.tianjin.unifiedfee.ot.mapper.LogVisitMapper">
+	<resultMap id="BaseResultMap" type="cn.tianjin.unifiedfee.ot.entity.LogVisit">
+		<result column="id" property="id" jdbcType="VARCHAR" />
+		<result column="serv_sys_type" property="servSysType" jdbcType="VARCHAR" />
+		<result column="serv_sys_id" property="servSysId" jdbcType="VARCHAR" />
+		<result column="visit_type" property="visitType" jdbcType="INTEGER" />
+		<result column="visit_sys_type" property="visitSysType"
+			jdbcType="VARCHAR" />
+		<result column="visit_sys_id" property="visitSysId" jdbcType="VARCHAR" />
+		<result column="visit_modulel_id" property="visitModulelId"
+			jdbcType="VARCHAR" />
+		<result column="obj_type" property="objType" jdbcType="VARCHAR" />
+		<result column="obj_id" property="objId" jdbcType="VARCHAR" />
+		<result column="api_name" property="apiName" jdbcType="VARCHAR" />
+		<result column="from_url" property="fromUrl" jdbcType="VARCHAR" />
+		<result column="req_url" property="reqUrl" jdbcType="VARCHAR" />
+		<result column="method" property="method" jdbcType="VARCHAR" />
+		<result column="req_param" property="reqParam" jdbcType="VARCHAR" />
+		<result column="visitor_type" property="visitorType" jdbcType="VARCHAR" />
+		<result column="visitor_id" property="visitorId" jdbcType="VARCHAR" />
+		<result column="visitor_name" property="visitorName" jdbcType="VARCHAR" />
+		<result column="client_ip" property="clientIp" jdbcType="VARCHAR" />
+		<result column="point_info" property="pointInfo" jdbcType="VARCHAR" />
+		<result column="device_type" property="deviceType" jdbcType="INTEGER" />
+		<result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+		<result column="device_class" property="deviceClass" jdbcType="VARCHAR" />
+		<result column="screen_szie" property="screenSzie" jdbcType="VARCHAR" />
+		<result column="explore_name" property="exploreName" jdbcType="VARCHAR" />
+		<result column="explore_ver" property="exploreVer" jdbcType="VARCHAR" />
+		<result column="os_name" property="osName" jdbcType="VARCHAR" />
+		<result column="os_ver" property="osVer" jdbcType="VARCHAR" />
+		<result column="dealFlag" property="dealflag" jdbcType="INTEGER" />
+		<result column="returnData" property="returndata" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="DATE" />
+		<result column="endTime" property="endtime" jdbcType="DATE" />
+	</resultMap>
+	<sql id="Blob_Column_List">
+		id, serv_sys_type, serv_sys_id,
+		visit_type, visit_sys_type,
+		visit_sys_id,
+		visit_modulel_id, obj_type, obj_id,
+		api_name, from_url,
+		req_url,
+		method, req_param, visitor_type,
+		visitor_id, visitor_name,
+		client_ip,
+		point_info, device_type, device_id,
+		device_class,
+		screen_szie, explore_name,
+		explore_ver, os_name, os_ver,
+		dealFlag,
+		returnData, create_date,
+		endTime
+	</sql>
+	<insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.LogVisit">
+		insert into log_Visit
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="servSysType != null">
+				serv_sys_type,
+			</if>
+			<if test="servSysId != null">
+				serv_sys_id,
+			</if>
+			<if test="visitType != null">
+				visit_type,
+			</if>
+			<if test="visitSysType != null">
+				visit_sys_type,
+			</if>
+			<if test="visitSysId != null">
+				visit_sys_id,
+			</if>
+			<if test="visitModulelId != null">
+				visit_modulel_id,
+			</if>
+			<if test="objType != null">
+				obj_type,
+			</if>
+			<if test="objId != null">
+				obj_id,
+			</if>
+			<if test="apiName != null">
+				api_name,
+			</if>
+			<if test="fromUrl != null">
+				from_url,
+			</if>
+			<if test="reqUrl != null">
+				req_url,
+			</if>
+			<if test="method != null">
+				method,
+			</if>
+			<if test="reqParam != null">
+				req_param,
+			</if>
+			<if test="visitorType != null">
+				visitor_type,
+			</if>
+			<if test="visitorId != null">
+				visitor_id,
+			</if>
+			<if test="visitorName != null">
+				visitor_name,
+			</if>
+			<if test="clientIp != null">
+				client_ip,
+			</if>
+			<if test="pointInfo != null">
+				point_info,
+			</if>
+			<if test="deviceType != null">
+				device_type,
+			</if>
+			<if test="deviceId != null">
+				device_id,
+			</if>
+			<if test="deviceClass != null">
+				device_class,
+			</if>
+			<if test="screenSzie != null">
+				screen_szie,
+			</if>
+			<if test="exploreName != null">
+				explore_name,
+			</if>
+			<if test="exploreVer != null">
+				explore_ver,
+			</if>
+			<if test="osName != null">
+				os_name,
+			</if>
+			<if test="osVer != null">
+				os_ver,
+			</if>
+			<if test="dealflag != null">
+				dealFlag,
+			</if>
+			<if test="returndata != null">
+				returnData,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="endtime != null">
+				endTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="servSysType != null">
+				#{servSysType,jdbcType=VARCHAR},
+			</if>
+			<if test="servSysId != null">
+				#{servSysId,jdbcType=VARCHAR},
+			</if>
+			<if test="visitType != null">
+				#{visitType,jdbcType=INTEGER},
+			</if>
+			<if test="visitSysType != null">
+				#{visitSysType,jdbcType=VARCHAR},
+			</if>
+			<if test="visitSysId != null">
+				#{visitSysId,jdbcType=VARCHAR},
+			</if>
+			<if test="visitModulelId != null">
+				#{visitModulelId,jdbcType=VARCHAR},
+			</if>
+			<if test="objType != null">
+				#{objType,jdbcType=VARCHAR},
+			</if>
+			<if test="objId != null">
+				#{objId,jdbcType=VARCHAR},
+			</if>
+			<if test="apiName != null">
+				#{apiName,jdbcType=VARCHAR},
+			</if>
+			<if test="fromUrl != null">
+				#{fromUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="reqUrl != null">
+				#{reqUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="method != null">
+				#{method,jdbcType=VARCHAR},
+			</if>
+			<if test="reqParam != null">
+				#{reqParam,jdbcType=VARCHAR},
+			</if>
+			<if test="visitorType != null">
+				#{visitorType,jdbcType=VARCHAR},
+			</if>
+			<if test="visitorId != null">
+				#{visitorId,jdbcType=VARCHAR},
+			</if>
+			<if test="visitorName != null">
+				#{visitorName,jdbcType=VARCHAR},
+			</if>
+			<if test="clientIp != null">
+				#{clientIp,jdbcType=VARCHAR},
+			</if>
+			<if test="pointInfo != null">
+				#{pointInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceType != null">
+				#{deviceType,jdbcType=INTEGER},
+			</if>
+			<if test="deviceId != null">
+				#{deviceId,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceClass != null">
+				#{deviceClass,jdbcType=VARCHAR},
+			</if>
+			<if test="screenSzie != null">
+				#{screenSzie,jdbcType=VARCHAR},
+			</if>
+			<if test="exploreName != null">
+				#{exploreName,jdbcType=VARCHAR},
+			</if>
+			<if test="exploreVer != null">
+				#{exploreVer,jdbcType=VARCHAR},
+			</if>
+			<if test="osName != null">
+				#{osName,jdbcType=VARCHAR},
+			</if>
+			<if test="osVer != null">
+				#{osVer,jdbcType=VARCHAR},
+			</if>
+			<if test="dealflag != null">
+				#{dealflag,jdbcType=INTEGER},
+			</if>
+			<if test="returndata != null">
+				#{returndata,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=DATE},
+			</if>
+			<if test="endtime != null">
+				#{endtime,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="cn.tianjin.unifiedfee.ot.entity.LogVisit">
+		update log_Visit
+		<set>
+			<if test="servSysType != null">
+				serv_sys_type = #{servSysType},
+			</if>
+			<if test="servSysId != null">
+				serv_sys_id = #{servSysId},
+			</if>
+			<if test="visitType != null">
+				visit_type = #{visitType},
+			</if>
+			<if test="visitSysType != null">
+				visit_sys_type = #{visitSysType},
+			</if>
+			<if test="visitSysId != null">
+				visit_sys_id = #{visitSysId},
+			</if>
+			<if test="visitModulelId != null">
+				visit_modulel_id = #{visitModulelId},
+			</if>
+			<if test="objType != null">
+				obj_type = #{objType},
+			</if>
+			<if test="objId != null">
+				obj_id = #{objId},
+			</if>
+			<if test="apiName != null">
+				api_name = #{apiName},
+			</if>
+			<if test="fromUrl != null">
+				from_url = #{fromUrl},
+			</if>
+			<if test="reqUrl != null">
+				req_url = #{reqUrl},
+			</if>
+			<if test="method != null">
+				method = #{method},
+			</if>
+			<if test="reqParam != null">
+				req_param = #{reqParam},
+			</if>
+			<if test="visitorType != null">
+				visitor_type = #{visitorType},
+			</if>
+			<if test="visitorId != null">
+				visitor_id = #{visitorId},
+			</if>
+			<if test="visitorName != null">
+				visitor_name = #{visitorName},
+			</if>
+			<if test="clientIp != null">
+				client_ip = #{clientIp},
+			</if>
+			<if test="pointInfo != null">
+				point_info = #{pointInfo},
+			</if>
+			<if test="deviceType != null">
+				device_type = #{deviceType},
+			</if>
+			<if test="deviceId != null">
+				device_id = #{deviceId},
+			</if>
+			<if test="deviceClass != null">
+				device_class = #{deviceClass},
+			</if>
+			<if test="screenSzie != null">
+				screen_szie = #{screenSzie},
+			</if>
+			<if test="exploreName != null">
+				explore_name = #{exploreName},
+			</if>
+			<if test="exploreVer != null">
+				explore_ver = #{exploreVer},
+			</if>
+			<if test="osName != null">
+				os_name = #{osName},
+			</if>
+			<if test="osVer != null">
+				os_ver = #{osVer},
+			</if>
+			<if test="dealflag != null">
+				dealFlag = #{dealflag},
+			</if>
+			<if test="returndata != null">
+				returnData = #{returndata},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate},
+			</if>
+			<if test="endtime != null">
+				endTime = #{endtime},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
 </mapper>

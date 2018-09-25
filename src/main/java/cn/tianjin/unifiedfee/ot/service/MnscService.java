@@ -7,6 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spiritdata.framework.util.SequenceUUID;
+
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
@@ -16,7 +18,6 @@ import cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper;
 import cn.tianjin.unifiedfee.ot.mapper.KjMapper;
 import cn.tianjin.unifiedfee.ot.mapper.MnscMapper;
 import cn.tianjin.unifiedfee.ot.mapper.MnscRefSourceMapper;
-import cn.tianjin.unifiedfee.ot.util.Onlylogo;
 
 @Service
 public class MnscService {
@@ -56,7 +57,7 @@ public class MnscService {
 
     // 添加
     public boolean insert(Mnsc mnsc, UserInfo user) throws Exception {
-        mnsc.setId(Onlylogo.getUUID());
+        mnsc.setId(SequenceUUID.getPureUUID());
         mnsc.setState(2);
         mnsc.setCreateBy(user.getUserId());
         mnsc.setCreateName(user.getUsername());
@@ -72,7 +73,7 @@ public class MnscService {
             MnscRefSource mnscRefSource = new MnscRefSource();
             String[] split = ids.split(",");
             for (String kjid : split) {
-                mnscRefSource.setId(Onlylogo.getUUID());
+                mnscRefSource.setId(SequenceUUID.getPureUUID());
                 mnscRefSource.setMnscId(mnsc.getId());
                 mnscRefSource.setRefTabname("ts_mnsc");
                 mnscRefSource.setRefId(kjid);
@@ -101,7 +102,7 @@ public class MnscService {
             MnscRefSource mnscRefSource = new MnscRefSource();
             String[] split = ids.split(",");
             for (String kjid : split) {
-                mnscRefSource.setId(Onlylogo.getUUID());
+                mnscRefSource.setId(SequenceUUID.getPureUUID());
                 mnscRefSource.setMnscId(mnsc.getId());
                 mnscRefSource.setRefTabname("ts_kj");
                 mnscRefSource.setRefId(kjid);
