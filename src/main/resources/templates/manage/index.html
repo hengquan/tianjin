@@ -55,7 +55,7 @@ iframe{
       <div class="pt-bar" id="pt-bar"><img src="${gateway}/src/images/Group15.png" alt=""></div>
       <!--菜单列表-->
       <div class="pt-menu"><ul>
-        <!--未调试用-->
+        <!--为调试用-->
         <li class="pt-menu-list">
           <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
           <h3 class="pt-menu-title"><a href="#">企业端资源</a></h3>
@@ -124,15 +124,15 @@ function changePwd() {
 
 //学员概况
 function toXYGK(){
-  $("#mainframe").attr("src","summary");
+  $("#mainframe").attr("src","${gateway}/summary");
 }
 //模拟实操
 function toWebMNSC(){
-  $("#mainframe").attr("src","practice");
+  $("#mainframe").attr("src","${gateway}/practice");
 }
 //在线学习
 function toZXXX() {
-  $("#mainframe").attr("src","courseware");
+  $("#mainframe").attr("src","${gateway}/courseware");
 }
 </script>
 
