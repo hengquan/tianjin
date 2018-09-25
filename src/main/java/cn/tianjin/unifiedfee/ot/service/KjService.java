@@ -7,13 +7,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spiritdata.framework.util.SequenceUUID;
+
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.entity.KjRefSource;
 import cn.tianjin.unifiedfee.ot.entity.Mnsc;
 import cn.tianjin.unifiedfee.ot.mapper.KjMapper;
 import cn.tianjin.unifiedfee.ot.mapper.KjRefSourceMapper;
-import cn.tianjin.unifiedfee.ot.util.Onlylogo;
 
 @Service
 public class KjService {
@@ -29,7 +30,7 @@ public class KjService {
 
     // 添加
     public boolean insert(Kj kj, UserInfo user) throws Exception {
-        kj.setId(Onlylogo.getUUID());
+        kj.setId(SequenceUUID.getPureUUID());
         kj.setCreateBy(user.getUserId());
         kj.setState(2);
         kj.setKjHtml("null");
@@ -46,7 +47,7 @@ public class KjService {
             KjRefSource kjRefSource = new KjRefSource();
             String[] split = ids.split(",");
             for (String kjid : split) {
-                kjRefSource.setId(Onlylogo.getUUID());
+                kjRefSource.setId(SequenceUUID.getPureUUID());
                 kjRefSource.setKjId(kj.getId());
                 kjRefSource.setRefTabname("ts_kj");
                 kjRefSource.setRefId(kjid);
@@ -75,7 +76,7 @@ public class KjService {
             KjRefSource kjRefSource = new KjRefSource();
             String[] split = ids.split(",");
             for (String kjid : split) {
-                kjRefSource.setId(Onlylogo.getUUID());
+                kjRefSource.setId(SequenceUUID.getPureUUID());
                 kjRefSource.setKjId(kj.getId());
                 kjRefSource.setRefTabname("ts_kj");
                 kjRefSource.setRefId(kjid);

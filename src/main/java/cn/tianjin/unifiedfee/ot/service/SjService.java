@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spiritdata.framework.util.DateUtils;
+import com.spiritdata.framework.util.SequenceUUID;
 
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.tianjin.unifiedfee.ot.entity.SJ;
@@ -25,7 +26,6 @@ import cn.tianjin.unifiedfee.ot.mapper.SJTmMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmSelectMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmUserAnswerMapper;
-import cn.tianjin.unifiedfee.ot.util.Onlylogo;
 
 /**
  * 试卷服务
@@ -177,7 +177,7 @@ public class SjService {
             Date now=new Date();
             //录入试卷
             SJ sj=new SJ();
-            sj.setId(Onlylogo.getUUID());
+            sj.setId(SequenceUUID.getPureUUID());
             sj.setUserId(ui.getUserId());
             sj.setUserName(ui.getUsername());
             sj.setRefTabname(param.get("refTabName")==null?null:""+param.get("refTabName"));
@@ -196,7 +196,7 @@ public class SjService {
             for (int i=0; i<retTl.size(); i++) {
                 Tm tm=retTl.get(i);
                 SJTm sjtm=new SJTm();
-                sjtm.setId(Onlylogo.getUUID());
+                sjtm.setId(SequenceUUID.getPureUUID());
                 sjtm.setSjId(sj.getId());
                 sjtm.setTmId(tm.getId());
                 sjtm.setTmScore(tm.getScore());
@@ -297,7 +297,7 @@ public class SjService {
             oneTm.put("answer", _answer.replaceAll("#", ","));
             //插入答题表
             TmUserAnswer tua= new TmUserAnswer();
-            tua.setId(Onlylogo.getUUID());
+            tua.setId(SequenceUUID.getPureUUID());
             tua.setSjId(sj.getId());
             tua.setTmId(tmL.get(i).getId());
             tua.setUserId(sj.getUserId());

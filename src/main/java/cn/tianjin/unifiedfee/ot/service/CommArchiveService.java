@@ -2,10 +2,12 @@ package cn.tianjin.unifiedfee.ot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.spiritdata.framework.util.SequenceUUID;
+
 import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.KjRefSource;
 import cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper;
-import cn.tianjin.unifiedfee.ot.util.Onlylogo;
 
 @Service
 public class CommArchiveService {
@@ -14,7 +16,7 @@ public class CommArchiveService {
 
     // 添加
     public boolean insert(CommArchive commArchive) throws Exception {
-        commArchive.setId(Onlylogo.getUUID());
+        commArchive.setId(SequenceUUID.getPureUUID());
         return dao.insert(commArchive) > 0 ? true : false;
     }
 
