@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>cn.taiji</groupId>
 		<artifactId>taiji-pom</artifactId>
-		<version>1.0.6-RELEASES</version>
+		<version>1.0.5-RELEASES</version>
 		<relativePath />
 	</parent>
 	<artifactId>tianjin-unifiedfee-ot</artifactId>
@@ -17,7 +17,7 @@
 	<!-- D:\work\projects\tianjin\extlibs\ -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<localLibDir>D:\work\projects\tianjin\extlibs\</localLibDir>
+		<localLibDir>E:\workSpace\tianjin-unifiedfee-ot\extlibs\</localLibDir>
 	</properties>
 
 	<dependencies>
