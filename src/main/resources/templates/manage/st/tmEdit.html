@@ -364,8 +364,7 @@ html {
       var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
       parent.layer.close(index); //再执行关闭
     }
-    function openKj() {
-      alert();
+    function openKj() {     
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
         title : '<span class="text-color">选择课件</span>',//请修改span中间的内容
