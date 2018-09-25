@@ -19,13 +19,16 @@ import com.github.pagehelper.PageHelper;
 import com.spiritdata.framework.core.model.tree.TreeNode;
 import com.spiritdata.framework.core.model.tree.TreeNodeBean;
 import com.spiritdata.framework.util.DateUtils;
+import com.spiritdata.framework.util.SequenceUUID;
 import com.spiritdata.framework.util.TreeUtils;
 
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
+import cn.tianjin.unifiedfee.ot.entity.LogVisit;
 import cn.tianjin.unifiedfee.ot.entity.SJ;
+import cn.tianjin.unifiedfee.ot.logvisit.LogVisitMemory;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
 import cn.tianjin.unifiedfee.ot.service.ArchiveService;
 import cn.tianjin.unifiedfee.ot.service.CatagoryService;
@@ -646,5 +649,40 @@ public class ApiController {
             retMap.put("messageInfo",e.toString());
         }
         return retMap;
+    }
+
+    /**
+     * 1.5.1、数据收集<br>
+     * 学员答题后，提交试卷的答案。
+     * @param request
+     * @param response
+     * @param id 试卷Id
+     * @param beginTime 相关类型，mnsc or kj
+     * @param endTime 相关对象Id，模拟实操或课件的Id
+     * @param resultType 返回类型：=0仅返回分数，=1返回答案，默认1
+     * @param tmCount 题目数量，默认为10
+     * @return
+     */
+    @RequestMapping("gatherData")
+    @ResponseBody
+    public void gatherData(HttpServletRequest request, HttpServletResponse response,
+        @RequestParam(required=false) LogVisit lv) {
+        HttpPush.responseInfo(response);//跨域
+        try {
+            UserInfo ui=userService.getUserInfo();
+            if (ui!=null) {
+                lv.setId(SequenceUUID.getPureUUID());
+                lv.setVisitorId(ui.getUserId());
+                lv.setVisitorType("1");
+                lv.setVisitorName(ui.getUsername());
+                if (StringUtils.isBlank(lv.getServSysType())) lv.setServSysType("009");
+                if (StringUtils.isBlank(lv.getServSysId())) lv.setServSysId("1");
+                if (StringUtils.isBlank(lv.getVisitSysType())) lv.setVisitSysType("009");
+                if (StringUtils.isBlank(lv.getVisitSysId())) lv.setVisitSysId("1");
+
+                LogVisitMemory.getInstance().put2Queue(lv);
+            }
+        } catch(Exception e) {
+        }
     }
 }

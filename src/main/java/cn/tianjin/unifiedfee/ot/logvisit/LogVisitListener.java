@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.spiritdata.framework.ext.spring.SpringGetBean;
 import cn.tianjin.unifiedfee.ot.entity.LogVisit;
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
+import cn.tianjin.unifiedfee.ot.util.SpringUtils;
 
 public class LogVisitListener extends Thread {
     private Logger logger=LoggerFactory.getLogger(this.getClass());
@@ -22,7 +22,6 @@ public class LogVisitListener extends Thread {
         LogVisitListener lvl=new LogVisitListener();
         lvl.setName("“访问日志”数据收集监听");
         lvl.start();
-        logger.info("“访问日志”数据收集监听启动成功");
     }
 
     /**
@@ -30,17 +29,25 @@ public class LogVisitListener extends Thread {
      */
     @Override
     public void run() {
+        try {
+            sleep(5000);
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
+        //等待spring加载完成
         LogVisitMemory agm=LogVisitMemory.getInstance();
         int i=0;
         while (this.lvService==null&&i++<5) {
             try {
-                this.lvService=SpringGetBean.getBean("logVisitService");
+                this.lvService=(LogVisitService) SpringUtils.getBean("logVisitService");
             } catch(Exception e) { }
             try { sleep(500); } catch(Exception e) { }
         }
         if (this.lvService!=null) {
-            logger.info("获得访问日志服务成功");
+            logger.info("“访问日志”数据收集监听启动成功");
             startSave2DB(agm);
+        } else {
+            logger.info("“访问日志”数据收集监听启动失败");
         }
     }
     /*

@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spiritdata.framework.util.SequenceUUID;
+
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.tianjin.unifiedfee.ot.entity.Tm;
 import cn.tianjin.unifiedfee.ot.entity.TmRefSource;
@@ -13,7 +15,6 @@ import cn.tianjin.unifiedfee.ot.entity.TmSelect;
 import cn.tianjin.unifiedfee.ot.mapper.TmMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmRefSourceMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmSelectMapper;
-import cn.tianjin.unifiedfee.ot.util.Onlylogo;
 
 @Service
 public class StService {
@@ -33,7 +34,7 @@ public class StService {
     }
 	// 添加
 	public String insert(Tm tm,UserInfo user) throws Exception {
-	    tm.setId(Onlylogo.getUUID());
+	    tm.setId(SequenceUUID.getPureUUID());
 	    tm.setCreateBy(user.getUserId());
         tm.setCreateName(user.getUsername());
         TmRefSource tmRefSource = new TmRefSource();
@@ -48,7 +49,7 @@ public class StService {
 	            for (int i=0;i<tmp.length;i++) {
 	                tmRefSource.setRefId(tmp[i]);
 	                tmRefSource.setRefTabname("ts_kj");
-	                tmRefSource.setId(Onlylogo.getUUID());
+	                tmRefSource.setId(SequenceUUID.getPureUUID());
 	                tmRefSource.setTmId(tm.getId());
 	                refDao.insertSelective(tmRefSource);
 	            }
@@ -58,7 +59,7 @@ public class StService {
 	            for (int i=0;i<tmp.length;i++) {
 	                tmRefSource.setRefId(tmp[i]);
 	                tmRefSource.setRefTabname("ts_mnsc");
-	                tmRefSource.setId(Onlylogo.getUUID());
+	                tmRefSource.setId(SequenceUUID.getPureUUID());
 	                tmRefSource.setTmId(tm.getId());
 	                refDao.insertSelective(tmRefSource);        
 	            }
@@ -70,7 +71,7 @@ public class StService {
 	        /*判断题的处理*/
 	        if (tm.getTmType().equals("判断题")){          
 	            /*插入正确*/
-	            tmSelect.setId(Onlylogo.getUUID());
+	            tmSelect.setId(SequenceUUID.getPureUUID());
 	            tmSelect.setTmSelectSign("A");
 	            tmSelect.setTmSelectDesc("正确");
 	            if (tm.getIsAnswer().equals("1"))
@@ -80,7 +81,7 @@ public class StService {
 	            tmSelect.setSort(1);
 	            selectDao.insertSelective(tmSelect); 
 	            /*插入错误*/
-	            tmSelect.setId(Onlylogo.getUUID());           
+	            tmSelect.setId(SequenceUUID.getPureUUID());           
 	            tmSelect.setTmSelectSign("B");
 	            tmSelect.setTmSelectDesc("错误");
 	            if (tm.getIsAnswer().equals("2"))
@@ -101,7 +102,7 @@ public class StService {
         tm.setCreateBy(user.getUserId());
         tm.setCreateName(user.getUsername());
         TmSelect tmSelect = new TmSelect(); 
-        tmSelect.setId(Onlylogo.getUUID());
+        tmSelect.setId(SequenceUUID.getPureUUID());
         tmSelect.setTmId(tm.getId());
         tmSelect.setSort(tm.getSort());
         tmSelect.setTmSelectDesc(tm.getTmSelectDesc());
@@ -126,7 +127,7 @@ public class StService {
             for (int i=0;i<tmp.length;i++) {
                 tmRefSource.setRefId(tmp[i]);
                 tmRefSource.setRefTabname("ts_kj");
-                tmRefSource.setId(Onlylogo.getUUID());
+                tmRefSource.setId(SequenceUUID.getPureUUID());
                 tmRefSource.setTmId(tm.getId());
                 refDao.insertSelective(tmRefSource);
             }
@@ -137,7 +138,7 @@ public class StService {
             for (int i=0;i<tmp.length;i++) {
                 tmRefSource.setRefId(tmp[i]);
                 tmRefSource.setRefTabname("ts_mnsc");
-                tmRefSource.setId(Onlylogo.getUUID());
+                tmRefSource.setId(SequenceUUID.getPureUUID());
                 tmRefSource.setTmId(tm.getId());
                 refDao.insertSelective(tmRefSource);        
             }
@@ -152,7 +153,7 @@ public class StService {
             /*先进行删除操作*/
             selectDao.deleteBytmid(tm.getId());
             /*插入正确*/
-            tmSelect.setId(Onlylogo.getUUID());
+            tmSelect.setId(SequenceUUID.getPureUUID());
             tmSelect.setTmSelectSign("A");
             tmSelect.setTmSelectDesc("正确");
             if (tm.getIsAnswer().equals("1"))
@@ -162,7 +163,7 @@ public class StService {
             tmSelect.setSort(1);
             selectDao.insertSelective(tmSelect); 
             /*插入错误*/
-            tmSelect.setId(Onlylogo.getUUID());           
+            tmSelect.setId(SequenceUUID.getPureUUID());           
             tmSelect.setTmSelectSign("B");
             tmSelect.setTmSelectDesc("错误");
             if (tm.getIsAnswer().equals("2"))

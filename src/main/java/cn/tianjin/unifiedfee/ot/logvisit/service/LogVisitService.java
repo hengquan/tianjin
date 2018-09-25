@@ -1,11 +1,7 @@
 package cn.tianjin.unifiedfee.ot.logvisit.service;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.spiritdata.framework.core.dao.mybatis.MybatisDAO;
 import com.spiritdata.framework.util.SequenceUUID;
 import com.spiritdata.framework.util.StringUtils;
 
@@ -24,7 +20,7 @@ import cn.tianjin.unifiedfee.ot.mapper.LogVisitMapper;
 @Service
 public class LogVisitService {
     @Autowired
-    private LogVisitMapper logDao; //api调用
+    private LogVisitMapper logDao;
 
     /**
      * 保存访问日志信息到数据库
