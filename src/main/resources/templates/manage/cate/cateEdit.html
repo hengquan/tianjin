@@ -85,8 +85,8 @@
                   <button type="button" class="btn btn-default dropdown-toggle btn-tj" data-toggle="dropdown" style="border-bottom-left-radius:0px;border-top-left-radius:0px; border-left:0px;">
                     <span class="caret"></span>
                   </button>
-                  <div class="dropdown-menu pull-right" style="width:300px;height:260px;overflow-y:auto;overflow-x:hidden;">
-                    <div id="cate-tree" data-stopPropagation="true"></div>
+                  <div class="dropdown-menu pull-right" style="width:300px;height:260px;overflow-y:auto;overflow-x:hidden;" data-stopPropagation="true">
+                    <div id="cate-tree"></div>
                   </div>
                 </div>
                 <input type="hidden" class="form-control" name="parentId" id="pareintId" />
@@ -136,162 +136,149 @@
 <br>
 <br>
 <script>
-$(function () {          
+$(function () {
+  //icheck 单选多选
+  $('input').iCheck({
+    radioClass : 'iradio_square-blue',
+    increaseArea : '20%' // optional
+  });     
+
   $(".dropdown-menu").on('click', function (e) {
     e.stopPropagation();
   });
-});
 
-$("body").on('click', '[data-stopPropagation]', function(e) {
-    e.stopPropagation();
-  });
-  $(function() {
-    //初始化选择树
-    $.ajax({
-      type : "Post",
-      url : "http://mazhaoyang.cn/index.php/home/output/GangkouGetTree",
-      //    url: '${gateway}/train/getTree/ptTree',
-      dataType : "json",
-      success : function(result) {
+  //初始化选择树
+  $.ajax({
+    type : "post",
+    url: '${gateway}/train/getTree/ptTree',
+    dataType : "json",
+    success : function(result) {
+      if (result.returnCode=='00') {
+        var tree=[];
+        tree.push(result.data.tree);
         $('#cate-tree').treeview({
-          data : [ {
-            text : 'Parent 1',
-            id : 'ssss',
-            pathName : 'ddee-eedd',
-            tags : [ '2' ],
-            nodes : [ {
-              text : 'Child 1',
-              tags : [ '3' ]
-            }, {
-              text : 'Child 2',
-              tags : [ '3' ]
-            } ]
-          }, {
-            text : 'Parent 2',
-            tags : [ '7' ],
-            nodes : [ {
-              text : 'Child 1',
-              tags : [ '3' ]
-            }, {
-              text : 'Child 2',
-              tags : [ '3' ]
-            } ]
-          }, {
-            text : 'Parent 3',
-            href : '#demo',
-            tags : [ '11' ],
-            nodes : [ {
-              text : 'Child 1',
-              tags : [ '3' ]
-            }, {
-              text : 'Child 2',
-              tags : [ '3' ]
-            } ]
-          } ], // 数据源
+          data : tree, // 数据源
           showCheckbox : true, //是否显示复选框
           multiSelect : false, //多选
           onNodeChecked : function(event, data) {
-            alert("check");
-            selectTreeNode(data);
-          },
-          onNodeSelected : function(event, data) {
-            alert("select");
             selectTreeNode(data);
           }
         });
-      },
-      error : function() {
-        alert("树形结构加载失败！")
-      }
-    });
-    //检查输入项
-    $('form').on("success.form.bv", function(e) {
-      var formData = $('#mainForm').serialize();
-      formData = decodeURIComponent(formData, true);
-      console.log(formData);
-      $.ajax({
-        url : '${gateway}/cate/insert',
-        data : formData,
-        cache : false,//false是不缓存，true为缓存
-        async : true,//true为异步，false为同步
-        success : function(result) {
-          if (result.returnCode != '00') {
-
-            return false;
-          } else {
-            //刷新列表
-            parent.refresh();
-            closeMy();
+      } else {
+        $('#cate-tree').treeview({
+          data : [{text: '分类根节点', id: '0', pathName: '分类根节点'}], // 数据源
+          showCheckbox : true, //是否显示复选框
+          multiSelect : false, //多选
+          onNodeChecked : function(event, data) {
+            selectTreeNode(data);
           }
-        },
-        error : function() {
+        });
+      }
+    },
+    error : function() {
+      $('#cate-tree').treeview({
+        data : [{text: '分类根节点', id: '0', pathName: '分类根节点'}], // 数据源
+        showCheckbox : true, //是否显示复选框
+        multiSelect : false, //多选
+        onNodeChecked : function(event, data) {
+          selectTreeNode(data);
         }
       });
-      return false;
-    });
-    $('form').bootstrapValidator({
-      message : 'This value is not valid',
-      feedbackIcons : {
-        valid : 'glyphicon glyphicon-ok',
-        invalid : 'glyphicon glyphicon-remove',
-        validating : 'glyphicon glyphicon-refresh'
+    }
+  });
+
+  //检查输入项
+  $('form').on("success.form.bv", function(e) {
+    var formData = $('#mainForm').serialize();
+    formData = decodeURIComponent(formData, true);
+    console.log(formData);
+    $.ajax({
+      url : '${gateway}/cate/insert',
+      data : formData,
+      cache : false,//false是不缓存，true为缓存
+      async : true,//true为异步，false为同步
+      success : function(result) {
+        if (result.returnCode != '00') {
+          return false;
+        } else {
+          //刷新列表
+          parent.refresh();
+          closeMy();
+        }
       },
-      fields : {
-        name : {
-          message : '分类名称验证失效',
-          validators : {
-            notEmpty : {
-              message : '分类名称不能为空'
-            }
+      error : function() {
+      }
+    });
+    return false;
+  });
+
+  $('form').bootstrapValidator({
+    message : 'This value is not valid',
+    feedbackIcons : {
+      valid : 'glyphicon glyphicon-ok',
+      invalid : 'glyphicon glyphicon-remove',
+      validating : 'glyphicon glyphicon-refresh'
+    },
+    fields : {
+      name : {
+        message : '分类名称验证失效',
+        validators : {
+          notEmpty : {
+            message : '分类名称不能为空'
           }
-        },
-        upName : {
-          message : '上级分类验证失效',
-          validators : {
-            notEmpty : {
-              message : '必须选择上级分类'
-            }
+        }
+      },
+      upName : {
+        message : '上级分类验证失效',
+        validators : {
+          notEmpty : {
+            message : '必须选择上级分类'
           }
-        },
-        sort : {
-          message : '分类排序验证失效',
-          validators : {
-            notEmpty : {
-              message : '必须录入排序号'
-            },
-            regexp : {
-              regexp : "^[0-9][0-9]*$",
-              message : '排序号必须为自然数'
-            }
+        }
+      },
+      sort : {
+        message : '分类排序验证失效',
+        validators : {
+          notEmpty : {
+            message : '必须录入排序号'
+          },
+          regexp : {
+            regexp : "^[0-9][0-9]*$",
+            message : '排序号必须为自然数'
           }
         }
       }
-    });
-
-    // 时间选择
-    $('.datetimepicker').datetimepicker({
-      language : 'zh', // 语言选择
-      format : 'yyyy-mm-dd hh:ii:ss', // 选择格式
-      todayBtn : true,
-      autoclose : true
-    });
-    //icheck 单选多选
-    $('input').iCheck({
-      checkboxClass : 'icheckbox_square-blue',
-      radioClass : 'iradio_square-blue',
-      increaseArea : '20%' // optional
-    });
+    }
   });
 
-  function selectTreeNode(treeNodeData) {
-    console.log(treeNodeData);
-  }
+  // 时间选择
+  $('.datetimepicker').datetimepicker({
+    language : 'zh', // 语言选择
+    format : 'yyyy-mm-dd hh:ii:ss', // 选择格式
+    todayBtn : true,
+    autoclose : true
+  });
+});
 
-  function closeMy() {
-    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-    parent.layer.close(index); //再执行关闭
-  }
-  /**
+function selectTreeNode(treeNodeData) {
+  $("input[name='upName']").val(treeNodeData.text);
+  $("input[name='parentId']").val(treeNodeData.id);
+  $('#cate-tree').treeview('uncheckAll', { silent: true });
+  $('#cate-tree').treeview('checkNode', [treeNodeData.nodeId, { silent: true }]);
+  window.setTimeout(function(){/*
+    $(".dropdown-menu").dropdown('toggle');
+    $(".dropdown-menu").attr("data-stopPropagation","true");
+    $(".dropdown-menu").on('click', function (e) {
+      e.stopPropagation();
+    });*/
+  }, 500);
+}
+
+function closeMy() {
+  var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+  parent.layer.close(index); //再执行关闭
+}
+/**
    function submitForm() {
    $("#saveBtn").attr("disabled", "disabled");
    var validatorObj=$('#mainForm').data("bootstrapValidator");

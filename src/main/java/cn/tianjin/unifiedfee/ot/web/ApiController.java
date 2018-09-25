@@ -115,12 +115,12 @@ public class ApiController {
     private Map<String, Object> _toTreeMap_ptTree(TreeNode<? extends TreeNodeBean> treeNode) {
         Map<String, Object> treeMap=new HashMap<String, Object>();
         treeMap.put("id", treeNode.getId());
-        treeMap.put("name", treeNode.getNodeName());
+        treeMap.put("text", treeNode.getNodeName());
         treeMap.put("pathName", treeNode.getTreePathName("-", 0));
         if (!treeNode.isLeaf()&&treeNode.getChildCount()>0) {
             List<Map<String, Object>> new_cl=new ArrayList<Map<String, Object>>();
             for (TreeNode<? extends TreeNodeBean> _c:treeNode.getChildren()) {
-                new_cl.add(_toTreeMap(_c));
+                new_cl.add(_toTreeMap_ptTree(_c));
             }
             treeMap.put("nodes", new_cl);
         }
