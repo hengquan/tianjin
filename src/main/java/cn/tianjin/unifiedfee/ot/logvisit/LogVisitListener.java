@@ -20,7 +20,8 @@ public class LogVisitListener extends Thread {
     public static void begin() {
         Logger logger=LoggerFactory.getLogger(LogVisitListener.class);
         LogVisitListener lvl=new LogVisitListener();
-        lvl.setName("“访问日志”数据收集监听");
+        logger.info("“访问日志”数据收集监听开始启动......");
+        logger.info("");
         lvl.start();
     }
 
@@ -30,7 +31,7 @@ public class LogVisitListener extends Thread {
     @Override
     public void run() {
         try {
-            sleep(5000);
+            sleep(10000);
         } catch (InterruptedException e1) {
             e1.printStackTrace();
         }
