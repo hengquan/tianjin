@@ -166,8 +166,7 @@
       parent.layer.close(index); //再执行关闭
     }
     // 操作模版调用的方法
-    function addkj(){
-          alert("111111111111");
+    function addkj(){          
           var a= $("#tb_departments").bootstrapTable('getSelections');
           var b=[];
           var c=[];
@@ -178,8 +177,7 @@
               b[i]=a[i].id;
               c[i]=a[i].kjName;
             }
-           } 
-            alert(b);
+           }            
             parent.setVal(b,c);             
             closeMy() ;
     }

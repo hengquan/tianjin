@@ -84,7 +84,7 @@
 							<div class="row clearfix">
 								<div class="col-lg-16 col-md-16 col-sm-14 col-xs-14 column">								
 									<!-- 示例 input-->
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">										
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">										
 											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
 												for="exampleInputName2">题目内容</label>											
 											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
@@ -96,29 +96,31 @@
 									</div>								
 									<!-- 隐藏部分包裹 -->
 									<span class="hiddenorshow pt-search-filter"> <!-- 示例 input-->
-										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-4">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 										   <div class="form-group">
 					                                <label class="radio-inline"> <input type="radio"
-					                                    name="kjtype" value="1"   checked> 课件
+					                                    name="kjtype" value="1" checked> 课件
 					                                </label> <label class="radio-inline"> <input type="radio"
 					                                    name="kjtype" value="2"  > 模拟实操
 					                                </label>
 					                          </div>
                            				</div>
-										<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
-													for="exampleInputName2">课件名称</label>
-										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-											<div class="form-group">
-													<input type="text" class="form-control" name="kjname"  id="kjname" />
-													<input type="text" class="form-control" name="kjid"  id="kjid" />
-											</div>
-										</div>		
-										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-											<div class="form-group">
-												<button type="button"
-													class="btn btn-default btn-primary w80" onclick="openKj()" >选择</button>
-											</div>
-									</div>																								
+                           				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">	
+											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+														for="exampleInputName2">课件名称</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+												<div class="form-group">
+														<input type="text" class="form-control" name="kjname"  id="kjname" />
+														<input type="hidden" class="form-control" name="kjid"  id="kjid" />
+												</div>
+											</div>		
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-1">
+												<div class="form-group">
+													<button type="button"
+														class="btn btn-default btn-primary w80" onclick="openKj()" >选择</button>
+												</div>
+											</div>	
+										</div>																								
 									</span>
 									<!-- 示例搜索按钮 -->
 									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -188,13 +190,16 @@
     // 操作模版调用的方法
     function deleteItem(e) {
       var data = {
-        "id":e
+        "id":e,
+        "isvalid":0,
+        "kjList":"",
+        "mnscList":""
       }
       var mymessage=confirm("确定要删除该课件信息吗？");
       if(mymessage==true){
         $.ajax({
           type : 'post',
-          url : "${gateway}/kj/delete",
+          url : "${gateway}/st/update",
           data : data,
           dataType : 'json',
           cache : false,
@@ -209,7 +214,6 @@
         return false;
       }
     }
-
     function addItem() {
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
@@ -285,27 +289,44 @@
       };
     }
     //搜索
-    function sel() {
-      alert( $("#tmHtml").val());   
+    function sel() {       
       $("#tb_departments").bootstrapTable('refresh');
     }
     function refresh() {
       $("#tb_departments").bootstrapTable('refresh');
     }
     function openKj() {
-      layer.open({
-        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title : '<span class="text-color">选择课件</span>',//请修改span中间的内容
-        shadeClose : true,//开启阴影关闭
-        closeBtn : 1, //不显示关闭按钮
-        shade : 0.6,
-        maxmin : false,//开启最大化最小化按钮
-        area : [ '60%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '${gateway}/kj/list4st?type=radio', 'yes' ]
-      //如果不想出现滚动条['content.html', 'no']
-      });
+      if ( $("input[name='kjtype']:checked").val()==1){      
+	      layer.open({
+	        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+	        title : '<span class="text-color">选择课件</span>',//请修改span中间的内容
+	        shadeClose : true,//开启阴影关闭
+	        closeBtn : 1, //不显示关闭按钮
+	        shade : 0.6,
+	        maxmin : false,//开启最大化最小化按钮
+	        area : [ '70%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
+	        content : [ '${gateway}/kj/list4st?type=radio', 'yes' ]
+	      //如果不想出现滚动条['content.html', 'no']
+	      });
+      }else{
+        layer.open({
+	        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+	        title : '<span class="text-color">选择课件</span>',//请修改span中间的内容
+	        shadeClose : true,//开启阴影关闭
+	        closeBtn : 1, //不显示关闭按钮
+	        shade : 0.6,
+	        maxmin : false,//开启最大化最小化按钮
+	        area : [ '70%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
+	        content : [ '${gateway}/mnsc/list4st?type=radio', 'yes' ]
+	      //如果不想出现滚动条['content.html', 'no']
+	      });
+      }
     }
     function setVal(_valid, _valname) {
+      $("#kjid").val(_valid);
+      $("#kjname").val(_valname);
+    }
+    function setValmnsc(_valid, _valname) {
       $("#kjid").val(_valid);
       $("#kjname").val(_valname);
     }

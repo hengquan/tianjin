@@ -120,9 +120,9 @@ public class StService {
         mnscList = tm.getMnscList();    
         String[] tmp ;
         tmp = kjList.split(",");
-        TmRefSource tmRefSource = new TmRefSource();
-        refDao.deleteBytmid(tm.getId());
+        TmRefSource tmRefSource = new TmRefSource();        
         if (!tmp[0].equals("")) {
+            refDao.deleteBytmid(tm.getId());
             for (int i=0;i<tmp.length;i++) {
                 tmRefSource.setRefId(tmp[i]);
                 tmRefSource.setRefTabname("ts_kj");
@@ -133,6 +133,7 @@ public class StService {
         }
         tmp = mnscList.split(",");
         if (!tmp[0].equals("")) {
+            refDao.deleteBytmid(tm.getId());
             for (int i=0;i<tmp.length;i++) {
                 tmRefSource.setRefId(tmp[i]);
                 tmRefSource.setRefTabname("ts_mnsc");
@@ -146,7 +147,8 @@ public class StService {
         tmSelect.setTmId(tm.getId());
         tmSelect.setCreateBy(tm.getCreateBy());
         tmSelect.setCreateName(tm.getCreateName());
-        if (tm.getTmType().equals("判断题")){   
+        if (tm.getTmType() != null) {
+          if (tm.getTmType().equals("判断题")){   
             /*先进行删除操作*/
             selectDao.deleteBytmid(tm.getId());
             /*插入正确*/
@@ -170,6 +172,7 @@ public class StService {
             tmSelect.setSort(2);
             selectDao.insertSelective(tmSelect); 
           }   
+        }
 		return dao.update(entity) > 0 ? true : false;
 	}
     //修改选项和答案 updateSelct
