@@ -161,7 +161,7 @@ html,body{
     padding-top:124px;
 }
 
-/*面包屑导航*/
+/*闈㈠寘灞戝鑸�*/
 .bread{
     height:85px;
     line-height:85px;
@@ -184,7 +184,7 @@ html,body{
     color: #3d7eea;
 }
 
-/*主体*/
+/*涓讳綋*/
 .page-main{
     margin-bottom:25px;
     margin-top: 35px;
@@ -251,7 +251,7 @@ html,body{
 }
 
 .form-label{
-    width:180px;
+    width:160px;
     float: left;
     font-size: 18px;
     color: #333333;
@@ -260,7 +260,7 @@ html,body{
     text-align: right;
 }
 .form-input{
-    width: 360px;
+    width: 300px;
     margin: 0 30px;
     float: left;
     line-height: 40px;
@@ -285,7 +285,7 @@ html,body{
     border-color: #990000;
 }
 .form-input input.form-input-withcode{
-    width: 200px;
+    width: 150px;
     float: left;
 }
 .form-input-code{
@@ -324,7 +324,7 @@ html,body{
 
 .form-bottom-btns{
     margin-top: 30px;
-    padding-left: 210px;
+    padding-left: 150px;
     padding-right: 60px;
 }
 .form-btn{

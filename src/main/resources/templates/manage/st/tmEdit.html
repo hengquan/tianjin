@@ -74,7 +74,7 @@ html {
     <div class="container">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-11 col-sm-12 col-xs-2 column">
-            	  <form class="form-horizontal pt-form-full" role="form" id="tmform" name="tmform">                
+            	  <form class="form-horizontal pt-form-full" role="form" id="form" name="form">                
                     <input type="hidden" name="id" id="objId">                    
                     <div class="col-lg-12 col-md-11 col-sm-11 col-xs-12">
                         <div class="form-group">
@@ -98,7 +98,7 @@ html {
                             </div>
 
                             <label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="title"><span>   ※ </span>分数</label>
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <input type="text" class="form-control" name="score" id="score" />
                             </div>
                             <label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="biaozhun">
@@ -233,8 +233,6 @@ html {
             $("#diffScore").val(tm.diffScore);
             $("#kjList").val(tm.kjList);
             $("#mnscList").val(tm.mnscList);
-            $("#kjList").val(tm.kjList);
-            $("#mnscList").val(tm.mnscList);
             $("#kjnameList").val(tm.kjnameList);
             $("#mnscnameList").val(tm.mnscnameList);         
             if (tm.tmType=="判断题"){
@@ -316,12 +314,10 @@ html {
     
 
     function addTm() {
-      alert("qqqqqqq1qqq");
-      var validatorObj=$('#tmform').data("bootstrapValidator");
-      alert(validatorObj);
+      
+      var validatorObj=$('#form').data("bootstrapValidator");     
       validatorObj.validate();
-      alert("3333333333");
-      return;
+    
       $.ajax({
         type : 'post',
         url : "${gateway}/st/insert",
@@ -445,7 +441,7 @@ html {
       shade : 0.6,
       maxmin : false,//开启最大化最小化按钮
       area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-      content : '${gateway}/st/selectEdit?id='+e//如果不想出现滚动条['content.html', 'no']
+      content : ['${gateway}/st/selectEdit?id='+e,'no']//如果不想出现滚动条['content.html', 'no']  
     });
   }
   function deleteItem(e) {

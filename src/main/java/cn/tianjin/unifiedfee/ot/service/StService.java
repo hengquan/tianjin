@@ -119,27 +119,30 @@ public class StService {
         String mnscList ;
         mnscList = tm.getMnscList();    
         String[] tmp ;
-        tmp = kjList.split(",");
-        TmRefSource tmRefSource = new TmRefSource();        
-        if (!tmp[0].equals("")) {
-            refDao.deleteBytmid(tm.getId());
-            for (int i=0;i<tmp.length;i++) {
-                tmRefSource.setRefId(tmp[i]);
-                tmRefSource.setRefTabname("ts_kj");
-                tmRefSource.setId(Onlylogo.getUUID());
-                tmRefSource.setTmId(tm.getId());
-                refDao.insertSelective(tmRefSource);
+        TmRefSource tmRefSource = new TmRefSource(); 
+        refDao.deleteBytmid(tm.getId());
+        if (kjList!=null) {
+            tmp = kjList.split(",");                
+            if (!tmp[0].equals("")) {               
+                for (int i=0;i<tmp.length;i++) {
+                    tmRefSource.setRefId(tmp[i]);
+                    tmRefSource.setRefTabname("ts_kj");
+                    tmRefSource.setId(Onlylogo.getUUID());
+                    tmRefSource.setTmId(tm.getId());
+                    refDao.insertSelective(tmRefSource);
+                }
             }
         }
-        tmp = mnscList.split(",");
-        if (!tmp[0].equals("")) {
-            refDao.deleteBytmid(tm.getId());
-            for (int i=0;i<tmp.length;i++) {
-                tmRefSource.setRefId(tmp[i]);
-                tmRefSource.setRefTabname("ts_mnsc");
-                tmRefSource.setId(Onlylogo.getUUID());
-                tmRefSource.setTmId(tm.getId());
-                refDao.insertSelective(tmRefSource);        
+        if (mnscList!=null) {
+            tmp = mnscList.split(",");
+            if (!tmp[0].equals("")) {                
+                for (int i=0;i<tmp.length;i++) {
+                    tmRefSource.setRefId(tmp[i]);
+                    tmRefSource.setRefTabname("ts_mnsc");
+                    tmRefSource.setId(Onlylogo.getUUID());
+                    tmRefSource.setTmId(tm.getId());
+                    refDao.insertSelective(tmRefSource);        
+                }
             }
         }
         /*判断题的处理*/

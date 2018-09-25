@@ -2,11 +2,11 @@ html,body{
   height: 1022px;
 }
 .page-form-list{
-  width: 660px;
+  width: 610px;
   height: 400px;
 }
 .page-main{
-  height:590px;
+  height:620px;
   padding-top: 30px;
 }
 
@@ -21,11 +21,12 @@ html,body{
   margin-left: 16px;
   margin-right: 22px;
   color: white;
-  line-height: 60px;
+  line-height: 0px;
   font-size: 18px;
 }
 .model p{
   margin-left: 25px;
+  margin-top: 30px;
 }
 .model,.triangle,.page-form-list{
   float: left;
@@ -63,7 +64,7 @@ html,body{
 .content_border1{
   border: 1px solid #cccccc;
   height: 450px;
-  width: 1180px;
+  width: 1150px;
   margin: 0 auto;
 
 }

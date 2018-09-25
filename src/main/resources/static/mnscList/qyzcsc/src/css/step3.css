@@ -2,7 +2,7 @@ html{
   height: 1030px;
 }
 .page-main{
-  height: 580px;
+  height: 620px;
   padding-top: 30px;
 }
 
@@ -13,7 +13,7 @@ html{
   margin-top: 55px;
 }
 .page-form-list{
-  width: 649px;
+  width: 610px;
   height: 370px;
 }
 .model{
@@ -24,7 +24,7 @@ html{
   margin-left: 16px;
   margin-right: 22px;
   color: white;
-  line-height: 55px;
+  line-height: 0px;
   font-size: 18px;
 }
 .triangle{
@@ -47,6 +47,7 @@ html{
 }
 .model p{
   margin-left: 25px;
+  margin-top: 30px;
 }
 .model img{
   margin-right: 8px;
@@ -63,7 +64,7 @@ html{
 .content_border1{
   border: 1px solid #cccccc;
   height: 450px;
-  width: 1180px;
+  width: 1150px;
   margin: 0 auto;
 }
 

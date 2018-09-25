@@ -2,12 +2,12 @@ html,body{
   height: 1125px;
 }
 .page-main{
-  height: 680px;
+  height: 700px;
   padding-top: 30px;
 }
 .page-form-list{
-  width: 646px;
-  height: 500px;
+  width: 610px;
+  height: 480px;
   background:#f6f5f5;
   margin-bottom: 20px;
 }
@@ -17,17 +17,19 @@ html,body{
 }
 .model{
   width: 432px;
-  height: 500px;
+  height: 460px;
   background: rgba(0,0,0,0.6);
   border-radius: 20px;
   font-size: 18px;
   color: white;
-  line-height: 60px;
+  line-height: 0px;
   margin-left:18px;
   margin-right: 25px;
+  margin-top: -25px;
 }
 .model p{
   margin-left: 25px;
+   margin-top: 30px;
 }
 .model,.page-form-list,.triangle{
   float: left;
@@ -53,9 +55,11 @@ html,body{
 }
 
 /*边框内容区的样式*/
-.content_border1{
-  border: 1px solid #ccc;
-  height: 550px;
-  width:1180px;
+.content_border{
+  border: 1px solid #cccccc;
+  width: 1150px;
   margin: 0 auto;
+  padding-top: 0px;
+  padding-bottom: 20px;
+  height: 520px;
 }
