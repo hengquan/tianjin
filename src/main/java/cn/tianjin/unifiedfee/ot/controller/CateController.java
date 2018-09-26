@@ -1,6 +1,9 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,23 +11,32 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.spiritdata.framework.core.model.tree.TreeNode;
 
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.base.controller.BaseController;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.Category;
+import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
 import cn.tianjin.unifiedfee.ot.service.CatagoryService;
+import cn.tianjin.unifiedfee.ot.service.KjService;
+import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
 @RequestMapping("/cate")
 @Controller
 public class CateController extends BaseController {
+    @Autowired
+    private KjService kjService;
     @Autowired
     private CatagoryService categoryService;
     @Autowired // 注入Service
@@ -33,56 +45,75 @@ public class CateController extends BaseController {
     @RequestMapping("insert")
     @ResponseBody
     public Map<String, Object> save(Category cate, HttpServletRequest request, HttpServletResponse response) {
-        UserInfo ui=userService.getUserInfo();
-        
-        return categoryService.save(cate, ui);
+
+        Map<String, Object> retMap=new HashMap<String, Object>();
+        try {
+            UserInfo ui=userService.getUserInfo();
+            if (ui==null) {
+                retMap.put("returnCode","02");
+                retMap.put("messageInfo","无用户登录");
+                return retMap;
+            }
+            retMap=categoryService.save(cate, ui);
+        } catch(Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode","01");
+            retMap.put("messageInfo",e.toString());
+        }
+        return retMap;
     }
 
     @RequestMapping("getPageData")
     @ResponseBody
-    public Map<String, Object> getPageData(Category cate, HttpServletRequest request, HttpServletResponse response) {
+    public Map<String, Object> getPageData(Category cate,
+            @RequestParam(value = "offset", defaultValue = "1") int offset,
+            @RequestParam(value = "limit", defaultValue = "3") int limit,
+            HttpServletRequest request, HttpServletResponse response) {
+        // 跨域
+        HttpPush.responseInfo(response);
+
         Map<String,Object> map = new HashMap<String,Object>();
+        //设置page
+        PageHelper.offsetPage(offset, limit);
+        //查询数据
+        List<Category> cl=categoryService.getPageData(cate);
+        PageInfo<Category> pageList=new PageInfo<Category>(cl);
+//        if (cl!=null) {
+//            // 放入分页
+//            //PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(cl);
+//            // 返回
+//            map.put("total", pageList.getTotal());
+////            
+////            List<Map<String,Object>> cList=new ArrayList<Map<String,Object>>();
+////            for (Map<String, Object> _m: cl) {
+////                Map<String ,Object> newData=new HashMap<String, Object>();
+////                newData.put("id", (String)_m.get("ID"));
+////                newData.put("name", (String)_m.get("NAME"));
+////                newData.put("desc", (String)_m.get("REMARKS"));
+////                newData.put("parentId", "0".equals((String)_m.get("PARENT_ID"))?null:(String)_m.get("PARENT_ID"));
+////                newData.put("parentName", "");
+////                TreeNode<CategoryNode> node=(TreeNode<CategoryNode>)categoryService.getCategoryNodeById((String)_m.get("ID"));
+////                if (node!=null) {
+////                    if (node.getParent()!=null) newData.put("parentName", node.getParent().getNodeName());
+////                }
+////                newData.put("sort", Integer.parseInt(""+_m.get("SORT")));
+////                newData.put("valid", (Integer.parseInt(""+_m.get("ISVALID")))==1?"有效":"失效");
+////                newData.put("createId", (String)_m.get("CREATE_ID"));
+////                newData.put("createName", (String)_m.get("CREATE_NAME"));
+////                newData.put("createDate", new java.sql.Date(((Timestamp)_m.get("CREATE_DATE")).getTime()));
+////                newData.put("updateDate", new java.sql.Date(((Timestamp)_m.get("UPDATE_DATE")).getTime()));
+////                cList.add(newData);
+////            }
+//
+//            map.put("rows", pageList.getList());
+//        }
+//        List<Kj> kjs = kjService.getPageData(null);
+//        // 放入分页
+////        PageInfo<Kj> pageList = new PageInfo<Kj>(kjs);
+//        // 返回
+        map.put("total", pageList.getTotal());
+        map.put("rows", pageList.getList());
 
-        //当前页数
-        int pageNum = 1;
-        //一页多少条
-//        int pageSize = 10;
-//        PageHelper.startPage(pageNum,pageSize);
-//        Map<String,Object> map = new HashMap<String,Object>();
-//        List<Tmp> tmps = tmpService.getAll();
-        //放入分页
-//        PageInfo<Tmp> a = new PageInfo<Tmp>(tmps);
-
-        Map<String, Object> m=categoryService.getTreeDate();
-        List<Object> list=(List<Object>)m.get("DataList");
-        if (list==null) {
-            map.put("total", 1);
-            List l=new ArrayList();
-            Map<String, Object> oneM=new HashMap<String, Object>();
-            oneM.put("id", "1");
-            oneM.put("name", "Test11");
-            l.add(oneM);
-            map.put("rows", l);
-        } else {
-            map.put("total", list.size());
-            Category c=null;
-            List<Map<String, Object>> l=new ArrayList<Map<String, Object>>();
-            for (Object _ct: list) {
-                TreeNode<CategoryNode> cn=(TreeNode<CategoryNode>)_ct;
-                Map<String, Object> _m=new HashMap<String, Object>();
-                _m.put("id", cn.getTnEntity().getId());
-                _m.put("name", cn.getTnEntity().getNodeName());
-                _m.put("desc", cn.getTnEntity().getRemarks());
-                _m.put("parentId", cn.getTnEntity().getParentId().equals("0")?null:cn.getTnEntity().getParentId());
-                _m.put("parentName", cn.isRoot()?"":cn.getParent().getNodeName());
-                _m.put("sort", cn.getOrder());
-                _m.put("valid", cn.getTnEntity().getIsvalid()==1?"有效":"失效");
-                _m.put("createName", cn.getTnEntity().getCreateName());
-                _m.put("createDate", cn.getTnEntity().getCreateDate());
-                l.add(_m);
-            }
-            map.put("rows",  l);
-        }
         return map;
     }
 }

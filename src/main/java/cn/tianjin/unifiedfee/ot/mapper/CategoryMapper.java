@@ -10,6 +10,8 @@ public interface CategoryMapper {
 
     public List<Map<String,Object>> getAllListWithMap();
 
+    public List<Category> getList(Category cate);
+
     public int insert(Category record);
 
     public int insertSelective(Category record);

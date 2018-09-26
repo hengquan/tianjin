@@ -62,6 +62,7 @@ public class CatagoryService {
         }
         this.root=_root;
     }
+
     @SuppressWarnings({ "unused", "unchecked" })
     public TreeNode<CategoryNode> getCategoryNodeById(String cId) {
         if (root==null) initRoot();
@@ -117,13 +118,22 @@ public class CatagoryService {
         return c;
     }
 
+    @SuppressWarnings("unchecked")
     public Map<String, Object> save(Category cate, UserInfo ui) {
         Map<String, Object> retM=new HashMap<String, Object>();
+
         //检查是否合法
-        //检查是否选择了父节点
-        
-        //检查名称是否有，且同级不能重名
+        TreeNode<CategoryNode> _curRootNode=root;
         if (StringUtils.isBlank(cate.getParentId())) cate.setParentId("0");
+        if (!"0".equals(cate.getParentId())) {
+            _curRootNode=(TreeNode<CategoryNode>)root.findNode(cate.getParentId());
+        }
+        if (_curRootNode==null) {
+            retM.put("returnCode", "03");
+            retM.put("messageInfo","父节点无效");
+            return retM;
+        }
+
         boolean isInsert=false;
         if (StringUtils.isBlank(cate.getId())) {
             isInsert=true;
@@ -131,21 +141,70 @@ public class CatagoryService {
             cate.setCreateDate(new java.sql.Date(System.currentTimeMillis()));
             cate.setCreateId(ui.getUserId());
             cate.setCreateName(ui.getUsername());
-        }
-        TreeNode<CategoryNode> cn=null;
-        if (!StringUtils.isBlank(cate.getParentId())) cn=this.getCategoryNodeById(cate.getParentId());
-        if (cn==null) {
-            cate.setParentId("0");
             cate.setParentIds("0,");
-        } else {
-            cate.setParentIds((cn.getTnEntity()).getParentIds()+cn.getParentId()+",");
-        }
+
+            //检查名称是否有，且同级不能重名
+            boolean sameName=false;
+            if (_curRootNode.getChildCount()>0) {
+                for (TreeNode<? extends TreeNodeBean> cn: _curRootNode.getChildren()) {
+                    if (cn.getNodeName().equals(cate.getName())) {
+                        sameName=true;
+                        break;
+                    }
+                }
+            }
+            if (sameName) {
+                retM.put("returnCode", "04");
+                retM.put("messageInfo","同级有重名分类");
+                return retM;
+            }
+        } else {//修改
+       }
+
+        cate.setParentIds((_curRootNode.getTnEntity()).getParentIds()+","+_curRootNode.getParentId()+",");
         cate.setUpdateDate(new java.sql.Date(System.currentTimeMillis()));
         cate.setUpdateId(ui.getUserId());
         cate.setUpdateName(ui.getUsername());
-        if (isInsert) categoryDao.insertSelective(cate);
-        else categoryDao.update(cate);
+
+        CategoryNode cn=new CategoryNode();
+        cn.buildFromPo(cate);
+        if (isInsert) {
+            categoryDao.insertSelective(cate);
+            TreeNode<CategoryNode> tncn=new TreeNode<CategoryNode>(cn);
+            _curRootNode.addChild(tncn);
+        } else {
+            categoryDao.update(cate);
+            TreeNode<CategoryNode> tncn=(TreeNode<CategoryNode>) _curRootNode.findNode(cate.getId());
+            tncn.setTnEntity(cn);
+        }
         retM.put("returnCode", "00");
         return retM;
+    }
+
+    //@SuppressWarnings("unchecked")
+    public List<Category> getPageData(Category cate) {
+        return categoryDao.getList(cate);
+//        List<Map<String, Object>> ml=categoryDao.getListWithMap(cate);
+//        List<Map<String,Object>> cList=new ArrayList<Map<String,Object>>();
+//        for (Map<String, Object> _m: ml) {
+//            Map<String ,Object> newData=new HashMap<String, Object>();
+//            newData.put("id", (String)_m.get("ID"));
+//            newData.put("name", (String)_m.get("NAME"));
+//            newData.put("desc", (String)_m.get("REMARKS"));
+//            newData.put("parentId", "0".equals((String)_m.get("PARENT_ID"))?null:(String)_m.get("PARENT_ID"));
+//            newData.put("parentName", "");
+//            TreeNode<CategoryNode> node=(TreeNode<CategoryNode>)root.findNode((String)_m.get("ID"));
+//            if (node!=null) {
+//                if (node.getParent()!=null) newData.put("parentName", node.getParent().getNodeName());
+//            }
+//            newData.put("sort", Integer.parseInt(""+_m.get("SORT")));
+//            newData.put("valid", (Integer.parseInt(""+_m.get("ISVALID")))==1?"有效":"失效");
+//            newData.put("createId", (String)_m.get("CREATE_ID"));
+//            newData.put("createName", (String)_m.get("CREATE_NAME"));
+//            newData.put("createDate", new java.sql.Date(((Timestamp)_m.get("CREATE_DATE")).getTime()));
+//            newData.put("updateDate", new java.sql.Date(((Timestamp)_m.get("UPDATE_DATE")).getTime()));
+//            cList.add(newData);
+//        }
+//        return cList;
     }
 }

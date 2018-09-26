@@ -30,12 +30,12 @@ public class LogVisitListener extends Thread {
      */
     @Override
     public void run() {
-        try {
-            sleep(10000);
-        } catch (InterruptedException e1) {
-            e1.printStackTrace();
-        }
         //等待spring加载完成
+//        try {
+//            //sleep(10000);
+//        } catch (InterruptedException e1) {
+//            e1.printStackTrace();
+//        }
         LogVisitMemory agm=LogVisitMemory.getInstance();
         int i=0;
         while (this.lvService==null&&i++<5) {

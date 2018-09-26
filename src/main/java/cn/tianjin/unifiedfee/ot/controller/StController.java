@@ -39,7 +39,7 @@ public class StController {
     @RequestMapping("getPageData")
     @ResponseBody
     public Map<String, Object> getPageData(@RequestParam(value = "offset", defaultValue = "1") int offset,
-            @RequestParam(value = "limit", defaultValue = "10") int limit, HttpServletRequest request,
+            @RequestParam(value = "limit", defaultValue = "3") int limit, HttpServletRequest request,
             HttpServletResponse response) {
         // 返回数据
         Map<String, Object> map = new HashMap<String, Object>();

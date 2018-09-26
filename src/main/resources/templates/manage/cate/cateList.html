@@ -92,13 +92,20 @@
                                     </div>
                                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6" for="lunch">上级分类</label>
-                                          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-                                            <select id="lunch" multiple class="selectpicker" data-actions-box="true"  data-live-search="true" title="请选择">
-                                                <option>操作1</option>
-                                                <option>操作2</option>
-                                                <option>操作3</option>
-                                            </select>
+                                          <label class="col-lg-1 col-md-1 col-sm-2 col-xs-4" for="lunch">上级分类</label>
+                                          <div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
+              <div class="input-group">
+                <input type="text" class="form-control" name="upName" id="upName" style="border-right:0px;" readonly="readonly"/>
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default dropdown-toggle btn-tj" data-toggle="dropdown" style="border-bottom-left-radius:0px;border-top-left-radius:0px; border-left:0px;">
+                    <span class="caret"></span>
+                  </button>
+                  <div class="dropdown-menu pull-right" style="width:300px;height:260px;overflow-y:auto;overflow-x:hidden;" data-stopPropagation="true">
+                    <div id="cate-tree"></div>
+                  </div>
+                </div>
+                <input type="hidden" class="form-control" name="parentId" id="pareintId"/>
+              </div>
                                           </div>
                                         </div>
                                     </div>
@@ -169,18 +176,63 @@
 
 <script src="${gateway}/src/js/pt-tree.js"></script>
 <script>
-// 时间选择
-$('.datetimepicker').datetimepicker({
-    language : 'zh',
-    format : 'yyyy-mm-dd hh:ii:ss',
-    todayBtn : true,
-    autoclose : true
+$(function () {
+  //时间选择
+  $('.datetimepicker').datetimepicker({
+      language : 'zh',
+      format : 'yyyy-mm-dd hh:ii:ss',
+      todayBtn : true,
+      autoclose : true
+  });
+
+  //搜索扩展
+  $("#ptsearchfilter").click(function() {
+      $(this).text($(".hiddenorshow").is(":hidden") ? "收起" : "展开");
+      $(".hiddenorshow").toggleClass('pt-search-filter');
+  });
+
+  //初始化选择树
+  $.ajax({
+    type : "post",
+    url: '${gateway}/train/getTree/ptTree',
+    dataType : "json",
+    success : function(result) {
+      if (result.returnCode=='00') {
+        var tree=[];
+        tree.push(result.data.tree);
+        result.data.tree.text="全部";
+        $('#cate-tree').treeview({
+          data : tree, // 数据源
+          showCheckbox : true, //是否显示复选框
+          multiSelect : false, //多选
+          onNodeChecked : function(event, data) {
+            selectTreeNode(data);
+          }
+        });
+      } else {
+        $('#cate-tree').treeview({
+          data : [{text: '全部', id: '0', pathName: '全部'}], // 数据源
+          showCheckbox : true, //是否显示复选框
+          multiSelect : false, //多选
+          onNodeChecked : function(event, data) {
+            selectTreeNode(data);
+          }
+        });
+      }
+    },
+    error : function() {
+      $('#cate-tree').treeview({
+        data : [{text: '全部', id: '0', pathName: '全部'}], // 数据源
+        showCheckbox : true, //是否显示复选框
+        multiSelect : false, //多选
+        onNodeChecked : function(event, data) {
+          selectTreeNode(data);
+        }
+      });
+    }
+  });
 });
-//搜索扩展
-$("#ptsearchfilter").click(function() {
-    $(this).text($(".hiddenorshow").is(":hidden") ? "收起" : "展开");
-    $(".hiddenorshow").toggleClass('pt-search-filter');
-});
+
 // table
 // 2.返回操作模版[按钮颜色暂不确定]
 function operateFormatter(value, row, index) {
