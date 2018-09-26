@@ -1,9 +1,13 @@
 package cn.tianjin.unifiedfee.ot.mapper;
 
+import java.util.List;
+
 import cn.tianjin.unifiedfee.ot.entity.LogVisit;
 
 public interface LogVisitMapper {
     int insert(LogVisit record);
 
-    int insertSelective(LogVisit record);
+    List<LogVisit> getDataByObjType(String objType);
+
+    List<LogVisit> getLogVisitList();
 }

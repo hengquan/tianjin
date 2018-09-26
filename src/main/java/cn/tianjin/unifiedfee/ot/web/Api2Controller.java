@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
+import cn.tianjin.unifiedfee.ot.entity.LogVisit;
 import cn.tianjin.unifiedfee.ot.entity.Mnsc;
+import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
 import cn.tianjin.unifiedfee.ot.service.MnscRefSourceService;
 import cn.tianjin.unifiedfee.ot.service.MnscService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
@@ -33,6 +35,8 @@ public class Api2Controller {
     private MnscService mnscService;
     @Autowired
     private MnscRefSourceService mnscRefSourceService;
+    @Autowired
+    private LogVisitService logVisitService;
 
     /**
      * 1.3.1、获得模拟实操列表<br>
@@ -70,13 +74,13 @@ public class Api2Controller {
             if (pageSize == -1)
                 pageSize = _DEFALT_PS;
             // 设置分页
-            //PageHelper.offsetPage(pageNo, pageSize);
+            // PageHelper.offsetPage(pageNo, pageSize);
             // 查询列表
             map.put("categoryId", categoryId);
             map.put("searchStr", searchStr);
             List<Mnsc> mnscs = mnscService.getPageData(map);
             // 放入分页
-            //PageInfo<Mnsc> pageList = new PageInfo<Mnsc>(mnscs);
+            // PageInfo<Mnsc> pageList = new PageInfo<Mnsc>(mnscs);
             if (mnscs == null || mnscs.size() == 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "列表为空");
@@ -169,12 +173,174 @@ public class Api2Controller {
             }
             // 查询
             List<Kj> kjList = mnscRefSourceService.getKjList(mnscId);
-            if (kjList == null || kjList.size()<=0) {
+            if (kjList == null || kjList.size() <= 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");
             } else {
                 retMap.put("returnCode", "00");
                 retMap.put("data", kjList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+
+    /**
+     * 1.5.2、获得统计访问次数<br>
+     * 获得统计访问次数
+     * 
+     * @param request
+     * @param response
+     * @param state
+     *            1:摸拟实操,2:课件,3:在线试题
+     * @return
+     */
+    @RequestMapping("getLogVisitCount")
+    @ResponseBody
+    public Map<String, Object> getLogVisitCount(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(required = false) Integer state) {
+        HttpPush.responseInfo(response);// 跨域
+        // 返回结果
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+            if (state == null) {
+                retMap.put("returnCode", "03");
+                retMap.put("messageInfo", "操作类型为空");
+                return retMap;
+            }
+            // 查询
+            List<LogVisit> logVisitList = logVisitService.getDataByObjType(state);
+            if (logVisitList == null || logVisitList.size() <= 0) {
+                retMap.put("returnCode", "00");
+                retMap.put("data", "0");
+            } else {
+                retMap.put("returnCode", "00");
+                retMap.put("data", logVisitList.size());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+
+    /**
+     * 1.5.3、获得最新模拟实操数据<br>
+     * 获得最新模拟实操数据
+     * 
+     * @param request
+     * @param response
+     * @param 1:摸拟实操,2:课件,3:在线试题
+     * @return
+     */
+    @RequestMapping("getMnscLogVisitList")
+    @ResponseBody
+    public Map<String, Object> getMnscLogVisitList(HttpServletRequest request, HttpServletResponse response) {
+        HttpPush.responseInfo(response);// 跨域
+        // 返回结果
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+            // 查询
+            List<LogVisit> logVisitList = logVisitService.getDataByObjType(1);
+            if (logVisitList == null || logVisitList.size() <= 0) {
+                retMap.put("returnCode", "99");
+                retMap.put("data", "信息为空");
+            } else {
+                retMap.put("returnCode", "00");
+                retMap.put("data", logVisitList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+
+    /**
+     * 1.5.4、获得最新课件数据<br>
+     * 获得最新课件数据
+     * 
+     * @param request
+     * @param response
+     * @param 1:摸拟实操,2:课件,3:在线试题
+     * @return
+     */
+    @RequestMapping("getKjLogVisitList")
+    @ResponseBody
+    public Map<String, Object> getKjLogVisitList(HttpServletRequest request, HttpServletResponse response) {
+        HttpPush.responseInfo(response);// 跨域
+        // 返回结果
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+            // 查询
+            List<LogVisit> logVisitList = logVisitService.getDataByObjType(2);
+            if (logVisitList == null || logVisitList.size() <= 0) {
+                retMap.put("returnCode", "99");
+                retMap.put("data", "信息为空");
+            } else {
+                retMap.put("returnCode", "00");
+                retMap.put("data", logVisitList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+
+    /**
+     * 1.5.4、获得最新访问信息<br>
+     * 获得最新访问信息
+     * 
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("getLogVisitList")
+    @ResponseBody
+    public Map<String, Object> getLogVisitList(HttpServletRequest request, HttpServletResponse response) {
+        HttpPush.responseInfo(response);// 跨域
+        // 返回结果
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+            // 查询
+            List<LogVisit> logVisitList = logVisitService.getLogVisitList();
+            if (logVisitList == null || logVisitList.size() <= 0) {
+                retMap.put("returnCode", "99");
+                retMap.put("data", "信息为空");
+            } else {
+                retMap.put("returnCode", "00");
+                retMap.put("data", logVisitList);
             }
         } catch (Exception e) {
             e.printStackTrace();
