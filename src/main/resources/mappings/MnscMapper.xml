@@ -5,13 +5,14 @@
 		<result column="id" property="id" jdbcType="VARCHAR" />
 		<result column="mnsc_name" property="mnscName" jdbcType="VARCHAR" />
 		<result column="mnsc_cat_id" property="mnscCatId" jdbcType="VARCHAR" />
-		<result column="mnsc_cat_names" property="mnscCatNames" jdbcType="VARCHAR" />
+		<result column="mnsc_cat_names" property="mnscCatNames"
+			jdbcType="VARCHAR" />
 		<result column="expire_date" property="expireDate" jdbcType="VARCHAR" />
 		<result column="mnsc_url" property="mnscUrl" jdbcType="VARCHAR" />
 		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
 		<result column="state" property="state" jdbcType="INTEGER" />
-        <result column="score" property="score" jdbcType="INTEGER" />
-        <result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="score" property="score" jdbcType="INTEGER" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
 		<result column="create_date" property="createDate" jdbcType="DATE" />
 		<result column="create_by" property="createBy" jdbcType="VARCHAR" />
 		<result column="create_name" property="createName" jdbcType="VARCHAR" />
@@ -19,7 +20,8 @@
 	<sql id="Base_Column_List">
 		id, mnsc_name, mnsc_cat_id, mnsc_cat_names, expire_date,
 		mnsc_url,
-		remarks, state, score, sort, create_date, create_by, create_name
+		remarks, state, score, sort, create_date, create_by,
+		create_name
 	</sql>
 	<select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
@@ -54,12 +56,12 @@
 			<if test="state != null">
 				state,
 			</if>
-            <if test="score != null">
-                score,
-            </if>
-            <if test="sort != null">
-                sort,
-            </if>
+			<if test="score != null">
+				score,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
 			<if test="createDate != null">
 				create_date,
 			</if>
@@ -95,12 +97,12 @@
 			<if test="state != null">
 				#{state,jdbcType=INTEGER},
 			</if>
-            <if test="score != null">
-                #{score,jdbcType=INTEGER},
-            </if>
-            <if test="sort != null">
-                #{sort,jdbcType=INTEGER},
-            </if>
+			<if test="score != null">
+				#{score,jdbcType=INTEGER},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
 			<if test="createDate != null">
 				#{createDate,jdbcType=DATE},
 			</if>
@@ -136,12 +138,12 @@
 			<if test="state != null">
 				state = #{state},
 			</if>
-            <if test="score != null">
-                score = #{score},
-            </if>
-            <if test="sort != null">
-                sort = #{sort},
-            </if>
+			<if test="score != null">
+				score = #{score},
+			</if>
+			<if test="sort != null">
+				sort = #{sort},
+			</if>
 			<if test="createDate != null">
 				create_date = #{createDate},
 			</if>
@@ -157,28 +159,37 @@
 
 	<delete id="delete" parameterType="java.lang.String">
 		delete from ts_MNSC
-		where id = #{id,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=VARCHAR}
 	</delete>
-	
+
 	<select id="getPageData" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from ts_MNSC
 		where 1=1
 		<if test="categoryId != '' and categoryId != null">
-		  and mnsc_cat_id = #{categoryId}
+			and mnsc_cat_id = #{categoryId}
 		</if>
 		<if test="searchStr != '' and searchStr !=null">
-		  and instr(mnsc_name,#{searchStr})>0
+			and instr(mnsc_name,#{searchStr})>0
 		</if>
 		order by create_date desc
 	</select>
-	
+
 	<select id="getDataListByIds" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from ts_MNSC
-		where 
-    instr(#{ids},id)>0
+		where
+		instr(#{ids},id)>0
+	</select>
+
+	<select id="getMnscList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ts_MNSC
+		where rownum &lt;= #{rownum}
+		order by create_date desc
 	</select>
 </mapper>

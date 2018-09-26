@@ -35,6 +35,26 @@ public class Mnsc {
     private List<Kj> kjs;
     
     private String mainUrl;
+    
+    private Integer logVisitCount;
+    
+    private String createdate;
+
+    public String getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(String createdate) {
+        this.createdate = createdate;
+    }
+
+    public Integer getLogVisitCount() {
+        return logVisitCount;
+    }
+
+    public void setLogVisitCount(Integer logVisitCount) {
+        this.logVisitCount = logVisitCount;
+    }
 
     public String getMainUrl() {
         return mainUrl;

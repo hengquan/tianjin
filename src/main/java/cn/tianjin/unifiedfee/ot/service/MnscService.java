@@ -1,5 +1,7 @@
 package cn.tianjin.unifiedfee.ot.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -12,10 +14,12 @@ import com.spiritdata.framework.util.SequenceUUID;
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
+import cn.tianjin.unifiedfee.ot.entity.LogVisit;
 import cn.tianjin.unifiedfee.ot.entity.Mnsc;
 import cn.tianjin.unifiedfee.ot.entity.MnscRefSource;
 import cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper;
 import cn.tianjin.unifiedfee.ot.mapper.KjMapper;
+import cn.tianjin.unifiedfee.ot.mapper.LogVisitMapper;
 import cn.tianjin.unifiedfee.ot.mapper.MnscMapper;
 import cn.tianjin.unifiedfee.ot.mapper.MnscRefSourceMapper;
 
@@ -29,6 +33,8 @@ public class MnscService {
     private MnscRefSourceMapper mnscRefDao;
     @Autowired
     private CommArchiveMapper commArchiveMapper;
+    @Autowired
+    private LogVisitMapper logVisitMapper;
 
     // 获取分页数据
     public List<Mnsc> getPageData(Map<String, Object> retMap) {
@@ -166,5 +172,41 @@ public class MnscService {
 
     public List<Mnsc> getDataListByIds(Mnsc mnsc) {
         return dao.getDataListByIds(mnsc);
+    }
+
+    public List<Mnsc> getMnscList(Integer rownum) {
+        List<Mnsc> mnscList = dao.getMnscList(rownum);
+        if (mnscList != null && mnscList.size() > 0) {
+            for (Mnsc mnsc : mnscList) {
+                String objId = mnsc.getId();
+                // 查看模拟实操访问人数
+                List<LogVisit> logVisits = logVisitMapper.getDataByObjId(objId);
+                if (logVisits != null && logVisits.size() > 0) {
+                    mnsc.setLogVisitCount(logVisits.size());
+                }else{
+                    mnsc.setLogVisitCount(0);
+                }
+                // 查该模拟实操的缩略图
+                List<CommArchive> commArchives = commArchiveMapper.selectByObjId(objId);
+                if (commArchives != null && commArchives.size() > 0) {
+                    for (CommArchive commArchive : commArchives) {
+                        String archiveType = commArchive.getArchiveType();
+                        if (StringUtils.isNotEmpty(archiveType)) {
+                            if (archiveType.equals("main")) {
+                                String fileUrl = commArchive.getFileUrl();
+                                if (StringUtils.isNotEmpty(fileUrl))
+                                    mnsc.setMainUrl(fileUrl);
+                            }
+                        }
+                    }
+                }
+                //日期格式
+                Date createDate = mnsc.getCreateDate();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+                String str = format.format(createDate);
+                mnsc.setCreatedate(str);
+            }
+        }
+        return mnscList;
     }
 }
