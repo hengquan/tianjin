@@ -29,6 +29,11 @@
     select <include refid="Base_Column_List"/> from category
   </select>
 
+  <select id="getList" resultType="cn.tianjin.unifiedfee.ot.entity.Category">
+    select <include refid="Base_Column_List"/> from category
+    where 1=1
+  </select>
+
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.Category" >
     insert into category (id, parent_id, parent_ids, 
       name, sort, isvalid, 

@@ -118,6 +118,39 @@
             alert("获取信息失败");
           }
         });
+        $.ajax({
+          type : 'post',
+          url : "./train/getKjInfo",
+          data : {
+            "kjId" : split[1]
+          },
+          dataType : 'json',
+          cache : false,
+          success : function(data) {
+            var returnCode = data.returnCode;
+            if(returnCode=="00"){
+              var data = data.data;
+              console.log(data);
+              //课件名称
+              $("#kjName").html(data.name);
+              //文件名称
+              $("#fileName").html(data.fileName);
+              //文件Url
+              var kjUrl = data.kjUrl;
+              console.log(kjUrl);
+              if(kjUrl =='' || kjUrl==null){
+                $("#video").attr("src","mnsc.mp4");
+              }else{
+                  $("#video").attr("src",data.kjUrl);
+              }
+              //文件介绍
+              $("#remarks").html(data.remarks);
+            }
+          },
+          error : function() { //失败回调函数
+            alert("获取信息失败");
+          }
+        });
       }
     })
     /*  var video = document.getElementById('video');
@@ -129,5 +162,20 @@
       window.open("./entryPractice.html")
     }
   </script>
+<!-- 开始埋点 -->
+<script type="text/javascript">
+(function () {
+    var ma = document.createElement('script');
+    ma.type = 'text/javascript';
+    ma.async = true;
+    ma.src = "./tjrc/js/ma.js";
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ma, s);
+})();
+
+var _gatherData={};
+_gatcherData.visitModulelId="课件学习";
+gatherData(_gatherData);
+</script>
 </body>
 </html>
