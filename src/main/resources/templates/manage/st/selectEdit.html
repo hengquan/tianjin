@@ -166,22 +166,35 @@ html {
 	    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
 	    if (r != null) return unescape(r[2]); return null; //返回参数值
 	}
-     function addSelect() {    
-       $.ajax({
+     function addSelect() {  
+       var flag = 0;
+      $.ajax({
          type : 'post',
          url : "${gateway}/st/insertselect",
          data : $("#form").serialize(),
          dataType : 'json',
          cache : false,
-         success : function(data) {           
-           parent.refresh();
-           closeMy();
+         success : function(data) {     
+           if (data.resultCode=="002")
+             alert("题目的标号重复，请重新设置");
+           if (data.resultCode=="003")
+             alert("单选题只能有一个正确答案，请重新设置");
+           if  (data.resultCode=="001"){
+             alert("保存成功");
+             parent.refresh();
+             closeMy();
+           }
+           if  (data.resultCode=="000")
+           {
+             alert("保存成功");
+             parent.refresh();
+             closeMy();
+           }
          },
          error : function() { //失败回调函数
            alert("保存失败");
          }
-       });
-
+       });  
       }
       function editSelect() {
         $.ajax({

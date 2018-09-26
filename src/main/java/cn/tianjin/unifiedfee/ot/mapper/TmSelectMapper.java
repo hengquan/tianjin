@@ -15,4 +15,7 @@ public interface TmSelectMapper {
     TmSelect getselectBytmid(String tmId);
     void deleteBytmid(String tmid);
     int  delete(TmSelect record);
+    List<TmSelect> getselectSign(TmSelect tmselect);
+    List<TmSelect> getselectAnswer(TmSelect tmselect);
+    
 }
