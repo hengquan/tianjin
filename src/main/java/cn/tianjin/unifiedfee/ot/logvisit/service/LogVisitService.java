@@ -45,7 +45,7 @@ public class LogVisitService {
         return logDao.getDataByObjType(objType);
     }
 
-    public List<LogVisit> getLogVisitList() {
-        return logDao.getLogVisitList();
+    public List<LogVisit> getLogVisitList(Integer rownum) {
+        return logDao.getLogVisitList(rownum);
     }
 }

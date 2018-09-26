@@ -35,6 +35,26 @@ public class Kj {
     private String ids;
 
     private List<Kj> kjs;
+    
+    private String mainUrl;
+
+    private Integer logVisitCount;
+
+    public String getMainUrl() {
+        return mainUrl;
+    }
+
+    public void setMainUrl(String mainUrl) {
+        this.mainUrl = mainUrl;
+    }
+
+    public Integer getLogVisitCount() {
+        return logVisitCount;
+    }
+
+    public void setLogVisitCount(Integer logVisitCount) {
+        this.logVisitCount = logVisitCount;
+    }
 
     public List<Kj> getKjs() {
         return kjs;

@@ -19,4 +19,6 @@ public interface MnscMapper {
 	Mnsc get(String id);
 
     List<Mnsc> getDataListByIds(Mnsc mnsc);
+
+    List<Mnsc> getMnscList(Integer rownum);
 }

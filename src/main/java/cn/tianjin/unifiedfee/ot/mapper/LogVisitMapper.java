@@ -9,5 +9,7 @@ public interface LogVisitMapper {
 
     List<LogVisit> getDataByObjType(String objType);
 
-    List<LogVisit> getLogVisitList();
+    List<LogVisit> getLogVisitList(Integer rownum);
+
+    List<LogVisit> getDataByObjId(String objId);
 }
