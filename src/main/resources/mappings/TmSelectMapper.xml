@@ -13,7 +13,7 @@
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Blob_Column_List">
-		id, tm_id,tm_select_sign,tm_select_desc,is_answer，sort
+		id, tm_id,tm_select_sign,tm_select_desc,is_answer,sort
 	</sql>
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.TmSelect" >
     insert into q_TM_select (id, tm_id, tm_select_sign, 
@@ -111,11 +111,24 @@
     </set>
     where id = #{id}
   </update>
-  <select id="getselectData" resultMap="BaseResultMap" parameterType="java.lang.String">
-		select
-		<include refid="Blob_Column_List" />
-		from q_TM_select
+  <select id="getselectData" resultMap="BaseResultMap"  >
+		select  a.id, a.tm_id,a.tm_select_sign,a.tm_select_desc,a.is_answer,a.sort		
+		from q_TM_select a
 		where tm_id = #{tmId,jdbcType=VARCHAR}
+		   
+  </select>
+  <select id="getselectSign" resultMap="BaseResultMap"  >
+		select  a.id, a.tm_id,a.tm_select_sign,a.tm_select_desc,a.is_answer,a.sort		
+		from q_TM_select a,q_tm b 
+		where tm_id = #{tmId,jdbcType=VARCHAR} and a.tm_id=b.id
+		  <if test="tmSelectSign != null" >
+	         and tm_select_sign= #{tmSelectSign,jdbcType=VARCHAR}
+	      </if>   	 
+  </select>    
+    <select id="getselectAnswer" resultMap="BaseResultMap"  >
+		select  a.id, a.tm_id,a.tm_select_sign,a.tm_select_desc,a.is_answer,a.sort		
+		from q_TM_select a,q_tm b 
+		where tm_id = #{tmId,jdbcType=VARCHAR} and a.tm_id=b.id and a.is_answer = 1	and b.tm_type='单选题'	  	 
   </select>  
   <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select

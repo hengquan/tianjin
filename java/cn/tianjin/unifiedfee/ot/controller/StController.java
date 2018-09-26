@@ -146,11 +146,8 @@ public class StController {
         HttpPush.responseInfo(response);
         try {
             // 添加数据
-            boolean result = stService.insertselect(tm,user);
-            if (result)
-                map.put("resultCode", "100");
-            else
-                map.put("resultCode", "101");
+            String result = stService.insertselect(tm,user);            
+                map.put("resultCode", result);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -247,7 +244,36 @@ public class StController {
         HttpPush.responseInfo(response);
         List<TmSelect> Tms = stService.getselectData(tm);        
         // 返回
-        map.put("total", 1);
+        map.put("total", Tms.size());
+        map.put("rows", Tms);
+        return map;
+    }
+        
+    // 获取分页数据
+    @RequestMapping("getselectSign")
+    @ResponseBody
+    public Map<String, Object> getselectSign(Tm tm, HttpServletRequest request, HttpServletResponse response) {
+        // 返回数据
+        Map<String, Object> map = new HashMap<String, Object>();    
+        // 跨域
+        HttpPush.responseInfo(response);
+        List<TmSelect> Tms = stService.getselectSign(tm);        
+        // 返回
+        map.put("total", Tms.size());
+        map.put("rows", Tms);
+        return map;
+    }
+    
+    @RequestMapping("getselectAnswer")
+    @ResponseBody
+    public Map<String, Object> getselectAnswer(Tm tm, HttpServletRequest request, HttpServletResponse response) {
+        // 返回数据
+        Map<String, Object> map = new HashMap<String, Object>();    
+        // 跨域
+        HttpPush.responseInfo(response);
+        List<TmSelect> Tms = stService.getselectAnswer(tm);        
+        // 返回
+        map.put("total", Tms.size());
         map.put("rows", Tms);
         return map;
     }
@@ -267,8 +293,7 @@ public class StController {
             e.printStackTrace();
         }
         return map;
-    } 
-        
+    }  
     // 删除
     @RequestMapping("deleteSelect")
     @ResponseBody

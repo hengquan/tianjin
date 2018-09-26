@@ -98,19 +98,39 @@ public class StService {
 	
 	
 	//添加选项	
-	public boolean insertselect(Tm tm,UserInfo user) throws Exception {
+	public String insertselect(Tm tm,UserInfo user) throws Exception {
+	    String restr = "000";
         tm.setCreateBy(user.getUserId());
         tm.setCreateName(user.getUsername());
         TmSelect tmSelect = new TmSelect(); 
-        tmSelect.setId(SequenceUUID.getPureUUID());
-        tmSelect.setTmId(tm.getId());
-        tmSelect.setSort(tm.getSort());
-        tmSelect.setTmSelectDesc(tm.getTmSelectDesc());
-        tmSelect.setTmSelectSign(tm.getTmSelectSign());
-        tmSelect.setIsAnswer(tm.getIsAnswer());
-        tmSelect.setCreateBy(tm.getCreateBy());
-        tmSelect.setCreateName(tm.getCreateName());        
-        return selectDao.insert(tmSelect) > 0 ? true : false;
+        List<TmSelect> tmp = null; 
+        tmp =this.getselectSign(tm);
+        if (tmp.size()>0) {
+            restr="002";
+        }else {
+            int isanswer = 0;
+            isanswer = tm.getIsAnswer();
+            if (isanswer==1) {
+                tmp =this.getselectAnswer(tm);
+                if  (tmp.size()>0) 
+                    restr="003";
+            }else {
+                tmSelect.setId(SequenceUUID.getPureUUID());
+                tmSelect.setTmId(tm.getId());
+                tmSelect.setSort(tm.getSort());
+                tmSelect.setTmSelectDesc(tm.getTmSelectDesc());
+                tmSelect.setTmSelectSign(tm.getTmSelectSign());
+                tmSelect.setIsAnswer(tm.getIsAnswer());
+                tmSelect.setCreateBy(tm.getCreateBy());
+                tmSelect.setCreateName(tm.getCreateName()); 
+                boolean flag; 
+                flag = selectDao.insert(tmSelect)> 0 ? true : false;;
+                if (flag)
+                    restr="001";
+                else restr="000";
+            }
+        }              
+        return restr;
 	}
    	// 更新
 	public boolean update(Tm entity) throws Exception {
@@ -242,7 +262,20 @@ public class StService {
 	//获取选项信息
 	public List<TmSelect> getselectData (Tm tm) {	 
 	    return selectDao.getselectData(tm.getId());
-	}
+	}	
+	public List<TmSelect> getselectSign (Tm tm) { 
+	    TmSelect tmselect = new TmSelect();
+	    tmselect.setTmId(tm.getId());
+	    tmselect.setTmSelectSign(tm.getTmSelectSign());
+        return selectDao.getselectSign(tmselect);
+    }
+	
+	public List<TmSelect> getselectAnswer (Tm tm) { 
+        TmSelect tmselect = new TmSelect();
+        tmselect.setTmId(tm.getId());
+        tmselect.setTmSelectSign(tm.getTmSelectSign());
+        return selectDao.getselectAnswer(tmselect);
+    }
 	public TmSelect getselect(TmSelect entity) throws Exception {
 	    TmSelect tm = new TmSelect();
         tm = selectDao.get(entity.getId());
