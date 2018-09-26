@@ -8,6 +8,8 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
+import cn.tianjin.unifiedfee.ot.logvisit.LogVisitListener;
+
 @SpringBootApplication
 @EnableFeignClients({"cn.taiji","cn.tianjin.unifiedfee"})
 @ComponentScan({"cn.taiji","cn.tianjin.unifiedfee"})
@@ -15,7 +17,10 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableAutoConfiguration
 @ServletComponentScan
 public class OtApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(OtApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OtApplication.class, args);
+        System.out.println("=应用启动====================================================");
+        //数据收集器
+        LogVisitListener.begin();
+    }
 }
