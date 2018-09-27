@@ -291,10 +291,10 @@ public class SjService {
                 } else {
                     oneTm.put("score", 0);
                 }
+                oneTm.put("answer", _answer.replaceAll("#", ","));
             } else {
                 oneTm.put("score", 0);
             }
-            oneTm.put("answer", _answer.replaceAll("#", ","));
             //插入答题表
             TmUserAnswer tua= new TmUserAnswer();
             tua.setId(SequenceUUID.getPureUUID());
