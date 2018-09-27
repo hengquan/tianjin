@@ -107,12 +107,13 @@ html {
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 								<div class="input-group">
 									<input type="text" class="form-control" name="mnscCatNames"
-										id="mnscCatNames" style="border-right: 0px;" readonly="readonly" />
+										id="mnscCatNames" style="border-right: 0px;"
+										readonly="readonly" />
 									<div class="input-group-btn">
 										<button type="button"
 											class="btn btn-default dropdown-toggle btn-tj"
 											data-toggle="dropdown"
-											style="border-bottom-left-radius: 0px; border-top-left-radius: 0px; border-left: 0px;height:35.99px;">
+											style="border-bottom-left-radius: 0px; border-top-left-radius: 0px; border-left: 0px; height: 35.99px;">
 											<span class="caret"></span>
 										</button>
 										<div class="dropdown-menu pull-right"
@@ -197,6 +198,10 @@ html {
 	<br>
 	<br>
 	<script>
+    //附件相关
+    var imgJson = new Array()
+    //imgJson[imgJson.length] = '<img src="http://1.202.219.107:8082/ot-server/ot/image/111.jpg" class="file-preview-image">';
+    //imgJson[imgJson.length] = '<img src="http://1.202.219.107:8082/ot-server/ot/image/156011110000017.jpg" class="file-preview-image">';
     $(function() {
       //icheck 单选多选
       $('input').iCheck({
@@ -253,53 +258,6 @@ html {
           });
         }
       });
-      function selectTreeNode(treeNodeData) {
-        $("input[name='mnscCatNames']").val(treeNodeData.text);
-        $("input[name='mnscCatId']").val(treeNodeData.id);
-        $('#cate-tree').treeview('uncheckAll', { silent: true });
-        $('#cate-tree').treeview('checkNode', [treeNodeData.nodeId, { silent: true }]);
-      }
-      //校验必填项
-      $('form').bootstrapValidator({
-        message : 'This value is not valid',
-        feedbackIcons : {
-          valid : 'glyphicon glyphicon-ok',
-          invalid : 'glyphicon glyphicon-remove',
-          validating : 'glyphicon glyphicon-refresh'
-        },
-        fields : {
-          mnscName : {
-            message : '模拟实操名称验证失败',
-            validators : {
-              notEmpty : {
-                message : '模拟实操名称不能为空'
-              }
-            }
-          }
-        }
-      });
-      // 时间选择
-      $('.datetimepicker').datetimepicker({
-        language : 'zh', // 语言选择
-        format : 'yyyy-mm-dd hh:ii:ss', // 选择格式
-        todayBtn : true,
-        autoclose : true
-      });
-      $('.aaa .datetimepicker-dropdown-bottom-right').css('margin-top', '0px')
-      //icheck 单选多选
-      $('input').iCheck({
-        checkboxClass : 'icheckbox_square-blue',
-        radioClass : 'iradio_square-blue',
-        increaseArea : '20%' // optional
-      });
-      $("input:radio[name='wenjian']").on('ifChecked', function(event) {
-        if ($(this).val() == 'option1') {
-          $('.Bshow').addClass('disnone')
-        } else {
-          $('.Bshow').removeClass('disnone')
-        }
-      });
-
       //获取参数
       var url = location.search;
       if (url != '') {
@@ -357,13 +315,81 @@ html {
                   }
                   $("#theTable").html(html);
                 }
+                //附件相关
+                var commArchives = data.data.commArchives;
+                console.log(commArchives);
+                if (commArchives != null) {
+                  for (var i = 0; i < commArchives.length; i++) {
+                    console.log(commArchives[i]);
+                    if (commArchives[i].archiveType == 'img') {
+                      var fileUrl = commArchives[i].fileUrl;
+                      console.log(fileUrl);
+                      if (fileUrl != '') {
+                        imgJson[imgJson.length] = '<img src="'+ fileUrl +'" class="file-preview-image">';
+                      }
+                    }
+                  }
+                  console.log(imgJson);
+                }
               },
               error : function() { //失败回调函数
                 alert("获取信息失败");
               }
             });
       }
+      //校验必填项
+      $('form').bootstrapValidator({
+        message : 'This value is not valid',
+        feedbackIcons : {
+          valid : 'glyphicon glyphicon-ok',
+          invalid : 'glyphicon glyphicon-remove',
+          validating : 'glyphicon glyphicon-refresh'
+        },
+        fields : {
+          mnscName : {
+            message : '模拟实操名称验证失败',
+            validators : {
+              notEmpty : {
+                message : '模拟实操名称不能为空'
+              }
+            }
+          }
+        }
+      });
+      // 时间选择
+      $('.datetimepicker').datetimepicker({
+        language : 'zh', // 语言选择
+        format : 'yyyy-mm-dd hh:ii:ss', // 选择格式
+        todayBtn : true,
+        autoclose : true
+      });
+      $('.aaa .datetimepicker-dropdown-bottom-right').css('margin-top', '0px')
+      //icheck 单选多选
+      $('input').iCheck({
+        checkboxClass : 'icheckbox_square-blue',
+        radioClass : 'iradio_square-blue',
+        increaseArea : '20%' // optional
+      });
+      $("input:radio[name='wenjian']").on('ifChecked', function(event) {
+        if ($(this).val() == 'option1') {
+          $('.Bshow').addClass('disnone')
+        } else {
+          $('.Bshow').removeClass('disnone')
+        }
+      });
     });
+
+    function selectTreeNode(treeNodeData) {
+      $("input[name='mnscCatNames']").val(treeNodeData.text);
+      $("input[name='mnscCatId']").val(treeNodeData.id);
+      $('#cate-tree').treeview('uncheckAll', {
+        silent : true
+      });
+      $('#cate-tree').treeview('checkNode', [ treeNodeData.nodeId, {
+        silent : true
+      } ]);
+    }
+
     function addMnsc() {
       $.ajax({
         type : 'post',
@@ -521,8 +547,8 @@ html {
       //删除行
       $(obj).parent().remove();
     }
-    //上传文件
     $("#file-1").fileinput({
+      //alert(imgJson);
       theme : "explorer", //主题
       language : 'zh',
       uploadUrl : "../file/upload",// 上传请求路径
@@ -537,7 +563,7 @@ html {
         return {
           'objId' : objId,
           'objTabname' : 'ts_mnsc',
-          'archiveType' : 'main'
+          'archiveType' : 'img'
         // commId 为全局变量，可以给控件上传额外参数  
         };
       },
@@ -549,6 +575,7 @@ html {
       maxFileCount : 3, //最多文件数量
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : false,
+      initialPreview : imgJson, //显示图片
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片

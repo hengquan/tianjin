@@ -49,7 +49,7 @@ public class MnscService {
                     for (CommArchive commArchive : commArchives) {
                         String archiveType = commArchive.getArchiveType();
                         if (StringUtils.isNotEmpty(archiveType)) {
-                            if (archiveType.equals("main")) {
+                            if (archiveType.equals("img")) {
                                 String fileUrl = commArchive.getFileUrl();
                                 if (StringUtils.isNotEmpty(fileUrl))
                                     mnsc.setMainUrl(fileUrl);
@@ -172,6 +172,11 @@ public class MnscService {
                 }
             }
         }
+        //获取相当附件信息
+        List<CommArchive> commArchives = commArchiveMapper.selectByObjId(mnsc.getId());
+        if(commArchives!=null && commArchives.size()>0){
+            mnsc.setCommArchives(commArchives);
+        }
         // 处理日期
         Date createDate = mnsc.getCreateDate();
         String createdate = format.format(createDate);
@@ -211,7 +216,7 @@ public class MnscService {
                     for (CommArchive commArchive : commArchives) {
                         String archiveType = commArchive.getArchiveType();
                         if (StringUtils.isNotEmpty(archiveType)) {
-                            if (archiveType.equals("main")) {
+                            if (archiveType.equals("img")) {
                                 String fileUrl = commArchive.getFileUrl();
                                 if (StringUtils.isNotEmpty(fileUrl))
                                     mnsc.setMainUrl(fileUrl);

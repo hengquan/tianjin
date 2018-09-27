@@ -39,6 +39,16 @@ public class Kj {
     private String mainUrl;
 
     private Integer logVisitCount;
+    
+    private List<CommArchive> commArchives;
+
+    public List<CommArchive> getCommArchives() {
+        return commArchives;
+    }
+
+    public void setCommArchives(List<CommArchive> commArchives) {
+        this.commArchives = commArchives;
+    }
 
     public String getMainUrl() {
         return mainUrl;
