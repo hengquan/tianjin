@@ -124,10 +124,10 @@
     update category set 
     <trim suffixOverrides="," >
       <if test="parentId != null" >
-        pId = #{parentId,jdbcType=VARCHAR},
+        parent_id = #{parentId,jdbcType=VARCHAR},
       </if>
       <if test="parentIds != null" >
-        parentIds = #{parentIds,jdbcType=VARCHAR},
+        parent_ids = #{parentIds,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -151,7 +151,7 @@
         update_by = #{updateId,jdbcType=VARCHAR},
       </if>
       <if test="updateName != null" >
-        update_mame = #{updateName,jdbcType=VARCHAR},
+        update_name = #{updateName,jdbcType=VARCHAR},
       </if>
       <if test="remarks != null" >
         remarks = #{remarks,jdbcType=VARCHAR},

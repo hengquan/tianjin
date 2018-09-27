@@ -67,6 +67,7 @@
   <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
       <form class="form-horizontal pt-form-full" role="form" id="mainForm">
+        <input type="hidden" name="id" id="objId"></input>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="form-group">
             <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " for="title"><span> ※ </span>分类名称</label>
@@ -136,6 +137,12 @@
 <br>
 <br>
 <script>
+function getUrlParam(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+  var r = window.location.search.substr(1).match(reg); //匹配目标参数
+  if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+
 $(function () {
   //icheck 单选多选
   $('input').iCheck({
@@ -258,6 +265,40 @@ $(function () {
     todayBtn : true,
     autoclose : true
   });
+
+  //若是修改，填充页面
+  var id=getUrlParam("id");
+  if (id&&id!="undefined") {
+    $.ajax({
+      url : '${gateway}/cate/get',
+      data : {"id": id},
+      cache : false,//false是不缓存，true为缓存
+      async : true,//true为异步，false为同步
+      success : function(result) {
+        if (result.returnCode != '00') {
+          alert(result.messageInfo);
+          return false;
+        } else {
+          //填充数据 Object { id: "2", parentId: "0", nodeName: "政策类", order: 8, parentIds: "0,", isvalid: 1, createId: "·1", createName: "·1", createDate: "2018-09-13", updateId: "·1", … }
+          console.log(result.data);
+          var cate=result.data;
+          $("#objId").val(cate.id);
+          $("#name").val(cate.nodeName);
+          $("#upName").val(cate.pathName);
+          $("#parentId").val(cate.parentId);
+          $("#sort").val(cate.order);
+          if (cate.isvalid==1) {
+//            $("input:radio[name='isvalid'][value='1']").prop("checked", true);
+          } else {
+  //          $("input:radio[name='isvalid'][value='0']").prop("checked", true);
+          }
+          $("#remarks").val(cate.remarks);
+        }
+      },
+      error : function() {
+      }
+    });
+  }
 });
 
 function selectTreeNode(treeNodeData) {

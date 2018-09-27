@@ -41,6 +41,42 @@ public class CateController extends BaseController {
     @Autowired // 注入Service
     public UserService userService;
 
+    @RequestMapping("get")
+    @ResponseBody
+    public Map<String, Object> get(String id, HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+            if (StringUtils.isBlank(id)) {
+                retMap.put("returnCode", "03");
+                retMap.put("messageInfo", "分类id为空，无法处理");
+                return retMap;
+            }
+            TreeNode<CategoryNode> node=(TreeNode<CategoryNode>)categoryService.getCategoryNodeById(id);
+            if (node==null) {
+                retMap.put("returnCode", "04");
+                retMap.put("messageInfo", "分类id无对应分类，无法处理");
+            } else {
+                retMap.put("returnCode", "00");
+                Map<String, Object> dataM=node.getTnEntity().toHashMap();
+                String upperName=node.getTreePathName("-", 0);
+                if (upperName.indexOf("-")!=-1) upperName=upperName.substring(0, upperName.indexOf("-"));
+                dataM.put("pathName", upperName);
+                retMap.put("data", dataM);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+
     @RequestMapping("insert")
     @ResponseBody
     public Map<String, Object> save(Category cate, HttpServletRequest request, HttpServletResponse response) {
@@ -60,7 +96,7 @@ public class CateController extends BaseController {
         }
         return retMap;
     }
-
+    
     @RequestMapping("changeValid")
     @ResponseBody
     public Map<String, Object> changeValid(HttpServletRequest request, HttpServletResponse response,
