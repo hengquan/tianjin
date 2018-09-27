@@ -114,18 +114,18 @@ html {
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">过期&emsp;&emsp;时间：</label>
-              <div
-                class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6">
-                <span id="expireDate"></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="form-group">
               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">说&emsp;&emsp;&emsp;&emsp;明：</label>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
                 <span id="remarks"></span>
+              </div>
+            </div>
+          </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">创建&emsp;&emsp;时间：</label>
+              <div
+                class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6">
+                <span id="createDate"></span>
               </div>
             </div>
           </div>
@@ -170,7 +170,7 @@ html {
             $("#objId").html(mnsc.id);
             $("#mnscName").html(mnsc.mnscName);
             $("#mnscUrl").html(mnsc.mnscUrl);
-            $("#expireDate").html(mnsc.expireDate);
+            $("#createDate").html(mnsc.createDate);
             $("#score").html(mnsc.score);
             $("#remarks").html(mnsc.remarks);
             $("#mnscCatNames").html(mnsc.mnscCatNames);
@@ -191,7 +191,7 @@ html {
                     + dataList[i].score
                     + '</td>'
                     + '<td>'
-                    + dataList[i].expireDate
+                    + dataList[i].createDate
                     + '</td>'
                     + '</tr>';
               }
