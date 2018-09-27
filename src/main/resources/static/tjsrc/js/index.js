@@ -63,4 +63,4 @@ $(function () {
         myChart2.resize();
     
     }
- })
+ });
