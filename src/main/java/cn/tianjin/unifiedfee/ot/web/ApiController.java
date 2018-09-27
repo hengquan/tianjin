@@ -86,7 +86,8 @@ public class ApiController {
     @RequestMapping("/getTree/ptTree")
     @ResponseBody
     public Map<String, Object> getCateTree_ptTree(HttpServletRequest request, HttpServletResponse response,
-        @RequestParam(required=false) String categoryId) {
+        @RequestParam(required=false) String categoryId,
+        @RequestParam(defaultValue="0",required=false) int type) {
         HttpPush.responseInfo(response);//跨域
 
         Map<String, Object> retMap=new HashMap<String, Object>();
@@ -104,7 +105,7 @@ public class ApiController {
                 return retMap;
             }
             Map<String, Object> data=new HashMap<String, Object>();
-            Map<String, Object> retTree=_toTreeMap_ptTree(c);
+            Map<String, Object> retTree=_toTreeMap_ptTree(c, type);
             data.put("tree", retTree);
             retMap.put("returnCode", "00");
             retMap.put("data", data);
@@ -115,7 +116,7 @@ public class ApiController {
         }
         return retMap;
     }
-    private Map<String, Object> _toTreeMap_ptTree(TreeNode<? extends TreeNodeBean> treeNode) {
+    private Map<String, Object> _toTreeMap_ptTree(TreeNode<? extends TreeNodeBean> treeNode, int type) {
         Map<String, Object> treeMap=new HashMap<String, Object>();
         treeMap.put("id", treeNode.getId());
         treeMap.put("text", treeNode.getNodeName());
@@ -123,7 +124,12 @@ public class ApiController {
         if (!treeNode.isLeaf()&&treeNode.getChildCount()>0) {
             List<Map<String, Object>> new_cl=new ArrayList<Map<String, Object>>();
             for (TreeNode<? extends TreeNodeBean> _c:treeNode.getChildren()) {
-                new_cl.add(_toTreeMap_ptTree(_c));
+                CategoryNode cn=(CategoryNode)_c.getTnEntity();
+                if (type==1) {
+                    new_cl.add(_toTreeMap_ptTree(_c, type));
+                } else {
+                    if (cn.getIsvalid()==1) new_cl.add(_toTreeMap_ptTree(_c, type));
+                }
             }
             treeMap.put("nodes", new_cl);
         }

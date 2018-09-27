@@ -84,8 +84,7 @@
 				<div class="pt-bread">
 					<h3>分类管理</h3>
 					<!-- 添加展开按钮 -->
-					<button type="button" id="ptsearchfilter"
-						class="btn btn-primary pt-zkbtn">展开</button>
+					<button type="button" id="ptsearchfilter" class="btn btn-primary pt-zkbtn">展开</button>
 				</div>
 				<div class="pt-main pt-padding">
 					<!--搜索条-->
@@ -93,99 +92,89 @@
 						<div class="row clearfix">
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
 								<form class="form-inline">
-									<!-- 示例 input-->
-									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 										<div class="form-group">
-											<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-												for="keyword">模糊查找</label>
-											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-												<input type="text" class="form-control" id="keyword"
-													placeholder="关键词">
+											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="keyword">模糊查找</label>
+											<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+												<input type="text" class="form-control" id="keyword" placeholder="关键词">
 											</div>
 										</div>
 									</div>
 									<!-- 隐藏部分包裹 -->
 									<span class="hiddenorshow pt-search-filter">
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-													for="cataName">名称</label>
-												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-													<input type="text" class="form-control" id="cataName"
-														placeholder="分类名称">
-												</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="form-group">
+											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="cataName">分类名称</label>
+                                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+												<input type="text" class="form-control" id="cataName" placeholder="分类名称">
 											</div>
 										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-lg-1 col-md-1 col-sm-2 col-xs-4"
-													for="lunch">上级分类</label>
-												<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
-													<div class="input-group">
-														<input type="text" class="form-control" name="upName"
-															id="upName" style="border-right: 0px;"
-															readonly="readonly" />
-														<div class="input-group-btn">
-															<button type="button"
-																class="btn btn-default dropdown-toggle btn-tj"
-																data-toggle="dropdown"
-																style="border-bottom-left-radius: 0px; border-top-left-radius: 0px; border-left: 0px;">
-																<span class="caret"></span>
-															</button>
-															<div class="dropdown-menu pull-right"
-																style="width: 300px; height: 260px; overflow-y: auto; overflow-x: hidden;"
-																data-stopPropagation="true">
-																<div id="cate-tree"></div>
-															</div>
+									</div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="form-group">
+											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="lunch">上级分类</label>
+                                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+												<div class="input-group">
+													<input type="text" class="form-control" name="upName" id="upName" style="border-right: 0px;" readonly="readonly" />
+													<div class="input-group-btn">
+														<button type="button"
+															class="btn btn-default dropdown-toggle btn-tj"
+															data-toggle="dropdown"
+															style="border-bottom-left-radius: 0px; border-top-left-radius: 0px; border-left: 0px;">
+															<span class="caret"></span>
+														</button>
+														<div class="dropdown-menu pull-right"
+															style="width: 300px; height: 260px; overflow-y: auto; overflow-x: hidden;"
+															data-stopPropagation="true">
+															<div id="cate-tree"></div>
 														</div>
-														<input type="hidden" class="form-control" name="parentId"
-															id="pareintId" />
 													</div>
-												</div>
-											</div>
-										</div> <!-- 示例时间选择 -->
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-													for="createTime">创建时间</label>
-												<div
-													class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
-													data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-													<input class="form-control" size="16" type="text" value="">
-													<span class="add-on" style="height: 40px"><i
-														class="icon-th"></i></span>
-												</div>
-											</div>
-										</div> <!-- 示例时间区间选择 -->
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-													for="exampleInputName2">从</label>
-												<div
-													class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
-													data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-													<input class="form-control" size="16" type="text" value="">
-													<span class="add-on" style="height: 40px"><i
-														class="icon-th"></i></span>
+													<input type="hidden" class="form-control" name="parentId" id="pareintId" />
 												</div>
 											</div>
 										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-													style="text-align: center">到</label>
-												<div
-													class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
-													data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-													<input class="form-control" size="16" type="text" value="">
-													<span class="add-on" style="height: 40px"><i
-														class="icon-th"></i></span>
-												</div>
+									</div> <!-- 示例时间选择 -->
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+										<div class="form-group">
+											<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
+												for="createTime">创建时间</label>
+											<div
+												class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
+												data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+												<input class="form-control" size="16" type="text" value="">
+												<span class="add-on" style="height: 40px"><i class="icon-th"></i></span>
 											</div>
 										</div>
+									</div> <!-- 示例时间区间选择 -->
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+										<div class="form-group">
+											<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
+												for="exampleInputName2">从</label>
+											<div
+												class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
+												data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+												<input class="form-control" size="16" type="text" value="">
+												<span class="add-on" style="height: 40px"><i
+													class="icon-th"></i></span>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+										<div class="form-group">
+											<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
+												style="text-align: center">到</label>
+											<div
+												class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
+												data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+												<input class="form-control" size="16" type="text" value="">
+												<span class="add-on" style="height: 40px"><i
+													class="icon-th"></i></span>
+											</div>
+										</div>
+									</div>
 									</span>
 									<!-- 示例搜索按钮 -->
-									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 										<div class="form-group">
 											<button type="button"
 												class="btn btn-default btn-primary w120">搜索</button>
@@ -221,161 +210,217 @@
 		</div>
 	</div>
 
-	<script src="${gateway}/src/js/pt-tree.js"></script>
-	<script>
-    $(function() {
-      //时间选择
-      $('.datetimepicker').datetimepicker({
-        language : 'zh',
-        format : 'yyyy-mm-dd hh:ii:ss',
-        todayBtn : true,
-        autoclose : true
-      });
+<script src="${gateway}/src/js/pt-tree.js"></script>
+<script>
+$(function() {
+  //时间选择
+  $('.datetimepicker').datetimepicker({
+    language : 'zh',
+    format : 'yyyy-mm-dd hh:ii:ss',
+    todayBtn : true,
+    autoclose : true
+  });
 
-      //搜索扩展
-      $("#ptsearchfilter").click(function() {
-        $(this).text($(".hiddenorshow").is(":hidden") ? "收起" : "展开");
-        $(".hiddenorshow").toggleClass('pt-search-filter');
-      });
+  //搜索扩展
+  $("#ptsearchfilter").click(function() {
+    $(this).text($(".hiddenorshow").is(":hidden") ? "收起" : "展开");
+    $(".hiddenorshow").toggleClass('pt-search-filter');
+  });
 
-      //初始化选择树
-      $.ajax({
-        type : "post",
-        url : '${gateway}/train/getTree/ptTree',
-        dataType : "json",
-        success : function(result) {
-          if (result.returnCode == '00') {
-            var tree = [];
-            tree.push(result.data.tree);
-            result.data.tree.text = "全部";
-            $('#cate-tree').treeview({
-              data : tree, // 数据源
-              showCheckbox : true, //是否显示复选框
-              multiSelect : false, //多选
-              onNodeChecked : function(event, data) {
-                selectTreeNode(data);
-              }
-            });
-          } else {
-            $('#cate-tree').treeview({
-              data : [ {
-                text : '全部',
-                id : '0',
-                pathName : '全部'
-              } ], // 数据源
-              showCheckbox : true, //是否显示复选框
-              multiSelect : false, //多选
-              onNodeChecked : function(event, data) {
-                selectTreeNode(data);
-              }
-            });
+  //初始化选择树
+  $.ajax({
+    type : "post",
+    url : '${gateway}/train/getTree/ptTree',
+    data: {type:1},
+    dataType : "json",
+    success : function(result) {
+      if (result.returnCode == '00') {
+        var tree = [];
+        tree.push(result.data.tree);
+        result.data.tree.text = "全部";
+        $('#cate-tree').treeview({
+          data : tree, // 数据源
+          showCheckbox : true, //是否显示复选框
+          multiSelect : false, //多选
+          onNodeChecked : function(event, data) {
+            selectTreeNode(data);
           }
-        },
-        error : function() {
-          $('#cate-tree').treeview({
-            data : [ {
-              text : '全部',
-              id : '0',
-              pathName : '全部'
-            } ], // 数据源
-            showCheckbox : true, //是否显示复选框
-            multiSelect : false, //多选
-            onNodeChecked : function(event, data) {
-              selectTreeNode(data);
-            }
-          });
+        });
+      } else {
+        $('#cate-tree').treeview({
+          data : [ {
+            text : '全部',
+            id : '0',
+            pathName : '全部'
+          } ], // 数据源
+          showCheckbox : true, //是否显示复选框
+          multiSelect : false, //多选
+          onNodeChecked : function(event, data) {
+            selectTreeNode(data);
+          }
+        });
+      }
+    },
+    error : function() {
+      $('#cate-tree').treeview({
+        data : [ {
+          text : '全部',
+          id : '0',
+          pathName : '全部'
+        } ], // 数据源
+        showCheckbox : true, //是否显示复选框
+        multiSelect : false, //多选
+        onNodeChecked : function(event, data) {
+          selectTreeNode(data);
         }
       });
-    });
-
-    // table
-    // 2.返回操作模版[按钮颜色暂不确定]
-    function operateFormatter(value, row, index) {
-      return [
-          '<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick="lookItem('
-              + index + ')">查看</button>',
-          '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick="editItem('
-              + index + ', 2)">修改</button>',
-          '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="deleteItem('
-              + index + ')">删除</button>' ].join('');
     }
+  });
+});
 
-    // 操作模版调用的方法
-    function deleteItem(e) {
-      alert('删除操作，序号' + e)
+// 操作模版调用的方法
+function changeValid(e, n, pn, type) {
+  if (type==1) {
+    ajaxChangeValid(e, type);
+  } else {
+    var nn=(pn=='根')?n:pn+"-"+n;
+    layer.confirm('要停用分类"'+nn+'"吗？', {btn : [ '确定', '取消' ]},
+      function(index) {
+        layer.close(index);
+        ajaxChangeValid(e, type);
+      }
+    );
+  }
+}
+function ajaxChangeValid(id ,valid) {
+  $.ajax({
+    type : "post",
+    url : '${gateway}/cate/changeValid',
+    data: {"id":id, "valid":valid},
+    dataType : "json",
+    success : function(result) {
+      if (result.returnCode == '00') {
+        alert((valid==1?"启用":"停用")+"成功!");
+        refresh();
+      } else {
+        alert(result.messageInfo);
+      }
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) { //失败回调函数
+      var m="系统错误：\nstatu=" + XMLHttpRequest.status + "\nreadyState=" + XMLHttpRequest.readyState + "\ntext=" + textStatus + "\nerrThrown=" + errorThrown;
+      alert(m);
     }
+  });
+}
 
-    function editItem(e, type) {
-      var title = '新增分类信息';
-      if (type == 2)
-        title = '修改分类信息';
-      layer.open({
-        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title : '<span class="text-color">' + title + '</span>',//请修改span中间的内容
-        shadeClose : true,//开启阴影关闭
-        closeBtn : 1, //不显示关闭按钮
-        shade : 0.6,
-        maxmin : false,//开启最大化最小化按钮
-        area : [ '80%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : '${gateway}/cate/edit'//如果不想出现滚动条['content.html', 'no']
-      });
-    }
+function editItem(e, type) {
+  var title = '新增分类信息';
+  if (type == 2) title = '修改分类信息';
+  layer.open({
+    type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+    title : '<span class="text-color">' + title + '</span>',//请修改span中间的内容
+    shadeClose : true,//开启阴影关闭
+    closeBtn : 1, //不显示关闭按钮
+    shade : 0.6,
+    maxmin : false,//开启最大化最小化按钮
+    area : [ '60%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
+    content : '${gateway}/cate/edit?id='+e//如果不想出现滚动条['content.html', 'no']
+  });
+}
 
-    function lookItem(e) {
-      alert(e);
-      layer.open({
-        type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title : '<span class="text-color">查看分类信息</span>',//请修改span中间的内容
-        shadeClose : true,//开启阴影关闭
-        closeBtn : 1, //不显示关闭按钮
-        shade : 0.6,
-        maxmin : false,//开启最大化最小化按钮
-        area : [ '80%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : 'cate/view'//如果不想出现滚动条['content.html', 'no']
-      });
-    }
+function lookItem(e) {
+  alert(e);
+  layer.open({
+    type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+    title : '<span class="text-color">查看分类信息</span>',//请修改span中间的内容
+    shadeClose : true,//开启阴影关闭
+    closeBtn : 1, //不显示关闭按钮
+    shade : 0.6,
+    maxmin : false,//开启最大化最小化按钮
+    area : [ '60%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
+    content : 'cate/view'//如果不想出现滚动条['content.html', 'no']
+  });
+}
 
-    function refresh() {
-      $("#tb_departments").bootstrapTable('refresh');
-    }
+function refresh() {
+  $("#tb_departments").bootstrapTable('refresh');
+}
 
-    TableInit(queryParams).Init('${gateway}/cate/getPageData', [ {
-      field : 'name',
-      title : '分类名称',
-      sortable : true
-    }, {
-      field : 'parentName',
-      title : '上级分类',
-      sortable : true
-    }, {
-      field : 'sort',
-      title : '本级排序',
-      sortable : true
-    }, {
-      field : 'valid',
-      title : '是否有效',
-      sortable : true
-    }, {
-      field : 'createName',
-      title : '创建者',
-      sortable : true
-    }, {
-      field : 'createDate',
-      title : '创建时间',
-      sortable : true
-    }, {
-      field : 'methods',
-      title : '操作',
-      formatter : operateFormatter
-    } ]);
-    function queryParams(params) {
-      return {
-        // 使用page size分页
-        limit : params.limit, //页面大小
-        offset : params.offset
-      //页码
-      };
-    }
-  </script>
+TableInit(queryParams).Init('${gateway}/cate/getPageData', [ {
+  field : 'name',
+  title : '分类名称',
+  sortable : false
+}, {
+  field : 'parentName',
+  title : '上级分类',
+  align: 'left',
+  sortable : false,
+  formatter: formatParent
+}, {
+  field : 'sort',
+  title : '本级排序',
+  sortable : false
+}, {
+  field : 'valid',
+  title : '是否有效',
+  sortable : false,
+  formatter: formatValid
+}, {
+  field : 'createName',
+  title : '修改人',
+  sortable : false
+}, {
+  field : 'createDate',
+  title : '创建时间',
+  sortable : false
+}, {
+  field : 'updateName',
+  title : '修改人',
+  sortable : false
+}, {
+  field : 'updateDate',
+  title : '修改时间',
+  sortable : false
+}, {
+  field : 'id',
+  title : '操作',
+  formatter : operateFormatter
+}]);
+
+function queryParams(params) {
+  return {
+    // 使用page size分页
+    limit : params.limit, //页面大小
+    offset : params.offset
+  //页码
+  };
+}
+
+function formatValid(value) {
+  if (value==='有效') {
+    return '<span class="pt-success">'+value+'</span>'
+  } else
+  if (value === '失效') {
+    return '<span class="pt-warn">'+value+'</span>'
+  }
+  return value;
+}
+function formatParent(value) {
+  return '<span style="padding-left:15x;">'+value+'</span>'
+}
+// 2.返回操作模版[按钮颜色暂不确定]
+function operateFormatter(value, row, index) {
+  var btnArray=[];
+//  btnArray.push('<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick="lookItem(\''+value+ '\')">查看</button>');
+  btnArray.push('<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick="editItem(\''+value+ '\', 2)">修改</button>');
+  if (row.valid=='有效') {
+    btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.name+'\',\''+row.parentName+'\', 0)">停用</button>');
+  } else 
+  if (row.valid=='失效') {
+    btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red pt-success" onclick="changeValid(\''+ value + '\', \''+row.name+'\',\''+row.parentName+'\', 1)">启用</button>');
+  }
+  return btnArray.join('');
+}
+</script>
 </body>
 </html>

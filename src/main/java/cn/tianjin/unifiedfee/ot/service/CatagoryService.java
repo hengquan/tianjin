@@ -138,10 +138,11 @@ public class CatagoryService {
         if (StringUtils.isBlank(cate.getId())) {
             isInsert=true;
             cate.setId(SequenceUUID.getPureUUID());
-            cate.setCreateDate(new java.sql.Date(System.currentTimeMillis()));
+            cate.setCreateDate(new java.sql.Date(new Date().getTime()));
             cate.setCreateId(ui.getUserId());
             cate.setCreateName(ui.getUsername());
-            cate.setParentIds("0,");
+            if (_curRootNode.isRoot()) cate.setParentIds("0,");
+            else cate.setParentIds(_curRootNode.getTnEntity().getParentIds()+_curRootNode.getId()+",");
 
             //检查名称是否有，且同级不能重名
             boolean sameName=false;
@@ -182,29 +183,28 @@ public class CatagoryService {
     }
 
     //@SuppressWarnings("unchecked")
-    public List<Category> getPageData(Category cate) {
-        return categoryDao.getList(cate);
-//        List<Map<String, Object>> ml=categoryDao.getListWithMap(cate);
-//        List<Map<String,Object>> cList=new ArrayList<Map<String,Object>>();
-//        for (Map<String, Object> _m: ml) {
-//            Map<String ,Object> newData=new HashMap<String, Object>();
-//            newData.put("id", (String)_m.get("ID"));
-//            newData.put("name", (String)_m.get("NAME"));
-//            newData.put("desc", (String)_m.get("REMARKS"));
-//            newData.put("parentId", "0".equals((String)_m.get("PARENT_ID"))?null:(String)_m.get("PARENT_ID"));
-//            newData.put("parentName", "");
-//            TreeNode<CategoryNode> node=(TreeNode<CategoryNode>)root.findNode((String)_m.get("ID"));
-//            if (node!=null) {
-//                if (node.getParent()!=null) newData.put("parentName", node.getParent().getNodeName());
-//            }
-//            newData.put("sort", Integer.parseInt(""+_m.get("SORT")));
-//            newData.put("valid", (Integer.parseInt(""+_m.get("ISVALID")))==1?"有效":"失效");
-//            newData.put("createId", (String)_m.get("CREATE_ID"));
-//            newData.put("createName", (String)_m.get("CREATE_NAME"));
-//            newData.put("createDate", new java.sql.Date(((Timestamp)_m.get("CREATE_DATE")).getTime()));
-//            newData.put("updateDate", new java.sql.Date(((Timestamp)_m.get("UPDATE_DATE")).getTime()));
-//            cList.add(newData);
-//        }
-//        return cList;
+    public List<Map<String, Object>> getPageData(Category cate) {
+        return categoryDao.getListWithMap(cate);
+    }
+
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> changeValid(String id, int valid) {
+        if (root==null) initRoot();
+
+        Map<String, Object> retMap=new HashMap<String, Object>();
+
+        TreeNode<CategoryNode> node=(TreeNode<CategoryNode>)root.findNode(id);
+        if (node==null) {
+            retMap.put("returnCode", "04");
+            retMap.put("messageInfo", "分类id无对应分类，无法处理");
+        } else {
+            node.getTnEntity().setIsvalid(valid);
+            Category c=new Category();
+            c.setId(node.getId());
+            c.setIsvalid(valid);
+            categoryDao.update(c);
+            retMap.put("returnCode", "00");
+        }
+        return retMap;
     }
 }

@@ -67,10 +67,11 @@
   <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
       <form class="form-horizontal pt-form-full" role="form" id="mainForm">
+        <input type="hidden" name="id" id="objId"></input>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="form-group">
             <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " for="title"><span> ※ </span>分类名称</label>
-            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
               <input type="text" class="form-control" name="name" id="name" />
             </div>
           </div>
@@ -78,7 +79,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="form-group">
             <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span> ※ </span>上级分类</label>
-            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
               <div class="input-group">
                 <input type="text" class="form-control" name="upName" id="upName" style="border-right:0px;" readonly="readonly"/>
                 <div class="input-group-btn">
@@ -97,7 +98,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="form-group">
             <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span> ※ </span>分类排序</label>
-            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
               <input type="text" class="form-control" name="sort" id="sort" />
             </div>
           </div>
@@ -118,7 +119,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="form-group">
             <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="remarks"><span> &emsp; </span>分类说明</label>
-            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
               <textarea id="remarks" class="form-control" name="remarks" style="min-height:108px;max-width:830px;"></textarea>
             </div>
           </div>
@@ -136,21 +137,26 @@
 <br>
 <br>
 <script>
+function getUrlParam(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+  var r = window.location.search.substr(1).match(reg); //匹配目标参数
+  if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+
 $(function () {
   //icheck 单选多选
   $('input').iCheck({
     radioClass : 'iradio_square-blue',
     increaseArea : '20%' // optional
   });     
-
   $(".dropdown-menu").on('click', function (e) {
     e.stopPropagation();
   });
-
   //初始化选择树
   $.ajax({
     type : "post",
     url: '${gateway}/train/getTree/ptTree',
+    data: {type:1},
     dataType : "json",
     success : function(result) {
       if (result.returnCode=='00') {
@@ -199,6 +205,7 @@ $(function () {
       async : true,//true为异步，false为同步
       success : function(result) {
         if (result.returnCode != '00') {
+          alert(result.messageInfo);
           return false;
         } else {
           //刷新列表
@@ -258,10 +265,45 @@ $(function () {
     todayBtn : true,
     autoclose : true
   });
+
+  //若是修改，填充页面
+  var id=getUrlParam("id");
+  if (id&&id!="undefined") {
+    $.ajax({
+      url : '${gateway}/cate/get',
+      data : {"id": id},
+      cache : false,//false是不缓存，true为缓存
+      async : true,//true为异步，false为同步
+      success : function(result) {
+        if (result.returnCode != '00') {
+          alert(result.messageInfo);
+          return false;
+        } else {
+          //填充数据 Object { id: "2", parentId: "0", nodeName: "政策类", order: 8, parentIds: "0,", isvalid: 1, createId: "·1", createName: "·1", createDate: "2018-09-13", updateId: "·1", … }
+          console.log(result.data);
+          var cate=result.data;
+          $("#objId").val(cate.id);
+          $("#name").val(cate.nodeName);
+          $("#upName").val(cate.pathName);
+          $("#parentId").val(cate.parentId);
+          $("#sort").val(cate.order);
+          if (cate.isvalid==1) {
+//            $("input:radio[name='isvalid'][value='1']").prop("checked", true);
+          } else {
+  //          $("input:radio[name='isvalid'][value='0']").prop("checked", true);
+          }
+          $("#remarks").val(cate.remarks);
+        }
+      },
+      error : function() {
+      }
+    });
+  }
 });
 
 function selectTreeNode(treeNodeData) {
-  $("input[name='upName']").val(treeNodeData.text);
+  console.log(treeNodeData);
+  $("input[name='upName']").val(treeNodeData.pathName);
   $("input[name='parentId']").val(treeNodeData.id);
   $('#cate-tree').treeview('uncheckAll', { silent: true });
   $('#cate-tree').treeview('checkNode', [treeNodeData.nodeId, { silent: true }]);
