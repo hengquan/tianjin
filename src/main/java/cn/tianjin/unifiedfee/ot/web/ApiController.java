@@ -19,6 +19,7 @@ import com.github.pagehelper.PageHelper;
 import com.spiritdata.framework.core.model.tree.TreeNode;
 import com.spiritdata.framework.core.model.tree.TreeNodeBean;
 import com.spiritdata.framework.util.DateUtils;
+import com.spiritdata.framework.util.RequestUtils;
 import com.spiritdata.framework.util.SequenceUUID;
 import com.spiritdata.framework.util.TreeUtils;
 
@@ -671,12 +672,12 @@ public class ApiController {
      */
     @RequestMapping("gatherData")
     @ResponseBody
-    public void gatherData(HttpServletRequest request, HttpServletResponse response,
-        @RequestParam(required=false) LogVisit lv) {
+    public void gatherData(HttpServletRequest request, HttpServletResponse response) {
         HttpPush.responseInfo(response);//跨域
         try {
             UserInfo ui=userService.getUserInfo();
             if (ui!=null) {
+                LogVisit lv=getFromRequest(request);
                 lv.setId(SequenceUUID.getPureUUID());
                 lv.setVisitorId(ui.getUserId());
                 lv.setVisitorType("1");
@@ -690,5 +691,11 @@ public class ApiController {
             }
         } catch(Exception e) {
         }
+    }
+    private LogVisit getFromRequest(HttpServletRequest request) {
+        Map<String, Object> mm=RequestUtils.getDataFromRequest(request);
+        LogVisit lv=new LogVisit();
+        lv.fromHashMap(mm);
+        return lv;
     }
 }
