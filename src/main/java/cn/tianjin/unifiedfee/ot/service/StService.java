@@ -93,10 +93,7 @@ public class StService {
 	          }     
 	        return dao.insert(tm) >  0 ? tm.getId() : "";
 	      
-	  }
-	
-	
-	
+	  }	
 	//添加选项	
 	public String insertselect(Tm tm,UserInfo user) throws Exception {
 	    String restr = "000";
