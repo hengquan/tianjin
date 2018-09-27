@@ -46,12 +46,12 @@ public class ManageDispatchUrl {
 
 //=============================以下为页面跳转
     /*后台管理首页 index页*/
-    @RequestMapping("/")
+    @RequestMapping(value={"/index", "/"})
     public String page(Model model) {
         //获得权限信息，并回写到对象中
         //trainNameId="企业门户（chenph）";
         trainNameId="线上培训子系统（chenph）";
-        String menuHtml=null, indexHtml=null;
+        String menuHtml="", indexHtml="";
         try {
             UserInfo ui=userService.getUserInfo();
             if (ui!=null) {
@@ -70,8 +70,8 @@ public class ManageDispatchUrl {
                         for (int i=0; i<l.size(); i++) {
                             SysResource m1=l.get(i);
                             if (m1.getResourcesName().equals("首页")) {
-                                indexHtml="<li class='pt-menu-list'><span class='glyphicon glyphicon-triangle-right' aria-hidden='true'><img src='"+prefix+"/src/images/house.png' width='100%'></span>";
-                                indexHtml+="<h3 class='pt-menu-title'><a href='javascript:void(0);' onclick='showMenu(\""+prefix+""+m1.getResourceUrl()+"\")'>"+m1.getResourcesName()+"</a></h3>";
+                                indexHtml="<li class='pt-menu-list'><span style='width: 14px;height: 14px;position: absolute;left: 12px;' aria-hidden='true'><img src='"+prefix+"/src/images/house.png' width='100%'></span>";
+                                indexHtml+="<h3 class='pt-menu-title'><a href='javascript:void(0);' onclick='showMenu(\""+prefix+"/mainpage"/*+m1.getResourceUrl()*/+"\")'>"+m1.getResourcesName()+"</a></h3>";
                                 indexHtml+="</li>";
                             } else
                             if (m1.getChildren()!=null&&m1.getChildren().size()>0) {
@@ -93,7 +93,7 @@ public class ManageDispatchUrl {
         } catch(Exception e) {
             e.printStackTrace();
         }
-        if (StringUtils.isBlank(indexHtml)) menuHtml=indexHtml+menuHtml;
+        if (!StringUtils.isBlank(indexHtml)) menuHtml=indexHtml+menuHtml;
         model.addAttribute("menuHtml", menuHtml);
         return "/manage/index";
     }
@@ -109,6 +109,12 @@ public class ManageDispatchUrl {
             }
         }
         return null;
+    }
+
+    //--分类管理
+    @RequestMapping("/mainpage")
+    public String toMainPage() {
+        return "/manage/mainpage";
     }
 
     //--分类管理
