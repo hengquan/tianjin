@@ -3,6 +3,7 @@ package cn.tianjin.unifiedfee.ot.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -50,7 +51,7 @@ public class ManageDispatchUrl {
         //获得权限信息，并回写到对象中
         //trainNameId="企业门户（chenph）";
         trainNameId="线上培训子系统（chenph）";
-        String menuHtml="";
+        String menuHtml=null, indexHtml=null;
         try {
             UserInfo ui=userService.getUserInfo();
             if (ui!=null) {
@@ -65,10 +66,14 @@ public class ManageDispatchUrl {
                     for (SysResource s: l) if (s.getResourcesName().equals("培训中心")) {_ret.add(s);break;}
                     l=_ret;
                      */
-
                     if (l!=null) {
                         for (int i=0; i<l.size(); i++) {
                             SysResource m1=l.get(i);
+                            if (m1.getResourcesName().equals("首页")) {
+                                indexHtml="<li class='pt-menu-list'><span class='glyphicon glyphicon-triangle-right' aria-hidden='true'><img src='"+prefix+"/src/images/house.png' width='100%'></span>";
+                                indexHtml+="<h3 class='pt-menu-title'><a href='javascript:void(0);' onclick='showMenu(\""+prefix+""+m1.getResourceUrl()+"\")'>"+m1.getResourcesName()+"</a></h3>";
+                                indexHtml+="</li>";
+                            } else
                             if (m1.getChildren()!=null&&m1.getChildren().size()>0) {
                                 menuHtml+="<li class='pt-menu-list'><span class='glyphicon glyphicon-triangle-right' aria-hidden='true'></span>"
                                         +"<h3 class='pt-menu-title'><a href='#'>"+m1.getResourcesName()+"</a></h3>";
@@ -88,6 +93,7 @@ public class ManageDispatchUrl {
         } catch(Exception e) {
             e.printStackTrace();
         }
+        if (StringUtils.isBlank(indexHtml)) menuHtml=indexHtml+menuHtml;
         model.addAttribute("menuHtml", menuHtml);
         return "/manage/index";
     }
