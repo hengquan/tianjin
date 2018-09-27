@@ -39,6 +39,16 @@ public class Mnsc {
     private Integer logVisitCount;
     
     private String createdate;
+    
+    private List<CommArchive> commArchives;
+
+    public List<CommArchive> getCommArchives() {
+        return commArchives;
+    }
+
+    public void setCommArchives(List<CommArchive> commArchives) {
+        this.commArchives = commArchives;
+    }
 
     public String getCreatedate() {
         return createdate;

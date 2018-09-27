@@ -196,6 +196,13 @@ html {
 	<br>
 	<br>
 	<script>
+    //附件相关
+    var imgJson = new Array()
+    //imgJson[imgJson.length] = '<img src="http://1.202.219.107:8082/ot-server/ot/image/111.jpg" class="file-preview-image">';
+    //imgJson[imgJson.length] = '<img src="http://1.202.219.107:8082/ot-server/ot/image/156011110000017.jpg" class="file-preview-image">';
+    var videoJson = new Array()
+    //videoJson[videoJson.length] = '<img src="http://1.202.219.107:8082/ot-server/ot/image/111.jpg" class="file-preview-image">';
+    //videoJson[videoJson.length] = '<img src="http://1.202.219.107:8082/ot-server/ot/image/156011110000017.jpg" class="file-preview-image">';
     $(function() {
       //icheck 单选多选
       $('input').iCheck({
@@ -350,6 +357,23 @@ html {
                         + '</tr>';
                   }
                   $("#theTable").html(html);
+                }
+                //附件相关
+                var commArchives = data.data.commArchives;
+                if (commArchives != null) {
+                  for (var i = 0; i < commArchives.length; i++) {
+                    if (commArchives[i].archiveType == 'img') {
+                      var fileUrl = commArchives[i].fileUrl;
+                      if (fileUrl != '') {
+                        imgJson[imgJson.length] = '<img src="'+ fileUrl +'" class="file-preview-image">';
+                      }
+                    }else if(commArchives[i].archiveType == 'main'){
+                      var fileUrl = commArchives[i].fileUrl;
+                      if (fileUrl != '') {
+                        videoJson[videoJson.length] = '<img src="'+ fileUrl +'" class="file-preview-image">';
+                      }
+                    }
+                  }
                 }
               },
               error : function() { //失败回调函数
@@ -522,7 +546,7 @@ html {
       theme : "explorer", //主题
       language : 'zh',
       uploadUrl : "${gateway}/file/upload",// 上传请求路径
-      allowedFileExtensions : [ 'mp4'],//允许上传的文件后缀       
+      allowedFileExtensions : [ 'mp4' ],//允许上传的文件后缀       
       uploadAsync : false, //是否允许异步上传
       showUpload : false,//是否显示上传按钮
       showCaption : false,//是否显示容器
@@ -545,6 +569,7 @@ html {
       maxFileCount : 3, //最多文件数量
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : false,
+      initialPreview : imgJson, //显示图片
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片
@@ -561,7 +586,7 @@ html {
       theme : "explorer", //主题
       language : 'zh',
       uploadUrl : "${gateway}/file/upload",// 上传请求路径
-      allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg'],//允许上传的文件后缀    
+      allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg' ],//允许上传的文件后缀    
       uploadAsync : false, //是否允许异步上传
       showUpload : false,//是否显示上传按钮
       showCaption : false,//是否显示容器
@@ -584,9 +609,7 @@ html {
       maxFileCount : 3, //最多文件数量
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : true,
-      initialPreview : [
-
-      ],
+      initialPreview : videoJson, //显示图片
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片

@@ -152,6 +152,11 @@ public class KjService {
                 }
             }
         }
+        //处理相关附件
+        List<CommArchive> commArchives = commArchiveMapper.selectByObjId(kj.getId());
+        if(commArchives!=null && commArchives.size()>0){
+            kj.setCommArchives(commArchives);
+        }
         //处理日期
         Date createDate = kj.getCreateDate();
         String createdate = format.format(createDate);
@@ -205,7 +210,7 @@ public class KjService {
                     for (CommArchive commArchive : commArchives) {
                         String archiveType = commArchive.getArchiveType();
                         if (StringUtils.isNotEmpty(archiveType)) {
-                            if (archiveType.equals("main")) {
+                            if (archiveType.equals("img")) {
                                 String fileUrl = commArchive.getFileUrl();
                                 if (StringUtils.isNotEmpty(fileUrl))
                                     kj.setMainUrl(fileUrl);
