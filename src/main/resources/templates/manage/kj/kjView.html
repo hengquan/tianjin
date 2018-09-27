@@ -106,7 +106,7 @@ html {
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title">学&emsp;&emsp;分：</label>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title">&emsp;学&emsp;分：</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<span id="score"></span>
 							</div>
@@ -114,7 +114,7 @@ html {
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">说&emsp;&emsp;明：</label>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">&emsp;说&emsp;明：</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<span id="remarks"></span>
 							</div>
@@ -125,7 +125,7 @@ html {
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">
 								创建时间： </label>
 							<div>
-								<span id="createDate"></span>
+								<span id="createdate"></span>
 							</div>
 						</div>
 					</div>
@@ -164,7 +164,7 @@ html {
             var kj = data.data;
             $("#kjName").html(kj.kjName);
             $("#kjCatNames").html(kj.kjCatNames);
-            $("#createDate").html(kj.createDate);
+            $("#createdate").html(kj.createdate);
             $("#score").html(kj.score);
             $("#remarks").html(kj.remarks);
             $("#kjCatId").html(kj.kjCatNames);
@@ -176,7 +176,7 @@ html {
                 html += '<tr>' + '<td>' + dataList[i].kjName + '</td>' + '<td>'
                     + dataList[i].kjCatNames + '</td>' + '<td>'
                     + dataList[i].score + '</td>' + '<td>'
-                    + dataList[i].createDate + '</td>' + '</tr>';
+                    + dataList[i].createdate + '</td>' + '</tr>';
               }
               $("#theTable").html(html);
             }

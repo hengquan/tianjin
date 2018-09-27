@@ -1,7 +1,5 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,15 +55,6 @@ public class KjController {
         param.put("kjName", kjName);
         // 查询数据
         List<Kj> kjs = kjService.getPageData(param);
-        if (kjs != null && kjs.size() > 0) {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            for (Kj kj : kjs) {
-                Date createDate = kj.getCreateDate();
-                String createdate = format.format(createDate);
-                if (StringUtils.isNotEmpty(createdate))
-                    kj.setCreatedate(createdate);
-            }
-        }
         // 放入分页
         PageInfo<Kj> pageList = new PageInfo<Kj>(kjs);
         // 返回

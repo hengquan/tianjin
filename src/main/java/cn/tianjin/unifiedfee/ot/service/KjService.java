@@ -35,7 +35,17 @@ public class KjService {
 
     // 获取分页数据
     public List<Kj> getPageData(Map<String, Object> param) {
-        return dao.getPageData(param);
+        List<Kj> kjs = dao.getPageData(param);
+        if (kjs != null && kjs.size() > 0) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            for (Kj kj : kjs) {
+                Date createDate = kj.getCreateDate();
+                String createdate = format.format(createDate);
+                if (StringUtils.isNotEmpty(createdate))
+                    kj.setCreatedate(createdate);
+            }
+        }
+        return kjs;
     }
 
     // 添加
@@ -112,6 +122,7 @@ public class KjService {
 
     // 获取单条信息
     public Kj get(Kj kj) throws Exception {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         // 获取主表信息
         kj = dao.get(kj.getId());
         if (kj != null) {
@@ -131,10 +142,21 @@ public class KjService {
                 kj.setIds(ids);
                 List<Kj> kjs = dao.getDataListByIds(kj);
                 if (kjs != null && kjs.size() > 0) {
+                    for (Kj oneKj : kjs) {
+                        Date createDate = oneKj.getCreateDate();
+                        String createdate = format.format(createDate);
+                        if (StringUtils.isNotEmpty(createdate))
+                            oneKj.setCreatedate(createdate);
+                    }
                     kj.setKjs(kjs);
                 }
             }
         }
+        //处理日期
+        Date createDate = kj.getCreateDate();
+        String createdate = format.format(createDate);
+        if (StringUtils.isNotEmpty(createdate))
+            kj.setCreatedate(createdate);
         return kj;
     }
 
@@ -144,7 +166,17 @@ public class KjService {
     }
 
     public List<Kj> getDataListByIds(Kj kj) {
-        return dao.getDataListByIds(kj);
+        List<Kj> kjs = dao.getDataListByIds(kj);
+        if (kjs != null && kjs.size() > 0) {
+            for (Kj oneKj : kjs) {
+                // 日期格式
+                Date createDate = oneKj.getCreateDate();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                String str = format.format(createDate);
+                oneKj.setCreatedate(str);
+            }
+        }
+        return kjs;
     }
 
     public List<Kj> find4Web(Map<String, Object> param) {

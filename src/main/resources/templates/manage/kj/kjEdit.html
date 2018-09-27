@@ -128,7 +128,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>学&emsp;&emsp;分</label>
+									※ </span>&emsp;学&emsp;分</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<input type="text" class="form-control" name="score" id="score" />
 							</div>
@@ -137,7 +137,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun"><span>
-									※ </span>说&emsp;&emsp;明</label>
+									※ </span>&emsp;说&emsp;明</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<textarea id="remarks" class="form-control" name="remarks"
 									style="min-height: 108px"></textarea>
@@ -147,22 +147,22 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span
-								class="cfff"> ※ </span>上传课件</label>
+								class="cfff"> ※ </span>&emsp;上传课件</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<input id="file-1" type="file" multiple class="file"
 									name="files" data-overwrite-initial="false"
-									data-min-file-count="1">(注：请上传视频文件，大小在10M以内，支持格式：mp4)</b>
+									data-min-file-count="1"><b>(注：请上传视频文件，大小在10M以内，支持格式：mp4)</b>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span
-								class="cfff"> ※ </span>上传图片</label>
+								class="cfff"> ※ </span>上传缩略图</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<input id="file-2" type="file" multiple class="file"
 									name="files" data-overwrite-initial="false"
-									data-min-file-count="1">(注：请上传229x174，大小在2M以内的缩略图，支持格式：jpg,gif,png,jpeg)</b>
+									data-min-file-count="1"><b>(注：请上传229x174，大小在2M以内的缩略图，支持格式：jpg,gif,png,jpeg)</b>
 							</div>
 						</div>
 					</div>
@@ -342,7 +342,7 @@ html {
                         + dataList[i].score
                         + '</td>'
                         + '<td>'
-                        + dataList[i].createDate
+                        + dataList[i].createdate
                         + '</td>'
                         + '<th onclick="removeTr(this)" thisval="'
                         + dataList[i].id
@@ -479,7 +479,7 @@ html {
                     + dataList[i].score
                     + '</td>'
                     + '<td>'
-                    + dataList[i].createDate
+                    + dataList[i].createdate
                     + '</td>'
                     + '<th onclick="removeTr(this)" thisval="'
                     + dataList[i].id

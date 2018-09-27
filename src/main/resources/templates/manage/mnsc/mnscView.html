@@ -90,7 +90,7 @@ html {
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="dingjia">选择&emsp;&emsp;分类：</label>
+              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="dingjia">选&emsp;择&emsp;分类：</label>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
                 <span id="mnscCatId"></span>
               </div>
@@ -106,7 +106,7 @@ html {
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title">学&emsp;&emsp;&emsp;&emsp;分：</label>
+              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title">&emsp;&emsp;学&emsp;&emsp;分：</label>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
                 <span id="score"></span>
               </div>
@@ -114,7 +114,7 @@ html {
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">说&emsp;&emsp;&emsp;&emsp;明：</label>
+              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">&emsp;&emsp;说&emsp;&emsp;明：</label>
               <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
                 <span id="remarks"></span>
               </div>
@@ -122,10 +122,10 @@ html {
           </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">创建&emsp;&emsp;时间：</label>
+              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">创&emsp;建&emsp;时间：</label>
               <div
                 class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6">
-                <span id="createDate"></span>
+                <span id="createdate"></span>
               </div>
             </div>
           </div>
@@ -164,13 +164,13 @@ html {
               + '<th>课件名称</th>'
               + '<th>分类名称</th>'
               + '<th>学分</th>'
-              + '<th>过期时间</th>'
+              + '<th>创建时间</th>'
               + '</tr>';
             var mnsc = data.data;
             $("#objId").html(mnsc.id);
             $("#mnscName").html(mnsc.mnscName);
             $("#mnscUrl").html(mnsc.mnscUrl);
-            $("#createDate").html(mnsc.createDate);
+            $("#createdate").html(mnsc.createdate);
             $("#score").html(mnsc.score);
             $("#remarks").html(mnsc.remarks);
             $("#mnscCatNames").html(mnsc.mnscCatNames);
@@ -191,7 +191,7 @@ html {
                     + dataList[i].score
                     + '</td>'
                     + '<td>'
-                    + dataList[i].createDate
+                    + dataList[i].createdate
                     + '</td>'
                     + '</tr>';
               }
