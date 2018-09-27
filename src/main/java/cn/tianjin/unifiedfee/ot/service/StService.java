@@ -127,8 +127,7 @@ public class StService {
          flag = selectDao.insert(tmSelect)> 0 ? true : false;;
          if (flag)
              restr="001";
-            else restr="000";
-                       
+            else restr="000";                       
         return restr;
 	}
    	// 更新
