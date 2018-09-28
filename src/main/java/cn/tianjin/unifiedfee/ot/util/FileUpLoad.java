@@ -27,14 +27,14 @@ public class FileUpLoad {
     // 文件类型
     public final String FILETYPE = "image/jpg";
 
-    @RequestMapping("/upLoad123")
-    public void fileUp123() throws Exception {
-        System.out.println(downloadEndpoint);
-        InputStream stream = new FileInputStream("D:\\123.jpg");
-        String objectName = fileObjectService.putObject(FILEPATH, "123.jpg", stream, FILETYPE);
-        System.out.println(objectName);
-        stream.close();
-    }
+//    @RequestMapping("/upLoad123")
+//    public void fileUp123() throws Exception {
+//        System.out.println(downloadEndpoint);
+//        InputStream stream = new FileInputStream("D:\\123.jpg");
+//        String objectName = fileObjectService.putObject(FILEPATH, "123.jpg", stream, FILETYPE);
+//        System.out.println(objectName);
+//        stream.close();
+//    }
 
     // 文件上传
     public void fileUp(MultipartFile file) throws Exception {

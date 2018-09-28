@@ -93,10 +93,7 @@ public class StService {
 	          }     
 	        return dao.insert(tm) >  0 ? tm.getId() : "";
 	      
-	  }
-	
-	
-	
+	  }	
 	//添加选项	
 	public String insertselect(Tm tm,UserInfo user) throws Exception {
 	    String restr = "000";
@@ -107,29 +104,30 @@ public class StService {
         tmp =this.getselectSign(tm);
         if (tmp.size()>0) {
             restr="002";
-        }else {
-            int isanswer = 0;
-            isanswer = tm.getIsAnswer();
-            if (isanswer==1) {
-                tmp =this.getselectAnswer(tm);
-                if  (tmp.size()>0) 
-                    restr="003";
-            }else {
-                tmSelect.setId(SequenceUUID.getPureUUID());
-                tmSelect.setTmId(tm.getId());
-                tmSelect.setSort(tm.getSort());
-                tmSelect.setTmSelectDesc(tm.getTmSelectDesc());
-                tmSelect.setTmSelectSign(tm.getTmSelectSign());
-                tmSelect.setIsAnswer(tm.getIsAnswer());
-                tmSelect.setCreateBy(tm.getCreateBy());
-                tmSelect.setCreateName(tm.getCreateName()); 
-                boolean flag; 
-                flag = selectDao.insert(tmSelect)> 0 ? true : false;;
-                if (flag)
-                    restr="001";
-                else restr="000";
+            return restr;
+        }
+         int isanswer = 0;
+         isanswer = tm.getIsAnswer();
+         if (isanswer==1) {
+             tmp =this.getselectAnswer(tm);
+             if  (tmp.size()>0) {
+                 restr="003";
+                 return restr;
             }
-        }              
+         }
+         tmSelect.setId(SequenceUUID.getPureUUID());
+         tmSelect.setTmId(tm.getId());
+         tmSelect.setSort(tm.getSort());
+         tmSelect.setTmSelectDesc(tm.getTmSelectDesc());
+         tmSelect.setTmSelectSign(tm.getTmSelectSign());
+         tmSelect.setIsAnswer(tm.getIsAnswer());
+         tmSelect.setCreateBy(tm.getCreateBy());
+         tmSelect.setCreateName(tm.getCreateName()); 
+         boolean flag; 
+         flag = selectDao.insert(tmSelect)> 0 ? true : false;;
+         if (flag)
+             restr="001";
+            else restr="000";                       
         return restr;
 	}
    	// 更新

@@ -6,11 +6,9 @@
 		<result column="serv_sys_type" property="servSysType" jdbcType="VARCHAR" />
 		<result column="serv_sys_id" property="servSysId" jdbcType="VARCHAR" />
 		<result column="visit_type" property="visitType" jdbcType="INTEGER" />
-		<result column="visit_sys_type" property="visitSysType"
-			jdbcType="VARCHAR" />
+		<result column="visit_sys_type" property="visitSysType" jdbcType="VARCHAR" />
 		<result column="visit_sys_id" property="visitSysId" jdbcType="VARCHAR" />
-		<result column="visit_modulel_id" property="visitModulelId"
-			jdbcType="VARCHAR" />
+		<result column="visit_modulel_id" property="visitModulelId" jdbcType="VARCHAR" />
 		<result column="obj_type" property="objType" jdbcType="VARCHAR" />
 		<result column="obj_id" property="objId" jdbcType="VARCHAR" />
 		<result column="api_name" property="apiName" jdbcType="VARCHAR" />
@@ -144,12 +142,8 @@
 			<if test="returndata != null">
 				returnData,
 			</if>
-			<if test="createDate != null">
-				create_date,
-			</if>
-			<if test="endtime != null">
-				endTime,
-			</if>
+            create_date,
+            endTime,
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -239,12 +233,8 @@
 			<if test="returndata != null">
 				#{returndata,jdbcType=VARCHAR},
 			</if>
-			<if test="createDate != null">
-				#{createDate,jdbcType=DATE},
-			</if>
-			<if test="endtime != null">
-				#{endtime,jdbcType=DATE},
-			</if>
+			sysdate,
+			sysdate,
 		</trim>
 	</insert>
 

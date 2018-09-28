@@ -273,7 +273,7 @@ function commitSj() {
       if (returnCode=='00') {
         for (var i=0; i<data.data.tmList.length; i++) {
           var oneTm=data.data.tmList[i];
-          $("#tm-result-"+oneTm.tmId).find(".tm-youanswer").html("您的答案:"+oneTm.answer);
+          $("#tm-result-"+oneTm.tmId).find(".tm-youanswer").html("您的答案:"+(oneTm.answer?"未答":oneTm.answer));
           $("#tm-result-"+oneTm.tmId).find(".tm-youanswer").css("color", oneTm.score>0?"green":"red");
           $("#tm-result-"+oneTm.tmId).find(".get-score").html("得分:"+oneTm.score);
           $("#tm-result-"+oneTm.tmId).find(".tm-right").html("正确答案:"+oneTm.tmAnswer);

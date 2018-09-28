@@ -2,7 +2,11 @@ package cn.tianjin.unifiedfee.ot.entity;
 
 import java.util.Date;
 
-public class LogVisit {
+import com.spiritdata.framework.core.model.BaseObject;
+
+public class LogVisit extends BaseObject {
+    private static final long serialVersionUID = -7582903982200904333L;
+
     private String id;
 
     private String servSysType;
