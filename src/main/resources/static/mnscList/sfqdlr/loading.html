@@ -87,6 +87,21 @@
   <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
 </div>
 <script>
+var objId = '';
+//获取参数
+var url = location.search;
+if (url != '') {
+	url = url.substr(1);
+	var split = url.split("=");
+	if(split[0]=='objId'){
+	  objId = split[1];
+	}
+}
+<!-- 开始埋点 -->
+var _gatherData={};
+_gatherData.visitModulelId="模拟实操展示";
+_gatherData.objType="ts_mnsc";
+_gatherData.objId=objId;
   function toStudy () {
     window.location.href="step1.html"
   }

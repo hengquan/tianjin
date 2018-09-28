@@ -131,17 +131,22 @@ html {
 	</div>
 
 	<script>
+  <!-- 开始埋点 -->
+    var _gatherData = {};
+    _gatherData.visitModulelId = "学员概况";
+    _gatherData.objType = "student_profile";
+    //_gatherData.objId=getUrlParam("id");
     $(function() {
       //模拟实操
-      //logVisitCount(1);
+      logVisitCount(1);
       //课件
-      //logVisitCount(2);
+      logVisitCount(2);
       //试卷
-      //logVisitCount(3);
+      logVisitCount(3);
       //最新模拟实操数据
-      //getMnscList(2);
+      getMnscList(2);
       //最新课件数据
-      //getKjList(2);
+      getKjList(2);
       //我的日志
       getMyLogVisitList(10);
     })
