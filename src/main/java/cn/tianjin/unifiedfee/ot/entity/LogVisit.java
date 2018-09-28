@@ -41,6 +41,10 @@ public class LogVisit extends BaseObject {
 
     private String visitorName;
 
+    private String groupId;
+
+    private String groupName;
+
     private String clientIp;
 
     private String pointInfo;
@@ -315,5 +319,21 @@ public class LogVisit extends BaseObject {
 
     public void setEndtime(Date endtime) {
         this.endtime = endtime;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 }

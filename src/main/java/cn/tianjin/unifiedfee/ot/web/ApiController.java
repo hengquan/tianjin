@@ -23,7 +23,10 @@ import com.spiritdata.framework.util.RequestUtils;
 import com.spiritdata.framework.util.SequenceUUID;
 import com.spiritdata.framework.util.TreeUtils;
 
+import cn.taiji.format.result.ObjectResponseResult;
 import cn.taiji.oauthbean.dto.UserInfo;
+import cn.taiji.system.domain.CompanyBasicInfo;
+import cn.taiji.web.company.remote.SystemCompanyRemote;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
@@ -52,6 +55,8 @@ public class ApiController {
     private SjService sjService;
     @Autowired
     private ArchiveService archiveService;
+    @Autowired // 注入Service
+    public SystemCompanyRemote companyRemote;
 
     //    @RequestMapping("getCateData")
 //    @ResponseBody
@@ -591,6 +596,25 @@ public class ApiController {
             } else {
                 retMap.put("returnCode","00");
                 retMap.put("data", sjInfo);
+                //这里要向日志表中写一条记录
+                LogVisit lv=new LogVisit();
+                lv.setId(SequenceUUID.getPureUUID());
+                lv.setVisitorId(ui.getUserId());
+                lv.setVisitorType("1");
+                lv.setVisitorName(ui.getUsername());
+                if (StringUtils.isBlank(lv.getServSysType())) lv.setServSysType("009");
+                if (StringUtils.isBlank(lv.getServSysId())) lv.setServSysId("1");
+                if (StringUtils.isBlank(lv.getVisitSysType())) lv.setVisitSysType("009");
+                if (StringUtils.isBlank(lv.getVisitSysId())) lv.setVisitSysId("1");
+                ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
+                if (companyInfo!=null) {
+                    lv.setGroupId(companyInfo.getData().getCompanyId());
+                    lv.setGroupName(companyInfo.getData().getCompanyNameZh());
+                }
+                lv.setVisitModulelId("在线练习");
+                lv.setObjId(""+sjInfo.get("id"));
+                lv.setObjType("q_sj");
+                LogVisitMemory.getInstance().put2Queue(lv);
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -687,6 +711,11 @@ public class ApiController {
                 if (StringUtils.isBlank(lv.getVisitSysType())) lv.setVisitSysType("009");
                 if (StringUtils.isBlank(lv.getVisitSysId())) lv.setVisitSysId("1");
 
+                ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
+                if (companyInfo!=null&&companyInfo.getData()!=null&&!"无企业信息".equals(companyInfo.getMsg())) {
+                    lv.setGroupId(companyInfo.getData().getCompanyId());
+                    lv.setGroupName(companyInfo.getData().getCompanyNameZh());
+                }
                 LogVisitMemory.getInstance().put2Queue(lv);
             }
         } catch(Exception e) {

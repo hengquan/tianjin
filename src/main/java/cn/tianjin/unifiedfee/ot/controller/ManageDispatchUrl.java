@@ -45,8 +45,8 @@ public class ManageDispatchUrl {
 
     @Value("${ot-server.prefix}")
     private String prefix;
-    @Value("${ot-server.manage.role.name}")
-    private String trainNameId;
+    //@Value("${ot-server.manage.role.name}")
+    //private String trainNameId;
 
     // =============================以下为页面跳转
     /* 后台管理首页 index页 */
@@ -54,16 +54,14 @@ public class ManageDispatchUrl {
     public String page(Model model) {
         // 获得权限信息，并回写到对象中
         // trainNameId="企业门户（chenph）";
-        trainNameId = "线上培训子系统（chenph）";
+        String[] trainNameId={"线上培训子系统（chenph）", "培训中心"};
         String menuHtml = "", indexHtml = "";
         try {
             UserInfo ui = userService.getUserInfo();
             if (ui != null) {
                 model.addAttribute("username", ui.getUsername());
-                model.addAttribute("userImg",
-                        "http://1.202.219.107:8088/pm-server-innerweb/src/images/defaultAvatar@2x.png");
-                ObjectResponseResult<List<SysResource>> result = securityMenuService
-                        .findMenuByUsername(ui.getUsername());
+                model.addAttribute("userImg", "http://1.202.219.107:8088/pm-server-innerweb/src/images/defaultAvatar@2x.png");
+                ObjectResponseResult<List<SysResource>> result = securityMenuService.findMenuByUsername(ui.getUsername());
                 if (result != null && result.getData() != null && result.getData().size() > 0) {
                     List<SysResource> l = findTrainMenu(result.getData(), trainNameId);
                     /**
@@ -113,17 +111,22 @@ public class ManageDispatchUrl {
         return "/manage/index";
     }
 
-    private List<SysResource> findTrainMenu(List<SysResource> lsr, String roleName) {
+    private List<SysResource> findTrainMenu(List<SysResource> lsr, String[] roleName) {
         List<SysResource> retl = null;
         for (SysResource sr : lsr) {
-            if (sr.getResourcesName().equals(roleName)) {
+            boolean hasResource=false;
+            for (int i=0; i<roleName.length; i++) {
+                if (sr.getResourcesName().equals(roleName[i])) {
+                    hasResource=true;
+                    break;
+                }
+            }
+            if (hasResource) {
                 return sr.getChildren();
             } else {
-                if (sr.getChildren() == null || sr.getChildren().size() == 0)
-                    return null;
+                if (sr.getChildren() == null || sr.getChildren().size() == 0) return null;
                 retl = findTrainMenu(sr.getChildren(), roleName);
-                if (retl != null)
-                    return retl;
+                if (retl != null) return retl;
             }
         }
         return null;
@@ -186,8 +189,7 @@ public class ManageDispatchUrl {
                 }
             }
         }
-        if (StringUtils.isNotEmpty(imgJsons))
-            imgJsons = imgJsons.substring(1);
+        if (StringUtils.isNotEmpty(imgJsons)) imgJsons = imgJsons.substring(1);
         model.addAttribute("imgJson", imgJsons);
         return "/manage/mnsc/mnscEdit";
     }
@@ -284,6 +286,7 @@ public class ManageDispatchUrl {
 
     // =============================为配合目前部署，所修改的信息===========
     // --分类管理
+    /*
     @RequestMapping("cateList")
     public String toDelCateList() {
         return "/manage/cate/cateList";
@@ -306,5 +309,5 @@ public class ManageDispatchUrl {
     public String toDelTmList() {
         return "/manage/st/tmList";
     }
-
+    */
 }
