@@ -147,22 +147,22 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span
-								class="cfff"> ※ </span>&emsp;上传课件</label>
+								class="cfff"> ※ </span>&emsp;上传缩略图</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
-								<input id="file-1" type="file" multiple class="file"
+								<input id="file-2" type="file" multiple class="file"
 									name="files" data-overwrite-initial="false"
-									data-min-file-count="1"><b>(注：请上传视频文件，大小在10M以内，支持格式：mp4)</b>
+									data-min-file-count="1"><b>(注：请上传229x174，大小在2M以内的缩略图，支持格式：jpg,gif,png,jpeg)</b>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span
-								class="cfff"> ※ </span>上传缩略图</label>
+								class="cfff"> ※ </span>上传视频课件</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
-								<input id="file-2" type="file" multiple class="file"
+								<input id="file-1" type="file" multiple class="file"
 									name="files" data-overwrite-initial="false"
-									data-min-file-count="1"><b>(注：请上传229x174，大小在2M以内的缩略图，支持格式：jpg,gif,png,jpeg)</b>
+									data-min-file-count="1"><b>(注：请上传视频文件，大小在10M以内，支持格式：mp4)</b>
 							</div>
 						</div>
 					</div>
@@ -197,12 +197,14 @@ html {
 	<br>
 	<script>
     //附件相关
-    var imgJson = new Array()
-    //imgJson[imgJson.length] = '<img src="http://1.202.219.107:8082/ot-server/ot/image/111.jpg" class="file-preview-image">';
-    //imgJson[imgJson.length] = '<img src="http://1.202.219.107:8082/ot-server/ot/image/156011110000017.jpg" class="file-preview-image">';
-    var videoJson = new Array()
-    //videoJson[videoJson.length] = '<img src="http://1.202.219.107:8082/ot-server/ot/image/111.jpg" class="file-preview-image">';
-    //videoJson[videoJson.length] = '<img src="http://1.202.219.107:8082/ot-server/ot/image/156011110000017.jpg" class="file-preview-image">';
+    var imgJson = new Array();
+    if ("${imgJson}" != '') {
+      imgJson[imgJson.length] = "${imgJson}";
+    }
+    var videoJson = new Array();
+    if ("${videoJson}" != '') {
+      videoJson[videoJson.length] = "${videoJson}";
+    }
     $(function() {
       //icheck 单选多选
       $('input').iCheck({
@@ -357,23 +359,6 @@ html {
                         + '</tr>';
                   }
                   $("#theTable").html(html);
-                }
-                //附件相关
-                var commArchives = data.data.commArchives;
-                if (commArchives != null) {
-                  for (var i = 0; i < commArchives.length; i++) {
-                    if (commArchives[i].archiveType == 'img') {
-                      var fileUrl = commArchives[i].fileUrl;
-                      if (fileUrl != '') {
-                        imgJson[imgJson.length] = '<img src="'+ fileUrl +'" class="file-preview-image">';
-                      }
-                    }else if(commArchives[i].archiveType == 'main'){
-                      var fileUrl = commArchives[i].fileUrl;
-                      if (fileUrl != '') {
-                        videoJson[videoJson.length] = '<img src="'+ fileUrl +'" class="file-preview-image">';
-                      }
-                    }
-                  }
                 }
               },
               error : function() { //失败回调函数
@@ -569,7 +554,7 @@ html {
       maxFileCount : 3, //最多文件数量
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : false,
-      initialPreview : imgJson, //显示图片
+      initialPreview : videoJson, //显示图片
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片
@@ -609,7 +594,7 @@ html {
       maxFileCount : 3, //最多文件数量
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : true,
-      initialPreview : videoJson, //显示图片
+      initialPreview : imgJson, //显示图片
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片
