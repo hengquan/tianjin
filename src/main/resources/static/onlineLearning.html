@@ -79,23 +79,34 @@
 			技术支持电话：400-888-5678</div>
 	</div>
 	<script>
+  <!-- 开始埋点 -->
+    var objId = '';
+    //获取参数
+    var url = location.search;
+    if (url != '') {
+      url = url.substr(1);
+      var split = url.split("=");
+      if (split[0] == 'objId') {
+        objId = split[1];
+      }
+    }
+    var _gatherData = {};
+    _gatherData.visitModulelId = "课件展示";
+    _gatherData.objType = "ts_kj";
+    _gatherData.objId = objId;
     $(function() {
-      //获取参数
-      var url = location.search;
-      if (url != '') {
-        url = url.substr(1);
-        var split = url.split("=");
+      if (objId != '') {
         $.ajax({
           type : 'post',
           url : "./train/getKjInfo",
           data : {
-            "kjId" : split[1]
+            "kjId" : objId
           },
           dataType : 'json',
           cache : false,
           success : function(data) {
             var returnCode = data.returnCode;
-            if(returnCode=="00"){
+            if (returnCode == "00") {
               var data = data.data;
               console.log(data);
               //课件名称
@@ -105,10 +116,10 @@
               //文件Url
               var kjUrl = data.kjUrl;
               console.log(kjUrl);
-              if(kjUrl =='' || kjUrl==null){
-                $("#video").attr("src","mnsc.mp4");
-              }else{
-	              $("#video").attr("src",data.kjUrl);
+              if (kjUrl == '' || kjUrl == null) {
+                $("#video").attr("src", "mnsc.mp4");
+              } else {
+                $("#video").attr("src", data.kjUrl);
               }
               //文件介绍
               $("#remarks").html(data.remarks);
@@ -122,13 +133,13 @@
           type : 'post',
           url : "./train/getKjInfo",
           data : {
-            "kjId" : split[1]
+            "kjId" : objId
           },
           dataType : 'json',
           cache : false,
           success : function(data) {
             var returnCode = data.returnCode;
-            if(returnCode=="00"){
+            if (returnCode == "00") {
               var data = data.data;
               console.log(data);
               //课件名称
@@ -138,10 +149,10 @@
               //文件Url
               var kjUrl = data.kjUrl;
               console.log(kjUrl);
-              if(kjUrl =='' || kjUrl==null){
-                $("#video").attr("src","mnsc.mp4");
-              }else{
-                  $("#video").attr("src",data.kjUrl);
+              if (kjUrl == '' || kjUrl == null) {
+                $("#video").attr("src", "mnsc.mp4");
+              } else {
+                $("#video").attr("src", data.kjUrl);
               }
               //文件介绍
               $("#remarks").html(data.remarks);

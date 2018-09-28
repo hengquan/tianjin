@@ -5,34 +5,38 @@
 <title>列表页</title>
 <!-- 1 bootstrap基础css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
-    rel="stylesheet">
+	rel="stylesheet">
 <!-- 2 table表格css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
-    rel="stylesheet">
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
+	rel="stylesheet">
 <!-- 3 treeview树css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
-    rel="stylesheet">
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
+	rel="stylesheet">
 <!-- 4 datetimepicker时间选择css -->
 <link
-    href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
-    rel="stylesheet">
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
+	rel="stylesheet">
 <!-- 5 select选择框css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
-    rel="stylesheet">
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
+	rel="stylesheet">
 <!-- 6 fileinput上传文件css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
-    rel="stylesheet">
+	rel="stylesheet">
 <!-- 7 icheck单选+多选css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
-    rel="stylesheet">
+	rel="stylesheet">
 <!-- 8 Validator验证css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
-    rel="stylesheet">
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
+	rel="stylesheet">
 <!-- 9 layer弹框css -->
 <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
 <!-- 10 引入字体css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
-    rel="stylesheet">
+	rel="stylesheet">
 <!-- 11 页面样式css -->
 <link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
@@ -41,23 +45,30 @@
 <!-- 1 bootstrap基础js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <!-- 2 table表格js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
 <!-- 2 table列表数据js simple-table -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
 <!-- 3 treeview树js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
 <!-- 4 datetimepicker时间选择js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
 <!-- 5 select选择框js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <!-- 6 fileinput上传文件js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
 <!-- 6 fileinput中文包js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
 <!-- 7 icheck单选+多选js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
 <!-- 8 Validator验证js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <!-- 9 layer弹框js -->
 <script src="${gateway}/libs/layer/layer.js"></script>
 <!-- 9 以下是覆盖layer.js中的css样式，必须放在layer.js下面 -->
@@ -68,16 +79,17 @@
 
 </head>
 <body>
-    <div class="pt-page">
-        <div class="pt-root-container">
-            <!--主视口 -->
-            <div class="pt-view pt-open" style="padding-left: 0px;">
-                <!--带横线标题-->
-                <div class="pt-bread">
-                    <h3>模拟实操</h3>
-                    <!-- 添加展开按钮 -->
-                    <button type="button" id="ptsearchfilter" class="btn btn-primary pt-zkbtn">展开</button>
-                </div>
+	<div class="pt-page">
+		<div class="pt-root-container">
+			<!--主视口 -->
+			<div class="pt-view pt-open" style="padding-left: 0px;">
+				<!--带横线标题-->
+				<div class="pt-bread">
+					<h3>模拟实操</h3>
+					<!-- 添加展开按钮 -->
+					<button type="button" id="ptsearchfilter"
+						class="btn btn-primary pt-zkbtn">展开</button>
+				</div>
 				<div class="pt-main pt-padding">
 					<!--搜索条-->
 					<div class="pt-section-search">
@@ -225,6 +237,8 @@
               + value + '")>查看</button>',
           '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
               + value + '")>修改</button>',
+          '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link" onclick=seeItem("'
+              + row.mnscUrl + '")>预览</button>',
           '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
               + value + '")>删除</button>' ].join('');
     }
@@ -293,6 +307,10 @@
       });
     }
 
+    function seeItem(e) {
+      window.open(e);
+    }
+
     TableInit().Init('${gateway}/mnsc/getPageData', [ {
       field : 'mnscName',
       title : '模拟实操名称',
@@ -323,7 +341,8 @@
         mnscName : $("#mnscName").val(),
         // 使用page size分页
         limit : params.limit, //页面大小
-        offset : params.offset//当前页数
+        offset : params.offset
+      //当前页数
       //页码
       };
     }
