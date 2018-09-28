@@ -5,36 +5,36 @@
 <title>列表页</title>
 <!-- 1 bootstrap基础css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
-	rel="stylesheet">
+  rel="stylesheet">
 <!-- 2 table表格css -->
 <link
-	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
-	rel="stylesheet">
+  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
+  rel="stylesheet">
 <!-- 3 treeview树css -->
 <link
-	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
-	rel="stylesheet">
+  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
+  rel="stylesheet">
 <!-- 4 datetimepicker时间选择css -->
 <link
-	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
-	rel="stylesheet">
+  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
+  rel="stylesheet">
 <!-- 5 select选择框css -->
 <link
-	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
-	rel="stylesheet">
+  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
+  rel="stylesheet">
 <!-- 6 fileinput上传文件css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
-	rel="stylesheet">
+  rel="stylesheet">
 <!-- 7 icheck单选+多选css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
-	rel="stylesheet">
+  rel="stylesheet">
 <!-- 8 Validator验证css -->
 <link
-	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
-	rel="stylesheet">
+  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
+  rel="stylesheet">
 <!-- 10 引入字体css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
-	rel="stylesheet">
+  rel="stylesheet">
 <!-- 11 页面样式css -->
 <link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
@@ -44,29 +44,29 @@
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <!-- 2 table表格js -->
 <script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
 <!-- 3 table列表数据js simple-table -->
 <script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
 <!-- 4 treeview树js -->
 <script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
 <!-- 5 datetimepicker时间选择js -->
 <script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
 <!-- 6 select选择框js -->
 <script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <!-- 7 fileinput上传文件js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
 <!-- 8 fileinput中文包js -->
 <script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
 <!-- 9 icheck单选+多选js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
 <!-- 10 Validator验证js -->
 <script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <!-- 11 layer弹框js -->
 <script src="${gateway}/libs/layer/layer.js"></script>
 <!-- 9 layer弹框css -->
@@ -76,139 +76,115 @@
 </head>
 
 <body>
-	<div class="pt-page">
-		<div class="pt-root-container">
-			<!--主视口 -->
-			<div class="pt-view pt-open" style="padding-left: 0px;">
-				<!--带横线标题-->
-				<div class="pt-bread">
-					<h3>分类管理</h3>
-					<!-- 添加展开按钮 -->
-					<button type="button" id="ptsearchfilter" class="btn btn-primary pt-zkbtn">展开</button>
-				</div>
-				<div class="pt-main pt-padding">
-					<!--搜索条-->
-					<div class="pt-section-search">
-						<div class="row clearfix">
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
-								<form class="form-inline">
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-										<div class="form-group">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="keyword">模糊查找</label>
-											<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-												<input type="text" class="form-control" id="keyword" placeholder="关键词">
-											</div>
-										</div>
-									</div>
-									<!-- 隐藏部分包裹 -->
-									<span class="hiddenorshow pt-search-filter">
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-										<div class="form-group">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="cataName">分类名称</label>
-                                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-												<input type="text" class="form-control" id="cataName" placeholder="分类名称">
-											</div>
-										</div>
-									</div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-										<div class="form-group">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="lunch">上级分类</label>
-                                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-												<div class="input-group">
-													<input type="text" class="form-control" name="upName" id="upName" style="border-right: 0px;" readonly="readonly" />
-													<div class="input-group-btn">
-														<button type="button"
-															class="btn btn-default dropdown-toggle btn-tj"
-															data-toggle="dropdown"
-															style="border-bottom-left-radius: 0px; border-top-left-radius: 0px; border-left: 0px;">
-															<span class="caret"></span>
-														</button>
-														<div class="dropdown-menu pull-right"
-															style="width: 300px; height: 260px; overflow-y: auto; overflow-x: hidden;"
-															data-stopPropagation="true">
-															<div id="cate-tree"></div>
-														</div>
-													</div>
-													<input type="hidden" class="form-control" name="parentId" id="pareintId" />
-												</div>
-											</div>
-										</div>
-									</div> <!-- 示例时间选择 -->
-									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-										<div class="form-group">
-											<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-												for="createTime">创建时间</label>
-											<div
-												class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
-												data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-												<input class="form-control" size="16" type="text" value="">
-												<span class="add-on" style="height: 40px"><i class="icon-th"></i></span>
-											</div>
-										</div>
-									</div> <!-- 示例时间区间选择 -->
-									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-										<div class="form-group">
-											<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-												for="exampleInputName2">从</label>
-											<div
-												class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
-												data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-												<input class="form-control" size="16" type="text" value="">
-												<span class="add-on" style="height: 40px"><i
-													class="icon-th"></i></span>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-										<div class="form-group">
-											<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-												style="text-align: center">到</label>
-											<div
-												class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
-												data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-												<input class="form-control" size="16" type="text" value="">
-												<span class="add-on" style="height: 40px"><i
-													class="icon-th"></i></span>
-											</div>
-										</div>
-									</div>
-									</span>
-									<!-- 示例搜索按钮 -->
-									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-										<div class="form-group">
-											<button type="button"
-												class="btn btn-default btn-primary w120">搜索</button>
-										</div>
-									</div>
-								</form>
-							</div>
+  <div class="pt-page">
+    <div class="pt-root-container">
+      <!--主视口 -->
+      <div class="pt-view pt-open" style="padding-left: 0px;">
+        <!--带横线标题-->
+        <div class="pt-bread">
+          <h3>分类管理</h3>
+          <!-- 添加展开按钮 -->
+          <button type="button" id="ptsearchfilter" class="btn btn-primary pt-zkbtn">展开</button>
+        </div>
+        <div class="pt-main pt-padding">
+          <!--搜索条-->
+          <div class="pt-section-search">
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
+                <form class="form-inline">
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="keyword">模糊查找</label>
+                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <input type="text" class="form-control" id="keyword" placeholder="关键词">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 隐藏部分包裹 -->
+                  <span class="hiddenorshow pt-search-filter">
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="cataName">分类名称</label>
+                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <input type="text" class="form-control" id="cataName" placeholder="分类名称">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="lunch">上级分类</label>
+                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <input type="text" class="form-control" name="upName" id="upName" style="border-right: 0px;" readonly="readonly" />
+                          <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle btn-tj" data-toggle="dropdown" style="border-bottom-left-radius: 0px; border-top-left-radius: 0px; border-left: 0px;">
+                              <span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu pull-right" style="margin-right:21px;width:300px; height:260px; overflow-y: auto; overflow-x: hidden;" data-stopPropagation="true">
+                              <div id="cate-tree"></div>
+                            </div>
+                          </div>
+                          <input type="hidden" class="form-control" name="parentId" id="pareintId" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="form-group">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-right:5px;">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="createTime">创建时间</label>
+                      <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align: center">从</label>
+                      <div class="date datetimepicker col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-top:0px;" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                        <input class="form-control" size="16" type="text" value="">
+                        <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
+                      </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-right:0;">
+                      <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align: center">到</label>
+                      <div class="date datetimepicker col-lg-11 col-md-11 col-sm-11 col-xs-11" style="margin-top:0px;" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                        <input class="form-control" size="16" type="text" value="">
+                        <span class="add-on" style="height: 40px"><i class="icon-th"></i></span>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  </span>
+                  <!-- 示例搜索按钮 -->
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div class="form-group">
+                      <button type="button"
+                        class="btn btn-default btn-primary w120">搜索</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
 
-							<div class="column pt-btn-line">
-								<button type="button" class="btn w120 btn-default btn-primary"
-									onclick='editItem()'>新增</button>
-								<!--
+              <div class="column pt-btn-line">
+                <button type="button" class="btn w120 btn-default btn-primary"
+                  onclick='editItem()'>新增</button>
+                <!--
                             <button type="button" class="btn w120 btn-default">批量停用</button>
                             <button type="button" class="btn w120 btn-default">批量启用</button>
                             <button type="button" class="btn w120 btn-default btn-danger-ly">批量删除</button>-->
-							</div>
-						</div>
-					</div>
-					<!--内容区容器-->
-					<div class="pt-main">
-						<!--bootstrap 表格-->
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="table-wrap">
-									<table id="tb_departments"></table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--主视口 结束-->
-		</div>
-	</div>
+              </div>
+            </div>
+          </div>
+          <!--内容区容器-->
+          <div class="pt-main">
+            <!--bootstrap 表格-->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="table-wrap">
+                  <table id="tb_departments"></table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--主视口 结束-->
+    </div>
+  </div>
 
 <script src="${gateway}/src/js/pt-tree.js"></script>
 <script>
