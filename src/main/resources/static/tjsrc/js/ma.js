@@ -58,6 +58,5 @@
     var img = new Image(1, 1);
     var src = './train/gatherData?args=' + encodeURIComponent(args);
     if (paramUrl) src+="&"+paramUrl;
-    alert("请求到的后端脚本为" + src);
     img.src = src;
 })();
