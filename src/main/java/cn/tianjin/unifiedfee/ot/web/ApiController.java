@@ -717,7 +717,9 @@ public class ApiController {
                     lv.setGroupId(companyInfo.getData().getCompanyId());
                     lv.setGroupName(companyInfo.getData().getCompanyNameZh());
                 }
-                LogVisitMemory.getInstance().put2Queue(lv);
+                if (!StringUtils.isBlank(lv.getObjType())) {
+                    LogVisitMemory.getInstance().put2Queue(lv);
+                }
                 System.out.println("===insertLog==================================");
             }
             retMap.put("returnCode", "000");
