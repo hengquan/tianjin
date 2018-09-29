@@ -1,6 +1,7 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
 import java.io.InputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +49,10 @@ public class FileController {
                 if (file != null && file.getSize() > 0) {
                     InputStream stream = file.getInputStream();
                     fileName = file.getOriginalFilename();
-                    String objectName = fileObjectService.putObject(FILEPATH, fileName, stream, FILETYPE);
+                    //当前时间戳
+                    long dateTime = new Date().getTime();
+                    String uploadFileName = dateTime+"";
+                    String objectName = fileObjectService.putObject(FILEPATH, uploadFileName, stream, FILETYPE);
                     System.out.println("--------------------------------");
                     System.out.println(downloadEndpoint + objectName);
                     System.out.println("--------------------------------");

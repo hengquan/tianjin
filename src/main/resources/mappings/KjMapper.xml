@@ -172,7 +172,7 @@
 		<if test="kjName != null and kjName != ''">
 			and instr(kj_name,#{kjName})>0
 		</if>
-		order by create_date desc
+		order by sort desc,create_date desc
 	</select>
 
 	<select id="getDataListByIds" resultMap="BaseResultMap">
@@ -180,7 +180,7 @@
 		<include refid="Blob_Column_List" />
 		from ts_KJ
 		where instr(#{ids},id)>0
-		order by create_date desc
+		order by sort desc,create_date desc
 	</select>
 
 	<select id="find4Web" resultMap="BaseResultMap" parameterType="Map">
@@ -217,6 +217,6 @@
 		<include refid="Blob_Column_List" />
 		from ts_KJ
 		where rownum &lt;= #{rownum}
-		order by create_date desc
+		order by sort desc,create_date desc
 	</select>
 </mapper>

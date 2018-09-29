@@ -276,7 +276,7 @@ public class Api2Controller {
      * 
      * @param request
      * @param response
-     * @param 1:摸拟实操,2:课件,3:在线试题
+     * @param 
      * @return
      */
     @RequestMapping("getNewKjList")
