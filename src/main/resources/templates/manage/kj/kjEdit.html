@@ -390,10 +390,14 @@ html {
             $("#objId").val(objId);
             setTimeout(function() {
               $("#file-1").fileinput('upload');
+              parent.refresh();
+              closeMy();
+            }, 200);
+            setTimeout(function() {
               $("#file-2").fileinput('upload');
               parent.refresh();
               closeMy();
-            }, 500);
+            }, 400);
           }
         },
         error : function() { //失败回调函数
