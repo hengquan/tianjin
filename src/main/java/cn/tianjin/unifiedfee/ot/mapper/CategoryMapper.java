@@ -10,7 +10,7 @@ public interface CategoryMapper {
 
     public List<Map<String,Object>> getAllListWithMap();
 
-    public List<Map<String,Object>> getListWithMap(Category cate);
+    public List<Map<String,Object>> getListWithMap(Map<String,Object> cate);
 
     public int insert(Category record);
 

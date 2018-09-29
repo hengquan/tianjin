@@ -124,7 +124,7 @@
                               <div id="cate-tree"></div>
                             </div>
                           </div>
-                          <input type="hidden" class="form-control" name="parentId" id="pareintId" />
+                          <input type="hidden" class="form-control" name="parentId" id="parentId" />
                         </div>
                       </div>
                     </div>
@@ -137,6 +137,7 @@
                       </div>
                     </div>
                   </div>
+                  <!-- 
                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                     <div class="form-group">
                       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="padding-right:5px;">
@@ -182,7 +183,7 @@
                       </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div class="form-group">
                       <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="valid">有效状态</label>
@@ -352,7 +353,7 @@ function editItem(e, type) {
     closeBtn : 1, //不显示关闭按钮
     shade : 0.6,
     maxmin : false,//开启最大化最小化按钮
-    area : [ '60%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
+    area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
     content : '${gateway}/cate/edit?id='+e//如果不想出现滚动条['content.html', 'no']
   });
 }
@@ -429,11 +430,6 @@ function queryParams(params) {
     cataName: $("#cataName").val(),
     parentId: $("#parentId").val(),
     createName: $("#createName").val(),
-    begin1: $("#begin1").val(),
-    begin2: $("#begin2").val(),
-    updateName: $("#keyword").val(),
-    end1: $("#end1").data("datetimepicker").getDate(),
-    end2: $("#end2").val(),
     valid:selectedValues.join(","),
     // 使用page size分页
     limit : params.limit, //页面大小

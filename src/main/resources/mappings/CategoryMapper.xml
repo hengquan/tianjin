@@ -29,9 +29,25 @@
     select <include refid="Base_Column_List"/> from category
   </select>
 
-  <select id="getListWithMap" resultType="java.util.HashMap">
+  <select id="getListWithMap" resultType="java.util.HashMap" parameterType="Map">
     select <include refid="Base_Column_List"/> from category
-    where 1=1
+    <where prefix="" suffix=" and" suffixOverrides=" and" >
+      <if test="cataName!=null">
+        name=#{cataName,jdbcType=VARCHAR}
+      </if>
+      <if test="createName!=null">
+        create_name=#{createName,jdbcType=VARCHAR}
+      </if>
+      <if test="parentId!=null">
+        parent_id=#{parentId,jdbcType=VARCHAR}
+      </if>
+      <if test="valid!=null">
+        isvalid=#{valid,jdbcType=VARCHAR}
+      </if>
+      <if test="keyword!=null">
+        (name like '%${keyword}%' or remarks like '%${keyword}%' or update_name like '%${keyword}%' or create_name like '%${keyword}%')
+      </if>
+    </where>
   </select>
 
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.Category" >

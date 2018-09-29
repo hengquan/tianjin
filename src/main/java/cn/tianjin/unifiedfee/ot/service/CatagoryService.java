@@ -183,7 +183,7 @@ public class CatagoryService {
     }
 
     //@SuppressWarnings("unchecked")
-    public List<Map<String, Object>> getPageData(Category cate) {
+    public List<Map<String, Object>> getPageData(Map<String, Object> cate) {
         return categoryDao.getListWithMap(cate);
     }
 

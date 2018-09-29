@@ -139,10 +139,19 @@ public class CateController extends BaseController {
         HttpPush.responseInfo(response);
 
         Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("keyword", request.getParameter("keyword"));
+        param.put("createName", request.getParameter("createName"));
+        param.put("cataName", request.getParameter("cataName"));
+        param.put("parentId", request.getParameter("parentId"));
+        String tmpStr=request.getParameter("valid");
+        if (!StringUtils.isBlank(tmpStr)&&(!"1,0".equals(tmpStr))&&(!"0,1".equals(tmpStr))) {
+            param.put("valid", tmpStr);
+        }
         // 设置page
         PageHelper.offsetPage(offset, limit);
         // 查询数据
-        List<Map<String, Object>> cl=categoryService.getPageData(cate);
+        List<Map<String, Object>> cl=categoryService.getPageData(param);
         PageInfo<Map<String, Object>> pageList = new PageInfo<Map<String, Object>>(cl);
         if (cl!=null) {
             //放入分页
