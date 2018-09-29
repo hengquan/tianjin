@@ -49,11 +49,6 @@ body {
 		</div>
 	</div>
 	<script>
-  <!-- 开始埋点 -->
-    var _gatherData = {};
-    _gatherData.visitModulelId = "模拟实操展示";
-    _gatherData.objType = "ts_mnsc";
-    //_gatherData.objId=getUrlParam("id");
     $(document).ready(function() {
       $("a[cateId='']").click();
     });
@@ -88,12 +83,13 @@ body {
                   html += '<div class="col-md-3">'
                       + '<img src="'+ mainUrl +'" alt="">'
                       + '<div class="model_bg" onclick=toSimulation("'
-                      + dataList[i].mnscUrl + '?objId='+ dataList[i].id +'")></div>'
-                      + '<div class="explain">' + '<p>' + dataList[i].mnscName
-                      + '</p>' + '<div class="system">' + dataList[i].remarks
-                      + '</div>' + '<div class="start" onclick=toSimulation("'
-                      + dataList[i].mnscUrl + '?objId='+ dataList[i].id +'")>开始模拟实操</div>' + '</div>'
-                      + '</div>';
+                      + dataList[i].mnscUrl + '?objId=' + dataList[i].id
+                      + '")></div>' + '<div class="explain">' + '<p>'
+                      + dataList[i].mnscName + '</p>' + '<div class="system">'
+                      + dataList[i].remarks + '</div>'
+                      + '<div class="start" onclick=toSimulation("'
+                      + dataList[i].mnscUrl + '?objId=' + dataList[i].id
+                      + '")>开始模拟实操</div>' + '</div>' + '</div>';
 
                   if ((i + 1) % 4 == 0) {
                     contentHtml = contentHtml
@@ -126,6 +122,20 @@ body {
     function toSimulation(url) {
       window.open(url);
     }
+  </script>
+	<script type="text/javascript">
+    var _gatherData = {};
+    _gatherData.visitModulelId = "模拟实操展示";
+    _gatherData.objType = "ts_mnsc";
+    //_gatherData.objId=getUrlParam("id");
+    (function() {
+      var ma = document.createElement('script');
+      ma.type = 'text/javascript';
+      ma.async = true;
+      ma.src = "./tjsrc/js/ma.js";
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ma, s);
+    })();
   </script>
 </body>
 </html>

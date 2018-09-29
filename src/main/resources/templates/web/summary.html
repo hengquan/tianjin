@@ -131,11 +131,6 @@ html {
 	</div>
 
 	<script>
-  <!-- 开始埋点 -->
-    var _gatherData = {};
-    _gatherData.visitModulelId = "学员概况";
-    _gatherData.objType = "student_profile";
-    //_gatherData.objId=getUrlParam("id");
     $(function() {
       //模拟实操
       logVisitCount(1);
@@ -181,7 +176,7 @@ html {
               $("#sjCount").html(logVisitCount + "次");
             }
           } else {
-            alert(data.messageInfo);
+            //alert(data.messageInfo);
           }
         },
         error : function() { //失败回调函数
@@ -307,6 +302,20 @@ html {
         }
       });
     }
+  </script>
+	<script type="text/javascript">
+    var _gatherData = {};
+    _gatherData.visitModulelId = "学员概况";
+    _gatherData.objType = "student_profile";
+    //_gatherData.objId=getUrlParam("id");
+    (function() {
+      var ma = document.createElement('script');
+      ma.type = 'text/javascript';
+      ma.async = true;
+      ma.src = "./tjsrc/js/ma.js";
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ma, s);
+    })();
   </script>
 </body>
 </html>

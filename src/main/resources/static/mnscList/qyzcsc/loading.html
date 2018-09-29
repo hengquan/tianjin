@@ -1,119 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>实操-企业注册模拟实操</title>
-  <!-- <!-- 1 bootstrap的css -->
-  <link rel="stylesheet" href="../../web/bootstrap/css/bootstrap.css">
-  <!--公共css-->
-  <link rel="stylesheet" href="../../web/css/pt-main.css">
-  <!--页面css-->
-  <link rel="stylesheet" href="../../web/css/loading.css">
-  <link rel="stylesheet" href="../../web/css/registerLoad.css">
-  <!--引入字体的css-->
-  <link rel="stylesheet" href="../../web/bootstrap/fonts/iconfont.css">
-  <script type="text/javascript" src="../../web/js/jquery-1.12.4.js"></script>
-  <!--bootstrap的js-->
-  <script type="text/javascript" src="../../web/bootstrap/js/bootstrap.min.js"></script>
-  <!--表格table.js-->
-  <script type="text/javascript" src="../../web/bootstrap/js/bootstrap-table.min.js"></script>
-  <!--页面js-->
-  <script type="text/javascript" src="../../web/js/main.js"></script>
+<meta charset="UTF-8">
+<title>实操-企业注册模拟实操</title>
+<!-- <!-- 1 bootstrap的css -->
+<link rel="stylesheet" href="../../web/bootstrap/css/bootstrap.css">
+<!--公共css-->
+<link rel="stylesheet" href="../../web/css/pt-main.css">
+<!--页面css-->
+<link rel="stylesheet" href="../../web/css/loading.css">
+<link rel="stylesheet" href="../../web/css/registerLoad.css">
+<!--引入字体的css-->
+<link rel="stylesheet" href="../../web/bootstrap/fonts/iconfont.css">
+<script type="text/javascript" src="../../web/js/jquery-1.12.4.js"></script>
+<!--bootstrap的js-->
+<script type="text/javascript"
+	src="../../web/bootstrap/js/bootstrap.min.js"></script>
+<!--表格table.js-->
+<script type="text/javascript"
+	src="../../web/bootstrap/js/bootstrap-table.min.js"></script>
+<!--页面js-->
+<script type="text/javascript" src="../../web/js/main.js"></script>
 </head>
 <body>
-<!-- 头部条 -->
-<div class="pt-topbar">
-  <div class="nav_header">
-    <!--左侧系统名称-->
-    <div class="pt-fl pt-system-info">
-      <div class="pt-logo pt-fl"><img src="../../web/images/LOGO@2x.png" alt=""></div>
-      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>企业中心</strong></div>
-    </div>
-    <!--右侧用户信息-->
-    <div class="pt-fr pt-user-info">
-      <div class="pt-settings pt-fr"><img src="" alt=""></div>
-    </div>
-  </div>
-</div>
-<!--模拟加载内容区-->
- <div class="load">
-   <p>欢迎进入本次实操:
-     <span>企业信息注册</span>
-   </p>
-   <div class="load_content">
-     <div class="load_left">
-       <div class="load_one_step load_step">
-         <div class="load_num">01</div>
-         <div class="load_text">企业注册入口</div>
-         <img src="../../web/images/left.png" alt="">
-       </div>
-       <div class="load_three_step load_step">
-         <div class="load_num">03</div>
-         <div class="load_text">企业信息填写</div>
-         <img src="../../web/images/left.png" alt="">
-       </div>
-       <div class="load_five_step load_step">
-         <div class="load_num">05</div>
-         <div class="load_text">注册成功</div>
-         <img src="../../web/images/left.png" alt="">
-       </div>
-     </div>
-     <div class="load_mid"></div>
-     <div class="load_right">
-       <div class="load_two_step load_step">
-         <div class="load_num">02</div>
-         <div class="load_text">基础信息填写</div>
-         <img src="../../web/images/right.png" alt="">
-       </div>
-       <div class="load_four_step load_step">
-         <div class="load_num">04</div>
-         <div class="load_text">银行信息填写</div>
-         <img src="../../web/images/right.png" alt="">
-       </div>
-     </div>
-   </div>
-   <div class="load_start">
-     <span onclick="toStudy()" >开始注册信息填写</span>
-   </div>
- </div>
-<!--公共底部-->
-<div class="pt-footer">
-  <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
-</div>
-<script>
-<!-- 开始埋点 -->
-var objId = '';
-//获取参数
-var url = location.search;
-if (url != '') {
-  url = url.substr(1);
-  var split = url.split("=");
-  if(split[0]=='objId'){
-    objId = split[1];
-  }
-}
-var _gatherData={};
-_gatherData.visitModulelId="模拟实操展示";
-_gatherData.objType="ts_mnsc";
-_gatherData.objId=objId;
-  function toStudy () {
-    window.location.href="step1.html"
-  }
-</script>
-<script type="text/javascript">
-var _gatherData={};
-_gatherData.visitModulelId="模拟实操展示";
-_gatherData.objType="ts_mnsc";
-_gatherData.objId="3323e224134134";
-(function () {
-  var ma = document.createElement('script');
-  ma.type = 'text/javascript';
-  ma.async = true;
-  ma.src = "./tjsrc/js/ma.js";
-  var s = document.getElementsByTagName('script')[0];
-  s.parentNode.insertBefore(ma, s);
-}
-)();
-</script>
+	<!-- 头部条 -->
+	<div class="pt-topbar">
+		<div class="nav_header">
+			<!--左侧系统名称-->
+			<div class="pt-fl pt-system-info">
+				<div class="pt-logo pt-fl">
+					<img src="../../web/images/LOGO@2x.png" alt="">
+				</div>
+				<div class="pt-slogen pt-fr">
+					天津市港口统一收费服务平台-<strong>企业中心</strong>
+				</div>
+			</div>
+			<!--右侧用户信息-->
+			<div class="pt-fr pt-user-info">
+				<div class="pt-settings pt-fr">
+					<img src="" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--模拟加载内容区-->
+	<div class="load">
+		<p>
+			欢迎进入本次实操: <span>企业信息注册</span>
+		</p>
+		<div class="load_content">
+			<div class="load_left">
+				<div class="load_one_step load_step">
+					<div class="load_num">01</div>
+					<div class="load_text">企业注册入口</div>
+					<img src="../../web/images/left.png" alt="">
+				</div>
+				<div class="load_three_step load_step">
+					<div class="load_num">03</div>
+					<div class="load_text">企业信息填写</div>
+					<img src="../../web/images/left.png" alt="">
+				</div>
+				<div class="load_five_step load_step">
+					<div class="load_num">05</div>
+					<div class="load_text">注册成功</div>
+					<img src="../../web/images/left.png" alt="">
+				</div>
+			</div>
+			<div class="load_mid"></div>
+			<div class="load_right">
+				<div class="load_two_step load_step">
+					<div class="load_num">02</div>
+					<div class="load_text">基础信息填写</div>
+					<img src="../../web/images/right.png" alt="">
+				</div>
+				<div class="load_four_step load_step">
+					<div class="load_num">04</div>
+					<div class="load_text">银行信息填写</div>
+					<img src="../../web/images/right.png" alt="">
+				</div>
+			</div>
+		</div>
+		<div class="load_start">
+			<span onclick="toStudy()">开始注册信息填写</span>
+		</div>
+	</div>
+	<!--公共底部-->
+	<div class="pt-footer">
+		<div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018
+			技术支持电话：400-888-5678</div>
+	</div>
+	<script>
+    function toStudy() {
+      window.location.href = "step1.html"
+    }
+  </script>
+	<script type="text/javascript">
+    var objId = '';
+    //获取参数
+    var url = location.search;
+    if (url != '') {
+      url = url.substr(1);
+      var split = url.split("=");
+      if (split[0] == 'objId') {
+        objId = split[1];
+      }
+    }
+    var _gatherData = {};
+    _gatherData.visitModulelId = "模拟实操展示";
+    _gatherData.objType = "ts_mnsc";
+    _gatherData.objId = objId;
+    (function() {
+      var ma = document.createElement('script');
+      ma.type = 'text/javascript';
+      ma.async = true;
+      ma.src = "/tjsrc/js/ma.js";
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ma, s);
+    })();
+  </script>
 </body>
 </html>

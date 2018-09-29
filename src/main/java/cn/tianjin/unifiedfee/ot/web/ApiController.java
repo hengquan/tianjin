@@ -717,6 +717,7 @@ public class ApiController {
                     lv.setGroupName(companyInfo.getData().getCompanyNameZh());
                 }
                 LogVisitMemory.getInstance().put2Queue(lv);
+                System.out.println("===insertLog==================================");
             }
         } catch(Exception e) {
         }
