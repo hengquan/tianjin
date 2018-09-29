@@ -132,12 +132,8 @@ html {
 
 	<script>
     $(function() {
-      //模拟实操
-      logVisitCount(1);
-      //课件
-      logVisitCount(2);
-      //试卷
-      logVisitCount(3);
+      //统计数据
+      logVisitCount();
       //最新模拟实操数据
       getMnscList(2);
       //最新课件数据
@@ -152,10 +148,7 @@ html {
       window.open("./courseContent.html")
     }
     //返回项目所访问次数
-    function logVisitCount(state) {
-      var data = {
-        "state" : state
-      };
+    function logVisitCount() {
       $.ajax({
         type : 'post',
         url : "./train/getLogVisitCount",
@@ -165,7 +158,7 @@ html {
         success : function(data) {
           console.log(data);
           //状态
-          var returnCode = data.returnCode;
+          /* var returnCode = data.returnCode;
           if (returnCode == '00') {
             var logVisitCount = data.data;
             if (state == 1) {
@@ -177,7 +170,7 @@ html {
             }
           } else {
             //alert(data.messageInfo);
-          }
+          } */
         },
         error : function() { //失败回调函数
           alert("获取信息失败");
