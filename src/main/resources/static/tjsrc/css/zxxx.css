@@ -1,0 +1,99 @@
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+.con{
+  border-radius: 10px;
+  overflow: hidden;
+}
+.listbox {
+  padding-top: 20px;
+}
+.listbox li {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.btns {
+  width: 80%;
+  background: #f46227;
+  color: #fff;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  border-radius: 26px;
+  margin: 0 auto;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.listbox .botoom {
+  background: #f8f8f8;
+  padding-bottom: 40px;
+}
+.listbox h2 {
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 0 20px;
+}
+.listbox p {
+  text-align: center;
+  height: 26px;
+  line-height: 26px;
+}
+.time {
+  text-align: right;
+}
+.glyphicon {
+  margin-right: 5px;
+}
+.tag-box {
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #abc3cf;
+}
+.tag-box {
+
+}
+.tag-box li {
+  float: left;
+  margin-right: 50px;
+  cursor: pointer;
+  height: 39px;
+}
+.tag-box li:last-of-type {
+  margin-right: 0;
+}
+.tag-box li.on {
+  font-weight: bold;
+  border-bottom: 3px solid #2e66bd;
+  
+  
+}
+.search-box {
+  width: 60%;
+  margin: 0 auto;
+}
+.input-group-addon:last-child {
+  background: #2e66bd;
+  color: #fff;
+  padding: 10px 45px;
+  cursor: pointer;
+}
+.row-box {
+  padding: 0 5px;
+}
+.row-box .left{
+  float: left;
+}
+.row-box .right {
+  float: right;
+}
+.eay {
+  display: inline-block;
+  width: 15px;
+  vertical-align: 1px;
+}

@@ -65,7 +65,7 @@ public class CateController extends BaseController {
                 retMap.put("returnCode", "00");
                 Map<String, Object> dataM=node.getTnEntity().toHashMap();
                 String upperName=node.getTreePathName("-", 0);
-                if (upperName.indexOf("-")!=-1) upperName=upperName.substring(0, upperName.indexOf("-"));
+                //if (upperName.indexOf("-")!=-1) upperName=upperName.substring(0, upperName.indexOf("-"));
                 dataM.put("pathName", upperName);
                 retMap.put("data", dataM);
             }

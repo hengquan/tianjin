@@ -1,0 +1,108 @@
+*{ 
+  margin: 0;
+  padding: 0;
+}
+ul,li,ol {
+  list-style: none;
+}
+img {
+  width: 100%;
+}
+.top {
+  padding-top: 20px;
+}
+.top li {
+  position: relative;
+}
+.top li span {
+  position: absolute;
+  color: #fff;
+  left: 40%;
+  top: 20%;
+  font-weight: bold;
+  font-size: 30px;
+}
+.center {
+  margin-bottom: 30px;
+}
+.center .title {
+  border-bottom: 2px solid #94cbe7;
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.center .title span {
+  border-bottom: 5px solid #2e66bd;
+  padding-bottom: 6px;
+}
+.xygk-bottom {
+  border: 1px solid #dddddd;
+}
+.xygk-bottom p {
+  font-size: 18px;
+  font-weight: bold;
+  height: 52px;
+  line-height: 52px;
+  padding-left: 15px;
+  background: #eef2f6;
+  border-bottom: 2px solid #dddddd;
+  margin: 0;
+}
+.logList li {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #dddddd;
+}
+.logList li:last-of-type {
+  border: none;
+}
+.date {
+  text-align: right;
+}
+.con{
+  border-radius: 10px;
+  overflow: hidden;
+}
+.listbox {
+  padding-top: 20px;
+}
+.listbox li {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.listbox .botoom {
+  background: #f8f8f8;
+  padding-bottom: 40px;
+}
+.listbox h2 {
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+  padding-left: 10px;
+  margin-bottom: 15px;
+}
+.listbox p {
+  text-align: center;
+  height: 26px;
+  line-height: 26px;
+}
+.time {
+  text-align: right;
+}
+.row-box {
+  padding: 0 5px;
+}
+.row-box .left{
+  float: left;
+}
+.row-box .right {
+  float: right;
+}
+.eay {
+  display: inline-block;
+  width: 15px;
+  vertical-align: 1px;
+}

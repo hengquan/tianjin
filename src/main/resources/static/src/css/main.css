@@ -547,9 +547,11 @@ ul {
 .dropdown-menu {
   padding: 0 !important;
 }
+/*
 .datetimepicker-dropdown-bottom-right {
   margin-top: 42px !important;
 }
+*/
 .form-horizontal .radio,
 .form-horizontal .checkbox,
 .form-horizontal .radio-inline,
