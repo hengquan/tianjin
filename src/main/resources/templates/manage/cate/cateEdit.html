@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>input</title>
+  <title>分类编辑</title>
   <!-- 1 bootstrap基础css -->
   <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" >
   <!-- 2 table表格css -->
@@ -137,12 +137,6 @@
 <br>
 <br>
 <script>
-function getUrlParam(name) {
-  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-  var r = window.location.search.substr(1).match(reg); //匹配目标参数
-  if (r != null) return unescape(r[2]); return null; //返回参数值
-}
-
 $(function () {
   //icheck 单选多选
   $('input').iCheck({
