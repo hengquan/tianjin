@@ -696,8 +696,9 @@ public class ApiController {
      */
     @RequestMapping("gatherData")
     @ResponseBody
-    public void gatherData(HttpServletRequest request, HttpServletResponse response) {
+    public Map<String, Object> gatherData(HttpServletRequest request, HttpServletResponse response) {
         HttpPush.responseInfo(response);//跨域
+        Map<String, Object> retMap=new HashMap<String, Object>();
         try {
             UserInfo ui=userService.getUserInfo();
             if (ui!=null) {
@@ -719,8 +720,12 @@ public class ApiController {
                 LogVisitMemory.getInstance().put2Queue(lv);
                 System.out.println("===insertLog==================================");
             }
+            retMap.put("returnCode", "000");
         } catch(Exception e) {
+            retMap.put("returnCode", "001");
+            retMap.put("messageInfo",e.toString());
         }
+        return retMap;
     }
     private LogVisit getFromRequest(HttpServletRequest request) {
         Map<String, Object> mm=RequestUtils.getDataFromRequest(request);
