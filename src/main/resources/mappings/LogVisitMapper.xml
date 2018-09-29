@@ -379,4 +379,8 @@
 		where obj_id = #{objId}
 		order by create_date desc
 	</select>
+
+    <select id="getVisitCountByUi" resultType="java.util.HashMap" parameterType="java.lang.String">
+      select obj_type, count(*) from log_visit where visit_id=#{value} group by obj_type
+    </select>
 </mapper>
