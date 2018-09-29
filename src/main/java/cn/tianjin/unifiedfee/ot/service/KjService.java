@@ -2,6 +2,7 @@ package cn.tianjin.unifiedfee.ot.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +36,17 @@ public class KjService {
 
     // 获取分页数据
     public List<Kj> getPageData(Map<String, Object> param) {
-        return dao.getPageData(param);
+        List<Kj> kjs = dao.getPageData(param);
+        if (kjs != null && kjs.size() > 0) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            for (Kj kj : kjs) {
+                Date createDate = kj.getCreateDate();
+                String createdate = format.format(createDate);
+                if (StringUtils.isNotEmpty(createdate))
+                    kj.setCreatedate(createdate);
+            }
+        }
+        return kjs;
     }
 
     // 添加
@@ -112,6 +123,7 @@ public class KjService {
 
     // 获取单条信息
     public Kj get(Kj kj) throws Exception {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         // 获取主表信息
         kj = dao.get(kj.getId());
         if (kj != null) {
@@ -131,10 +143,26 @@ public class KjService {
                 kj.setIds(ids);
                 List<Kj> kjs = dao.getDataListByIds(kj);
                 if (kjs != null && kjs.size() > 0) {
+                    for (Kj oneKj : kjs) {
+                        Date createDate = oneKj.getCreateDate();
+                        String createdate = format.format(createDate);
+                        if (StringUtils.isNotEmpty(createdate))
+                            oneKj.setCreatedate(createdate);
+                    }
                     kj.setKjs(kjs);
                 }
             }
         }
+        //处理相关附件
+        List<CommArchive> commArchives = commArchiveMapper.selectByObjId(kj.getId());
+        if(commArchives!=null && commArchives.size()>0){
+            kj.setCommArchives(commArchives);
+        }
+        //处理日期
+        Date createDate = kj.getCreateDate();
+        String createdate = format.format(createDate);
+        if (StringUtils.isNotEmpty(createdate))
+            kj.setCreatedate(createdate);
         return kj;
     }
 
@@ -144,7 +172,17 @@ public class KjService {
     }
 
     public List<Kj> getDataListByIds(Kj kj) {
-        return dao.getDataListByIds(kj);
+        List<Kj> kjs = dao.getDataListByIds(kj);
+        if (kjs != null && kjs.size() > 0) {
+            for (Kj oneKj : kjs) {
+                // 日期格式
+                Date createDate = oneKj.getCreateDate();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                String str = format.format(createDate);
+                oneKj.setCreatedate(str);
+            }
+        }
+        return kjs;
     }
 
     public List<Kj> find4Web(Map<String, Object> param) {
@@ -173,7 +211,7 @@ public class KjService {
                     for (CommArchive commArchive : commArchives) {
                         String archiveType = commArchive.getArchiveType();
                         if (StringUtils.isNotEmpty(archiveType)) {
-                            if (archiveType.equals("main")) {
+                            if (archiveType.equals("img")) {
                                 String fileUrl = commArchive.getFileUrl();
                                 if (StringUtils.isNotEmpty(fileUrl))
                                     kj.setMainUrl(fileUrl);
@@ -189,5 +227,12 @@ public class KjService {
             }
         }
         return kjList;
+    }
+
+    public List<Kj> getMyKjList(Integer rownum, String userId) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("rownum", rownum);
+        map.put("userId", userId);
+        return dao.getMyKjList(map);
     }
 }

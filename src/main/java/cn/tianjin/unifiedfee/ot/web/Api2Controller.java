@@ -192,19 +192,16 @@ public class Api2Controller {
     }
 
     /**
-     * 1.5.2、获得统计访问次数<br>
+     * 1.6.1、获得统计访问次数<br>
      * 获得统计访问次数
      * 
      * @param request
      * @param response
-     * @param state
-     *            1:摸拟实操,2:课件,3:在线试题
      * @return
      */
     @RequestMapping("getLogVisitCount")
     @ResponseBody
-    public Map<String, Object> getLogVisitCount(HttpServletRequest request, HttpServletResponse response,
-            @RequestParam(required = false) Integer state) {
+    public Map<String, Object> getLogVisitCount(HttpServletRequest request, HttpServletResponse response) {
         HttpPush.responseInfo(response);// 跨域
         // 返回结果
         Map<String, Object> retMap = new HashMap<String, Object>();
@@ -215,19 +212,14 @@ public class Api2Controller {
                 retMap.put("messageInfo", "无用户登录");
                 return retMap;
             }
-            if (state == null) {
-                retMap.put("returnCode", "03");
-                retMap.put("messageInfo", "操作类型为空");
-                return retMap;
-            }
             // 查询
-            List<LogVisit> logVisitList = logVisitService.getDataByObjType(state);
-            if (logVisitList == null || logVisitList.size() <= 0) {
+            List<Map<String, Object>> countMap = logVisitService.getVisitCountByUi(ui.getUserId());
+            if (countMap == null || countMap.size() <= 0) {
                 retMap.put("returnCode", "00");
                 retMap.put("data", "0");
             } else {
                 retMap.put("returnCode", "00");
-                retMap.put("data", logVisitList.size());
+                retMap.put("data", countMap);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -262,7 +254,7 @@ public class Api2Controller {
                 return retMap;
             }
             // 查询
-            List<Mnsc> mnscList = mnscService.getMnscList(rownum);
+            List<Mnsc> mnscList = mnscService.getMyMnscList(rownum,ui.getUserId());
             if (mnscList == null || mnscList.size() <= 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");
@@ -284,7 +276,7 @@ public class Api2Controller {
      * 
      * @param request
      * @param response
-     * @param 1:摸拟实操,2:课件,3:在线试题
+     * @param 
      * @return
      */
     @RequestMapping("getNewKjList")
@@ -302,7 +294,7 @@ public class Api2Controller {
                 return retMap;
             }
             // 查询
-            List<Kj> kjList = kjService.getKjList(rownum);
+            List<Kj> kjList = kjService.getMyKjList(rownum,ui.getUserId());
             if (kjList == null || kjList.size() <= 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");
@@ -341,7 +333,7 @@ public class Api2Controller {
                 return retMap;
             }
             // 查询
-            List<LogVisit> logVisitList = logVisitService.getLogVisitList(rownum);
+            List<LogVisit> logVisitList = logVisitService.getMyLogVisitList(rownum,ui.getUserId());
             if (logVisitList == null || logVisitList.size() <= 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");

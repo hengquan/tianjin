@@ -1,115 +1,141 @@
 <!DOCTYPE html>
 <head>
-  <meta charset="UTF-8">
-  <title>在线学习</title>
-  <link href="./libs/bootstrap-3.3.7-dist/css/bootstrap.css"
+<meta charset="UTF-8">
+<title>在线学习</title>
+<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap.css"
 	rel="stylesheet">
-  <!-- 2 table表格css -->
-   <link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
-		rel="stylesheet">
-	<!-- 3 treeview树css -->
-	<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
-		rel="stylesheet">
-  <!--公共css-->
-  <link rel="stylesheet" href="./web/css/pt-main.css">
-  <link rel="stylesheet" href="./web/css/index1.css">
-  <!--页面css-->
-  <link rel="stylesheet" href="./web/css/index2.css">
-  <!--引入字体的css-->
-  <link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
-  <script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
-  <!--bootstrap的js-->
-  <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
-  <!--页面js-->
-  <script type="text/javascript" src="./web/js/main.js"></script>
+<!-- 2 table表格css -->
+<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
+	rel="stylesheet">
+<!-- 3 treeview树css -->
+<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
+	rel="stylesheet">
+<!--公共css-->
+<link rel="stylesheet" href="./web/css/pt-main.css">
+<link rel="stylesheet" href="./web/css/index1.css">
+<!--页面css-->
+<link rel="stylesheet" href="./web/css/index2.css">
+<!--引入字体的css-->
+<link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
+<script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
+<!--bootstrap的js-->
+<script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
+<!--页面js-->
+<script type="text/javascript" src="./web/js/main.js"></script>
 <style>
-html {overflow: hidden;}
-body {background: white;}
+html {
+	overflow: hidden;
+}
+
+body {
+	background: white;
+}
 </style>
 </head>
 
 <body>
 	<!--主菜单内容-->
-<div class="pt-page">
-    <div class="pt-root-container">
-        <!--主视口 -->
-        <div class="pt-view pt-open" style="padding-left: 0px;">
-            <!--带横线标题-->
-            <div class="pt-bread">
-                <h3>模拟实操</h3>
-            </div>
-            <!--模拟实操内容-->
-            <div class="tab-content" id="htmlContent"></div>
-        </div>
-    </div>
-</div>
+	<div class="pt-page">
+		<div class="pt-root-container">
+			<!--主视口 -->
+			<div class="pt-view pt-open" style="padding-left: 0px;">
+				<!--带横线标题-->
+				<div class="pt-bread">
+					<h3>模拟实操</h3>
+				</div>
+				<!--模拟实操内容-->
+				<div class="tab-content" id="htmlContent"></div>
+			</div>
+		</div>
+	</div>
 	<script>
-	$(document).ready(function(){
-	  $("a[cateId='']").click();	 
-	});
-    var top = '<div class="tab-pane active tab_bottom">' + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">';
+    $(document).ready(function() {
+      $("a[cateId='']").click();
+    });
+    var top = '<div class="tab-pane active tab_bottom">'
+        + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">';
     var btm = '</div>' + '</div>';
     //初始化
     $(function() {
       var data = {};
-      $.ajax({
-        type : 'post',
-        url : "./train/getMnscList",
-        data : data,
-        dataType : 'json',
-        cache : false,
-        success : function(data) {
-          console.log(data);
-          //状态
-          var returnCode = data.returnCode;
-          if (returnCode == '00') {
-            var html = '';
-            var contentHtml = '';
-            var dataList = data.data;
-            for (var i = 0; i < dataList.length; i++) {
-              //查主图片是否有值无值显示默认图
-              var mainUrl = dataList[i].mainUrl;
-              console.log(mainUrl);
-              if(mainUrl=='' || mainUrl==null){
-                mainUrl = "./web/images/mnsc_default.jpg";
+      $
+          .ajax({
+            type : 'post',
+            url : "./train/getMnscList",
+            data : data,
+            dataType : 'json',
+            cache : false,
+            success : function(data) {
+              console.log(data);
+              //状态
+              var returnCode = data.returnCode;
+              if (returnCode == '00') {
+                var html = '';
+                var contentHtml = '';
+                var dataList = data.data;
+                for (var i = 0; i < dataList.length; i++) {
+                  //查主图片是否有值无值显示默认图
+                  var mainUrl = dataList[i].mainUrl;
+                  console.log(mainUrl);
+                  if (mainUrl == '' || mainUrl == null) {
+                    mainUrl = "./web/images/mnsc_default.jpg";
+                  }
+                  html += '<div class="col-md-3">'
+                      + '<img src="'+ mainUrl +'" alt="">'
+                      + '<div class="model_bg" onclick=toSimulation("'
+                      + dataList[i].mnscUrl + '?objId=' + dataList[i].id
+                      + '")></div>' + '<div class="explain">' + '<p>'
+                      + dataList[i].mnscName + '</p>' + '<div class="system">'
+                      + dataList[i].remarks + '</div>'
+                      + '<div class="start" onclick=toSimulation("'
+                      + dataList[i].mnscUrl + '?objId=' + dataList[i].id
+                      + '")>开始模拟实操</div>' + '</div>' + '</div>';
+
+                  if ((i + 1) % 4 == 0) {
+                    contentHtml = contentHtml
+                        + '<div class="row">'
+                        + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">'
+                        + html + '</div>' + '</div>';
+                    html = '';
+                  } else {
+                    if (i >= dataList.length - 1) {
+                      contentHtml = contentHtml
+                          + '<div class="row">'
+                          + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">'
+                          + html + '</div>' + '</div>';
+                      html = '';
+                    }
+                  }
+                }
+                $("#htmlContent").html(contentHtml);
+              } else {
+                alert(data.messageInfo);
               }
-              html += '<div class="col-md-3">'
-                  + '<img src="'+ mainUrl +'" alt="">'
-                  + '<div class="model_bg" onclick=toSimulation1("'
-                  + dataList[i].mnscUrl + '")></div>'
-                  + '<div class="explain">' + '<p>' + dataList[i].mnscName
-                  + '</p>' + '<div class="system">' + dataList[i].remarks
-                  + '</div>'
-                  + '<div class="start" onclick=toSimulation2("'
-                  + dataList[i].mnscUrl + '")>开始模拟实操</div>' + '</div>'
-                  + '</div>';
-             
-              if (i % 4 == 0) {
-                contentHtml = '<div class="row">'
-                    + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">' + html + '</div>' + '</div>'
-                    + contentHtml;
-                html = '';
-              }
+            },
+            error : function() { //失败回调函数
+              alert("查询失败");
             }
-            $("#htmlContent").html(contentHtml);           
-          } else {
-            alert(data.messageInfo);
-          }
-        },
-        error : function() { //失败回调函数
-          alert("查询失败");
-        }
-      });
+          });
     })
 
     //  收费清单录入模拟实操
-    function toSimulation1(url) {
-      window.open("./mnscList/sfqdlr/loading.html")
+    function toSimulation(url) {
+      window.open(url);
     }
-    //企业注册模拟实操
-    function toSimulation2(url) {
-      window.open("./mnscList/qyzcsc/loading.html")
-    }
+  </script>
+	<script type="text/javascript">
+    var _gatherData = {};
+    _gatherData.visitModulelId = "模拟实操列表";
+    _gatherData.objType = "ts_mnsc";
+    //_gatherData.objId=getUrlParam("id");
+    (function() {
+      var ma = document.createElement('script');
+      ma.type = 'text/javascript';
+      ma.async = true;
+      ma.src = "./tjsrc/js/ma.js";
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ma, s);
+    })();
   </script>
 </body>
 </html>

@@ -103,16 +103,17 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span>
-									※ </span>选&emsp;择&emsp;分类</label>
+									※ </span>&emsp;选&nbsp;择&nbsp;分&nbsp;类</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 								<div class="input-group">
 									<input type="text" class="form-control" name="mnscCatNames"
-										id="mnscCatNames" style="border-right: 0px;" readonly="readonly" />
+										id="mnscCatNames" style="border-right: 0px;"
+										readonly="readonly" />
 									<div class="input-group-btn">
 										<button type="button"
 											class="btn btn-default dropdown-toggle btn-tj"
 											data-toggle="dropdown"
-											style="border-bottom-left-radius: 0px; border-top-left-radius: 0px; border-left: 0px;height:35.99px;">
+											style="border-bottom-left-radius: 0px; border-top-left-radius: 0px; border-left: 0px; height: 35.99px;">
 											<span class="caret"></span>
 										</button>
 										<div class="dropdown-menu pull-right"
@@ -140,26 +141,21 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
+									※ </span>&emsp;&emsp;排&emsp;&emsp;序</label>
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+								<input type="text" class="form-control" name="sort" id="sort" />
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
 									※ </span>&emsp;&emsp;学&emsp;&emsp;分</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 								<input type="text" class="form-control" name="score" id="score" />
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun"><span>
-									※ </span>过&emsp;期&emsp;时间</label>
-							<div
-								class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
-								data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-								<input class="form-control" name="expireDate" id="expireDate"
-									size="16" type="text" value=""> <span class="add-on"><i
-									class="icon-th"></i></span>
-							</div>
-						</div>
-					</div>
-
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun"><span>
@@ -173,11 +169,11 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span
-								class="cfff"> ※ </span>上&emsp;传缩略图</label>
+								class="cfff"> ※ </span>&emsp;上传缩略图</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<input id="file-1" type="file" multiple class="file"
 									name="files" data-overwrite-initial="false"
-									data-min-file-count="1"><b>(注：请上传229x174，大小在2M以内的缩略图)</b>
+									data-min-file-count="1"><b>(注：请上传229x174，大小在2M以内的缩略图，支持格式：jpg,gif,png,jpeg)</b>
 							</div>
 						</div>
 					</div>
@@ -189,7 +185,7 @@ html {
 										<th>课件名称</th>
 										<th>分类名称</th>
 										<th>学分</th>
-										<th>过期时间</th>
+										<th>创建时间</th>
 										<th><span class="glyphicon glyphicon-plus"
 											aria-hidden="true" onclick="selectItem()"></span></th>
 									</tr>
@@ -211,6 +207,11 @@ html {
 	<br>
 	<br>
 	<script>
+    //附件相关
+    var imgJson = new Array();
+    if ("${imgJson}" != '') {
+      imgJson[imgJson.length] = "${imgJson}";
+    }
     $(function() {
       //icheck 单选多选
       $('input').iCheck({
@@ -267,11 +268,69 @@ html {
           });
         }
       });
-      function selectTreeNode(treeNodeData) {
-        $("input[name='mnscCatNames']").val(treeNodeData.text);
-        $("input[name='mnscCatId']").val(treeNodeData.id);
-        $('#cate-tree').treeview('uncheckAll', { silent: true });
-        $('#cate-tree').treeview('checkNode', [treeNodeData.nodeId, { silent: true }]);
+      //获取参数
+      var url = location.search;
+      if (url != '') {
+        //变成修改
+        $("#baocun").attr("onclick", "editMnsc()");
+        url = url.substr(1);
+        var split = url.split("=");
+        $
+            .ajax({
+              type : 'post',
+              url : "${gateway}/mnsc/get",
+              data : {
+                "id" : split[1]
+              },
+              dataType : 'json',
+              cache : false,
+              success : function(data) {
+                var html = '<tr>'
+                    + '<th>课件名称</th>'
+                    + '<th>分类名称</th>'
+                    + '<th>学分</th>'
+                    + '<th>创建时间</th>'
+                    + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
+                    + '</tr>';
+                var mnsc = data.data;
+                $("#objId").val(mnsc.id);
+                $("#mnscName").val(mnsc.mnscName);
+                $("#mnscUrl").val(mnsc.mnscUrl);
+                $("#score").val(mnsc.score);
+                $("#sort").val(mnsc.sort);
+                $("#remarks").val(mnsc.remarks);
+                $("#mnscCatNames").val(mnsc.mnscCatNames);
+                $("#mnscCatId").val(mnsc.mnscCatId);
+                //获取相关课件列表
+                $("#kjids").val(mnsc.kjids);
+                var dataList = mnsc.kjs;
+                if (dataList != null) {
+                  for (var i = 0; i < dataList.length; i++) {
+                    html += '<tr>'
+                        + '<td>'
+                        + dataList[i].kjName
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].kjCatNames
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].score
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].createdate
+                        + '</td>'
+                        + '<th onclick="removeTr(this)" thisval="'
+                        + dataList[i].id
+                        + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+                        + '</tr>';
+                  }
+                  $("#theTable").html(html);
+                }
+              },
+              error : function() { //失败回调函数
+                alert("获取信息失败");
+              }
+            });
       }
       //校验必填项
       $('form').bootstrapValidator({
@@ -313,72 +372,19 @@ html {
           $('.Bshow').removeClass('disnone')
         }
       });
-
-      //获取参数
-      var url = location.search;
-      if (url != '') {
-        //变成修改
-        $("#baocun").attr("onclick", "editMnsc()");
-        url = url.substr(1);
-        var split = url.split("=");
-        $
-            .ajax({
-              type : 'post',
-              url : "${gateway}/mnsc/get",
-              data : {
-                "id" : split[1]
-              },
-              dataType : 'json',
-              cache : false,
-              success : function(data) {
-                var html = '<tr>'
-                    + '<th>课件名称</th>'
-                    + '<th>分类名称</th>'
-                    + '<th>学分</th>'
-                    + '<th>过期时间</th>'
-                    + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
-                    + '</tr>';
-                var mnsc = data.data;
-                $("#objId").val(mnsc.id);
-                $("#mnscName").val(mnsc.mnscName);
-                $("#mnscUrl").val(mnsc.mnscUrl);
-                $("#expireDate").val(mnsc.expireDate);
-                $("#score").val(mnsc.score);
-                $("#remarks").val(mnsc.remarks);
-                $("#mnscCatNames").val(mnsc.mnscCatNames);
-                $("#mnscCatId").val(mnsc.mnscCatId);
-                //获取相关课件列表
-                $("#kjids").val(mnsc.kjids);
-                var dataList = mnsc.kjs;
-                if (dataList != null) {
-                  for (var i = 0; i < dataList.length; i++) {
-                    html += '<tr>'
-                        + '<td>'
-                        + dataList[i].kjName
-                        + '</td>'
-                        + '<td>'
-                        + dataList[i].kjCatNames
-                        + '</td>'
-                        + '<td>'
-                        + dataList[i].score
-                        + '</td>'
-                        + '<td>'
-                        + dataList[i].expireDate
-                        + '</td>'
-                        + '<th onclick="removeTr(this)" thisval="'
-                        + dataList[i].id
-                        + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
-                        + '</tr>';
-                  }
-                  $("#theTable").html(html);
-                }
-              },
-              error : function() { //失败回调函数
-                alert("获取信息失败");
-              }
-            });
-      }
     });
+
+    function selectTreeNode(treeNodeData) {
+      $("input[name='mnscCatNames']").val(treeNodeData.text);
+      $("input[name='mnscCatId']").val(treeNodeData.id);
+      $('#cate-tree').treeview('uncheckAll', {
+        silent : true
+      });
+      $('#cate-tree').treeview('checkNode', [ treeNodeData.nodeId, {
+        silent : true
+      } ]);
+    }
+
     function addMnsc() {
       $.ajax({
         type : 'post',
@@ -483,7 +489,7 @@ html {
                   + '<th>课件名称</th>'
                   + '<th>分类名称</th>'
                   + '<th>学分</th>'
-                  + '<th>过期时间</th>'
+                  + '<th>创建时间</th>'
                   + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
                   + '</tr>';
               var dataList = data.dataList;
@@ -499,7 +505,7 @@ html {
                     + dataList[i].score
                     + '</td>'
                     + '<td>'
-                    + dataList[i].expireDate
+                    + dataList[i].createdate
                     + '</td>'
                     + '<th onclick="removeTr(this)" thisval="'
                     + dataList[i].id
@@ -536,12 +542,11 @@ html {
       //删除行
       $(obj).parent().remove();
     }
-    //上传文件
     $("#file-1").fileinput({
       theme : "explorer", //主题
       language : 'zh',
       uploadUrl : "../file/upload",// 上传请求路径
-      allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg', 'pdf', 'mp4' ],//允许上传的文件后缀       
+      allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg' ],//允许上传的文件后缀       
       uploadAsync : false, //是否允许异步上传
       showUpload : false,//是否显示上传按钮
       showCaption : false,//是否显示容器
@@ -552,7 +557,7 @@ html {
         return {
           'objId' : objId,
           'objTabname' : 'ts_mnsc',
-          'archiveType' : 'main'
+          'archiveType' : 'img'
         // commId 为全局变量，可以给控件上传额外参数  
         };
       },
@@ -564,6 +569,7 @@ html {
       maxFileCount : 3, //最多文件数量
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : false,
+      initialPreview : imgJson,//['<img src="http://1.202.219.107:8082/ot-server/ot/image/111.jpg" class="file-preview-image">'], //显示图片
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片

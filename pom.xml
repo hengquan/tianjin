@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>cn.taiji</groupId>
-        <artifactId>taiji-pom</artifactId>
-        <version>1.0.6-RELEASES</version>
-        <relativePath />
-    </parent>
+	<parent>
+		<groupId>cn.taiji</groupId>
+		<artifactId>taiji-pom</artifactId>
+		<version>1.0.6-RELEASES</version>
+		<relativePath />
+	</parent>
 	<artifactId>tianjin-unifiedfee-ot</artifactId>
 	<name>tianjin-unifiedfee-ot</name>
 	<url>http://maven.apache.org</url>
@@ -17,7 +17,7 @@
 	<!-- D:\work\projects\tianjin\extlibs\ -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<localLibDir>D:\work\projects\tianjin\extlibs\</localLibDir>
+		<localLibDir>E:\workSpace\tianjin-unifiedfee-ot\extlibs\</localLibDir>
 	</properties>
 
 	<dependencies>

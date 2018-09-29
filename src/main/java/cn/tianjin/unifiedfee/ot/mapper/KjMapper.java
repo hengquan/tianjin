@@ -27,4 +27,6 @@ public interface KjMapper {
     public List<Kj> findRefKj4Web(Map<String, Object> param);
 
     List<Kj> getKjList(Integer rownum);
+
+    List<Kj> getMyKjList(Map<String, Object> map);
 }

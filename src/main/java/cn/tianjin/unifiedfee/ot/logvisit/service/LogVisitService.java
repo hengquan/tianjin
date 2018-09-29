@@ -1,6 +1,8 @@
 package cn.tianjin.unifiedfee.ot.logvisit.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +49,16 @@ public class LogVisitService {
 
     public List<LogVisit> getLogVisitList(Integer rownum) {
         return logDao.getLogVisitList(rownum);
+    }
+
+    public List<Map<String, Object>> getVisitCountByUi(String userId) {
+        return logDao.getVisitCountByUi(userId);
+    }
+
+    public List<LogVisit> getMyLogVisitList(Integer rownum, String userId) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("rownum", rownum);
+        map.put("userId", userId);
+        return logDao.getMyLogVisitList(map);
     }
 }

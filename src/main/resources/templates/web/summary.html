@@ -132,18 +132,14 @@ html {
 
 	<script>
     $(function() {
-      //模拟实操
-      logVisitCount(1);
-      //课件
-      logVisitCount(2);
-      //试卷
-      logVisitCount(3);
+      //统计数据
+      logVisitCount();
       //最新模拟实操数据
-      getMnscList(2);
+      //getMnscList(2);
       //最新课件数据
-      getKjList(2);
+      //getKjList(2);
       //我的日志
-      getMyLogVisitList(10);
+      //getMyLogVisitList(10);
     })
     function toLoading() {
       window.open("./mnscList/sfqdlr/loading.html")
@@ -152,20 +148,16 @@ html {
       window.open("./courseContent.html")
     }
     //返回项目所访问次数
-    function logVisitCount(state) {
-      var data = {
-        "state" : state
-      };
+    function logVisitCount() {
       $.ajax({
         type : 'post',
         url : "./train/getLogVisitCount",
-        data : data,
         dataType : 'json',
         cache : false,
         success : function(data) {
           console.log(data);
           //状态
-          var returnCode = data.returnCode;
+          /* var returnCode = data.returnCode;
           if (returnCode == '00') {
             var logVisitCount = data.data;
             if (state == 1) {
@@ -176,8 +168,8 @@ html {
               $("#sjCount").html(logVisitCount + "次");
             }
           } else {
-            alert(data.messageInfo);
-          }
+            //alert(data.messageInfo);
+          } */
         },
         error : function() { //失败回调函数
           alert("获取信息失败");
@@ -302,6 +294,20 @@ html {
         }
       });
     }
+  </script>
+	<script type="text/javascript">
+    var _gatherData = {};
+    _gatherData.visitModulelId = "学员概况";
+    _gatherData.objType = "student_profile";
+    //_gatherData.objId=getUrlParam("id");
+    (function() {
+      var ma = document.createElement('script');
+      ma.type = 'text/javascript';
+      ma.async = true;
+      ma.src = "./tjsrc/js/ma.js";
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ma, s);
+    })();
   </script>
 </body>
 </html>

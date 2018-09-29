@@ -7,17 +7,20 @@
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
 	rel="stylesheet">
 <!-- 2 table表格css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
 	rel="stylesheet">
 <!-- 3 treeview树css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
 	rel="stylesheet">
 <!-- 4 datetimepicker时间选择css -->
 <link
 	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
 	rel="stylesheet">
 <!-- 5 select选择框css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
 	rel="stylesheet">
 <!-- 6 fileinput上传文件css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
@@ -26,7 +29,8 @@
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
 	rel="stylesheet">
 <!-- 8 Validator验证css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
 	rel="stylesheet">
 <!-- 9 layer弹框css -->
 <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
@@ -41,24 +45,30 @@
 <!-- 1 bootstrap基础js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <!-- 2 table表格js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
 <!-- 2 table列表数据js 可删除？ -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
 <!-- 3 treeview树js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
 <!-- 4 datetimepicker时间选择js -->
 <script
 	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
 <!-- 5 select选择框js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <!-- 6 fileinput上传文件js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
 <!-- 6 fileinput中文包js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
 <!-- 7 icheck单选+多选js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
 <!-- 8 Validator验证js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <!-- 9 layer弹框js -->
 <script src="${gateway}/libs/layer/layer.js"></script>
 <!-- 11 页面js -->
@@ -96,7 +106,7 @@ html {
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title">学&emsp;&emsp;分：</label>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title">&emsp;学&emsp;分：</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<span id="score"></span>
 							</div>
@@ -104,30 +114,29 @@ html {
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">
-								过期时间：
-							</label>
-							<div>
-								<span id="expireDate"></span>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">说&emsp;&emsp;明：</label>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">&emsp;说&emsp;明：</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<span id="remarks"></span>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="form-group">
-              <div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
-                <table class="table table-striped" id="theTable">
-                </table>
-              </div>
-            </div>
-          </div>
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">
+								创建时间： </label>
+							<div>
+								<span id="createdate"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="form-group">
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
+								<table class="table table-striped" id="theTable">
+								</table>
+							</div>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -150,38 +159,24 @@ html {
           dataType : 'json',
           cache : false,
           success : function(data) {
-            var html = '<tr>'
-              + '<th>课件名称</th>'
-              + '<th>分类名称</th>'
-              + '<th>学分</th>'
-              + '<th>过期时间</th>'
-              + '</tr>';
+            var html = '<tr>' + '<th>课件名称</th>' + '<th>分类名称</th>'
+                + '<th>学分</th>' + '<th>创建时间</th>' + '</tr>';
             var kj = data.data;
             $("#kjName").html(kj.kjName);
             $("#kjCatNames").html(kj.kjCatNames);
-            $("#expireDate").html(kj.expireDate);
+            $("#createdate").html(kj.createdate);
             $("#score").html(kj.score);
             $("#remarks").html(kj.remarks);
             $("#kjCatId").html(kj.kjCatNames);
             //获取相关课件列表
             $("#ids").val(kj.ids);
             var dataList = kj.kjs;
-            if(dataList!=null){
+            if (dataList != null) {
               for (var i = 0; i < dataList.length; i++) {
-                html += '<tr>'
-                    + '<td>'
-                    + dataList[i].kjName
-                    + '</td>'
-                    + '<td>'
-                    + dataList[i].kjCatNames
-                    + '</td>'
-                    + '<td>'
-                    + dataList[i].score
-                    + '</td>'
-                    + '<td>'
-                    + dataList[i].expireDate
-                    + '</td>'
-                    + '</tr>';
+                html += '<tr>' + '<td>' + dataList[i].kjName + '</td>' + '<td>'
+                    + dataList[i].kjCatNames + '</td>' + '<td>'
+                    + dataList[i].score + '</td>' + '<td>'
+                    + dataList[i].createdate + '</td>' + '</tr>';
               }
               $("#theTable").html(html);
             }

@@ -6,11 +6,9 @@
 		<result column="serv_sys_type" property="servSysType" jdbcType="VARCHAR" />
 		<result column="serv_sys_id" property="servSysId" jdbcType="VARCHAR" />
 		<result column="visit_type" property="visitType" jdbcType="INTEGER" />
-		<result column="visit_sys_type" property="visitSysType"
-			jdbcType="VARCHAR" />
+		<result column="visit_sys_type" property="visitSysType" jdbcType="VARCHAR" />
 		<result column="visit_sys_id" property="visitSysId" jdbcType="VARCHAR" />
-		<result column="visit_modulel_id" property="visitModulelId"
-			jdbcType="VARCHAR" />
+		<result column="visit_modulel_id" property="visitModulelId" jdbcType="VARCHAR" />
 		<result column="obj_type" property="objType" jdbcType="VARCHAR" />
 		<result column="obj_id" property="objId" jdbcType="VARCHAR" />
 		<result column="api_name" property="apiName" jdbcType="VARCHAR" />
@@ -19,8 +17,10 @@
 		<result column="method" property="method" jdbcType="VARCHAR" />
 		<result column="req_param" property="reqParam" jdbcType="VARCHAR" />
 		<result column="visitor_type" property="visitorType" jdbcType="VARCHAR" />
-		<result column="visitor_id" property="visitorId" jdbcType="VARCHAR" />
-		<result column="visitor_name" property="visitorName" jdbcType="VARCHAR" />
+        <result column="visitor_id" property="visitorId" jdbcType="VARCHAR" />
+        <result column="visitor_name" property="visitorName" jdbcType="VARCHAR" />
+        <result column="group_id" property="groupId" jdbcType="VARCHAR" />
+        <result column="group_name" property="groupName" jdbcType="VARCHAR" />
 		<result column="client_ip" property="clientIp" jdbcType="VARCHAR" />
 		<result column="point_info" property="pointInfo" jdbcType="VARCHAR" />
 		<result column="device_type" property="deviceType" jdbcType="INTEGER" />
@@ -44,7 +44,8 @@
 		api_name, from_url,
 		req_url,
 		method, req_param, visitor_type,
-		visitor_id, visitor_name,
+        visitor_id, visitor_name,
+        group_id, group_name,
 		client_ip,
 		point_info, device_type, device_id,
 		device_class,
@@ -102,12 +103,18 @@
 			<if test="visitorType != null">
 				visitor_type,
 			</if>
-			<if test="visitorId != null">
-				visitor_id,
-			</if>
-			<if test="visitorName != null">
-				visitor_name,
-			</if>
+            <if test="visitorId != null">
+                visitor_id,
+            </if>
+            <if test="visitorName != null">
+                visitor_name,
+            </if>
+            <if test="groupId != null">
+                group_id,
+            </if>
+            <if test="groupName != null">
+                group_name,
+            </if>
 			<if test="clientIp != null">
 				client_ip,
 			</if>
@@ -144,12 +151,8 @@
 			<if test="returndata != null">
 				returnData,
 			</if>
-			<if test="createDate != null">
-				create_date,
-			</if>
-			<if test="endtime != null">
-				endTime,
-			</if>
+            create_date,
+            endTime,
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -197,12 +200,18 @@
 			<if test="visitorType != null">
 				#{visitorType,jdbcType=VARCHAR},
 			</if>
-			<if test="visitorId != null">
-				#{visitorId,jdbcType=VARCHAR},
-			</if>
-			<if test="visitorName != null">
-				#{visitorName,jdbcType=VARCHAR},
-			</if>
+            <if test="visitorId != null">
+                #{visitorId,jdbcType=VARCHAR},
+            </if>
+            <if test="visitorName != null">
+                #{visitorName,jdbcType=VARCHAR},
+            </if>
+            <if test="groupId != null">
+                #{groupId,jdbcType=VARCHAR},
+            </if>
+            <if test="groupName != null">
+                #{groupName,jdbcType=VARCHAR},
+            </if>
 			<if test="clientIp != null">
 				#{clientIp,jdbcType=VARCHAR},
 			</if>
@@ -239,12 +248,8 @@
 			<if test="returndata != null">
 				#{returndata,jdbcType=VARCHAR},
 			</if>
-			<if test="createDate != null">
-				#{createDate,jdbcType=DATE},
-			</if>
-			<if test="endtime != null">
-				#{endtime,jdbcType=DATE},
-			</if>
+			sysdate,
+			sysdate,
 		</trim>
 	</insert>
 
@@ -293,12 +298,18 @@
 			<if test="visitorType != null">
 				visitor_type = #{visitorType},
 			</if>
-			<if test="visitorId != null">
-				visitor_id = #{visitorId},
-			</if>
-			<if test="visitorName != null">
-				visitor_name = #{visitorName},
-			</if>
+            <if test="visitorId != null">
+                visitor_id = #{visitorId},
+            </if>
+            <if test="visitorName != null">
+                visitor_name = #{visitorName},
+            </if>
+            <if test="groupId != null">
+                group_id = #{groupId},
+            </if>
+            <if test="groupName != null">
+                group_name = #{groupName},
+            </if>
 			<if test="clientIp != null">
 				client_ip = #{clientIp},
 			</if>
@@ -361,6 +372,15 @@
 		order by create_date desc
 	</select>
 	
+	<select id="getMyLogVisitList" resultMap="BaseResultMap">
+		select
+		<include refid="Blob_Column_List" />
+		from log_Visit
+		where rownum &lt;= #{rownum}
+		and visitor_id=#{userId}
+		order by create_date desc
+	</select>
+	
 	<select id="getDataByObjId" resultMap="BaseResultMap">
 		select
 		<include refid="Blob_Column_List" />
@@ -368,4 +388,8 @@
 		where obj_id = #{objId}
 		order by create_date desc
 	</select>
+
+    <select id="getVisitCountByUi" resultType="java.util.HashMap" parameterType="java.lang.String">
+      select obj_type, count(*) from log_visit where visitor_id=#{userId} group by obj_type
+    </select>
 </mapper>

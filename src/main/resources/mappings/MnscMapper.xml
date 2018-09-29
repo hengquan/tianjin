@@ -174,7 +174,7 @@
 		<if test="searchStr != '' and searchStr !=null">
 			and instr(mnsc_name,#{searchStr})>0
 		</if>
-		order by create_date desc
+		order by sort desc,create_date desc
 	</select>
 
 	<select id="getDataListByIds" resultMap="BaseResultMap">
@@ -183,6 +183,7 @@
 		from ts_MNSC
 		where
 		instr(#{ids},id)>0
+		order by sort desc,create_date desc
 	</select>
 
 	<select id="getMnscList" resultMap="BaseResultMap">
@@ -190,6 +191,15 @@
 		<include refid="Base_Column_List" />
 		from ts_MNSC
 		where rownum &lt;= #{rownum}
-		order by create_date desc
+		order by sort desc,create_date desc
+	</select>
+	
+	<select id="getMyMnscList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ts_MNSC
+		where rownum &lt;= #{rownum}
+		and create_by = #{userId}
+		order by sort desc,create_date desc
 	</select>
 </mapper>

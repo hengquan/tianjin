@@ -2,7 +2,11 @@ package cn.tianjin.unifiedfee.ot.entity;
 
 import java.util.Date;
 
-public class LogVisit {
+import com.spiritdata.framework.core.model.BaseObject;
+
+public class LogVisit extends BaseObject {
+    private static final long serialVersionUID = -7582903982200904333L;
+
     private String id;
 
     private String servSysType;
@@ -36,6 +40,10 @@ public class LogVisit {
     private String visitorId;
 
     private String visitorName;
+
+    private String groupId;
+
+    private String groupName;
 
     private String clientIp;
 
@@ -311,5 +319,21 @@ public class LogVisit {
 
     public void setEndtime(Date endtime) {
         this.endtime = endtime;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 }
