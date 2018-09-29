@@ -132,7 +132,6 @@ public class ManageDispatchUrl {
         return null;
     }
 
-    // --分类管理
     @RequestMapping("/mainpage")
     public String toMainPage() {
         return "/manage/mainpage";
@@ -310,4 +309,64 @@ public class ManageDispatchUrl {
         return "/manage/st/tmList";
     }
     */
+    @RequestMapping(value = { "/indexTest" })
+    public String test(Model model) {
+        // 获得权限信息，并回写到对象中
+        // trainNameId="企业门户（chenph）";
+        String[] trainNameId={"线上培训子系统（chenph）", "培训中心"};
+        String menuHtml = "", indexHtml = "";
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui != null) {
+                model.addAttribute("username", ui.getUsername());
+                model.addAttribute("userImg", "http://1.202.219.107:8088/pm-server-innerweb/src/images/defaultAvatar@2x.png");
+                ObjectResponseResult<List<SysResource>> result = securityMenuService.findMenuByUsername(ui.getUsername());
+                if (result != null && result.getData() != null && result.getData().size() > 0) {
+                    List<SysResource> l = findTrainMenu(result.getData(), trainNameId);
+                    /**
+                     * 测试代码 List<SysResource> _ret=new ArrayList<SysResource>();
+                     * for (SysResource s: l) if
+                     * (s.getResourcesName().equals("培训中心"))
+                     * {_ret.add(s);break;} l=_ret;
+                     */
+                    if (l != null) {
+                        for (int i = 0; i < l.size(); i++) {
+                            SysResource m1 = l.get(i);
+                            if (m1.getResourcesName().equals("首页")) {
+                                indexHtml = "<li class='pt-menu-list'><span style='width: 14px;height: 14px;position: absolute;left: 12px;' aria-hidden='true'><img src='"
+                                        + prefix + "/src/images/house.png' width='100%'></span>";
+                                indexHtml += "<h3 class='pt-menu-title'><a href='javascript:void(0);' onclick='showMenu(\""
+                                        + prefix
+                                        + "/mainpage"/* +m1.getResourceUrl() */ + "\")'>" + m1.getResourcesName()
+                                        + "</a></h3>";
+                                indexHtml += "</li>";
+                            } else if (m1.getChildren() != null && m1.getChildren().size() > 0) {
+                                menuHtml += "<li class='pt-menu-list'><span class='glyphicon glyphicon-triangle-right' aria-hidden='true'></span>"
+                                        + "<h3 class='pt-menu-title'><a href='#'>" + m1.getResourcesName()
+                                        + "</a></h3>";
+                                menuHtml += "<ul class='pt-second-menu'>";
+                                for (int j = 0; j < m1.getChildren().size(); j++) {
+                                    SysResource m2 = m1.getChildren().get(j);
+                                    menuHtml += "<li class='pt-menu-child'><span class='glyphicon  glyphicon-th-large' aria-hidden='true'></span>"
+                                            // +"<h3 class='pt-menu-title'><a
+                                            // href='javascript:void(0);'
+                                            // onclick='showMenu(\""+m2.getSysName()+"\\"+m2.getResourceUrl()+"\")'>"+m2.getResourcesName()+"</a></h3></li>";
+                                            + "<h3 class='pt-menu-title'><a href='javascript:void(0);' onclick='showMenu(\""
+                                            + prefix + "" + m2.getResourceUrl() + "\")'>" + m2.getResourcesName()
+                                            + "</a></h3></li>";
+                                }
+                                menuHtml += "</ul></li>";
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (!StringUtils.isBlank(indexHtml))
+            menuHtml = indexHtml + menuHtml;
+        model.addAttribute("menuHtml", menuHtml);
+        return "/manage/indexWeb";
+    }
 }

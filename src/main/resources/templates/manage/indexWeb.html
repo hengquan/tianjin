@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>天津市港口统一收费服务平台-培训管理</title>
+
+  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" >
+  <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet" >
+  <link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css" rel="stylesheet">
+  <link href="${gateway}/src/css/pt-main.css" rel="stylesheet" >
+  <link rel="stylesheet" href="css/table.css">
+
+  <script src="${gateway}/libs/jquery/jquery-1.12.4.js"></script>
+  <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+  <script src="${gateway}/libs/layer/layer.js"></script>
+  <script src="${gateway}/src/js/main.js"></script>
+<style>
+iframe{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+</head>
+<body>
+<div class="pt-page">
+  <!-- 头部条 -->
+  <div class="pt-topbar">
+    <!--左侧系统名称-->
+    <div class="pt-fl pt-system-info" >
+      <div class="pt-logo pt-fl"><img src="${gateway}/src/images/LOGO@2x.png" alt=""></div>
+      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台 -<strong>培训管理</strong></div>
+    </div>
+    <!--右侧用户信息-->
+    <div class="pt-fr pt-user-info">
+      <div class="pt-logout pt-fr"><a style="color: #ffffff" href="/oauth/logout?state=/${gateway}">退出</a></div>
+      <div class="pt-settings pt-fr" onclick="gobackIndex()">返回首页</div>
+      <div class="pt-settings pt-fr" onclick="changePwd()">修改密码</div>
+      <div class="pt-settings pt-fr"></div>
+      <!--用户头像姓名-->
+      <div class="pt-user pt-fr">
+        <div class="pt-avatar pt-fl"><img id="userImg" src="${userImg}" alt=""></div>
+        <div class="pt-settings pt-fl" id="username">${username}</div>
+      </div>
+    </div>
+  </div>
+  <!-- 头部条  结束 -->
+
+  <!--页面中间主体部分-->
+  <div class="pt-root-container">
+    <!--左侧菜单-->
+    <div class="pt-nav pt-open">
+      <!--头部点击条-->
+      <div class="pt-bar" id="pt-bar"><img src="${gateway}/src/images/Group15.png" alt=""></div>
+      <!--菜单列表-->
+      <div class="pt-menu"><ul>
+        <!--为调试用-->
+        <li class="pt-menu-list">
+          <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+          <h3 class="pt-menu-title"><a href="#">企业端资源</a></h3>
+          <ul class="pt-second-menu">
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toXYGK()">学员概况</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toWebMNSC()">模拟实操</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXXX()">在线学习</a></h3>
+            </li>
+          </ul>
+        </li>
+      </ul></div>
+    </div>
+    <!--左侧菜单 结束-->
+
+    <!--主视口 -->
+    <div class="pt-view pt-open" style="overflow-y:hidden;overflow-x:auto;padding-bottom:0px;">
+      <iframe src="" frameborder="0" id="mainframe" ></iframe>
+    </div>
+    <!--主视口 结束-->
+  </div>
+
+  <!--公共底部-->
+  <div class="pt-footer">
+    <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+  //默认点击第一个可用的菜单
+  
+});
+
+function showMenu(url) {
+  $("#mainframe").attr("src",url);
+}
+
+//返回内网门户首页
+function gobackIndex() {
+  window.location.href='${innerRoot}';
+}
+//修改密码
+function changePwd() {
+  var index=layer.open({
+    type: 2, //0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+    title: '<span class="text-color">修改密码</span>', //请修改span中间的内容
+    shadeClose: true, //开启阴影关闭
+    closeBtn: 1, //不显示关闭按钮
+    shade: 0.6,
+    maxmin: false, //开启最大化最小化按钮
+    area: ['62.5%', '83%'], //此处可以改为100%，该数值按UI图比例算出
+    content: "${outerRoot}/system-server/support/co-user/password", //如果不想出现滚动条['content.html', 'no']
+    end:function() {
+      layer.close(index);
+    }
+  });
+}
+
+//学员概况
+function toXYGK(){
+  $("#mainframe").attr("src","${gateway}/summary");
+}
+//模拟实操
+function toWebMNSC(){
+  $("#mainframe").attr("src","${gateway}/practice");
+}
+//在线学习
+function toZXXX() {
+  $("#mainframe").attr("src","${gateway}/courseware");
+}
+</script>
+
+</body>
+</html>

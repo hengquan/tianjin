@@ -305,7 +305,6 @@ function editItem(e, type) {
 }
 
 function lookItem(e) {
-  alert(e);
   layer.open({
     type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
     title : '<span class="text-color">查看分类信息</span>',//请修改span中间的内容
@@ -314,7 +313,7 @@ function lookItem(e) {
     shade : 0.6,
     maxmin : false,//开启最大化最小化按钮
     area : [ '60%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-    content : 'cate/view'//如果不想出现滚动条['content.html', 'no']
+    content : '${gateway}/cate/view?id='+e//如果不想出现滚动条['content.html', 'no']
   });
 }
 
@@ -367,8 +366,7 @@ function queryParams(params) {
   return {
     // 使用page size分页
     limit : params.limit, //页面大小
-    offset : params.offset
-  //页码
+    offset : params.offset //页码
   };
 }
 
@@ -387,7 +385,7 @@ function formatParent(value) {
 // 2.返回操作模版[按钮颜色暂不确定]
 function operateFormatter(value, row, index) {
   var btnArray=[];
-//  btnArray.push('<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick="lookItem(\''+value+ '\')">查看</button>');
+  btnArray.push('<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick="lookItem(\''+value+ '\')">查看</button>');
   btnArray.push('<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick="editItem(\''+value+ '\', 2)">修改</button>');
   if (row.valid=='有效') {
     btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.name+'\',\''+row.parentName+'\', 0)">停用</button>');
