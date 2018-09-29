@@ -14,5 +14,7 @@ public interface LogVisitMapper {
 
     List<LogVisit> getDataByObjId(String objId);
 
-    Map<String, Object> getVisitCountByUi(String userId);
+    List<Map<String, Object>> getVisitCountByUi(String userId);
+
+    List<LogVisit> getMyLogVisitList(Map<String, Object> map);
 }

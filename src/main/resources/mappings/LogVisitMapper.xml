@@ -372,6 +372,15 @@
 		order by create_date desc
 	</select>
 	
+	<select id="getMyLogVisitList" resultMap="BaseResultMap">
+		select
+		<include refid="Blob_Column_List" />
+		from log_Visit
+		where rownum &lt;= #{rownum}
+		and visitor_id=#{userId}
+		order by create_date desc
+	</select>
+	
 	<select id="getDataByObjId" resultMap="BaseResultMap">
 		select
 		<include refid="Blob_Column_List" />
@@ -381,6 +390,6 @@
 	</select>
 
     <select id="getVisitCountByUi" resultType="java.util.HashMap" parameterType="java.lang.String">
-      select obj_type, count(*) from log_visit where visit_id=#{value} group by obj_type
+      select obj_type, count(*) from log_visit where visitor_id=#{userId} group by obj_type
     </select>
 </mapper>

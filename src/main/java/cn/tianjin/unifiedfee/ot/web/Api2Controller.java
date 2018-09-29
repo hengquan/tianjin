@@ -213,7 +213,7 @@ public class Api2Controller {
                 return retMap;
             }
             // 查询
-            Map<String, Object> countMap = logVisitService.getVisitCountByUi(ui.getUserId());
+            List<Map<String, Object>> countMap = logVisitService.getVisitCountByUi(ui.getUserId());
             if (countMap == null || countMap.size() <= 0) {
                 retMap.put("returnCode", "00");
                 retMap.put("data", "0");
@@ -254,7 +254,7 @@ public class Api2Controller {
                 return retMap;
             }
             // 查询
-            List<Mnsc> mnscList = mnscService.getMnscList(rownum);
+            List<Mnsc> mnscList = mnscService.getMyMnscList(rownum,ui.getUserId());
             if (mnscList == null || mnscList.size() <= 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");
@@ -294,7 +294,7 @@ public class Api2Controller {
                 return retMap;
             }
             // 查询
-            List<Kj> kjList = kjService.getKjList(rownum);
+            List<Kj> kjList = kjService.getMyKjList(rownum,ui.getUserId());
             if (kjList == null || kjList.size() <= 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");
@@ -333,7 +333,7 @@ public class Api2Controller {
                 return retMap;
             }
             // 查询
-            List<LogVisit> logVisitList = logVisitService.getLogVisitList(rownum);
+            List<LogVisit> logVisitList = logVisitService.getMyLogVisitList(rownum,ui.getUserId());
             if (logVisitList == null || logVisitList.size() <= 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");

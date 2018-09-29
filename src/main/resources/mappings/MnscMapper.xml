@@ -193,4 +193,13 @@
 		where rownum &lt;= #{rownum}
 		order by sort desc,create_date desc
 	</select>
+	
+	<select id="getMyMnscList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ts_MNSC
+		where rownum &lt;= #{rownum}
+		and create_by = #{userId}
+		order by sort desc,create_date desc
+	</select>
 </mapper>

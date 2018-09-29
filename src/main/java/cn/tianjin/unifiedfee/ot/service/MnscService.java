@@ -2,6 +2,7 @@ package cn.tianjin.unifiedfee.ot.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -232,5 +233,12 @@ public class MnscService {
             }
         }
         return mnscList;
+    }
+
+    public List<Mnsc> getMyMnscList(Integer rownum, String userId) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("rownum", rownum);
+        map.put("userId", userId);
+        return dao.getMyMnscList(map);
     }
 }

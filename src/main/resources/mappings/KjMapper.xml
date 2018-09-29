@@ -217,6 +217,16 @@
 		<include refid="Blob_Column_List" />
 		from ts_KJ
 		where rownum &lt;= #{rownum}
+		order by sort desc,create_date
+		desc
+	</select>
+
+	<select id="getMyKjList" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Blob_Column_List" />
+		from ts_KJ
+		where rownum &lt;= #{rownum}
+		and create_by = #{userId}
 		order by sort desc,create_date desc
 	</select>
 </mapper>

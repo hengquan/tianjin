@@ -135,11 +135,11 @@ html {
       //统计数据
       logVisitCount();
       //最新模拟实操数据
-      getMnscList(2);
+      //getMnscList(2);
       //最新课件数据
-      getKjList(2);
+      //getKjList(2);
       //我的日志
-      getMyLogVisitList(10);
+      //getMyLogVisitList(10);
     })
     function toLoading() {
       window.open("./mnscList/sfqdlr/loading.html")
@@ -152,7 +152,6 @@ html {
       $.ajax({
         type : 'post',
         url : "./train/getLogVisitCount",
-        data : data,
         dataType : 'json',
         cache : false,
         success : function(data) {

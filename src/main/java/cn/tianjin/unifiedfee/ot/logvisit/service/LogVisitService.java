@@ -1,5 +1,6 @@
 package cn.tianjin.unifiedfee.ot.logvisit.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +51,14 @@ public class LogVisitService {
         return logDao.getLogVisitList(rownum);
     }
 
-    public Map<String, Object> getVisitCountByUi(String userId) {
+    public List<Map<String, Object>> getVisitCountByUi(String userId) {
         return logDao.getVisitCountByUi(userId);
+    }
+
+    public List<LogVisit> getMyLogVisitList(Integer rownum, String userId) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("rownum", rownum);
+        map.put("userId", userId);
+        return logDao.getMyLogVisitList(map);
     }
 }
