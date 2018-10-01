@@ -198,7 +198,7 @@ public class ManageDispatchUrl {
         return "/manage/mnsc/mnscView";
     }
 
-    // --课件管理
+    // --课件管理，目前管理的是课程-？？
     @RequestMapping("kj/list")
     public String toKjList() {
         return "/manage/kj/kjList";
@@ -255,6 +255,12 @@ public class ManageDispatchUrl {
     @RequestMapping("kj/list4st")
     public String toKjList4st() {
         return "/manage/kj/kjList4st";
+    }
+
+    // --课件管理-新
+    @RequestMapping("kjItme/list")
+    public String toKjItmelList() {
+        return "/manage/kjItem/kjList";
     }
 
     // --试题管理

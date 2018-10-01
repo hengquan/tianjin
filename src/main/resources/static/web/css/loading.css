@@ -1,15 +1,13 @@
-/*模拟加载内容*/
+/*妯℃嫙鍔犺浇鍐呭*/
 body{
   background: #F2F2F2;
 }
 html{
-  height:1150px;
   overflow: auto;
 }
 .load{
   width: 1200px;
-  margin: 35px auto 0;
-  height: 980px;
+  margin: 35px auto 0;  
   border-radius: 5px;
   background: white;
   padding-top: 50px;
@@ -17,6 +15,10 @@ html{
 }
 .load_content{
   height: 940px;
+  margin-top: -20px;
+}
+.load_content4{
+  height: 640px;
   margin-top: -20px;
 }
 .load p{
@@ -28,7 +30,7 @@ html{
 .load span{
   font-size: 28px;
 }
-.load_left,.load_mid,.load_right{
+.load_left,.load_mid,.load_right,.load_mid4{
   float: left;
   position: relative;
 }
@@ -46,8 +48,8 @@ html{
    font-size: 24px;
    color: white;
  }
- /*左部分实操步骤*/
- /*第一步*/
+ /*宸﹂儴鍒嗗疄鎿嶆楠�*/
+ /*绗竴姝�*/
  .load_one_step .load_num{
    left: 20px;
    top: 12px;
@@ -56,7 +58,7 @@ html{
   left: 133px;
   top: 34px;
 }
-/*第三步*/
+/*绗笁姝�*/
 .load_three_step .load_num{
    left: 20px;
    top: 15px;
@@ -65,7 +67,7 @@ html{
   left: 133px;
   top: 35px;
 }
-/*第五步*/
+/*绗簲姝�*/
 .load_five_step .load_num{
   left: 20px;
   top: 15px;
@@ -75,11 +77,11 @@ html{
   top: 35px;
 }
 
-/*右部分实操步骤*/
+/*鍙抽儴鍒嗗疄鎿嶆楠�*/
 .load_right .load_num{
   color: #f35e65;
 }
-/*第二步*/
+/*绗簩姝�*/
 .load_two_step .load_num{
   top:15px;
   left: 278px;
@@ -89,7 +91,7 @@ html{
   left: 84px;
 }
 
-/*第四步*/
+/*绗洓姝�*/
 .load_four_step .load_num{
   top:15px;
   left: 278px;
@@ -99,7 +101,7 @@ html{
   left: 68px;
 }
 
-/*第六步*/
+/*绗叚姝�*/
 .load_six_step .load_num{
   top:15px;
   left: 278px;
@@ -110,6 +112,13 @@ html{
 }
 .load_mid{
   height: 590px;
+  width: 2px;
+  background: #494949;
+  left: 215px;
+  top:130px ;
+}
+.load_mid4{
+  height: 340px;
   width: 2px;
   background: #494949;
   left: 215px;
@@ -175,5 +184,6 @@ html{
   left: 457px;
 }
 .pt-footer{
+  margin-top: 20px;
   z-index: 9999;
 }

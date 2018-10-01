@@ -54,14 +54,15 @@ iframe{
       <div class="pt-bar" id="pt-bar"><img src="${gateway}/src/images/Group15.png" alt=""></div>
       <!--菜单列表-->
       <div class="pt-menu"><ul>
-        <!--为调试用
+        ${menuHtml}
+        <!--为调试用-->
         <li class="pt-menu-list">
           <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
-          <h3 class="pt-menu-title"><a href="#">企业端资源</a></h3>
+          <h3 class="pt-menu-title"><a href="#">新增功能</a></h3>
           <ul class="pt-second-menu">
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toXYGK()">学员概况</a></h3>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toKJGL()">课件-new管理</a></h3>
             </li>
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
@@ -72,8 +73,7 @@ iframe{
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXXX()">在线学习</a></h3>
             </li>
           </ul>
-        </li>-->
-        ${menuHtml}
+        </li>
       </ul></div>
     </div>
     <!--左侧菜单 结束-->
@@ -119,6 +119,11 @@ function changePwd() {
       layer.close(index);
     }
   });
+}
+
+//学员概况
+function toKJGL(){
+  $("#mainframe").attr("src","${gateway}/kjitme/list");
 }
 
 //学员概况
