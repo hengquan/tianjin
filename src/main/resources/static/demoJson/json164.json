@@ -1,0 +1,33 @@
+{
+    "returnCode": "00",
+    "data": [
+        {
+            "id": "ef7c0313db2d40628dfb947e2ddeb501",
+            "visitTime": "2018-09-27 10:10:10",
+            "objType": "模拟实操",
+            "objName": "企业信息注册",
+            "groupName": "明伦船坞公司"
+        },
+        {
+            "id": "ef7c0313db2d40628dfb947e2ddeb502",
+            "visitTime": "2018-09-27 10:10:10",
+            "objType": "模拟实操",
+            "objName": "企业信息注册",
+            "groupName": "艾克发船代公司"
+        },
+        {
+            "id": "ef7c0313db2d40628dfb947e2ddeb501",
+            "visitTime": "2018-09-27 10:10:10",
+            "objType": "课件",
+            "objName": "价格体系设置",
+            "groupName": "明伦船坞公司"
+        },
+        {
+            "id": "ef7c0313db2d40628dfb947e2ddeb502",
+            "visitTime": "2018-09-27 10:10:10",
+            "objType": "模拟实操",
+            "objName": "收费清单录入",
+            "groupName": "艾克发船代公司"
+        }
+    ]
+}

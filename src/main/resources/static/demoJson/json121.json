@@ -1,0 +1,50 @@
+{
+    "returnCode": "00",
+    "data": [
+        {
+            "imgUrl": "http://1.202.219.107:8082/ot-server-test/ot/image/156011110000025.jpg",
+            "name": "课件",
+            "catNames": "法规类",
+            "visitCount": "323424",
+            "id": "07e82c3754384986b98e8a48d736159f",
+            "remarks": "说明",
+            "createDate": "2018-09-28 00:00:00"
+        },
+        {
+            "imgUrl": "",
+            "name": "课件测试002",
+            "catNames": "法规类",
+            "visitCount": "323424",
+            "id": "19e4a346621e41f6ae4201960582a0c4",
+            "remarks": "课件测试002",
+            "createDate": "2018-09-28 00:00:00"
+        },
+        {
+            "imgUrl": "http://1.202.219.107:8082/ot-server/ot/image/2018-01-31_104229.png",
+            "name": "测试课件001",
+            "catNames": "法规类",
+            "visitCount": "323424",
+            "id": "00e77e154c1247aeb856794a21d2de0e",
+            "remarks": "测试课件001",
+            "createDate": "2018-09-28 00:00:00"
+        },
+        {
+            "imgUrl": "",
+            "name": "测试课件002",
+            "catNames": "法规类",
+            "visitCount": "323424",
+            "id": "00e77e154c1247aeb856794a21d2de0e",
+            "remarks": "测试课件001",
+            "createDate": "2018-09-28 00:00:00"
+        },
+        {
+            "imgUrl": "",
+            "name": "测试课件003",
+            "catNames": "法规类",
+            "visitCount": "323424",
+            "id": "00e77e154c1247aeb856794a21d2de0e",
+            "remarks": "测试课件001",
+            "createDate": "2018-09-28 00:00:00"
+        }
+    ]
+}

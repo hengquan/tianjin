@@ -1,0 +1,88 @@
+{
+    "returnCode": "00",
+    "data": {
+        "list": [
+            {
+                "name": "法规类",
+                "id": "1",
+                "parentId": "0"
+            },
+            {
+                "name": "法规类-商法",
+                "id": "117",
+                "parentId": "1"
+            },
+            {
+                "name": "法规类-商法-测试001",
+                "id": "cdef2078296b4292905a6a2c15a63595",
+                "parentId": "117"
+            },
+            {
+                "name": "法规类-啊水水",
+                "id": "111",
+                "parentId": "1"
+            },
+            {
+                "name": "政策类",
+                "id": "2",
+                "parentId": "0"
+            },
+            {
+                "name": "收费类",
+                "id": "3",
+                "parentId": "0"
+            },
+            {
+                "name": "收费类-道满",
+                "id": "65f6b9b94f894398aa799e228cad3c44",
+                "parentId": "3"
+            },
+            {
+                "name": "收费类-道满-1",
+                "id": "427cbc18d88247dbb79999b96dd96e06",
+                "parentId": "65f6b9b94f894398aa799e228cad3c44"
+            },
+            {
+                "name": "放行类",
+                "id": "4",
+                "parentId": "0"
+            },
+            {
+                "name": "放行类-测试002",
+                "id": "4194749c71134a318a6533f0606ddb29",
+                "parentId": "4"
+            },
+            {
+                "name": "理货类",
+                "id": "5",
+                "parentId": "0"
+            },
+            {
+                "name": "理货类-测试0013",
+                "id": "e00f11cfa5d745e7b4f2b004d8d7e707",
+                "parentId": "5"
+            },
+            {
+                "name": "出口类",
+                "id": "6",
+                "parentId": "0"
+            },
+            {
+                "name": "进口类",
+                "id": "7",
+                "parentId": "0"
+            },
+            {
+                "name": "进口类-测试001",
+                "id": "14b50834fff54d83ac2ea1bdfc0967e7",
+                "parentId": "7"
+            },
+            {
+                "name": "testtset001001----",
+                "id": "c60ab53e79084f35b97200ce7cc44ac3",
+                "parentId": "0"
+            }
+        ],
+        "resultType": "list"
+    }
+}

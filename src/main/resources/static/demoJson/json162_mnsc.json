@@ -1,0 +1,31 @@
+{
+    "returnCode": "00",
+    "data": [
+        {
+            "id": "89f6d23dc5fb498196b8afa6fa0325c2",
+            "mnscName": "收费清单录入",
+            "catNames": "法规类",
+            "mainUrl": "http://1.202.219.107:8082/ot-server-test/ot/image/收费清单.jpg",
+            "remarks": "收费清单录入说明",
+            "score": 100,
+            "sort": 0,
+            "createBy": "ff80808165858713016588d0cd530048",
+            "createName": "guanliyuan",
+            "createDate": "2018-09-27 23:32:32",
+            "logVisitCount": 33234,
+        },
+        {
+            "id": "89f6d23dc5fb498196b2afa6fa0325c2",
+            "mnscName": "收费清单录入2",
+            "catNames": "法规类",
+            "mainUrl": "http://1.202.219.107:8082/ot-server-test/ot/image/收费清单.jpg",
+            "remarks": "收费清单录入说明",
+            "score": 100,
+            "sort": 0,
+            "createBy": "ff80808165858713016588d0cd530048",
+            "createName": "guanliyuan",
+            "createDate": "2018-09-27 23:32:32",
+            "logVisitCount": 33234,
+        }
+    ]
+}
