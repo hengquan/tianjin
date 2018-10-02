@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="./src/css/main.css" rel="stylesheet" >
+</head>
+<body>
+<div class="introduce-container" id="introduce-container" style="width: 500px;height: 800px;">
+    <button onclick="openTips()">开启提示</button>
+</div>
+
+<script src="./libs/jquery/jquery-1.12.4.js"></script>
+<script src="./src/js/introduce.class.js"></script>
+
+<script>
+    function openTips() {
+        new IntroduceTipsList({
+            el: '#introduce-container',
+            list:[
+                {
+                    X: 250,
+                    Y: 350,
+                    distance: 10,
+                    direction: 'right',
+                    content: '<div>包含内容111</div>',
+                    padding: 10,
+                    backgroundColor: 'rgba(0,0,0,0.6)',
+                    color: '#fff',
+                    radius: 5,
+                    area: [100, 100],
+                    nextBtn: {
+                        content: '下一步',
+                        backgroundColor: '#990000'
+                    }
+                },
+                {
+                    X: 550,
+                    Y: 350,
+                    distance: 10,
+                    direction: 'top',
+                    content: '<div>包含内容22</div>',
+                    padding: 10,
+                    backgroundColor: 'rgba(0,0,0,0.6)',
+                    color: '#fff',
+                    radius: 5,
+                    area: [100, 100],
+                    nextBtn: {
+                        content: '下一步',
+                        backgroundColor: 'blue'
+                    }
+                },
+                {
+                    X: 150,
+                    Y: 250,
+                    distance: 10,
+                    direction: 'bottom',
+                    content: '<div>包含内容333</div>',
+                    padding: 10,
+                    backgroundColor: 'rgba(0,0,0,0.6)',
+                    color: '#fff',
+                    radius: 5,
+                    area: [100, 100],
+                    nextBtn: {
+                        content: '关闭',
+                        backgroundColor: 'blue'
+                    }
+                },
+                {
+                    X: 150,
+                    Y: 250,
+                    distance: 10,
+                    direction: 'top',
+                    content: '<div><p>测试测试测试</p><img src="src/image/icon-cash-success.png" alt=""><p>测试测试测试</p></div>',
+                    padding: 10,
+                    backgroundColor: 'rgba(0,0,0,0.6)',
+                    color: '#fff',
+                    radius: 5,
+                    area: [300, 400],
+                    nextBtn: {
+                        content: '关闭',
+                        backgroundColor: 'blue'
+                    }
+                },
+            ]
+        })
+
+    }
+
+
+
+</script>
+
+</body>
+</html>

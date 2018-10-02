@@ -74,7 +74,7 @@
   <div class="pt-view pt-open" style="padding-left: 0px;">
         <!--带横线标题-->
         <div class="pt-bread">
-            <h3>课程列表</h3>
+            <h3>课件列表</h3>
             <!-- 添加展开按钮 -->
             <button type="button" id="ptsearchfilter" class="btn btn-primary pt-zkbtn">展开</button>
         </div>
@@ -88,10 +88,10 @@
 							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 								<div class="form-group">
 									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-										for="exampleInputName2">课程名称</label>
+										for="exampleInputName2">课件名称</label>
 									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 										<input type="text" class="form-control" id="kjName"
-											placeholder="课程名称">
+											placeholder="课件名称">
 									</div>
 								</div>
 							</div>
@@ -215,7 +215,7 @@
       var data = {
         "id" : e
       }
-      var mymessage = confirm("确定要删除该课程信息吗？");
+      var mymessage = confirm("确定要删除该课件信息吗？");
       if (mymessage == true) {
         $.ajax({
           type : 'post',
@@ -236,22 +236,23 @@
     }
 
     function addItem() {
+      alert("${gateway}/kjitme/edit");
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title : '<span class="text-color">添加课程信息</span>',//请修改span中间的内容
+        title : '<span class="text-color">添加课件信息</span>',//请修改span中间的内容
         shadeClose : true,//开启阴影关闭
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : '${gateway}/kj/edit'//如果不想出现滚动条['content.html', 'no']
+        content : '${gateway}/kjitme/edit'//如果不想出现滚动条['content.html', 'no']
       });
     }
 
     function editItem(e) {
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title : '<span class="text-color">修改课程信息</span>',//请修改span中间的内容
+        title : '<span class="text-color">修改课件信息</span>',//请修改span中间的内容
         shadeClose : true,//开启阴影关闭
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
@@ -264,7 +265,7 @@
     function lookItem(e) {
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title : '<span class="text-color">查看课程信息</span>',//请修改span中间的内容
+        title : '<span class="text-color">查看课件信息</span>',//请修改span中间的内容
         shadeClose : true,//开启阴影关闭
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
@@ -274,7 +275,7 @@
       });
     }
 
-    TableInit(queryParams).Init('${gateway}/kj/getPageData', [ {
+    TableInit(queryParams).Init('${gateway}/kjitem/getPageData', [ {
       field : 'kjName',
       title : '课件名称',
       sortable : true

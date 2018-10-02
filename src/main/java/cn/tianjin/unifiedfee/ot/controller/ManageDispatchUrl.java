@@ -203,7 +203,6 @@ public class ManageDispatchUrl {
     public String toKjList() {
         return "/manage/kj/kjList";
     }
-
     @RequestMapping("kj/selList")
     public String kjSelList() {
         return "/manage/kj/kjSelList";
@@ -258,9 +257,14 @@ public class ManageDispatchUrl {
     }
 
     // --课件管理-新
-    @RequestMapping("kjItme/list")
+    @RequestMapping("kjitme/list")
     public String toKjItmelList() {
-        return "/manage/kjItem/kjList";
+        return "/manage/kjitem/List";
+    }
+ // --课件管理-新
+    @RequestMapping("kjitme/edit")
+    public String toKjItmelEdit() {
+        return "/manage/kjitem/Edit";
     }
 
     // --试题管理
