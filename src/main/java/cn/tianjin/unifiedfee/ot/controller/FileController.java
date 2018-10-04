@@ -39,8 +39,7 @@ public class FileController {
 
     @RequestMapping("/upload")
     @ResponseBody
-    public Map<String, Object> upload(CommArchive commArchive, MultipartFile[] files, HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
+    public Map<String, Object> upload(CommArchive commArchive, MultipartFile[] files, HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpPush.responseInfo(response);// 跨域
         System.out.println("------------进入上传文件---------------");
         Map<String, Object> map = new HashMap<String, Object>();
@@ -68,6 +67,35 @@ public class FileController {
             }
         }
         map.put("fileName", fileName);
+        return map;
+    }
+
+    @RequestMapping("/uploadTemp")
+    @ResponseBody
+    public Map<String, Object> uploadTemp(CommArchive commArchive, MultipartFile[] files, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpPush.responseInfo(response);// 跨域
+        System.out.println("------------进入上传文件---------------");
+        Map<String, Object> map = new HashMap<String, Object>();
+        String fileName = "";
+        String fileUrl = "";
+        if (files != null && files.length > 0) {
+            for (MultipartFile file : files) {
+                if (file != null && file.getSize() > 0) {
+                    InputStream stream = file.getInputStream();
+                    fileName = file.getOriginalFilename();
+                    // 当前时间戳
+                    long dateTime = new Date().getTime();
+                    String uploadFileName = dateTime + fileName;
+                    String objectName = fileObjectService.putObject(FILEPATH, uploadFileName, stream, FILETYPE);
+                    System.out.println("--------------------------------");
+                    System.out.println(downloadEndpoint + objectName);
+                    System.out.println("--------------------------------");
+                    fileUrl = downloadEndpoint + objectName;
+                }
+            }
+        }
+        map.put("fileName", fileName);
+        map.put("fileUrl", fileUrl);
         return map;
     }
 }

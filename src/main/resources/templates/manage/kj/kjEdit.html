@@ -75,13 +75,21 @@
 <script src="${gateway}/src/js/main.js"></script>
 <style>
 html {
-	overflow-x: hidden;
-	overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 </style>
 </head>
 <body>
 	<br>
+<!-- 
+	<div>fielUploaAjaxTest: <input type=file id=file3 name=file3></input><input type=button id=ftBtn onclick="testUpload();" value='上传测试'></input></div>
+ -->
+<!-- 
+<form id="uploadForm" enctype="multipart/form-data">
+	<div>fielUploaAjaxTest: <input type=file id=file3 name=file3></input><input type=button id=ftBtn onclick="testUpload();" value='上传测试'></input></div>
+</form>
+ -->
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
@@ -160,18 +168,16 @@ html {
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<input id="file-2" type="file" multiple class="file"
 									name="files" data-overwrite-initial="false"
-									data-min-file-count="1"><b>(注：请上传229x174，大小在2M以内的缩略图，支持格式：jpg,gif,png,jpeg)</b>
+									data-max-file-count="1"><br/><b>(注：请上传230x180，大小在2M以内的缩略图，支持格式：jpg,gif,png,jpeg)</b>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span
-								class="cfff"> ※ </span>上传附件</label>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><span class="cfff">※ </span>&emsp;上传课程内容</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
-								<input id="file-1" type="file" multiple class="file"
-									name="files" data-overwrite-initial="false"
-									data-min-file-count="1"><b>(注：请上传视频文件，大小在10M以内，支持格式：mp4)</b>
+								<input id="file-1" type="file" multiple class="file" name="files" data-overwrite-initial="false"
+									data-max-file-count="1"><b>(注：请上传视频文件，大小在10M以内，支持格式：mp4)</b>
 							</div>
 						</div>
 					</div>
@@ -184,8 +190,7 @@ html {
 										<th>分类名称</th>
 										<th>学分</th>
 										<th>创建时间</th>
-										<th><span class="glyphicon glyphicon-plus"
-											aria-hidden="true" onclick="selectItem()"></span></th>
+										<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>
 									</tr>
 								</table>
 							</div>
@@ -539,8 +544,20 @@ html {
       $(obj).parent().remove();
     }
 
-    //上传课件
     $("#file-1").fileinput({
+      uploadUrl: "${gateway}/file/uploadTemp",
+      maxFileSize: 0,
+      dropZoneEnabled: false,//是否显示拖拽区域
+      browseOnZoneClick: true,
+      showUpload: true,//是否显示上传按钮
+      showRemove : false,//显示移除按钮,跟随文本框的那个
+      maxFilesNum: 1
+    }).on("fileuploaded", function(event, data, previewId, index) {
+      console.log("========================")
+      console.log(data);
+      console.log(data.response.fileUrl);
+    });
+/*     $("#file-1").fileinput({
       theme : "explorer", //主题
       language : 'zh',
       uploadUrl : "${gateway}/file/upload",// 上传请求路径
@@ -579,6 +596,7 @@ html {
         'jpeg' : '<i class="fa fa-file-photo-o text-primary"></i>'
       },
     });
+ */
     //上传文件
     $("#file-2").fileinput({
       theme : "explorer", //主题
@@ -619,6 +637,29 @@ html {
         'jpeg' : '<i class="fa fa-file-photo-o text-primary"></i>'
       },
     });
+
+function testUpload() {
+  alert("ABC4");
+  var formData = new FormData($('#uploadForm')[0]);
+  //  var formData = new FormData();
+  //formData.append("myfile", document.getElementById("file3").files[0]);
+  console.log(formData);
+  $.ajax({
+      url: "${gateway}/file/uploadTemp",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (data) {
+        console.log("========================")
+        console.log(data);
+      },
+      error: function () {
+          alert("上传失败！");
+      }
+  });
+
+}
   </script>
 </body>
 </html>
