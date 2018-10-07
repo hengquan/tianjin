@@ -80,8 +80,7 @@ html {
                         <div class="form-group">
                             <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span> ※ </span>题目内容</label>
                             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                <textarea id="tmHtml" class="form-control" name="tmHtml"
-                                    style="min-height: 108px"></textarea>
+                                <textarea id="tmHtml" class="form-control" name="tmHtml" style="min-height: 108px"></textarea>
                             </div>
                         </div>
                     </div>
@@ -96,7 +95,6 @@ html {
                                     <option value="判断题">判断题</option>
                                 </select>
                             </div>
-
                             <label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="title"><span>   ※ </span>分数</label>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <input type="text" class="form-control" name="score" id="score" />
@@ -105,12 +103,10 @@ html {
                                 <span> ※ </span>难度系数
                             </label>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                <input type="text" class="form-control" name="diffScore"
-                                    id="diffScore" />
+                                <input type="text" class="form-control" name="diffScore" id="diffScore" />
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">
@@ -135,10 +131,8 @@ html {
                                 <span> ※ </span>所属模拟实操
                             </label>
                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                <input type="hidden" class="form-control" name="mnscList"
-                                    id="mnscList" />
-                                <textarea id="mnscnameList" class="form-control"
-                                    name="mnscnameList" style="min-height: 60px"></textarea>
+                                <input type="hidden" class="form-control" name="mnscList" id="mnscList" />
+                                <textarea id="mnscnameList" class="form-control" name="mnscnameList" style="min-height: 60px"></textarea>
                             </div>
                             <span class="input-group-btn">
                                 <button class="btn btn-info"
@@ -165,8 +159,7 @@ html {
                  </form>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" > 
 	                		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-			                     <button onclick="addTm()" id="baocun"
-			                             class="btn w80  btn-default btn-primary">保存</button>
+			                     <button onclick="addTm()" id="baocun" class="btn w80  btn-default btn-primary">保存</button>
 			                     <button class="btn w80  btn-default btn-default">取消</button>
 		                     </div>
 		                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="selectbtn" style="display: none;">
@@ -264,23 +257,51 @@ html {
         validating: 'glyphicon glyphicon-refresh'
       },
       fields: {
-        mnscList: {
-          message: '模拟实操不能为空',
+        tmHtml: {
+          message: '题目内容不能为空',
           validators: {
             notEmpty: {
-              message: '分类名称不能为空'
+              message: '题目内容不能为空'
             }
           }
         },
-        sort: {
-          message: '分类排序验证失效',
+        mnscnameList: {
+          message: '模拟实操不能为空',
           validators: {
             notEmpty: {
-              message: '必须录入排序号'
+              message: '模拟实操不能为空'
+            }
+          }
+        },
+        kjnameList: {
+          message: '相关课件不能为空',
+          validators: {
+            notEmpty: {
+              message: '相关课件不能为空'
+            }
+          }
+        },
+        score: {
+          message: '题目份数',
+          validators: {
+            notEmpty: {
+              message: '必须录入题目份数'
             },
             regexp: {
               regexp: "^[0-9][0-9]*$",
-              message: '排序号必须为自然数'
+              message: '题目份数须为自然数'
+            }
+          }
+        },
+        diffScore: {
+          message: '题目难度系数',
+          validators: {
+            notEmpty: {
+              message: '必须录入题目难度系数'
+            },
+            regexp: {
+              regexp: "^[0-9]$",
+              message: '题目难度系数从0到9'
             }
           }
         }
@@ -312,12 +333,11 @@ html {
       } ]);
     }
     
-
     function addTm() {
-      
-      var validatorObj=$('#form').data("bootstrapValidator");     
-      validatorObj.validate();
-    
+      var validatorObj=$('#form').data("bootstrapValidator");
+      var aa=validatorObj.validate();
+      var flag=validatorObj.isValid();
+      if (!flag) return;
       $.ajax({
         type : 'post',
         url : "${gateway}/st/insert",

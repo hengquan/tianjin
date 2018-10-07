@@ -19,7 +19,7 @@ public class LogVisit extends BaseObject {
 
     private String visitSysId;
 
-    private String visitModulelId;
+    private String visitModuleId;
 
     private String objType;
 
@@ -121,12 +121,12 @@ public class LogVisit extends BaseObject {
         this.visitSysId = visitSysId == null ? null : visitSysId.trim();
     }
 
-    public String getVisitModulelId() {
-        return visitModulelId;
+    public String getVisitModuleId() {
+        return visitModuleId;
     }
 
-    public void setVisitModulelId(String visitModulelId) {
-        this.visitModulelId = visitModulelId == null ? null : visitModulelId.trim();
+    public void setVisitModuleId(String visitModuleId) {
+        this.visitModuleId = visitModuleId == null ? null : visitModuleId.trim();
     }
 
     public String getObjType() {

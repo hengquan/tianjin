@@ -61,4 +61,16 @@ public class LogVisitService {
         map.put("userId", userId);
         return logDao.getMyLogVisitList(map);
     }
+
+    public List<Map<String, Object>> getXyxxList(Map<String, Object> param) {
+        return logDao.getXyxxList(param);
+    }
+
+    public List<Map<String, Object>> getXyxxSumList(Map<String, Object> param) {
+        return logDao.getXyxxSumList(param);
+    }
+
+    public List<Map<String, Object>> getCompUserList(Map<String, Object> param) {
+        return logDao.getCompUserList(param);
+    }
 }

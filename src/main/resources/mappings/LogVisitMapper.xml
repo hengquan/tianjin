@@ -8,7 +8,7 @@
 		<result column="visit_type" property="visitType" jdbcType="INTEGER" />
 		<result column="visit_sys_type" property="visitSysType" jdbcType="VARCHAR" />
 		<result column="visit_sys_id" property="visitSysId" jdbcType="VARCHAR" />
-		<result column="visit_modulel_id" property="visitModulelId" jdbcType="VARCHAR" />
+		<result column="visit_module_id" property="visitModuleId" jdbcType="VARCHAR" />
 		<result column="obj_type" property="objType" jdbcType="VARCHAR" />
 		<result column="obj_id" property="objId" jdbcType="VARCHAR" />
 		<result column="api_name" property="apiName" jdbcType="VARCHAR" />
@@ -40,7 +40,7 @@
 		id, serv_sys_type, serv_sys_id,
 		visit_type, visit_sys_type,
 		visit_sys_id,
-		visit_modulel_id, obj_type, obj_id,
+		visit_module_id, obj_type, obj_id,
 		api_name, from_url,
 		req_url,
 		method, req_param, visitor_type,
@@ -76,8 +76,8 @@
 			<if test="visitSysId != null">
 				visit_sys_id,
 			</if>
-			<if test="visitModulelId != null">
-				visit_modulel_id,
+			<if test="visitModuleId != null">
+				visit_module_id,
 			</if>
 			<if test="objType != null">
 				obj_type,
@@ -272,7 +272,7 @@
 				visit_sys_id = #{visitSysId},
 			</if>
 			<if test="visitModulelId != null">
-				visit_modulel_id = #{visitModulelId},
+				visit_module_id = #{visitModuleId},
 			</if>
 			<if test="objType != null">
 				obj_type = #{objType},
@@ -392,4 +392,56 @@
     <select id="getVisitCountByUi" resultType="java.util.HashMap" parameterType="java.lang.String">
       select obj_type, count(*) from log_visit where visitor_id=#{userId} group by obj_type
     </select>
+
+  <!-- WH::得到某一企业下面的所有人员 -->
+  <select id="getCompUserList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select distinct visitor_id,visitor_name from log_visit where group_id=#{compId}
+  </select>
+
+  <!-- WH::得到某一企业，某个时间端内，各类学习情况的总数 -->
+  <select id="getXyxxSumList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select obj_type,count(obj_id) fx from log_visit
+    where group_id=#{compId} and (obj_id is not null and length(trim(obj_id))>0)
+      <if test="userIds!=null and userIds!=''">
+      and ${userIds}
+      </if>
+      <if test="date1!=null and date1!=''">
+      <![CDATA[
+      and create_date>to_date('${date1}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+      <if test="date2!=null and date2!=''">
+      <![CDATA[
+      and create_date<to_date('${date2}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+    group by obj_type
+  </select>
+  <!-- WH::得到某一企业，某个时间端内，各学员的学习统计，行转列 -->
+  <select id="getXyxxList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select *
+    from (
+      select NVL(visitor_name, '未知') user_name, obj_type, count(obj_id) fx from log_visit
+      where visit_module_id is not null and obj_id is not null and length(trim(obj_id))>0
+      and group_id=#{compId}
+      <if test="userIds!=null and userIds!=''">
+      and ${userIds}
+      </if>
+      <if test="date1!=null and date1!=''">
+      <![CDATA[
+      and create_date>to_date('${date1}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+      <if test="date2!=null and date2!=''">
+      <![CDATA[
+      and create_date<to_date('${date2}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+      group by visitor_name, obj_type
+    )
+    pivot(
+      sum(fx) for obj_type in ('ts_kj' kj_count, 'ts_mnsc' mnsc_count, 'q_sj' sj_count)
+    )
+    order by (kj_count+mnsc_count+NVL(sj_count,0))
+  </select>
 </mapper>

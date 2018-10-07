@@ -191,7 +191,6 @@ $(function () {
   $('form').on("success.form.bv", function(e) {
     var formData = $('#mainForm').serialize();
     formData = decodeURIComponent(formData, true);
-    console.log(formData);
     $.ajax({
       url : '${gateway}/cate/insert',
       data : formData,

@@ -1,6 +1,8 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,10 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.taiji.format.result.ObjectResponseResult;
 import cn.taiji.oauthbean.dto.UserInfo;
+import cn.taiji.system.domain.CompanyBasicInfo;
 import cn.taiji.system.domain.SysResource;
+import cn.taiji.web.company.remote.SystemCompanyRemote;
+import cn.taiji.web.menu.remote.SecurityMenuRemote;
 import cn.taiji.web.menu.service.SecurityMenuService;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.CommArchive;
+import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
 import cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper;
 
 //import java.util.ArrayList;
@@ -38,8 +44,14 @@ import cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper;
 public class ManageDispatchUrl {
     @Autowired // 注入Service
     public UserService userService;
+//    @Autowired // 注入Service
+//    public SecurityMenuService securityMenuService;
     @Autowired // 注入Service
-    public SecurityMenuService securityMenuService;
+    public SecurityMenuRemote securityMenuRemote;
+    @Autowired
+    public LogVisitService catService;
+    @Autowired
+    public SystemCompanyRemote companyRemote;
     @Autowired // 注入Service
     public CommArchiveMapper commArchiveMapper;
 
@@ -50,31 +62,33 @@ public class ManageDispatchUrl {
 
     // =============================以下为页面跳转
     /* 后台管理首页 index页 */
-    @RequestMapping(value = { "/index", "/" })
+    @RequestMapping(value={ "/index", "/" })
     public String page(Model model) {
         // 获得权限信息，并回写到对象中
         // trainNameId="企业门户（chenph）";
-        String[] trainNameId={"线上培训子系统（chenph）", "培训中心"};
-        String menuHtml = "", indexHtml = "";
+        //String[] trainNameId={"线上培训子系统（chenph）", "培训中心"};
+        String menuHtml="", indexHtml="";
         try {
-            UserInfo ui = userService.getUserInfo();
+            UserInfo ui=userService.getUserInfo();
             if (ui != null) {
                 model.addAttribute("username", ui.getUsername());
                 model.addAttribute("userImg", "http://1.202.219.107:8088/pm-server-innerweb/src/images/defaultAvatar@2x.png");
-                ObjectResponseResult<List<SysResource>> result = securityMenuService.findMenuByUsername(ui.getUsername());
+                //ObjectResponseResult<List<SysResource>> result=securityMenuService.findMenuByUsername(ui.getUsername());
+                ObjectResponseResult<List<SysResource>> result=securityMenuRemote.findMenuByUsernameAndSysname(ui.getUsername(), "ot-server",ui.getUseType());
                 if (result != null && result.getData() != null && result.getData().size() > 0) {
-                    List<SysResource> l = findTrainMenu(result.getData(), trainNameId);
+                    //List<SysResource> l=findTrainMenu(result.getData(), trainNameId);
                     /**
                      * 测试代码 List<SysResource> _ret=new ArrayList<SysResource>();
                      * for (SysResource s: l) if
                      * (s.getResourcesName().equals("培训中心"))
                      * {_ret.add(s);break;} l=_ret;
                      */
+                    List<SysResource> l=result.getData().get(0).getChildren();
                     if (l != null) {
-                        for (int i = 0; i < l.size(); i++) {
-                            SysResource m1 = l.get(i);
+                        for (int i=0; i < l.size(); i++) {
+                            SysResource m1=l.get(i);
                             if (m1.getResourcesName().equals("首页")) {
-                                indexHtml = "<li class='pt-menu-list'><span style='width: 14px;height: 14px;position: absolute;left: 12px;' aria-hidden='true'><img src='"
+                                indexHtml="<li class='pt-menu-list'><span style='width: 14px;height: 14px;position: absolute;left: 12px;' aria-hidden='true'><img src='"
                                         + prefix + "/src/images/house.png' width='100%'></span>";
                                 indexHtml += "<h3 class='pt-menu-title'><a href='javascript:void(0);' onclick='showMenu(\""
                                         + prefix
@@ -86,8 +100,8 @@ public class ManageDispatchUrl {
                                         + "<h3 class='pt-menu-title'><a href='#'>" + m1.getResourcesName()
                                         + "</a></h3>";
                                 menuHtml += "<ul class='pt-second-menu'>";
-                                for (int j = 0; j < m1.getChildren().size(); j++) {
-                                    SysResource m2 = m1.getChildren().get(j);
+                                for (int j=0; j < m1.getChildren().size(); j++) {
+                                    SysResource m2=m1.getChildren().get(j);
                                     menuHtml += "<li class='pt-menu-child'><span class='glyphicon  glyphicon-th-large' aria-hidden='true'></span>"
                                             // +"<h3 class='pt-menu-title'><a
                                             // href='javascript:void(0);'
@@ -106,13 +120,13 @@ public class ManageDispatchUrl {
             e.printStackTrace();
         }
         if (!StringUtils.isBlank(indexHtml))
-            menuHtml = indexHtml + menuHtml;
+            menuHtml=indexHtml + menuHtml;
         model.addAttribute("menuHtml", menuHtml);
         return "/manage/index";
     }
 
     private List<SysResource> findTrainMenu(List<SysResource> lsr, String[] roleName) {
-        List<SysResource> retl = null;
+        List<SysResource> retl=null;
         for (SysResource sr : lsr) {
             boolean hasResource=false;
             for (int i=0; i<roleName.length; i++) {
@@ -125,7 +139,7 @@ public class ManageDispatchUrl {
                 return sr.getChildren();
             } else {
                 if (sr.getChildren() == null || sr.getChildren().size() == 0) return null;
-                retl = findTrainMenu(sr.getChildren(), roleName);
+                retl=findTrainMenu(sr.getChildren(), roleName);
                 if (retl != null) return retl;
             }
         }
@@ -170,25 +184,25 @@ public class ManageDispatchUrl {
 
     @RequestMapping("mnsc/edit")
     public String toMnscEdit(HttpServletRequest request, Model model) {
-        String objId = request.getParameter("id");
-        String imgJsons = "";
+        String objId=request.getParameter("id");
+        String imgJsons="";
         if (StringUtils.isNotEmpty(objId)) {
             // 处理相关附件
-            List<CommArchive> commArchives = commArchiveMapper.selectByObjId(objId);
+            List<CommArchive> commArchives=commArchiveMapper.selectByObjId(objId);
             if (commArchives != null && commArchives.size() > 0) {
                 for (CommArchive commArchive : commArchives) {
-                    String archiveType = commArchive.getArchiveType();
+                    String archiveType=commArchive.getArchiveType();
                     if (archiveType.equals("img")) {
-                        String fileUrl = commArchive.getFileUrl();
+                        String fileUrl=commArchive.getFileUrl();
                         if (StringUtils.isNotEmpty(fileUrl)) {
-                            String src = "<img src='" + fileUrl + "' class='file-preview-image'>";
+                            String src="<img src='" + fileUrl + "' class='file-preview-image'>";
                             imgJsons += "," + src;
                         }
                     }
                 }
             }
         }
-        if (StringUtils.isNotEmpty(imgJsons)) imgJsons = imgJsons.substring(1);
+        if (StringUtils.isNotEmpty(imgJsons)) imgJsons=imgJsons.substring(1);
         model.addAttribute("imgJson", imgJsons);
         return "/manage/mnsc/mnscEdit";
     }
@@ -210,25 +224,25 @@ public class ManageDispatchUrl {
 
     @RequestMapping("kj/edit")
     public String toKjEdit(HttpServletRequest request, Model model) {
-        String objId = request.getParameter("id");
-        String imgJsons = "";
-        String videoJsons = "";
+        String objId=request.getParameter("id");
+        String imgJsons="";
+        String videoJsons="";
         if (StringUtils.isNotEmpty(objId)) {
             // 处理相关附件
-            List<CommArchive> commArchives = commArchiveMapper.selectByObjId(objId);
+            List<CommArchive> commArchives=commArchiveMapper.selectByObjId(objId);
             if (commArchives != null && commArchives.size() > 0) {
                 for (CommArchive commArchive : commArchives) {
-                    String archiveType = commArchive.getArchiveType();
+                    String archiveType=commArchive.getArchiveType();
                     if (archiveType.equals("img")) {
-                        String fileUrl = commArchive.getFileUrl();
+                        String fileUrl=commArchive.getFileUrl();
                         if (StringUtils.isNotEmpty(fileUrl)) {
-                            String src = "<img src='" + fileUrl + "' class='file-preview-image'>";
+                            String src="<img src='" + fileUrl + "' class='file-preview-image'>";
                             imgJsons += "," + src;
                         }
                     } else if (archiveType.equals("main")) {
-                        String fileUrl = commArchive.getFileUrl();
+                        String fileUrl=commArchive.getFileUrl();
                         if (StringUtils.isNotEmpty(fileUrl)) {
-                            String src = "<video height='160px' width='213px' controls class='file-preview-image'>";
+                            String src="<video height='160px' width='213px' controls class='file-preview-image'>";
                             src += "<source src='" + fileUrl + "' type='video/mp4'>";
                             src += "</video>";
                             videoJsons += "," + src;
@@ -238,9 +252,9 @@ public class ManageDispatchUrl {
             }
         }
         if (StringUtils.isNotEmpty(imgJsons))
-            imgJsons = imgJsons.substring(1);
+            imgJsons=imgJsons.substring(1);
         if (StringUtils.isNotEmpty(videoJsons))
-            videoJsons = videoJsons.substring(1);
+            videoJsons=videoJsons.substring(1);
         model.addAttribute("imgJson", imgJsons);
         model.addAttribute("videoJson", videoJsons);
         return "/manage/kj/kjEdit";
@@ -261,7 +275,7 @@ public class ManageDispatchUrl {
     public String toKjItmelList() {
         return "/manage/kjitem/List";
     }
- // --课件管理-新
+    // --课件管理-新
     @RequestMapping("kjitme/edit")
     public String toKjItmelEdit() {
         return "/manage/kjitem/Edit";
@@ -293,6 +307,54 @@ public class ManageDispatchUrl {
         return "/manage/st/selectEdit";
     }
 
+    //--统计相关-1学员学习
+    @RequestMapping("tj/xyxx")
+    public String toTjXyxx(HttpServletRequest request, Model model) {
+        //获得企业的人员
+        String optionHtml="";
+        UserInfo ui=userService.getUserInfo();
+        if (ui!=null) {
+            //获得用户所在企业
+            ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
+            if (companyInfo!=null&&companyInfo.getData()!=null) {
+                Map<String, Object> param=new HashMap<String, Object>();
+                param.put("compId", companyInfo.getData().getCompanyId());
+                List<Map<String, Object>> ul=catService.getCompUserList(param);
+                if (ul!=null&&ul.size()>0) {
+                    for (Map<String, Object> u: ul) {
+                        optionHtml+="<option value='"+u.get("visitor_id")+"'>"+u.get("visitor_name")+"</option>";
+                    }
+                }
+            }
+            //测试，准备删除
+            Map<String, Object> param=new HashMap<String, Object>();
+            param.put("compId", "98311111234523456B");
+            List<Map<String, Object>> ul=catService.getCompUserList(param);
+            if (ul!=null&&ul.size()>0) {
+                for (Map<String, Object> u: ul) {
+                    optionHtml+="<option value='"+u.get("VISITOR_ID")+"'>"+u.get("VISITOR_NAME")+"</option>";
+                }
+            }
+        }
+        model.addAttribute("optionHtml", optionHtml);
+        return "/manage/tj/tjXyxx";
+    }
+    //--统计相关-2课程统计
+    @RequestMapping("tj/kj")
+    public String toTjKj(HttpServletRequest request) {
+        return "/manage/tj/tjKj";
+    }
+    //--统计相关-3模拟实操
+    @RequestMapping("tj/mnsc")
+    public String toTjMnsc(HttpServletRequest request) {
+        return "/manage/tj/tjNnsc";
+    }
+    //--统计相关-4综合
+    @RequestMapping("tj/zh")
+    public String toTjZh(HttpServletRequest request) {
+        return "/manage/tj/tjZh";
+    }
+
     // =============================为配合目前部署，所修改的信息===========
     // --分类管理
     /*
@@ -319,31 +381,33 @@ public class ManageDispatchUrl {
         return "/manage/st/tmList";
     }
     */
-    @RequestMapping(value = { "/indexTest" })
+    @RequestMapping(value={ "/indexTest" })
     public String test(Model model) {
         // 获得权限信息，并回写到对象中
         // trainNameId="企业门户（chenph）";
         String[] trainNameId={"线上培训子系统（chenph）", "培训中心"};
-        String menuHtml = "", indexHtml = "";
+        String menuHtml="", indexHtml="";
         try {
-            UserInfo ui = userService.getUserInfo();
+            UserInfo ui=userService.getUserInfo();
             if (ui != null) {
                 model.addAttribute("username", ui.getUsername());
                 model.addAttribute("userImg", "http://1.202.219.107:8088/pm-server-innerweb/src/images/defaultAvatar@2x.png");
-                ObjectResponseResult<List<SysResource>> result = securityMenuService.findMenuByUsername(ui.getUsername());
+                //ObjectResponseResult<List<SysResource>> result=securityMenuService.findMenuByUsername(ui.getUsername());
+                ObjectResponseResult<List<SysResource>> result=securityMenuRemote.findMenuByUsernameAndSysname(ui.getUsername(), "ot-server",ui.getUseType());
                 if (result != null && result.getData() != null && result.getData().size() > 0) {
-                    List<SysResource> l = findTrainMenu(result.getData(), trainNameId);
+//                    List<SysResource> l=findTrainMenu(result.getData(), trainNameId);
                     /**
                      * 测试代码 List<SysResource> _ret=new ArrayList<SysResource>();
                      * for (SysResource s: l) if
                      * (s.getResourcesName().equals("培训中心"))
                      * {_ret.add(s);break;} l=_ret;
                      */
+                    List<SysResource> l=result.getData().get(0).getChildren();
                     if (l != null) {
-                        for (int i = 0; i < l.size(); i++) {
-                            SysResource m1 = l.get(i);
+                        for (int i=0; i < l.size(); i++) {
+                            SysResource m1=l.get(i);
                             if (m1.getResourcesName().equals("首页")) {
-                                indexHtml = "<li class='pt-menu-list'><span style='width: 14px;height: 14px;position: absolute;left: 12px;' aria-hidden='true'><img src='"
+                                indexHtml="<li class='pt-menu-list'><span style='width: 14px;height: 14px;position: absolute;left: 12px;' aria-hidden='true'><img src='"
                                         + prefix + "/src/images/house.png' width='100%'></span>";
                                 indexHtml += "<h3 class='pt-menu-title'><a href='javascript:void(0);' onclick='showMenu(\""
                                         + prefix
@@ -355,8 +419,8 @@ public class ManageDispatchUrl {
                                         + "<h3 class='pt-menu-title'><a href='#'>" + m1.getResourcesName()
                                         + "</a></h3>";
                                 menuHtml += "<ul class='pt-second-menu'>";
-                                for (int j = 0; j < m1.getChildren().size(); j++) {
-                                    SysResource m2 = m1.getChildren().get(j);
+                                for (int j=0; j < m1.getChildren().size(); j++) {
+                                    SysResource m2=m1.getChildren().get(j);
                                     menuHtml += "<li class='pt-menu-child'><span class='glyphicon  glyphicon-th-large' aria-hidden='true'></span>"
                                             // +"<h3 class='pt-menu-title'><a
                                             // href='javascript:void(0);'
@@ -375,7 +439,7 @@ public class ManageDispatchUrl {
             e.printStackTrace();
         }
         if (!StringUtils.isBlank(indexHtml))
-            menuHtml = indexHtml + menuHtml;
+            menuHtml=indexHtml + menuHtml;
         model.addAttribute("menuHtml", menuHtml);
         return "/manage/indexWeb";
     }
