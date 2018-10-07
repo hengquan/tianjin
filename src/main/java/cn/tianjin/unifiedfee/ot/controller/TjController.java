@@ -69,7 +69,7 @@ public class TjController {
             //获得用户所在企业
             ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
             if (companyInfo==null||companyInfo.getData()==null) {
-                return null;
+                //return null;
             }
 
             //设置page
