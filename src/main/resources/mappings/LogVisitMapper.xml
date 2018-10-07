@@ -173,8 +173,8 @@
 			<if test="visitSysId != null">
 				#{visitSysId,jdbcType=VARCHAR},
 			</if>
-			<if test="visitModulelId != null">
-				#{visitModulelId,jdbcType=VARCHAR},
+			<if test="visitModuleId != null">
+				#{visitModuleId,jdbcType=VARCHAR},
 			</if>
 			<if test="objType != null">
 				#{objType,jdbcType=VARCHAR},
@@ -271,7 +271,7 @@
 			<if test="visitSysId != null">
 				visit_sys_id = #{visitSysId},
 			</if>
-			<if test="visitModulelId != null">
+			<if test="visitModuleId != null">
 				visit_module_id = #{visitModuleId},
 			</if>
 			<if test="objType != null">

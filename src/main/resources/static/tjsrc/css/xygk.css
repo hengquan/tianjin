@@ -8,6 +8,10 @@ ul,li,ol {
 img {
   width: 100%;
 }
+.container-fluid {
+  padding-left: 40px;
+  padding-right: 40px;
+}
 .top {
   padding-top: 20px;
 }
@@ -23,7 +27,8 @@ img {
   font-size: 30px;
 }
 .center {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  margin-top: 15px;
 }
 .center .title {
   border-bottom: 2px solid #94cbe7;
@@ -37,6 +42,8 @@ img {
 }
 .xygk-bottom {
   border: 1px solid #dddddd;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 .xygk-bottom p {
   font-size: 18px;
@@ -105,4 +112,11 @@ img {
   display: inline-block;
   width: 15px;
   vertical-align: 1px;
+}
+.pic {
+  height: 215px;
+  overflow: hidden;
+}
+.pic img {
+  height: 100%;
 }

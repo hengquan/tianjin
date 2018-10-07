@@ -1,0 +1,123 @@
+body {
+  background: #f2f2f2;
+}
+.bgs {
+  width: 70%;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 5px;
+}
+.top {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 20px;
+}
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+.top .container-fluid {
+  height: 100%;
+}
+.pic {
+  overflow: hidden;
+  height: 100%;
+}
+.pic img {
+  height: 100%;
+}
+.top h2 {
+  height: 20px;
+  clear: both;
+}
+.top .title {
+  font-size: 16px;
+  font-weight: bold;
+  float: left;
+}
+.top .time {
+  margin-right: 0;
+  float: right;
+}
+.top .num {
+  margin: 10px 0;
+}
+.top .num span {
+  margin-right: 20px;
+}
+.top .num i {
+  font-style: inherit;
+  color: #dbdbdb;
+  margin-left: 5px;
+}
+.top .totle img {
+  width: 20px;
+}
+.top .t img {
+  width: 15px;
+}
+.top .star img {
+  width: 15px;
+}
+.btns {
+  margin-top: 10px;
+}
+.nbtn {
+  float: left;
+  width: 150px;
+  height: 30px;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  margin-right: 15px;
+}
+.btns .now {
+  background: #148bff;
+}
+.btns .ms {
+  background: #f46227;
+}
+.tlkc {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 400;
+  padding-left: 15px;
+  height: 66px;
+  line-height: 66px;
+}
+.tlkc span {
+  border-bottom: 3px solid #148bff;
+  padding-bottom: 18px;
+}
+.list {
+  width: 70%;
+  margin: 0 auto; 
+  margin-top: 10px;
+}
+.list::after{
+  content: "";
+  clear: both;
+  display: block;
+  width: 0;
+  height: 0;
+}
+.list li {
+  float: left;
+  width: 18%;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-right: 2.5%;
+  margin-bottom: 20px;
+}
+.list li:nth-child(5n+5) {
+  margin-right: 0;
+}
+.list .info {
+  line-height: 50px;
+  background: #fff;
+  height: 50px;
+  padding-left: 5px;
+  font-size: 14px;
+  color: #000;
+}
