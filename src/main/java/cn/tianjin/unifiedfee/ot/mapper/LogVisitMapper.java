@@ -17,4 +17,10 @@ public interface LogVisitMapper {
     List<Map<String, Object>> getVisitCountByUi(String userId);
 
     List<LogVisit> getMyLogVisitList(Map<String, Object> map);
+
+    List<Map<String, Object>> getXyxxList(Map<String, Object> param);
+
+    List<Map<String, Object>> getXyxxSumList(Map<String, Object> param);
+
+    List<Map<String, Object>> getCompUserList(Map<String, Object> param);
 }

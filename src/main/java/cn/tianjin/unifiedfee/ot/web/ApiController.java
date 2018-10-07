@@ -611,7 +611,7 @@ public class ApiController {
                     lv.setGroupId(companyInfo.getData().getCompanyId());
                     lv.setGroupName(companyInfo.getData().getCompanyNameZh());
                 }
-                lv.setVisitModulelId("在线练习");
+                lv.setVisitModuleId("在线练习");
                 lv.setObjId(""+sjInfo.get("id"));
                 lv.setObjType("q_sj");
                 LogVisitMemory.getInstance().put2Queue(lv);

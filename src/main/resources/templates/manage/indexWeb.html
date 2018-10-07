@@ -74,6 +74,30 @@ iframe{
             </li>
           </ul>
         </li>
+        ${menuHtml}
+        <!--为调试用-->
+        <li class="pt-menu-list">
+          <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+          <h3 class="pt-menu-title"><a href="#">数据统计</a></h3>
+          <ul class="pt-second-menu">
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjXYXX()">学员学习</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjKJ()">课件统计</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjMNSC()">模拟实操</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjZH()">综合统计</a></h3>
+            </li>
+          </ul>
+        </li>
       </ul></div>
     </div>
     <!--左侧菜单 结束-->
@@ -132,6 +156,24 @@ function toWebMNSC(){
 //在线学习
 function toZXXX() {
   $("#mainframe").attr("src","${gateway}/courseware");
+}
+
+//===================================================
+//统计-学员学习
+function toTjXYXX(){
+  $("#mainframe").attr("src","${gateway}/tj/xyxx");
+}
+//统计-课件统计
+function toTjKJ(){
+  $("#mainframe").attr("src","${gateway}/tj/kj");
+}
+//统计-模拟实操
+function toTjMNSC(){
+  $("#mainframe").attr("src","${gateway}/tj/mnsc");
+}
+//统计-综合统计
+function toTjZH(){
+  $("#mainframe").attr("src","${gateway}/tj/zh");
 }
 </script>
 

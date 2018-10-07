@@ -38,15 +38,15 @@ import com.spiritdata.framework.core.model.tree.TreeNodeBean;
 public class CateController extends BaseController {
     @Autowired
     private CatagoryService categoryService;
-    @Autowired // 注入Service
+    @Autowired //注入Service
     public UserService userService;
 
     @RequestMapping("get")
     @ResponseBody
     public Map<String, Object> get(String id, HttpServletRequest request, HttpServletResponse response) {
-        Map<String, Object> retMap = new HashMap<String, Object>();
+        Map<String, Object> retMap=new HashMap<String, Object>();
         try {
-            UserInfo ui = userService.getUserInfo();
+            UserInfo ui=userService.getUserInfo();
             if (ui == null) {
                 retMap.put("returnCode", "02");
                 retMap.put("messageInfo", "无用户登录");
@@ -80,15 +80,15 @@ public class CateController extends BaseController {
     @RequestMapping("insert")
     @ResponseBody
     public Map<String, Object> save(Category cate, HttpServletRequest request, HttpServletResponse response) {
-        Map<String, Object> retMap = new HashMap<String, Object>();
+        Map<String, Object> retMap=new HashMap<String, Object>();
         try {
-            UserInfo ui = userService.getUserInfo();
+            UserInfo ui=userService.getUserInfo();
             if (ui == null) {
                 retMap.put("returnCode", "02");
                 retMap.put("messageInfo", "无用户登录");
                 return retMap;
             }
-            retMap = categoryService.save(cate, ui);
+            retMap=categoryService.save(cate, ui);
         } catch (Exception e) {
             e.printStackTrace();
             retMap.put("returnCode", "01");
@@ -102,9 +102,9 @@ public class CateController extends BaseController {
     public Map<String, Object> changeValid(HttpServletRequest request, HttpServletResponse response,
             @RequestParam(required=false, value="id") String id,
             @RequestParam(required=false, value="valid", defaultValue="-1") int valid) {
-        Map<String, Object> retMap = new HashMap<String, Object>();
+        Map<String, Object> retMap=new HashMap<String, Object>();
         try {
-            UserInfo ui = userService.getUserInfo();
+            UserInfo ui=userService.getUserInfo();
             if (ui == null) {
                 retMap.put("returnCode", "02");
                 retMap.put("messageInfo", "无用户登录");
@@ -120,7 +120,7 @@ public class CateController extends BaseController {
                 retMap.put("messageInfo", "状态类型无法获得");
                 return retMap;
             }
-            retMap = categoryService.changeValid(id, valid);
+            retMap=categoryService.changeValid(id, valid);
         } catch (Exception e) {
             e.printStackTrace();
             retMap.put("returnCode", "01");
@@ -132,14 +132,14 @@ public class CateController extends BaseController {
     @RequestMapping("getPageData")
     @ResponseBody
     public Map<String, Object> getPageData(Category cate,
-            @RequestParam(value = "offset", defaultValue = "1") int offset,
-            @RequestParam(value = "limit", defaultValue = "10") int limit, HttpServletRequest request,
+            @RequestParam(value="offset", defaultValue="1") int offset,
+            @RequestParam(value="limit", defaultValue="10") int limit, HttpServletRequest request,
             HttpServletResponse response) {
         // 跨域
         HttpPush.responseInfo(response);
 
-        Map<String, Object> map = new HashMap<String, Object>();
-        Map<String, Object> param = new HashMap<String, Object>();
+        Map<String, Object> map=new HashMap<String, Object>();
+        Map<String, Object> param=new HashMap<String, Object>();
         param.put("keyword", request.getParameter("keyword"));
         param.put("createName", request.getParameter("createName"));
         param.put("cataName", request.getParameter("cataName"));
@@ -152,7 +152,7 @@ public class CateController extends BaseController {
         PageHelper.offsetPage(offset, limit);
         // 查询数据
         List<Map<String, Object>> cl=categoryService.getPageData(param);
-        PageInfo<Map<String, Object>> pageList = new PageInfo<Map<String, Object>>(cl);
+        PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(cl);
         if (cl!=null) {
             //放入分页
             List<Map<String,Object>> cList=new ArrayList<Map<String,Object>>();
