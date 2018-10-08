@@ -607,7 +607,7 @@ public class ApiController {
                 if (StringUtils.isBlank(lv.getVisitSysType())) lv.setVisitSysType("009");
                 if (StringUtils.isBlank(lv.getVisitSysId())) lv.setVisitSysId("1");
                 ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
-                if (companyInfo!=null) {
+                if (companyInfo!=null&&companyInfo.getData()!=null) {
                     lv.setGroupId(companyInfo.getData().getCompanyId());
                     lv.setGroupName(companyInfo.getData().getCompanyNameZh());
                 }

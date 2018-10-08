@@ -151,7 +151,9 @@ function buildPaper() {
   layer.msg('试题生成中......', {
     icon: 16 ,shade: 0.01
   });
-  //获得参数
+  $(".time-area").html('<span class="time-btn" onclick="start()">开始答卷</span>');
+  $("#commitSj").addClass("disable-btn");
+  $("#commitSj").attr("disabled", "disabled");
   var _data={cateIds:"1,2", tmCount:10};
   $.ajax({
     type: 'post',
@@ -229,6 +231,8 @@ function start() {
 //提交试卷
 function commitSj() {
   if ($("#commitSj").hasClass("disable-btn")) return;
+  $("#commitSj").addClass("disable-btn");
+  $("#commitSj").attr("disabled", "disabled");
   clearInterval(intervalHandler);
   count=0;
   $("input[type='checkbox']").attr("disabled", "disabled");
@@ -267,13 +271,14 @@ function commitSj() {
     url: "./train/commitSj",
     data: _data,
     dataType:'json',
-    success: function (data) { //成功后的回调函数
+    success: function (data) {
+      console.log(data);
       var tmHtml="";
       var returnCode=data.returnCode;
       if (returnCode=='00') {
         for (var i=0; i<data.data.tmList.length; i++) {
           var oneTm=data.data.tmList[i];
-          $("#tm-result-"+oneTm.tmId).find(".tm-youanswer").html("您的答案:"+(oneTm.answer?"未答":oneTm.answer));
+          $("#tm-result-"+oneTm.tmId).find(".tm-youanswer").html("您的答案:"+(!oneTm.answer?"未答":oneTm.answer));
           $("#tm-result-"+oneTm.tmId).find(".tm-youanswer").css("color", oneTm.score>0?"green":"red");
           $("#tm-result-"+oneTm.tmId).find(".get-score").html("得分:"+oneTm.score);
           $("#tm-result-"+oneTm.tmId).find(".tm-right").html("正确答案:"+oneTm.tmAnswer);

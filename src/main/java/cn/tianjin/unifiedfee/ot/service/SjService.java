@@ -278,13 +278,12 @@ public class SjService {
             String _answer=answerMap.get(tmL.get(i).getId());
             if (_answer!=null) {
                 String[] sp3=_answer.split("#");
-                boolean correct=true;//题目默认都答对
+                int okCount=0;
+                boolean correct=false;
                 for (int n=0; n<sp3.length; n++) {
-                    if (okAnswerMap.get(sp3[n].trim())==null) {
-                        correct=false;
-                        break;
-                    }
+                    if (okAnswerMap.get(sp3[n].trim())!=null) okCount++;
                 }
+                correct=(okAnswerMap.size()==okCount);
                 if (correct) {
                     oneTm.put("score", tmL.get(i).getScore());
                     score+=tmL.get(i).getScore();
