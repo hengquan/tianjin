@@ -241,4 +241,8 @@ public class MnscService {
 //        map.put("userId", userId);
         return dao.getNewMnscList(map);
     }
+
+    public List<Map<String, Object>> getMnscStateByCate() {
+        return dao.getMnscStateByCate();
+    }
 }

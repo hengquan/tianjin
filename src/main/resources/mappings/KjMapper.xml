@@ -243,8 +243,8 @@
 	</select>
 
     <select id="getKjStateByCate" resultType="Map" parameterType="java.util.Map">
-    select upCateName, count(*) from (
-      select case when instr(kj_cat_names, '-')==0 then kj_cat_names else substr(kj_cat_names, 0, instr(kj_cat_names, '-')-1) end as upCateName from ts_kj 
+    select upCateName, count(*) count from (
+      select case when instr(kj_cat_names, '-')=0 then kj_cat_names else substr(kj_cat_names, 0, instr(kj_cat_names, '-')-1) end as upCateName from ts_kj 
     ) group by upCateName
     </select>
 </mapper>

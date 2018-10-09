@@ -27,4 +27,8 @@ public interface LogVisitMapper {
     List<Map<String, Object>> getAllVisitCount();
 
     List<Map<String, Object>> getAllLogVisitList(Map<String, Object> param);
+
+    List<Map<String, Object>> getKjStateByCate(Map<String, Object> map);
+
+    List<Map<String, Object>> getMnscStateByCate(Map<String, Object> map);
 }

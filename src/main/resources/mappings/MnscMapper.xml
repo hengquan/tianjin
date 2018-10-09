@@ -214,4 +214,10 @@
     order by ts_MNSC.create_date desc
     ) where rownum &lt;= #{rownum}
 	</select>
+
+    <select id="getMnscStateByCate" resultType="Map" parameterType="java.util.Map">
+    select upCateName, count(*) count from (
+      select case when instr(mnsc_cat_names, '-')=0 then mnsc_cat_names else substr(mnsc_cat_names, 0, instr(mnsc_cat_names, '-')-1) end as upCateName from ts_mnsc 
+    ) group by upCateName
+    </select>
 </mapper>

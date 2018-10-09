@@ -508,6 +508,12 @@ public class Api2Controller {
                 retMap.put("messageInfo", "无用户登录");
                 return retMap;
             }
+
+            //获得课件分布
+            List<Map<String, Object>> kjml=kjService.getKjStateByCate();
+            //获得课件日志分布
+            List<Map<String, Object>> logml=logVisitService.getKjStateByCate(30);
+
             //获得所有分类
             TreeNode<CategoryNode> node=(TreeNode<CategoryNode>)categoryService.getCategoryNodeById(null);
             if (node==null||node.getChildCount()==0) {
@@ -515,15 +521,88 @@ public class Api2Controller {
                 retMap.put("messageInfo", "没有有效分类");
                 return retMap;
             }
-            //获得所有一级分类
-            List<String> sl=new ArrayList<String>();
+            //获得所有一级分类，并组织返回值
+            List<Map<String, String>> sl=new ArrayList<Map<String, String>>();
             for (TreeNode<? extends TreeNodeBean> on: node.getChildren()) {
-                sl.add(on.getNodeName());
+                Map<String, String> rm=new HashMap<String, String>();
+                rm.put("catName", on.getNodeName());
+                rm.put("allKjCatCount", "0");
+                rm.put("recentVisitKjCatCount", "0");
+                for (Map<String, Object> kjm: kjml) {
+                    if (on.getNodeName().equals(kjm.get("UPCATENAME"))) {
+                        rm.put("allKjCatCount", ""+kjm.get("COUNT"));
+                    }
+                }
+                for (Map<String, Object> logm: logml) {
+                    if (on.getNodeName().equals(logm.get("UPCATENAME"))) {
+                        rm.put("recentVisitKjCatCount", ""+logm.get("COUNT"));
+                    }
+                }
+                sl.add(rm);
             }
-            //获得课件分布
-            List<Map<String, Object>> kjml=kjService.getKjStateByCate();
+            retMap.put("returnCode", "00");
+            retMap.put("data", sl);
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
 
-            // 查询
+    /**
+     * 1.6.8、获得模拟实操统计信息，为后台首页<br>
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("getMnscStat")
+    @ResponseBody
+    public Map<String, Object> getMnscStat(HttpServletRequest request, HttpServletResponse response) {
+        HttpPush.responseInfo(response);// 跨域
+        // 返回结果
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+
+            //获得课件分布
+            List<Map<String, Object>> mnscml=mnscService.getMnscStateByCate();
+            //获得课件日志分布
+            List<Map<String, Object>> logml=logVisitService.getMnscStateByCate(30);
+
+            //获得所有分类
+            TreeNode<CategoryNode> node=(TreeNode<CategoryNode>)categoryService.getCategoryNodeById(null);
+            if (node==null||node.getChildCount()==0) {
+                retMap.put("returnCode", "03");
+                retMap.put("messageInfo", "没有有效分类");
+                return retMap;
+            }
+            //获得所有一级分类，并组织返回值
+            List<Map<String, String>> sl=new ArrayList<Map<String, String>>();
+            for (TreeNode<? extends TreeNodeBean> on: node.getChildren()) {
+                Map<String, String> rm=new HashMap<String, String>();
+                rm.put("catName", on.getNodeName());
+                rm.put("allKjCatCount", "0");
+                rm.put("recentVisitKjCatCount", "0");
+                for (Map<String, Object> mnscm: mnscml) {
+                    if (on.getNodeName().equals(mnscm.get("UPCATENAME"))) {
+                        rm.put("allKjCatCount", ""+mnscm.get("COUNT"));
+                    }
+                }
+                for (Map<String, Object> logm: logml) {
+                    if (on.getNodeName().equals(logm.get("UPCATENAME"))) {
+                        rm.put("recentVisitKjCatCount", ""+logm.get("COUNT"));
+                    }
+                }
+                sl.add(rm);
+            }
+            retMap.put("returnCode", "00");
+            retMap.put("data", sl);
         } catch (Exception e) {
             e.printStackTrace();
             retMap.put("returnCode", "01");
