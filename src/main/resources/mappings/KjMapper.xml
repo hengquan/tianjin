@@ -172,6 +172,15 @@
 		<if test="kjName != null and kjName != ''">
 			and instr(kj_name,#{kjName})>0
 		</if>
+		<if test="kjCatId != null and kjCatId != ''">
+			and kj_cat_id = #{kjCatId}
+		</if>
+		<if test="score != null and score != ''">
+			and score = #{score}
+		</if>
+		<if test="createStart != null and createStart != '' or createEnd != null and createEnd !='' ">
+			and create_date BETWEEN to_date(#{createStart},'yyyy-MM-dd HH24:mi:ss') AND to_date(#{createEnd},'yyyy-MM-dd HH24:mi:ss')
+		</if>
 		order by sort desc,create_date desc
 	</select>
 

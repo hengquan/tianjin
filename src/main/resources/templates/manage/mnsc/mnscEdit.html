@@ -131,7 +131,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>摸拟实操URL</label>
+									※ </span>摸拟实操地址</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 								<input type="text" class="form-control" name="mnscUrl"
 									id="mnscUrl" />
@@ -348,6 +348,54 @@ html {
                 message : '模拟实操名称不能为空'
               }
             }
+          },
+          mnscCatNames : {
+            message : '分类验证失败',
+            validators : {
+              notEmpty : {
+                message : '分类不能为空'
+              }
+            }
+          },
+          mnscUrl : {
+            message : '模拟实操地址验证失败',
+            validators : {
+              notEmpty : {
+                message : '模拟实操地址不能为空'
+              }
+            }
+          },
+          sort : {
+            message : '排序验证失败',
+            validators : {
+              notEmpty : {
+                message : '排序不能为空'
+              },
+              regexp: {
+                regexp: "^[0-9][0-9]*$",
+                message: '排序数须为自然数'
+              }
+            }
+          },
+          score : {
+            message : '学分验证失败',
+            validators : {
+              notEmpty : {
+                message : '学分不能为空'
+              },
+              regexp: {
+                regexp: "^[0-9][0-9]*$",
+                message: '学分数须为自然数'
+              }
+            }
+          },
+          remarks : {
+            message : '说明内容验证失败',
+            validators : {
+              notEmpty : {
+                message : '说明内容不能为空'
+              }
+            }
           }
         }
       });
@@ -386,6 +434,10 @@ html {
     }
 
     function addMnsc() {
+      var validatorObj=$('#form').data("bootstrapValidator");
+      var aa=validatorObj.validate();
+      var flag=validatorObj.isValid();
+      if (!flag) return;
       $.ajax({
         type : 'post',
         url : "${gateway}/mnsc/insert",
