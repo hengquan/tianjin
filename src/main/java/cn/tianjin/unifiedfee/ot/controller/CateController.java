@@ -25,7 +25,7 @@ import cn.taiji.web.base.controller.BaseController;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.Category;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
-import cn.tianjin.unifiedfee.ot.service.CatagoryService;
+import cn.tianjin.unifiedfee.ot.service.CategoryService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
 import java.sql.Date;
@@ -37,7 +37,7 @@ import com.spiritdata.framework.core.model.tree.TreeNodeBean;
 @Controller
 public class CateController extends BaseController {
     @Autowired
-    private CatagoryService categoryService;
+    private CategoryService categoryService;
     @Autowired //注入Service
     public UserService userService;
 

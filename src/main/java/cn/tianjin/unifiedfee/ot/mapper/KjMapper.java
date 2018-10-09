@@ -29,4 +29,6 @@ public interface KjMapper {
     List<Kj> getKjList(Integer rownum);
 
     List<Map<String, Object>> getNewKjList(Map<String, Object> map);
+
+    List<Map<String, Object>> getKjStateByCate();
 }

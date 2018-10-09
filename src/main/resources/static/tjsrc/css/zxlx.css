@@ -1,0 +1,158 @@
+body {
+  background: #f2f2f2;
+}
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+.box {
+  width: 90%;
+  margin: 0 auto;
+}
+.tlkc {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  padding-left: 15px;
+  height: 66px;
+  line-height: 66px;
+}
+.tlkc span {
+  border-bottom: 3px solid #148bff;
+  padding-bottom: 18px;
+}
+.bgs {
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 5px;
+}
+.con-box {
+  background: #fff;
+}
+.con-box {
+  margin-top: 20px;
+}
+.inp-box {
+  display: -webkit-box;
+  display: -ms-box;
+  display: -moz-box;
+  display: -o-box;
+  padding: 20px 20px;
+  line-height: 25px;
+  border-bottom: 1px solid #f2f2f2;
+}
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+  width: auto;
+}
+.btn {
+  padding: 3px 12px;
+}
+.txt {
+  margin-right: 10px;
+}
+.inp {
+  margin-right: 20px;
+}
+.scsj-btn {
+  width: 90px;
+  height: 25px;
+  line-height: 25px;
+  background: #148cff;
+  color: #fff;
+  text-align: center;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.widget-sider input {
+  height: 25px;
+}
+.widget-sider {
+  width: 120px;
+  margin-right: 20px;
+}
+.nums {
+  height: 25px;
+}
+.empty {
+  width: 20%;
+  margin: 0 auto;
+  padding-bottom: 100px;
+}
+.emptyMsg {
+  text-align: center;
+}
+.topic-list {
+  padding-left: 30px;
+  line-height: 28px;
+}
+.lxt {
+  display: none;
+  font-size: 18px;
+  color: #148bff;
+  padding-left: 30px;
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+.topic-list p {
+  padding-left: 15px;
+}
+.topic-list li {
+  margin-bottom: 10px;
+}
+.topic-list input {
+  margin-right: 10px;
+}
+.topic-box {
+  position: relative;
+  padding-bottom: 30px;
+}
+.num-box {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: -webkit-box;
+  display: -ms-box;
+  display: -moz-box;
+  display: -o-box;
+}
+table {
+  border-collapse: collapse;
+  margin-right: 1px;
+}
+table td {
+  border: 1px solid #000;
+  padding: 2px;
+  min-width: 50px;
+}
+.times {
+  width: 160px;
+  height: 40px;
+  border: 1px solid #f2f2f2;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 40px;
+  color: #0270da;
+  font-size: 20px;
+  position: fixed;
+  top: 160px;
+  left: 50%;
+  margin-left: -80px;
+  display: none;
+}
+.sub-btn {
+  width: 160px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 40px;
+  color: #fff;
+  background: #0270da;
+  font-size: 18px;
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  margin-left: -80px;
+  display: none;
+  cursor: pointer;
+}

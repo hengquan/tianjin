@@ -387,6 +387,21 @@ where obj_name is not null and rownum &lt;= #{rownum} and visitor_id=#{userId}
 order by create_date desc
 	</select>
 	
+    <select id="getAllLogVisitList" resultType="Map" parameterType="java.util.Map">
+select * from (
+select
+  case
+    when obj_type='ts_kj' then (select kj_name from ts_kj where id=log_visit.obj_id)
+    when obj_type='ts_mnsc' then (select mnsc_name from ts_mnsc where id=log_visit.obj_id)
+    when obj_type='q_sj' then (select sj_name from q_sj where id=log_visit.obj_id)
+  end as obj_name, log_visit.*
+from log_visit
+where obj_id is not null and length(obj_id)>0
+) 
+where obj_name is not null and rownum &lt;= #{rownum}
+order by create_date desc
+    </select>
+
 	<select id="getDataByObjId" resultMap="BaseResultMap">
 		select
 		<include refid="Blob_Column_List" />
@@ -397,6 +412,11 @@ order by create_date desc
 
     <select id="getVisitCountByUi" resultType="java.util.HashMap" parameterType="java.lang.String">
       select obj_type, count(*) count from log_visit where visitor_id=#{userId} and (obj_type is not null and length(obj_type)>0)
+      group by obj_type
+    </select>
+
+    <select id="getAllVisitCount" resultType="java.util.HashMap" parameterType="java.lang.String">
+      select obj_type, count(*) count from log_visit where (obj_type is not null and length(obj_type)>0)
       group by obj_type
     </select>
 

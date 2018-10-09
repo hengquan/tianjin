@@ -212,7 +212,7 @@ public class ManageDispatchUrl {
         return "/manage/mnsc/mnscView";
     }
 
-    // --课件管理，目前管理的是课程-？？
+    // --课件管理，目前管理的是课件-？？
     @RequestMapping("kj/list")
     public String toKjList() {
         return "/manage/kj/kjList";
@@ -339,7 +339,7 @@ public class ManageDispatchUrl {
         model.addAttribute("optionHtml", optionHtml);
         return "/manage/tj/tjXyxx";
     }
-    //--统计相关-2课程统计
+    //--统计相关-2课件统计
     @RequestMapping("tj/kj")
     public String toTjKj(HttpServletRequest request) {
         return "/manage/tj/tjKj";

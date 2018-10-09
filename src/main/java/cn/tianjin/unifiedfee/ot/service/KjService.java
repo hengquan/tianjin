@@ -235,4 +235,8 @@ public class KjService {
 //        map.put("userId", userId);
         return dao.getNewKjList(map);
     }
+
+    public List<Map<String, Object>> getKjStateByCate() {
+        return dao.getKjStateByCate();
+    }
 }

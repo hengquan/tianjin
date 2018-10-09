@@ -23,7 +23,7 @@ import cn.tianjin.unifiedfee.ot.mapper.CategoryMapper;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
 
 @Service
-public class CatagoryService {
+public class CategoryService {
     private static TreeNode<CategoryNode> root=null;
     @Autowired
     private CategoryMapper categoryDao;

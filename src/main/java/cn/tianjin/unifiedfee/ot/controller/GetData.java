@@ -22,13 +22,13 @@ import cn.tianjin.unifiedfee.ot.entity.Category;
 import cn.tianjin.unifiedfee.ot.entity.Tmp;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
 import cn.tianjin.unifiedfee.ot.model.UIBootstrapTreeTable4Category;
-import cn.tianjin.unifiedfee.ot.service.CatagoryService;
+import cn.tianjin.unifiedfee.ot.service.CategoryService;
 
 @Controller
 @RequestMapping(value="/getdata")
 public class GetData {
     @Autowired
-    private CatagoryService categoryService;
+    private CategoryService categoryService;
 
     @SuppressWarnings("unchecked")
     @RequestMapping("cateList_deeptree")

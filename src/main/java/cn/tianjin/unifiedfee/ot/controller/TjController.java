@@ -90,7 +90,7 @@ public class TjController {
                 return null;
             }
             //对数据进行处理
-            //获得企业的总数，总课程数，总模拟实操数，总考试次数
+            //获得企业的总数，总课件数，总模拟实操数，总考试次数
             List<Map<String, Object>> _suml=catService.getXyxxSumList(param);
             Map<String, Object> sumMap=new HashMap<String, Object>();
             sumMap.put("allKj", "0");
@@ -128,7 +128,7 @@ public class TjController {
                 } catch(Exception e) {
                 }
                 newXyxx.put("mnscRatio", tmpVal);
-                //计算比例-课程
+                //计算比例-课件
                 tmpVal="-";
                 try {
                     tmpVal="-";

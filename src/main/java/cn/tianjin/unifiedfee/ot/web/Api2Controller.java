@@ -16,11 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spiritdata.framework.core.model.tree.TreeNode;
+import com.spiritdata.framework.core.model.tree.TreeNodeBean;
+
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.entity.Mnsc;
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
+import cn.tianjin.unifiedfee.ot.model.CategoryNode;
+import cn.tianjin.unifiedfee.ot.service.CategoryService;
 import cn.tianjin.unifiedfee.ot.service.KjService;
 import cn.tianjin.unifiedfee.ot.service.MnscRefSourceService;
 import cn.tianjin.unifiedfee.ot.service.MnscService;
@@ -32,6 +37,8 @@ public class Api2Controller {
     private int _DEFALT_PS = 10;// default page size
     @Autowired // 注入Service
     public UserService userService;
+    @Autowired
+    public CategoryService categoryService;
     @Autowired
     private MnscService mnscService;
     @Autowired
@@ -394,9 +401,134 @@ public class Api2Controller {
         Map<String, Object> nm=new HashMap<String, Object>();
         nm.put("id", om.get("ID"));
         nm.put("visitTime", om.get("CREATE_DATE")+"");
+        nm.put("visitorName", om.get("VISITOR_NAME")+"");
         nm.put("groupName", om.get("GROUP_NAME")==null?"":om.get("GROUP_NAME"));
         nm.put("objType", om.get("VISIT_MODULE_ID")==null?"":om.get("VISIT_MODULE_ID"));
         nm.put("objName", om.get("OBJ_NAME")==null?"":om.get("OBJ_NAME"));
         return nm;
+    }
+
+    /**
+     * 1.6.5、获得所有对象的分布情况，为后台处理<br>
+     * 获得统计访问次数
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("getAllLogVisitCount")
+    @ResponseBody
+    public Map<String, Object> getAllLogVisitCount(HttpServletRequest request, HttpServletResponse response) {
+        HttpPush.responseInfo(response);// 跨域
+        // 返回结果
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+            // 查询
+            List<Map<String, Object>> countMap = logVisitService.getAllVisitCount();
+            if (countMap == null || countMap.size() <= 0) {
+                retMap.put("returnCode", "00");
+                retMap.put("data", "0");
+            } else {
+                retMap.put("returnCode", "00");
+                retMap.put("data", countMap);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+
+    /**
+     * 1.6.6、获得最近访问情况，为后台处理<br>
+     * 获得最新访问信息
+     * 
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("getAllLogVisitList")
+    @ResponseBody
+    public Map<String, Object> getAllLogVisitList(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(required = false) Integer rownum) {
+        HttpPush.responseInfo(response);// 跨域
+        // 返回结果
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+            // 查询
+            List<Map<String, Object>> logVisitList = logVisitService.getAllLogVisitList(rownum);
+            if (logVisitList == null || logVisitList.size() <= 0) {
+                retMap.put("returnCode", "99");
+                retMap.put("messageInfo", "信息为空");
+            } else {
+                List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+                for (int i=0; i<logVisitList.size(); i++) {
+                    Map<String, Object> one=getLogMap(logVisitList.get(i));
+                    retL.add(one);
+                }
+                retMap.put("returnCode", "00");
+                retMap.put("data", retL);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+
+    /**
+     * 1.6.7、获得课件统计信息，为后台首页<br>
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("getKjStat")
+    @ResponseBody
+    public Map<String, Object> getKjStat(HttpServletRequest request, HttpServletResponse response) {
+        HttpPush.responseInfo(response);// 跨域
+        // 返回结果
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+            //获得所有分类
+            TreeNode<CategoryNode> node=(TreeNode<CategoryNode>)categoryService.getCategoryNodeById(null);
+            if (node==null||node.getChildCount()==0) {
+                retMap.put("returnCode", "03");
+                retMap.put("messageInfo", "没有有效分类");
+                return retMap;
+            }
+            //获得所有一级分类
+            List<String> sl=new ArrayList<String>();
+            for (TreeNode<? extends TreeNodeBean> on: node.getChildren()) {
+                sl.add(on.getNodeName());
+            }
+            //获得课件分布
+            List<Map<String, Object>> kjml=kjService.getKjStateByCate();
+
+            // 查询
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
     }
 }

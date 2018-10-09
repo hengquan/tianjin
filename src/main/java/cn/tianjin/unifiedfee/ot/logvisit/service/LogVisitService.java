@@ -73,4 +73,14 @@ public class LogVisitService {
     public List<Map<String, Object>> getCompUserList(Map<String, Object> param) {
         return logDao.getCompUserList(param);
     }
+
+    public List<Map<String, Object>> getAllVisitCount() {
+        return logDao.getAllVisitCount();
+    }
+
+    public List<Map<String, Object>> getAllLogVisitList(Integer rownum) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("rownum", rownum);
+        return logDao.getAllLogVisitList(map);
+    }
 }

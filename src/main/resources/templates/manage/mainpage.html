@@ -16,29 +16,29 @@
         <ul class="top row">
             <li class="col-xs-4">
                 <img src="${gateway}/tjsrc/images/01.jpg">
-                <span>666次</span>
+                <span id="mnsc">666次</span>
             </li>
             <li class="col-xs-4">
                 <img src="${gateway}/tjsrc/images/02.jpg">
-                <span>555次</span>
+                <span id="zxxx">555次</span>
             </li>
             <li class="col-xs-4">
                 <img src="${gateway}/tjsrc/images/03.jpg">
-                <span>333次</span>
+                <span id="zxlx">333次</span>
             </li>
         </ul>
         <div class="center row">
             <div class="left col-xs-6">
-                <h2><span>最新体验模拟实操</span></h2>
+                <h2><span>模拟实操</span></h2>
                 <div id="main" style="width: 100%;height:400px;"></div>
             </div>
             <div class="right col-xs-6">
-                <h2><span>最新在线学习课件</span></h2>
+                <h2><span>学习课件</span></h2>
                 <div id="main2" style="width: 100%;height:400px;"></div>
             </div>
         </div>
         <div class="bottom">
-            <p>我的日志</p>
+            <p>近期日志</p>
             <ul class="logList">
                 <li class="row"><div class="right col-xs-6">我观看了：<span>xxx的模拟实操</span></div><div class="col-xs-6 date">2018-9-27</div></li>
                 <li class="row"><div class="right col-xs-6">我观看了：<span>xxx的模拟实操</span></div><div class="col-xs-6 date">2018-9-27</div></li>
@@ -47,18 +47,26 @@
         </div>
     </div>
 </body>
-<script src="${gateway}/tjsrc/js/index.js?123"></script>
+<!-- <script src="${gateway}/tjsrc/js/index.js"></script> -->
 
 <script>
 $(function() {
+  var myChart = echarts.init(document.getElementById('main'));
+  var myChart2 = echarts.init(document.getElementById('main2'));
+  
   //统计数据
   logVisitCount();
   //模拟实操柱图
   getMnscStat(2);
-  //最新课件数据
-  getKjStat(2);
-  //我的日志
+  //最新课件数据//
+//  getKjStat(2);
+  //所有日志
   getAllLogVisitList(10);
+
+  window.onresize = function(){
+    myChart.resize();
+    myChart2.resize();
+  }
 });
 
 //返回项目所访问次数
@@ -68,7 +76,7 @@ function logVisitCount() {
   zxlxCount="0次";
   $.ajax({
     type: 'post',
-    url: "${gateway}/train/getLogVisitCount",
+    url: "${gateway}/train/getAllLogVisitCount",
     dataType: 'json',
     cache: false,
     success: function(data) {
@@ -100,38 +108,18 @@ function logVisitCount() {
   });
 }
 
-function getMnscList(rownum) {
-  var data={"rownum": rownum};
+
+function getMnscStat() {
   $.ajax({
     type: 'post',
-    url: "${gateway}/train/getNewMnscList",
-    data: data,
+    url: "${gateway}/train/getMnscStat",
+    data: null,
     dataType: 'json',
     cache: false,
     success: function(res) {
       var html="";
       if (res.returnCode=='00') {
-        var html = ""
-        for(var j=0;j<res.data.length;j++) {
-          html+= '<li class="col-sm-6" style="padding-left:0;">'
-            +'<div class="con">'
-              +'<div class="pic"><img src="'+(res.data[j].imgUrl || "./tjsrc/images/mnsc_default.jpg")+'"></div>'
-              +'<div class="botoom">'
-                +'<h2>'+res.data[j].mnscName+'</h2>'
-                +'<div class="row-box">'
-                  +'<div class="left">'
-                    +'<span class="eay"><img src="./tjsrc/images/rs.jpg"></span>'
-                    +'<span class="num">'+res.data[j].logVisitCount+'</span>'
-                  +'</div>'
-                  +'<div class="right">'
-                    +' <span>'+(res.data[j].createDate).substring(0,10)+'</span>发布'
-                  +'</div>'
-                +'</div>'
-              +'</div>'
-            +'</div>'
-          +'</li>'
-        }
-        $("#mnscList").html(html)
+        
       }
     },
     error: function() { //失败回调函数
@@ -180,11 +168,11 @@ function getKjList(rownum) {
   });
 }
 
-function getMyLogVisitList(rownum) {
+function getAllLogVisitList(rownum) {
   var data = {"rownum": rownum};
   $.ajax({
     type: "get",
-    url: "./train/getLogVisitList",
+    url: "./train/getAllLogVisitList",
     data: data,
     dataType: "json",
     success: function (res) {
@@ -192,14 +180,20 @@ function getMyLogVisitList(rownum) {
       if(res.returnCode==00) {
         var html = ""
         for(var j=0;j<res.data.length;j++) {
-          if (res.data[j].objType=='在线练习') {
-            html+= '<li class="row"><div class="right col-xs-6">我练习了：<span>试题【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
-          } else
-          if (res.data[j].objType=='模拟实操展示') {
-            html+= '<li class="row"><div class="right col-xs-6">我操作了：<span>模拟实操【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
-          } else
-          if (res.data[j].objType=='课件展示') {
-          html+= '<li class="row"><div class="right col-xs-6">我观看了：<span>课程【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+          var groupName=res.data[j].groupName;
+          if (groupName) groupName="【"+groupName+"】";
+          else groupName="";
+          if (res.data[j].visitorName) groupName+="【"+res.data[j].visitorName+"】";
+          if (groupName) {
+            if (res.data[j].objType=='在线练习') {
+              html+= '<li class="row"><div class="right col-xs-6">'+groupName+'练习了：<span>试题【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+            } else
+            if (res.data[j].objType=='模拟实操展示') {
+              html+= '<li class="row"><div class="right col-xs-6">'+groupName+'操作了：<span>模拟实操【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+            } else
+            if (res.data[j].objType=='课件展示') {
+              html+= '<li class="row"><div class="right col-xs-6">'+groupName+'观看了：<span>课件【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+            }
           }
         }
         $(".logList").html(html)

@@ -35,7 +35,7 @@ import cn.tianjin.unifiedfee.ot.entity.SJ;
 import cn.tianjin.unifiedfee.ot.logvisit.LogVisitMemory;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
 import cn.tianjin.unifiedfee.ot.service.ArchiveService;
-import cn.tianjin.unifiedfee.ot.service.CatagoryService;
+import cn.tianjin.unifiedfee.ot.service.CategoryService;
 import cn.tianjin.unifiedfee.ot.service.KjService;
 import cn.tianjin.unifiedfee.ot.service.SjService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
@@ -46,7 +46,7 @@ public class ApiController {
     //@Value("${page.web.pagesize.default}")
     private int _DEFALT_PS=10;//default page size
     @Autowired
-    private CatagoryService categoryService;
+    private CategoryService categoryService;
     @Autowired // 注入Service
     public UserService userService;
     @Autowired
