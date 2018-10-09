@@ -181,8 +181,10 @@
     // 2.返回操作模版[按钮颜色暂不确定]
     function operateFormatter(value, row, index) {
       return [
-           '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
+          '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
               + value + '")>修改</button>',
+          '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
+              + value + '")>启用</button>',            
           '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
               + value + '")>删除</button>' ].join('');
     }
@@ -255,23 +257,27 @@
     
     TableInit(queryParams).Init('${gateway}/st/getPageData4kj', [ {
       field : 'tmHtml',
-      title : '题目内容',
+      title : '题目',
       sortable : true
     }, {
+      field : 'score',
+      title : '分类',
+      sortable : true
+    },{
       field : 'tmType',
-      title : '题目分类',
+      title : '类型',
       sortable : true
     }, {
       field : 'diffScore',
       title : '难度系数',
       sortable : true
-    }, {
-      field : 'score',
-      title : '学分',
-      sortable : true
-    },  {
+    },{
       field : 'strcreatedate',
-      title : '创建时间',
+      title : '创建人',
+      sortable : true
+    },{
+      field : 'strcreatedate',
+      title : '创建日期',
       sortable : true
     }, {
       field : 'id',

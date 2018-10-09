@@ -157,6 +157,14 @@
                       </div>
                     </div>
                   </div>-->
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="updateName">修改人</label>
+                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <input type="text" class="form-control" id="updateName" placeholder="请输入修改人姓名">
+                      </div>
+                    </div>
+                  </div>
                   <!--
                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                     <div class="form-group">
@@ -389,11 +397,19 @@ TableInit(queryParams).Init('${gateway}/cate/getPageData', [ {
   formatter: formatValid
 }, {
   field : 'createName',
-  title : '创建人',
+  title : '修改人',
   sortable : false
 }, {
   field : 'createDate',
   title : '创建时间',
+  sortable : false
+}, {
+  field : 'updateName',
+  title : '修改人',
+  sortable : false
+}, {
+  field : 'updateDate',
+  title : '修改时间',
   sortable : false
 }, {
   field : 'id',
