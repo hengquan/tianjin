@@ -221,12 +221,15 @@
 		desc
 	</select>
 
-	<select id="getMyKjList" resultMap="BaseResultMap" parameterType="java.util.Map">
-		select
-		<include refid="Blob_Column_List" />
-		from ts_KJ
-		where rownum &lt;= #{rownum}
-		and create_by = #{userId}
-		order by sort desc,create_date desc
+	<select id="getNewKjList" resultType="Map" parameterType="java.util.Map">
+    select * from (    
+    select
+        b.file_url imgUrl, c.cs logVisitCount, ts_KJ.id, ts_KJ.kj_name kjName, ts_Kj.kj_cat_names catNames, ts_Kj.remarks remarks,
+        ts_Kj.create_date createDate
+        from ts_KJ
+        left join comm_archive b on ts_KJ.id=b.obj_id and upper(b.obj_tabname)='TS_KJ' and archive_type='img'
+        left join (select obj_type, obj_id, count(*) cs from log_visit group by obj_type, obj_id) c on upper(c.obj_type)='TS_KJ' and c.obj_id=ts_KJ.id
+    order by ts_Kj.create_date desc
+    ) where rownum &lt;= #{rownum}
 	</select>
 </mapper>

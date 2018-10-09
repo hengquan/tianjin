@@ -22,5 +22,5 @@ public interface MnscMapper {
 
     List<Mnsc> getMnscList(Integer rownum);
 
-    List<Mnsc> getMyMnscList(Map<String, Object> map);
+    List<Map<String, Object>> getNewMnscList(Map<String, Object> map);
 }

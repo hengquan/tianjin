@@ -235,10 +235,10 @@ public class MnscService {
         return mnscList;
     }
 
-    public List<Mnsc> getMyMnscList(Integer rownum, String userId) {
+    public List<Map<String, Object>> getNewMnscList(Integer rownum, String userId) {
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("rownum", rownum);
-        map.put("userId", userId);
-        return dao.getMyMnscList(map);
+//        map.put("userId", userId);
+        return dao.getNewMnscList(map);
     }
 }

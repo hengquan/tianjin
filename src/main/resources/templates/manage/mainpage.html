@@ -48,4 +48,178 @@
     </div>
 </body>
 <script src="${gateway}/tjsrc/js/index.js?123"></script>
+
+<script>
+$(function() {
+  //统计数据
+  logVisitCount();
+  //模拟实操柱图
+  getMnscStat(2);
+  //最新课件数据
+  getKjStat(2);
+  //我的日志
+  getAllLogVisitList(10);
+});
+
+//返回项目所访问次数
+function logVisitCount() {
+  mnscCount="0次";
+  zxxxCount="0次";
+  zxlxCount="0次";
+  $.ajax({
+    type: 'post',
+    url: "${gateway}/train/getLogVisitCount",
+    dataType: 'json',
+    cache: false,
+    success: function(data) {
+      //状态
+      var returnCode=data.returnCode;
+      if (returnCode=='00') {
+        var countList=data.data;
+        for (var i=0; i<countList.length; i++) {
+          if (countList[i].OBJ_TYPE=='ts_mnsc') {
+            mnscCount=countList[i].COUNT+"次";
+          } else 
+          if (countList[i].OBJ_TYPE=='q_sj') {
+            zxlxCount=countList[i].COUNT+"次";
+          } else 
+          if (countList[i].OBJ_TYPE=='ts_kj') {
+            zxxxCount=countList[i].COUNT+"次";
+          }
+        }
+      }
+      $("#mnsc").html(mnscCount);
+      $("#zxxx").html(zxxxCount);
+      $("#zxlx").html(zxlxCount);
+    },
+    error: function() { //失败回调函数
+      $("#mnsc").html(mnscCount);
+      $("#zxxx").html(zxxxCount);
+      $("#zxlx").html(zxlxCount);
+    }
+  });
+}
+
+function getMnscList(rownum) {
+  var data={"rownum": rownum};
+  $.ajax({
+    type: 'post',
+    url: "${gateway}/train/getNewMnscList",
+    data: data,
+    dataType: 'json',
+    cache: false,
+    success: function(res) {
+      var html="";
+      if (res.returnCode=='00') {
+        var html = ""
+        for(var j=0;j<res.data.length;j++) {
+          html+= '<li class="col-sm-6" style="padding-left:0;">'
+            +'<div class="con">'
+              +'<div class="pic"><img src="'+(res.data[j].imgUrl || "./tjsrc/images/mnsc_default.jpg")+'"></div>'
+              +'<div class="botoom">'
+                +'<h2>'+res.data[j].mnscName+'</h2>'
+                +'<div class="row-box">'
+                  +'<div class="left">'
+                    +'<span class="eay"><img src="./tjsrc/images/rs.jpg"></span>'
+                    +'<span class="num">'+res.data[j].logVisitCount+'</span>'
+                  +'</div>'
+                  +'<div class="right">'
+                    +' <span>'+(res.data[j].createDate).substring(0,10)+'</span>发布'
+                  +'</div>'
+                +'</div>'
+              +'</div>'
+            +'</div>'
+          +'</li>'
+        }
+        $("#mnscList").html(html)
+      }
+    },
+    error: function() { //失败回调函数
+      alert("获取信息失败");
+    }
+  });
+}
+
+//课件最新数据
+function getKjList(rownum) {
+  var data={ "rownum": rownum };
+  $ .ajax({
+    type: 'post',
+    url: "./train/getNewKjList",
+    data: data,
+    dataType: 'json',
+    cache: false,
+    success: function(res) {
+      if (res.returnCode=='00') {
+        var html = ""
+        for(var j=0;j<res.data.length;j++) {
+          html+= '<li class="col-sm-6" style="padding-left:0;">'
+            +'<div class="con">'
+              +'<div class="pic"><img src="'+(res.data[j].imgUrl || "./tjsrc/images/kj_default.jpg")+'"></div>'
+              +'<div class="botoom">'
+                +'<h2>'+res.data[j].kjName+'</h2>'
+                +'<div class="row-box">'
+                  +'<div class="left">'
+                    +'<span class="eay"><img src="./tjsrc/images/rs.jpg"></span>'
+                    +'<span class="num">'+res.data[j].logVisitCount+'</span>'
+                  +'</div>'
+                  +'<div class="right">'
+                    +' <span>'+(res.data[j].createDate).substring(0,10)+'</span>发布'
+                  +'</div>'
+                +'</div>'
+              +'</div>'
+            +'</div>'
+          +'</li>'
+        }
+        $("#kjList").html(html)
+      }
+    },
+    error: function() { //失败回调函数
+      alert("获取信息失败");
+    }
+  });
+}
+
+function getMyLogVisitList(rownum) {
+  var data = {"rownum": rownum};
+  $.ajax({
+    type: "get",
+    url: "./train/getLogVisitList",
+    data: data,
+    dataType: "json",
+    success: function (res) {
+      console.log(res)
+      if(res.returnCode==00) {
+        var html = ""
+        for(var j=0;j<res.data.length;j++) {
+          if (res.data[j].objType=='在线练习') {
+            html+= '<li class="row"><div class="right col-xs-6">我练习了：<span>试题【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+          } else
+          if (res.data[j].objType=='模拟实操展示') {
+            html+= '<li class="row"><div class="right col-xs-6">我操作了：<span>模拟实操【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+          } else
+          if (res.data[j].objType=='课件展示') {
+          html+= '<li class="row"><div class="right col-xs-6">我观看了：<span>课程【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+          }
+        }
+        $(".logList").html(html)
+      }
+    }
+  });
+}
+</script>
+
+<script type="text/javascript">
+var _gatherData={};
+_gatherData.visitModuleId="管理端首页";
+_gatherData.objType="admin_mainpage";
+(function() {
+  var ma=document.createElement('script');
+  ma.type='text/javascript';
+  ma.async=true;
+  ma.src="./tjsrc/js/ma.js";
+  var s=document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ma, s);
+})();
+</script>
 </html>

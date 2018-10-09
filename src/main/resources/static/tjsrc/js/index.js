@@ -1,7 +1,6 @@
 $(function () { 
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
-
     // 指定图表的配置项和数据
     var option = {
         tooltip: {},
@@ -25,13 +24,10 @@ $(function () {
             }
         ]
     };
-
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
-
     // 右侧柱状图
     var myChart2 = echarts.init(document.getElementById('main2'));
-
     // 指定图表的配置项和数据
     var option2 = {
         tooltip: {},
@@ -55,7 +51,6 @@ $(function () {
             }
         ]
     };
-
     // 使用刚指定的配置项和数据显示图表。
     myChart2.setOption(option2);
     window.onresize = function(){

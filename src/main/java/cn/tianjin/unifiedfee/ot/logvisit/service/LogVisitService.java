@@ -55,7 +55,7 @@ public class LogVisitService {
         return logDao.getVisitCountByUi(userId);
     }
 
-    public List<LogVisit> getMyLogVisitList(Integer rownum, String userId) {
+    public List<Map<String, Object>> getMyLogVisitList(Integer rownum, String userId) {
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("rownum", rownum);
         map.put("userId", userId);
