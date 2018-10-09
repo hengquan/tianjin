@@ -42,10 +42,28 @@ public class MnscController {
         Map<String, Object> retMap = new HashMap<String, Object>();
         // 请求参数
         Map<String, Object> map = new HashMap<String, Object>();
+        //获取请求参数
+        String mnscName = request.getParameter("mnscName");
+        String mnscUrl = request.getParameter("mnscUrl");
+        String mnscCatId = request.getParameter("mnscCatId");
+        String score = request.getParameter("score");
+        String createStart = request.getParameter("createStart");
+        String createEnd = request.getParameter("createEnd");
         // 跨域
         HttpPush.responseInfo(response);
         // 设置page
         PageHelper.offsetPage(pageNum, pageSize);
+        //设置参数
+        map.put("searchStr", mnscName);
+        map.put("categoryId", mnscCatId);
+        map.put("mnscUrl", mnscUrl);
+        map.put("score", score);
+        map.put("createStart", createStart);
+        map.put("createEnd", createEnd);
+        System.out.println("--------------------------------");
+        System.out.println(createStart);
+        System.out.println(createEnd);
+        System.out.println("--------------------------------");
         // 查询数据
         List<Mnsc> mnscs = mnscService.getPageData(map);
         // 放入分页

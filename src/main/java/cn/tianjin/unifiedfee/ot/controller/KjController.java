@@ -51,8 +51,16 @@ public class KjController {
         PageHelper.offsetPage(offset, limit);
         // 获取参数
         String kjName = request.getParameter("kjName");
+        String kjCatId = request.getParameter("kjCatId");
+        String score = request.getParameter("score");
+        String createStart = request.getParameter("createStart");
+        String createEnd = request.getParameter("createEnd");
         // 传参
         param.put("kjName", kjName);
+        param.put("kjCatId", kjCatId);
+        param.put("score", score);
+        param.put("createStart", createStart);
+        param.put("createEnd", createEnd);
         // 查询数据
         List<Kj> kjs = kjService.getPageData(param);
         // 放入分页
