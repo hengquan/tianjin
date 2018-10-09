@@ -194,12 +194,15 @@
 		order by sort desc,create_date desc
 	</select>
 	
-	<select id="getMyMnscList" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from ts_MNSC
-		where rownum &lt;= #{rownum}
-		and create_by = #{userId}
-		order by sort desc,create_date desc
+	<select id="getNewMnscList" resultType="Map">
+	select * from (    
+    select
+        b.file_url imgUrl, c.cs logVisitCount, ts_MNSC.id, ts_MNSC.mnsc_name mnscName, ts_MNSC.mnsc_cat_names catNames, ts_MNSC.score score, ts_MNSC.remarks remarks,
+        ts_MNSC.sort sort, ts_MNSC.create_date createDate, ts_MNSC.create_by createBy, ts_MNSC.create_name createName
+        from ts_MNSC
+        left join comm_archive b on ts_MNSC.id=b.obj_id and upper(b.obj_tabname)='TS_MNSC' and archive_type='img'
+        left join (select obj_type, obj_id, count(*) cs from log_visit group by obj_type, obj_id) c on upper(c.obj_type)='TS_MNSC' and c.obj_id=ts_MNSC.id
+    order by ts_MNSC.create_date desc
+    ) where rownum &lt;= #{rownum}
 	</select>
 </mapper>

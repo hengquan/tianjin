@@ -1,5 +1,6 @@
 package cn.tianjin.unifiedfee.ot.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
-import cn.tianjin.unifiedfee.ot.entity.LogVisit;
 import cn.tianjin.unifiedfee.ot.entity.Mnsc;
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
 import cn.tianjin.unifiedfee.ot.service.KjService;
@@ -254,13 +254,18 @@ public class Api2Controller {
                 return retMap;
             }
             // 查询
-            List<Mnsc> mnscList = mnscService.getMyMnscList(rownum,ui.getUserId());
+            List<Map<String, Object>> mnscList = mnscService.getNewMnscList(rownum, ui.getUserId());
             if (mnscList == null || mnscList.size() <= 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");
             } else {
+                List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+                for (int i=0; i<mnscList.size(); i++) {
+                    Map<String, Object> one=getMnscMap(mnscList.get(i));
+                    retL.add(one);
+                }
                 retMap.put("returnCode", "00");
-                retMap.put("data", mnscList);
+                retMap.put("data", retL);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -268,6 +273,20 @@ public class Api2Controller {
             retMap.put("messageInfo", e.toString());
         }
         return retMap;
+    }
+    private Map<String, Object> getMnscMap(Map<String, Object> om) {
+        Map<String, Object> nm=new HashMap<String, Object>();
+        nm.put("id", om.get("ID"));
+        nm.put("createBy", om.get("CREATBY"));
+        nm.put("createDate", om.get("CREATEDATE")+"");
+        nm.put("catNames", om.get("CATNAMES"));
+        nm.put("imgUrl", om.get("IMGURL"));
+        nm.put("logVisitCount", (om.get("LOGVISITCOUNT")==null?0:om.get("LOGVISITCOUNT"))+"");
+        nm.put("mnscName", om.get("MNSCNAME")+"");
+        nm.put("remarks", om.get("REMARKS")+"");
+        nm.put("score", om.get("SCORE"));
+        nm.put("sort", om.get("SORT"));
+        return nm;
     }
 
     /**
@@ -294,13 +313,18 @@ public class Api2Controller {
                 return retMap;
             }
             // 查询
-            List<Kj> kjList = kjService.getMyKjList(rownum,ui.getUserId());
+            List<Map<String, Object>> kjList = kjService.getNewKjList(rownum,ui.getUserId());
             if (kjList == null || kjList.size() <= 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");
             } else {
+                List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+                for (int i=0; i<kjList.size(); i++) {
+                    Map<String, Object> one=getKjMap(kjList.get(i));
+                    retL.add(one);
+                }
                 retMap.put("returnCode", "00");
-                retMap.put("data", kjList);
+                retMap.put("data", retL);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -308,6 +332,18 @@ public class Api2Controller {
             retMap.put("messageInfo", e.toString());
         }
         return retMap;
+    }
+    private Map<String, Object> getKjMap(Map<String, Object> om) {
+        Map<String, Object> nm=new HashMap<String, Object>();
+        nm.put("id", om.get("ID"));
+        nm.put("createBy", om.get("CREATBY"));
+        nm.put("createDate", om.get("CREATEDATE")+"");
+        nm.put("catNames", om.get("CATNAMES"));
+        nm.put("imgUrl", om.get("IMGURL"));
+        nm.put("logVisitCount", (om.get("LOGVISITCOUNT")==null?0:om.get("LOGVISITCOUNT"))+"");
+        nm.put("kjName", om.get("KJNAME")+"");
+        nm.put("remarks", om.get("REMARKS")+"");
+        return nm;
     }
 
     /**
@@ -333,13 +369,18 @@ public class Api2Controller {
                 return retMap;
             }
             // 查询
-            List<LogVisit> logVisitList = logVisitService.getMyLogVisitList(rownum,ui.getUserId());
+            List<Map<String, Object>> logVisitList = logVisitService.getMyLogVisitList(rownum,ui.getUserId());
             if (logVisitList == null || logVisitList.size() <= 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");
             } else {
+                List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+                for (int i=0; i<logVisitList.size(); i++) {
+                    Map<String, Object> one=getLogMap(logVisitList.get(i));
+                    retL.add(one);
+                }
                 retMap.put("returnCode", "00");
-                retMap.put("data", logVisitList);
+                retMap.put("data", retL);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -347,5 +388,14 @@ public class Api2Controller {
             retMap.put("messageInfo", e.toString());
         }
         return retMap;
+    }
+    private Map<String, Object> getLogMap(Map<String, Object> om) {
+        Map<String, Object> nm=new HashMap<String, Object>();
+        nm.put("id", om.get("ID"));
+        nm.put("visitTime", om.get("CREATE_DATE")+"");
+        nm.put("groupName", om.get("GROUP_NAME")==null?"":om.get("GROUP_NAME"));
+        nm.put("objType", om.get("VISIT_MODULE_ID")==null?"":om.get("VISIT_MODULE_ID"));
+        nm.put("objName", om.get("OBJ_NAME")==null?"":om.get("OBJ_NAME"));
+        return nm;
     }
 }

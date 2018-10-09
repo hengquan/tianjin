@@ -1,313 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>学员概况</title>
-<!-- <!-- 1 bootstrap的css -->
-<link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
-<!--公共css-->
-<link rel="stylesheet" href="./web/css/pt-main.css">
-<link rel="stylesheet" href="./web/css/index1.css">
-<!--页面-->
-<link rel="stylesheet" href="./web/css/Summary.css">
-<!--引入字体的css-->
-<link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
-
-<script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
-<!--bootstrap的js-->
-<script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
-<!--页面js-->
-<script type="text/javascript" src="./web/js/main.js"></script>
-<style>
-body {
-	background: white;
-}
-
-html {
-	overflow: hidden;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>学员概况</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./libs/bootstrap-3.3.7-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="./tjsrc/css/rest.css">
+  <link rel="stylesheet" href="./tjsrc/css/xygk.css">
+  
+  <script src="./libs/jquery/jquery-1.12.4.js"></script>
+  <script src="./libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<!--主菜单内容-->
-	<div class="pt-view pt-open">
-		<!--内容头部-->
-		<div class="practice_top">
-			<!--头部的学习概况-->
-			<div class="row">
-				<div class="col-md-4">
-					<img src="./web/images/01.jpg" alt=""> <span id="mnscCount">666次</span>
-				</div>
-				<div class="col-md-4">
-					<img src="./web/images/02.jpg" alt=""> <span id="kjCount">666次</span>
-				</div>
-				<div class="col-md-4">
-					<img src="./web/images/03.jpg" alt=""> <span id="sjCount">666次</span>
-				</div>
-			</div>
-			<!--课件的详细介绍-->
-			<div class="upcoming">
-				<!--内容左部分-->
-				<div class="practice_left">
-					<div class="practice_title">
-						<span>最新体验模拟实操</span>
-						<div class="border"></div>
-					</div>
-					<div class="row" id="mnscDataList">
-						<div class="col-md-6">
-							<img src="./web/images/zxc.png" alt="" onclick="toLoading()">
-							<div class="col-md-6 practice_content" style="margin-top: 0px;">
-								<span>尚巍手书及课程预告</span>
-								<div class="rs">
-									<span> <img src="./web/images/rs.jpg" alt=""
-										class="title_img"> <span>10人</span>
-									</span> <span class="time">2018年8月14日发布</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<img src="./web/images/zxc.png" alt="" onclick="toLoading()">
-							<div class="col-md-6 practice_content" style="margin-top: 0px;">
-								<span>尚巍手书及课程预告</span>
-								<div class="rs">
-									<span> <img src="./web/images/rs.jpg" alt=""
-										class="title_img"> <span>10人</span>
-									</span> <span class="time">2018年8月14日发布</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--内容右部分-->
-				<div class="practice_right">
-					<div class="practice_title">
-						<span>最新在线学习课件</span>
-						<div class="border"></div>
-					</div>
-					<div class="row" id="kjDataList">
-						<div class="col-md-6">
-							<img src="./web/images/zxc.png" alt="" onclick="toCourse()">
-							<div class="col-md-6 practice_content" style="margin-top: 0px;">
-								<span>尚巍手书及课程预告</span>
-								<div class="rs">
-									<span> <img src="./web/images/rs.jpg" alt=""
-										class="title_img1"> <span>10人</span>
-									</span> <span class="time">2018年8月14日发布</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<img src="./web/images/zxc.png" alt="" onclick="toCourse()">
-							<div class="col-md-6 practice_content" style="margin-top: 0px;">
-								<span>尚巍手书及课程预告</span>
-								<div class="rs">
-									<span> <img src="./web/images/rs.jpg" alt=""
-										class="title_img1"> <span>10人</span>
-									</span> <span class="time">2018年8月14日发布</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--内容底部-->
-		<div class="practice_bottom">
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<td>我的日志</td>
-					</tr>
-				</thead>
-				<tbody id="myLogVisitList">
-					<tr>
-						<td>我观看了：xxxxx的模拟实操
-							<p>2018-8-14</p>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-
-	<script>
-    $(function() {
-      //统计数据
-      logVisitCount();
-      //最新模拟实操数据
-      //getMnscList(2);
-      //最新课件数据
-      //getKjList(2);
-      //我的日志
-      //getMyLogVisitList(10);
-    })
-    function toLoading() {
-      window.open("./mnscList/sfqdlr/loading.html")
-    }
-    function toCourse() {
-      window.open("./courseContent.html")
-    }
-    //返回项目所访问次数
-    function logVisitCount() {
-      $.ajax({
-        type : 'post',
-        url : "./train/getLogVisitCount",
-        dataType : 'json',
-        cache : false,
-        success : function(data) {
-          console.log(data);
-          //状态
-          /* var returnCode = data.returnCode;
-          if (returnCode == '00') {
-            var logVisitCount = data.data;
-            if (state == 1) {
-              $("#mnscCount").html(logVisitCount + "次");
-            } else if (state == 2) {
-              $("#kjCount").html(logVisitCount + "次");
-            } else if (state == 3) {
-              $("#sjCount").html(logVisitCount + "次");
-            }
-          } else {
-            //alert(data.messageInfo);
-          } */
-        },
-        error : function() { //失败回调函数
-          alert("获取信息失败");
-        }
-      });
-    }
-    //模拟实操最新数据
-    function getMnscList(rownum) {
-      var data = {
-        "rownum" : rownum
-      };
-      $
-          .ajax({
-            type : 'post',
-            url : "./train/getNewMnscList",
-            data : data,
-            dataType : 'json',
-            cache : false,
-            success : function(data) {
-              console.log(data);
-              //状态
-              var returnCode = data.returnCode;
-              //html
-              var html = "";
-              if (returnCode == '00') {
-                var mnscList = data.data;
-                for (var i = 0; i < mnscList.length; i++) {
-                  html += '<div class="col-md-6">'
-                      + '<img src="./web/images/zxc.png" alt="" onclick="toLoading()">'
-                      + '<div class="col-md-6 practice_content" style="margin-top: 0px;">'
-                      + '<span>'
-                      + mnscList[i].mnscName
-                      + '</span>'
-                      + '<div class="rs">'
-                      + '<span> <img src="./web/images/rs.jpg" alt="" class="title_img"> '
-                      + '<span>' + mnscList[i].logVisitCount + '人</span>'
-                      + '</span> <span class="time">' + mnscList[i].createdate
-                      + '发布</span>' + '</div>' + '</div>' + '</div>';
-                }
-                $("#mnscDataList").html(html);
-              } else {
-                alert(data.messageInfo);
-              }
-            },
-            error : function() { //失败回调函数
-              alert("获取信息失败");
-            }
-          });
-    }
-    //课件最新数据
-    function getKjList(rownum) {
-      var data = {
-        "rownum" : rownum
-      };
-      $
-          .ajax({
-            type : 'post',
-            url : "./train/getNewKjList",
-            data : data,
-            dataType : 'json',
-            cache : false,
-            success : function(data) {
-              console.log(data);
-              //状态
-              var returnCode = data.returnCode;
-              //html
-              var html = "";
-              if (returnCode == '00') {
-                var kjList = data.data;
-                for (var i = 0; i < kjList.length; i++) {
-                  html += '<div class="col-md-6">'
-                      + '<img src="./web/images/zxc.png" alt="" onclick="toLoading()">'
-                      + '<div class="col-md-6 practice_content" style="margin-top: 0px;">'
-                      + '<span>'
-                      + kjList[i].kjName
-                      + '</span>'
-                      + '<div class="rs">'
-                      + '<span> <img src="./web/images/rs.jpg" alt="" class="title_img1"> '
-                      + '<span>' + kjList[i].logVisitCount + '人</span>'
-                      + '</span> <span class="time">' + kjList[i].createdate
-                      + '发布</span>' + '</div>' + '</div>' + '</div>';
-                }
-                $("#kjDataList").html(html);
-              } else {
-                alert(data.messageInfo);
-              }
-            },
-            error : function() { //失败回调函数
-              alert("获取信息失败");
-            }
-          });
-    }
-    function getMyLogVisitList(rownum) {
-      var data = {
-        "rownum" : rownum
-      };
-      $.ajax({
-        type : 'post',
-        url : "./train/getLogVisitList",
-        data : data,
-        dataType : 'json',
-        cache : false,
-        success : function(data) {
-          console.log(data);
-          //状态
-          var returnCode = data.returnCode;
-          //html
-          var html = "";
-          if (returnCode == '00') {
-            var logVisitList = data.data;
-            for (var i = 0; i < logVisitList.length; i++) {
-              html += '<tr>' + '<td>我观看了：xxxxx的模拟实操' + '<p>2018-8-14</p>'
-                  + '</td>' + '</tr>';
-            }
-            $("#myLogVisitList").html(html);
-          } else {
-            alert(data.messageInfo);
-          }
-        },
-        error : function() { //失败回调函数
-          alert("获取信息失败");
-        }
-      });
-    }
-  </script>
-	<script type="text/javascript">
-    var _gatherData = {};
-    _gatherData.visitModuleId = "学员概况";
-    _gatherData.objType = "student_profile";
-    //_gatherData.objId=getUrlParam("id");
-    (function() {
-      var ma = document.createElement('script');
-      ma.type = 'text/javascript';
-      ma.async = true;
-      ma.src = "./tjsrc/js/ma.js";
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ma, s);
-    })();
-  </script>
+  <div class="container-fluid">
+    <ul class="top row">
+        <li class="col-xs-4">
+            <img src="./tjsrc/images/01.jpg">
+            <span id="mnsc">0次</span>
+        </li>
+        <li class="col-xs-4">
+            <img src="./tjsrc/images/02.jpg">
+            <span id="zxxx">0次</span>
+        </li>
+        <li class="col-xs-4">
+            <img src="./tjsrc/images/03.jpg">
+            <span id="zxlx">0次</span>
+        </li>
+    </ul>
+    <div class="center row">
+        <div class="left col-xs-6">
+            <h2 class="title"><span>最新模拟实操</span></h2>
+            <ul class="row listbox" id="mnscList">
+              <!-- <li class="col-sm-6" style="padding-left:0;">
+                <div class="con">
+                    <div class="pic"><img src="../../tjsrc/images/zxc.png"></div>
+                    <div class="botoom">
+                      <h2>课程预告</h2>
+                      <div class="row-box">
+                            <div class="left">
+                                <span class="eay"><img src="../../tjsrc/images/rs.jpg"></span>
+                                <span class="num">2.5万</span>
+                            </div>
+                            <div class="right">
+                                <span>2018-09-27</span>发布
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+              </li>
+              <li class="col-sm-6" style="padding-right:0;">
+                <div class="con">
+                    <div class="pic"><img src="../../tjsrc/images/zxc.png"></div>
+                    <div class="botoom">
+                      <h2>课程预告</h2>
+                      <div class="row-box">
+                            <div class="left">
+                                <span class="eay"><img src="../../tjsrc/images/rs.jpg"></span>
+                                <span class="num">2.5万</span>
+                            </div>
+                            <div class="right">
+                                <span>2018-09-27</span>发布
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+              </li> -->
+            </ul>
+        </div>
+        <div class="right col-xs-6">
+            <h2 class="title"><span>最新学习课件</span></h2>
+            <ul class="row listbox" id="kjList">
+              <!-- <li class="col-sm-6" style="padding-left:0;">
+                <div class="con">
+                    <div class="pic"><img src="../../tjsrc/images/zxc.png"></div>
+                    <div class="botoom">
+                      <h2>课程预告</h2>
+                      <div class="row-box">
+                            <div class="left">
+                                <span class="eay"><img src="../../tjsrc/images/rs.jpg"></span>
+                                <span class="num">2.5万</span>
+                            </div>
+                            <div class="right">
+                                <span>2018-09-27</span>发布
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+              </li>
+              <li class="col-sm-6" style="padding-right:0;">
+                <div class="con">
+                    <div class="pic"><img src="../../tjsrc/images/zxc.png"></div>
+                    <div class="botoom">
+                      <h2>课程预告</h2>
+                      <div class="row-box">
+                            <div class="left">
+                                <span class="eay"><img src="../../tjsrc/images/rs.jpg"></span>
+                                <span class="num">2.5万</span>
+                            </div>
+                            <div class="right">
+                                <span>2018-09-27</span>发布
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+              </li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="xygk-bottom">
+        <p>我的日志</p>
+        <ul class="logList">
+            <!-- <li class="row"><div class="right col-xs-6">我观看了：<span>xxx的模拟实操</span></div><div class="col-xs-6 date">2018-9-27</div></li>
+            <li class="row"><div class="right col-xs-6">我观看了：<span>xxx的模拟实操</span></div><div class="col-xs-6 date">2018-9-27</div></li>
+            <li class="row"><div class="right col-xs-6">我观看了：<span>xxx的模拟实操</span></div><div class="col-xs-6 date">2018-9-27</div></li> -->
+        </ul>
+    </div>
+  </div>
 </body>
+
+<script>
+$(function() {
+  //统计数据
+  logVisitCount();
+  //最新模拟实操数据
+  getMnscList(2);
+  //最新课件数据
+  getKjList(2);
+  //我的日志
+  getMyLogVisitList(10);
+});
+
+//返回项目所访问次数
+function logVisitCount() {
+  mnscCount="0次";
+  zxxxCount="0次";
+  zxlxCount="0次";
+  $.ajax({
+    type: 'post',
+    url: "${gateway}/train/getLogVisitCount",
+    dataType: 'json',
+    cache: false,
+    success: function(data) {
+      //状态
+      var returnCode=data.returnCode;
+      if (returnCode=='00') {
+        var countList=data.data;
+        for (var i=0; i<countList.length; i++) {
+          if (countList[i].OBJ_TYPE=='ts_mnsc') {
+            mnscCount=countList[i].COUNT+"次";
+          } else 
+          if (countList[i].OBJ_TYPE=='q_sj') {
+            zxlxCount=countList[i].COUNT+"次";
+          } else 
+          if (countList[i].OBJ_TYPE=='ts_kj') {
+            zxxxCount=countList[i].COUNT+"次";
+          }
+        }
+      }
+      $("#mnsc").html(mnscCount);
+      $("#zxxx").html(zxxxCount);
+      $("#zxlx").html(zxlxCount);
+    },
+    error: function() { //失败回调函数
+      $("#mnsc").html(mnscCount);
+      $("#zxxx").html(zxxxCount);
+      $("#zxlx").html(zxlxCount);
+    }
+  });
+}
+
+function getMnscList(rownum) {
+  var data={"rownum": rownum};
+  $.ajax({
+    type: 'post',
+    url: "${gateway}/train/getNewMnscList",
+    data: data,
+    dataType: 'json',
+    cache: false,
+    success: function(res) {
+      var html="";
+      if (res.returnCode=='00') {
+        var html = ""
+        for(var j=0;j<res.data.length;j++) {
+          html+= '<li class="col-sm-6" style="padding-left:0;">'
+            +'<div class="con">'
+              +'<div class="pic"><img src="'+(res.data[j].imgUrl || "./tjsrc/images/mnsc_default.jpg")+'"></div>'
+              +'<div class="botoom">'
+                +'<h2>'+res.data[j].mnscName+'</h2>'
+                +'<div class="row-box">'
+                  +'<div class="left">'
+                    +'<span class="eay"><img src="./tjsrc/images/rs.jpg"></span>'
+                    +'<span class="num">'+res.data[j].logVisitCount+'</span>'
+                  +'</div>'
+                  +'<div class="right">'
+                    +' <span>'+(res.data[j].createDate).substring(0,10)+'</span>发布'
+                  +'</div>'
+                +'</div>'
+              +'</div>'
+            +'</div>'
+          +'</li>'
+        }
+        $("#mnscList").html(html)
+      }
+    },
+    error: function() { //失败回调函数
+      alert("获取信息失败");
+    }
+  });
+}
+
+//课件最新数据
+function getKjList(rownum) {
+  var data={ "rownum": rownum };
+  $ .ajax({
+    type: 'post',
+    url: "./train/getNewKjList",
+    data: data,
+    dataType: 'json',
+    cache: false,
+    success: function(res) {
+      if (res.returnCode=='00') {
+        var html = ""
+        for(var j=0;j<res.data.length;j++) {
+          html+= '<li class="col-sm-6" style="padding-left:0;">'
+            +'<div class="con">'
+              +'<div class="pic"><img src="'+(res.data[j].imgUrl || "./tjsrc/images/kj_default.jpg")+'"></div>'
+              +'<div class="botoom">'
+                +'<h2>'+res.data[j].kjName+'</h2>'
+                +'<div class="row-box">'
+                  +'<div class="left">'
+                    +'<span class="eay"><img src="./tjsrc/images/rs.jpg"></span>'
+                    +'<span class="num">'+res.data[j].logVisitCount+'</span>'
+                  +'</div>'
+                  +'<div class="right">'
+                    +' <span>'+(res.data[j].createDate).substring(0,10)+'</span>发布'
+                  +'</div>'
+                +'</div>'
+              +'</div>'
+            +'</div>'
+          +'</li>'
+        }
+        $("#kjList").html(html)
+      }
+    },
+    error: function() { //失败回调函数
+      alert("获取信息失败");
+    }
+  });
+}
+
+function getMyLogVisitList(rownum) {
+  var data = {"rownum": rownum};
+  $.ajax({
+    type: "get",
+    url: "./train/getLogVisitList",
+    data: data,
+    dataType: "json",
+    success: function (res) {
+      console.log(res)
+      if(res.returnCode==00) {
+        var html = ""
+        for(var j=0;j<res.data.length;j++) {
+          if (res.data[j].objType=='在线练习') {
+            html+= '<li class="row"><div class="right col-xs-6">我练习了：<span>试题【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+          } else
+          if (res.data[j].objType=='模拟实操展示') {
+            html+= '<li class="row"><div class="right col-xs-6">我操作了：<span>模拟实操【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+          } else
+          if (res.data[j].objType=='课件展示') {
+          html+= '<li class="row"><div class="right col-xs-6">我观看了：<span>课程【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+          }
+        }
+        $(".logList").html(html)
+      }
+    }
+  });
+}
+</script>
+
+<script type="text/javascript">
+var _gatherData={};
+_gatherData.visitModuleId="学员概况";
+_gatherData.objType="student_profile";
+(function() {
+  var ma=document.createElement('script');
+  ma.type='text/javascript';
+  ma.async=true;
+  ma.src="./tjsrc/js/ma.js";
+  var s=document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ma, s);
+})();
+</script>
 </html>

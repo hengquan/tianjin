@@ -28,5 +28,5 @@ public interface KjMapper {
 
     List<Kj> getKjList(Integer rownum);
 
-    List<Kj> getMyKjList(Map<String, Object> map);
+    List<Map<String, Object>> getNewKjList(Map<String, Object> map);
 }
