@@ -83,4 +83,16 @@ public class LogVisitService {
         map.put("rownum", rownum);
         return logDao.getAllLogVisitList(map);
     }
+
+    public List<Map<String, Object>> getKjStateByCate(int dayCount) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("dayCount", dayCount);
+        return logDao.getKjStateByCate(map);
+    }
+
+    public List<Map<String, Object>> getMnscStateByCate(int dayCount) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("dayCount", dayCount);
+        return logDao.getMnscStateByCate(map);
+    }
 }

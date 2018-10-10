@@ -114,8 +114,8 @@
 												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
 													for="exampleInputName2">模拟实操地址</label>
 												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-													<input type="text" class="form-control"
-														id="mnscUrl" placeholder="模拟实操地址">
+													<input type="text" class="form-control" id="mnscUrl"
+														placeholder="模拟实操地址">
 												</div>
 											</div>
 										</div> <!-- 示例select -->
@@ -155,9 +155,9 @@
 												<div
 													class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
 													data-date-format="dd-mm-yyyy">
-													<input class="form-control" size="16" type="text" value="" id="createStart">
-													<span class="add-on" style="height: 40px"><i
-														class="icon-th"></i></span>
+													<input class="form-control" size="16" type="text" value=""
+														id="createStart"> <span class="add-on"
+														style="height: 40px"><i class="icon-th"></i></span>
 												</div>
 											</div>
 										</div>
@@ -168,9 +168,9 @@
 												<div
 													class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
 													data-date-format="dd-mm-yyyy">
-													<input class="form-control" size="16" type="text" value="" id="createEnd">
-													<span class="add-on" style="height: 40px"><i
-														class="icon-th"></i></span>
+													<input class="form-control" size="16" type="text" value=""
+														id="createEnd"> <span class="add-on"
+														style="height: 40px"><i class="icon-th"></i></span>
 												</div>
 											</div>
 										</div>
@@ -229,11 +229,23 @@
     // table
     // 2.返回操作模版[按钮颜色暂不确定]
     function operateFormatter(value, row, index) {
+      var edit = '';
+      var isvalid = row.isvalid;
+      var msg = '';
+      if (isvalid == 0) {
+        msg = '停用';
+        edit = '';
+      } else if (isvalid == 1) {
+        msg = '启用';
+        edit = '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
+            + value + '")>修改</button>';
+      }
       return [
           '<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick=lookItem("'
               + value + '")>查看</button>',
-          '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
-              + value + '")>修改</button>',
+          edit,
+          '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link" onclick=updateIsvalid("'
+              + row.id + '","' + row.isvalid + '")>' + msg + '</button>',
           '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link" onclick=seeItem("'
               + row.mnscUrl + '")>预览</button>',
           '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
@@ -304,6 +316,30 @@
       });
     }
 
+    function updateIsvalid(id, isvalid) {
+      if (isvalid == 0)
+        isvalid = 1;
+      else if (isvalid == 1)
+        isvalid = 0;
+      var data = {
+        "id" : id,
+        "isvalid" : isvalid
+      }
+      $.ajax({
+        type : 'post',
+        url : "${gateway}/mnsc/update",
+        data : data,
+        dataType : 'json',
+        cache : false,
+        success : function(data) {
+          refresh();
+        },
+        error : function() { //失败回调函数
+          refresh();
+        }
+      });
+    }
+
     function seeItem(e) {
       window.open(e);
     }
@@ -317,9 +353,22 @@
       title : '所属分类',
       sortable : true
     }, {
-      field : 'mnscUrl',
-      title : '模拟实操地址',
+      field : 'sort',
+      title : '排序',
       sortable : true
+    }, {
+      field : 'isvalid',
+      title : '状态',
+      sortable : true,
+      formatter : function(value) {
+        if (value == 0) {
+          return '启用';
+        } else if (value == 1) {
+          return '停用';
+        } else {
+          return '删除';
+        }
+      }
     }, {
       field : 'createName',
       title : '创建者',

@@ -471,4 +471,36 @@ order by create_date desc
     )
     order by (kj_count+mnsc_count+NVL(sj_count,0))
   </select>
+  <!-- WH::得到所有顶级分类的课件分类 -->
+  <select id="getKjStateByCate" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+select upCateName, count(distinct obj_id) count from (
+  select a.obj_id obj_id, case when instr(kj_cat_names, '-')=0 then kj_cat_names else substr(kj_cat_names, 0, instr(kj_cat_names, '-')-1) end as upCateName from log_visit a, ts_kj b
+  where a.obj_type='ts_kj' and a.obj_id=b.id
+<choose>
+  <when test="dayCount!=null and dayCount!=''">
+    and b.create_date>(sysdate-${dayCount})
+  </when>
+  <otherwise>
+    and b.create_date>(sysdate-30)
+  </otherwise>
+</choose>
+) group by upCateName
+  </select>
+
+  <!-- WH::得到所有顶级分类的模拟实操分布数量 -->
+  <select id="getMnscStateByCate" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+select upCateName, count(distinct obj_id) count from (
+  select a.obj_id obj_id, case when instr(mnsc_cat_names, '-')=0 then mnsc_cat_names else substr(mnsc_cat_names, 0, instr(mnsc_cat_names, '-')-1) end as upCateName
+  from log_visit a, ts_mnsc b
+  where a.obj_type='ts_mnsc' and a.obj_id=b.id
+<choose>
+  <when test="dayCount!=null and dayCount!=''">
+    and b.create_date>(sysdate-${dayCount})
+  </when>
+  <otherwise>
+    and b.create_date>(sysdate-30)
+  </otherwise>
+</choose>
+) group by upCateName
+  </select>
 </mapper>
