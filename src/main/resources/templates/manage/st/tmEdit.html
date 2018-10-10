@@ -75,7 +75,8 @@ html {
         <div class="row clearfix">
             <div class="col-lg-12 col-md-11 col-sm-12 col-xs-2 column">
             	  <form class="form-horizontal pt-form-full" role="form" id="form" name="form">                
-                    <input type="hidden" name="id" id="objId">                    
+                    <input type="hidden" name="id" id="objId">      
+                     <input type="hidden" name="isvalid" id="isvalid">                   
                     <div class="col-lg-12 col-md-11 col-sm-11 col-xs-12">
                         <div class="form-group">
                             <label class="col-lg-1 col-md-1 col-sm-1 col-xs-6"  for="title"><span> ※ </span>题目</label>
@@ -84,24 +85,40 @@ html {
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
                         <div class="form-group">
                        	   <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="title"><span>   ※ </span>分类</label>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="text" class="form-control" name="score" id="score" />
-                            </div>
-                                                 
-                            <label class="col-lg-1 col-md-1 col-sm-2 col-xs-2" for="biaozhun">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">			             
+				                <input type="text" class="form-control" name="catnames" id="catnames" style="border-right:0px;" readonly="readonly"/>				               
+				                <div class="input-group-btn">
+				                  <button type="button" class="btn btn-default dropdown-toggle btn-tj" data-toggle="dropdown" style="border-bottom-left-radius:0px;border-top-left-radius:0px; border-left:0px;">
+				                  	<span class="caret"></span>
+				                  </button>
+				                  <div class="dropdown-menu pull-right" style="width:200px;height:240px;overflow-y:auto;overflow-x:hidden;" data-stopPropagation="true">
+				                    <div id="cate-tree"></div>
+				                  </div>
+				                </div>
+				                <input type="hidden" class="form-control" name="catid" id="catid"/>
+			               </div>
+			               <label class="col-lg-1 col-md-1 col-sm-2 col-xs-2" for="diffScore">
                                 <span> ※ </span>难度系数
                             </label>                          
                              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                <select id="tmType" name="diffScore" class="selectpicker"
-                                    onchange="classify(this)" data-live-search="true" title="请选择">
+                                <select id="diffScore" name="diffScore" class="selectpicker"
+                                    data-live-search="true" title="请选择">
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
                                 </select>
-                            </div>  
+                             </div>  
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
@@ -117,6 +134,10 @@ html {
                             </div>
                           </div>
                        </div>
+                       <input type="hidden" class="form-control" name="kjList"   id="kjList" />
+                       <input type="hidden" id="kjnameList" class="form-control" name="kjnameList"/>
+                       <input type="hidden" class="form-control" name="mnscList" id="mnscList" />
+                       <input type="hidden" id="mnscnameList" class="form-control" name="mnscnameList"/>
                     <!-- 
                     <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
                         <div class="form-group">
@@ -169,18 +190,12 @@ html {
                         </div>
                     </div>
                  </form>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" > 
-	                		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-			                     <button onclick="addTm()" id="baocun" class="btn w80  btn-default btn-primary">保存</button>
-			                     <button class="btn w80  btn-default btn-default">取消</button>
-		                     </div>
-		                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="selectbtn" style="display: none;">
-			                     <button onclick="openAddSelect()" 
-			                            class="btn w80  btn btn-info" >添加</button>	                 
-		                     </div>              
-                       </div>
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="selectbtn" style="display: none;">
+			                     <button onclick="addTmcache()" 
+			                            class="btn w80  btn btn-info" >添加选项</button>	                 
+		                     </div>   
            		    </div>         
-	            <div class="pt-main" id = "pt-main">
+	            <div class="pt-main" id = "pt-main" style="display :none">
 	                <!--bootstrap 表格-->
 	                <div class="row">
 	                    <div class="col-lg-12 col-md-10 col-sm-11 col-xs-12" >
@@ -191,6 +206,13 @@ html {
 	                    </div>
 	                </div>
 	            </div>
+	            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" > 
+	                		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			                     <button onclick="addTm()" id="baocun" class="btn w80  btn-default btn-primary">保存</button>
+			                     <button class="btn w80  btn-default btn-default">取消</button>
+		                     </div>
+		                               
+                       </div>
 	        </div>
         </div>
     </div>
@@ -206,7 +228,6 @@ html {
           '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
               + value + '")>删除</button>' ].join('');
     }
-
     $(function() {
       //icheck 单选多选
       $('input').iCheck({
@@ -233,13 +254,11 @@ html {
             var tm = data.data;
             $("#objId").val(tm.id);
             $("#tmHtml").val(tm.tmHtml);
-            $("#tmType").selectpicker('val', tm.tmType);
-            $("#score").val(tm.score);
-            $("#diffScore").val(tm.diffScore);
-            $("#kjList").val(tm.kjList);
-            $("#mnscList").val(tm.mnscList);
-            $("#kjnameList").val(tm.kjnameList);
-            $("#mnscnameList").val(tm.mnscnameList);         
+            $("#isvalid").val(tm.isvalid);
+            $("#catid").val(tm.catid);
+            $("#catnames").val(tm.catnames);
+            $("#tmType").selectpicker('val', tm.tmType);  
+            $("#diffScore").selectpicker('val',tm.diffScore);             
             if (tm.tmType=="判断题"){
             	document.getElementById("xzanswer").style.display = "block";
             	if (tm.isAnswer == 2)
@@ -259,8 +278,51 @@ html {
             alert("获取信息失败");
           }
         });
+      }else{
+        getDetailData();
       }
     });
+    
+  //初始化选择树
+    $.ajax({
+      type : "post",
+      url: '${gateway}/train/getTree/ptTree',
+      data: {type:1},
+      dataType : "json",
+      success : function(result) {
+        if (result.returnCode=='00') {
+          var tree=[];
+          tree.push(result.data.tree);
+          $('#cate-tree').treeview({
+            data : tree, // 数据源
+            showCheckbox : true, //是否显示复选框
+            multiSelect : false, //多选
+            onNodeChecked : function(event, data) {
+              selectTreeNode(data);
+            }
+          });
+        } else {
+          $('#cate-tree').treeview({
+            data : [{text: '分类根节点', id: '0', pathName: '分类根节点'}], // 数据源
+            showCheckbox : true, //是否显示复选框
+            multiSelect : false, //多选
+            onNodeChecked : function(event, data) {
+              selectTreeNode(data);
+            }
+          });
+        }
+      },
+      error : function() {
+        $('#cate-tree').treeview({
+          data : [{text: '分类根节点', id: '0', pathName: '分类根节点'}], // 数据源
+          showCheckbox : true, //是否显示复选框
+          multiSelect : false, //多选
+          onNodeChecked : function(event, data) {
+            selectTreeNode(data);
+          }
+        });
+      }
+    });      
     $('form').bootstrapValidator({
       message: 'This value is not valid',
       feedbackIcons: {
@@ -270,25 +332,13 @@ html {
       },
       fields: {
         tmHtml: {
-          message: '题目内容不能为空',
+          message: '题目不能为空',
           validators: {
             notEmpty: {
-              message: '题目内容不能为空'
+              message: '题目不能为空'
             }
           }
-        },
-        score: {
-          message: '题目份数',
-          validators: {
-            notEmpty: {
-              message: '必须录入题目份数'
-            },
-            regexp: {
-              regexp: "^[0-9][0-9]*$",
-              message: '题目份数须为自然数'
-            }
-          }
-        },
+        },        
         diffScore: {
           message: '题目难度系数',
           validators: {
@@ -304,9 +354,7 @@ html {
       }
     });
     function getDetailData(tmId) {
-      TableInit().Init('${gateway}/st/getselctData?id=' + tmId, [ {
-        checkbox : true
-      }, {
+      TableInit().Init('${gateway}/st/getselctData?id=' + tmId, [  {
         field : 'tmSelectSign',
         title : '选项标号',
         sortable : false
@@ -327,12 +375,12 @@ html {
         title : '操作',
         formatter : operateFormatter
       } ]);
-    }
-    
+    }    
     function addTm() {
       var validatorObj=$('#form').data("bootstrapValidator");
       var aa=validatorObj.validate();
       var flag=validatorObj.isValid();
+      $("#isvalid").val("1");
       if (!flag) return;
       $.ajax({
         type : 'post',
@@ -342,7 +390,8 @@ html {
         cache : false,
         success : function(data) {
           if (data.resultCode=='00') {
-            location.href='${gateway}/st/edit?id='+data.id;
+            parent.refresh();
+    	    closeMy(); 
           } else {
             layer.error("添加失败");
           }
@@ -350,13 +399,41 @@ html {
         error : function() { //失败回调函数
           alert("保存成功");
           //parent.refresh();
-         // closeMy();
-         
+         // closeMy();         
         }
       });  
     }   
+    function addTmcache() {
+      if (!($("#objId").val())){
+        $("#isvalid").val("3");
+	      $.ajax({
+	        type : 'post',
+	        url : "${gateway}/st/insert",
+	        data : $("#form").serialize(),
+	        dataType : 'json',
+	        cache : false,
+	        success : function(data) {
+	          if (data.resultCode=='00') {
+	            $("#objId").val(data.id);
+	            openAddSelect("3");
+	          } else {
+	            layer.error("异常无法操作");
+	          }
+	        },
+	        error : function() { //失败回调函数
+	          alert("异常无法操作");
+	          //parent.refresh();
+	         // closeMy();         
+	        }
+	      }); 
+      }else{
+        openAddSelect("1");
+      }
+    }   
     
     function editTm() {
+      if ($("#isvalid").val()=="3")
+        $("#isvalid").val("1");
       $.ajax({
         type : 'post',
         url : "${gateway}/st/update",
@@ -364,11 +441,14 @@ html {
         dataType : 'json',
         cache : false,
         success : function(data) {
-          alert("保存成功");          
+          alert("保存成功");    
+          parent.refresh();
+  	      closeMy(); 
         },
         error : function() { //失败回调函数
           alert("保存成功");
-         
+          parent.refresh();
+	      closeMy(); 
         }
       });
     }    
@@ -402,7 +482,7 @@ html {
       //如果不想出现滚动条['content.html', 'no']
       });
     }
-    function openAddSelect() {
+    function openAddSelect(isvalid) {
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
         title : '<span class="text-color">添加选项及答案</span>',//请修改span中间的内容
@@ -411,7 +491,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '${gateway}/st/selectEdit?id='+$("#objId").val(), 'no' ]
+        content : [ '${gateway}/st/selectEdit?isvalid='+isvalid+'&id='+$("#objId").val(), 'no' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -429,21 +509,13 @@ html {
       } else {
         document.getElementById("xzanswer").style.display = "none";
       }
-      if (obj.selectedIndex == 1) {
-        if (document.getElementById("objId").value==""){
-        	document.getElementById("selectbtn").style.display = "none";
-        }else{
-          document.getElementById("selectbtn").style.display = "block";
-        }        
+      if (obj.selectedIndex == 1) {       
+        document.getElementById("selectbtn").style.display = "block";              
         document.getElementById("pt-main").style.display = "block";
-      } else if (obj.selectedIndex == 2) {
-        if (document.getElementById("objId").value==""){
-        	document.getElementById("selectbtn").style.display = "none";
-        }else{
-          document.getElementById("selectbtn").style.display = "block";
-        }
+      }  else if (obj.selectedIndex == 2) {       
+        document.getElementById("selectbtn").style.display = "block";              
         document.getElementById("pt-main").style.display = "block";
-      } else {
+      } else{        
         document.getElementById("selectbtn").style.display = "none";
         document.getElementById("pt-main").style.display = "none";
       }
@@ -483,8 +555,23 @@ html {
         return false;
       }
     }
-  function refresh() {
+  function refresh() {   
     $("#tb_departments").bootstrapTable('refresh');
+  }
+  
+  function selectTreeNode(treeNodeData) {
+    console.log(treeNodeData);
+    $("input[name='catnames']").val(treeNodeData.pathName);
+    $("input[name='catid']").val(treeNodeData.id);
+    $('#cate-tree').treeview('uncheckAll', { silent: true });
+    $('#cate-tree').treeview('checkNode', [treeNodeData.nodeId, { silent: true }]);
+    window.setTimeout(function(){/*
+      $(".dropdown-menu").dropdown('toggle');
+      $(".dropdown-menu").attr("data-stopPropagation","true");
+      $(".dropdown-menu").on('click', function (e) {
+        e.stopPropagation();
+      });*/
+    }, 500);
   }
   </script>
 </body>
