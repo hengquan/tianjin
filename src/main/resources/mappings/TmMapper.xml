@@ -11,18 +11,22 @@
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
     <result column="isvalid" property="isvalid" jdbcType="INTEGER" />
+    <result column="cat_id" property="catid" jdbcType="VARCHAR" />
+    <result column="cat_names" property="catnames" jdbcType="VARCHAR" />
   </resultMap>
   
   <sql id="Blob_Column_List">
-    id, tm_type,tm_html,score,diff_score,create_date,create_by,create_name 
+    id, tm_type,tm_html,score,isvalid,diff_score,create_date,create_by,create_name ,cat_id,cat_names
   </sql>
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.Tm" >
     insert into q_TM (id, tm_type, tm_html, 
-      score, diff_score,  
-      create_by, create_name)
+      score, diff_score, isvalid, 
+      create_by, create_name,cat_id,cat_names)
     values (#{id,jdbcType=VARCHAR}, #{tmType,jdbcType=VARCHAR}, #{tmHtml,jdbcType=VARCHAR}, 
-      #{score,jdbcType=INTEGER}, #{diffScore,jdbcType=INTEGER},
-      #{createBy,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR})
+      #{score,jdbcType=INTEGER}, #{diffScore,jdbcType=INTEGER},#{isvalid,jdbcType=INTEGER},
+      #{createBy,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}
+      ,  #{catid,jdbcType=VARCHAR}, #{catnames,jdbcType=VARCHAR})
+      
   </insert>
   <insert id="insertSelective" parameterType="cn.tianjin.unifiedfee.ot.entity.Tm" >
     insert into q_TM
@@ -51,6 +55,12 @@
       <if test="createName != null" >
         create_name,
       </if>
+      <if test="catid != null" >
+        cat_id,
+      </if>
+      <if test="catnames != null" >
+        cat_names
+      </if>      
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -77,6 +87,12 @@
       <if test="createName != null" >
         #{createName,jdbcType=VARCHAR},
       </if>
+       <if test="catid != null" >
+         #{catid,jdbcType=VARCHAR},
+      </if>
+      <if test="catnames != null" >
+         #{catnames,jdbcType=VARCHAR}
+      </if>   
     </trim>
   </insert>
 
@@ -101,6 +117,12 @@
       <if test="createName != null" >
         create_name = #{createName},
       </if>
+       <if test="catid != null" >
+         cat_id = #{catid},
+      </if>
+      <if test="catnames != null" >
+         cat_names = #{catnames},
+      </if>   
       <if test="isvalid != null" >
         isvalid = #{isvalid},
       </if>      
@@ -111,8 +133,11 @@
   <select id="getPageData" resultMap="BaseResultMap">
     select <include refid="Blob_Column_List" />
     from q_tm
-    where 
-    1=1
+    where      
+    <![CDATA[
+      isvalid<2
+      ]]>
+    
    <if test="tmHtml != null and tmHtml != ''">
   and instr(tm_html,#{tmHtml})>0
   </if>    

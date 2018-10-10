@@ -38,6 +38,10 @@ public class Tm {
     private Integer sort;      
     
     private Integer isvalid;
+    
+    private String  catid;
+    
+    private String  catnames;
 
     public String getId() {
         return id;
@@ -181,5 +185,21 @@ public class Tm {
 
     public void setIsvalid(Integer isvalid) {
         this.isvalid = isvalid;
+    }
+
+    public String getCatid() {
+        return catid;
+    }
+
+    public void setCatid(String catid) {
+        this.catid = catid;
+    }
+
+    public String getCatnames() {
+        return catnames;
+    }
+
+    public void setCatnames(String catnames) {
+        this.catnames = catnames;
     }
 }

@@ -10,6 +10,7 @@
 		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
 		<result column="state" property="state" jdbcType="INTEGER" />
 		<result column="score" property="score" jdbcType="INTEGER" />
+		<result column="isvalid" property="isvalid" jdbcType="INTEGER" />
 		<result column="sort" property="sort" jdbcType="INTEGER" />
 		<result column="create_date" property="createDate" jdbcType="DATE" />
 		<result column="create_by" property="createBy" jdbcType="VARCHAR" />
@@ -20,7 +21,7 @@
 		id, kj_name, kj_cat_id,
 		kj_cat_names, expire_date, remarks,
 		state, score, sort, create_date,
-		create_by, create_name, kj_html
+		create_by, create_name, kj_html,isvalid
 	</sql>
 	<insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.Kj">
 		insert into ts_KJ
@@ -64,6 +65,9 @@
 			<if test="kjHtml != null">
 				kj_html,
 			</if>
+			<if test="isvalid != null">
+				isvalid,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -104,6 +108,9 @@
 			</if>
 			<if test="kjHtml != null">
 				#{kjHtml,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="isvalid != null">
+				#{isvalid,jdbcType=INTEGER},
 			</if>
 		</trim>
 	</insert>
@@ -146,6 +153,9 @@
 			</if>
 			<if test="kjHtml != null">
 				kj_html = #{kjHtml},
+			</if>
+			<if test="isvalid != null">
+				isvalid = #{isvalid},
 			</if>
 		</set>
 		where id = #{id}

@@ -92,7 +92,7 @@ html {
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="dingjia"><span>
 									※ </span>是否答案</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-								<select id="isAnswer" name="isAnswer" class="selectpicker" onchange="classify(this)"
+								<select id="isAnswer" name="isAnswer" class="selectpicker" 
 									data-live-search="true" title="请选择" >
 									<option value="1">是</option>
 									<option value="0">否</option>																
@@ -134,9 +134,8 @@ html {
       var url = location.search;
       if (url != '') {
         //变成修改
-       
         url = url.substr(1);        
-        var split = url.split("=");
+        var split = url.split("=");       
         $.ajax({
           type : 'post',
           url : "${gateway}/st/getselect",
@@ -180,8 +179,11 @@ html {
            if (data.resultCode=="003")
              alert("单选题只能有一个正确答案，请重新设置");
            if  (data.resultCode=="001"){
-             alert("保存成功");
-             parent.refresh();
+             alert("保存成功");            
+             if (getUrlParam("isvalid")==3)
+             	parent.location.href='${gateway}/st/edit?id='+$("#objId").val();
+             else
+                parent.refresh();
              closeMy();
            }
            if  (data.resultCode=="000")
