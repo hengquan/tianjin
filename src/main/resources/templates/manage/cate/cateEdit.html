@@ -70,12 +70,13 @@
         <input type="hidden" name="id" id="objId"></input>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="form-group">
-            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " for="title"><span> ※ </span>分类名称</label>
+            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " for="title"><span> ※ </span>名&emsp;&emsp;称</label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
               <input type="text" class="form-control" name="name" id="name" />
             </div>
           </div>
         </div>
+        <!-- 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="form-group">
             <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span> ※ </span>上级分类</label>
@@ -95,9 +96,10 @@
             </div>
           </div>
         </div>
+        -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="form-group">
-            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span> ※ </span>分类排序</label>
+            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span> ※ </span>排&emsp;&emsp;序</label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
               <input type="text" class="form-control" name="sort" id="sort" />
             </div>
@@ -105,20 +107,20 @@
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="form-group">
-            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span> ※ </span>是否有效</label>
+            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span> ※ </span>状&emsp;&emsp;态</label>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
               <label class="radio-inline">
-                <input type="radio" name="isvalid" value="1" checked>生效
+                <input type="radio" name="isvalid" value="1" checked>启用
               </label>
 	          <label class="radio-inline">
-	            <input type="radio" name="isvalid" value="0">失效
+	            <input type="radio" name="isvalid" value="0">停用
 	          </label>
 	        </div>
           </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="form-group">
-            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="remarks"><span> &emsp; </span>分类说明</label>
+            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="remarks"><span> &emsp; </span>备&emsp;&emsp;注</label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
               <textarea id="remarks" class="form-control" name="remarks" style="min-height:108px;max-width:830px;"></textarea>
             </div>
@@ -146,8 +148,9 @@ $(function () {
   $(".dropdown-menu").on('click', function (e) {
     e.stopPropagation();
   });
+
   //初始化选择树
-  $.ajax({
+/*$.ajax({
     type : "post",
     url: '${gateway}/train/getTree/ptTree',
     data: {type:1},
@@ -186,11 +189,12 @@ $(function () {
       });
     }
   });
+  */
 
-  //检查输入项
+ //检查输入项
   $('form').on("success.form.bv", function(e) {
-    var formData = $('#mainForm').serialize();
-    formData = decodeURIComponent(formData, true);
+    var formData=$('#mainForm').serialize();
+    formData=decodeURIComponent(formData, true);
     $.ajax({
       url : '${gateway}/cate/insert',
       data : formData,
@@ -220,14 +224,14 @@ $(function () {
       validating : 'glyphicon glyphicon-refresh'
     },
     fields : {
-      name : {
+/*       name : {
         message : '分类名称验证失效',
         validators : {
           notEmpty : {
             message : '分类名称不能为空'
           }
         }
-      },
+      }, */
       upName : {
         message : '上级分类验证失效',
         validators : {
@@ -273,18 +277,18 @@ $(function () {
           return false;
         } else {
           //填充数据 Object { id: "2", parentId: "0", nodeName: "政策类", order: 8, parentIds: "0,", isvalid: 1, createId: "·1", createName: "·1", createDate: "2018-09-13", updateId: "·1", … }
-          console.log(result.data);
           var cate=result.data;
           $("#objId").val(cate.id);
           $("#name").val(cate.nodeName);
           $("#upName").val(cate.pathName);
           $("#parentId").val(cate.parentId);
           $("#sort").val(cate.order);
-          if (cate.isvalid==1) {
-//            $("input:radio[name='isvalid'][value='1']").prop("checked", true);
-          } else {
-//          $("input:radio[name='isvalid'][value='0']").prop("checked", true);
-          }
+          $("input[type=radio][name=isvalid]").each(function (i, e) {
+            alert($(this).val());
+          });
+          $("input[type=radio][name=isvalid]").each(function (i, e) {
+            if ($(this).val()==cate.isvalid) $(this).iCheck('check');
+          });
           $("#remarks").val(cate.remarks);
         }
       },
@@ -310,7 +314,7 @@ function selectTreeNode(treeNodeData) {
 }
 
 function closeMy() {
-  var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+  var index=parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
   parent.layer.close(index); //再执行关闭
 }
 /**

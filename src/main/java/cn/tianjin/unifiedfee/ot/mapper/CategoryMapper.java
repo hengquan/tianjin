@@ -17,4 +17,6 @@ public interface CategoryMapper {
     public int insertSelective(Category record);
 
     public int update(Category record);
+
+    public int changeValid(Category record);
 }

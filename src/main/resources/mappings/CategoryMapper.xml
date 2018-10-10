@@ -26,12 +26,12 @@
   </select>
 
   <select id="getAllListWithMap" resultType="java.util.HashMap">
-    select <include refid="Base_Column_List"/> from category
+    select id, parent_id, parent_ids, name, sort, isvalid, create_by, create_name, create_date, update_by, update_name, update_date, remarks from category
   </select>
 
   <select id="getListWithMap" resultType="java.util.HashMap" parameterType="Map">
     select <include refid="Base_Column_List"/> from category
-    <where> 1=1
+    <where> isValid!=2
       <if test="cataName!=null and cataName!=''">
         and name like '%${cateName}%'
       </if>
@@ -136,6 +136,11 @@
     </trim>
   </insert>
 
+  <update id="changeValid"  parameterType="cn.tianjin.unifiedfee.ot.entity.Category">
+    update category set isvalid=#{isvalid,jdbcType=INTEGER}, update_date=sysdate
+    where id=#{id,jdbcType=VARCHAR}
+  </update>
+
   <update id="update"  parameterType="cn.tianjin.unifiedfee.ot.entity.Category">
     update category set 
     <trim suffixOverrides="," >
@@ -148,7 +153,7 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="sort != null" >
+      <if test="sort!=null">
         sort = #{sort,jdbcType=INTEGER},
       </if>
       <if test="isvalid != null" >

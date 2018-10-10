@@ -914,7 +914,7 @@ ul {
   padding: 0 !important;
 }
 .datetimepicker-dropdown-bottom-right {
-  margin-top: 42px !important;
+  margin-top: 42px;
 }
 .form-horizontal .radio,
 .form-horizontal .checkbox,

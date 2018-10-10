@@ -69,7 +69,7 @@ public class CategoryService {
         return StringUtils.isBlank(cId)?root:(TreeNode<CategoryNode>)root.findNode(cId);
     }
 
-    public Map<String, Object> getTreeDate() {
+    public Map<String, Object> getTreeData() {
         if (root==null) initRoot();
         Map<String, Object> retM=new HashMap<String, Object>();
         retM.put("DataTree", root);
@@ -115,6 +115,7 @@ public class CategoryService {
         c.setUpdateId((String)m.get("UPDATE_BY"));
         c.setUpdateName((String)m.get("UPDATE_NAME"));
         c.setUpdateDate(new java.sql.Date(((Timestamp)m.get("UPDATE_DATE")).getTime()));
+        c.setRemarks((String)m.get("REMARKS"));
         return c;
     }
 
@@ -159,10 +160,8 @@ public class CategoryService {
                 retM.put("messageInfo","同级有重名分类");
                 return retM;
             }
-        } else {//修改
-       }
+        }
 
-        cate.setParentIds((_curRootNode.getTnEntity()).getParentIds()+","+_curRootNode.getParentId()+",");
         cate.setUpdateDate(new java.sql.Date(System.currentTimeMillis()));
         cate.setUpdateId(ui.getUserId());
         cate.setUpdateName(ui.getUsername());
@@ -174,6 +173,7 @@ public class CategoryService {
             TreeNode<CategoryNode> tncn=new TreeNode<CategoryNode>(cn);
             _curRootNode.addChild(tncn);
         } else {
+            cate.setParentIds((_curRootNode.getTnEntity()).getParentIds()+_curRootNode.getParentId()+",");
             categoryDao.update(cate);
             TreeNode<CategoryNode> tncn=(TreeNode<CategoryNode>) _curRootNode.findNode(cate.getId());
             tncn.setTnEntity(cn);
@@ -202,7 +202,7 @@ public class CategoryService {
             Category c=new Category();
             c.setId(node.getId());
             c.setIsvalid(valid);
-            categoryDao.update(c);
+            categoryDao.changeValid(c);
             retMap.put("returnCode", "00");
         }
         return retMap;
