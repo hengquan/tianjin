@@ -41,6 +41,16 @@ public class Mnsc {
     private String createdate;
     
     private List<CommArchive> commArchives;
+    
+    private Integer isvalid;
+
+    public Integer getIsvalid() {
+        return isvalid;
+    }
+
+    public void setIsvalid(Integer isvalid) {
+        this.isvalid = isvalid;
+    }
 
     public List<CommArchive> getCommArchives() {
         return commArchives;

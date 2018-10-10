@@ -150,9 +150,12 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>&emsp;&emsp;学&emsp;&emsp;分</label>
+									※ </span>&emsp;&emsp;状&emsp;&emsp;态</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-								<input type="text" class="form-control" name="score" id="score" />
+								<select class="form-control" name="isvalid" id="isvalid">
+                  <option value="0">启用</option>
+                  <option value="1">停用</option>
+                </select>
 							</div>
 						</div>
 					</div>
@@ -296,7 +299,9 @@ html {
                 $("#objId").val(mnsc.id);
                 $("#mnscName").val(mnsc.mnscName);
                 $("#mnscUrl").val(mnsc.mnscUrl);
-                $("#score").val(mnsc.score);
+                $("#isvalid").val(mnsc.isvalid);
+                $("#isvalid").attr("value","是否能显示");
+                $("#isvalid").find("option[value='"+mnsc.isvalid+"']").attr("selected",true);
                 $("#sort").val(mnsc.sort);
                 $("#remarks").val(mnsc.remarks);
                 $("#mnscCatNames").val(mnsc.mnscCatNames);

@@ -145,9 +145,12 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>&emsp;学&emsp;分</label>
+									※ </span>&emsp;状&emsp;态</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
-								<input type="text" class="form-control" name="score" id="score" />
+								<select class="form-control" name="isvalid" id="isvalid">
+								  <option value="0">启用</option>
+								  <option value="1">停用</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -383,7 +386,8 @@ html {
             var kj = data.data;
             $("#objId").val(kj.id);
             $("#kjName").val(kj.kjName);
-            $("#score").val(kj.score);
+            $("#isvalid").val(kj.isvalid);
+            $("#isvalid").find("option[value='"+kj.isvalid+"']").attr("selected",true);
             $("#sort").val(kj.sort);
             $("#remarks").val(kj.remarks);
             $("#kjCatNames").val(kj.kjCatNames);

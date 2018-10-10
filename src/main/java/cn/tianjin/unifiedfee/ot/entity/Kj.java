@@ -41,6 +41,16 @@ public class Kj {
     private Integer logVisitCount;
     
     private List<CommArchive> commArchives;
+    
+    private Integer isvalid;
+
+    public Integer getIsvalid() {
+        return isvalid;
+    }
+
+    public void setIsvalid(Integer isvalid) {
+        this.isvalid = isvalid;
+    }
 
     public List<CommArchive> getCommArchives() {
         return commArchives;

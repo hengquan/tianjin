@@ -50,16 +50,16 @@
 <!-- <script src="${gateway}/tjsrc/js/index.js"></script> -->
 
 <script>
+var myChart = echarts.init(document.getElementById('main'));
+var myChart2 = echarts.init(document.getElementById('main2'));
+
 $(function() {
-  var myChart = echarts.init(document.getElementById('main'));
-  var myChart2 = echarts.init(document.getElementById('main2'));
-  
   //统计数据
   logVisitCount();
   //模拟实操柱图
-  getMnscStat(2);
+  getMnscStat();
   //最新课件数据//
-//  getKjStat(2);
+  getKjStat();
   //所有日志
   getAllLogVisitList(10);
 
@@ -117,9 +117,33 @@ function getMnscStat() {
     dataType: 'json',
     cache: false,
     success: function(res) {
-      var html="";
       if (res.returnCode=='00') {
-        
+        // 指定图表的配置项和数据
+        var catAry=[], data1=[], data2=[];
+        for (var j=0; j<res.data.length; j++) {
+          catAry.push(res.data[j].catName);
+          data1.push(res.data[j].allKjCatCount);
+          data2.push(res.data[j].recentVisitKjCatCount);
+        }
+        var option = {
+          tooltip: {},
+          xAxis: { data: catAry },
+          legend: { data: ['总数量', '近期访问数'] },
+          yAxis: {},
+          series: [{
+            name: '总数量',
+            type: 'bar',
+            data: data1
+          },{
+            name: '近期访问数',
+            type: 'bar',
+            data: data2
+          }]
+        };
+        console.log("--------------");
+        console.log(option);
+        myChart.setOption(option);
+        myChart.resize();
       }
     },
     error: function() { //失败回调函数
@@ -129,37 +153,39 @@ function getMnscStat() {
 }
 
 //课件最新数据
-function getKjList(rownum) {
-  var data={ "rownum": rownum };
+function getKjStat() {
   $ .ajax({
     type: 'post',
-    url: "./train/getNewKjList",
-    data: data,
+    url: "./train/getKjStat",
+    data: null,
     dataType: 'json',
     cache: false,
     success: function(res) {
       if (res.returnCode=='00') {
-        var html = ""
-        for(var j=0;j<res.data.length;j++) {
-          html+= '<li class="col-sm-6" style="padding-left:0;">'
-            +'<div class="con">'
-              +'<div class="pic"><img src="'+(res.data[j].imgUrl || "./tjsrc/images/kj_default.jpg")+'"></div>'
-              +'<div class="botoom">'
-                +'<h2>'+res.data[j].kjName+'</h2>'
-                +'<div class="row-box">'
-                  +'<div class="left">'
-                    +'<span class="eay"><img src="./tjsrc/images/rs.jpg"></span>'
-                    +'<span class="num">'+res.data[j].logVisitCount+'</span>'
-                  +'</div>'
-                  +'<div class="right">'
-                    +' <span>'+(res.data[j].createDate).substring(0,10)+'</span>发布'
-                  +'</div>'
-                +'</div>'
-              +'</div>'
-            +'</div>'
-          +'</li>'
+        // 指定图表的配置项和数据
+        var catAry=[], data1=[], data2=[];
+        for (var j=0; j<res.data.length; j++) {
+          catAry.push(res.data[j].catName);
+          data1.push(res.data[j].allKjCatCount);
+          data2.push(res.data[j].recentVisitKjCatCount);
         }
-        $("#kjList").html(html)
+        var option = {
+          tooltip: {},
+          xAxis: { data: catAry },
+          legend: { data: ['总数量', '近期访问数'] },
+          yAxis: {},
+          series: [{
+            name: '总数量',
+            type: 'bar',
+            data: data1
+          },{
+            name: '近期访问数',
+            type: 'bar',
+            data: data2
+          }]
+        };
+        myChart2.setOption(option);
+        myChart2.resize();
       }
     },
     error: function() { //失败回调函数

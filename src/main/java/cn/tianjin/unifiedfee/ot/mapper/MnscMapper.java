@@ -23,4 +23,6 @@ public interface MnscMapper {
     List<Mnsc> getMnscList(Integer rownum);
 
     List<Map<String, Object>> getNewMnscList(Map<String, Object> map);
+
+    List<Map<String, Object>> getMnscStateByCate();
 }
