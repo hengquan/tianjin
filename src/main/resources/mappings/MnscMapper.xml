@@ -13,6 +13,7 @@
 		<result column="state" property="state" jdbcType="INTEGER" />
 		<result column="score" property="score" jdbcType="INTEGER" />
 		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="isvalid" property="isvalid" jdbcType="INTEGER" />
 		<result column="create_date" property="createDate" jdbcType="DATE" />
 		<result column="create_by" property="createBy" jdbcType="VARCHAR" />
 		<result column="create_name" property="createName" jdbcType="VARCHAR" />
@@ -21,7 +22,7 @@
 		id, mnsc_name, mnsc_cat_id, mnsc_cat_names, expire_date,
 		mnsc_url,
 		remarks, state, score, sort, create_date, create_by,
-		create_name
+		create_name,isvalid
 	</sql>
 	<select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
@@ -71,6 +72,9 @@
 			<if test="createName != null">
 				create_name,
 			</if>
+			<if test="isvalid != null">
+				isvalid,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -112,6 +116,9 @@
 			<if test="createName != null">
 				#{createName,jdbcType=VARCHAR},
 			</if>
+			<if test="isvalid != null">
+				#{isvalid,jdbcType=INTEGER},
+			</if>
 		</trim>
 	</insert>
 	<update id="update" parameterType="cn.tianjin.unifiedfee.ot.entity.Mnsc">
@@ -152,6 +159,9 @@
 			</if>
 			<if test="createName != null">
 				create_name = #{createName},
+			</if>
+			<if test="isvalid != null">
+				isvalid = #{isvalid},
 			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
