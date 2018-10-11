@@ -76,7 +76,11 @@
 <!-- 11 页面js -->
 <script src="${gateway}/src/js/main.js"></script>
 <!-- <script src="${gateway}/src/js/pt-tables.js"></script> -->
-
+<style>
+.datetimepicker-dropdown-bottom-right {
+	margin-top: 2px;
+}
+</style>
 </head>
 <body>
 	<div class="pt-page">
@@ -137,27 +141,24 @@
 													</select>
 												</div>
 											</div>
+										</div>
+										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+											<div class="form-group">
+												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"></label>
+												<div class="date col-lg-8 col-md-8 col-sm-8 col-xs-6">
+												</div>
+											</div>
 										</div> <!-- 示例时间选择 -->
 										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 											<div class="form-group">
 												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-													for="exampleInputName2">学分</label>
-												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-													<input type="text" class="form-control" id="score"
-														placeholder="学分">
-												</div>
-											</div>
-										</div> <!-- 示例时间区间选择 -->
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
 													for="exampleInputName2">创建时间</label>
-												<div
-													class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
+												<div class="date col-lg-8 col-md-8 col-sm-8 col-xs-6"
 													data-date-format="dd-mm-yyyy">
-													<input class="form-control" size="16" type="text" value=""
-														id="createStart"> <span class="add-on"
-														style="height: 40px"><i class="icon-th"></i></span>
+													<input class="form-control datetimepicker" size="16"
+														type="text" value="" id="createStart"> <span
+														class="add-on" style="height: 40px"><i
+														class="icon-th"></i></span>
 												</div>
 											</div>
 										</div>
@@ -165,12 +166,12 @@
 											<div class="form-group">
 												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
 													style="text-align: center">~</label>
-												<div
-													class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
+												<div class="date  col-lg-8 col-md-8 col-sm-8 col-xs-6"
 													data-date-format="dd-mm-yyyy">
-													<input class="form-control" size="16" type="text" value=""
-														id="createEnd"> <span class="add-on"
-														style="height: 40px"><i class="icon-th"></i></span>
+													<input class="form-control datetimepicker" size="16"
+														type="text" value="" id="createEnd"> <span
+														class="add-on" style="height: 40px"><i
+														class="icon-th"></i></span>
 												</div>
 											</div>
 										</div>
@@ -214,10 +215,13 @@
 	<script src="${gateway}/src/js/pt-tree.js"></script>
 
 	<script>
-    // 时间选择
+    //时间选择
     $('.datetimepicker').datetimepicker({
       language : 'zh',
-      format : 'yyyy-mm-dd hh:ii:ss',
+      format : 'yyyy-mm-dd',
+      minView : "month",
+      pickDate : true,
+      pickTime : false,
       todayBtn : true,
       autoclose : true
     });
@@ -229,16 +233,20 @@
     // table
     // 2.返回操作模版[按钮颜色暂不确定]
     function operateFormatter(value, row, index) {
+      var del = '';
       var edit = '';
       var isvalid = row.isvalid;
       var msg = '';
       if (isvalid == 0) {
-        msg = '停用';
+        msg = '<span class="pt-warn">停用</span>';
         edit = '';
+        del = '';
       } else if (isvalid == 1) {
-        msg = '启用';
+        msg = '<span class="pt-success">启用</span>';
         edit = '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
             + value + '")>修改</button>';
+        del = '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
+            + value + '")>删除</button>';
       }
       return [
           '<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick=lookItem("'
@@ -247,9 +255,7 @@
           '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link" onclick=updateIsvalid("'
               + row.id + '","' + row.isvalid + '")>' + msg + '</button>',
           '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link" onclick=seeItem("'
-              + row.mnscUrl + '")>预览</button>',
-          '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
-              + value + '")>删除</button>' ].join('');
+              + row.mnscUrl + '")>预览</button>', del ].join('');
     }
 
     // 操作模版调用的方法
@@ -362,9 +368,9 @@
       sortable : true,
       formatter : function(value) {
         if (value == 0) {
-          return '启用';
+          return '<span class="pt-success">启用</span>';
         } else if (value == 1) {
-          return '停用';
+          return '<span class="pt-warn">停用</span>';
         } else {
           return '删除';
         }
@@ -387,7 +393,6 @@
         mnscName : $("#mnscName").val(),
         mnscUrl : $("#mnscUrl").val(),
         mnscCatId : $("#mnscCatId").val(),
-        score : $("#score").val(),
         createStart : $("#createStart").val(),
         createEnd : $("#createEnd").val(),
         // 使用page size分页

@@ -13,7 +13,7 @@
     <script src="src/js/main.js"></script>
     <script src="../../web/layer/layer.js"></script>
     <script src="./libs/jquery/jquery-1.12.4.js"></script>
-    <script src="./src/js/introduce.class.js"></script>
+    <script src="./src/js/introduce.class_cp.js"></script>
     <script>
       $(function(){          
           openTips();  
@@ -22,6 +22,22 @@
         new IntroduceTipsList({
             el: '#page-form-list',
             list:[
+                {
+                    X: 1280,
+                    Y: 380,
+                    distance: 10,
+                    direction: 'bottom',
+                    content: '<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;搜索分为简单搜索和复杂搜索，通过<span class="special">“展开/收回”</span>按钮进行控制。</div>',
+                    padding: 10,
+                    backgroundColor: 'rgba(0,0,0,0.6)',
+                    color: '#fff',
+                    radius: 5,
+                    area: [200, 150],
+                    nextBtn: {
+                        content: '知道了',
+                        backgroundColor: 'blue'
+                    }
+                },
                 {
                     X: 180,
                     Y: 900,

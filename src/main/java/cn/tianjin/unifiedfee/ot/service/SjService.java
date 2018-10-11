@@ -163,9 +163,9 @@ public class SjService {
         while (tl.size()>0&&retTl.size()<tmCount) {
             int rIndex=ran.nextInt(tl.size());
             Tm tm=tl.get(rIndex);
-            retTl.add(tm);
-            score+=tm.getScore();
+            score+=(tm.getScore()==null?0:tm.getScore());
             tl.remove(rIndex);
+            retTl.add(tm);
         }
 
         //转换为Map，并选择每一道题目的选项，这个会比较慢，先这样实现。

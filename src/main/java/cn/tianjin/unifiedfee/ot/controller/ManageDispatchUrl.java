@@ -173,7 +173,7 @@ public class ManageDispatchUrl {
     }
 
     @RequestMapping("mnsc/selList")
-    public String mnscSelList() {
+    public String mnscSelList(HttpServletRequest request) {
         return "/manage/mnsc/mnscSelList";
     }
 
@@ -218,7 +218,7 @@ public class ManageDispatchUrl {
         return "/manage/kj/kjList";
     }
     @RequestMapping("kj/selList")
-    public String kjSelList() {
+    public String kjSelList(HttpServletRequest request) {
         return "/manage/kj/kjSelList";
     }
 

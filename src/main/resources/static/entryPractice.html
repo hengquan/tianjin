@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>天津市港口统一收费服务平台-在线培训管理子系统</title>
+  <title>天津市港口统一收费服务平台-培训-在线练习</title>
   <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
   <!--公共css-->
   <link rel="stylesheet" href="./web/css/pt-main.css">
@@ -30,7 +30,7 @@
   <div class="nav_header">
    <div class="pt-fl pt-system-info">
      <div class="pt-logo pt-fl"><img src="./web/images/LOGO@2x.png" alt=""></div>
-     <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>在线培训管理子系统</strong></div>
+     <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>在线练习</strong></div>
    </div>
   </div>
 </div>
@@ -151,9 +151,7 @@ function buildPaper() {
   layer.msg('试题生成中......', {
     icon: 16 ,shade: 0.01
   });
-  $(".time-area").html('<span class="time-btn" onclick="start()">开始答卷</span>');
-  $("#commitSj").addClass("disable-btn");
-  $("#commitSj").attr("disabled", "disabled");
+  //获得参数
   var _data={cateIds:"1,2", tmCount:10};
   $.ajax({
     type: 'post',
@@ -205,7 +203,7 @@ function getOneTm4Sj1(tm) {
     }
   }
   //正确结果区
-  retHtml+="<div class='tm-result' id='tm-result-"+tm.tmId+"'><span class='get-score' style='display:none;'>得分：5</span><span class='tm-right'>正确答案：A,B</span><span class='tm-youanswer'>您的答案:B,C</span></div>";
+  retHtml+="<div class='tm-result' id='tm-result-"+tm.tmId+"'><span class='get-score'>得分：5</span><span class='tm-right'>正确答案：A,B</span><span class='tm-youanswer'>您的答案:B,C</span></div>";
   retHtml+="</div>";
   return retHtml;
 }
@@ -231,8 +229,6 @@ function start() {
 //提交试卷
 function commitSj() {
   if ($("#commitSj").hasClass("disable-btn")) return;
-  $("#commitSj").addClass("disable-btn");
-  $("#commitSj").attr("disabled", "disabled");
   clearInterval(intervalHandler);
   count=0;
   $("input[type='checkbox']").attr("disabled", "disabled");
@@ -271,14 +267,13 @@ function commitSj() {
     url: "./train/commitSj",
     data: _data,
     dataType:'json',
-    success: function (data) {
-      console.log(data);
+    success: function (data) { //成功后的回调函数
       var tmHtml="";
       var returnCode=data.returnCode;
       if (returnCode=='00') {
         for (var i=0; i<data.data.tmList.length; i++) {
           var oneTm=data.data.tmList[i];
-          $("#tm-result-"+oneTm.tmId).find(".tm-youanswer").html("您的答案:"+(!oneTm.answer?"未答":oneTm.answer));
+          $("#tm-result-"+oneTm.tmId).find(".tm-youanswer").html("您的答案:"+(oneTm.answer?"未答":oneTm.answer));
           $("#tm-result-"+oneTm.tmId).find(".tm-youanswer").css("color", oneTm.score>0?"green":"red");
           $("#tm-result-"+oneTm.tmId).find(".get-score").html("得分:"+oneTm.score);
           $("#tm-result-"+oneTm.tmId).find(".tm-right").html("正确答案:"+oneTm.tmAnswer);

@@ -120,18 +120,3 @@ img {
 .pic img {
   height: 100%;
 }
-.col-sm-6s {
-  width: 48%;
-}
-.col-sm-6s:first-child{
-  float: left;
-}
-.col-sm-6s:last-child {
-  float: right;
-}
-.col-xs-4 {
-  overflow: hidden;
-}
-.col-xs-4 img {
-  width: 103%;
-}

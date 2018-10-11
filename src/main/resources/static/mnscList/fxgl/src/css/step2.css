@@ -7,6 +7,7 @@ html,body{
 }
 .page-form-list{
   background: white;
+  width: 100%;
 }
 .page-form-list img{
   display: inline-block;
@@ -56,7 +57,7 @@ html,body{
   margin-top: 55px;
 }
 
-/*±ß¿òÄÚÈÝÇøµÄÑùÊ½*/
+/*ï¿½ß¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½*/
 .content_border{
   border: 1px solid #cccccc;
   width: 1150px;

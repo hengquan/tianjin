@@ -23,7 +23,7 @@ $(function (param) {
       if(res.returnCode == 00) {
         var html = ""
         for(var j=0;j<res.data.length;j++) {
-          html+= '<li class="col-sm-6s" style="padding-left:0;">'
+          html+= '<li class="col-sm-6" style="padding-left:0;">'
             +'<div class="con">'
               +'<div class="pic"><img src="'+(res.data[j].mainUrl || "../../tjsrc/images/mnsc_default.jpg")+'"></div>'
               +'<div class="botoom">'
@@ -55,7 +55,7 @@ $(function (param) {
       if(res.returnCode == 00) {
         var html = ""
         for(var j=0;j<res.data.length;j++) {
-          html+= '<li class="col-sm-6s" style="padding-left:0;">'
+          html+= '<li class="col-sm-6" style="padding-left:0;">'
             +'<div class="con">'
               +'<div class="pic"><img src="'+(res.data[j].imgUrl || "../../tjsrc/images/jiantou.png")+'"></div>'
               +'<div class="botoom">'
