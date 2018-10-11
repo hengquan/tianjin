@@ -26,13 +26,13 @@
   </select>
 
   <select id="getAllListWithMap" resultType="java.util.HashMap">
-    select <include refid="Base_Column_List"/> from category
+    select id, parent_id, parent_ids, name, sort, isvalid, create_by, create_name, create_date, update_by, update_name, update_date, remarks from category
   </select>
 
   <select id="getListWithMap" resultType="java.util.HashMap" parameterType="Map">
     select <include refid="Base_Column_List"/> from category
-    <where> 1=1
-      <if test="cataName!=null and cataName!=''">
+    <where> isValid!=2
+      <if test="cateName!=null and cateName!=''">
         and name like '%${cateName}%'
       </if>
       <if test="createName!=null and createName!=''">
@@ -46,6 +46,16 @@
       </if>
       <if test="keyword!=null and keyword!=''">
         and (name like '%${keyword}%' or remarks like '%${keyword}%' or update_name like '%${keyword}%' or create_name like '%${keyword}%')
+      </if>
+      <if test="date1!=null and date1!=''">
+      <![CDATA[
+      and create_date>to_date('${date1}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+      <if test="date2!=null and date2!=''">
+      <![CDATA[
+      and create_date<to_date('${date2}', 'YYYY-MM-DD')
+      ]]>
       </if>
     </where>
   </select>
@@ -136,6 +146,11 @@
     </trim>
   </insert>
 
+  <update id="changeValid"  parameterType="cn.tianjin.unifiedfee.ot.entity.Category">
+    update category set isvalid=#{isvalid,jdbcType=INTEGER}, update_date=sysdate
+    where id=#{id,jdbcType=VARCHAR}
+  </update>
+
   <update id="update"  parameterType="cn.tianjin.unifiedfee.ot.entity.Category">
     update category set 
     <trim suffixOverrides="," >
@@ -148,7 +163,7 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="sort != null" >
+      <if test="sort!=null">
         sort = #{sort,jdbcType=INTEGER},
       </if>
       <if test="isvalid != null" >

@@ -31,6 +31,10 @@ public class CategoryNode extends TreeNodeBean implements Serializable, ModelSwa
     private Date updateDate;    //最后修改时间
     private String remarks;     //说明
 
+    public CategoryNode() {
+        super();
+        this.setOrderType(1);
+    }
     public String getParentIds() {
         return parentIds;
     }

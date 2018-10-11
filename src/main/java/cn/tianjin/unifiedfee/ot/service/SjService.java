@@ -110,41 +110,52 @@ public class SjService {
         Random ran=new Random();
 
         Map<String, Object> param=new HashMap<String, Object>();
-        //获得名称
 
-        String cateQuery_kj="", cateQuery_mnsc="";
+//        String cateQuery_kj="", cateQuery_mnsc="";
+//        if (!StringUtils.isBlank(cateIds)) {
+//            String[] sp=cateIds.split(",");
+//            for (int i=0; i<sp.length; i++) {
+//                cateQuery_mnsc+=" or mnsc_cat_id='"+sp[i].trim()+"'";
+//                cateQuery_kj+=" or kj_cat_id='"+sp[i].trim()+"'";
+//            }
+//        }
+//        if (cateQuery_mnsc.length()>0) {//处理分类
+//            cateQuery_mnsc=cateQuery_mnsc.substring(4);
+//            cateQuery_kj=cateQuery_kj.substring(4);
+//            String cateSql="";
+//            if (!StringUtils.isBlank(refType)) {
+//                if ("mnsc".equals(refType.trim())) {
+//                    cateSql="select distinct tm_id from q_TM_ref_source rf, ts_MNSC nmsc where upper(rf.ref_tabname)='TS_MNSC' and rf.ref_id=nmsc.id and ("+cateQuery_mnsc+")";
+//                } else
+//                if ("kj".equals(refType.trim())) {
+//                    cateSql="select distinct tm_id from q_TM_ref_source rf, ts_KJ kj where upper(rf.ref_tabname)='TS_KJ' and rf.ref_id=kj.id and ("+cateQuery_kj+")";
+//                }
+//            }
+//            if (StringUtils.isBlank(cateSql)) {
+//                cateSql="select distinct tm_id from q_TM_ref_source rf, ts_MNSC nmsc where upper(rf.ref_tabname)='TS_MNSC' and rf.ref_id=nmsc.id and ("+cateQuery_mnsc+")";
+//                cateSql+=" union ";
+//                cateSql+="select distinct tm_id from q_TM_ref_source rf, ts_KJ kj where upper(rf.ref_tabname)='TS_KJ' and rf.ref_id=kj.id and ("+cateQuery_kj+")";
+//            }
+//            cateSql="inner join ("+cateSql+") cat on cat.tm_id=a.id";
+//            param.put("cateSql", cateSql);
+//        }
+//        if (!StringUtils.isBlank(refType)) param.put("refTabName", "ts_"+refType);
+//        param.put("refId", refId);
+
+        String cateSql="";
         if (!StringUtils.isBlank(cateIds)) {
             String[] sp=cateIds.split(",");
             for (int i=0; i<sp.length; i++) {
-                cateQuery_mnsc+=" or mnsc_cat_id='"+sp[i].trim()+"'";
-                cateQuery_kj+=" or kj_cat_id='"+sp[i].trim()+"'";
+                cateSql+=" or a.cat_id='"+sp[i].trim()+"'";
             }
+            cateSql=cateSql.substring(4);
         }
-        if (cateQuery_mnsc.length()>0) {//处理分类
-            cateQuery_mnsc=cateQuery_mnsc.substring(4);
-            cateQuery_kj=cateQuery_kj.substring(4);
-            String cateSql="";
-            if (!StringUtils.isBlank(refType)) {
-                if ("mnsc".equals(refType.trim())) {
-                    cateSql="select distinct tm_id from q_TM_ref_source rf, ts_MNSC nmsc where upper(rf.ref_tabname)='TS_MNSC' and rf.ref_id=nmsc.id and ("+cateQuery_mnsc+")";
-                } else
-                if ("kj".equals(refType.trim())) {
-                    cateSql="select distinct tm_id from q_TM_ref_source rf, ts_KJ kj where upper(rf.ref_tabname)='TS_KJ' and rf.ref_id=kj.id and ("+cateQuery_kj+")";
-                }
-            }
-            if (StringUtils.isBlank(cateSql)) {
-                cateSql="select distinct tm_id from q_TM_ref_source rf, ts_MNSC nmsc where upper(rf.ref_tabname)='TS_MNSC' and rf.ref_id=nmsc.id and ("+cateQuery_mnsc+")";
-                cateSql+=" union ";
-                cateSql+="select distinct tm_id from q_TM_ref_source rf, ts_KJ kj where upper(rf.ref_tabname)='TS_KJ' and rf.ref_id=kj.id and ("+cateQuery_kj+")";
-            }
-            cateSql="inner join ("+cateSql+") cat on cat.tm_id=a.id";
-            param.put("cateSql", cateSql);
-        }
-        if (!StringUtils.isBlank(refType)) param.put("refTabName", "ts_"+refType);
-        param.put("refId", refId);
+        param.put("cateSql", cateSql);
         param.put("diff1", diff1);
         param.put("diff2", diff2);
-        List<Tm> tl=tmDao.getTmList4sj(param);
+//        List<Tm> tl=tmDao.getTmList4sj(param);
+
+        List<Tm> tl=tmDao.getTmList4sjCates(param);
 
         //随机排序
         List<Tm> retTl=new ArrayList<Tm>();

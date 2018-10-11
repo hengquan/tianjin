@@ -69,7 +69,7 @@ public class CategoryService {
         return StringUtils.isBlank(cId)?root:(TreeNode<CategoryNode>)root.findNode(cId);
     }
 
-    public Map<String, Object> getTreeDate() {
+    public Map<String, Object> getTreeData() {
         if (root==null) initRoot();
         Map<String, Object> retM=new HashMap<String, Object>();
         retM.put("DataTree", root);
@@ -115,6 +115,7 @@ public class CategoryService {
         c.setUpdateId((String)m.get("UPDATE_BY"));
         c.setUpdateName((String)m.get("UPDATE_NAME"));
         c.setUpdateDate(new java.sql.Date(((Timestamp)m.get("UPDATE_DATE")).getTime()));
+        c.setRemarks((String)m.get("REMARKS"));
         return c;
     }
 
@@ -141,8 +142,6 @@ public class CategoryService {
             cate.setCreateDate(new java.sql.Date(new Date().getTime()));
             cate.setCreateId(ui.getUserId());
             cate.setCreateName(ui.getUsername());
-            if (_curRootNode.isRoot()) cate.setParentIds("0,");
-            else cate.setParentIds(_curRootNode.getTnEntity().getParentIds()+_curRootNode.getId()+",");
 
             //检查名称是否有，且同级不能重名
             boolean sameName=false;
@@ -159,13 +158,13 @@ public class CategoryService {
                 retM.put("messageInfo","同级有重名分类");
                 return retM;
             }
-        } else {//修改
-       }
+        }
 
-        cate.setParentIds((_curRootNode.getTnEntity()).getParentIds()+","+_curRootNode.getParentId()+",");
         cate.setUpdateDate(new java.sql.Date(System.currentTimeMillis()));
         cate.setUpdateId(ui.getUserId());
         cate.setUpdateName(ui.getUsername());
+        if (_curRootNode.isRoot()) cate.setParentIds("0,");
+        else cate.setParentIds(_curRootNode.getTnEntity().getParentIds()+_curRootNode.getId()+",");
 
         CategoryNode cn=new CategoryNode();
         cn.buildFromPo(cate);
@@ -176,6 +175,9 @@ public class CategoryService {
         } else {
             categoryDao.update(cate);
             TreeNode<CategoryNode> tncn=(TreeNode<CategoryNode>) _curRootNode.findNode(cate.getId());
+            cn.setCreateDate(tncn.getTnEntity().getCreateDate());
+            cn.setCreateId(tncn.getTnEntity().getCreateId());
+            cn.setCreateName(tncn.getTnEntity().getCreateName());
             tncn.setTnEntity(cn);
         }
         retM.put("returnCode", "00");
@@ -202,7 +204,7 @@ public class CategoryService {
             Category c=new Category();
             c.setId(node.getId());
             c.setIsvalid(valid);
-            categoryDao.update(c);
+            categoryDao.changeValid(c);
             retMap.put("returnCode", "00");
         }
         return retMap;

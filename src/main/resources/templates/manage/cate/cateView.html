@@ -52,59 +52,90 @@
   <script src="${gateway}/libs/layer/layer.js"></script>
   <!-- 11 页面js -->
   <script src="${gateway}/src/js/main.js"></script>
+
+<style>
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.value-div{
+  border-bottom:1px solid #eee;
+  padding-left:10px;
+}
+.key-label{
+  text-align:right;
+}
+</style>
 </head>
+
 <body>
   <br>
   <br>
-  <div class="container">
+  <div class="container" style="margin-left:80px;">
     <div class="row clearfix">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column col-center-block">
       <form class="form-horizontal pt-form-full" role="form" id="form">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
           <div class="form-group">
-            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull_right" for="title">分类名称：</label>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align:right;" for="title">名&emsp;&emsp;称：</label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 value-div">
               <span id="cateName"></span>
             </div>
           </div>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
           <div class="form-group">
-            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="dingjia">上级分类：</label>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align:right;" for="upName"></label>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs6"></div>
+          </div>
+        <!-- 
+          <div class="form-group">
+            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align:right;" for="upName">上&emsp;&emsp;级：</label>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs6 value-div">
               <span id="upName"></span>
             </div>
           </div>
+         -->
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
           <div class="form-group">
-            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="dingjia">本级排序：</label>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align:right;" for="sort">排&emsp;&emsp;序：</label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 value-div">
               <span id="sort"></span>
             </div>
           </div>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
           <div class="form-group">
-            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="dingjia">是否有效：</label>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align:right;" for="valid">状&emsp;&emsp;态：</label>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs6 value-div">
               <span id="valid"></span>
             </div>
           </div>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
           <div class="form-group">
-            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="dingjia">创建时间：</label>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align:right;" for="createName">&emsp;创建人：</label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 value-div">
+              <span id="createName"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+          <div class="form-group">
+            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align:right;" for="createDate">创建时间：</label>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs6 value-div">
               <span id="createDate"></span>
             </div>
           </div>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
           <div class="form-group">
-            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="dingjia">修改时间：</label>
+            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-align:right;" for="remarks">备&emsp;&emsp;注：</label>
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-              <span id="updateDate"></span>
+              <textarea class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="remarks"></textarea>
             </div>
           </div>
         </div>
@@ -112,6 +143,8 @@
       </div>
     </div>
   </div>
+  <br>
+  <br>
   <br>
   <br>
 </body>
@@ -127,18 +160,16 @@ if (id&&id!="undefined") {
     success : function(result) {
       if (result.returnCode=='00') {
         var cate=result.data;
-        console.log(cate);
         $("#cateName").html(cate.nodeName);
         $("#upName").html(cate.pathName);
-        $("#parentId").html(cate.parentId);
         $("#sort").html(cate.order);
         if (cate.isvalid==1) {
-          $("#valid").html("有效");
+          $("#valid").html("启用").addClass();
         } else {
-          $("#valid").html("无效");
+          $("#valid").html("停用").addClass();
         }
+        $("#createName").html(cate.createName);
         $("#createDate").html(cate.createDate);
-        $("#updateDate").html(cate.updateDate);
         $("#remarks").html(cate.remarks);
       }
     },

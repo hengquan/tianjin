@@ -46,7 +46,7 @@ public class GetData {
         //放入分页
 //        PageInfo<Tmp> a = new PageInfo<Tmp>(tmps);
 
-        Map<String, Object> m=categoryService.getTreeDate();
+        Map<String, Object> m=categoryService.getTreeData();
         List<Object> list=(List<Object>)m.get("DataList");
         if (list==null) {
             map.put("total", 1);

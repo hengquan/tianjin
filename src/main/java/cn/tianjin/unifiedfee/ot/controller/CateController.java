@@ -64,6 +64,11 @@ public class CateController extends BaseController {
             } else {
                 retMap.put("returnCode", "00");
                 Map<String, Object> dataM=node.getTnEntity().toHashMap();
+                CategoryNode cn=node.getTnEntity();
+                Date d=new Date(cn.getCreateDate().getTime());
+                dataM.put("createDate", DateUtils.convert2LongLocalStr(d));
+                d=new Date(cn.getUpdateDate().getTime());
+                dataM.put("updateDate", DateUtils.convert2LongLocalStr(d));
                 String upperName=node.getTreePathName("-", 0);
                 //if (upperName.indexOf("-")!=-1) upperName=upperName.substring(0, upperName.indexOf("-"));
                 dataM.put("pathName", upperName);
@@ -129,12 +134,15 @@ public class CateController extends BaseController {
         return retMap;
     }
     
+    @SuppressWarnings("unchecked")
     @RequestMapping("getPageData")
     @ResponseBody
     public Map<String, Object> getPageData(Category cate,
             @RequestParam(value="offset", defaultValue="1") int offset,
-            @RequestParam(value="limit", defaultValue="10") int limit, HttpServletRequest request,
-            HttpServletResponse response) {
+            @RequestParam(value="limit", defaultValue="10") int limit, 
+            @RequestParam(required=false) String date1,
+            @RequestParam(required=false) String date2,
+            HttpServletRequest request, HttpServletResponse response) {
         // 跨域
         HttpPush.responseInfo(response);
 
@@ -142,50 +150,60 @@ public class CateController extends BaseController {
         Map<String, Object> param=new HashMap<String, Object>();
         param.put("keyword", request.getParameter("keyword"));
         param.put("createName", request.getParameter("createName"));
-        param.put("cataName", request.getParameter("cataName"));
+        param.put("cateName", request.getParameter("cateName"));
         param.put("parentId", request.getParameter("parentId"));
+        param.put("date1", date1);//开始时间
+        param.put("date2", date2);//结束时间
         String tmpStr=request.getParameter("valid");
         if (!StringUtils.isBlank(tmpStr)&&(!"1,0".equals(tmpStr))&&(!"0,1".equals(tmpStr))) {
             param.put("valid", tmpStr);
         }
-        // 设置page
+        //设置page
         PageHelper.offsetPage(offset, limit);
-        // 查询数据
+        //查询数据
         List<Map<String, Object>> cl=categoryService.getPageData(param);
         PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(cl);
+
+        Map<String, Object> m=categoryService.getTreeData();
+        List<Object> list=(List<Object>)m.get("DataList");
         if (cl!=null) {
-            //放入分页
             List<Map<String,Object>> cList=new ArrayList<Map<String,Object>>();
-            for (Map<String,Object> _m: cl) {
-                Map<String ,Object> newData=new HashMap<String, Object>();
-                newData.put("id", (String)_m.get("ID"));
-                newData.put("name", (String)_m.get("NAME"));
-                newData.put("desc", (String)_m.get("REMARKS"));
-                newData.put("parentId", "0".equals((String)_m.get("PARENT_ID"))?null:(String)_m.get("PARENT_ID"));
-                String pn="";
-                TreeNode<CategoryNode> node=(TreeNode<CategoryNode>)categoryService.getCategoryNodeById((String)_m.get("ID"));
-                if (node!=null) {
-                    TreeNode<? extends TreeNodeBean> pNode=node.getParent();
-                    if (pNode.isRoot()) pn="根";
-                    else pn=node.getParent().getTreePathName("-", 0);
+            for (Object _ct: list) {
+                TreeNode<CategoryNode> cn=(TreeNode<CategoryNode>)_ct;
+                for (Map<String,Object> _m: cl) {
+                    if (_m.get("ID").equals(cn.getId())) {
+                        Map<String ,Object> newData=new HashMap<String, Object>();
+                        newData.put("id", (String)_m.get("ID"));
+                        newData.put("name", (String)_m.get("NAME"));
+                        newData.put("desc", (String)_m.get("REMARKS"));
+                        newData.put("parentId", "0".equals((String)_m.get("PARENT_ID"))?null:(String)_m.get("PARENT_ID"));
+                        String pn="";
+                        TreeNode<CategoryNode> node=(TreeNode<CategoryNode>)categoryService.getCategoryNodeById((String)_m.get("ID"));
+                        if (node!=null) {
+                            TreeNode<? extends TreeNodeBean> pNode=node.getParent();
+                            if (pNode.isRoot()) pn="根";
+                            else pn=node.getParent().getTreePathName("-", 0);
+                        }
+                        newData.put("parentName", pn);
+                        newData.put("sort", Integer.parseInt(""+_m.get("SORT")));
+                        newData.put("valid", (Integer.parseInt(""+_m.get("ISVALID"))));
+                        newData.put("createId", (String)_m.get("CREATE_ID"));
+                        newData.put("createName", (String)_m.get("CREATE_NAME"));
+                        newData.put("updateId", (String)_m.get("UPDATE_ID"));
+                        newData.put("updateName", (String)_m.get("UPDATE_NAME"));
+                        Date tmp=null;
+                        if (null!=_m.get("CREATE_DATE")) {
+                            tmp=new java.sql.Date(((Timestamp)_m.get("CREATE_DATE")).getTime());
+                            newData.put("createDate", DateUtils.convert2LongLocalStr(tmp));
+                        }
+                        if (null!=_m.get("UPDATE_DATE")) {
+                            tmp=new java.sql.Date(((Timestamp)_m.get("UPDATE_DATE")).getTime());
+                            newData.put("updateDate", DateUtils.convert2LongLocalStr(tmp));
+                        }
+                        cList.add(newData);
+                        break;
+                    }
                 }
-                newData.put("parentName", pn);
-                newData.put("sort", Integer.parseInt(""+_m.get("SORT")));
-                newData.put("valid", (Integer.parseInt(""+_m.get("ISVALID")))==1?"有效":"失效");
-                newData.put("createId", (String)_m.get("CREATE_ID"));
-                newData.put("createName", (String)_m.get("CREATE_NAME"));
-                newData.put("updateId", (String)_m.get("UPDATE_ID"));
-                newData.put("updateName", (String)_m.get("UPDATE_NAME"));
-                Date tmp=null;
-                if (null!=_m.get("CREATE_DATE")) {
-                    tmp=new java.sql.Date(((Timestamp)_m.get("CREATE_DATE")).getTime());
-                    newData.put("createDate", DateUtils.convert2LongLocalStr(tmp));
-                }
-                if (null!=_m.get("UPDATE_DATE")) {
-                    tmp=new java.sql.Date(((Timestamp)_m.get("UPDATE_DATE")).getTime());
-                    newData.put("updateDate", DateUtils.convert2LongLocalStr(tmp));
-                }
-                cList.add(newData);
             }
             map.put("total", pageList.getTotal());
             map.put("rows", cList);

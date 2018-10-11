@@ -212,13 +212,13 @@ function getAllLogVisitList(rownum) {
           if (res.data[j].visitorName) groupName+="【"+res.data[j].visitorName+"】";
           if (groupName) {
             if (res.data[j].objType=='在线练习') {
-              html+= '<li class="row"><div class="right col-xs-6">'+groupName+'练习了：<span>试题【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+              html+= '<li class="row"><div class="right col-xs-6">'+groupName+'练习了：<span>习题【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
             } else
             if (res.data[j].objType=='模拟实操展示') {
               html+= '<li class="row"><div class="right col-xs-6">'+groupName+'操作了：<span>模拟实操【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
             } else
             if (res.data[j].objType=='课件展示') {
-              html+= '<li class="row"><div class="right col-xs-6">'+groupName+'观看了：<span>课件【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+              html+= '<li class="row"><div class="right col-xs-6">'+groupName+'学习了：<span>课件【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
             }
           }
         }

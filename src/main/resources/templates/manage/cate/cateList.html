@@ -73,6 +73,12 @@
 <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
 <!-- 12 页面js -->
 <script src="${gateway}/src/js/main.js"></script>
+
+<style>
+.datetimepicker-dropdown-bottom-right {
+  margin-top: 2px;
+}
+</style>
 </head>
 
 <body>
@@ -94,7 +100,7 @@
                 <form class="form-inline">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div class="form-group">
-                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="keyword">模糊查找</label>
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="keyword" style="text-align:right;">模糊3查找</label>
                       <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                         <input type="text" class="form-control" id="keyword" placeholder="关键词">
                       </div>
@@ -102,14 +108,40 @@
                   </div>
                   <!-- 隐藏部分包裹 -->
                   <span class="hiddenorshow pt-search-filter">
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                     <div class="form-group">
-                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="cataName">分类名称</label>
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></label>
                       <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <input type="text" class="form-control" id="cataName" placeholder="分类名称">
                       </div>
                     </div>
                   </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="cataName"  style="text-align:right;">名称</label>
+                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <input type="text" class="form-control" id="cateName" placeholder="名称">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="valid" style="text-align:right;">状态</label>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <select id="valid" name="valid" multiple autocomplete="off" class="selectpicker" data-actions-box="true"  data-live-search="true" title="请选则状态">
+      <option value="1">启用</option>
+      <option value="0">停用</option>
+        </select>
+      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></label>
+                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                      </div>
+                    </div>
+                  </div>
+                  <!--
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div class="form-group">
                       <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="lunch">上级分类</label>
@@ -129,71 +161,29 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                   -->
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div class="form-group">
-                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="createName">创建人</label>
-                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <input type="text" class="form-control" id="createName" placeholder="请输入创建人姓名">
+                      <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4" for="createName" style="text-align:right;">创建人</label>
+                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <input type="text" class="form-control" id="createName" placeholder="创建人姓名">
                       </div>
                     </div>
                   </div>
-                  <!-- 
-                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                     <div class="form-group">
-                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="padding-right:5px;">
-                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="createTime">创建时间</label>
-                      <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align: center">从</label>
-                      <div class="date datetimepicker col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-top:0px;" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                        <input class="form-control" name="begin1" size="16" type="text" value="">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-align:right;" for="createTime">创建时间</label>
+                      <div id="date1" class="date col-lg-4 col-md-4 col-sm-6 col-xs-4" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
+                        <input class="form-control datetimepicker" name="begin1" size="16" type="text" value="" style="padding-left:10px;">
                         <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
                       </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-right:0;">
                       <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align: center">到</label>
-                      <div class="date datetimepicker col-lg-10 col-md-10 col-sm-10 col-xs-10" style="margin-top:0px;" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                        <input class="form-control" name="begin2" size="16" type="text" value="">
+                      <div id="date2" class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
+                        <input class="form-control datetimepicker" name="begin2" size="16" type="text" value="" style="padding-left:10px;">
                         <span class="add-on" style="height: 40px"><i class="icon-th"></i></span>
                       </div>
                       </div>
-                    </div>
-                  </div>-->
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div class="form-group">
-                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="updateName">修改人</label>
-                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <input type="text" class="form-control" id="updateName" placeholder="请输入修改人姓名">
-                      </div>
-                    </div>
-                  </div>
-                  <!--
-                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <div class="form-group">
-                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="padding-right:5px;">
-                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="end1">修改时间</label>
-                      <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align: center">从</label>
-                      <div id="end1" class="date datetimepicker col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-top:0px;" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                        <input class="form-control" name="end1" size="16" type="text" value="">
-                        <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
-                      </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-right:0;">
-                      <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align: center">到</label>
-                      <div class="date datetimepicker col-lg-10 col-md-10 col-sm-10 col-xs-10" style="margin-top:0px;" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                        <input class="form-control" name="end2" size="16" type="text" value="">
-                        <span class="add-on" style="height: 40px"><i class="icon-th"></i></span>
-                      </div>
-                      </div>
-                    </div>
-                  </div> -->
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div class="form-group">
-                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="valid">有效状态</label>
-      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-        <select id="valid" name="valid" multiple autocomplete="off" class="selectpicker" data-actions-box="true"  data-live-search="true" title="请选则有效状态">
-      <option value="1">有效</option>
-      <option value="0">无效</option>
-        </select>
-      </div>
                     </div>
                   </div>
                   </span>
@@ -207,12 +197,7 @@
               </div>
 
               <div class="column pt-btn-line">
-                <button type="button" class="btn w120 btn-default btn-primary"
-                  onclick='editItem()'>新增</button>
-                <!--
-                            <button type="button" class="btn w120 btn-default">批量停用</button>
-                            <button type="button" class="btn w120 btn-default">批量启用</button>
-                            <button type="button" class="btn w120 btn-default btn-danger-ly">批量删除</button>-->
+                <button type="button" class="btn w120 btn-default btn-primary" onclick='editItem()'>新增</button>
               </div>
             </div>
           </div>
@@ -241,10 +226,13 @@ $(function() {
   });
   //时间选择
   $('.datetimepicker').datetimepicker({
-    language : 'zh',
-    format : 'yyyy-mm-dd hh:ii:ss',
-    todayBtn : true,
-    autoclose : true
+    language: 'zh',
+    format: 'yyyy-mm-dd',
+    minView: "month",
+    pickDate: true,
+    pickTime: false,
+    todayBtn: true,
+    autoclose: true
   });
 
   //搜索扩展
@@ -315,7 +303,9 @@ function changeValid(e, n, pn, type) {
     ajaxChangeValid(e, type);
   } else {
     var nn=(pn=='根')?n:pn+"-"+n;
-    layer.confirm('要停用分类"'+nn+'"吗？', {btn : [ '确定', '取消' ]},
+    var ty="停用";
+    if (type==2) ty="删除";
+    layer.confirm('要'+ty+'分类"'+nn+'"吗？', {btn : [ '确定', '取消' ]},
       function(index) {
         layer.close(index);
         ajaxChangeValid(e, type);
@@ -323,6 +313,7 @@ function changeValid(e, n, pn, type) {
     );
   }
 }
+
 function ajaxChangeValid(id ,valid) {
   $.ajax({
     type : "post",
@@ -331,7 +322,7 @@ function ajaxChangeValid(id ,valid) {
     dataType : "json",
     success : function(result) {
       if (result.returnCode == '00') {
-        alert((valid==1?"启用":"停用")+"成功!");
+        alert((valid==1?"启用":(valid==2?"删除":"停用"))+"成功!");
         refresh();
       } else {
         alert(result.messageInfo);
@@ -378,45 +369,36 @@ function refresh() {
 
 TableInit(queryParams).Init('${gateway}/cate/getPageData', [ {
   field : 'name',
-  title : '分类名称',
+  title : '名称',
   sortable : false
-}, {
+/*}, {
   field : 'parentName',
   title : '上级分类',
   align: 'left',
   sortable : false,
-  formatter: formatParent
+  formatter: formatParent*/
 }, {
   field : 'sort',
-  title : '本级排序',
+  title : '排序',
   sortable : false
 }, {
   field : 'valid',
-  title : '是否有效',
+  title : '状态',
   sortable : false,
   formatter: formatValid
 }, {
   field : 'createName',
-  title : '修改人',
+  title : '创建人',
   sortable : false
 }, {
   field : 'createDate',
   title : '创建时间',
   sortable : false
 }, {
-  field : 'updateName',
-  title : '修改人',
-  sortable : false
-}, {
-  field : 'updateDate',
-  title : '修改时间',
-  sortable : false
-}, {
   field : 'id',
   title : '操作',
   formatter : operateFormatter
 }]);
-
 function queryParams(params) {
   var selectedValues = [];
   var count=$("#valid option").length;
@@ -428,10 +410,12 @@ function queryParams(params) {
   var data={
     //组织其他参数
     keyword: $("#keyword").val(),
-    cataName: $("#cataName").val(),
+    cateName: $("#cateName").val(),
     parentId: $("#parentId").val(),
     createName: $("#createName").val(),
     valid:selectedValues.join(","),
+    date1: $("#date1").find("input").val(),
+    date2: $("#date2").find("input").val(),
     // 使用page size分页
     limit : params.limit, //页面大小
     offset : params.offset //页码
@@ -441,27 +425,30 @@ function queryParams(params) {
 }
 
 function formatValid(value) {
-  if (value==='有效') {
-    return '<span class="pt-success">'+value+'</span>'
+  if (value==0) {
+    return '<span class="pt-warn">停用</span>'
   } else
-  if (value === '失效') {
-    return '<span class="pt-warn">'+value+'</span>'
+  if (value==1) {
+    return '<span class="pt-success">启用</span>'
   }
   return value;
 }
+
 function formatParent(value) {
   return '<span style="padding-left:15x;">'+value+'</span>'
 }
+
 // 2.返回操作模版[按钮颜色暂不确定]
 function operateFormatter(value, row, index) {
   var btnArray=[];
   btnArray.push('<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick="lookItem(\''+value+ '\')">查看</button>');
-  btnArray.push('<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick="editItem(\''+value+ '\', 2)">修改</button>');
-  if (row.valid=='有效') {
-    btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.name+'\',\''+row.parentName+'\', 0)">停用</button>');
-  } else 
-  if (row.valid=='失效') {
+  if (row.valid==0) {//可以修改
+    btnArray.push('<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick="editItem(\''+value+ '\', 2)">修改</button>');
     btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red pt-success" onclick="changeValid(\''+ value + '\', \''+row.name+'\',\''+row.parentName+'\', 1)">启用</button>');
+    btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.name+'\',\''+row.parentName+'\', 2)">删除</button>');
+  } else 
+  if (row.valid==1) {
+    btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.name+'\',\''+row.parentName+'\', 0)">停用</button>');
   }
   return btnArray.join('');
 }

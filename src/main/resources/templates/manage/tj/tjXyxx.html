@@ -109,8 +109,8 @@
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
                       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="createTime">统计时间</label>
-                      <div id="date1" class="date datetimepicker col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
-                        <input class="form-control" name="begin1" size="16" type="text" value="">
+                      <div id="date1" class="date col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
+                        <input class="form-control datetimepicker" name="begin" size="16" type="text" value="" style="padding-left:10px;">
                         <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
                       </div>
                     </div>
@@ -118,8 +118,8 @@
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
                       <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="createTime">~</label>
-                      <div id="date2" class="date datetimepicker col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
-                        <input class="form-control" name="begin1" size="16" type="text" value="">
+                      <div id="date2" class="date col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
+                        <input class="form-control datetimepicker" name="end" size="16" type="text" value="" style="padding-left:10px;">
                         <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
                       </div>
                     </div>
@@ -325,8 +325,6 @@ function queryParams(params) {
       selectedValues.push($("#userIds").get(0).options[i].value);
     }
   }
-  console.log("==================");
-  console.log(selectedValues.join(","));
   var data={
     //组织其他参数
     userIds: selectedValues.join(","),
