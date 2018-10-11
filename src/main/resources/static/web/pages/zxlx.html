@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../../libs/bootstrap-3.3.7-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../../tjsrc/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+  <link rel="stylesheet" href="../../tjsrc/css/rest.css">
+  <!-- <link rel="stylesheet" href="../../tjsrc/css/sider.css"> -->
+  <link rel="stylesheet" href="../../tjsrc/css/zxlx.css">
+  
+
+  <script src="../../libs/jquery/jquery-1.12.4.js"></script>
+  <script src="../../libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../../tjsrc/js/bootstrap-select.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <!-- <script src="../../tjsrc/js/sider.js"></script>   -->
+  <script src="../../tjsrc/js/zxlx.js"></script>
+</head>
+<body style="overflow-y:auto;">
+  <div class="box container-fluid">
+    <div class="tlkc bgs">
+      <span>在线练习</span>
+    </div>
+    <div class="con-box">
+      <div class="inp-box">
+        <div class="txt"><span>业务分类:</span></div>
+        <div class="inp">                
+            <select class="selectpicker" multiple>
+                <option value="1" selected>法规类</option>
+                <option value="2">政策类</option>
+                <option value="3">收费类</option>
+                <option value="4">放行类</option>
+                <option value="5">理货类</option>
+                <option value="6">出口类</option>
+                <option value="7">进口类</option>
+            </select>
+        </div>
+        <div class="txt"><span>难易程度</span></div>
+        <div class="widget-sider ny">
+            
+          <div class="" id="slider-range" style="margin-top: 10px;"></div>
+          <p>
+              <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold; text-align: center" disabled>
+           </p>
+        </div>
+        
+        <div class="txt"><span>题目数量</span></div>
+        <div class="inp input-group">                
+            <input type="text" class="form-control nums">
+        </div>
+        <div class="scsj-btn">生成试卷</div>
+      </div>
+      <div class="topic-box">
+        <div class="num-box">
+          <!-- <table class="no">
+            <tr>
+              <td>总分数</td>
+              <td class="zfs"></td>
+            </tr>
+            <tr>
+                <td>总题数</td>
+                <td class="zts"></td>
+            </tr>
+          </table>
+          <table class="over">
+              <tr>
+                <td>得分</td>
+                <td class="df"></td>
+              </tr>
+              <tr>
+                  <td>答对</td>
+                  <td class="dd"></td>
+              </tr>
+            </table> -->
+            <table id="table" class="sample">
+              <thead>
+                <tr>
+                  <th>总题数</th>
+                  <th>得分</th>
+                  <th>答对</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="zts">0</td>
+                  <td class="df">0</td>
+                  <td class="dd">0</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="times">
+          00:00:00
+        </div>
+          <div class="empty">
+            <div>
+              <span><img src="../../tjsrc/images/lianxi.jpg" alt=""></span>
+              <p class="emptyMsg">马上生成练习吧！</p>
+            </div>
+          </div>
+          <h3 class="lxt">练习题</h3>
+          <ul class="topic-list">
+            <!-- <li>
+              <h3 class="title"><span>1、</span>【多选题】多选题，多选题，多选题，多选题【30分】</h3>
+              <p><span><input type="checkbox"></span>A、增加选项</p>
+            </li> -->
+          </ul>
+          <div class="sub-btn">提交试卷</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

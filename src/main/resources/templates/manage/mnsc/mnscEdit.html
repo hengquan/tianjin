@@ -490,6 +490,7 @@ html {
     }
     //选择摸拟实操-摸拟实操列表
     function selectItem() {
+      var kjIds = $("#kjids").val();
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
         title : '<span class="text-color">选择课件列表</span>',//请修改span中间的内容
@@ -498,7 +499,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : '${gateway}/kj/selList'//如果不想出现滚动条['content.html', 'no']
+        content : '${gateway}/kj/selList?kjIds='+kjIds//如果不想出现滚动条['content.html', 'no']
       });
     }
     //把选择的课件列表放到表格中
@@ -516,19 +517,7 @@ html {
             kjid += "," + id;
           }
         }
-        //反对比
-        var kjid1 = '';
-        var split1 = kjIds.split(",");
-        for (var i = 0; i < split1.length; i++) {
-          var id = split1[i];
-          if (ids.indexOf(id) != -1) {
-            kjid1 += "," + id;
-          }
-        }
-        var kjidval = kjid1 + kjid;
-        if (kjidval != '') {
-          kjIds = kjidval.substr(1);
-        }
+        kjIds = kjIds + kjid;
       }
       $("#kjids").val(kjIds);
       //处理显示

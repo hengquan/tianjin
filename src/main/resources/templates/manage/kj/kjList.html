@@ -76,6 +76,11 @@
 <!-- 11 页面js -->
 <script src="${gateway}/src/js/main.js"></script>
 <!-- <script src="${gateway}/src/js/pt-tables.js"></script> -->
+<style>
+.datetimepicker-dropdown-bottom-right {
+	margin-top: 2px;
+}
+</style>
 </head>
 
 <body>
@@ -131,12 +136,12 @@
 											<div class="form-group">
 												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
 													for="exampleInputName2">创建时间</label>
-												<div
-													class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
+												<div class="date col-lg-8 col-md-8 col-sm-8 col-xs-6"
 													data-date-format="dd-mm-yyyy">
-													<input class="form-control" size="16" type="text" value=""
-														id="createStart"> <span class="add-on"
-														style="height: 40px"><i class="icon-th"></i></span>
+													<input class="form-control datetimepicker" size="16"
+														type="text" value="" id="createStart"> <span
+														class="add-on" style="height: 40px"><i
+														class="icon-th"></i></span>
 												</div>
 											</div>
 										</div>
@@ -144,12 +149,12 @@
 											<div class="form-group">
 												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
 													style="text-align: center">~</label>
-												<div
-													class="date datetimepicker col-lg-8 col-md-8 col-sm-8 col-xs-6"
+												<div class="date col-lg-8 col-md-8 col-sm-8 col-xs-6"
 													data-date-format="dd-mm-yyyy">
-													<input class="form-control" size="16" type="text" value=""
-														id="createEnd"> <span class="add-on"
-														style="height: 40px"><i class="icon-th"></i></span>
+													<input class="form-control datetimepicker" size="16"
+														type="text" value="" id="createEnd"> <span
+														class="add-on" style="height: 40px"><i
+														class="icon-th"></i></span>
 												</div>
 											</div>
 										</div>
@@ -189,10 +194,13 @@
 
 	<script src="${gateway}/src/js/pt-tree.js"></script>
 	<script>
-    // 时间选择
+    //时间选择
     $('.datetimepicker').datetimepicker({
       language : 'zh',
-      format : 'yyyy-mm-dd hh:ii:ss',
+      format : 'yyyy-mm-dd',
+      minView : "month",
+      pickDate : true,
+      pickTime : false,
       todayBtn : true,
       autoclose : true
     });
@@ -205,15 +213,19 @@
     // 2.返回操作模版[按钮颜色暂不确定]
     function operateFormatter(value, row, index) {
       var edit = '';
+      var del = '';
       var isvalid = row.isvalid;
       var msg = '';
       if (isvalid == 0) {
-        msg = '停用';
+        msg = '<span class="pt-warn">停用</span>';
         edit = '';
+        del = '';
       } else if (isvalid == 1) {
-        msg = '启用';
+        msg = '<span class="pt-success">启用</span>';
         edit = '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
             + value + '")>修改</button>';
+        del = '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
+            + value + '")>删除</button>';
       }
       return [
           '<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick=lookItem("'
@@ -222,9 +234,7 @@
           '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link" onclick=updateIsvalid("'
               + row.id + '","' + row.isvalid + '")>' + msg + '</button>',
           '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link" onclick=seeItem("'
-              + row.mnscUrl + '")>预览</button>',
-          '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
-              + value + '")>删除</button>' ].join('');
+              + row.id + '")>预览</button>', del ].join('');
     }
 
     // 操作模版调用的方法
@@ -276,6 +286,10 @@
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
         content : '${gateway}/kj/edit?id=' + e//如果不想出现滚动条['content.html', 'no']
       });
+    }
+
+    function seeItem(id) {
+      window.location.href = "${gateway}/onlineLearning.html?kjId=" + id;
     }
 
     function updateIsvalid(id, isvalid) {
@@ -333,9 +347,9 @@
       sortable : true,
       formatter : function(value) {
         if (value == 0) {
-          return '启用';
+          return '<span class="pt-success">启用</span>';
         } else if (value == 1) {
-          return '停用';
+          return '<span class="pt-warn">停用</span>';
         }
       }
     }, {

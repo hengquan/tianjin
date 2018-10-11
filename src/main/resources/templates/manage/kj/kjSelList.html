@@ -7,17 +7,20 @@
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
 	rel="stylesheet">
 <!-- 2 table表格css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
 	rel="stylesheet">
 <!-- 3 treeview树css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
 	rel="stylesheet">
 <!-- 4 datetimepicker时间选择css -->
 <link
 	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
 	rel="stylesheet">
 <!-- 5 select选择框css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
 	rel="stylesheet">
 <!-- 6 fileinput上传文件css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
@@ -26,7 +29,8 @@
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
 	rel="stylesheet">
 <!-- 8 Validator验证css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
 	rel="stylesheet">
 <!-- 9 layer弹框css -->
 <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
@@ -41,23 +45,30 @@
 <!-- 1 bootstrap基础js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <!-- 2 table表格js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
 <!-- 2 table列表数据js simple-table -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
 <!-- 3 treeview树js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
 <!-- 4 datetimepicker时间选择js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
 <!-- 5 select选择框js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <!-- 6 fileinput上传文件js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
 <!-- 6 fileinput中文包js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
 <!-- 7 icheck单选+多选js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
 <!-- 8 Validator验证js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <!-- 9 layer弹框js -->
 <script src="${gateway}/libs/layer/layer.js"></script>
 <!-- 9 以下是覆盖layer.js中的css样式，必须放在layer.js下面 -->
@@ -100,6 +111,16 @@
 
 	<script src="${gateway}/src/js/pt-tree.js"></script>
 	<script>
+    var objId = '';
+    //获取参数
+    var url = location.search;
+    if (url != '') {
+      url = url.substr(1);
+      var split = url.split("=");
+      if (split[0] == 'kjIds') {
+        objId = split[1];
+      }
+    }
     // 时间选择
     $('.datetimepicker').datetimepicker({
       language : 'zh',
@@ -203,14 +224,14 @@
       title : '学分',
       sortable : true
     }, {
-      field : 'state',
+      field : 'isvalid',
       title : '状态',
       sortable : true,
       formatter : function(value) {
-        if (value == 2) {
-          return '有效';
-        } else {
-          return '无效';
+        if (value == 0) {
+          return '启用';
+        } else if (value == 1){
+          return '停用';
         }
       }
     }, {
@@ -220,7 +241,7 @@
     }, ]);
     function queryParams(params) {
       return {
-        kjName : $("#kjName").val(),
+        kjIds : objId,
         // 使用page size分页
         limit : params.limit, //页面大小
         offset : params.offset
