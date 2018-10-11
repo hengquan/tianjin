@@ -35,6 +35,6 @@ public class WebDispatchUrl {
     @RequestMapping("onlineLearning")
     public String toOnlineLearning(HttpServletRequest request) {
         System.out.println("12312312");
-        return "/web/onlineLearning";
+        return "/static/onlineLearning";
     }
 }
