@@ -136,10 +136,12 @@
     where      
     <![CDATA[
       isvalid<2
-      ]]>
-    
+      ]]>    
    <if test="tmHtml != null and tmHtml != ''">
-  and instr(tm_html,#{tmHtml})>0
+       and instr(tm_html,#{tmHtml})>0
+  </if>  
+  <if test="catid != null and catid != ''">
+       and instr(cat_id,#{catid})>0
   </if>    
   order by create_date desc
   </select>

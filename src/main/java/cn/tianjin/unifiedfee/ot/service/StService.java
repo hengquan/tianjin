@@ -74,7 +74,7 @@ public class StService {
 	            tmSelect.setId(SequenceUUID.getPureUUID());
 	            tmSelect.setTmSelectSign("A");
 	            tmSelect.setTmSelectDesc("正确");
-	            if (tm.getIsAnswer().equals("1"))
+	            if (tm.getIsAnswer()==1)
 	                tmSelect.setIsAnswer(1);
 	            else
 	                tmSelect.setIsAnswer(0);
@@ -84,10 +84,10 @@ public class StService {
 	            tmSelect.setId(SequenceUUID.getPureUUID());           
 	            tmSelect.setTmSelectSign("B");
 	            tmSelect.setTmSelectDesc("错误");
-	            if (tm.getIsAnswer().equals("2"))
-	                tmSelect.setIsAnswer(0);
-	            else
+	            if (tm.getIsAnswer()==2)
 	                tmSelect.setIsAnswer(1);
+	            else
+	                tmSelect.setIsAnswer(0);
 	            tmSelect.setSort(2);
 	            selectDao.insertSelective(tmSelect); 
 	          }     
@@ -173,11 +173,13 @@ public class StService {
           if (tm.getTmType().equals("判断题")){   
             /*先进行删除操作*/
             selectDao.deleteBytmid(tm.getId());
+            int isAnswer = 0;
+            isAnswer = tm.getIsAnswer();
             /*插入正确*/
             tmSelect.setId(SequenceUUID.getPureUUID());
             tmSelect.setTmSelectSign("A");
             tmSelect.setTmSelectDesc("正确");
-            if (tm.getIsAnswer().equals("1"))
+            if (isAnswer == 1)
                 tmSelect.setIsAnswer(1);
             else
                 tmSelect.setIsAnswer(0);
@@ -187,10 +189,11 @@ public class StService {
             tmSelect.setId(SequenceUUID.getPureUUID());           
             tmSelect.setTmSelectSign("B");
             tmSelect.setTmSelectDesc("错误");
-            if (tm.getIsAnswer().equals("2"))
-                tmSelect.setIsAnswer(0);
-            else
+            
+            if ( isAnswer == 2)
                 tmSelect.setIsAnswer(1);
+            else
+                tmSelect.setIsAnswer(0);
             tmSelect.setSort(2);
             selectDao.insertSelective(tmSelect); 
           }   

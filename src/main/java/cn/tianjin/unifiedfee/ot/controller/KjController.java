@@ -50,17 +50,31 @@ public class KjController {
         // 设置page
         PageHelper.offsetPage(offset, limit);
         // 获取参数
+        String ids = "";
         String kjName = request.getParameter("kjName");
         String kjCatId = request.getParameter("kjCatId");
         String score = request.getParameter("score");
         String createStart = request.getParameter("createStart");
         String createEnd = request.getParameter("createEnd");
+        String kjIds = request.getParameter("kjIds");
         // 传参
         param.put("kjName", kjName);
         param.put("kjCatId", kjCatId);
         param.put("score", score);
         param.put("createStart", createStart);
         param.put("createEnd", createEnd);
+        if (StringUtils.isNotEmpty(kjIds)) {
+            String[] kjIdList = kjIds.split(",");
+            for (String kjId : kjIdList) {
+                ids += "," + "'" + kjId + "'";
+            }
+            if (StringUtils.isNotEmpty(ids))
+                ids = ids.substring(1);
+        }
+        param.put("kjIds", ids);
+        System.out.println("----------------------");
+        System.out.println(kjIds);
+        System.out.println("----------------------");
         // 查询数据
         List<Kj> kjs = kjService.getPageData(param);
         // 放入分页

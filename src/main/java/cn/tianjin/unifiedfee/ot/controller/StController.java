@@ -51,8 +51,10 @@ public class StController {
         PageHelper.offsetPage(offset, limit);
         // 获取参数
         String tmHtml = request.getParameter("tmHtml");
+        String catid = request.getParameter("catid");
         // 传参
         param.put("tmHtml", tmHtml);
+        param.put("catid", catid);
         // 查询数据
         List<Tm> Tms = stService.getPageData(param);
         if (Tms != null && Tms.size() > 0) {
