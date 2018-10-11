@@ -175,6 +175,9 @@ public class CategoryService {
         } else {
             categoryDao.update(cate);
             TreeNode<CategoryNode> tncn=(TreeNode<CategoryNode>) _curRootNode.findNode(cate.getId());
+            cn.setCreateDate(tncn.getTnEntity().getCreateDate());
+            cn.setCreateId(tncn.getTnEntity().getCreateId());
+            cn.setCreateName(tncn.getTnEntity().getCreateName());
             tncn.setTnEntity(cn);
         }
         retM.put("returnCode", "00");

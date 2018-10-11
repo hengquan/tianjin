@@ -32,7 +32,7 @@
   <select id="getListWithMap" resultType="java.util.HashMap" parameterType="Map">
     select <include refid="Base_Column_List"/> from category
     <where> isValid!=2
-      <if test="cataName!=null and cataName!=''">
+      <if test="cateName!=null and cateName!=''">
         and name like '%${cateName}%'
       </if>
       <if test="createName!=null and createName!=''">
@@ -46,6 +46,16 @@
       </if>
       <if test="keyword!=null and keyword!=''">
         and (name like '%${keyword}%' or remarks like '%${keyword}%' or update_name like '%${keyword}%' or create_name like '%${keyword}%')
+      </if>
+      <if test="date1!=null and date1!=''">
+      <![CDATA[
+      and create_date>to_date('${date1}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+      <if test="date2!=null and date2!=''">
+      <![CDATA[
+      and create_date<to_date('${date2}', 'YYYY-MM-DD')
+      ]]>
       </if>
     </where>
   </select>

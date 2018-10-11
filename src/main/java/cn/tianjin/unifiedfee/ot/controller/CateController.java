@@ -139,8 +139,10 @@ public class CateController extends BaseController {
     @ResponseBody
     public Map<String, Object> getPageData(Category cate,
             @RequestParam(value="offset", defaultValue="1") int offset,
-            @RequestParam(value="limit", defaultValue="10") int limit, HttpServletRequest request,
-            HttpServletResponse response) {
+            @RequestParam(value="limit", defaultValue="10") int limit, 
+            @RequestParam(required=false) String date1,
+            @RequestParam(required=false) String date2,
+            HttpServletRequest request, HttpServletResponse response) {
         // 跨域
         HttpPush.responseInfo(response);
 
@@ -148,8 +150,10 @@ public class CateController extends BaseController {
         Map<String, Object> param=new HashMap<String, Object>();
         param.put("keyword", request.getParameter("keyword"));
         param.put("createName", request.getParameter("createName"));
-        param.put("cataName", request.getParameter("cataName"));
+        param.put("cateName", request.getParameter("cateName"));
         param.put("parentId", request.getParameter("parentId"));
+        param.put("date1", date1);//开始时间
+        param.put("date2", date2);//结束时间
         String tmpStr=request.getParameter("valid");
         if (!StringUtils.isBlank(tmpStr)&&(!"1,0".equals(tmpStr))&&(!"0,1".equals(tmpStr))) {
             param.put("valid", tmpStr);
