@@ -190,7 +190,7 @@
   <select id="getTmList4sjCates" resultMap="BaseResultMap" parameterType="Map">
     select a.id, a.tm_type, a.tm_html, a.score, a.diff_score, a.create_date, a.create_by, a.create_name
     from q_tm a, (select distinct tm_id from q_tm_select) b
-    where a.id=b.tm_id, a.isValid=1 and a.diff_score between ${diff1} and ${diff2} 
+    where a.id=b.tm_id and a.isValid=1 and a.diff_score between ${diff1} and ${diff2} 
     <if test="cateSql!=null and cateSql!=''" >
     and (${cateSql})
     </if>
