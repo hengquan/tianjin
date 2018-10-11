@@ -574,7 +574,7 @@ public class ApiController {
 //                }
 //            }
             //2-处理难度系数
-            int diff1=1, diff2=10;
+            int diff1=0, diff2=9;
             if (!StringUtils.isBlank(diffRange)) {
                 String[] sp=diffRange.split(",");
                 if (sp.length==1) {
