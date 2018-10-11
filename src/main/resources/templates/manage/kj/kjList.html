@@ -194,10 +194,13 @@
 
 	<script src="${gateway}/src/js/pt-tree.js"></script>
 	<script>
-    // 时间选择
+    //时间选择
     $('.datetimepicker').datetimepicker({
       language : 'zh',
-      format : 'yyyy-mm-dd hh:ii:ss',
+      format : 'yyyy-mm-dd',
+      minView : "month",
+      pickDate : true,
+      pickTime : false,
       todayBtn : true,
       autoclose : true
     });
