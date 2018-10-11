@@ -284,9 +284,6 @@ $(function () {
           $("#parentId").val(cate.parentId);
           $("#sort").val(cate.order);
           $("input[type=radio][name=isvalid]").each(function (i, e) {
-            alert($(this).val());
-          });
-          $("input[type=radio][name=isvalid]").each(function (i, e) {
             if ($(this).val()==cate.isvalid) $(this).iCheck('check');
           });
           $("#remarks").val(cate.remarks);

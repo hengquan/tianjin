@@ -142,8 +142,6 @@ public class CategoryService {
             cate.setCreateDate(new java.sql.Date(new Date().getTime()));
             cate.setCreateId(ui.getUserId());
             cate.setCreateName(ui.getUsername());
-            if (_curRootNode.isRoot()) cate.setParentIds("0,");
-            else cate.setParentIds(_curRootNode.getTnEntity().getParentIds()+_curRootNode.getId()+",");
 
             //检查名称是否有，且同级不能重名
             boolean sameName=false;
@@ -165,6 +163,8 @@ public class CategoryService {
         cate.setUpdateDate(new java.sql.Date(System.currentTimeMillis()));
         cate.setUpdateId(ui.getUserId());
         cate.setUpdateName(ui.getUsername());
+        if (_curRootNode.isRoot()) cate.setParentIds("0,");
+        else cate.setParentIds(_curRootNode.getTnEntity().getParentIds()+_curRootNode.getId()+",");
 
         CategoryNode cn=new CategoryNode();
         cn.buildFromPo(cate);
@@ -173,7 +173,6 @@ public class CategoryService {
             TreeNode<CategoryNode> tncn=new TreeNode<CategoryNode>(cn);
             _curRootNode.addChild(tncn);
         } else {
-            cate.setParentIds((_curRootNode.getTnEntity()).getParentIds()+_curRootNode.getParentId()+",");
             categoryDao.update(cate);
             TreeNode<CategoryNode> tncn=(TreeNode<CategoryNode>) _curRootNode.findNode(cate.getId());
             tncn.setTnEntity(cn);
