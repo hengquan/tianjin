@@ -73,37 +73,37 @@ html {
 <br>
     <div class="container">
         <div class="row clearfix">
-            <div class="col-lg-12 col-md-11 col-sm-12 col-xs-2 column">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-2 column">
             	  <form class="form-horizontal pt-form-full" role="form" id="form" name="form">                
                     <input type="hidden" name="id" id="objId">      
                      <input type="hidden" name="isvalid" id="isvalid">                   
-                    <div class="col-lg-12 col-md-11 col-sm-11 col-xs-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label class="col-lg-1 col-md-1 col-sm-1 col-xs-6"  for="title"><span> ※ </span>题目</label>
+                            <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1"  for="title"><span> ※ </span>题目</label>
                             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                                 <textarea id="tmHtml" class="form-control" name="tmHtml" style="min-height: 108px"></textarea>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
-                       	    <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="title"><span> ※ </span>分类</label>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				                <input type="text" class="form-control" name="catnames" id="catnames" style="border-right:0px;width:" readonly="readonly"/>				               
-				                <div class="input-group-btn">
-				                  <button type="button" class="btn btn-default dropdown-toggle btn-tj" data-toggle="dropdown" style="border-bottom-left-radius:0px;border-top-left-radius:0px; border-left:0px;">
-				                  	<span class="caret"></span>
-				                  </button>
-				                  <div class="dropdown-menu pull-right" style="width:200px;height:240px;overflow-y:auto;overflow-x:hidden;" data-stopPropagation="true">
-				                    <div id="cate-tree"></div>
-				                  </div>
-				                </div>
-				                <input type="hidden" class="form-control" name="catid" id="catid"/>
-				              </div>
+                       	   <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="title"><span>※ </span>分类</label>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">	
+                            	<div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">		             
+					                <input type="text" class="form-control" name="catnames" id="catnames" style="border-right:0px;" readonly="readonly"/>				               
+					                <div class="input-group-btn">
+					                  <button type="button" class="btn btn-default dropdown-toggle btn-tj" data-toggle="dropdown" style="border-bottom-left-radius:0px;border-top-left-radius:0px; border-left:0px;">
+					                  	<span class="caret"></span>
+					                  </button>
+					                  <div class="dropdown-menu pull-right" style="width:220px;height:240px;overflow-y:auto;overflow-x:hidden;" data-stopPropagation="true">
+					                    <div id="cate-tree"></div>
+					                  </div>
+					                </div>
+					                <input type="hidden" class="form-control" name="catid" id="catid"/>
+					            </div>
 			               </div>
-			               <label class="col-lg-1 col-md-1 col-sm-2 col-xs-2" for="diffScore">
+			               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="diffScore">
                                 <span> ※ </span>难度系数
                             </label>                          
                              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -123,9 +123,9 @@ html {
                              </div>  
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
-                       <div class="form-group">
-                          <label class="col-lg-1 col-md-1 col-sm-1 col-xs-6"  for="dingjia"><span>※ </span>类型</label>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1"  for="title"><span> ※ </span>类型</label>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                 <select id="tmType" name="tmType" class="selectpicker"
                                     onchange="classify(this)" data-live-search="true" title="请选择">
@@ -134,12 +134,13 @@ html {
                                     <option value="判断题">判断题</option>
                                 </select>
                             </div>
-                          </div>
-                       </div>
-                       <input type="hidden" class="form-control" name="kjList"   id="kjList" />
-                       <input type="hidden" id="kjnameList" class="form-control" name="kjnameList"/>
-                       <input type="hidden" class="form-control" name="mnscList" id="mnscList" />
-                       <input type="hidden" id="mnscnameList" class="form-control" name="mnscnameList"/>
+                        </div>
+                    </div>                    
+                    
+                    <input type="hidden" class="form-control" name="kjList"   id="kjList" />
+                    <input type="hidden" id="kjnameList" class="form-control" name="kjnameList"/>
+                    <input type="hidden" class="form-control" name="mnscList" id="mnscList" />
+                    <input type="hidden" id="mnscnameList" class="form-control" name="mnscnameList"/>
                     <!-- 
                     <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12">
                         <div class="form-group">
@@ -176,13 +177,11 @@ html {
                         </div>
                     </div>
                      -->
-                    <div class="col-lg-12 col-md-11 col-sm-12 col-xs-12" id="xzanswer"
-                        style="display: none;">
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="xzanswer"   style="display: none;">
                         <div class="form-group">
-                            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="answer">
-                                <span> ※ </span>判断题答案
-                            </label>
-                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
+                            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  for="title"><span> ※ </span>判断题答案</label>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                 <label class="radio-inline"> <input type="radio"
                                     name="isAnswer" value="1"   checked> 正确
                                 </label> <label class="radio-inline"> <input type="radio"
@@ -190,7 +189,7 @@ html {
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div>     
                  </form>
                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="selectbtn" style="display: none;">
 			                     <button onclick="addTmcache()" 
@@ -208,16 +207,12 @@ html {
 	                    </div>
 	                </div>
 	            </div>
-	            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" > 
-	                		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-			                     <button onclick="addTm()" id="baocun" class="btn w80  btn-default btn-primary">保存</button>
-			                     <button class="btn w80  btn-default btn-default">取消</button>
-		                     </div>
-		                               
-                       </div>
+                <div class="form-group pt-btn-submit-layer">
+		          <button onclick="addTm()" id="baocun" class="btn w160 btn-lg btn-default btn-primary">保存</button>
+		          <button type="button" class="btn w160 btn-lg btn-default" onclick="closeMy()">取消</button>
+		        </div>
 	        </div>
         </div>
-    </div>
 
     <br>
     <script>
@@ -263,10 +258,17 @@ html {
             $("#diffScore").selectpicker('val',tm.diffScore);             
             if (tm.tmType=="判断题"){
             	document.getElementById("xzanswer").style.display = "block";
-            	if (tm.isAnswer == 2)
-                	$("input:radio[name='isAnswer'][value='2']").attr("checked", true);
-        		else
-        		    $("input:radio[name='isAnswer'][value='1']").attr("checked", true);
+            	$("input[type=radio][name=isAnswer]").each(function (i, e) {
+             	  if (tm.tmSelectDesc == "错误"){
+                 	 if ($(this).val()==2) $(this).iCheck('check');   
+             	  }
+             	  else{
+             	     if ($(this).val()==1) $(this).iCheck('check');  
+             	  }
+                }); 
+            	 
+            	
+            	
             	document.getElementById("selectbtn").style.display = "none";
                 document.getElementById("pt-main").style.display = "none";
             }else{
@@ -285,7 +287,7 @@ html {
       }
     });
     
-  //初始化选择树
+  //初始化分类
     $.ajax({
       type : "post",
       url: '${gateway}/train/getTree/ptTree',
