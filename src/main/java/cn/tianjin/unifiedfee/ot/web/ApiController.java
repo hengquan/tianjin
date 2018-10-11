@@ -561,18 +561,18 @@ public class ApiController {
                 return retMap;
             }
             //1-处理参数
-            if (StringUtils.isBlank(cateIds)) {//若分类为空，则相关对象必须有
-                if (StringUtils.isBlank(refType)) {
-                    retMap.put("returnCode","03");
-                    retMap.put("messageInfo","相关对象类型为空");
-                    return retMap;
-                }
-                if (StringUtils.isBlank(refId)) {
-                    retMap.put("returnCode","03");
-                    retMap.put("messageInfo","相关对象Id为空");
-                    return retMap;
-                }
-            }
+//            if (StringUtils.isBlank(cateIds)) {//若分类为空，则相关对象必须有
+//                if (StringUtils.isBlank(refType)) {
+//                    retMap.put("returnCode","03");
+//                    retMap.put("messageInfo","相关对象类型为空");
+//                    return retMap;
+//                }
+//                if (StringUtils.isBlank(refId)) {
+//                    retMap.put("returnCode","03");
+//                    retMap.put("messageInfo","相关对象Id为空");
+//                    return retMap;
+//                }
+//            }
             //2-处理难度系数
             int diff1=1, diff2=10;
             if (!StringUtils.isBlank(diffRange)) {
