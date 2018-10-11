@@ -191,6 +191,9 @@
 		<if test="createStart != null and createStart != '' or createEnd != null and createEnd !='' ">
 			and create_date BETWEEN to_date(#{createStart},'yyyy-MM-dd HH24:mi:ss') AND to_date(#{createEnd},'yyyy-MM-dd HH24:mi:ss')
 		</if>
+		<if test="kjIds != null and kjIds != ''">
+      and id not in (${kjIds})
+    </if>
 		order by sort desc,create_date desc
 	</select>
 
