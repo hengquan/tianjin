@@ -131,16 +131,13 @@ html {
         increaseArea : '20%' // optional
       }); 
       //获取参数
-      var url = location.search;
-      if (url != '') {
-        //变成修改
-        url = url.substr(1);        
-        var split = url.split("=");       
+      
+      if (getUrlParam("flag")==1) {        
         $.ajax({
           type : 'post',
           url : "${gateway}/st/getselect",
           data : {
-            "id" : split[1]
+            "id" : getUrlParam("id")
           },
           dataType : 'json',
           cache : false,

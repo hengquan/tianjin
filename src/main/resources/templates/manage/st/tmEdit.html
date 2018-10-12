@@ -106,10 +106,10 @@ html {
 			               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="diffScore">
                                 <span> ※ </span>难度系数
                             </label>                          
-                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                 <select id="diffScore" name="diffScore" class="selectpicker"
                                     data-live-search="true" title="请选择">
-                                    <option value="0">0</option>
+                                    <option value="0">0——易</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -118,7 +118,7 @@ html {
                                     <option value="6">6</option>
                                     <option value="7">7</option>
                                     <option value="8">8</option>
-                                    <option value="9">9</option>
+                                    <option value="9">9——难</option>
                                 </select>
                              </div>  
                         </div>
@@ -492,7 +492,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '${gateway}/st/selectEdit?isvalid='+isvalid+'&id='+$("#objId").val(), 'no' ]
+        content : [ '${gateway}/st/selectEdit?flag=0&isvalid='+isvalid+'&id='+$("#objId").val(), 'no' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -530,7 +530,7 @@ html {
       shade : 0.6,
       maxmin : false,//开启最大化最小化按钮
       area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-      content : ['${gateway}/st/selectEdit?id='+e,'no']//如果不想出现滚动条['content.html', 'no']  
+      content : ['${gateway}/st/selectEdit?flag=1&id='+e,'no']//如果不想出现滚动条['content.html', 'no']  
     });
   }
   function deleteItem(e) {
