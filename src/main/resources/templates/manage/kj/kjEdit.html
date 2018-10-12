@@ -99,7 +99,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>课件名称</label>
+									※ </span>名称</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 								<input type="text" class="form-control" name="kjName"
 									id="kjName" />
@@ -109,7 +109,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span>
-									※ </span>选择分类</label>
+									※ </span>分类</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 								<div class="input-group">
 									<input type="text" class="form-control" name="kjCatNames"
@@ -136,7 +136,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>&emsp;排&emsp;序</label>
+									※ </span>排序</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 								<input type="text" class="form-control" name="sort" id="sort" />
 							</div>
@@ -145,7 +145,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>&emsp;状&emsp;态</label>
+									※ </span>状态</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<select class="form-control" name="isvalid" id="isvalid">
 								  <option value="0">启用</option>
@@ -157,7 +157,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun"><span>
-									※ </span>&emsp;说&emsp;明</label>
+									※ </span>说明</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<textarea id="remarks" class="form-control" name="remarks"
 									style="min-height: 108px"></textarea>
@@ -167,7 +167,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span
-								class="cfff"> ※ </span>&emsp;上传缩略图</label>
+								class="cfff"> ※ </span>缩略图</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<input id="file-2" type="file" multiple class="file"
 									name="files" data-overwrite-initial="false"
@@ -177,7 +177,7 @@ html {
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><span class="cfff">※ </span>&emsp;上传课件内容</label>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><span class="cfff">※ </span>课件内容</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<input id="file-1" type="file" multiple class="file" name="files" data-overwrite-initial="false"
 									data-max-file-count="1"><b>(注：请上传视频文件，大小在10M以内，支持格式：mp4)</b>
@@ -189,9 +189,9 @@ html {
 							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
 								<table class="table table-striped" id="theTable">
 									<tr>
-										<th>课件名称</th>
-										<th>分类名称</th>
-										<th>学分</th>
+										<th>名称</th>
+										<th>分类</th>
+										<th>创建人</th>
 										<th>创建时间</th>
 										<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>
 									</tr>
@@ -325,18 +325,6 @@ html {
               }
             }
           },
-          score : {
-            message : '学分验证失败',
-            validators : {
-              notEmpty : {
-                message : '学分不能为空'
-              },
-              regexp: {
-                regexp: "^[0-9][0-9]*$",
-                message: '学分数须为自然数'
-              }
-            }
-          },
           remarks : {
             message : '说明内容验证失败',
             validators : {
@@ -379,7 +367,7 @@ html {
             var html = '<tr>'
                 + '<th>课件名称</th>'
                 + '<th>分类名称</th>'
-                + '<th>学分</th>'
+                + '<th>创建人</th>'
                 + '<th>创建时间</th>'
                 + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
                 + '</tr>';
@@ -405,7 +393,7 @@ html {
                     + dataList[i].kjCatNames
                     + '</td>'
                     + '<td>'
-                    + dataList[i].score
+                    + dataList[i].createName
                     + '</td>'
                     + '<td>'
                     + dataList[i].createdate
@@ -524,7 +512,7 @@ html {
           var html = '<tr>'
               + '<th>课件名称</th>'
               + '<th>分类名称</th>'
-              + '<th>学分</th>'
+              + '<th>创建人</th>'
               + '<th>创建时间</th>'
               + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
               + '</tr>';
@@ -538,7 +526,7 @@ html {
                 + dataList[i].kjCatNames
                 + '</td>'
                 + '<td>'
-                + dataList[i].score
+                + dataList[i].createName
                 + '</td>'
                 + '<td>'
                 + dataList[i].createdate
@@ -579,7 +567,7 @@ html {
       $(obj).parent().remove();
     }
 
-    $("#file-1").fileinput({
+    /* $("#file-1").fileinput({
       uploadUrl: "${gateway}/file/uploadTemp",
       maxFileSize: 0,
       dropZoneEnabled: false,//是否显示拖拽区域
@@ -591,8 +579,8 @@ html {
       console.log("========================")
       console.log(data);
       console.log(data.response.fileUrl);
-    });
-/*     $("#file-1").fileinput({
+    }); */
+    $("#file-1").fileinput({
       theme : "explorer", //主题
       language : 'zh',
       uploadUrl : "${gateway}/file/upload",// 上传请求路径
@@ -616,7 +604,7 @@ html {
       },
       showPreview : true, //显示预览   
       minFileCount : 1, //最低文件数量
-      maxFileCount : 3, //最多文件数量
+      maxFileCount : 1, //最多文件数量
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : false,
       initialPreview : videoJson, //显示图片
@@ -631,7 +619,6 @@ html {
         'jpeg' : '<i class="fa fa-file-photo-o text-primary"></i>'
       },
     });
- */
     //上传文件
     $("#file-2").fileinput({
       theme : "explorer", //主题
@@ -657,7 +644,7 @@ html {
       },
       showPreview : true, //显示预览   
       minFileCount : 1, //最低文件数量
-      maxFileCount : 3, //最多文件数量
+      maxFileCount : 1, //最多文件数量
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : true,
       initialPreview : imgJson, //显示图片

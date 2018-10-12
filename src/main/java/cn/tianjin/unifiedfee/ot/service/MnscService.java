@@ -41,7 +41,7 @@ public class MnscService {
     public List<Mnsc> getPageData(Map<String, Object> retMap) {
         List<Mnsc> mnscs = dao.getPageData(retMap);
         if (mnscs != null && mnscs.size() > 0) {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             for (Mnsc mnsc : mnscs) {
                 String id = mnsc.getId();
                 // 查附件表
