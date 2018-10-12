@@ -194,7 +194,7 @@
 		<if test="kjIds != null and kjIds != ''">
       and id not in (${kjIds})
     </if>
-		order by sort desc,create_date desc
+		order by sort,create_date desc
 	</select>
 
 	<select id="getDataListByIds" resultMap="BaseResultMap">
@@ -202,7 +202,7 @@
 		<include refid="Blob_Column_List" />
 		from ts_KJ
 		where instr(#{ids},id)>0
-		order by sort desc,create_date desc
+		order by sort,create_date desc
 	</select>
 
 	<select id="find4Web" resultMap="BaseResultMap" parameterType="Map">
@@ -218,7 +218,7 @@
 			'%${searchStr}%' or remarks like '%${searchStr}%')
 		</if>
 		and state=2
-		order by sort desc, create_date desc
+		order by sort, create_date desc
 	</select>
 
 	<select id="findRefKj4Web" resultMap="BaseResultMap"
@@ -231,7 +231,7 @@
 		from ts_KJ a, TS_KJ_REF_SOURCE b
 		where a.id=b.ref_id and upper(b.ref_tabname)='TS_KJ' and
 		b.kj_id=#{kjId}
-		order by a.sort desc, a.create_date desc
+		order by a.sort, a.create_date desc
 	</select>
 
 	<select id="getKjList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -239,7 +239,7 @@
 		<include refid="Blob_Column_List" />
 		from ts_KJ
 		where rownum &lt;= #{rownum}
-		order by sort desc,create_date
+		order by sort,create_date
 		desc
 	</select>
 
