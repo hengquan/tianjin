@@ -22,6 +22,7 @@ import cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper;
 
 @Controller
 public class WebDispatchUrl {
+    @Autowired // 注入Service
     public UserService userService;
 //  @Autowired // 注入Service
 //  public SecurityMenuService securityMenuService;
