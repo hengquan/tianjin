@@ -307,38 +307,6 @@ public class ManageDispatchUrl {
         return "/manage/st/selectEdit";
     }
 
-    //--统计相关-1学员学习
-    @RequestMapping("tj/xyxx")
-    public String toTjXyxx(HttpServletRequest request, Model model) {
-        //获得企业的人员
-        String optionHtml="";
-        UserInfo ui=userService.getUserInfo();
-        if (ui!=null) {
-            //获得用户所在企业
-            ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
-            if (companyInfo!=null&&companyInfo.getData()!=null) {
-                Map<String, Object> param=new HashMap<String, Object>();
-                param.put("compId", companyInfo.getData().getCompanyId());
-                List<Map<String, Object>> ul=catService.getCompUserList(param);
-                if (ul!=null&&ul.size()>0) {
-                    for (Map<String, Object> u: ul) {
-                        optionHtml+="<option value='"+u.get("visitor_id")+"'>"+u.get("visitor_name")+"</option>";
-                    }
-                }
-            }
-            //测试，准备删除
-            Map<String, Object> param=new HashMap<String, Object>();
-            param.put("compId", "98311111234523456B");
-            List<Map<String, Object>> ul=catService.getCompUserList(param);
-            if (ul!=null&&ul.size()>0) {
-                for (Map<String, Object> u: ul) {
-                    optionHtml+="<option value='"+u.get("VISITOR_ID")+"'>"+u.get("VISITOR_NAME")+"</option>";
-                }
-            }
-        }
-        model.addAttribute("optionHtml", optionHtml);
-        return "/manage/tj/tjXyxx";
-    }
     //--统计相关-2课件统计
     @RequestMapping("tj/kj")
     public String toTjKj(HttpServletRequest request) {
