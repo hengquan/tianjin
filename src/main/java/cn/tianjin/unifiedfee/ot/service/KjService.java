@@ -38,7 +38,7 @@ public class KjService {
     public List<Kj> getPageData(Map<String, Object> param) {
         List<Kj> kjs = dao.getPageData(param);
         if (kjs != null && kjs.size() > 0) {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             for (Kj kj : kjs) {
                 Date createDate = kj.getCreateDate();
                 String createdate = format.format(createDate);
