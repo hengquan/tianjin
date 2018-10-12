@@ -161,7 +161,7 @@ html,body{
     padding-top:124px;
 }
 
-/*闈㈠寘灞戝鑸�*/
+/*闂堛垹瀵樼仦鎴濐嚤閼革拷*/
 .bread{
     height:85px;
     line-height:85px;
@@ -184,10 +184,10 @@ html,body{
     color: #3d7eea;
 }
 
-/*涓讳綋*/
+/*娑撹缍�*/
 .page-main{
     margin-bottom:25px;
-    margin-top: 35px;
+    /*margin-top: 35px;*/
     background: white;
     border-radius: 5px;
 }
@@ -403,4 +403,102 @@ html,body{
 }
 p{
   color: white;
+}
+
+#inrto-nav{
+    line-height: 50px;
+    height: 50px;
+}
+#inrto-nav:after{
+    display: block;
+    content: '';
+    visibility: hidden;
+    clear: both;
+}
+#inrto-nav .intro-nav-cell{
+    display: block;
+    float: left;
+	margin-left:20px;
+	margin-top:6px;
+	margin-right:20px;
+}
+#inrto-nav .intro-nav-right-btn{
+	margin-top:600px;
+    width: 60px;
+    background: url("../images/toRight.png") no-repeat;
+    background-size: 100% auto;
+    background-position: center center;
+    height: 60px;
+    float: left;
+    margin: 0 0px;
+}
+#inrto-nav .intro-current{
+    font-size:24px;
+    color: #148bff;
+}
+#inrto-nav .intro-used{
+    font-size:20px;
+    color: #999;
+}
+
+.pro_nav{
+	width: 1200px;
+	height: 70px;
+	background-color: #FFFFFF;
+	margin-top: 4px;
+	margin-bottom: 8px;
+}
+.pro li{
+	float: left;
+	margin-left: -13px;
+	margin-top: 24px;
+	width: 156px;
+	height: 64px;
+	background: url(../image/sec.png) ;
+	color: #000;
+}
+.pro li:hover{
+	background: url(../image/sec.png) -164px; 
+	color: #FFFFFF;
+}
+.pro .frist{
+	background: url(../image/first.png) -164px; 
+	color: #FFFFFF;
+	margin-top: 24px;
+	margin-left: 20px;
+}
+.pro .frist:hover{
+	background: url(../image/first.png) -164px; 
+	color: #FFFFFF;
+}
+.pro .last{
+background: url(../image/last.png) 
+}	
+.pro .last:hover{
+background: url(../image/last.png) -164px; 
+color: #FFFFFF;
+}	
+.pro span{
+	font-size: 40px;
+	line-height: 64px;
+	margin-left: 26px;
+	margin-right: 8px;
+	float: left;
+}
+.pro .frist span{
+	margin-left: 20px;
+}
+.pro p{
+	display: block;
+	font-size: 14px;
+	color: #cbccce;
+}
+.fir-p{
+	margin-top: 14px;
+}
+.pro .frist p{
+	color: #FFFFFF;
+}
+.pro li:hover p{
+	color: #FFFFFF;
 }

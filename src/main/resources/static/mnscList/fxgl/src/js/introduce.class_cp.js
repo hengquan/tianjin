@@ -1,21 +1,6 @@
 /*******************
  * 参数列表
- *
  * el: 绑定的根结点ID
- *
- * nav: 步骤菜单配置
- * nav.el 步骤菜单绑定节点ID
- * nav.list array，步骤菜单内容文字
- *
- * iframe frame配置
- * iframe.el frame绑定节点ID
- * iframe.width frame宽
- * iframe.height frame高
- *
- * list 列表数据
- * list.srcUrl 对应iframe的链接
- * list.steps 步骤列表
- *
  * X: X轴坐标
  * Y: Y轴坐标
  * direction: 箭头指向 top/right/bottom/left
@@ -28,129 +13,33 @@
  * nextBtn：按钮
  *     nextBtn.content 内容文字
  *     nextBtn.backgroundColor 按钮背景颜色
- * callBack 执行后的回调函数
- *
- *
- * 主动控制方法
- * 上一步 new IntroduceControl().prevPage()
- * 下一步 new IntroduceControl().nextPage()
- * 重新开始本步骤 new IntroduceControl().rePage()
- *
  *
  *
  */
-
-
-
-
 (function (window) {
 
-    var rootObj = {},
-        IntroduceTipsArr = [],
-        IntroduceTipsCurrent = 0,
-        IntroduceTipsStep = -1,
+    var IntroduceTipsArr = [],
+        IntroduceTipsCurrent = -1,
         $el = '';
     var IntroduceTipsList = function (obj) {
-        rootObj = obj
         IntroduceTipsArr = obj.list
         $el = obj.el
-        IntroduceTipsCurrent = 0
+        IntroduceTipsCurrent = -1
         IntroduceTipsListNext()
     }
     function IntroduceTipsListNext () {
-        if (!IntroduceTipsArr[IntroduceTipsCurrent]){
-            new IntroduceControl().cleanOld()
-            return
-        }
-        var targetObj = {}
-        if (IntroduceTipsArr[IntroduceTipsCurrent].steps.length - 1 > IntroduceTipsStep){
-            IntroduceTipsStep ++
-            targetObj = IntroduceTipsArr[IntroduceTipsCurrent].steps[IntroduceTipsStep]
-            if (targetObj.callBack && targetObj.callBack instanceof Function){
-                targetObj.callBack({list: IntroduceTipsCurrent, step: IntroduceTipsStep})
-            }
-            new IntroduceTips(targetObj, IntroduceTipsListNext)
-        } else {
-            new IntroduceControl().cleanOld()
-        }
-        if (IntroduceTipsArr[IntroduceTipsCurrent].steps.length === 0){
-            IntroduceTipsStep = 0
-            new IntroduceTips({}).changeFrame()
-        }
-        new IntroStepMenu().init()
-    }
-
-    /*****************
-     * 跳转控制
-     */
-    function IntroduceControl() {
-    }
-    IntroduceControl.prototype.nextPage = function () {
         IntroduceTipsCurrent ++
-        IntroduceTipsStep = -1
-        IntroduceTipsListNext()
-    }
-    IntroduceControl.prototype.prevPage = function () {
-        IntroduceTipsCurrent --
-        IntroduceTipsStep = -1
-        IntroduceTipsListNext()
-    }
-    IntroduceControl.prototype.rePage = function () {
-        IntroduceTipsStep = -1
-        IntroduceTipsListNext()
-    }
-    IntroduceControl.prototype.cleanOld = function () {
-        $el = $(rootObj.el)
-        $($el).find('.tips-container').remove()
-    }
-
-
-    /*******************
-     * 创建步骤菜单
-     */
-    function IntroStepMenu () {
-
-    }
-    IntroStepMenu.prototype.init = function () {
-        this.createDom()
-    }
-    // 创建DOM
-    IntroStepMenu.prototype.createDom = function () {
-        var $innerHtml = '',
-            $navRoot = $(rootObj.nav.el),
-            _list = rootObj.nav.list;
-        $navRoot.html('')
-        for(var i = 0; i< _list.length; i++){
-
-            var moreClass = ''
-
-            if (IntroduceTipsCurrent === i){
-                moreClass = 'intro-current'
-            }
-            if (IntroduceTipsCurrent > i){
-                moreClass = 'intro-used'
-            }
-
-            $innerHtml += '<div class="intro-nav-cell '+moreClass+'">'+_list[i]+'</div>'
-
-
-
-            if (i < _list.length - 1){
-                $innerHtml += '<div class="intro-nav-right-btn"></div>'
-            }
+        if (IntroduceTipsArr.length <= IntroduceTipsCurrent){
+            new IntroduceTips().cleanOld()
+        } else {
+            new IntroduceTips(IntroduceTipsArr[IntroduceTipsCurrent], IntroduceTipsListNext)
         }
-        $navRoot.append($innerHtml)
     }
-
-
 
     /*******************
      * 创建tips
      */
     function IntroduceTips (args, callBack) {
-        if (JSON.stringify(args) === '{}'){
-            return
-        }
         this.callBack = callBack
         this.opt = {
             el: '#introduce-container',
@@ -169,21 +58,13 @@
                 backgroundColor: 'blue'
             }
         }
-        this.changeFrame()
-        this.initOpts(args)
         this.init(args)
     }
-    IntroduceTips.prototype.changeFrame = function () {
-        if (IntroduceTipsStep === 0 && IntroduceTipsArr[IntroduceTipsCurrent] && IntroduceTipsArr[IntroduceTipsCurrent].srcUrl){
-            var $frame = $(rootObj.iframe.el)
-            $frame.attr('src', IntroduceTipsArr[IntroduceTipsCurrent].srcUrl)
-            $frame.attr('height', rootObj.iframe.height)
-            $frame.attr('width', rootObj.iframe.width)
-        }
-    }
-    IntroduceTips.prototype.init = function () {
-        new IntroduceControl().cleanOld()
+    IntroduceTips.prototype.init = function (args) {
+        this.cleanOld()
+        this.initOpts(args)
         this.showTipsInit()
+
     }
     // 初始化全局参数
     IntroduceTips.prototype.initOpts = function (args) {
@@ -194,6 +75,7 @@
         this.$rootHeight = this.$root.outerHeight()
         this.$dom = ''  // 要插入的dom节点
         this.arrowWidth = 10
+
     }
     /**********************************************
      * 清除之前的tips
@@ -222,7 +104,7 @@
             if (_this.callBack instanceof Function){
                 _this.callBack()
             } else {
-                new IntroduceControl().cleanOld()
+                _this.cleanOld()
             }
         });
         $TipsArrow.addClass(this.opt.direction)
@@ -255,8 +137,6 @@
                 break;
         }
 
-        /*
-
         if (left < 0){
             left  = 0
         } else if (left + this.opt.area[0] + this.arrowWidth * 2 > this.$rootWidth){
@@ -267,7 +147,6 @@
         } else if (top + this.opt.area[1] > this.$rootHeight){
             top = this.$rootHeight - this.opt.area[1]
         }
-        */
 
         this.$dom.css({
             'left': left,
@@ -355,6 +234,5 @@
     }
 
     window.IntroduceTipsList = IntroduceTipsList
-    window.IntroduceControl = IntroduceControl
 })(window)
 

@@ -14,7 +14,7 @@
   <link rel="stylesheet"href="./web/layer/layer-new.css">
   <!--公共css-->
   <link rel="stylesheet" href="./web/css/pt-main.css">
-  <link rel="stylesheet" href="./web/css/index.css">
+  <!--<link rel="stylesheet" href="./web/css/index.css">-->
 
   <script src="./libs/jquery/jquery-1.12.4.js"></script>
   <script src="./libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -44,6 +44,19 @@
   cursor: pointer;
   width: 150px;
   margin: 0 auto;
+}
+.con-box{
+  font-size:16px;
+}
+.inp {
+  width:166px;
+}
+input:disabled{
+  background:#fff;
+}
+.disable-btn {
+  background-color: #cacaca;
+  cursor: not-allowed;
 }
 </style>
 
@@ -78,17 +91,17 @@
                 <option value="7">进口类</option>
             </select>
         </div>
-        <div class="txt"><span>难易程度</span></div>
+        <div class="txt"><span>难易程度：</span></div>
         <div class="widget-sider ny">
-          <div class="" id="slider-range" style="margin-top: 10px;"></div>
+          <div class="" id="slider-range" style="margin-top: 6px;"></div>
           <p>
-            <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold; text-align: center" disabled>
+            <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold; text-align: center;width:100%;" disabled>
           </p>
         </div>
 
-        <div class="txt"><span>题目数量</span></div>
+        <div class="txt"><span>题目数量：</span></div>
         <div class="inp input-group">                
-            <input type="text" class="form-control nums">
+            <input type="text" class="form-control nums" value="10">
         </div>
         <div class="scsj-btn">生成练习</div>
       </div>
@@ -129,7 +142,7 @@
               </tbody>
             </table>
         </div>
-        <div class="times">00:00:00</div>
+        <div class="times" style="cursor:pointer">开始练习</div>
         <div class="empty">
           <div onclick="buildPaper()">
             <span><img src="./web/images/lianxi.jpg" alt=""></span>
@@ -143,7 +156,7 @@
             <p><span><input type="checkbox"></span>A、增加选项</p>
           </li> -->
         </ul>
-        <div class="sub-btn">提交练习</div>
+        <div id="commitSj" class="sub-btn disable-btn">提交练习</div>
       </div>
     </div>
   </div>

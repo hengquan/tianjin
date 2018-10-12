@@ -326,7 +326,7 @@ html{
   margin-top: 10px;
 }
 
-/*控制相关课件的说明行*/
+/*控制相关课程的说明行*/
 .name_detail img{
     display: inline-block;
     width: 20px;
