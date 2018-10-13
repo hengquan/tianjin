@@ -102,7 +102,7 @@
           <div class="form-group">
             <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span> &emsp; </span>排&emsp;&emsp;序</label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-              <input type="text" class="form-control" name="sort" id="sort" placeholder="默认值为1"/>
+              <input type="text" class="form-control" name="sort" id="sort" placeholder="默认值为100"/>
             </div>
           </div>
         </div>
@@ -192,8 +192,9 @@ $(function () {
   });
   */
 
- //检查输入项
+  //检查输入项
   $('form').on("success.form.bv", function(e) {
+    if ($.trim($("#sort").val())=='') $("#sort").val(100);
     var formData=$('#mainForm').serialize();
     formData=decodeURIComponent(formData, true);
     $.ajax({

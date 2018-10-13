@@ -279,12 +279,16 @@ function changeValid(e, n, pn, type) {
     var nn=(pn=='根')?n:pn+"-"+n;
     var ty="停用";
     if (type==2) ty="删除";
-    layer.confirm('要'+ty+'分类"'+nn+'"吗？', {btn : [ '确定', '取消' ]},
-      function(index) {
-        layer.close(index);
-        ajaxChangeValid(e, type);
-      }
-    );
+    if (type==2) {
+      layer.confirm('要'+ty+'分类"'+nn+'"吗？', {btn : [ '确定', '取消' ]},
+        function(index) {
+          layer.close(index);
+          ajaxChangeValid(e, type);
+        }
+      );
+    } else {
+      ajaxChangeValid(e, type);
+    }
   }
 }
 
@@ -296,15 +300,15 @@ function ajaxChangeValid(id ,valid) {
     dataType : "json",
     success : function(result) {
       if (result.returnCode == '00') {
-        alert((valid==1?"启用":(valid==2?"删除":"停用"))+"成功!");
+        layer.msg((valid==1?"启用":(valid==2?"删除":"停用"))+"成功!");
         refresh();
       } else {
-        alert(result.messageInfo);
+        layer.msg(result.messageInfo);
       }
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) { //失败回调函数
       var m="系统错误：\nstatu=" + XMLHttpRequest.status + "\nreadyState=" + XMLHttpRequest.readyState + "\ntext=" + textStatus + "\nerrThrown=" + errorThrown;
-      alert(m);
+      layer.msg(m);
     }
   });
 }
