@@ -333,19 +333,19 @@
     TableInit(queryParams).Init('${gateway}/kj/getPageData', [ {
       field : 'kjName',
       title : '名称',
-      sortable : true
+      sortable : false
     }, {
       field : 'kjCatNames',
       title : '分类',
-      sortable : true
+      sortable : false
     }, {
       field : 'sort',
       title : '排序',
-      sortable : true
+      sortable : false
     }, {
       field : 'isvalid',
       title : '状态',
-      sortable : true,
+      sortable : false,
       formatter : function(value) {
         if (value == 0) {
           return '<span class="pt-success">启用</span>';
@@ -356,11 +356,11 @@
     }, {
       field : 'createName',
       title : '创建人',
-      sortable : true
+      sortable : false
     }, {
       field : 'createdate',
       title : '创建时间',
-      sortable : true
+      sortable : false
     }, {
       field : 'id',
       title : '操作',

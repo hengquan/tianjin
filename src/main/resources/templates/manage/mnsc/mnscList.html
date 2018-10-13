@@ -107,7 +107,7 @@
 												for="exampleInputName2">名称</label>
 											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input type="text" class="form-control" id="mnscName"
-													placeholder="模拟实操名称">
+													placeholder="名称">
 											</div>
 										</div>
 									</div>
@@ -130,6 +130,21 @@
 														<option value="5">理货类</option>
 														<option value="6">出口类</option>
 														<option value="7">进口类</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+											<div class="form-group">
+												<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													for="valid" style="text-align: right;">状态</label>
+												<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+													<select id="isvalid" name="isvalid" multiple
+														autocomplete="off" class="selectpicker"
+														data-actions-box="true" data-live-search="true"
+														title="请选择状态">
+														<option value="1">启用</option>
+														<option value="0">停用</option>
 													</select>
 												</div>
 											</div>
@@ -223,11 +238,11 @@
       var isvalid = row.isvalid;
       var msg = '';
       if (isvalid == 0) {
-        msg = '<span class="pt-warn">停用</span>';
+        msg = '<span class="pt-success">启用</span>';
         edit = '';
         del = '';
       } else if (isvalid == 1) {
-        msg = '<span class="pt-success">启用</span>';
+        msg = '<span class="pt-warn">停用</span>';
         edit = '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
             + value + '")>修改</button>';
         del = '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
@@ -248,8 +263,9 @@
       var data = {
         "id" : e
       }
-      var mymessage = confirm("确定要删除该摸拟实操信息吗？");
-      if (mymessage == true) {
+      layer.confirm("确定要删除该摸拟实操信息吗？", {
+        btn : [ '确定', '取消' ]
+      }, function(index) {
         $.ajax({
           type : 'post',
           url : "${gateway}/mnsc/delete",
@@ -257,15 +273,15 @@
           dataType : 'json',
           cache : false,
           success : function(data) {
+            layer.msg("删除成功！");
             $("#tb_departments").bootstrapTable('refresh');
           },
           error : function() { //失败回调函数
-            alert("删除失败");
+            layer.msg("删除失败！");
           }
         });
-      } else if (mymessage == false) {
-        return false;
-      }
+      });
+
     }
 
     function addItem(e) {
@@ -308,10 +324,14 @@
     }
 
     function updateIsvalid(id, isvalid) {
-      if (isvalid == 0)
+      var msg = "";
+      if (isvalid == 0) {
         isvalid = 1;
-      else if (isvalid == 1)
+        msg = "启用成功！";
+      } else if (isvalid == 1) {
         isvalid = 0;
+        msg = "停用成功！";
+      }
       var data = {
         "id" : id,
         "isvalid" : isvalid
@@ -323,6 +343,7 @@
         dataType : 'json',
         cache : false,
         success : function(data) {
+          layer.msg(msg);
           refresh();
         },
         error : function() { //失败回调函数
@@ -338,23 +359,23 @@
     TableInit(queryParams).Init('${gateway}/mnsc/getPageData', [ {
       field : 'mnscName',
       title : '名称',
-      sortable : true
+      sortable : false
     }, {
       field : 'mnscCatNames',
       title : '分类',
-      sortable : true
+      sortable : false
     }, {
       field : 'sort',
       title : '排序',
-      sortable : true
+      sortable : false
     }, {
       field : 'isvalid',
       title : '状态',
-      sortable : true,
+      sortable : false,
       formatter : function(value) {
-        if (value == 0) {
+        if (value == 1) {
           return '<span class="pt-success">启用</span>';
-        } else if (value == 1) {
+        } else if (value == 0) {
           return '<span class="pt-warn">停用</span>';
         } else {
           return '删除';
@@ -363,11 +384,11 @@
     }, {
       field : 'createName',
       title : '创建人',
-      sortable : true
+      sortable : false
     }, {
       field : 'createdate',
       title : '创建时间',
-      sortable : true
+      sortable : false
     }, {
       field : 'id',
       title : '操作',
@@ -379,6 +400,7 @@
         mnscCatId : $("#mnscCatId").val(),
         createStart : $("#createStart").val(),
         createEnd : $("#createEnd").val(),
+        isvalid : $("#isvalid").val(),
         // 使用page size分页
         limit : params.limit, //页面大小
         offset : params.offset
