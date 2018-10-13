@@ -156,15 +156,61 @@ html {
         });
       }
     });  	 
-  
+    $('form').bootstrapValidator({
+      message: 'This value is not valid',
+      feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+      },
+      fields: {
+        tmSelectDesc: {
+          message: '选项',
+          validators: {
+            notEmpty: {
+              message: '选项不能为空'
+            }
+          }
+        },        
+        isAnswer: {
+          message: '答案',
+          validators: {
+            notEmpty: {
+              message: '必须选择是否是答案'
+            }
+          }
+        },        
+        tmSelectSign: {
+          message: '选项标号',
+          validators: {
+            notEmpty: {
+              message: '必须填写选项标号'
+            }
+          }
+        },        
+        sort: {
+          message: '选项排序',
+          validators: {
+            notEmpty: {
+              message: '必须填写选项排序'
+            }
+          }
+        },    
+      }
+    });  
   	function getUrlParam(name) {
 	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 	    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
 	    if (r != null) return unescape(r[2]); return null; //返回参数值
 	}
-     function addSelect() {  
+     function addSelect() { 
+       var validatorObj=$('#form').data("bootstrapValidator");
+       var aa=validatorObj.validate();
+       var flag=validatorObj.isValid();
+       $("#isvalid").val("1");
+       if (!flag) return;
        var flag = 0;
-      $.ajax({
+       $.ajax({
          type : 'post',
          url : "${gateway}/st/insertselect",
          data : $("#form").serialize(),
