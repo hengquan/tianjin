@@ -104,14 +104,17 @@ img {
 }
 .row-box .left{
   float: left;
+  padding-left: 10px;
 }
 .row-box .right {
   float: right;
+  padding-right: 10px;
 }
 .eay {
   display: inline-block;
   width: 15px;
   vertical-align: 1px;
+  margin-right: 10px;
 }
 .pic {
   height: 215px;
@@ -119,4 +122,19 @@ img {
 }
 .pic img {
   height: 100%;
+}
+.col-sm-6s {
+  width: 48%;
+}
+.col-sm-6s:first-child{
+  float: left;
+}
+.col-sm-6s:last-child {
+  float: right;
+}
+.col-xs-4 {
+  overflow: hidden;
+}
+.col-xs-4 img {
+  width: 103%;
 }

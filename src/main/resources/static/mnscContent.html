@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--在线学习-->
+  <!--培训内容的详细页-->
+  <meta charset="UTF-8">
+  <title>模拟实操入口</title>
+  <!-- <!-- 1 bootstrap的css -->
+  <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
+  <!--公共css-->
+  <link rel="stylesheet" href="./web/css/pt-main.css">
+  <!--页面-->
+  <link rel="stylesheet" href="./web/css/paymentList.css">
+  <link rel="stylesheet" href="./web/css/mnscContent.css">
+  <!--引入字体的css-->
+  <link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
+
+  <script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
+  <!--bootstrap的js-->
+  <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
+  <!--页面js-->
+  <script type="text/javascript" src="./web/js/main.js"></script>
+</head>
+<body>
+<div class="pt-topbar">
+  <div class="nav_header">
+    <!--左侧系统名称-->
+    <div class="pt-fl pt-system-info">
+      <div class="pt-logo pt-fl"><img src="./web/images/LOGO@2x.png" alt=""></div>
+      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>在线学习</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="courseware" style="display:none;">
+  <!--课件中心-->
+  <div class="_gap" style="margin-top:0px;">
+     <span>模拟实操
+     <div class="border"></div>
+     </span>
+  </div>
+  <div class="detail_top">
+    <div class="_course_img">
+      <img src="./web/images/kj_default.jpg" alt="">
+    </div>
+    <div class="course_right">
+      <span class="course_name"></span>
+      <div class="course_mid">
+        <span><img src="./web/images/rs.jpg" alt="" class="course_right_img"></span>
+        <span class="course_count">2.5万</span>
+        <span class="course_time"></span>
+      </div>
+      <div class="course_description">
+      </div>
+      <div class="study_btn">
+        <button class="start_study btn w120" onclick="toLearning()">开始学习</button>
+      </div>
+    </div>
+  </div>
+  <!--模拟实操-->
+  <div class="_gap"><span>操作详情<div class="border"></div></span></div>
+  <div class="_detail_bottom">
+    <img src = "./web/images/aaa.png">
+    </div>
+    <!--相关课件-->
+  <div class="_gap"><span>相关课件<div class="border"></div></span></div>
+  <div class="_detail_bottom">
+    <div class="row">
+    </div>
+  </div>
+</div>
+
+<!--公共底部-->
+<div class="pt-footer">
+  <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+</div>
+<script>
+
+function getUrlParam(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+  var r = window.location.search.substr(1).match(reg); //匹配目标参数
+  if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+
+var _data={"kjId":getUrlParam("id")};
+
+$(document).ready(function(){
+  initPage();
+});
+
+//主课件填充
+function initPage() {
+  $.ajax({
+    type: 'post',
+    url: "./train/getKjInfo",
+    data: _data,
+    dataType:'json',
+    success: function (data) { //成功后的回调函数
+      var img_url="./web/images/kj_default.jpg";
+      var returnCode=data.returnCode;
+      if (returnCode=='00') {
+        if (data.data.imgUrl) img_url=data.data.imgUrl;
+        $("._course_img img").attr("src", img_url);
+        var tmpVal="";
+        tmpVal=(data.data.name?data.data.name:"");
+        $(".course_right .course_name").html(tmpVal);
+        tmpVal=(data.data.createDate?data.data.createDate:"");
+        if (tmpVal) tmpVal=tmpVal.substring(0,10);
+        $(".course_right .course_time").html("发布时间:"+tmpVal);
+        tmpVal=(data.data.remarks?data.data.remarks:"");
+        $(".course_right .course_description").html(tmpVal);
+      }
+      if (data.data.imgUrl) img_url=data.data.imgUrl;
+      $("._course_img img").attr("src", img_url);
+      //获得同类课程
+      initTlkc();
+      //获得临时题目
+     // initTempSj();
+      $(".courseware").show();
+    },
+    error: function (e) {
+      var img_url="./web/images/kj_default.jpg";
+      $(".course_img img").attr("src", img_url);
+      //提醒
+      $(".courseware").show();
+    }
+  });
+}
+
+//相关课件填充
+function initTlkc() {
+  $("._detail_bottom .row").html("");
+  var _data={"kjId":getUrlParam("id")};
+  $.ajax({
+    type: 'post',
+    url: "./train/getKjRefKjList",
+    data: _data,
+    dataType:'json',
+    success: function (data) {
+      var returnCode=data.returnCode;
+      if (returnCode=='00') {
+        var kjList=data.data;
+        var tlkcHtml="";
+        for (var i=0; i<kjList.length; i++) {
+          var oneKj=kjList[i];
+          tlkcHtml+=getOneTlckHtml(oneKj);
+        }
+      }
+      $("._detail_bottom .row").html(tlkcHtml);
+    },
+    error: function (e) {
+    }
+  });
+}
+function getOneTlckHtml(oneKj) {
+  var _img_url=(oneKj.imgUrl?oneKj.imgUrl:"./web/images/kj_default.jpg");
+  var _html=
+  '<div class="col-md-3 tlkc" style="cursor:pointer" onclick="toCourse(\''+oneKj.id+'\')">'+
+    '<img src="'+_img_url+'" alt="">'+
+    '<div class="_name_title"><div style="padding-top:15px;">'+
+      '<p>'+oneKj.name+'</p>'+
+    '</div></div>'+
+  '</div>';
+  return _html;
+}
+
+function toCourse(id) {
+  window.open("./courseContent.html?id="+id, "_blank");
+}
+//临时试题
+function initTempSj() {
+  $(".tm_area").html("");
+  var _data={"refType":"kj", "refId":getUrlParam("id"), "tmCount":"1"};
+  $.ajax({
+    type: 'post',
+    url: "./train/getTempSj",
+    data: _data,
+    dataType:'json',
+    success: function (data) { //成功后的回调函数
+      var returnCode=data.returnCode;
+      if (returnCode=='00') {
+        var tmList=data.data;
+        var tmHtml="";
+        for (var i=0; i<tmList.length; i++) {
+          var oneTm=tmList[i];
+          tmHtml+=getOneTmHtml(oneTm);
+        }
+        $(".tm_area").html(tmHtml);
+      } else {
+        $(".tm_area").css("height", "60px");
+      }
+    },
+    error: function (e) {
+    }
+  });
+}
+function getOneTmHtml(oneTm) {
+  var _html=
+  '<div class="tmrow"><div class="tm">'+
+    '<p>'+oneTm.tmIndex+'、'+oneTm.tmDesc+'</p>'+
+    '<div class="answer">';
+  if (oneTm.tmItems) {
+    for (var i=0; i<oneTm.tmItems.length; i++) {
+      if (oneTm.tmTyp=='多选题') {
+        _html+='<span class="oneItem"><input name="tm_'+oneTm.tmId+'" type="checkbox">';
+      } else {
+        _html+='<span class="oneItem"><input name="tm_'+oneTm.tmId+'" type="radio">';
+      }
+      _html+='<span>'+oneTm.tmItems[i].itemSign+'、'+oneTm.tmItems[i].itemDesc+'</span></span>';
+    }
+  }
+
+  _html+='</div></div></div>';
+  return _html;
+}
+
+//相关考题填充
+
+//进入学习的详细页面
+function toLearning() {
+  window.location.href="./onlineLearning.html?kjId="+getUrlParam("id");
+}
+function  toStartPractice() {
+  window.open("entryPractice.html")
+}
+/**
+ <span style="margin-left: -28px">
+ <img src="./web/images/es/rs.jpg" al" alt="" class="course_right_img">
+ </span>
+ <span class="course1" >2.5万</span>
+ <span class="course_time" style="margin-left: 12px">2018年8月14发布</span>
+ */
+ </script>
+
+<!-- 开始埋点 -->
+<script type="text/javascript">
+var _gatherData={};
+_gatherData.visitModuleId="课件展示";
+_gatherData.objType="ts_kj";
+_gatherData.objId=getUrlParam("id");
+(function () {
+  var ma = document.createElement('script');
+  ma.type = 'text/javascript';
+  ma.async = true;
+  ma.src = "./tjsrc/js/ma.js";
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ma, s);
+}
+)();
+</script>
+</body>
+</html>

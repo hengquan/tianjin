@@ -714,7 +714,7 @@ public class ApiController {
 
                 ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
                 if (companyInfo!=null&&companyInfo.getData()!=null&&!"无企业信息".equals(companyInfo.getMsg())) {
-                    lv.setGroupId(companyInfo.getData().getCompanyId());
+                    lv.setGroupId(companyInfo.getData().getId());
                     lv.setGroupName(companyInfo.getData().getCompanyNameZh());
                 }
                 if (!StringUtils.isBlank(lv.getObjType())) {
