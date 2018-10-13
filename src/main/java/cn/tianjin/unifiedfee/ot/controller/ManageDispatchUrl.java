@@ -16,11 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.taiji.format.result.ObjectResponseResult;
 import cn.taiji.oauthbean.dto.UserInfo;
-import cn.taiji.system.domain.CompanyBasicInfo;
 import cn.taiji.system.domain.SysResource;
-import cn.taiji.web.company.remote.SystemCompanyRemote;
 import cn.taiji.web.menu.remote.SecurityMenuRemote;
-import cn.taiji.web.menu.service.SecurityMenuService;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
@@ -50,8 +47,6 @@ public class ManageDispatchUrl {
     public SecurityMenuRemote securityMenuRemote;
     @Autowired
     public LogVisitService catService;
-    @Autowired
-    public SystemCompanyRemote companyRemote;
     @Autowired // 注入Service
     public CommArchiveMapper commArchiveMapper;
 
