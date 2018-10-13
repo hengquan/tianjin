@@ -113,16 +113,7 @@
 									</div>
 									<!-- 隐藏部分包裹 -->
 									<span class="hiddenorshow pt-search-filter"> <!-- 示例 input-->
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
-													for="exampleInputName2">地址</label>
-												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-													<input type="text" class="form-control" id="mnscUrl"
-														placeholder="模拟实操地址">
-												</div>
-											</div>
-										</div> <!-- 示例select -->
+										<!-- 示例select -->
 										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 											<div class="form-group">
 												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
@@ -140,13 +131,6 @@
 														<option value="6">出口类</option>
 														<option value="7">进口类</option>
 													</select>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"></label>
-												<div class="date col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												</div>
 											</div>
 										</div> <!-- 示例时间选择 -->
@@ -392,7 +376,6 @@
     function queryParams(params) {
       return {
         mnscName : $("#mnscName").val(),
-        mnscUrl : $("#mnscUrl").val(),
         mnscCatId : $("#mnscCatId").val(),
         createStart : $("#createStart").val(),
         createEnd : $("#createEnd").val(),

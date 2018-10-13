@@ -75,12 +75,11 @@ html {
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-2 column">
             	  <form class="form-horizontal pt-form-full" role="form" id="form" name="form">                
-                    <input type="hidden" name="id" id="objId">      
-                     <input type="hidden" name="isvalid" id="isvalid">                   
+                    <input type="hidden" name="id" id="objId">                                   
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1"  for="title"><span> ※ </span>题目</label>
-                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
                                 <textarea id="tmHtml" class="form-control" name="tmHtml" style="min-height: 108px"></textarea>
                             </div>
                         </div>
@@ -89,7 +88,7 @@ html {
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                        	   <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="title"><span>※ </span>分类</label>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">	
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">	
                             	<div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">		             
 					                <input type="text" class="form-control" name="catnames" id="catnames" style="border-right:0px;" readonly="readonly"/>				               
 					                <div class="input-group-btn">
@@ -106,7 +105,7 @@ html {
 			               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="diffScore">
                                 <span> ※ </span>难度系数
                             </label>                          
-                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                 <select id="diffScore" name="diffScore" class="selectpicker"
                                     data-live-search="true" title="请选择">
                                     <option value="0">0</option>
@@ -126,7 +125,7 @@ html {
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1"  for="title"><span> ※ </span>类型</label>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                 <select id="tmType" name="tmType" class="selectpicker"
                                     onchange="classify(this)" data-live-search="true" title="请选择">
                                     <option value="单选题">单选题</option>
@@ -134,9 +133,18 @@ html {
                                     <option value="判断题">判断题</option>
                                 </select>
                             </div>
-                        </div>
-                    </div>                    
-                    
+                       
+			            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span> ※ </span>状&emsp;&emsp;态</label>
+			            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+			              <label class="radio-inline">
+			                <input type="radio" name="isvalid" value="1" checked>启用
+			              </label>
+				          <label class="radio-inline">
+				            <input type="radio" name="isvalid" value="0">停用
+				          </label>
+				        </div>
+			          </div>
+			        </div>
                     <input type="hidden" class="form-control" name="kjList"   id="kjList" />
                     <input type="hidden" id="kjnameList" class="form-control" name="kjnameList"/>
                     <input type="hidden" class="form-control" name="mnscList" id="mnscList" />
@@ -351,7 +359,23 @@ html {
               message: '题目难度系数从0到9'
             }
           }
-        }
+        },        
+        catid: {
+          message: '题目分类',
+          validators: {
+            notEmpty: {
+              message: '必须选择题目分类'
+            }
+          }
+        },        
+        tmType: {
+          message: '题目类型',
+          validators: {
+            notEmpty: {
+              message: '必须选择题目类型'
+            }
+          }
+        },    
       }
     });
     function getDetailData(tmId) {
@@ -433,6 +457,11 @@ html {
     }   
     
     function editTm() {
+      var validatorObj=$('#form').data("bootstrapValidator");
+      var aa=validatorObj.validate();
+      var flag=validatorObj.isValid();
+      $("#isvalid").val("1");
+      if (!flag) return;
       if ($("#isvalid").val()=="3")
         $("#isvalid").val("1");
       $.ajax({
@@ -492,7 +521,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '${gateway}/st/selectEdit?isvalid='+isvalid+'&id='+$("#objId").val(), 'no' ]
+        content : [ '${gateway}/st/selectEdit?flag=0&isvalid='+isvalid+'&id='+$("#objId").val(), 'no' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -530,7 +559,7 @@ html {
       shade : 0.6,
       maxmin : false,//开启最大化最小化按钮
       area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-      content : ['${gateway}/st/selectEdit?id='+e,'no']//如果不想出现滚动条['content.html', 'no']  
+      content : ['${gateway}/st/selectEdit?flag=1&id='+e,'no']//如果不想出现滚动条['content.html', 'no']  
     });
   }
   function deleteItem(e) {
