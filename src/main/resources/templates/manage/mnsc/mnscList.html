@@ -239,14 +239,14 @@
       var msg = '';
       if (isvalid == 0) {
         msg = '<span class="pt-success">启用</span>';
-        edit = '';
-        del = '';
-      } else if (isvalid == 1) {
-        msg = '<span class="pt-warn">停用</span>';
         edit = '<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("'
             + value + '")>修改</button>';
         del = '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
             + value + '")>删除</button>';
+      } else if (isvalid == 1) {
+        msg = '<span class="pt-warn">停用</span>';
+        edit = '';
+        del = '';
       }
       return [
           '<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick=lookItem("'
@@ -281,7 +281,6 @@
           }
         });
       });
-
     }
 
     function addItem(e) {

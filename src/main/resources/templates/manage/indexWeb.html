@@ -75,6 +75,27 @@ iframe{
           </ul>
         </li>
         ${menuHtml}
+        
+        <!--为调试用-->
+        <li class="pt-menu-list">
+          <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+          <h3 class="pt-menu-title"><a href="#">管理端</a></h3>
+          <ul class="pt-second-menu">
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="fenlei()">分类</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="mnsc()">模拟实操</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="kj()">课件</a></h3>
+            </li>
+          </ul>
+        </li>
+        
         <!--为调试用-->
         <li class="pt-menu-list">
           <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
@@ -158,6 +179,21 @@ function toWebMNSC(){
 //在线学习
 function toZXXX() {
   $("#mainframe").attr("src","${gateway}/courseware");
+}
+
+//=======================================================
+
+//分类
+function fenlei(){
+  $("#mainframe").attr("src","${gateway}/cate/list");
+}
+//模拟实操
+function mnsc(){
+  $("#mainframe").attr("src","${gateway}/mnsc/list");
+}
+//在线学习
+function kj() {
+  $("#mainframe").attr("src","${gateway}/kj/list");
 }
 
 //===================================================

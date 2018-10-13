@@ -194,6 +194,12 @@
 		<if test="kjIds != null and kjIds != ''">
       and id not in (${kjIds})
     </if>
+		<if test="disable != null and disable != ''">
+      and isvalid = 1
+    </if>
+		<if test="isvalid != null and isvalid != ''">
+			and instr(#{isvalid},isvalid)>0
+		</if>
 		order by sort,create_date desc
 	</select>
 
