@@ -3,13 +3,13 @@
 <meta charset="UTF-8">
 <title>在线学习</title>
 <link href="./libs/bootstrap-3.3.7-dist/css/bootstrap.css"
-	rel="stylesheet">
+  rel="stylesheet">
 <!-- 2 table表格css -->
 <link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
-	rel="stylesheet">
+  rel="stylesheet">
 <!-- 3 treeview树css -->
 <link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
-	rel="stylesheet">
+  rel="stylesheet">
 <!--公共css-->
 <link rel="stylesheet" href="./web/css/pt-main.css">
 <link rel="stylesheet" href="./web/css/index1.css">
@@ -46,95 +46,91 @@ body {
 </head>
 
 <body>
-	<!--主菜单内容-->
-	<div class="pt-page">
-		<div class="pt-root-container">
-			<!--主视口 -->
-			<div class="pt-view pt-open" style="padding-left: 0px;">
-				<!--带横线标题-->
-				<div class="pt-bread">
-					<h3>模拟实操</h3>
-				</div>
-				<!--模拟实操内容-->
-				<div class="tab-content" id="htmlContent"></div>
-			</div>
-		</div>
-	</div>
-	<script>
+  <!--主菜单内容-->
+  <div class="pt-page">
+    <div class="pt-root-container">
+      <!--主视口 -->
+      <div class="pt-view pt-open" style="padding-left: 0px;">
+        <!--带横线标题-->
+        <div class="pt-bread">
+          <h3>模拟实操</h3>
+        </div>
+        <!--模拟实操内容-->
+        <div class="tab-content" id="htmlContent"></div>
+      </div>
+    </div>
+  </div>
+  <script>
     $(document).ready(function() {
       $("a[cateId='']").click();
     });
-    var top = '<div class="tab-pane active tab_bottom">'
-        + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">';
+    var top = '<div class="tab-pane active tab_bottom">' + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">';
     var btm = '</div>' + '</div>';
     //初始化
     $(function() {
       var data = {};
       $.ajax({
-            type : 'post',
-            url : "./train/getMnscList",
-            data : data,
-            dataType : 'json',
-            cache : false,
-            success : function(data) {
-              console.log(data);
-              //状态
-              var returnCode = data.returnCode;
-              if (returnCode == '00') {
-                var html = '';
-                var contentHtml = '';
-                var dataList = data.data;
-                for (var i = 0; i < dataList.length; i++) {
-                  //查主图片是否有值无值显示默认图
-                  var mainUrl = dataList[i].mainUrl;
-                  console.log(mainUrl);
-                  if (mainUrl == '' || mainUrl == null) {
-                    mainUrl = "./web/images/mnsc_default.jpg";
-                  }
-                  html += '<div class="col-md-3">'
-                      + '<img src="'+ mainUrl +'" alt="">'
-                      + '<div class="model_bg" onclick=toSimulation("'
-                      + dataList[i].mnscUrl + '?objId=' + dataList[i].id
-                      + '")></div>' + '<div class="explain">' + '<p>'
-                      + dataList[i].mnscName + '</p>' + '<div class="system">'
-                      + dataList[i].remarks + '</div>'
-                      + '<div class="enterBtn" onclick=toSimulation("'
-                      + dataList[i].mnscUrl + '?objId=' + dataList[i].id
-                      + '")>进入实操</div>' + '</div>' + '</div>';
-
-                  if ((i + 1) % 4 == 0) {
-                    contentHtml = contentHtml
-                        + '<div class="row">'
-                        + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">'
-                        + html + '</div>' + '</div>';
-                    html = '';
-                  } else {
-                    if (i >= dataList.length - 1) {
-                      contentHtml = contentHtml
-                          + '<div class="row">'
-                          + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">'
-                          + html + '</div>' + '</div>';
-                      html = '';
-                    }
-                  }
-                }
-                $("#htmlContent").html(contentHtml);
+        type : 'post',
+        url : "./train/getMnscList",
+        data : data,
+        dataType : 'json',
+        cache : false,
+        success : function(data) {
+          //状态
+          var returnCode = data.returnCode;
+          if (returnCode == '00') {
+            var html = '';
+            var contentHtml = '';
+            var dataList = data.data;
+            for (var i = 0; i < dataList.length; i++) {
+              //查主图片是否有值无值显示默认图
+              var mainUrl = dataList[i].mainUrl;
+              console.log(mainUrl);
+              if (mainUrl == '' || mainUrl == null) mainUrl = "./web/images/mnsc_default.jpg";
+              html += '<div class="col-md-3">'
+                  + '<img src="'+ mainUrl +'" alt="">'
+                  + '<div class="model_bg" onclick=toSimulation("'
+                  + dataList[i].mnscUrl + '?objId=' + dataList[i].id
+                  + '")></div>' + '<div class="explain">' + '<p>'
+                  + dataList[i].mnscName + '</p>' + '<div class="system">'
+                  + dataList[i].remarks + '</div>'
+                  + '<div class="enterBtn" onclick=toSimulation("'
+                  + dataList[i].mnscUrl + '?objId=' + dataList[i].id
+                  + '")>进入实操</div>' + '</div>' + '</div>';
+              if ((i + 1) % 4 == 0) {
+                contentHtml = contentHtml
+                    + '<div class="row">'
+                    + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">'
+                    + html + '</div>' + '</div>';
+                html = '';
               } else {
-                alert(data.messageInfo);
+                if (i >= dataList.length - 1) {
+                  contentHtml = contentHtml
+                      + '<div class="row">'
+                      + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 column">'
+                      + html + '</div>' + '</div>';
+                  html = '';
+                }
               }
-            },
-            error : function() { //失败回调函数
-              alert("查询失败");
             }
-          });
+            $("#htmlContent").html(contentHtml);
+          } else {
+            alert(data.messageInfo);
+          }
+        },
+        error : function() { //失败回调函数
+          alert("查询失败");
+        }
+      });
     })
 
     //  收费清单录入模拟实操
     function toSimulation(url) {
+      url="./mnscContent.html"+url.substr(url.indexOf("?"));
       window.open(url);
     }
   </script>
-	<script type="text/javascript">
+  <script type="text/javascript">
     var _gatherData = {};
     _gatherData.visitModuleId = "模拟实操列表";
     _gatherData.objType = "ts_mnsc";

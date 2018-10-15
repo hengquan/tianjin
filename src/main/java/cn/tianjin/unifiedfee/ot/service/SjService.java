@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spiritdata.framework.core.model.tree.TreeNode;
-import com.spiritdata.framework.util.DateUtils;
 import com.spiritdata.framework.util.SequenceUUID;
 
 import cn.taiji.oauthbean.dto.UserInfo;
@@ -153,7 +152,7 @@ public class SjService {
             for (int i=0; i<sp.length; i++) {
                 cateSql+=" or a.cat_id='"+sp[i].trim()+"'";
                 TreeNode<CategoryNode> cn=categoryService.getCategoryNodeById(sp[i].trim());
-                cateNames=","+cn.getNodeName();
+                cateNames+=","+cn.getNodeName();
             }
             cateSql=cateSql.substring(4);
             cateNames=cateNames.substring(1);
@@ -201,7 +200,7 @@ public class SjService {
             sj.setUserName(ui.getUsername());
             sj.setRefTabname(param.get("refTabName")==null?null:""+param.get("refTabName"));
             sj.setRefId(refId);
-            sj.setSjName("练习题_类型【"+cateNames+"】_难易度【"+diff1+"-"+diff2+"】");
+            sj.setSjName("【"+cateNames+"】练习题_难易度【"+diff1+"-"+diff2+"】");
             sj.setTimeUse(0);
             sj.setScore(score);
             sj.setTmCount(ml.size());

@@ -5,17 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="./web/css/pt-main.css">
   <link rel="stylesheet" href="./libs/bootstrap-3.3.7-dist/css/bootstrap.css">
   <link rel="stylesheet" href="./tjsrc/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
   <link rel="stylesheet" href="./tjsrc/css/rest.css">
-  <!-- <link rel="stylesheet" href="../../tjsrc/css/sider.css"> -->
   <link rel="stylesheet" href="./tjsrc/css/mnsc2.css">
 
   <script src="./libs/jquery/jquery-1.12.4.js"></script>
   <script src="./libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="overflow-y:auto;">
+<div class="pt-topbar">
+  <div class="nav_header">
+    <!--左侧系统名称-->
+    <div class="pt-fl pt-system-info">
+      <div class="pt-logo pt-fl"><img src="./web/images/LOGO@2x.png" alt=""></div>
+      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>线上培训子系统</strong></div>
+    </div>
+
+    <!--右侧关闭窗口-->
+    <div class="pt-fr pt-user-info">
+      <div><a style="color: #ffffff" onclick="closeWin()">关闭&emsp;</a></div>
+    </div>
+  </div>
+</div>
+
   <div class="box container-fluid">
     <div class="tlkc bgs">
       <span>在线练习</span>
@@ -74,8 +89,30 @@
       </ul>
     </div>
   </div>
+
+<!--公共底部-->
+<div class="pt-footer">
+<!-- 
+  <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+-->
+</div>
 </body>
 <script>
+function closeWin() {
+  var browserName=navigator.appName;
+  if (browserName=="Microsoft Internet Explorer") { 
+    window.parent.opener = "whocares"; 
+    window.parent.close(); 
+  } else {
+    window.open('', '_self', '');
+    window.close();
+  }
+}
+
+$(document).ready(function(){
+  initPage();
+});
+
   $.ajax({
     type: "get",
     url: "./demoJson/json_czbj.json",

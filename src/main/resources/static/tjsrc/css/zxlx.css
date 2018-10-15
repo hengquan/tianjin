@@ -6,7 +6,7 @@ body {
   padding: 0;
 }
 .box {
-  width: 90%;
+  width: 1200px;
   margin: 0 auto;
 }
 .tlkc {
@@ -29,9 +29,7 @@ body {
 }
 .con-box {
   background: #fff;
-}
-.con-box {
-  margin-top: 20px;
+  margin-top: 3px;
 }
 .inp-box {
   display: -webkit-box;
