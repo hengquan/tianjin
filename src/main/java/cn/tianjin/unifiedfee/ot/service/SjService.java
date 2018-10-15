@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spiritdata.framework.core.model.tree.TreeNode;
 import com.spiritdata.framework.util.DateUtils;
 import com.spiritdata.framework.util.SequenceUUID;
 
@@ -26,6 +27,7 @@ import cn.tianjin.unifiedfee.ot.mapper.SJTmMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmSelectMapper;
 import cn.tianjin.unifiedfee.ot.mapper.TmUserAnswerMapper;
+import cn.tianjin.unifiedfee.ot.model.CategoryNode;
 
 /**
  * 试卷服务
@@ -42,6 +44,8 @@ public class SjService {
     private TmSelectMapper selectDao;
     @Autowired
     private TmUserAnswerMapper tmAnswerDao;
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * 随机后的所给定的对象所对应题目的Id
@@ -143,12 +147,16 @@ public class SjService {
 //        param.put("refId", refId);
 
         String cateSql="";
+        String cateNames="";
         if (!StringUtils.isBlank(cateIds)) {
             String[] sp=cateIds.split(",");
             for (int i=0; i<sp.length; i++) {
                 cateSql+=" or a.cat_id='"+sp[i].trim()+"'";
+                TreeNode<CategoryNode> cn=categoryService.getCategoryNodeById(sp[i].trim());
+                cateNames=","+cn.getNodeName();
             }
             cateSql=cateSql.substring(4);
+            cateNames=cateNames.substring(1);
         }
         param.put("cateSql", cateSql);
         param.put("diff1", diff1);
@@ -193,7 +201,7 @@ public class SjService {
             sj.setUserName(ui.getUsername());
             sj.setRefTabname(param.get("refTabName")==null?null:""+param.get("refTabName"));
             sj.setRefId(refId);
-            sj.setSjName("练习题-"+ui.getUsername()+"-"+DateUtils.convert2TimeChineseStr(now));
+            sj.setSjName("练习题_类型【"+cateNames+"】_难易度【"+diff1+"-"+diff2+"】");
             sj.setTimeUse(0);
             sj.setScore(score);
             sj.setTmCount(ml.size());

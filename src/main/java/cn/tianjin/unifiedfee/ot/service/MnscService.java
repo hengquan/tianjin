@@ -192,7 +192,49 @@ public class MnscService {
     }
 
     public Mnsc get(String mnscId) {
-        return dao.get(mnscId);
+//        return dao.get(mnscId);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        // 获取主表信息
+        Mnsc mInfo = dao.get(mnscId);
+        if (mInfo != null) {
+            // 获取课件-课件数据
+            List<MnscRefSource> mnscRefSources = mnscRefDao.getDataListByMnscId(mnscId);
+            String ids = "";
+            if (mnscRefSources != null && mnscRefSources.size() > 0) {
+                for (MnscRefSource mnscRefSource : mnscRefSources) {
+                    String refId = mnscRefSource.getRefId();
+                    if (StringUtils.isNotEmpty(refId)) {
+                        ids += "," + refId;
+                    }
+                }
+            }
+            if (StringUtils.isNotEmpty(ids)) {
+                ids = ids.substring(1);
+                Kj kjParam=new Kj();
+                kjParam.setIds(ids);
+                mInfo.setKjids(ids);
+                List<Kj> kjs = kjDao.getDataListByIds(kjParam);
+                if (kjs != null && kjs.size() > 0) {
+                    for (Kj oneKj : kjs) {
+                        Date createDate = oneKj.getCreateDate();
+                        String createdate = format.format(createDate);
+                        if (StringUtils.isNotEmpty(createdate))
+                            oneKj.setCreatedate(createdate);
+                    }
+                    mInfo.setKjs(kjs);
+                }
+            }
+        }
+        //处理相关附件
+        List<CommArchive> commArchives = commArchiveMapper.selectByObjId(mnscId);
+        if(commArchives!=null && commArchives.size()>0){
+            mInfo.setCommArchives(commArchives);
+        }
+        //处理日期
+        Date createDate = mInfo.getCreateDate();
+        String createdate = format.format(createDate);
+        if (StringUtils.isNotEmpty(createdate)) mInfo.setCreatedate(createdate);
+        return mInfo;
     }
 
     public List<Mnsc> getDataListByIds(Mnsc mnsc) {

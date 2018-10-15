@@ -38,9 +38,10 @@ body {
   display: -ms-box;
   display: -moz-box;
   display: -o-box;
-  padding: 20px 20px;
+  padding: 20px 30px 15px 30px;
   line-height: 25px;
   border-bottom: 1px solid #f2f2f2;
+  padding-top: 30px;
 }
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
   width: auto;
@@ -56,13 +57,14 @@ body {
 }
 .scsj-btn {
   width: 90px;
-  height: 25px;
-  line-height: 25px;
-  background: #148cff;
+  height: 35px;
+  line-height: 35px;
+  background: #2e66bd;
   color: #fff;
   text-align: center;
-  border-radius: 25px;
+  border-radius: 3px;
   cursor: pointer;
+  font-size: 14px;
 }
 .widget-sider input {
   height: 25px;
@@ -73,6 +75,7 @@ body {
 }
 .nums {
   height: 25px;
+  text-align:right;
 }
 .empty {
   width: 20%;
@@ -83,16 +86,17 @@ body {
   text-align: center;
 }
 .topic-list {
-  padding-left: 30px;
+  padding-left: 40px;
   line-height: 28px;
 }
 .lxt {
   display: none;
-  font-size: 18px;
+  font-size: 20px;
   color: #148bff;
-  padding-left: 30px;
+  padding-left: 40px;
   padding-top: 50px;
   padding-bottom: 30px;
+  font-weight:bold
 }
 .topic-list p {
   padding-left: 15px;
@@ -109,7 +113,7 @@ body {
 }
 .num-box {
   position: absolute;
-  right: 20px;
+  right: 30px;
   top: 20px;
   display: -webkit-box;
   display: -ms-box;
@@ -133,33 +137,39 @@ table td {
   border-radius: 40px;
   color: #0270da;
   font-size: 20px;
-  position: fixed;
-  top: 180px;
-  left: 50%;
-  margin-left: -80px;
+  position: relative;
+  margin:0 auto;
   display: none;
+  margin-top: 20px;
 }
 .sub-btn {
   width: 160px;
   height: 40px;
   text-align: center;
   line-height: 40px;
-  border-radius: 40px;
+  border-radius: 4px;
   color: #fff;
-  background: #0270da;
+  background: #2e66bd;
   font-size: 18px;
-  position: fixed;
+  position: relative;
   bottom: 50px;
-  left: 50%;
-  margin-left: -80px;
+  margin:0 auto;
   display: none;
   cursor: pointer;
+  margin-top:80px;
 }
-table.sample th {	background: #3e83c9;	color: #fff;	font-weight: bold;	padding: 2px 11px;	text-align: left;	border-right: 1px solid #fff;	line-height: 1.2;}
-table.sample td {	
-	border-bottom: 1px solid #95bce2;
+table.sample th {   background: #3e83c9;    color: #fff;    font-weight: bold;  padding: 2px 11px;  text-align: left;   border-right: 1px solid #fff;   line-height: 1.2;}
+table.sample td {   
+    border-bottom: 1px solid #95bce2;
 }
 .ndda {
   margin-left: 10px;
   color: red;
+}
+.title{
+  font-size:14p;
+  margin-bottom:8px;
+}
+.zts {
+  border-right:1px solid #3e83c9;
 }

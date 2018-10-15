@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>天津市港口统一收费服务平台 -线上培训子系统</title>
+  <title>天津市港口统一收费服务平台-线上培训子系统</title>
 
   <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" >
   <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet" >
   <link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css" rel="stylesheet">
-  <link href="${gateway}/src/css/pt-main.css" rel="stylesheet" >
-  <link rel="stylesheet" href="css/table.css">
+  <link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
   <script src="${gateway}/libs/jquery/jquery-1.12.4.js"></script>
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -72,10 +71,12 @@ iframe{
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXXX()">在线学习</a></h3>
             </li>
+            <!--
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXLX()">在线练习</a></h3>
             </li>
+            -->
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjXYXX()">学员学习</a></h3>
@@ -93,7 +94,7 @@ iframe{
           <ul class="pt-second-menu">
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="mainPage()">首页</a></h3>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="mainpage()">首页</a></h3>
             </li>
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
@@ -187,11 +188,14 @@ function toZXXX() {
 }
 //在线练习
 function toZXLX() {
-  $("#mainframe").attr("src","${gateway}/onlineExercise");
+  $("#mainframe").attr("src","./entryPractice.html");
 }
 
 //=======================================================
-
+//管理端首页
+function mainpage() {
+  $("#mainframe").attr("src","${gateway}/mainpage");
+}
 //分类
 function fenlei(){
   $("#mainframe").attr("src","${gateway}/cate/list");
@@ -200,9 +204,13 @@ function fenlei(){
 function mnsc(){
   $("#mainframe").attr("src","${gateway}/mnsc/list");
 }
-//在线学习
+//在线学习-课件
 function kj() {
   $("#mainframe").attr("src","${gateway}/kj/list");
+}
+//题目
+function tm() {
+  $("#mainframe").attr("src","${gateway}/st/list");
 }
 
 //===================================================

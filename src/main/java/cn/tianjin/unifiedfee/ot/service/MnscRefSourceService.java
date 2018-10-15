@@ -35,11 +35,6 @@ public class MnscRefSourceService {
         return dao.delete(mnscRefSource) > 0 ? true : false;
     }
 
-    // 获取单条信息
-    public KjRefSource get(MnscRefSource mnscRefSource) throws Exception {
-        return dao.get(mnscRefSource.getId());
-    }
-
     // 获取多条信息
     public List<MnscRefSource> getDataListByMnscId(MnscRefSource mnscRefSource) throws Exception {
         return dao.getDataListByMnscId(mnscRefSource.getId());
