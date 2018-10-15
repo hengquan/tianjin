@@ -503,4 +503,11 @@ select upCateName, count(distinct obj_id) count from (
 </choose>
 ) group by upCateName
   </select>
+
+  <!-- WH::得到所有的信息日志信息 -->
+  <select id="log_search" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select * from logList
+
+  </select>
+
 </mapper>

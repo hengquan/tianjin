@@ -62,7 +62,6 @@ public class WebDispatchUrl {
     /*播放课件*/
     @RequestMapping("onlineLearning")
     public String toOnlineLearning(HttpServletRequest request) {
-        System.out.println("12312312");
         return "/static/onlineLearning";
     }
 
@@ -70,6 +69,40 @@ public class WebDispatchUrl {
     @RequestMapping("tj/xyxx")
     public String toTjXyxx(HttpServletRequest request, Model model) {
         //获得企业的人员
+        String optionHtml="";
+        UserInfo ui=userService.getUserInfo();
+        if (ui!=null) {
+            //获得用户所在企业
+            ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
+            if (companyInfo!=null&&companyInfo.getData()!=null) {
+                Map<String, Object> param=new HashMap<String, Object>();
+                param.put("compId", companyInfo.getData().getCompanyId());
+                List<Map<String, Object>> ul=catService.getCompUserList(param);
+                if (ul!=null&&ul.size()>0) {
+                    for (Map<String, Object> u: ul) {
+                        optionHtml+="<option value='"+u.get("visitor_id")+"'>"+u.get("visitor_name")+"</option>";
+                    }
+                }
+            }
+            //测试，准备删除
+            Map<String, Object> param=new HashMap<String, Object>();
+            param.put("compId", "98311111234523456B");
+            List<Map<String, Object>> ul=catService.getCompUserList(param);
+            if (ul!=null&&ul.size()>0) {
+                for (Map<String, Object> u: ul) {
+                    optionHtml+="<option value='"+u.get("VISITOR_ID")+"'>"+u.get("VISITOR_NAME")+"</option>";
+                }
+            }
+        }
+        model.addAttribute("optionHtml", optionHtml);
+        return "/manage/tj/tjXyxx";
+    }
+
+    //--统计相关-2学习日志
+    @RequestMapping("tj/xyrz")
+    public String toTjXyrz(HttpServletRequest request, Model model) {
+        //获得参数
+        String urlParam=request.getQueryString();
         String optionHtml="";
         UserInfo ui=userService.getUserInfo();
         if (ui!=null) {
