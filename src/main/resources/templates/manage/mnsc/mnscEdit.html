@@ -171,7 +171,7 @@ html {
 						style="margin-top: 10px">
 						<div class="form-group">
 							<label class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
-								style="padding-top: 5px; text-align: left; border-top: 1px solid #cecece;">课件列表</label>
+								style="padding-top: 5px; text-align: left; border-top: 1px solid #cecece;">相关课件</label>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -204,6 +204,8 @@ html {
 	<br>
 	<br>
 	<script>
+    //初始化分类
+    selfenlei();
     //附件相关
     var imgJson = new Array();
     if ("${imgJson}" != '') {
@@ -218,8 +220,6 @@ html {
       $(".dropdown-menu").on('click', function(e) {
         e.stopPropagation();
       });
-      //初始化分类
-      selfenlei();
       //初始化页面信息
       initialize();
       //校验必填项
@@ -557,13 +557,14 @@ html {
         success : function(data) {
           var returnCode = data.returnCode;
           if (returnCode == '00') {
-            var html = '<option>全部</option>';
+            var html = '';
             var msgs = data.data.list;
             for (var i = 0; i < msgs.length; i++) {
               html += '<option value="'+ msgs[i].id +'">' + msgs[i].name
                   + '</option>'
             }
-            $("#mnscCatId").html(html);
+            if(html != '')
+              $("#mnscCatId").html(html);
           } else {
             layer.msg(data.messageInfo);
           }

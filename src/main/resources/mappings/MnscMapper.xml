@@ -194,7 +194,7 @@
 			and create_date BETWEEN to_date(#{createStart},'yyyy-MM-dd HH24:mi:ss') AND to_date(#{createEnd},'yyyy-MM-dd HH24:mi:ss')
 		</if>
 		<if test="isvalid != null and isvalid != ''">
-      and instr(#{isvalid},isvalid)>0
+      and isvalid = #{isvalid}
     </if>
 		order by sort,create_date desc
 	</select>

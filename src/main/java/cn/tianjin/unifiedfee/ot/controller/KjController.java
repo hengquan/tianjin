@@ -75,7 +75,9 @@ public class KjController {
         }
         param.put("kjIds", ids);
         param.put("disable", disable);
-        param.put("isvalid", isvalid);
+        if (!StringUtils.isBlank(isvalid)&&(!"1,0".equals(isvalid))&&(!"0,1".equals(isvalid))) {
+            param.put("isvalid", isvalid);
+        }
         System.out.println("----------------------");
         System.out.println(isvalid);
         System.out.println("----------------------");
