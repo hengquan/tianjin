@@ -30,7 +30,7 @@ html{
 .core_content{
   width: 1200px;
   height: 660px;
-  margin: 35px auto 0;
+  margin: 5px auto 0;
   display: flex;
   justify-content: space-around;
 }
@@ -70,7 +70,7 @@ html{
   text-align: center;
   font-size: 14px;
   background: #f46227;
-  border-radius: 18px;
+  border-radius:3px;
   margin-left: 82px;
 }
 .video{

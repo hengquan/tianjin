@@ -21,26 +21,21 @@
 <script type="text/javascript" src="./web/js/main.js"></script>
 </head>
 <body>
-	<!-- 头部条 -->
-	<div class="pt-topbar">
-		<div class="nav_header">
-			<!--左侧系统名称-->
-			<div class="pt-fl pt-system-info">
-				<div class="pt-logo pt-fl">
-					<img src="./web/images/LOGO@2x.png" alt="">
-				</div>
-				<div class="pt-slogen pt-fr">
-					天津市港口统一收费服务平台-<strong>企业中心</strong>
-				</div>
-			</div>
-			<!--右侧用户信息-->
-			<div class="pt-fr pt-user-info">
-				<div class="pt-settings pt-fr">
-					<img src="" alt="">
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="pt-topbar">
+  <div class="nav_header">
+    <!--左侧系统名称-->
+    <div class="pt-fl pt-system-info">
+      <div class="pt-logo pt-fl"><img src="./web/images/LOGO@2x.png" alt=""></div>
+      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>线上培训子系统</strong></div>
+    </div>
+
+    <!--右侧关闭窗口-->
+    <div class="pt-fr pt-user-info">
+      <div><a style="color: #ffffff" onclick="closeWin()">关闭&emsp;</a></div>
+    </div>
+  </div>
+</div>
+
 	<div class="learn">
 		<div class="core">
 			<span id="kjName">课件名称</span>
@@ -75,12 +70,26 @@
 	</div>
 	<!--公共底部-->
 	<div class="pt-footer">
-		<div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018
-			技术支持电话：400-888-5678</div>
 	</div>
 	<script>
-  <!-- 开始埋点 -->
-    var objId = '';
+	function closeWin() {
+	  var browserName=navigator.appName;
+	  if (browserName=="Microsoft Internet Explorer") { 
+	    window.parent.opener = "whocares"; 
+	    window.parent.close(); 
+	  } else {
+	    window.open('', '_self', '');
+	    window.close();
+	  }
+	}
+
+	function getUrlParam(name) {
+	  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	  var r = window.location.search.substr(1).match(reg); //匹配目标参数
+	  if (r != null) return unescape(r[2]); return null; //返回参数值
+	}
+
+	var objId = '';
     //获取参数
     var url = location.search;
     if (url != '') {
@@ -90,10 +99,7 @@
         objId = split[1];
       }
     }
-    var _gatherData = {};
-    _gatherData.visitModuleId = "课件展示";
-    _gatherData.objType = "ts_kj";
-    _gatherData.objId = objId;
+
     $(function() {
       if (objId != '') {
         $.ajax({
@@ -173,30 +179,22 @@
       window.open("./entryPractice.html")
     }
   </script>
-	<!-- 开始埋点 -->
-	<script type="text/javascript">
-    var objId = '';
-    //获取参数
-    var url = location.search;
-    if (url != '') {
-      url = url.substr(1);
-      var split = url.split("=");
-      if (split[0] == 'kjId') {
-        objId = split[1];
-      }
-    }
-    var _gatherData = {};
-    _gatherData.visitModuleId = "课件展示";
-    _gatherData.objType = "ts_kj";
-    _gatherData.objId = objId;
-    (function() {
-      var ma = document.createElement('script');
-      ma.type = 'text/javascript';
-      ma.async = true;
-      ma.src = "./tjsrc/js/ma.js";
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ma, s);
-    })();
-  </script>
+
+<!-- 开始埋点 -->
+<script type="text/javascript">
+var _gatherData={};
+_gatherData.visitModuleId="课件学习";
+_gatherData.objType="ts_kj";
+_gatherData.objId=getUrlParam("id");
+(function () {
+  var ma = document.createElement('script');
+  ma.type = 'text/javascript';
+  ma.async = true;
+  ma.src = "./tjsrc/js/ma.js";
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ma, s);
+}
+)();
+</script>
 </body>
 </html>
