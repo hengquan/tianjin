@@ -61,7 +61,9 @@ public class MnscController {
         map.put("score", score);
         map.put("createStart", createStart);
         map.put("createEnd", createEnd);
-        map.put("isvalid", isvalid);
+        if (!StringUtils.isBlank(isvalid)&&(!"1,0".equals(isvalid))&&(!"0,1".equals(isvalid))) {
+            map.put("isvalid", isvalid);
+        }
         System.out.println("--------------------------------");
         System.out.println(isvalid);
         System.out.println(isvalid);

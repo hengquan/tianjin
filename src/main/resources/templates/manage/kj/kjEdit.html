@@ -99,7 +99,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>名称</label>
+									※ </span>名&emsp;称</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 								<input type="text" class="form-control" name="kjName"
 									id="kjName" />
@@ -109,7 +109,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span>
-									※ </span>分类</label>
+									※ </span>分&emsp;类</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 								<div class="input-group">
 									<select id="kjCatId" name="kjCatId" class="selectpicker"
@@ -124,7 +124,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>状态</label>
+									※ </span>状&emsp;态</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 								<label class="radio-inline"> <input type="radio"
 									name="isvalid" value="1" checked>启用
@@ -136,7 +136,7 @@ html {
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title">排序</label>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title">&emsp;排&emsp;序</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 								<input type="text" class="form-control" name="sort" id="sort"
 									value="100" />
@@ -145,7 +145,7 @@ html {
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">说明</label>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">&emsp;说&emsp;明</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<textarea id="remarks" class="form-control" name="remarks"
 									style="min-height: 108px"></textarea>
@@ -178,7 +178,7 @@ html {
 						style="margin-top: 10px">
 						<div class="form-group">
 							<label class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
-								style="padding-top: 5px; text-align: left; border-top: 1px solid #cecece;">课件列表</label>
+								style="padding-top: 5px; text-align: left; border-top: 1px solid #cecece;">相关课件</label>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -211,6 +211,8 @@ html {
 	<br>
 	<br>
 	<script>
+    //初始化分类信息
+    selfenlei();
     //附件相关
     var imgJson = new Array();
     if ("${imgJson}" != '') {
@@ -266,8 +268,6 @@ html {
         radioClass : 'iradio_square-blue',
         increaseArea : '20%' // optional
       });
-      //初始化分类信息
-      selfenlei();
       //初始化页面信息
       initialize();
     });
@@ -626,13 +626,14 @@ html {
         success : function(data) {
           var returnCode = data.returnCode;
           if (returnCode == '00') {
-            var html = '<option>全部</option>';
+            var html = '';
             var msgs = data.data.list;
             for (var i = 0; i < msgs.length; i++) {
               html += '<option value="'+ msgs[i].id +'">' + msgs[i].name
                   + '</option>'
             }
-            $("#kjCatId").html(html);
+            if(html != '')
+              $("#kjCatId").html(html);
           } else {
             layer.msg(data.messageInfo);
           }

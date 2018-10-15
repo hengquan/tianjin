@@ -202,32 +202,30 @@
 
 	<script src="${gateway}/src/js/pt-tree.js"></script>
 	<script>
-    $(function() {
-      //渲染分类
-      $.ajax({
-        type : 'post',
-        url : "${gateway}/train/getCateData",
-        dataType : 'json',
-        cache : false,
-        success : function(data) {
-          var returnCode = data.returnCode;
-          if (returnCode == '00') {
-            var html = '<option>全部</option>';
-            var msgs = data.data.list;
-            for (var i = 0; i < msgs.length; i++) {
-              html += '<option value="'+ msgs[i].id +'">' + msgs[i].name
-                  + '</option>'
-            }
-            $("#kjCatId").html(html);
-          } else {
-            layer.msg(data.messageInfo);
+    //渲染分类
+    $.ajax({
+      type : 'post',
+      url : "${gateway}/train/getCateData",
+      dataType : 'json',
+      cache : false,
+      success : function(data) {
+        var returnCode = data.returnCode;
+        if (returnCode == '00') {
+          var html = '<option>全部</option>';
+          var msgs = data.data.list;
+          for (var i = 0; i < msgs.length; i++) {
+            html += '<option value="'+ msgs[i].id +'">' + msgs[i].name
+                + '</option>'
           }
-        },
-        error : function() { //失败回调函数
-          layer.msg("获取分类失败！");
+          $("#kjCatId").html(html);
+        } else {
+          layer.msg(data.messageInfo);
         }
-      });
-    })
+      },
+      error : function() { //失败回调函数
+        layer.msg("获取分类失败！");
+      }
+    });
     //时间选择
     $('.datetimepicker').datetimepicker({
       language : 'zh',
@@ -406,12 +404,20 @@
       formatter : operateFormatter
     }, ]);
     function queryParams(params) {
+      var selectedValues = [];
+      var count=$("#isvalid option").length;
+      for(var i=0;i<count;i++){
+        if ($("#isvalid").get(0).options[i].selected) {
+          selectedValues.push($("#isvalid").get(0).options[i].value);
+        }
+      }
+      var data = selectedValues.join(",");
       return {
         kjName : $("#kjName").val(),
         kjCatId : $("#kjCatId").val(),
         createStart : $("#createStart").val(),
         createEnd : $("#createEnd").val(),
-        isvalid : $("#isvalid").val(),
+        isvalid : data,
         // 使用page size分页
         limit : params.limit, //页面大小
         offset : params.offset
