@@ -58,7 +58,7 @@ iframe{
         <!--为调试用-->
         <li class="pt-menu-list">
           <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
-          <h3 class="pt-menu-title"><a href="#">企业培训</a></h3>
+          <h3 class="pt-menu-title"><a href="#">企业端</a></h3>
           <ul class="pt-second-menu">
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
@@ -72,15 +72,29 @@ iframe{
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXXX()">在线学习</a></h3>
             </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXLX()">在线练习</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjXYXX()">学员学习</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toXxrz()">学习日志</a></h3>
+            </li>
           </ul>
         </li>
-        ${menuHtml}
-        
         <!--为调试用-->
         <li class="pt-menu-list">
           <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
           <h3 class="pt-menu-title"><a href="#">管理端</a></h3>
           <ul class="pt-second-menu">
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="mainPage()">首页</a></h3>
+            </li>
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="fenlei()">分类</a></h3>
@@ -93,17 +107,9 @@ iframe{
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="kj()">课件</a></h3>
             </li>
-          </ul>
-        </li>
-        
-        <!--为调试用-->
-        <li class="pt-menu-list">
-          <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
-          <h3 class="pt-menu-title"><a href="#">数据统计</a></h3>
-          <ul class="pt-second-menu">
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjXYXX()">学员学习</a></h3>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="tm()">试题</a></h3>
             </li>
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
@@ -111,11 +117,11 @@ iframe{
             </li>
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjMNSC()">模拟实操</a></h3>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toXxrz()">企业统计</a></h3>
             </li>
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjZH()">综合统计</a></h3>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toXxrz()">课件统计</a></h3>
             </li>
           </ul>
         </li>
@@ -140,7 +146,6 @@ iframe{
 <script>
 $(document).ready(function() {
   //默认点击第一个可用的菜单
-  
 });
 
 function showMenu(url) {
@@ -179,6 +184,10 @@ function toWebMNSC(){
 //在线学习
 function toZXXX() {
   $("#mainframe").attr("src","${gateway}/courseware");
+}
+//在线练习
+function toZXLX() {
+  $("#mainframe").attr("src","${gateway}/onlineExercise");
 }
 
 //=======================================================

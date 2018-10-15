@@ -24,12 +24,24 @@
 <script type="text/javascript" src="./web/js/main.js"></script>
 <style>
 html {
-	overflow: hidden;
+  overflow: hidden;
+}
+body {
+  background: white;
+}
+.enterBtn {
+    font-size: 14px;
+    text-align: center;
+    width: 160px;
+    height: 30px;
+    background:#f46227;
+    color: white;
+    line-height: 30px;
+    margin: 10px auto 0;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
-body {
-	background: white;
-}
 </style>
 </head>
 
@@ -58,8 +70,7 @@ body {
     //初始化
     $(function() {
       var data = {};
-      $
-          .ajax({
+      $.ajax({
             type : 'post',
             url : "./train/getMnscList",
             data : data,
@@ -87,9 +98,9 @@ body {
                       + '")></div>' + '<div class="explain">' + '<p>'
                       + dataList[i].mnscName + '</p>' + '<div class="system">'
                       + dataList[i].remarks + '</div>'
-                      + '<div class="start" onclick=toSimulation("'
+                      + '<div class="enterBtn" onclick=toSimulation("'
                       + dataList[i].mnscUrl + '?objId=' + dataList[i].id
-                      + '")>开始模拟实操</div>' + '</div>' + '</div>';
+                      + '")>进入实操</div>' + '</div>' + '</div>';
 
                   if ((i + 1) % 4 == 0) {
                     contentHtml = contentHtml

@@ -1,6 +1,7 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +21,7 @@ import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
 import cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper;
+import cn.tianjin.unifiedfee.ot.service.CategoryService;
 
 //import java.util.ArrayList;
 //import java.util.HashMap;
@@ -39,14 +41,14 @@ import cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper;
 public class ManageDispatchUrl {
     @Autowired // 注入Service
     public UserService userService;
-    // @Autowired // 注入Service
-    // public SecurityMenuService securityMenuService;
     @Autowired // 注入Service
     public SecurityMenuRemote securityMenuRemote;
     @Autowired
     public LogVisitService catService;
     @Autowired // 注入Service
     public CommArchiveMapper commArchiveMapper;
+    @Autowired
+    private CategoryService categoryService;
 
     @Value("${ot-server.prefix}")
     private String prefix;
@@ -239,7 +241,15 @@ public class ManageDispatchUrl {
 
     // --课件管理，目前管理的是课件-？？
     @RequestMapping("kj/list")
-    public String toKjList() {
+    public String toKjList(HttpServletRequest request, Model model) {
+        List<Map<String, Object>> cl=categoryService.getCateList4View(null, 0);
+        if (cl!=null&&cl.size()>0) {
+            String optionHtml="";
+            for (Map<String,Object> m:cl) {
+                optionHtml+="<option value='"+m.get("id")+"'>"+m.get("text")+"</option>";
+            }
+            model.addAttribute("optionHtml", optionHtml);
+        }
         return "/manage/kj/kjList";
     }
 
@@ -370,7 +380,7 @@ public class ManageDispatchUrl {
     // --统计相关-2课件统计
     @RequestMapping("tj/kj")
     public String toTjKj(HttpServletRequest request) {
-        return "/manage/tj/tjKj";
+        return "/manage/tj/tjkj";
     }
 
     // --统计相关-3模拟实操

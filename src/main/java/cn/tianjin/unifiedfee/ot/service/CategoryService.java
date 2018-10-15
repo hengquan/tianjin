@@ -69,6 +69,40 @@ public class CategoryService {
         return StringUtils.isBlank(cId)?root:(TreeNode<CategoryNode>)root.findNode(cId);
     }
 
+    /**
+     * 获得分类树，深度遍历
+     * @param cId 树节点id，为空则获得整棵树
+     * @param type =0获得有效节点，=1获得所有节点
+     * @return
+     */
+    @SuppressWarnings({ "unused", "unchecked" })
+    public List<Map<String, Object>> getCateList4View(String cId, int type) {
+        if (root==null) initRoot();
+        TreeNode<CategoryNode> node= StringUtils.isBlank(cId)?root:(TreeNode<CategoryNode>)root.findNode(cId);
+        Map<String, Object> retTree=_toTreeMap_ptTree(node, type);
+        if (retTree==null) return null;
+        return (List<Map<String, Object>>)retTree.get("nodes");
+    }
+    private Map<String, Object> _toTreeMap_ptTree(TreeNode<? extends TreeNodeBean> treeNode, int type) {
+        Map<String, Object> treeMap=new HashMap<String, Object>();
+        treeMap.put("id", treeNode.getId());
+        treeMap.put("text", treeNode.getNodeName());
+        treeMap.put("pathName", treeNode.getTreePathName("-", 0));
+        if (!treeNode.isLeaf()&&treeNode.getChildCount()>0) {
+            List<Map<String, Object>> new_cl=new ArrayList<Map<String, Object>>();
+            for (TreeNode<? extends TreeNodeBean> _c:treeNode.getChildren()) {
+                CategoryNode cn=(CategoryNode)_c.getTnEntity();
+                if (type==1) {
+                    new_cl.add(_toTreeMap_ptTree(_c, type));
+                } else {
+                    if (cn.getIsvalid()==1) new_cl.add(_toTreeMap_ptTree(_c, type));
+                }
+            }
+            treeMap.put("nodes", new_cl);
+        }
+        return treeMap;
+    }
+
     public Map<String, Object> getTreeData() {
         if (root==null) initRoot();
         Map<String, Object> retM=new HashMap<String, Object>();
