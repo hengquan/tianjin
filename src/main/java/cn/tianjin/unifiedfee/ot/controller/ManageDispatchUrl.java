@@ -167,7 +167,11 @@ public class ManageDispatchUrl {
 
     // --摸拟实操管理
     @RequestMapping("mnsc/list")
-    public String toMnscList() {
+    public String toMnscList(Model model) {
+        
+        
+        
+        
         return "/manage/mnsc/mnscList";
     }
 
