@@ -39,14 +39,13 @@ function buildPaper() {
   layer.msg('试题生成中......', {
     icon: 16 ,shade: 0.01
   });
-  clearInterval(intervalHandler)
-  count = 0
+  clearInterval(intervalHandler);
+  count = 0;
   var _data={
     cateIds:($(".selectpicker").val()).join(","),
     diffRange:$( "#slider-range" ).slider( "values", 0 )+","+$( "#slider-range" ).slider( "values", 1 ),
     tmCount:$(".nums").val()
   };
-  console.log(_data)
   $.ajax({
     type: "get",
 //    url: "../../demoJson/json143.json",./train/getSj",
@@ -54,7 +53,6 @@ function buildPaper() {
     data: _data,
     dataType: "json",
     success: function (res) {
-      console.log(res)
       if(res.returnCode == 00) {
         $(".empty").css("display","none")
         $(".lxt").css("display","block")
@@ -65,8 +63,8 @@ function buildPaper() {
         $("#zts").html(res.data.tmList.length);
         $("#dd").html(0);
         var html = ""
-        var zfs = 0
-        sjData = res.data
+        var zfs = 0;
+        sjData = res.data;
         for(var i=0;i<res.data.tmList.length;i++) {
           zfs+=res.data.tmList[i].tmScore
           if(res.data.tmList[i].tmType == "多选题") {
@@ -91,6 +89,7 @@ function buildPaper() {
         }
         $(".zfs").html(zfs)
         $(".zts").html(res.data.tmList.length)
+        $(".dd").html("0")
         $(".topic-list").html(html)
         // 计时开始
 //        intervalHandler=window.setInterval(function() {
@@ -105,6 +104,7 @@ function buildPaper() {
 //        }, 1000);
       } else {
         $("#emptyMsg").html("未生成练习，请重新定义条件");
+        layer.msg("未生成练习，请重新定义条件");
       }
     }
   });

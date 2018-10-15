@@ -75,17 +75,17 @@
 <script src="${gateway}/src/js/main.js"></script>
 <style>
 html {
-  overflow-x: hidden;
-  overflow-y: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 </style>
 </head>
 <body>
 	<br>
-<!-- 
+	<!-- 
 	<div>fielUploaAjaxTest: <input type=file id=file3 name=file3></input><input type=button id=ftBtn onclick="testUpload();" value='上传测试'></input></div>
  -->
-<!-- 
+	<!-- 
 <form id="uploadForm" enctype="multipart/form-data">
 	<div>fielUploaAjaxTest: <input type=file id=file3 name=file3></input><input type=button id=ftBtn onclick="testUpload();" value='上传测试'></input></div>
 </form>
@@ -99,7 +99,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>名称</label>
+									※ </span>名&emsp;称</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 								<input type="text" class="form-control" name="kjName"
 									id="kjName" />
@@ -109,26 +109,14 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span>
-									※ </span>分类</label>
+									※ </span>分&emsp;类</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 								<div class="input-group">
-									<input type="text" class="form-control" name="kjCatNames"
-										id="kjCatNames" style="border-right: 0px;" readonly="readonly" />
-									<div class="input-group-btn">
-										<button type="button"
-											class="btn btn-default dropdown-toggle btn-tj"
-											data-toggle="dropdown"
-											style="border-bottom-left-radius: 0px; border-top-left-radius: 0px; border-left: 0px; height: 35.99px;">
-											<span class="caret"></span>
-										</button>
-										<div class="dropdown-menu pull-right"
-											style="width: 300px; height: 260px; overflow-y: auto; overflow-x: hidden;"
-											data-stopPropagation="true">
-											<div id="cate-tree"></div>
-										</div>
-									</div>
-									<input type="hidden" class="form-control" name="kjCatId"
-										id="kjCatId" />
+									<select id="kjCatId" name="kjCatId" class="selectpicker"
+										data-actions-box="true" data-live-search="true" title="请选择"
+										onchange="selOnchange()">
+									</select> <input type="hidden" class="form-control" name="kjCatNames"
+										id="kjCatNames" />
 								</div>
 							</div>
 						</div>
@@ -136,28 +124,28 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>排序</label>
+									※ </span>状&emsp;态</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-								<input type="text" class="form-control" name="sort" id="sort" />
+								<label class="radio-inline"> <input type="radio"
+									name="isvalid" value="1" checked>启用
+								</label> <label class="radio-inline"> <input type="radio"
+									name="isvalid" value="0">停用
+								</label>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>状态</label>
-							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
-								<select class="form-control" name="isvalid" id="isvalid">
-								  <option value="0">启用</option>
-								  <option value="1">停用</option>
-								</select>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title">&emsp;排&emsp;序</label>
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+								<input type="text" class="form-control" name="sort" id="sort"
+									value="100" />
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun"><span>
-									※ </span>说明</label>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">&emsp;说&emsp;明</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<textarea id="remarks" class="form-control" name="remarks"
 									style="min-height: 108px"></textarea>
@@ -171,17 +159,26 @@ html {
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<input id="file-2" type="file" multiple class="file"
 									name="files" data-overwrite-initial="false"
-									data-max-file-count="1"><br/><b>(注：请上传230x180，大小在2M以内的缩略图，支持格式：jpg,gif,png,jpeg)</b>
+									data-max-file-count="1"><br /> <b>(注：请上传230x180，大小在2M以内的缩略图，支持格式：jpg,gif,png,jpeg)</b>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 Bshow">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><span class="cfff">※ </span>课件内容</label>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><span
+								class="cfff">※ </span>课件内容</label>
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
-								<input id="file-1" type="file" multiple class="file" name="files" data-overwrite-initial="false"
-									data-max-file-count="1"><b>(注：请上传视频文件，大小在10M以内，支持格式：mp4)</b>
+								<input id="file-1" type="file" multiple class="file"
+									name="files" data-overwrite-initial="false"
+									data-max-file-count="1"><br /> <b>(注：请上传视频文件，大小在10M以内，支持格式：mp4)</b>
 							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+						style="margin-top: 10px">
+						<div class="form-group">
+							<label class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
+								style="padding-top: 5px; text-align: left; border-top: 1px solid #cecece;">相关课件</label>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -193,7 +190,8 @@ html {
 										<th>分类</th>
 										<th>创建人</th>
 										<th>创建时间</th>
-										<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>
+										<th><span class="glyphicon glyphicon-plus"
+											aria-hidden="true" onclick="selectItem()"></span></th>
 									</tr>
 								</table>
 							</div>
@@ -213,6 +211,8 @@ html {
 	<br>
 	<br>
 	<script>
+    //初始化分类信息
+    selfenlei();
     //附件相关
     var imgJson = new Array();
     if ("${imgJson}" != '') {
@@ -228,66 +228,6 @@ html {
         radioClass : 'iradio_square-blue',
         increaseArea : '20%' // optional
       });
-      $(".dropdown-menu").on('click', function(e) {
-        e.stopPropagation();
-      });
-      //初始化选择树
-      $.ajax({
-        type : "post",
-        url : '${gateway}/train/getTree/ptTree',
-        dataType : "json",
-        success : function(result) {
-          if (result.returnCode == '00') {
-            var tree = [];
-            tree.push(result.data.tree);
-            $('#cate-tree').treeview({
-              data : tree, // 数据源
-              showCheckbox : true, //是否显示复选框
-              multiSelect : false, //多选
-              onNodeChecked : function(event, data) {
-                selectTreeNode(data);
-              }
-            });
-          } else {
-            $('#cate-tree').treeview({
-              data : [ {
-                text : '分类根节点',
-                id : '0',
-                pathName : '分类根节点'
-              } ], // 数据源
-              showCheckbox : true, //是否显示复选框
-              multiSelect : false, //多选
-              onNodeChecked : function(event, data) {
-                selectTreeNode(data);
-              }
-            });
-          }
-        },
-        error : function() {
-          $('#cate-tree').treeview({
-            data : [ {
-              text : '分类根节点',
-              id : '0',
-              pathName : '分类根节点'
-            } ], // 数据源
-            showCheckbox : true, //是否显示复选框
-            multiSelect : false, //多选
-            onNodeChecked : function(event, data) {
-              selectTreeNode(data);
-            }
-          });
-        }
-      });
-      function selectTreeNode(treeNodeData) {
-        $("input[name='kjCatNames']").val(treeNodeData.text);
-        $("input[name='kjCatId']").val(treeNodeData.id);
-        $('#cate-tree').treeview('uncheckAll', {
-          silent : true
-        });
-        $('#cate-tree').treeview('checkNode', [ treeNodeData.nodeId, {
-          silent : true
-        } ]);
-      }
       //校验必填项
       $('form').bootstrapValidator({
         message : 'This value is not valid',
@@ -312,26 +252,6 @@ html {
                 message : '分类不能为空'
               }
             }
-          },
-          sort : {
-            message : '排序验证失败',
-            validators : {
-              notEmpty : {
-                message : '排序不能为空'
-              },
-              regexp: {
-                regexp: "^[0-9][0-9]*$",
-                message: '排序数须为自然数'
-              }
-            }
-          },
-          remarks : {
-            message : '说明内容验证失败',
-            validators : {
-              notEmpty : {
-                message : '说明内容不能为空'
-              }
-            }
           }
         }
       });
@@ -348,75 +268,19 @@ html {
         radioClass : 'iradio_square-blue',
         increaseArea : '20%' // optional
       });
-      //获取参数
-      var url = location.search;
-      if (url != '') {
-        //变成修改
-        $("#baocun").attr("onclick", "editKj()");
-        url = url.substr(1);
-        var split = url.split("=");
-        $.ajax({
-          type : 'post',
-          url : "${gateway}/kj/get",
-          data : {
-            "id" : split[1]
-          },
-          dataType : 'json',
-          cache : false,
-          success : function(data) {
-            var html = '<tr>'
-                + '<th>课件名称</th>'
-                + '<th>分类名称</th>'
-                + '<th>创建人</th>'
-                + '<th>创建时间</th>'
-                + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
-                + '</tr>';
-            var kj = data.data;
-            $("#objId").val(kj.id);
-            $("#kjName").val(kj.kjName);
-            $("#isvalid").val(kj.isvalid);
-            $("#isvalid").find("option[value='"+kj.isvalid+"']").attr("selected",true);
-            $("#sort").val(kj.sort);
-            $("#remarks").val(kj.remarks);
-            $("#kjCatNames").val(kj.kjCatNames);
-            $("#kjCatId").val(kj.kjCatId);
-            //获取相关课件列表
-            $("#ids").val(kj.ids);
-            var dataList = kj.kjs;
-            if (dataList != null) {
-              for (var i = 0; i < dataList.length; i++) {
-                html += '<tr>'
-                    + '<td>'
-                    + dataList[i].kjName
-                    + '</td>'
-                    + '<td>'
-                    + dataList[i].kjCatNames
-                    + '</td>'
-                    + '<td>'
-                    + dataList[i].createName
-                    + '</td>'
-                    + '<td>'
-                    + dataList[i].createdate
-                    + '</td>'
-                    + '<th onclick="removeTr(this)" thisval="'
-                    + dataList[i].id
-                    + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
-                    + '</tr>';
-              }
-              $("#theTable").html(html);
-            }
-          },
-          error : function() { //失败回调函数
-            alert("获取信息失败");
-          }
-        });
-      }
+      //初始化页面信息
+      initialize();
     });
+    function selOnchange() {
+      var value = $("#kjCatId  option:selected").text();
+      $("#kjCatNames").val(value);
+    }
     function addKj() {
-      var validatorObj=$('#form').data("bootstrapValidator");
-      var aa=validatorObj.validate();
-      var flag=validatorObj.isValid();
-      if (!flag) return;
+      var validatorObj = $('#form').data("bootstrapValidator");
+      var aa = validatorObj.validate();
+      var flag = validatorObj.isValid();
+      if (!flag)
+        return;
       $.ajax({
         type : 'post',
         url : "${gateway}/kj/insert",
@@ -477,7 +341,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : '${gateway}/kj/selList?kjIds='+kjIds//如果不想出现滚动条['content.html', 'no']
+        content : '${gateway}/kj/selList?kjIds=' + kjIds//如果不想出现滚动条['content.html', 'no']
       });
     }
 
@@ -500,48 +364,49 @@ html {
       }
       $("#ids").val(kjIds);
       //处理显示
-      $.ajax({
-        type : 'post',
-        url : "${gateway}/kj/getDataList",
-        data : {
-          "ids" : kjIds
-        },
-        dataType : 'json',
-        cache : false,
-        success : function(data) {
-          var html = '<tr>'
-              + '<th>课件名称</th>'
-              + '<th>分类名称</th>'
-              + '<th>创建人</th>'
-              + '<th>创建时间</th>'
-              + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
-              + '</tr>';
-          var dataList = data.dataList;
-          for (var i = 0; i < dataList.length; i++) {
-            html += '<tr>'
-                + '<td>'
-                + dataList[i].kjName
-                + '</td>'
-                + '<td>'
-                + dataList[i].kjCatNames
-                + '</td>'
-                + '<td>'
-                + dataList[i].createName
-                + '</td>'
-                + '<td>'
-                + dataList[i].createdate
-                + '</td>'
-                + '<th onclick="removeTr(this)" thisval="'
-                + dataList[i].id
-                + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
-                + '</tr>';
-          }
-          $("#theTable").html(html);
-        },
-        error : function() { //失败回调函数
-          alert("查询失败")
-        }
-      });
+      $
+          .ajax({
+            type : 'post',
+            url : "${gateway}/kj/getDataList",
+            data : {
+              "ids" : kjIds
+            },
+            dataType : 'json',
+            cache : false,
+            success : function(data) {
+              var html = '<tr>'
+                  + '<th>课件名称</th>'
+                  + '<th>分类名称</th>'
+                  + '<th>创建人</th>'
+                  + '<th>创建时间</th>'
+                  + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
+                  + '</tr>';
+              var dataList = data.dataList;
+              for (var i = 0; i < dataList.length; i++) {
+                html += '<tr>'
+                    + '<td>'
+                    + dataList[i].kjName
+                    + '</td>'
+                    + '<td>'
+                    + dataList[i].kjCatNames
+                    + '</td>'
+                    + '<td>'
+                    + dataList[i].createName
+                    + '</td>'
+                    + '<td>'
+                    + dataList[i].createdate
+                    + '</td>'
+                    + '<th onclick="removeTr(this)" thisval="'
+                    + dataList[i].id
+                    + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+                    + '</tr>';
+              }
+              $("#theTable").html(html);
+            },
+            error : function() { //失败回调函数
+              alert("查询失败")
+            }
+          });
     }
     //删除一整行
     function removeTr(obj) {
@@ -660,28 +525,124 @@ html {
       },
     });
 
-function testUpload() {
-  alert("ABC4");
-  var formData = new FormData($('#uploadForm')[0]);
-  //  var formData = new FormData();
-  //formData.append("myfile", document.getElementById("file3").files[0]);
-  console.log(formData);
-  $.ajax({
-      url: "${gateway}/file/uploadTemp",
-      type: "POST",
-      data: formData,
-      contentType: false,
-      processData: false,
-      success: function (data) {
-        console.log("========================")
-        console.log(data);
-      },
-      error: function () {
+    function testUpload() {
+      alert("ABC4");
+      var formData = new FormData($('#uploadForm')[0]);
+      //  var formData = new FormData();
+      //formData.append("myfile", document.getElementById("file3").files[0]);
+      console.log(formData);
+      $.ajax({
+        url : "${gateway}/file/uploadTemp",
+        type : "POST",
+        data : formData,
+        contentType : false,
+        processData : false,
+        success : function(data) {
+          console.log("========================")
+          console.log(data);
+        },
+        error : function() {
           alert("上传失败！");
-      }
-  });
+        }
+      });
+    }
 
-}
+    //初始化页面信息
+    function initialize(){
+	    var url = location.search;
+	    if (url != '') {
+	      //变成修改
+	      $("#baocun").attr("onclick", "editKj()");
+	      url = url.substr(1);
+	      var split = url.split("=");
+	      $.ajax({
+	        type : 'post',
+	        url : "${gateway}/kj/get",
+	        data : {
+	          "id" : split[1]
+	        },
+	        dataType : 'json',
+	        cache : false,
+	        success : function(data) {
+	          var html = '<tr>'
+	              + '<th>课件名称</th>'
+	              + '<th>分类名称</th>'
+	              + '<th>创建人</th>'
+	              + '<th>创建时间</th>'
+	              + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
+	              + '</tr>';
+	          var kj = data.data;
+	          $("#objId").val(kj.id);
+	          $("#kjName").val(kj.kjName);
+	          $("#sort").val(kj.sort);
+	          $("#remarks").val(kj.remarks);
+	          $("input[type=radio][name=isvalid]").each(function(i, e) {
+	            if ($(this).val() == kj.isvalid)
+	              $(this).iCheck('check');
+	          });
+	          $("#kjCatId").val(kj.kjCatId);
+	          $("#kjCatNames").val(kj.kjCatNames);
+	          $("#kjCatId").selectpicker('val', kj.kjCatId);
+	          //获取相关课件列表
+	          $("#ids").val(kj.ids);
+	          var dataList = kj.kjs;
+	          if (dataList != null) {
+	            for (var i = 0; i < dataList.length; i++) {
+	              html += '<tr>'
+	                  + '<td>'
+	                  + dataList[i].kjName
+	                  + '</td>'
+	                  + '<td>'
+	                  + dataList[i].kjCatNames
+	                  + '</td>'
+	                  + '<td>'
+	                  + dataList[i].createName
+	                  + '</td>'
+	                  + '<td>'
+	                  + dataList[i].createdate
+	                  + '</td>'
+	                  + '<th onclick="removeTr(this)" thisval="'
+	                  + dataList[i].id
+	                  + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+	                  + '</tr>';
+	            }
+	            $("#theTable").html(html);
+	          }
+	        },
+	        error : function() { //失败回调函数
+	          alert("获取信息失败");
+	        }
+	      });
+	    }
+    }
+    
+    //渲染分类
+    function selfenlei() {
+      $.ajax({
+        type : 'post',
+        url : "${gateway}/train/getCateData",
+        dataType : 'json',
+        cache : false,
+        success : function(data) {
+          var returnCode = data.returnCode;
+          if (returnCode == '00') {
+            var html = '';
+            var msgs = data.data.list;
+            for (var i = 0; i < msgs.length; i++) {
+              html += '<option value="'+ msgs[i].id +'">' + msgs[i].name
+                  + '</option>'
+            }
+            if(html != '')
+              $("#kjCatId").html(html);
+          } else {
+            layer.msg(data.messageInfo);
+          }
+        },
+        error : function() { //失败回调函数
+          layer.msg("获取分类失败！");
+        }
+      });
+    }
   </script>
 </body>
 </html>

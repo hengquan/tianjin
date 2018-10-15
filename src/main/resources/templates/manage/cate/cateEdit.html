@@ -52,6 +52,7 @@
   <script src="${gateway}/libs/layer/layer.js"></script>
   <!-- 11 页面js -->
   <script src="${gateway}/src/js/main.js"></script>
+  <script src="${gateway}/src/js/train.common.js"></script>
 </head>
 <style>
 .btn-tj:hover {
@@ -99,9 +100,9 @@
         -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="form-group">
-            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span> ※ </span>排&emsp;&emsp;序</label>
+            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span> &emsp; </span>排&emsp;&emsp;序</label>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-              <input type="text" class="form-control" name="sort" id="sort" />
+              <input type="text" class="form-control" name="sort" id="sort" placeholder="默认值为100"/>
             </div>
           </div>
         </div>
@@ -191,8 +192,9 @@ $(function () {
   });
   */
 
- //检查输入项
+  //检查输入项
   $('form').on("success.form.bv", function(e) {
+    if ($.trim($("#sort").val())=='') $("#sort").val(100);
     var formData=$('#mainForm').serialize();
     formData=decodeURIComponent(formData, true);
     $.ajax({
@@ -224,14 +226,14 @@ $(function () {
       validating : 'glyphicon glyphicon-refresh'
     },
     fields : {
-/*       name : {
-        message : '分类名称验证失效',
+      name : {
+        message : '名称验证失效',
         validators : {
           notEmpty : {
-            message : '分类名称不能为空'
+            message : '名称不能为空'
           }
         }
-      }, */
+      }/*,
       upName : {
         message : '上级分类验证失效',
         validators : {
@@ -239,13 +241,14 @@ $(function () {
             message : '必须选择上级分类'
           }
         }
-      },
+      } */
+      ,
       sort : {
-        message : '分类排序验证失效',
+        message : '排序验证失效',
         validators : {
-          notEmpty : {
-            message : '必须录入排序号'
-          },
+          //notEmpty : {
+          //  message : '必须录入排序号'
+          //},
           regexp : {
             regexp : "^[0-9][0-9]*$",
             message : '排序号必须为自然数'

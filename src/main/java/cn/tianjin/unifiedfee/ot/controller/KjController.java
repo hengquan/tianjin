@@ -57,6 +57,8 @@ public class KjController {
         String createStart = request.getParameter("createStart");
         String createEnd = request.getParameter("createEnd");
         String kjIds = request.getParameter("kjIds");
+        String disable = request.getParameter("disable");
+        String isvalid = request.getParameter("isvalid");
         // 传参
         param.put("kjName", kjName);
         param.put("kjCatId", kjCatId);
@@ -72,8 +74,12 @@ public class KjController {
                 ids = ids.substring(1);
         }
         param.put("kjIds", ids);
+        param.put("disable", disable);
+        if (!StringUtils.isBlank(isvalid)&&(!"1,0".equals(isvalid))&&(!"0,1".equals(isvalid))) {
+            param.put("isvalid", isvalid);
+        }
         System.out.println("----------------------");
-        System.out.println(kjIds);
+        System.out.println(isvalid);
         System.out.println("----------------------");
         // 查询数据
         List<Kj> kjs = kjService.getPageData(param);

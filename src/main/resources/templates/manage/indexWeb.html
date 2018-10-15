@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>天津市港口统一收费服务平台 -在线培训管理子系统</title>
+  <title>天津市港口统一收费服务平台 -线上培训子系统</title>
 
   <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" >
   <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet" >
@@ -30,7 +30,7 @@ iframe{
     <!--左侧系统名称-->
     <div class="pt-fl pt-system-info" >
       <div class="pt-logo pt-fl"><img src="${gateway}/src/images/LOGO@2x.png" alt=""></div>
-      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台 -<strong>在线培训管理子系统</strong></div>
+      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台 -<strong>线上培训子系统</strong></div>
     </div>
     <!--右侧用户信息-->
     <div class="pt-fr pt-user-info">
@@ -58,7 +58,7 @@ iframe{
         <!--为调试用-->
         <li class="pt-menu-list">
           <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
-          <h3 class="pt-menu-title"><a href="#">企业端资源</a></h3>
+          <h3 class="pt-menu-title"><a href="#">企业培训</a></h3>
           <ul class="pt-second-menu">
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
@@ -75,6 +75,27 @@ iframe{
           </ul>
         </li>
         ${menuHtml}
+        
+        <!--为调试用-->
+        <li class="pt-menu-list">
+          <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+          <h3 class="pt-menu-title"><a href="#">管理端</a></h3>
+          <ul class="pt-second-menu">
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="fenlei()">分类</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="mnsc()">模拟实操</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="kj()">课件</a></h3>
+            </li>
+          </ul>
+        </li>
+        
         <!--为调试用-->
         <li class="pt-menu-list">
           <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
@@ -86,7 +107,7 @@ iframe{
             </li>
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjKJ()">课件统计</a></h3>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toXxrz()">学习日志</a></h3>
             </li>
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
@@ -160,14 +181,29 @@ function toZXXX() {
   $("#mainframe").attr("src","${gateway}/courseware");
 }
 
+//=======================================================
+
+//分类
+function fenlei(){
+  $("#mainframe").attr("src","${gateway}/cate/list");
+}
+//模拟实操
+function mnsc(){
+  $("#mainframe").attr("src","${gateway}/mnsc/list");
+}
+//在线学习
+function kj() {
+  $("#mainframe").attr("src","${gateway}/kj/list");
+}
+
 //===================================================
 //统计-学员学习
 function toTjXYXX(){
   $("#mainframe").attr("src","${gateway}/tj/xyxx");
 }
 //统计-课件统计
-function toTjKJ(){
-  $("#mainframe").attr("src","${gateway}/tj/kj");
+function toXxrz(){
+  $("#mainframe").attr("src","${gateway}/tj/xxrz");
 }
 //统计-模拟实操
 function toTjMNSC(){

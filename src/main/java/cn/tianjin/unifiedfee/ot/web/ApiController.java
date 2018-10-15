@@ -86,7 +86,7 @@ public class ApiController {
      * @param request
      * @param response
      * @param categoryId 上级分类，若为空，获得所有分类
-     * @param resultType =0列表形式；=1树形式，默认为0
+     * @param type =0仅取有效分类；=1取所有分类，默认为0，仅取有效分类
      * @return
      */
     @RequestMapping("/getTree/ptTree")
@@ -714,7 +714,7 @@ public class ApiController {
 
                 ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
                 if (companyInfo!=null&&companyInfo.getData()!=null&&!"无企业信息".equals(companyInfo.getMsg())) {
-                    lv.setGroupId(companyInfo.getData().getCompanyId());
+                    lv.setGroupId(companyInfo.getData().getId());
                     lv.setGroupName(companyInfo.getData().getCompanyNameZh());
                 }
                 if (!StringUtils.isBlank(lv.getObjType())) {

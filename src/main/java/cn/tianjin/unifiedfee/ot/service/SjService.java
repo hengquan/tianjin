@@ -87,7 +87,7 @@ public class SjService {
         m.put("tmIndex", i+1);
         m.put("tmDesc", tm.getTmHtml());
         m.put("tmType", tm.getTmType());
-        m.put("tmScore", tm.getScore());
+        m.put("tmScore", tm.getScore()==null?0:tm.getScore());
         return m;
     }
     private Map<String, Object> getSelectMap(TmSelect select) {
@@ -210,7 +210,7 @@ public class SjService {
                 sjtm.setId(SequenceUUID.getPureUUID());
                 sjtm.setSjId(sj.getId());
                 sjtm.setTmId(tm.getId());
-                sjtm.setTmScore(tm.getScore());
+                sjtm.setTmScore((tm.getScore()==null?0:tm.getScore()));
                 sjtm.setSort(j--);
                 sjtm.setInType(1);
                 sjtm.setCreateBy(ui.getUserId());
@@ -296,8 +296,8 @@ public class SjService {
                 }
                 correct=(okAnswerMap.size()==okCount);
                 if (correct) {
-                    oneTm.put("score", tmL.get(i).getScore());
-                    score+=tmL.get(i).getScore();
+                    oneTm.put("score", (tmL.get(i).getScore()==null?0:tmL.get(i).getScore()));
+                    score+=tmL.get(i).getScore()==null?0:tmL.get(i).getScore();
                 } else {
                     oneTm.put("score", 0);
                 }
@@ -312,7 +312,7 @@ public class SjService {
             tua.setTmId(tmL.get(i).getId());
             tua.setUserId(sj.getUserId());
             tua.setUserName(sj.getUserName());
-            tua.setTmScore(tmL.get(i).getScore());
+            tua.setTmScore(tmL.get(i).getScore()==null?0:tmL.get(i).getScore());
             tua.setScore(Integer.parseInt(""+oneTm.get("score")));
             tua.setCreateBy(sj.getCreateBy());
             tua.setCreateName(sj.getCreateName());

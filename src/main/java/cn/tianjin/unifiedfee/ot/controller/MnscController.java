@@ -49,6 +49,7 @@ public class MnscController {
         String score = request.getParameter("score");
         String createStart = request.getParameter("createStart");
         String createEnd = request.getParameter("createEnd");
+        String isvalid = request.getParameter("isvalid");
         // 跨域
         HttpPush.responseInfo(response);
         // 设置page
@@ -60,9 +61,12 @@ public class MnscController {
         map.put("score", score);
         map.put("createStart", createStart);
         map.put("createEnd", createEnd);
+        if (!StringUtils.isBlank(isvalid)&&(!"1,0".equals(isvalid))&&(!"0,1".equals(isvalid))) {
+            map.put("isvalid", isvalid);
+        }
         System.out.println("--------------------------------");
-        System.out.println(createStart);
-        System.out.println(createEnd);
+        System.out.println(isvalid);
+        System.out.println(isvalid);
         System.out.println("--------------------------------");
         // 查询数据
         List<Mnsc> mnscs = mnscService.getPageData(map);
