@@ -1,0 +1,168 @@
+body {
+  background: #f2f2f2;
+}
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+.box {
+  width: 90%;
+  margin: 0 auto;
+}
+.tlkc {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  padding-left: 15px;
+  height: 66px;
+  line-height: 66px;
+}
+.tlkc span {
+  border-bottom: 3px solid #148bff;
+  padding-bottom: 18px;
+}
+.bgs {
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 5px;
+}
+.mnsc-box {
+  margin-top: 20px;
+  padding: 30px 0;
+}
+.info {
+  
+}
+.info h2 {
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 2%;
+  padding-bottom:3%;
+}
+.info .stae {
+
+}
+.eay {
+  display: inline-block;
+  width: 15px;
+  vertical-align: 1px;
+  margin-right: 10px;
+}
+.time {
+  margin-left: 30px;
+}
+.jj {
+  padding-top: 3%;
+
+}
+.ks-btn {
+  width: 90px;
+  height: 25px;
+  line-height: 25px;
+  background: #2e66bd;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 3%;
+}
+.czbz {
+  margin-top: 20px;
+  padding: 20px 30px;
+}
+.index {
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  border: 2px solid #2d65c2;
+  margin: 0 auto;
+  
+}
+.index p {
+  width: 70px;
+  height: 70px;
+  background: #2d65c2;
+  border-radius: 70px;
+  text-align: center;
+  line-height: 70px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+.czbz h2 {
+  font-size: 16px;
+  color: #fb7101;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+.txt {
+  background: #f2f2f2;
+  padding: 10px;
+  margin: 0 auto;
+  min-height: 200px;
+}
+.list {
+
+}
+.list ul {
+  display: -webkit-box;
+  display: -ms-box;
+  display: -o-box;
+  width: 100%;
+  overflow-x: auto;
+}
+.list ul::after {
+  content:"";
+  clear: both;
+  display: block;
+  width: 0;
+  height: 0;
+}
+.list li {
+  width: 15%;
+  position: relative;
+  margin-left: 2%;
+}
+.list li:last-child .sanjiao {
+  display: none;
+}
+.list li:first-child {
+  margin-left: 0;
+}
+.sanjiao {
+  width: 30px;
+  position: absolute;
+  right: -15px;
+  top: 30px;
+}
+.xgkc-box {
+  padding: 20px 0;
+  margin-top: 20px;
+}
+.xgkc-box li {
+  float: left;
+  width: 18%;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-left: 2.5%;
+  margin-bottom: 20px;
+}
+.xgkc-box ul::after {
+  content:"";
+  clear: both;
+  display: block;
+  width: 0;
+  height: 0;
+}
+.xgkc-box .infos {
+  line-height: 50px;
+  background: #f8f8f8;
+  height: 50px;
+  padding-left: 5px;
+  font-size: 14px;
+  color: #000;
+}

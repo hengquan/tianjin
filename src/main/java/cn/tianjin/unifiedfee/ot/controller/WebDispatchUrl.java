@@ -58,7 +58,13 @@ public class WebDispatchUrl {
     public String toOnline() {
         return "/web/courseware";
     }
-    
+
+    /*在线练习*/
+    @RequestMapping("onlineExercise")
+    public String toExercise() {
+        return "/web/practice";
+    }
+
     /*播放课件*/
     @RequestMapping("onlineLearning")
     public String toOnlineLearning(HttpServletRequest request) {

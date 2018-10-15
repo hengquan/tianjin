@@ -38,10 +38,9 @@ body {
   display: -ms-box;
   display: -moz-box;
   display: -o-box;
-  padding: 20px 30px 15px 30px;
+  padding: 20px 20px;
   line-height: 25px;
   border-bottom: 1px solid #f2f2f2;
-  padding-top: 30px;
 }
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
   width: auto;
@@ -57,14 +56,13 @@ body {
 }
 .scsj-btn {
   width: 90px;
-  height: 35px;
-  line-height: 35px;
-  background: #2e66bd;
+  height: 25px;
+  line-height: 25px;
+  background: #148cff;
   color: #fff;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 25px;
   cursor: pointer;
-  font-size: 14px;
 }
 .widget-sider input {
   height: 25px;
@@ -75,7 +73,6 @@ body {
 }
 .nums {
   height: 25px;
-  text-align:right;
 }
 .empty {
   width: 20%;
@@ -112,7 +109,7 @@ body {
 }
 .num-box {
   position: absolute;
-  right: 30px;
+  right: 20px;
   top: 20px;
   display: -webkit-box;
   display: -ms-box;
@@ -136,26 +133,27 @@ table td {
   border-radius: 40px;
   color: #0270da;
   font-size: 20px;
-  position: relative;
-  margin:0 auto;
+  position: fixed;
+  top: 180px;
+  left: 50%;
+  margin-left: -80px;
   display: none;
-  margin-top: 20px;
 }
 .sub-btn {
   width: 160px;
   height: 40px;
   text-align: center;
   line-height: 40px;
-  border-radius: 4px;
+  border-radius: 40px;
   color: #fff;
-  background: #2e66bd;
+  background: #0270da;
   font-size: 18px;
-  position: relative;
+  position: fixed;
   bottom: 50px;
-  margin:0 auto;
+  left: 50%;
+  margin-left: -80px;
   display: none;
   cursor: pointer;
-  margin-top:80px;
 }
 table.sample th {	background: #3e83c9;	color: #fff;	font-weight: bold;	padding: 2px 11px;	text-align: left;	border-right: 1px solid #fff;	line-height: 1.2;}
 table.sample td {	
@@ -164,8 +162,4 @@ table.sample td {
 .ndda {
   margin-left: 10px;
   color: red;
-}
-.title{
-  font-size:14p;
-  margin-bottom:8px;
 }
