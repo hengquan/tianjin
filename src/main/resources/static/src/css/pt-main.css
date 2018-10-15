@@ -1,111 +1,18 @@
 /******************************************************
-                閸欐﹢鍣虹�规矮绠熸稉搴ゎ嚛閺勶拷
+                å˜é‡å®šä¹‰ä¸Žè¯´æ˜Ž
  ******************************************************/
 /**************
-  妫版粏澹婄�规矮绠�
+  é¢œè‰²å®šä¹‰
 *****************/
 /**************
-  鐎逛粙鐝�规矮绠�
+  å®½é«˜å®šä¹‰
 *****************/
 /**************
-  鐎涙褰块懛顏勭暰娑旓拷
+  å­—å·è‡ªå®šä¹‰
 *****************/
 /******************************************************
-                    閸忣剙鍙￠弽宄扮础
+                    å…¬å…±æ ·å¼
 ******************************************************/
-html {
-  margin: 0;
-  padding: 0;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  min-width: 1200px;
-}
-/**************
-  闁插秶鐤嗙�涙ぞ缍�
-*****************/
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video,
-input {
-  font-family: 'Microsoft YaHei';
-}
 @font-face {
   font-family: 'numtext';
   src: url('num.otf');
@@ -207,7 +114,7 @@ ul {
   display: none;
 }
 /*********************
- 
+     å¸¸ç”¨å®½åº¦ã€é«˜åº¦
 ***********************/
 .w20 {
   width: 20px;
@@ -246,10 +153,10 @@ ul {
   height: 40px;
 }
 /******************************************************
-                        閸忣剙鍙″Ο鈥虫健
+                        å…¬å…±æ¨¡å—
  ******************************************************/
 /*********************
-     婢舵挳鍎�
+     å¤´éƒ¨
 ***********************/
 .pt-topbar {
   background: #0b1d2b;
@@ -323,7 +230,7 @@ ul {
   margin-right: 10px;
 }
 /*********************
-     瀹革箓鍎撮懣婊冨礋閺嶏拷
+     å·¦éƒ¨èœå•æ 
 ***********************/
 .pt-nav {
   width: 40px;
@@ -460,7 +367,7 @@ ul {
   color: #2E66BD;
 }
 /*********************
-     娑撴槒顫嬮崠鍝勵啇閸ｏ拷
+     ä¸»è§†åŒºå®¹å™¨
 ***********************/
 .pt-view {
   padding-left: 40px;
@@ -489,21 +396,21 @@ ul {
   left: 0;
   top: 0;
 }
-.pt-aside.pt-aside:after {
+.pt-aside.pt-aside:before {
   border-right: 2px solid #ABC3CF;
   display: block;
   content: '';
   position: fixed;
   top: 0;
   bottom: 0;
-  left: 230px;
+  padding-left: 230px;
   transition: 0.3s ease all;
 }
 .pt-main {
   width: 100%;
 }
 /*********************
-     鐢缚绗呴弽鍥╁殠閻ㄥ垺ar
+     å¸¦ä¸‹æ ‡çº¿çš„bar
 ***********************/
 .pt-bread {
   border-bottom: 2px solid #ABC3CF;
@@ -525,7 +432,7 @@ ul {
   padding: 30px;
 }
 /*********************
-     鐏忓繑鐖ｆ０锟�
+     å°æ ‡é¢˜
 ***********************/
 .pt-subtitle {
   font-size: 14px;
@@ -535,13 +442,16 @@ ul {
   line-height: 30px;
   margin-top: 20px;
 }
-
+/*********************
+     å¿…å¡«é¡¹
+***********************/
 .form-group {
-   width: 100%; 
+  width: 100%;
   line-height: 36px;
 }
 .form-group label {
-  text-align: left;
+  text-align: right;
+  padding-right:15px;
   height: 36px;
   overflow: hidden;
 }
@@ -552,7 +462,7 @@ ul {
   color: #ffffff !important;
 }
 /*********************
-     閺屻儴顕梑utton鐞涳拷
+     æŸ¥è¯¢buttonè¡Œ
 ***********************/
 .pt-btn-line {
   margin-left: 5px;
@@ -560,21 +470,22 @@ ul {
   padding-bottom: 20px;
 }
 /*********************
-     閹绘劒姘utton鐞涳拷
+     æäº¤buttonè¡Œ
 ***********************/
 .pt-btn-submit {
   padding: 30px 10px;
 }
 /*********************
-     layer娑擃厾娈戦幓鎰唉button鐞涳拷
+     layerä¸­çš„æäº¤buttonè¡Œ
 ***********************/
 .pt-btn-submit-layer {
   padding-top: 60px;
   display: inline-block;
   text-align: center;
+  padding-left: 30px;
 }
 /*********************
-     閺嶆垶鐖ｆ０锟�
+     æ ‘æ ‡é¢˜
 ***********************/
 .pt-tree-title {
   padding: 30px 10px 10px 21px;
@@ -585,17 +496,8 @@ ul {
   border-left: 4px solid #2E66BD;
   padding-left: 26px;
 }
-.pt-tree-title-inner {
-  padding: 6px 10px 10px 20px;
-  font-size: 14px;
-  font-weight: bold;
-}
-.pt-tree-title-inner span {
-  border-left: 4px solid #2E66BD;
-  padding-left: 26px;
-}
 /*********************
-     閸忣剙鍙℃惔鏇㈠劥
+     å…¬å…±åº•éƒ¨
 ***********************/
 .pt-footer {
   height: 40px;
@@ -610,7 +512,7 @@ ul {
   z-index: 10;
 }
 /******************************************************
-                        home 妞わ拷
+                        home é¡µ
  ******************************************************/
 .pt-padding-index {
   padding-left: 20px;
@@ -806,7 +708,7 @@ ul {
   white-space: nowrap;
 }
 /******************************************************
-                  table 妞わ拷+form妞わ拷
+                  table é¡µ+formé¡µ
  ******************************************************/
 .w20 .th-inner {
   width: 20px !important;
@@ -862,7 +764,7 @@ ul {
   line-height: 36px;
 }
 /******************************************************
-                        閺屻儳婀卨ook 妞わ拷
+                        æŸ¥çœ‹look é¡µ
  ******************************************************/
 .pt-look-title {
   font-size: 16px;
@@ -875,7 +777,7 @@ ul {
   position: fixed;
 }
 /******************************************************
-                       閸忔湹绮�
+                       å…¶ä»–
  ******************************************************/
 .pt-choice-over {
   font-size: 14px;
@@ -912,10 +814,6 @@ ul {
 }
 .dropdown-menu {
   padding: 0 !important;
-}
-
-.datetimepicker-dropdown-bottom-right {
-  margin-top: 42px;
 }
 .form-horizontal .radio,
 .form-horizontal .checkbox,
@@ -954,4 +852,7 @@ ul {
 }
 .pt-btn-submit-layer .btn-default {
   margin: 0 10px !important;
+}
+.pt-child-s {
+  background: #245094;
 }
