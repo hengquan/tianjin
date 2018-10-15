@@ -122,6 +122,8 @@
 													<select id="mnscCatId" class="selectpicker"
 														data-actions-box="true" data-live-search="true"
 														title="请选择">
+														<option value="">全部</option>
+                            ${optionHtml}
 													</select>
 												</div>
 											</div>
@@ -207,7 +209,7 @@
 	<script src="${gateway}/src/js/pt-tree.js"></script>
 
 	<script>
-    //渲染分类
+/*     //渲染分类
     $.ajax({
       type : 'post',
       url : "${gateway}/train/getCateData",
@@ -230,7 +232,7 @@
       error : function() { //失败回调函数
         layer.msg("获取分类失败！");
       }
-    });
+    }); */
     //时间选择
     $('.datetimepicker').datetimepicker({
       language : 'zh',

@@ -170,15 +170,27 @@ public class ManageDispatchUrl {
     // --摸拟实操管理
     @RequestMapping("mnsc/list")
     public String toMnscList(Model model) {
-        
-        
-        
-        
+        List<Map<String, Object>> cl=categoryService.getCateList4View(null, 0);
+        if (cl!=null&&cl.size()>0) {
+            String optionHtml="";
+            for (Map<String,Object> m:cl) {
+                optionHtml+="<option value='"+m.get("id")+"'>"+m.get("text")+"</option>";
+            }
+            model.addAttribute("optionHtml", optionHtml);
+        }
         return "/manage/mnsc/mnscList";
     }
 
     @RequestMapping("mnsc/selList")
-    public String mnscSelList(HttpServletRequest request) {
+    public String mnscSelList(HttpServletRequest request,Model model) {
+        List<Map<String, Object>> cl=categoryService.getCateList4View(null, 0);
+        if (cl!=null&&cl.size()>0) {
+            String optionHtml="";
+            for (Map<String,Object> m:cl) {
+                optionHtml+="<option value='"+m.get("id")+"'>"+m.get("text")+"</option>";
+            }
+            model.addAttribute("optionHtml", optionHtml);
+        }
         return "/manage/mnsc/mnscSelList";
     }
 
@@ -210,6 +222,15 @@ public class ManageDispatchUrl {
         if (StringUtils.isNotEmpty(imgJsons))
             imgJsons = imgJsons.substring(1);
         model.addAttribute("imgJson", imgJsons);
+        //分类
+        List<Map<String, Object>> cl=categoryService.getCateList4View(null, 0);
+        if (cl!=null&&cl.size()>0) {
+            String optionHtml="";
+            for (Map<String,Object> m:cl) {
+                optionHtml+="<option value='"+m.get("id")+"'>"+m.get("text")+"</option>";
+            }
+            model.addAttribute("optionHtml", optionHtml);
+        }
         return "/manage/mnsc/mnscEdit";
     }
 
@@ -254,7 +275,15 @@ public class ManageDispatchUrl {
     }
 
     @RequestMapping("kj/selList")
-    public String kjSelList(HttpServletRequest request) {
+    public String kjSelList(HttpServletRequest request,Model model) {
+        List<Map<String, Object>> cl=categoryService.getCateList4View(null, 0);
+        if (cl!=null&&cl.size()>0) {
+            String optionHtml="";
+            for (Map<String,Object> m:cl) {
+                optionHtml+="<option value='"+m.get("id")+"'>"+m.get("text")+"</option>";
+            }
+            model.addAttribute("optionHtml", optionHtml);
+        }
         return "/manage/kj/kjSelList";
     }
 
@@ -293,6 +322,15 @@ public class ManageDispatchUrl {
             videoJsons = videoJsons.substring(1);
         model.addAttribute("imgJson", imgJsons);
         model.addAttribute("videoJson", videoJsons);
+        //分类
+        List<Map<String, Object>> cl=categoryService.getCateList4View(null, 0);
+        if (cl!=null&&cl.size()>0) {
+            String optionHtml="";
+            for (Map<String,Object> m:cl) {
+                optionHtml+="<option value='"+m.get("id")+"'>"+m.get("text")+"</option>";
+            }
+            model.addAttribute("optionHtml", optionHtml);
+        }
         return "/manage/kj/kjEdit";
     }
 
