@@ -106,7 +106,7 @@
 										<div class="form-group">
 											<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
 												for="exampleInputName2">&emsp;名&emsp;称</label>
-											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 												<input type="text" class="form-control" id="kjName"
 													placeholder="课件名称">
 											</div>
@@ -117,10 +117,12 @@
 										<!-- 示例select -->
 										<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 											<div class="form-group">
-												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
+												<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
 													for="lunch">&emsp;分&emsp;类</label>
-												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-													<select id="kjCatId" class="selectpicker" title="请选择">
+												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+													<select id="kjCatId" class="selectpicker" title="请选择" data-actions-box="true" data-live-search="true">
+													<option>全部</option>
+													${optionHtml}
 													</select>
 												</div>
 											</div>
@@ -202,7 +204,8 @@
 
 	<script src="${gateway}/src/js/pt-tree.js"></script>
 	<script>
-    //渲染分类
+    //渲染分类 /getTree/ptTree
+    /*
     $.ajax({
       type : 'post',
       url : "${gateway}/train/getCateData",
@@ -225,7 +228,7 @@
       error : function() { //失败回调函数
         layer.msg("获取分类失败！");
       }
-    });
+    });*/
     //时间选择
     $('.datetimepicker').datetimepicker({
       language : 'zh',
