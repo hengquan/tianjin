@@ -52,7 +52,7 @@ body {
 .time {
   margin-left: 30px;
 }
-.jj {
+.js {
   padding-top: 3%;
 
 }
@@ -142,6 +142,7 @@ body {
 .xgkc-box {
   padding: 20px 0;
   margin-top: 3px;
+  padding-bottom:40px;
 }
 .xgkc-box li {
   float: left;

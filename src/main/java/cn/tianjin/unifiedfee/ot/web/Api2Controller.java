@@ -18,13 +18,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spiritdata.framework.core.model.tree.TreeNode;
 import com.spiritdata.framework.core.model.tree.TreeNodeBean;
+import com.spiritdata.framework.util.DateUtils;
 
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
+import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.entity.Mnsc;
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
+import cn.tianjin.unifiedfee.ot.service.ArchiveService;
 import cn.tianjin.unifiedfee.ot.service.CategoryService;
 import cn.tianjin.unifiedfee.ot.service.KjService;
 import cn.tianjin.unifiedfee.ot.service.MnscRefSourceService;
@@ -45,6 +48,8 @@ public class Api2Controller {
     private KjService kjService;
     @Autowired
     private MnscRefSourceService mnscRefSourceService;
+    @Autowired
+    private ArchiveService archiveService;
     @Autowired
     private LogVisitService logVisitService;
 
@@ -141,6 +146,8 @@ public class Api2Controller {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");
             } else {
+                //获得该模拟实操的访问数量
+                
                 retMap.put("returnCode", "00");
                 retMap.put("data", mnsc);
             }
@@ -183,12 +190,40 @@ public class Api2Controller {
             }
             // 查询
             List<Kj> kjList = mnscRefSourceService.getKjList(mnscId);
+
             if (kjList == null || kjList.size() <= 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");
             } else {
+                //查询相关图片
+                String orSql="";
+                for (Kj kj: kjList) {
+                    orSql+=" or obj_id='"+kj.getId()+"'";
+                }
+
+                List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+                if (!StringUtils.isBlank(orSql)) {
+                    orSql=orSql.substring(4);
+                    List<CommArchive> al=archiveService.getArchiveByObjIds("ts_KJ", "img", orSql);
+                    for (Kj kj:kjList) {
+                        Map<String, Object> m=_getKjMap(kj);
+                        if (al!=null) {
+                            for (CommArchive ca: al) {
+                                if (ca.getObjId().equals(kj.getId())) {
+                                    m.put("imgUrl", ca.getFileUrl());
+                                }
+                            }
+                        }
+                        if (m.get("imgUrl")==null) {//默认图片
+//                            m.put("imgUrl", "/images/defaultKJ.png");
+                            m.put("imgUrl", "");
+                        }
+                        retL.add(m);
+                    }
+                }
+
                 retMap.put("returnCode", "00");
-                retMap.put("data", kjList);
+                retMap.put("data", retL);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -196,6 +231,15 @@ public class Api2Controller {
             retMap.put("messageInfo", e.toString());
         }
         return retMap;
+    }
+    private Map<String, Object> _getKjMap(Kj kj) {
+        Map<String, Object> m=new HashMap<String, Object>();
+        m.put("id", kj.getId());
+        m.put("catNames", kj.getKjCatNames());
+        m.put("name", kj.getKjName());
+        m.put("remarks", kj.getRemarks());
+        m.put("createDate", DateUtils.convert2LocalStr("yyyy-MM-dd HH:mm:ss", kj.getCreateDate()));
+        return m;
     }
 
     /**

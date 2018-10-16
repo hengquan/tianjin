@@ -24,7 +24,7 @@
     </div>
     <!--右侧关闭窗口-->
     <div class="pt-fr pt-user-info">
-      <div><a style="color: #ffffff" onclick="closeWin()">关闭</a></div>
+      <div><a style="color: #ffffff" onclick="closeWin()">关闭&emsp;</a></div>
     </div>
   </div>
 </div>
@@ -55,7 +55,7 @@
     </div>
   </div>
   <!--同类课程-->
-  <div class="_gap"><span>同类课程<div class="border"></div></span></div>
+  <div class="_gap"><span>相关课程<div class="border"></div></span></div>
   <div class="_detail_bottom">
     <div class="row">
     </div>
@@ -147,7 +147,7 @@ function initPage() {
         $(".course_right .course_name").html(tmpVal);
         tmpVal=(data.data.createDate?data.data.createDate:"");
         if (tmpVal) tmpVal=tmpVal.substring(0,10);
-        $(".course_right .course_time").html("发布时间:"+tmpVal);
+        $(".course_right .course_time").html(""+tmpVal);
         tmpVal=(data.data.remarks?data.data.remarks:"");
         $(".course_right .course_description").html(tmpVal);
       }
