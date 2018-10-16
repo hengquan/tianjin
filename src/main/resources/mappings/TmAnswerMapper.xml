@@ -5,7 +5,7 @@
     <result column="id" property="id" jdbcType="VARCHAR" />
     <result column="tm_id" property="tmId" jdbcType="VARCHAR" />
     <result column="tm_answer" property="tmAnswer" jdbcType="VARCHAR" />
-    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
   </resultMap>

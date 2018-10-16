@@ -13,10 +13,10 @@
     <result column="score" property="score" jdbcType="INTEGER" />
     <result column="tm_count" property="tmCount" jdbcType="INTEGER" />
     <result column="diff_type" property="diffType" jdbcType="VARCHAR" />
-    <result column="begin_time" property="beginTime" jdbcType="DATE" />
-    <result column="end_time" property="endTime" jdbcType="DATE" />
+    <result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
     <result column="state" property="state" jdbcType="INTEGER" />
-    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
   </resultMap>

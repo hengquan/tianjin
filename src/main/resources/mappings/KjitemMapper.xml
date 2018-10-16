@@ -11,7 +11,7 @@
 		<result column="state" property="state" jdbcType="INTEGER" />
 		<result column="score" property="score" jdbcType="INTEGER" />
 		<result column="sort" property="sort" jdbcType="INTEGER" />
-		<result column="create_date" property="createDate" jdbcType="DATE" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
 		<result column="create_by" property="createBy" jdbcType="VARCHAR" />
 		<result column="create_name" property="createName" jdbcType="VARCHAR" />
 		<result column="kj_html" property="kjHtml" jdbcType="LONGVARCHAR" />
