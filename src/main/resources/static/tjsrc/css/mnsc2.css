@@ -5,20 +5,40 @@ body {
   margin: 0;
   padding: 0;
 }
+._gap{
+  width: 1200px;
+  height: 60px;
+  margin: 20px auto 5px;
+  background-color: white;
+  line-height: 60px;
+}
+._gap span{
+  margin-left: 26px;
+  font-size: 16px;
+  font-weight: bold;
+}
+._gap .border{
+  width: 70px;
+  height:4px;
+  background-color:#2d65c2 ;
+  margin-left:21px;
+  margin-top: -5px;
+  border: none;
+}
 .box {
   width: 1200px;
   margin: 0 auto;
 }
 .tlkc {
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
-  padding-left: 30px;
+  padding-left: 20px;
   height: 60px;
   line-height: 60px;
 }
 .tlkc span {
-  border-bottom: 3px solid #2E66BD;
+  border-bottom: 4px solid #2E66BD;
   padding-bottom: 18px;
 }
 .bgs {
@@ -28,7 +48,7 @@ body {
   border-radius: 0px;
 }
 .mnsc-box {
-  margin-top: 3px;
+  margin-top: 0px;
   padding: 30px 0;
 }
 .info {
@@ -52,9 +72,11 @@ body {
 .time {
   margin-left: 30px;
 }
-.js {
-  padding-top: 3%;
-
+.js {  
+  padding-top: 1%; 
+  padding-right: 10%;
+  font-size: 16px;
+  font-family:'Microsoft YaHei';
 }
 .ks-btn {
   width: 90px;
@@ -123,9 +145,12 @@ body {
   height: 0;
 }
 .list li {
+  font-family:'Microsoft YaHei';
   width: 15%;
   position: relative;
   margin-left: 2%;
+  font-size: 16px;
+  
 }
 .list li:last-child .sanjiao {
   display: none;
@@ -138,6 +163,7 @@ body {
   position: absolute;
   right: -15px;
   top: 30px;
+  
 }
 .xgkc-box {
   padding: 20px 0;

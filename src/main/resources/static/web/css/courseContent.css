@@ -408,17 +408,19 @@ html{
   line-height: 30px;
   color: white;
   margin-top: 20px;
-  margin-left: 1000px;
-  font-size: 14px;
+  margin-left: 900px;
+  font-size: 16px;
 }
 .tm p {
   margin-top: 55px;
   margin-left:100px;
-  font-size:20px;
+  margin-right:100px;
+  font-size:16px;
 }
 .tm .answer {
   margin-top:8px;
   margin-left:100px;
+  margin-right:100px;
   font-size:14px;
 }
 .oneItem {

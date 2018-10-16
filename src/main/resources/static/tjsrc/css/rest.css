@@ -1,4 +1,4 @@
-body{ margin: 0;padding: 0;font-family: "微软雅黑";}
+body{ margin: 0;padding: 0;font-family: 'Microsoft YaHei';}
 body,html{-webkit-text-size-adjust: none;width: 100%;height: 100%;}
 *{text-decoration: none;list-style: none;}
 img{border: 0px;width: 100%;}
@@ -17,10 +17,10 @@ a:hover {color: #00FF00; text-decoration:underline;}
 a:active {color: #0000FF; text-decoration:underline;}*/
 a{color: #000;}
 .wrapper{clear: both;width: 100%;}
-word-break:break-all /*文字换行*/
-/*white-space:nowrap 文字不换行*/
+word-break:break-all /*鏂囧瓧鎹㈣*/
+/*white-space:nowrap 鏂囧瓧涓嶆崲琛�*/
 
-/*默认滚动条样式修改ie9 google Firefox 等高版本浏览器有效*/
+/*榛樿婊氬姩鏉℃牱寮忎慨鏀筰e9 google Firefox 绛夐珮鐗堟湰娴忚鍣ㄦ湁鏁�*/
 /*::selection {background: #D03333;color: white;text-shadow: none;}
 ::-webkit-scrollbar-track-piece{width:10px;background-color:#f2f2f2}
 ::-webkit-scrollbar{width:10px;height:6px}

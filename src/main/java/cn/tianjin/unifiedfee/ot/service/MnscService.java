@@ -141,7 +141,7 @@ public class MnscService {
 
     // 获取单条信息
     public Mnsc get(Mnsc mnsc) throws Exception {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         mnsc = dao.get(mnsc.getId());
         if (mnsc != null) {
             // 获取摸拟实操-课件数据
