@@ -11,7 +11,7 @@
 		<result column="obj_id" property="objId" jdbcType="VARCHAR" />
 		<result column="archive_type" property="archiveType" jdbcType="VARCHAR" />
 		<result column="sort" property="sort" jdbcType="INTEGER" />
-		<result column="create_date" property="createDate" jdbcType="DATE" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Blob_Column_List">
 		id, file_name, file_path, file_url, is_show,

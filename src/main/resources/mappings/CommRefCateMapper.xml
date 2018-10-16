@@ -10,7 +10,7 @@
     <result column="obj_id" property="objId" jdbcType="VARCHAR" />
     <result column="ref_type" property="refType" jdbcType="VARCHAR" />
     <result column="sort" property="sort" jdbcType="INTEGER" />
-    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.CommRefCate" >
     insert into comm_ref_cate (id, cat_id, cat_names, 

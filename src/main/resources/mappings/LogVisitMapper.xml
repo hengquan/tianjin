@@ -33,8 +33,8 @@
 		<result column="os_ver" property="osVer" jdbcType="VARCHAR" />
 		<result column="dealFlag" property="dealflag" jdbcType="INTEGER" />
 		<result column="returnData" property="returndata" jdbcType="VARCHAR" />
-		<result column="create_date" property="createDate" jdbcType="DATE" />
-		<result column="endTime" property="endtime" jdbcType="DATE" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="endTime" property="endtime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Blob_Column_List">
 		id, serv_sys_type, serv_sys_id,

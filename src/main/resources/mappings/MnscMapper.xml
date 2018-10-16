@@ -5,8 +5,7 @@
 		<result column="id" property="id" jdbcType="VARCHAR" />
 		<result column="mnsc_name" property="mnscName" jdbcType="VARCHAR" />
 		<result column="mnsc_cat_id" property="mnscCatId" jdbcType="VARCHAR" />
-		<result column="mnsc_cat_names" property="mnscCatNames"
-			jdbcType="VARCHAR" />
+		<result column="mnsc_cat_names" property="mnscCatNames" jdbcType="VARCHAR" />
 		<result column="expire_date" property="expireDate" jdbcType="VARCHAR" />
 		<result column="mnsc_url" property="mnscUrl" jdbcType="VARCHAR" />
 		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
@@ -14,7 +13,7 @@
 		<result column="score" property="score" jdbcType="INTEGER" />
 		<result column="sort" property="sort" jdbcType="INTEGER" />
 		<result column="isvalid" property="isvalid" jdbcType="INTEGER" />
-		<result column="create_date" property="createDate" jdbcType="DATE" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
 		<result column="create_by" property="createBy" jdbcType="VARCHAR" />
 		<result column="create_name" property="createName" jdbcType="VARCHAR" />
 	</resultMap>

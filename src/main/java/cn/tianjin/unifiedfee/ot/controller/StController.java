@@ -58,11 +58,10 @@ public class StController {
         // 查询数据
         List<Tm> Tms = stService.getPageData(param);
         if (Tms != null && Tms.size() > 0) {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             for (Tm tm : Tms) {
                 Date createDate = tm.getCreateDate();
                 String strcreatedate = format.format(createDate);
-                System.out.print(strcreatedate+"================");
                 if (StringUtils.isNotEmpty(strcreatedate))
                     tm.setStrcreatedate(strcreatedate);
             }
@@ -97,11 +96,10 @@ public class StController {
         // 查询数据
         List<Tm> Tms = stService.getPageData4kj(param);
         if (Tms != null && Tms.size() > 0) {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             for (Tm tm : Tms) {
                 Date createDate = tm.getCreateDate();
                 String strcreatedate = format.format(createDate);
-                System.out.print(strcreatedate+"================");
                 if (StringUtils.isNotEmpty(strcreatedate))
                     tm.setStrcreatedate(strcreatedate);
             }

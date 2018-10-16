@@ -13,8 +13,8 @@
     <result column="auditer" property="auditer" jdbcType="VARCHAR" />
     <result column="obj_tabname" property="objTabname" jdbcType="VARCHAR" />
     <result column="obj_id" property="objId" jdbcType="VARCHAR" />
-    <result column="create_date" property="createDate" jdbcType="DATE" />
-    <result column="audit_date" property="auditDate" jdbcType="DATE" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="audit_date" property="auditDate" jdbcType="TIMESTAMP" />
     <result column="state" property="state" jdbcType="INTEGER" />
     <result column="interpret" property="interpret" jdbcType="VARCHAR" />
     <result column="opinion" property="opinion" jdbcType="VARCHAR" />
