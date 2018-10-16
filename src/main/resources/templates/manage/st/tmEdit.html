@@ -5,34 +5,38 @@
 <title>input</title>
 <!-- 1 bootstrap基础css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
-    rel="stylesheet">
+	rel="stylesheet">
 <!-- 2 table表格css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
-    rel="stylesheet">
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
+	rel="stylesheet">
 <!-- 3 treeview树css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
-    rel="stylesheet">
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
+	rel="stylesheet">
 <!-- 4 datetimepicker时间选择css -->
 <link
-    href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
-    rel="stylesheet">
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
+	rel="stylesheet">
 <!-- 5 select选择框css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
-    rel="stylesheet">
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
+	rel="stylesheet">
 <!-- 6 fileinput上传文件css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
-    rel="stylesheet">
+	rel="stylesheet">
 <!-- 7 icheck单选+多选css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
-    rel="stylesheet">
+	rel="stylesheet">
 <!-- 8 Validator验证css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
-    rel="stylesheet">
+<link
+	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
+	rel="stylesheet">
 <!-- 9 layer弹框css -->
 <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
 <!-- 10 引入字体css -->
 <link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
-    rel="stylesheet">
+	rel="stylesheet">
 <!-- 11 页面样式css -->
 <link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
@@ -41,31 +45,38 @@
 <!-- 1 bootstrap基础js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <!-- 2 table表格js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
 <!-- 2 table列表数据js 可删除？ -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
 <!-- 3 treeview树js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
 <!-- 4 datetimepicker时间选择js -->
 <script
-    src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
 <!-- 5 select选择框js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <!-- 6 fileinput上传文件js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
 <!-- 6 fileinput中文包js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
 <!-- 7 icheck单选+多选js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
 <!-- 8 Validator验证js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <!-- 9 layer弹框js -->
 <script src="${gateway}/libs/layer/layer.js"></script>
 <!-- 11 页面js -->
 <script src="${gateway}/src/js/main.js"></script>
 <style>
 html {
-    overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 </style>
 </head>
@@ -89,19 +100,18 @@ html {
                         <div class="form-group">
                        	   <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="title"><span>※ </span>分类</label>
                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">	
-                            	<div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">		             
-					                <input type="text" class="form-control" name="catnames" id="catnames" style="border-right:0px;" readonly="readonly"/>				               
-					                <div class="input-group-btn">
-					                  <button type="button" class="btn btn-default dropdown-toggle btn-tj" data-toggle="dropdown" style="border-bottom-left-radius:0px;border-top-left-radius:0px; border-left:0px;">
-					                  	<span class="caret"></span>
-					                  </button>
-					                  <div class="dropdown-menu pull-right" style="width:220px;height:240px;overflow-y:auto;overflow-x:hidden;" data-stopPropagation="true">
-					                    <div id="cate-tree"></div>
-					                  </div>
-					                </div>
-					                <input type="hidden" class="form-control" name="catid" id="catid"/>
-					            </div>
-			               </div>
+                            	   <select id="catid" name="catid" class="selectpicker" data-actions-box="true" data-live-search="true" title="请选择"
+										onchange="selOnchange()">
+									    <option value="1" selected>法规类</option>
+						                <option value="2">政策类</option>
+						                <option value="3">收费类</option>
+						                <option value="4">放行类</option>
+						                <option value="5">理货类</option>
+						                <option value="6">出口类</option>
+						                <option value="7">进口类</option>
+									</select>
+									<input type="hidden" class="form-control" name="catnames"	id="catnames" />
+						   </div>
 			               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="diffScore">
                                 <span> ※ </span>难度系数
                             </label>                          
@@ -224,6 +234,7 @@ html {
 
     <br>
     <script>
+    //selfenlei();
     //table
     // 2.返回操作模版[按钮颜色暂不确定]
     function operateFormatter(value, row, index) {
@@ -232,7 +243,7 @@ html {
               + value + '")>修改</button>',
           '<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("'
               + value + '")>删除</button>' ].join('');
-    }
+    }    
     $(function() {
       //icheck 单选多选
       $('input').iCheck({
@@ -259,8 +270,16 @@ html {
             var tm = data.data;
             $("#objId").val(tm.id);
             $("#tmHtml").val(tm.tmHtml);
-            $("#isvalid").val(tm.isvalid);
-            $("#catid").val(tm.catid);
+            
+            $("input[type=radio][name=isvalid]").each(function (i, e) {
+           	  if (tm.isvalid == "1"){
+               	 if ($(this).val()==1) $(this).iCheck('check');   
+           	  }
+           	  else{
+           	     if ($(this).val()==0) $(this).iCheck('check');  
+           	  }
+              }); 
+            $("#catid").selectpicker('val', tm.catid); 
             $("#catnames").val(tm.catnames);
             $("#tmType").selectpicker('val', tm.tmType);  
             $("#diffScore").selectpicker('val',tm.diffScore);             
@@ -588,20 +607,37 @@ html {
   function refresh() {   
     $("#tb_departments").bootstrapTable('refresh');
   }
-  
-  function selectTreeNode(treeNodeData) {
-    console.log(treeNodeData);
-    $("input[name='catnames']").val(treeNodeData.pathName);
-    $("input[name='catid']").val(treeNodeData.id);
-    $('#cate-tree').treeview('uncheckAll', { silent: true });
-    $('#cate-tree').treeview('checkNode', [treeNodeData.nodeId, { silent: true }]);
-    window.setTimeout(function(){/*
-      $(".dropdown-menu").dropdown('toggle');
-      $(".dropdown-menu").attr("data-stopPropagation","true");
-      $(".dropdown-menu").on('click', function (e) {
-        e.stopPropagation();
-      });*/
-    }, 500);
+ 
+  function selOnchange() {
+    var value = $("#catid  option:selected").text();
+    $("#catnames").val(value);
+  }
+//渲染分类
+  function selfenlei() {
+    $.ajax({
+      type : 'post',
+      url : "${gateway}/train/getCateData",
+      dataType : 'json',
+      cache : false,
+      success : function(data) {
+        var returnCode = data.returnCode;
+        if (returnCode == '00') {
+          var html = '';
+          var msgs = data.data.list;
+          for (var i = 0; i < msgs.length; i++) {
+            html += '<option value="'+ msgs[i].id +'">' + msgs[i].name
+                + '</option>'
+          }
+          if(html != '')
+            $("#catid").html(html);
+        } else {
+          layer.msg(data.messageInfo);
+        }
+      },
+      error : function() { //失败回调函数
+        layer.msg("获取分类失败！");
+      }
+    });
   }
   </script>
 </body>

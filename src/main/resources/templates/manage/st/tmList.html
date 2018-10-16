@@ -106,19 +106,17 @@
 										    <div class="form-group">	
 											    <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title">分类</label>
 					                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-						                            <div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">			             
-										                <input type="text" class="form-control" name="catnames" id="catnames" style="border-right:0px;" readonly="readonly"/>				               
-										                <div class="input-group-btn">
-										                  <button type="button" class="btn btn-default dropdown-toggle btn-tj" data-toggle="dropdown" style="border-bottom-left-radius:0px;border-top-left-radius:0px; border-left:0px;">
-										                  	<span class="caret"></span>
-										                  </button>
-										                  <div class="dropdown-menu pull-right" style="width:240px;height:240px;overflow-y:auto;overflow-x:hidden;" data-stopPropagation="true">
-										                    <div id="cate-tree"></div>
-										                  </div>
-										                </div>
-										                <input type="hidden" class="form-control" name="catid" id="catid"/>
-										           </div>
-								               </div>
+						                            <select id="catid" name="catid" class="selectpicker" data-actions-box="true" data-live-search="true" title="请选择"
+														onchange="selOnchange()">
+													    <option value="1" selected>法规类</option>
+										                <option value="2">政策类</option>
+										                <option value="3">收费类</option>
+										                <option value="4">放行类</option>
+										                <option value="5">理货类</option>
+										                <option value="6">出口类</option>
+										                <option value="7">进口类</option>
+													</select>
+												</div>
 								             </div>
                            				</div>                           																											
 									</span>
@@ -166,11 +164,14 @@
       });   
       // 时间选择
     $('.datetimepicker').datetimepicker({
-      language : 'zh',
-      format : 'yyyy-mm-dd hh:ii:ss',
-      todayBtn : true,
-      autoclose : true
-    });
+    language: 'zh',
+    format: 'yyyy-mm-dd',
+    minView: "month",
+    pickDate: true,
+    pickTime: false,
+    todayBtn: true,
+    autoclose: true
+  });
     //搜索扩展
     $("#ptsearchfilter").click(function() {
       $(this).text($(".hiddenorshow").is(":hidden") ? "收起" : "展开");
@@ -222,13 +223,13 @@
     function operateFormatter(value, row, index) {
       var btnArray=[];      
       if (row.isvalid=='1') {
-        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=changeValid0("' + value + '")>停用</button>');
+        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.tmHtml+'\',\''+row.parentName+'\', 0)">停用</button>');
       } else 
       if (row.isvalid=='0') {
         btnArray.push('<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("' + value + '")>修改</button>');
-        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red pt-success" onclick=changeValid1("' + value + '")>启用</button>');
+        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red pt-success" onclick="changeValid(\''+ value + '\', \''+row.tmHtml+'\',\''+row.parentName+'\', 1)">启用</button>');
       }
-      btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick=deleteItem("' + value + '")>删除</button>');
+      btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.tmHtml+'\',\''+row.parentName+'\', 2)">删除</button>');
       return btnArray.join('');
      
     }
@@ -288,32 +289,48 @@
         return false;
       }
     }
+ 
+ 
  // 操作启用
-    function changeValid1(e) {
+ function changeValid(e, tmHtml, pn, type) {
+  if (type==1) {
+    ajaxChangeValid(e, type);
+  } else {   
+    var ty="停用";
+    if (type==2) ty="删除";
+    if (type==2) {
+      layer.confirm('要'+ty+'题目"'+tmHtml+'"吗？', {btn : [ '确定', '取消' ]},
+        function(index) {
+          layer.close(index);
+          ajaxChangeValid(e, type);
+        }
+      );
+    } else {
+      ajaxChangeValid(e, type);
+    }
+  }
+}
+    function ajaxChangeValid(e,valid) {
       var data = {
         "id":e,
-        "isvalid":1,
+        "isvalid":valid,
         "kjList":"",
         "mnscList":""
       }
-      var mymessage=confirm("确定要启用该题目信息吗？");
-      if(mymessage==true){
-        $.ajax({
+      $.ajax({
           type : 'post',
           url : "${gateway}/st/update",
           data : data,
           dataType : 'json',
           cache : false,
           success : function(data) {
+            layer.msg((valid==1?"启用":(valid==2?"删除":"停用"))+"成功!");           
             $("#tb_departments").bootstrapTable('refresh');
           },
           error : function() { //失败回调函数
             alert("删除失败");
           }
-        });
-      } else if(mymessage==false){
-        return false;
-      }
+        });     
     }
     function addItem() {
       layer.open({
@@ -380,8 +397,8 @@
       title : '创建人',
       sortable : false
     },{
-      field : 'strcreatedate',
-      title : '创建日期',
+      field : 'createDate',
+      title : '创建时间',
       sortable : false
     }, {
       field : 'id',
