@@ -1,3 +1,14 @@
+function closeWin() {
+  var browserName=navigator.appName;
+  if (browserName=="Microsoft Internet Explorer") { 
+    window.parent.opener = "whocares"; 
+    window.parent.close(); 
+  } else {
+    window.open('', '_self', '');
+    window.close();
+  }
+}
+
 var intervalHandler;
 var sjData;
 var count=0;
@@ -36,6 +47,10 @@ function tplRadio(res,tmid) {
 }
 
 function buildPaper() {
+  if (!$(".selectpicker").val()) {
+    layer.alert("至少选择一个分类");
+    return;
+  }
   layer.msg('试题生成中......', {
     icon: 16 ,shade: 0.01
   });
@@ -54,6 +69,7 @@ function buildPaper() {
     dataType: "json",
     success: function (res) {
       if(res.returnCode == 00) {
+        $(".lxt").html(res.data.name);
         $(".empty").css("display","none")
         $(".lxt").css("display","block")
         $(".times").html("开始练习");

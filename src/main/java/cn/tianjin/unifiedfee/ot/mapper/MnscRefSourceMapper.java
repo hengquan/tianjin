@@ -17,6 +17,4 @@ public interface MnscRefSourceMapper {
     int update(MnscRefSource mnscRefSource);
 
     int delete(MnscRefSource mnscRefSource);
-
-    KjRefSource get(String id);
 }

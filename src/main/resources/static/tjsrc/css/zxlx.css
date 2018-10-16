@@ -6,7 +6,7 @@ body {
   padding: 0;
 }
 .box {
-  width: 90%;
+  width: 1200px;
   margin: 0 auto;
 }
 .tlkc {
@@ -29,9 +29,7 @@ body {
 }
 .con-box {
   background: #fff;
-}
-.con-box {
-  margin-top: 20px;
+  margin-top: 3px;
 }
 .inp-box {
   display: -webkit-box;
@@ -86,16 +84,17 @@ body {
   text-align: center;
 }
 .topic-list {
-  padding-left: 30px;
+  padding-left: 40px;
   line-height: 28px;
 }
 .lxt {
   display: none;
-  font-size: 18px;
+  font-size: 20px;
   color: #148bff;
-  padding-left: 30px;
+  padding-left: 40px;
   padding-top: 50px;
   padding-bottom: 30px;
+  font-weight:bold
 }
 .topic-list p {
   padding-left: 15px;
@@ -157,9 +156,9 @@ table td {
   cursor: pointer;
   margin-top:80px;
 }
-table.sample th {	background: #3e83c9;	color: #fff;	font-weight: bold;	padding: 2px 11px;	text-align: left;	border-right: 1px solid #fff;	line-height: 1.2;}
-table.sample td {	
-	border-bottom: 1px solid #95bce2;
+table.sample th {   background: #3e83c9;    color: #fff;    font-weight: bold;  padding: 2px 11px;  text-align: left;   border-right: 1px solid #fff;   line-height: 1.2;}
+table.sample td {   
+    border-bottom: 1px solid #95bce2;
 }
 .ndda {
   margin-left: 10px;
@@ -168,4 +167,7 @@ table.sample td {
 .title{
   font-size:14p;
   margin-bottom:8px;
+}
+.zts {
+  border-right:1px solid #3e83c9;
 }

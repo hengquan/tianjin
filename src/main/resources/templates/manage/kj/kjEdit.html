@@ -115,6 +115,7 @@ html {
 									<select id="kjCatId" name="kjCatId" class="selectpicker"
 										data-actions-box="true" data-live-search="true" title="请选择"
 										onchange="selOnchange()">
+                    ${optionHtml}
 									</select> <input type="hidden" class="form-control" name="kjCatNames"
 										id="kjCatNames" />
 								</div>
@@ -212,7 +213,7 @@ html {
 	<br>
 	<script>
     //初始化分类信息
-    selfenlei();
+    //selfenlei();
     //附件相关
     var imgJson = new Array();
     if ("${imgJson}" != '') {

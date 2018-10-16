@@ -131,7 +131,7 @@ body{
 }
 .course_description{
   width: 820px;
-  height: 75px;
+  height: 70px;
   margin-top: 25px;
 }
 .study_btn .start_study{
@@ -320,10 +320,10 @@ html{
 /*以下new*/
 ._gap{
   width: 1200px;
-  height: 66px;
+  height: 60px;
   margin: 20px auto 5px;
   background-color: white;
-  line-height: 66px;
+  line-height: 60px;
 }
 ._gap span{
   margin-left: 26px;
@@ -399,9 +399,11 @@ html{
   display: inline-block;
   cursor: pointer;
   width: 120px;
-  height: 30px;
+  height: 40px;
+  line-height: 39px;
+  padding-top: 5px;
   background: #f46227;
-  border-radius: 15px;
+  border-radius: 3px;
   text-align: center;
   line-height: 30px;
   color: white;
