@@ -123,7 +123,7 @@ public class KjService {
 
     // 获取单条信息
     public Kj get(Kj kj) throws Exception {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         // 获取主表信息
         kj = dao.get(kj.getId());
         if (kj != null) {
@@ -177,7 +177,7 @@ public class KjService {
             for (Kj oneKj : kjs) {
                 // 日期格式
                 Date createDate = oneKj.getCreateDate();
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String str = format.format(createDate);
                 oneKj.setCreatedate(str);
             }

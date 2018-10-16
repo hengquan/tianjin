@@ -413,13 +413,24 @@ html {
       }, {
         field : 'isAnswer',
         title : '是否答案',
-        sortable : false
+        sortable : false,
+        formatter: formatisAnswer
       }, {
         field : 'id',
         title : '操作',
         formatter : operateFormatter
       } ]);
     }    
+    function formatisAnswer(value) {      
+      if (value == '1') {        
+        value ='<span class="pt-success">是</span>';
+      }
+      else
+        if (value == '0') {
+          value = '<span class="pt-warn">否</span>';
+        }
+      return value;
+    }
     function addTm() {
       var validatorObj=$('#form').data("bootstrapValidator");
       var aa=validatorObj.validate();

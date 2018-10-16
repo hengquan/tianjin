@@ -233,65 +233,8 @@
       return btnArray.join('');
      
     }
-
-    // 操作模版调用的方法
-    function deleteItem(e) {
-      var data = {
-        "id":e,
-        "isvalid":2,
-        "kjList":"",
-        "mnscList":""
-      }
-      var mymessage=confirm("确定要删除该题目信息吗？");
-      if(mymessage==true){
-        $.ajax({
-          type : 'post',
-          url : "${gateway}/st/update",
-          data : data,
-          dataType : 'json',
-          cache : false,
-          success : function(data) {
-            $("#tb_departments").bootstrapTable('refresh');
-          },
-          error : function() { //失败回调函数
-            alert("删除失败");
-          }
-        });
-      } else if(mymessage==false){
-        return false;
-      }
-    }
-    
- // 操作停用
-    function changeValid0(e) {
-      var data = {
-        "id":e,
-        "isvalid":0,
-        "kjList":"",
-        "mnscList":""
-      }
-      var mymessage=confirm("确定要停用该题目信息吗？");
-      if(mymessage==true){
-        $.ajax({
-          type : 'post',
-          url : "${gateway}/st/update",
-          data : data,
-          dataType : 'json',
-          cache : false,
-          success : function(data) {
-            $("#tb_departments").bootstrapTable('refresh');
-          },
-          error : function() { //失败回调函数
-            alert("删除失败");
-          }
-        });
-      } else if(mymessage==false){
-        return false;
-      }
-    }
  
- 
- // 操作启用
+ // 操作启用、停用、删除
  function changeValid(e, tmHtml, pn, type) {
   if (type==1) {
     ajaxChangeValid(e, type);
@@ -397,7 +340,7 @@
       title : '创建人',
       sortable : false
     },{
-      field : 'createDate',
+      field : 'strcreatedate',
       title : '创建时间',
       sortable : false
     }, {
