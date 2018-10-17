@@ -505,9 +505,30 @@ select upCateName, count(distinct obj_id) count from (
   </select>
 
   <!-- WH::得到所有的信息日志信息 -->
-  <select id="log_search" resultType="java.util.HashMap" parameterType="java.util.HashMap">
-    select * from logList
+  <select id="getXxrzList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select * from v_loglist
+    <where>
+      <trim prefix="(" suffix=")" prefixOverrides="and">
+        obj_type!='admin_mainpage'
+        <if test="objSql!=null and objSql!=''">and ${objSql}</if>
+        <if test="moduleSql!=null and moduleSql!=''">and ${moduleSql}</if>
+        <if test="date1!=null and date1!=''">
+        <![CDATA[
+        and create_date>to_date('${date1}', 'YYYY-MM-DD')
+        ]]>
+        </if>
+        <if test="date2!=null and date2!=''">
+        <![CDATA[
+        and create_date<to_date('${date2}', 'YYYY-MM-DD')
+        ]]>
+        </if>
+        <if test="compName!=null and compName!=''">and group_name like '%${compName}%'</if>
+        <if test="userName!=null and userName!=''">and visitor_name like '%${userName}%'</if>
+      </trim>
+    </where>
+    order by create_date desc
   </select>
+
   <!--课件统计 -->
   <select id="getcatkjtj" resultType="java.util.HashMap" parameterType="java.util.HashMap">
     select c.name catname,count(distinct s.id) coutkj ,count(distinct t.obj_id) countxxkj,count(distinct t.visitor_name) countxxrs,count(t.obj_id) countxxcs,
@@ -527,7 +548,4 @@ select upCateName, count(distinct obj_id) count from (
       </if>
 	group by c.name
   </select>
-
-
-
 </mapper>

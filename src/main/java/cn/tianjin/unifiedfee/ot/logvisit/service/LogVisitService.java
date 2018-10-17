@@ -101,4 +101,8 @@ public class LogVisitService {
         map.put("dayCount", dayCount);
         return logDao.getMnscStateByCate(map);
     }
+
+    public List<Map<String, Object>> getXxrzList(Map<String, Object> param) {
+        return logDao.getXxrzList(param);
+    }
 }

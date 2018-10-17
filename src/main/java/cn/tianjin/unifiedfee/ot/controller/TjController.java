@@ -1,6 +1,8 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
 import java.math.RoundingMode;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.spiritdata.framework.util.DateUtils;
 
 import cn.taiji.format.result.ObjectResponseResult;
 import cn.taiji.oauthbean.dto.UserInfo;
@@ -169,7 +172,101 @@ public class TjController {
          double accuracy_num = num / total * 100;       
          return df.format(accuracy_num)+"%";
     }
-    
+
+    /**
+     * 获得学员学习的统计列表，企业的学员学习
+     * @param forType=1是企业端,=2企业管理员,3=企业一般人员
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("getXxrzList")
+    @ResponseBody
+    public Map<String, Object> getXxrzList(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(required=false) String forType,
+            @RequestParam(required=false) String objTypes,
+            @RequestParam(required=false) String moduleNames,
+            @RequestParam(required=false) String compName,
+            @RequestParam(required=false) String userName,
+            @RequestParam(required=false) String date1,
+            @RequestParam(required=false) String date2,
+            @RequestParam(value="offset", defaultValue="1") int offset,
+            @RequestParam(value="limit", defaultValue="10") int limit) {
+        // 跨域
+        HttpPush.responseInfo(response);
+
+        Map<String, Object> retMap=new HashMap<String, Object>();
+        try {
+            UserInfo ui=userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+            if (StringUtils.isBlank(forType)) forType="1";//为管理端获得内容
+
+            if (!"1".equals(forType)) {//若不是为管理端，要获得当前的用户和企业信息
+                
+            }
+
+            //设置page
+            PageHelper.offsetPage(offset, limit);
+            Map<String, Object> param=new HashMap<String, Object>();
+            String objSql="";
+            if (!StringUtils.isBlank(objTypes)) {
+                objSql=objTypes.replaceAll(",", "' or obj_type='");
+                objSql="(obj_type='"+objSql+"')";
+            }
+            param.put("objSql", objSql);//所选择的人员的id列表
+            String moduleSql="";
+            if (!StringUtils.isBlank(moduleNames)) {
+                moduleSql=moduleNames.replaceAll(",", "' or visit_module_id='");
+                moduleSql="(visit_module_id='"+moduleSql+"')";
+            }
+            param.put("moduleSql", moduleSql);//所选择的人员的id列表
+
+            param.put("compName", compName);//所选择的人员的id列表
+            param.put("userName", userName);//所选择的人员的id列表
+            param.put("date1", date1);//开始时间
+            param.put("date2", date2);//结束时间
+            List<Map<String, Object>> _xxrzl=catService.getXxrzList(param);
+            
+            PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_xxrzl);
+            if (_xxrzl==null||_xxrzl.size()==0) {
+                return null;
+            }
+            //处理每一项
+            List<Map<String, Object>> cl=new ArrayList<Map<String, Object>>();
+            for (Map<String, Object> xxrz: _xxrzl) {
+                Map<String, Object> newXxrz=new HashMap<String, Object>();
+                newXxrz.put("id", xxrz.get("ID")==null?"":xxrz.get("ID"));
+                newXxrz.put("moduleName", xxrz.get("VISIT_MODULE_ID")==null?"":xxrz.get("VISIT_MODULE_ID"));
+                newXxrz.put("objType", xxrz.get("OBJ_TYPE")==null?"":xxrz.get("OBJ_TYPE"));
+                newXxrz.put("objId", xxrz.get("OBJ_ID")==null?"":xxrz.get("OBJ_ID"));
+                newXxrz.put("objName", xxrz.get("OBJ_NAME")==null?"":xxrz.get("OBJ_NAME"));
+                newXxrz.put("catName", xxrz.get("CAT_NAME")==null?"":xxrz.get("CAT_NAME"));
+                newXxrz.put("visitorId", xxrz.get("VISITOR_ID")==null?"":xxrz.get("VISITOR_ID"));
+                newXxrz.put("visitorName", xxrz.get("VISITOR_NAME")==null?"":xxrz.get("VISITOR_NAME"));
+                newXxrz.put("groupId", xxrz.get("GROUP_ID")==null?"":xxrz.get("GROUP_ID"));
+                newXxrz.put("groupName", xxrz.get("GROUP_NAME")==null?"":xxrz.get("GROUP_NAME"));
+                Date tmp=null;
+                if (null!=xxrz.get("CREATE_DATE")) {
+                    tmp=new java.sql.Date(((Timestamp)xxrz.get("CREATE_DATE")).getTime());
+                    newXxrz.put("createDate", DateUtils.convert2LongLocalStr(tmp));
+                }
+                cl.add(newXxrz);
+            }
+            retMap.put("total", pageList.getTotal());
+            retMap.put("rows", cl);
+            return retMap;
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+
     @RequestMapping("getcatkjtj")
     @ResponseBody
     public Map<String, Object> getcatkjtj(HttpServletRequest request, HttpServletResponse response,

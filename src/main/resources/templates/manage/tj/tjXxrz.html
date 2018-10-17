@@ -3,76 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <title>学习日志</title>
-<!-- 1 bootstrap基础css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
-  rel="stylesheet">
-<!-- 2 table表格css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
-  rel="stylesheet">
-<!-- 3 treeview树css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
-  rel="stylesheet">
-<!-- 4 datetimepicker时间选择css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
-  rel="stylesheet">
-<!-- 5 select选择框css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
-  rel="stylesheet">
-<!-- 6 fileinput上传文件css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
-  rel="stylesheet">
-<!-- 7 icheck单选+多选css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
-  rel="stylesheet">
-<!-- 8 Validator验证css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
-  rel="stylesheet">
-<!-- 10 引入字体css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
-  rel="stylesheet">
-<!-- 11 页面样式css -->
+
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css" rel="stylesheet">
 <link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
-<!-- 优先引入jquery1.12.4版本 -->
 <script src="${gateway}/libs/jquery/jquery-1.12.4.js"></script>
-<!-- 1 bootstrap基础js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<!-- 2 table表格js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
-<!-- 3 table列表数据js simple-table -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
-<!-- 4 treeview树js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
-<!-- 5 datetimepicker时间选择js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
-<!-- 6 select选择框js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
-<!-- 7 fileinput上传文件js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
-<!-- 8 fileinput中文包js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
-<!-- 9 icheck单选+多选js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
-<!-- 10 Validator验证js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
-<!-- 11 layer弹框js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <script src="${gateway}/libs/layer/layer.js"></script>
-<!-- 9 layer弹框css -->
 <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
-<!-- 12 页面js -->
 <script src="${gateway}/src/js/main.js"></script>
+<script src="${gateway}/src/js/train.common.js"></script>
 
 <style>
 .datetimepicker-dropdown-bottom-right {
@@ -89,6 +46,8 @@
         <!--带横线标题-->
         <div class="pt-bread">
           <h3>学习日志</h3>
+          <!-- 添加展开按钮 -->
+          <button type="button" id="ptsearchfilter" class="btn btn-primary pt-zkbtn">展开</button>
         </div>
         <div class="pt-main pt-padding">
           <!--搜索条-->
@@ -96,34 +55,78 @@
             <div class="row clearfix">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
                 <form class="form-inline">
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
-                      <label class="col-lg-2 col-md-4 col-sm-4 col-xs-4" for="userIds">企业名称</label>
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="userIds">类&emsp;&emsp;型</label>
                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <select id="userIds" name="userIds" multiple class="selectpicker" data-actions-box="true"  data-live-search="true" title="请选择">
-                          ${optionHtml}
+                        <select id="objType" class="selectpicker" title="请选择" data-actions-box="true" data-live-search="true" multiple >
+                          <option value="ts_kj">课件</option>
+                          <option value="ts_mnsc">模拟实操</option>
+                          <option value="q_sj">练习</option>
+                          <option value="student_profile">学员概况</option>
+                          <!-- <option value="admin_mainpage">管理首页</option> -->
                         </select>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
-                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="createTime">统计时间</label>
-                      <div id="date1" class="date col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
-                        <input class="form-control datetimepicker" name="begin" size="16" type="text" value="" style="padding-left:10px;">
-                        <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="userIds">模&emsp;&emsp;块</label>
+                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <select id="moduleName" class="selectpicker" title="请选择" data-actions-box="true" data-live-search="true" multiple >
+                          <option value="课件列表">课件列表</option>
+                          <option value="课件展示">课件展示</option>
+                          <option value="模拟实操列表">模拟实操列表</option>
+                          <option value="模拟实操展示">模拟实操展示</option>
+                          <option value="在线练习">在线练习</option>
+                          <option value="学员概况">学员概况</option>
+                          <!-- <option value="管理端首页">管理端首页</option> -->
+                        </select>
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div class="form-group">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="createTime">访问时间</label>
+                      <div id="date1" class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
+                        <input class="form-control datetimepicker" name="begin" size="16" type="text" value="" style="padding-left:10px;">
+                        <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
+                      </div>
                       <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="createTime">~</label>
-                      <div id="date2" class="date col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
+                      <div id="date2" class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
                         <input class="form-control datetimepicker" name="end" size="16" type="text" value="" style="padding-left:10px;">
                         <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
                       </div>
                     </div>
                   </div>
+
+                  <!-- 隐藏部分包裹 -->
+                  <span class="hiddenorshow pt-search-filter">
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div class="form-group">
+                      <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4" for="userIds"></label>
+                      <div id="date1" class="date col-lg-8 col-md-8 col-sm-8 col-xs-8"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="form-group">
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="createTime">企&emsp;&emsp;业</label>
+                      <div id="date1" class="date col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <input type="text" class="form-control" id="compName" placeholder="企业名称">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="form-group">
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="createTime">人&emsp;&emsp;员</label>
+                      <div id="date1" class="date col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <input type="text" class="form-control" id="userName" placeholder="人员名称">
+                      </div>
+                    </div>
+                  </div>
+
+                  </span>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div class="form-group">
                       <button type="button" class="btn btn-default btn-primary w120" onclick="search()">搜索</button>
@@ -150,7 +153,6 @@
     </div>
   </div>
 
-<script src="${gateway}/src/js/pt-tree.js"></script>
 <script>
 $(function() {
   $(".dropdown-menu").on('click', function (e) {
@@ -166,63 +168,27 @@ $(function() {
     todayBtn: true,
     autoclose: true
   });
-
   //搜索扩展
   $("#ptsearchfilter").click(function() {
     $(this).text($(".hiddenorshow").is(":hidden") ? "收起" : "展开");
     $(".hiddenorshow").toggleClass('pt-search-filter');
   });
-
-  //初始化选择树
-  $.ajax({
-    type : "post",
-    url : '${gateway}/train/getTree/ptTree',
-    data: {type:1},
-    dataType : "json",
-    success : function(result) {
-      if (result.returnCode == '00') {
-        var tree = [];
-        tree.push(result.data.tree);
-        result.data.tree.text = "全部";
-        $('#cate-tree').treeview({
-          data : tree, // 数据源
-          showCheckbox : true, //是否显示复选框
-          multiSelect : false, //多选
-          onNodeChecked : function(event, data) {
-            selectTreeNode(data);
-          }
-        });
-      } else {
-        $('#cate-tree').treeview({
-          data : [ {
-            text : '全部',
-            id : '0',
-            pathName : '全部'
-          } ], // 数据源
-          showCheckbox : true, //是否显示复选框
-          multiSelect : false, //多选
-          onNodeChecked : function(event, data) {
-            selectTreeNode(data);
-          }
-        });
-      }
-    },
-    error:function() {
-      $('#cate-tree').treeview({
-        data : [ {
-          text : '全部',
-          id : '0',
-          pathName : '全部'
-        } ], // 数据源
-        showCheckbox : true, //是否显示复选框
-        multiSelect : false, //多选
-        onNodeChecked : function(event, data) {
-          selectTreeNode(data);
-        }
-      });
-    }
-  });
+  //处理列表
+  parseUrl();
+  initTable();
 });
+
+function parseUrl() {
+  var objTypes=getUrlParam("objTypes");
+  if (objTypes) {
+    $("#objType option").each(function (i, e) {
+      if ($(this).val()==objTypes) {
+        $(this)[0].selected=true;;
+      }
+    });
+    $('#objType').selectpicker('refresh'); 
+  }
+}
 
 //搜索
 function search() {
@@ -244,64 +210,80 @@ function lookItem(e) {
   });
 }
 
-TableInit(queryParams).Init('${gateway}/tj/getXxrzList${urlParam}', [
-{
-  field : 'kjName',
-  title : '名称',
-  sortable : false
-}, {
-  field : 'kjCatNames',
-  title : '分类',
-  sortable : false
-}, {
-  field : 'sort',
-  title : '排序',
-  sortable : false
-}, {
-  field : 'isvalid',
-  title : '状态',
-  sortable : false,
-  formatter : function(value) {
-    if (value == 1) {
-      return '<span class="pt-success">启用</span>';
-    } else if (value == 0) {
-      return '<span class="pt-warn">停用</span>';
+function initTable() {
+//forType=1为企业端获得学习日志
+  TableInit(queryParams).Init('${gateway}/tj/getXxrzList?forType=1${urlParam}', [
+  {
+    field : 'objType',
+    title : '类型',
+    sortable : false,
+    formatter: function(value, row, index){
+      if (value=='ts_kj') return '课件';
+      else 
+      if (value=='ts_mnsc') return '模拟实操';
+      else 
+      if (value=='q_sj') return '练习';
+      else 
+      if (value=='student_profile') return '学员概况';
+//      else 
+//      if (value=='admin_mainpage') return '管理首页';
     }
+  }, {
+    field : 'moduleName',
+    title : '模块',
+    sortable : false
+  }, {
+    field : 'objName',
+    title : '对象名称',
+    sortable : false
+  }, {
+    field : 'groupName',
+    title : '企业',
+    sortable : false
+  }, {
+    field : 'visitorName',
+    title : '人员',
+    sortable : false
+  }, {
+    field : 'createDate',
+    title : '时间',
+    sortable : false
   }
-}, {
-  field : 'createName',
-  title : '创建人',
-  sortable : false
-}, {
-  field : 'createdate',
-  title : '创建时间',
-  sortable : false
-}, {
-  field : 'id',
-  title : '操作',
-  formatter : operateFormatter
+  ]);
 }
-]);
 
 function queryParams(params) {
+  var data={};
+
   var selectedValues = [];
-  var count=$("#userIds option").length;
+  var count=$("#objType option").length;
   for(var i=0;i<count;i++){
-    if ($("#userIds").get(0).options[i].selected) {
-      selectedValues.push($("#userIds").get(0).options[i].value);
+    if ($("#objType").get(0).options[i].selected) {
+      selectedValues.push($("#objType").get(0).options[i].value);
     }
   }
-  var data={
-    //组织其他参数
-    userIds: selectedValues.join(","),
-    date1: $("#date1").find("input").val(),
-    date2: $("#date2").find("input").val(),
-    limit : params.limit, //页面大小
-    offset : params.offset //页码
-  };
-  console.log(data);
+  data.objTypes=selectedValues.join(",");
+
+  selectedValues = [];
+  count=$("#moduleName option").length;
+  for(var i=0;i<count;i++){
+    if ($("#moduleName").get(0).options[i].selected) {
+      selectedValues.push($("#moduleName").get(0).options[i].value);
+    }
+  }
+  data.moduleNames=selectedValues.join(",");
+
+  data.compName=$("#compName").val();
+  data.userName=$("#userName").val();
+
+  data.date1=$("#date1").find("input").val();
+  data.date2=$("#date2").find("input").val();
+
+  data.limit=params.limit; //页面大小
+  data.offset=params.offset; //页码
   return data;
 }
+
 function formatNumAlignRight(value) {
   return '<span style="padding-right:15x;">'+value+'</span>'
 }

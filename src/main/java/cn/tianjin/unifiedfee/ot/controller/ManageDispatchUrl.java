@@ -1,5 +1,6 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.taiji.format.result.ObjectResponseResult;
 import cn.taiji.oauthbean.dto.UserInfo;
+import cn.taiji.system.domain.CompanyBasicInfo;
 import cn.taiji.system.domain.SysResource;
 import cn.taiji.web.menu.remote.SecurityMenuRemote;
 import cn.taiji.web.security.UserService;
@@ -431,6 +433,18 @@ public class ManageDispatchUrl {
     @RequestMapping("tj/zh")
     public String toTjZh(HttpServletRequest request) {
         return "/manage/tj/tjZh";
+    }
+
+    //--统计相关-2学习日志
+    @RequestMapping("tj/xxrz4admin")
+    public String toTjXxrz4admin(HttpServletRequest request, Model model) {
+        //获得参数
+        String urlParam=request.getQueryString();
+        if (StringUtils.isBlank(urlParam)) urlParam="";
+        String optionHtml="";
+        UserInfo ui=userService.getUserInfo();
+        model.addAttribute("urlParam", urlParam);
+        return "/manage/tj/tjXxrz";
     }
 
     // =============================为配合目前部署，所修改的信息===========

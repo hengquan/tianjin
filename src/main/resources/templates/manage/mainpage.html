@@ -14,17 +14,17 @@
 <body>
     <div class="container-fluid">
         <ul class="top row">
-            <li class="col-xs-4">
+            <li class="col-xs-4" onclick="javascript:location.href='${gateway}/tj/xxrz4admin?objTypes=ts_mnsc'" style="cursor:pointer">
                 <img src="${gateway}/tjsrc/images/01.jpg">
-                <span id="mnsc">666次</span>
+                <span id="mnsc">次</span>
             </li>
-            <li class="col-xs-4">
+            <li class="col-xs-4" onclick="javascript:location.href='${gateway}/tj/xxrz4admin?objTypes=ts_kj'" style="cursor:pointer">
                 <img src="${gateway}/tjsrc/images/02.jpg">
-                <span id="zxxx">555次</span>
+                <span id="zxxx">次</span>
             </li>
-            <li class="col-xs-4">
+            <li class="col-xs-4" onclick="javascript:location.href='${gateway}/tj/xxrz4admin?objTypes=q_sj'" style="cursor:pointer">
                 <img src="${gateway}/tjsrc/images/03.jpg">
-                <span id="zxlx">333次</span>
+                <span id="zxlx">次</span>
             </li>
         </ul>
         <div class="center row">
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="bottom">
-            <p>近期日志</p>
+            <p><strong>近期日志</strong></p>
             <ul class="logList">
                 <li class="row"><div class="right col-xs-6">我观看了：<span>xxx的模拟实操</span></div><div class="col-xs-6 date">2018-9-27</div></li>
                 <li class="row"><div class="right col-xs-6">我观看了：<span>xxx的模拟实操</span></div><div class="col-xs-6 date">2018-9-27</div></li>
@@ -142,8 +142,6 @@ function getMnscStat() {
             data: data2
           }]
         };
-        console.log("--------------");
-        console.log(option);
         myChart.setOption(option);
         myChart.resize();
       }
@@ -206,7 +204,6 @@ function getAllLogVisitList(rownum) {
     data: data,
     dataType: "json",
     success: function (res) {
-      console.log(res)
       if(res.returnCode==00) {
         var html = ""
         for(var j=0;j<res.data.length;j++) {
@@ -216,13 +213,13 @@ function getAllLogVisitList(rownum) {
           if (res.data[j].visitorName) groupName+="【"+res.data[j].visitorName+"】";
           if (groupName) {
             if (res.data[j].objType=='在线练习') {
-              html+= '<li class="row"><div class="right col-xs-6">'+groupName+'练习了：<span>习题【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+              html+= '<li class="row"><div class="right col-xs-9">'+groupName+'练习了：<span>习题【'+res.data[j].objName+'】</span></div><div class="col-xs-3 date">'+res.data[j].visitTime+'</div></li>'
             } else
             if (res.data[j].objType=='模拟实操展示') {
-              html+= '<li class="row"><div class="right col-xs-6">'+groupName+'操作了：<span>模拟实操【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+              html+= '<li class="row"><div class="right col-xs-9">'+groupName+'操作了：<span>模拟实操【'+res.data[j].objName+'】</span></div><div class="col-xs-3 date">'+res.data[j].visitTime+'</div></li>'
             } else
             if (res.data[j].objType=='课件展示') {
-              html+= '<li class="row"><div class="right col-xs-6">'+groupName+'学习了：<span>课件【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
+              html+= '<li class="row"><div class="right col-xs-9">'+groupName+'学习了：<span>课件【'+res.data[j].objName+'】</span></div><div class="col-xs-3 date">'+res.data[j].visitTime+'</div></li>'
             }
           }
         }

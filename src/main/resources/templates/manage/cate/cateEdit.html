@@ -204,7 +204,7 @@ $(function () {
       async : true,//true为异步，false为同步
       success : function(result) {
         if (result.returnCode != '00') {
-          alert(result.messageInfo);
+          layer.alert(result.messageInfo);
           return false;
         } else {
           //刷新列表
@@ -276,7 +276,7 @@ $(function () {
       async : true,//true为异步，false为同步
       success : function(result) {
         if (result.returnCode != '00') {
-          alert(result.messageInfo);
+          layer.alert(result.messageInfo);
           return false;
         } else {
           //填充数据 Object { id: "2", parentId: "0", nodeName: "政策类", order: 8, parentIds: "0,", isvalid: 1, createId: "·1", createName: "·1", createDate: "2018-09-13", updateId: "·1", … }
@@ -299,7 +299,6 @@ $(function () {
 });
 
 function selectTreeNode(treeNodeData) {
-  console.log(treeNodeData);
   $("input[name='upName']").val(treeNodeData.pathName);
   $("input[name='parentId']").val(treeNodeData.id);
   $('#cate-tree').treeview('uncheckAll', { silent: true });
