@@ -72,6 +72,13 @@ public class LogVisit extends BaseObject {
     private Date createDate;
 
     private Date endtime;
+    
+    private String catname;
+    private int coutkj;
+    private int countxxkj;
+    private int countxxbl;
+    private int countxxrs; 
+    private int countxxcs;
 
     public String getId() {
         return id;
@@ -335,5 +342,53 @@ public class LogVisit extends BaseObject {
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
+    }
+
+    public String getCatname() {
+        return catname;
+    }
+
+    public void setCatname(String catname) {
+        this.catname = catname;
+    }
+
+    public int getCoutkj() {
+        return coutkj;
+    }
+
+    public void setCoutkj(int coutkj) {
+        this.coutkj = coutkj;
+    }
+
+    public int getCountxxkj() {
+        return countxxkj;
+    }
+
+    public void setCountxxkj(int countxxkj) {
+        this.countxxkj = countxxkj;
+    }
+
+    public int getCountxxbl() {
+        return countxxbl;
+    }
+
+    public void setCountxxbl(int countxxbl) {
+        this.countxxbl = countxxbl;
+    }
+
+    public int getCountxxrs() {
+        return countxxrs;
+    }
+
+    public void setCountxxrs(int countxxrs) {
+        this.countxxrs = countxxrs;
+    }
+
+    public int getCountxxcs() {
+        return countxxcs;
+    }
+
+    public void setCountxxcs(int countxxcs) {
+        this.countxxcs = countxxcs;
     }
 }

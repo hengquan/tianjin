@@ -420,7 +420,7 @@ public class ManageDispatchUrl {
     // --统计相关-2课件统计
     @RequestMapping("tj/kj")
     public String toTjKj(HttpServletRequest request) {
-        return "/manage/tj/tjkj";
+        return "/manage/tj/tjKjtj";
     }
 
     // --统计相关-3模拟实操

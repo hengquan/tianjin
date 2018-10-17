@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>课件统计</title>
+<!-- 1 bootstrap基础css -->
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
+  rel="stylesheet">
+<!-- 2 table表格css -->
+<link
+  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
+  rel="stylesheet">
+<!-- 3 treeview树css -->
+<link
+  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
+  rel="stylesheet">
+<!-- 4 datetimepicker时间选择css -->
+<link
+  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
+  rel="stylesheet">
+<!-- 5 select选择框css -->
+<link
+  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
+  rel="stylesheet">
+<!-- 6 fileinput上传文件css -->
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
+  rel="stylesheet">
+<!-- 7 icheck单选+多选css -->
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
+  rel="stylesheet">
+<!-- 8 Validator验证css -->
+<link
+  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
+  rel="stylesheet">
+<!-- 10 引入字体css -->
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
+  rel="stylesheet">
+<!-- 11 页面样式css -->
+<link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
+
+<!-- 优先引入jquery1.12.4版本 -->
+<script src="${gateway}/libs/jquery/jquery-1.12.4.js"></script>
+<!-- 1 bootstrap基础js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<!-- 2 table表格js -->
+<script
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<!-- 3 table列表数据js simple-table -->
+<script
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<!-- 4 treeview树js -->
+<script
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<!-- 5 datetimepicker时间选择js -->
+<script
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+<!-- 6 select选择框js -->
+<script
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
+<!-- 7 fileinput上传文件js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
+<!-- 8 fileinput中文包js -->
+<script
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
+<!-- 9 icheck单选+多选js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
+<!-- 10 Validator验证js -->
+<script
+  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
+<!-- 11 layer弹框js -->
+<script src="${gateway}/libs/layer/layer.js"></script>
+<!-- 9 layer弹框css -->
+<link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
+<!-- 12 页面js -->
+<script src="${gateway}/src/js/main.js"></script>
+</head>
+<body>
+	<div class="pt-page">
+		<div class="pt-root-container">
+			<!--主视口 -->
+			<div class="pt-view pt-open" style="padding-left: 0px;">
+				<!--带横线标题-->
+				<div class="pt-bread">
+					<h3>课件统计</h3>
+					<!-- 添加展开按钮 -->					
+				</div>
+				<div class="pt-main pt-padding">
+					<!--搜索条-->
+					<div class="pt-section-search">
+						<form class="form-inline">
+							<div class="row clearfix">
+								<div class="col-lg-16 col-md-16 col-sm-14 col-xs-14 column">									   						
+									<!-- 示例 input-->
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+										    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+							                    <div class="form-group">
+							                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="createTime">统计日期</label>
+							                      <div id="date1" class="date col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
+							                        <input class="form-control datetimepicker" name="begin" size="16" type="text" value="" style="padding-left:10px;">
+							                        <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
+							                      </div>
+							                    </div>
+							                  </div>
+							                  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+							                    <div class="form-group">
+							                      <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="createTime">~</label>
+							                      <div id="date2" class="date col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
+							                        <input class="form-control datetimepicker" name="end" size="16" type="text" value="" style="padding-left:10px;">
+							                        <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
+							                      </div>
+							                    </div>
+							                  </div>
+                           				</div> 
+										<!-- 示例搜索按钮 -->
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+											<div class="form-group">
+												<button type="button" class="btn btn-default btn-primary w80" onclick="sel()">搜索</button>
+											</div>
+										</div>	
+									</div>	
+								</div>
+							</form>
+						</div>	
+						<!--内容区容器-->
+						<div class="pt-main">
+							<!--bootstrap 表格-->
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
+									<div class="table-wrap">
+										<table id="tb_departments"></table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--主视口 结束-->
+		</div>	
+	<script>    
+    //搜索扩展
+    $("#ptsearchfilter").click(function() {
+      $(this).text($(".hiddenorshow").is(":hidden") ? "收起" : "展开");
+      $(".hiddenorshow").toggleClass('pt-search-filter');
+    });
+  //时间选择
+    $('.datetimepicker').datetimepicker({
+      language: 'zh',
+      format: 'yyyy-mm-dd',
+      minView: "month",
+      pickDate: true,
+      pickTime: false,
+      todayBtn: true,
+      autoclose: true
+    });
+    // table
+    // 2.返回操作模版[按钮颜色暂不确定]
+    function operateFormatter(value, row, index) {
+      var btnArray=[];      
+      if (row.isvalid=='1') {
+        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.tmHtml+'\',\''+row.parentName+'\', 0)">停用</button>');
+      } else 
+      if (row.isvalid=='0') {
+        btnArray.push('<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("' + value + '")>修改</button>');
+        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red pt-success" onclick="changeValid(\''+ value + '\', \''+row.tmHtml+'\',\''+row.parentName+'\', 1)">启用</button>');
+      }
+      btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.tmHtml+'\',\''+row.parentName+'\', 2)">删除</button>');
+      return btnArray.join('');
+     
+    }
+    
+    TableInit(queryParams).Init('${gateway}/tj/getcatkjtj', [ {
+      field : 'CATNAME',
+      title : '课件分类',
+      sortable : false
+    }, {
+      field : 'COUTKJ',
+      title : '课件总数',
+      sortable : false
+    },{
+      field : 'COUNTXXKJ',
+      title : '学习课件数',
+      sortable : false
+    }, {
+      field : 'COUNTXXRS',
+      title : '学习人数',
+      sortable : false
+    }, {
+      field : 'COUNTXXCS',
+      title : '学习次数',
+      sortable : false
+    },{
+      field : 'COUNTXXBL',
+      title : '学习比例%',
+      sortable : false
+    } ]);
+    function queryParams(params) {
+      return {
+        tmHtml : $("#tmHtml").val(),
+        kjid : $("#kjid").val(),       
+        // 使用page size分页
+        limit : params.limit, //页面大小
+        offset : params.offset
+      //页码
+      };
+    }
+    //搜索
+    function sel() {       
+      $("#tb_departments").bootstrapTable('refresh');
+    }
+    function refresh() {
+      $("#tb_departments").bootstrapTable('refresh');
+    }
+    function queryParams(params) {
+      var selectedValues = [];
+      var count=$("#userIds option").length;
+      for(var i=0;i<count;i++){
+        if ($("#userIds").get(0).options[i].selected) {
+          selectedValues.push($("#userIds").get(0).options[i].value);
+        }
+      }
+      var data={
+        //组织其他参数
+        userIds: selectedValues.join(","),
+        date1: $("#date1").find("input").val(),
+        date2: $("#date2").find("input").val(),
+        limit : params.limit, //页面大小
+        offset : params.offset //页码
+      };
+      console.log(data);
+      return data;
+    }
+    
+  </script>
+</body>
+</html>
