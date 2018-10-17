@@ -214,11 +214,19 @@ public class TjController {
             Map<String, Object> param=new HashMap<String, Object>();
             String objSql="";
             if (!StringUtils.isBlank(objTypes)) {
-                objSql=objSql.replaceAll(",", "' or obj_typ='");
-                objSql="(obj_typ='"+objSql+"')";
+                objSql=objTypes.replaceAll(",", "' or obj_type='");
+                objSql="(obj_type='"+objSql+"')";
             }
             param.put("objSql", objSql);//所选择的人员的id列表
+            String moduleSql="";
+            if (!StringUtils.isBlank(moduleNames)) {
+                moduleSql=moduleNames.replaceAll(",", "' or visit_module_id='");
+                moduleSql="(visit_module_id='"+moduleSql+"')";
+            }
+            param.put("moduleSql", moduleSql);//所选择的人员的id列表
 
+            param.put("compName", compName);//所选择的人员的id列表
+            param.put("userName", userName);//所选择的人员的id列表
             param.put("date1", date1);//开始时间
             param.put("date2", date2);//结束时间
             List<Map<String, Object>> _xxrzl=catService.getXxrzList(param);
