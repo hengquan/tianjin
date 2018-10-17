@@ -505,9 +505,8 @@ select upCateName, count(distinct obj_id) count from (
   </select>
 
   <!-- WH::得到所有的信息日志信息 -->
-  <select id="log_search" resultType="java.util.HashMap" parameterType="java.util.HashMap">
-    select * from logList
-
+  <select id="getXxrzList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select * from v_loglist
+    order by create_date desc
   </select>
-
 </mapper>

@@ -98,27 +98,45 @@
             <div class="row clearfix">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
                 <form class="form-inline">
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
-                      <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4" for="userIds">类&emsp;&emsp;型</label>
-                      <div id="date1" class="date col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" id="objType" placeholder="类型">
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="userIds">类&emsp;&emsp;型</label>
+                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <select id="objId" class="selectpicker" title="请选择" data-actions-box="true" data-live-search="true" multiple >
+                          <option value="ts_kj">课件</option>
+                          <option value="ts_mnsc">模拟实操</option>
+                          <option value="q_sj">练习</option>
+                          <option value="student_profile">学员概况</option>
+                          <option value="admin_mainpage">管理首页</option>
+                        </select>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
-                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="createTime">统计时间</label>
-                      <div id="date1" class="date col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="userIds">模&emsp;&emsp;块</label>
+                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <select id="moduleName" class="selectpicker" title="请选择" data-actions-box="true" data-live-search="true" multiple >
+                          <option value="课件列表">课件列表</option>
+                          <option value="课件展示">课件展示</option>
+                          <option value="模拟实操列表">模拟实操列表</option>
+                          <option value="模拟实操展示">模拟实操展示</option>
+                          <option value="在线练习">在线练习</option>
+                          <option value="学员概况">学员概况</option>
+                          <option value="管理端首页">管理端首页</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="createTime">访问时间</label>
+                      <div id="date1" class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
                         <input class="form-control datetimepicker" name="begin" size="16" type="text" value="" style="padding-left:10px;">
                         <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <div class="form-group">
                       <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="createTime">~</label>
-                      <div id="date2" class="date col-lg-11 col-md-11 col-sm-11 col-xs-11" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
+                      <div id="date2" class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
                         <input class="form-control datetimepicker" name="end" size="16" type="text" value="" style="padding-left:10px;">
                         <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
                       </div>
@@ -134,19 +152,11 @@
                     </div>
                   </div>
 
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div class="form-group">
-                      <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4" for="userIds">模&emsp;&emsp;块</label>
-                      <div id="date1" class="date col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" id="objType" placeholder="模块">
-                      </div>
-                    </div>
-                  </div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
                       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="createTime">企&emsp;&emsp;业</label>
                       <div id="date1" class="date col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" id="objType" placeholder="企业">
+                        <input type="text" class="form-control" id="compName" placeholder="企业名称">
                       </div>
                     </div>
                   </div>
@@ -154,7 +164,7 @@
                     <div class="form-group">
                       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="createTime">人&emsp;&emsp;员</label>
                       <div id="date1" class="date col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" id="objType" placeholder="人员">
+                        <input type="text" class="form-control" id="userName" placeholder="人员名称">
                       </div>
                     </div>
                   </div>
@@ -201,13 +211,11 @@ $(function() {
     todayBtn: true,
     autoclose: true
   });
-
   //搜索扩展
   $("#ptsearchfilter").click(function() {
     $(this).text($(".hiddenorshow").is(":hidden") ? "收起" : "展开");
     $(".hiddenorshow").toggleClass('pt-search-filter');
   });
-
 });
 
 //搜索
@@ -230,11 +238,23 @@ function lookItem(e) {
   });
 }
 
-TableInit(queryParams).Init('${gateway}/tj/getXxrzList?${urlParam}', [
+//forType=1为企业端获得学习日志
+TableInit(queryParams).Init('${gateway}/tj/getXxrzList?forType=1${urlParam}', [
 {
   field : 'objType',
   title : '类型',
-  sortable : false
+  sortable : false,
+  formatter: function(value, row, index){
+    if (value=='ts_kj') return '课件';
+    else 
+    if (value=='ts_mnsc') return '模拟实操';
+    else 
+    if (value=='q_sj') return '练习';
+    else 
+    if (value=='student_profile') return '学员概况';
+    else 
+    if (value=='admin_mainpage') return '管理首页';
+  }
 }, {
   field : 'moduleName',
   title : '模块',
@@ -248,32 +268,43 @@ TableInit(queryParams).Init('${gateway}/tj/getXxrzList?${urlParam}', [
   title : '企业',
   sortable : false
 }, {
-  field : 'userName',
+  field : 'visitorName',
   title : '人员',
   sortable : false
 }, {
-  field : 'createdate',
+  field : 'createDate',
   title : '时间',
   sortable : false
 }
 ]);
 
 function queryParams(params) {
+  var data={};
+
   var selectedValues = [];
-  var count=$("#userIds option").length;
+  var count=$("#objId option").length;
   for(var i=0;i<count;i++){
-    if ($("#userIds").get(0).options[i].selected) {
-      selectedValues.push($("#userIds").get(0).options[i].value);
+    if ($("#objId").get(0).options[i].selected) {
+      selectedValues.push($("#objId").get(0).options[i].value);
     }
   }
-  var data={
-    //组织其他参数
-    userIds: selectedValues.join(","),
-    date1: $("#date1").find("input").val(),
-    date2: $("#date2").find("input").val(),
-    limit : params.limit, //页面大小
-    offset : params.offset //页码
-  };
+  data.objTypes=selectedValues.join(",");
+
+  selectedValues = [];
+  count=$("#moduleName option").length;
+  for(var i=0;i<count;i++){
+    if ($("#moduleName").get(0).options[i].selected) {
+      selectedValues.push($("#moduleName").get(0).options[i].value);
+    }
+  }
+  data.moduleNames=selectedValues.join(",");
+  data.date1=$("#date1").find("input").val();
+  data.date2=$("#date2").find("input").val();
+  data.limit=params.limit; //页面大小
+  data.offset=params.offset; //页码
+  data.compName=$("#compName").val();
+  data.userName=$("#userName").val();
+
   console.log(data);
   return data;
 }

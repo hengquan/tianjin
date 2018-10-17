@@ -105,8 +105,8 @@ public class WebDispatchUrl {
     }
 
     //--统计相关-2学习日志
-    @RequestMapping("tj/xxrz")
-    public String toTjXyrz(HttpServletRequest request, Model model) {
+    @RequestMapping("xxrz4comp")
+    public String toTjXxrz4comp(HttpServletRequest request, Model model) {
         //获得参数
         String urlParam=request.getQueryString();
         String optionHtml="";
@@ -127,6 +127,6 @@ public class WebDispatchUrl {
         }
         model.addAttribute("optionHtml", optionHtml);
         model.addAttribute("urlParam", urlParam);
-        return "/manage/tj/tjXxrz";
+        return "/web/xxrz4comp";
     }
 }
