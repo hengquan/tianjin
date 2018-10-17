@@ -3,76 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <title>学习日志</title>
-<!-- 1 bootstrap基础css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
-  rel="stylesheet">
-<!-- 2 table表格css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
-  rel="stylesheet">
-<!-- 3 treeview树css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
-  rel="stylesheet">
-<!-- 4 datetimepicker时间选择css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
-  rel="stylesheet">
-<!-- 5 select选择框css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
-  rel="stylesheet">
-<!-- 6 fileinput上传文件css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
-  rel="stylesheet">
-<!-- 7 icheck单选+多选css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
-  rel="stylesheet">
-<!-- 8 Validator验证css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
-  rel="stylesheet">
-<!-- 10 引入字体css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
-  rel="stylesheet">
-<!-- 11 页面样式css -->
+
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css" rel="stylesheet">
 <link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
-<!-- 优先引入jquery1.12.4版本 -->
 <script src="${gateway}/libs/jquery/jquery-1.12.4.js"></script>
-<!-- 1 bootstrap基础js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<!-- 2 table表格js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
-<!-- 3 table列表数据js simple-table -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
-<!-- 4 treeview树js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
-<!-- 5 datetimepicker时间选择js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
-<!-- 6 select选择框js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
-<!-- 7 fileinput上传文件js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
-<!-- 8 fileinput中文包js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
-<!-- 9 icheck单选+多选js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
-<!-- 10 Validator验证js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
-<!-- 11 layer弹框js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <script src="${gateway}/libs/layer/layer.js"></script>
-<!-- 9 layer弹框css -->
 <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
-<!-- 12 页面js -->
 <script src="${gateway}/src/js/main.js"></script>
+<script src="${gateway}/src/js/train.common.js"></script>
 
 <style>
 .datetimepicker-dropdown-bottom-right {
@@ -102,7 +59,7 @@
                     <div class="form-group">
                       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="userIds">类&emsp;&emsp;型</label>
                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <select id="objId" class="selectpicker" title="请选择" data-actions-box="true" data-live-search="true" multiple >
+                        <select id="objType" class="selectpicker" title="请选择" data-actions-box="true" data-live-search="true" multiple >
                           <option value="ts_kj">课件</option>
                           <option value="ts_mnsc">模拟实操</option>
                           <option value="q_sj">练习</option>
@@ -216,7 +173,22 @@ $(function() {
     $(this).text($(".hiddenorshow").is(":hidden") ? "收起" : "展开");
     $(".hiddenorshow").toggleClass('pt-search-filter');
   });
+  //处理列表
+  parseUrl();
+  initTable();
 });
+
+function parseUrl() {
+  var objTypes=getUrlParam("objTypes");
+  if (objTypes) {
+    $("#objType option").each(function (i, e) {
+      if ($(this).val()==objTypes) {
+        $(this)[0].selected=true;;
+      }
+    });
+    $('#objType').selectpicker('refresh'); 
+  }
+}
 
 //搜索
 function search() {
@@ -238,54 +210,56 @@ function lookItem(e) {
   });
 }
 
+function initTable() {
 //forType=1为企业端获得学习日志
-TableInit(queryParams).Init('${gateway}/tj/getXxrzList?forType=1${urlParam}', [
-{
-  field : 'objType',
-  title : '类型',
-  sortable : false,
-  formatter: function(value, row, index){
-    if (value=='ts_kj') return '课件';
-    else 
-    if (value=='ts_mnsc') return '模拟实操';
-    else 
-    if (value=='q_sj') return '练习';
-    else 
-    if (value=='student_profile') return '学员概况';
-//    else 
-//    if (value=='admin_mainpage') return '管理首页';
+  TableInit(queryParams).Init('${gateway}/tj/getXxrzList?forType=1${urlParam}', [
+  {
+    field : 'objType',
+    title : '类型',
+    sortable : false,
+    formatter: function(value, row, index){
+      if (value=='ts_kj') return '课件';
+      else 
+      if (value=='ts_mnsc') return '模拟实操';
+      else 
+      if (value=='q_sj') return '练习';
+      else 
+      if (value=='student_profile') return '学员概况';
+//      else 
+//      if (value=='admin_mainpage') return '管理首页';
+    }
+  }, {
+    field : 'moduleName',
+    title : '模块',
+    sortable : false
+  }, {
+    field : 'objName',
+    title : '对象名称',
+    sortable : false
+  }, {
+    field : 'groupName',
+    title : '企业',
+    sortable : false
+  }, {
+    field : 'visitorName',
+    title : '人员',
+    sortable : false
+  }, {
+    field : 'createDate',
+    title : '时间',
+    sortable : false
   }
-}, {
-  field : 'moduleName',
-  title : '模块',
-  sortable : false
-}, {
-  field : 'objName',
-  title : '对象名称',
-  sortable : false
-}, {
-  field : 'groupName',
-  title : '企业',
-  sortable : false
-}, {
-  field : 'visitorName',
-  title : '人员',
-  sortable : false
-}, {
-  field : 'createDate',
-  title : '时间',
-  sortable : false
+  ]);
 }
-]);
 
 function queryParams(params) {
   var data={};
 
   var selectedValues = [];
-  var count=$("#objId option").length;
+  var count=$("#objType option").length;
   for(var i=0;i<count;i++){
-    if ($("#objId").get(0).options[i].selected) {
-      selectedValues.push($("#objId").get(0).options[i].value);
+    if ($("#objType").get(0).options[i].selected) {
+      selectedValues.push($("#objType").get(0).options[i].value);
     }
   }
   data.objTypes=selectedValues.join(",");
@@ -298,14 +272,15 @@ function queryParams(params) {
     }
   }
   data.moduleNames=selectedValues.join(",");
-  data.date1=$("#date1").find("input").val();
-  data.date2=$("#date2").find("input").val();
-  data.limit=params.limit; //页面大小
-  data.offset=params.offset; //页码
+
   data.compName=$("#compName").val();
   data.userName=$("#userName").val();
 
-  console.log(data);
+  data.date1=$("#date1").find("input").val();
+  data.date2=$("#date2").find("input").val();
+
+  data.limit=params.limit; //页面大小
+  data.offset=params.offset; //页码
   return data;
 }
 

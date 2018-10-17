@@ -14,15 +14,15 @@
 <body>
     <div class="container-fluid">
         <ul class="top row">
-            <li class="col-xs-4" onclick="javascript:location.href='${gateway}/tj/xxrz4admin?objTypes=tr_mnsc'" style="cursor:pointer">
+            <li class="col-xs-4" onclick="javascript:location.href='${gateway}/tj/xxrz4admin?objTypes=ts_mnsc'" style="cursor:pointer">
                 <img src="${gateway}/tjsrc/images/01.jpg">
                 <span id="mnsc">次</span>
             </li>
-            <li class="col-xs-4" onclick="javascript:location.href='${gateway}/tj/xxrz4admin'" style="cursor:pointer">
+            <li class="col-xs-4" onclick="javascript:location.href='${gateway}/tj/xxrz4admin?objTypes=ts_kj'" style="cursor:pointer">
                 <img src="${gateway}/tjsrc/images/02.jpg">
                 <span id="zxxx">次</span>
             </li>
-            <li class="col-xs-4" onclick="javascript:location.href='${gateway}/tj/xxrz4admin'" style="cursor:pointer">
+            <li class="col-xs-4" onclick="javascript:location.href='${gateway}/tj/xxrz4admin?objTypes=q_sj'" style="cursor:pointer">
                 <img src="${gateway}/tjsrc/images/03.jpg">
                 <span id="zxlx">次</span>
             </li>
@@ -142,8 +142,6 @@ function getMnscStat() {
             data: data2
           }]
         };
-        console.log("--------------");
-        console.log(option);
         myChart.setOption(option);
         myChart.resize();
       }
@@ -206,7 +204,6 @@ function getAllLogVisitList(rownum) {
     data: data,
     dataType: "json",
     success: function (res) {
-      console.log(res)
       if(res.returnCode==00) {
         var html = ""
         for(var j=0;j<res.data.length;j++) {
