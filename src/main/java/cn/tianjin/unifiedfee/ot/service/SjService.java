@@ -202,6 +202,7 @@ public class SjService {
             sj.setRefId(refId);
             sj.setSjName("【"+cateNames+"】练习题_难易度【"+diff1+"-"+diff2+"】");
             sj.setTimeUse(0);
+            sj.setSjCatNames(cateNames);
             sj.setScore(score);
             sj.setTmCount(ml.size());
             sj.setDiffType(diff1+","+diff2);

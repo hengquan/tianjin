@@ -15,6 +15,8 @@ public class SJ {
 
     private String sjName;
 
+    private String sjCatNames;
+
     private Integer timeUse;
 
     private Integer sjScore;
@@ -171,5 +173,13 @@ public class SJ {
 
     public void setSjScore(Integer sjScore) {
         this.sjScore = sjScore;
+    }
+
+    public String getSjCatNames() {
+        return sjCatNames;
+    }
+
+    public void setSjCatNames(String sjCatNames) {
+        this.sjCatNames = sjCatNames;
     }
 }

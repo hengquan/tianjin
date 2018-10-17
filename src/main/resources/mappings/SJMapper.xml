@@ -19,10 +19,11 @@
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
+    <result column="sj_cat_names" property="sjCatNames" jdbcType="VARCHAR" />
   </resultMap>
 
   <sql id="Blob_Column_List">
-    id, user_id, user_name, ref_tabname, ref_id, sj_name, 
+    id, user_id, user_name, ref_tabname, ref_id, sj_name, sj_cat_names,
     time_use, sj_score, score, tm_count, diff_type, begin_time, end_time, 
     state, create_date, create_by, create_name
   </sql>
@@ -34,13 +35,13 @@
 
   <insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.SJ" >
     insert into q_SJ (id, user_id, user_name, 
-      ref_tabname, ref_id, sj_name, 
+      ref_tabname, ref_id, sj_name, sj_cat_names,
       time_use, sj_score, score, tm_count, 
       diff_type, begin_time, end_time, 
       state, create_date, create_by, 
       create_name)
     values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
-      #{refTabname,jdbcType=VARCHAR}, #{refId,jdbcType=VARCHAR}, #{sjName,jdbcType=VARCHAR}, 
+      #{refTabname,jdbcType=VARCHAR}, #{refId,jdbcType=VARCHAR}, #{sjName,jdbcType=VARCHAR}, #{sjCatNames,jdbcType=VARCHAR} 
       #{timeUse,jdbcType=INTEGER}, #{sjScore,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{tmCount,jdbcType=INTEGER}, 
       #{diffType,jdbcType=INTEGER}, #{beginTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, 
       #{state,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, 
@@ -66,6 +67,9 @@
       </if>
       <if test="sjName != null" >
         sj_name,
+      </if>
+      <if test="sjCatNames != null" >
+        sj_cat_names,
       </if>
       <if test="timeUse != null" >
         time_use,
@@ -120,6 +124,9 @@
       <if test="sjName != null" >
         #{sjName,jdbcType=VARCHAR},
       </if>
+      <if test="sjCatNames != null" >
+        #{sjCatNames,jdbcType=VARCHAR},
+      </if>
       <if test="timeUse != null" >
         #{timeUse,jdbcType=INTEGER},
       </if>
@@ -173,6 +180,9 @@
       </if>
       <if test="sjName != null" >
         sj_name=#{sjName,jdbcType=VARCHAR},
+      </if>
+      <if test="sjCatNames != null" >
+        sj_cat_names=#{sjCatNames,jdbcType=VARCHAR},
       </if>
       <if test="timeUse != null" >
         time_use=#{timeUse,jdbcType=INTEGER},
