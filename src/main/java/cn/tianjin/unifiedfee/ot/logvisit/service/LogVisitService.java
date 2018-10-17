@@ -46,6 +46,12 @@ public class LogVisitService {
         }
         return logDao.getDataByObjType(objType);
     }
+    public List<LogVisit>  getcatkjtj(Map<String, Object> param)
+    {
+        List<LogVisit> loglist  = logDao.getcatkjtj(param);
+        return loglist;
+    }
+    
 
     public List<LogVisit> getLogVisitList(Integer rownum) {
         return logDao.getLogVisitList(rownum);

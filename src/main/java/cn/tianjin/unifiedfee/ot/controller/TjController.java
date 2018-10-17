@@ -4,7 +4,6 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +26,7 @@ import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.system.domain.CompanyBasicInfo;
 import cn.taiji.web.company.remote.SystemCompanyRemote;
 import cn.taiji.web.security.UserService;
+import cn.tianjin.unifiedfee.ot.entity.LogVisit;
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
@@ -168,5 +168,24 @@ public class TjController {
          df.setRoundingMode(RoundingMode.HALF_UP);       
          double accuracy_num = num / total * 100;       
          return df.format(accuracy_num)+"%";
+    }
+    
+    @RequestMapping("getcatkjtj")
+    @ResponseBody
+    public Map<String, Object> getcatkjtj(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(required=false) String userIds,
+            @RequestParam(required=false) String date1,
+            @RequestParam(required=false) String date2,
+            @RequestParam(value="offset", defaultValue="1") int offset,
+            @RequestParam(value="limit", defaultValue="10") int limit) {
+           Map<String, Object> param=new HashMap<String, Object>();  
+           param.put("date1", date1);//开始时间
+           param.put("date2", date2);//结束时间
+           Map<String, Object> map = new HashMap<String, Object>();
+           List<LogVisit> loglist = catService.getcatkjtj(param);
+           PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
+           map.put("total", pageList.getTotal());
+           map.put("rows", pageList.getList());
+           return map;
     }
 }
