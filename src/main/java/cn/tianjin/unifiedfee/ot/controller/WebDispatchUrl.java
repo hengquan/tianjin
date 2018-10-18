@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alibaba.druid.support.json.JSONUtils;
+
 import cn.taiji.format.result.ObjectResponseResult;
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.system.domain.CompanyBasicInfo;
@@ -111,9 +113,12 @@ public class WebDispatchUrl {
         String urlParam=request.getQueryString();
         String optionHtml="";
         UserInfo ui=userService.getUserInfo();
+        ui.getRoleIds();
         if (ui!=null) {
             //获得用户所在企业
             ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
+            System.out.println("=================================================================");
+            System.out.println(JSONUtils.toJSONString(companyInfo));
             if (companyInfo!=null&&companyInfo.getData()!=null) {
                 Map<String, Object> param=new HashMap<String, Object>();
                 param.put("compId", companyInfo.getData().getCompanyId());
