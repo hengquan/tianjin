@@ -10,8 +10,9 @@ input, textarea, select, button { font:14px "Microsoft YaHei" }
 table { border-collapse:collapse; }
 html {overflow-y: scroll;}
 
+
 .clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
-.clearfix { *zoom:1; }/*公共类*/
+.clearfix { *zoom:1; }/*鍏叡绫�*/
 .fl { float:left}
 /*.fr {float:right}*/
 .al {text-align:left}

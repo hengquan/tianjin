@@ -1,4 +1,5 @@
 body{
+   
    min-width: 1200px;
    background: #F2F2F2;
 }
@@ -161,7 +162,7 @@ html,body{
     padding-top:124px;
 }
 
-/*闂堛垹瀵樼仦鎴濐嚤閼革拷*/
+/*闈㈠寘灞戝鑸�*/
 .bread{
     height:85px;
     line-height:85px;
@@ -184,7 +185,7 @@ html,body{
     color: #3d7eea;
 }
 
-/*娑撹缍�*/
+/*涓讳綋*/
 .page-main{
     margin-bottom:25px;
     /*margin-top: 35px;*/
@@ -406,8 +407,6 @@ p{
 }
 
 #inrto-nav{
-    line-height: 50px;
-    height: 50px;
 }
 #inrto-nav:after{
     display: block;
@@ -432,20 +431,10 @@ p{
     float: left;
     margin: 0 0px;
 }
-#inrto-nav .intro-current{
-    font-size:24px;
-    color: #148bff;
-}
-#inrto-nav .intro-used{
-    font-size:20px;
-    color: #999;
-}
-
 .pro_nav{
 	width: 1200px;
-	height: 70px;
+	height: 110px;
 	background-color: #FFFFFF;
-	margin-top: 4px;
 	margin-bottom: 8px;
 }
 .pro li{
@@ -454,30 +443,17 @@ p{
 	margin-top: 24px;
 	width: 156px;
 	height: 64px;
-	background: url(../image/sec.png) ;
+	background-image: url(../image/sec.png) ;
 	color: #000;
 }
-.pro li:hover{
-	background: url(../image/sec.png) -164px; 
-	color: #FFFFFF;
-}
 .pro .frist{
-	background: url(../image/first.png) -164px; 
-	color: #FFFFFF;
+	background-image: url(../image/first.png);
 	margin-top: 24px;
 	margin-left: 20px;
 }
-.pro .frist:hover{
-	background: url(../image/first.png) -164px; 
-	color: #FFFFFF;
-}
 .pro .last{
-background: url(../image/last.png) 
-}	
-.pro .last:hover{
-background: url(../image/last.png) -164px; 
-color: #FFFFFF;
-}	
+background-image: url(../image/last.png)
+}
 .pro span{
 	font-size: 40px;
 	line-height: 64px;
@@ -496,9 +472,25 @@ color: #FFFFFF;
 .fir-p{
 	margin-top: 14px;
 }
-.pro .frist p{
-	color: #FFFFFF;
+#inrto-nav  .pro li span{
+    color: #000;
 }
-.pro li:hover p{
-	color: #FFFFFF;
+#inrto-nav  .pro li,#inrto-nav  .pro li p{
+    color: #cbccce;
+}
+
+#inrto-nav  .pro li.intro-current span, #inrto-nav  .pro li:hover span{
+    color: #fff;
+}
+#inrto-nav  .pro li.intro-current,#inrto-nav  .pro li.intro-current p,#inrto-nav  .pro li.intro-current span,#inrto-nav  .pro li.intro-current,#inrto-nav  .pro li:hover p,#inrto-nav  .pro li:hover span{
+    color: #fff;
+}
+
+#inrto-nav  .pro li.intro-current,#inrto-nav  .pro li:hover{
+    background-position: -164px center;
+}
+
+
+#inrto-nav  .pro li.intro-used span{
+    color: #cbccce;
 }

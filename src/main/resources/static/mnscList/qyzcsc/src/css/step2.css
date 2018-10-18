@@ -35,6 +35,7 @@ html,body{
   float: left;
   margin-top: 25px;
   margin-bottom: 38px;
+  
 }
 .model>p>span{
   color: #f46227;
@@ -42,6 +43,7 @@ html,body{
 .triangle{
   margin-right: 19px;
   margin-top: 235px;
+  height:300px;
 }
 .model img{
   margin-right: 8px;
@@ -54,7 +56,7 @@ html,body{
   margin-top: 55px;
 }
 
-/*±ß¿òÄÚÈÝÇøµÄÑùÊ½*/
+/*ï¿½ß¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½*/
 .content_border{
   border: 1px solid #cccccc;
   width: 1150px;

@@ -35,6 +35,7 @@ html,body{
 }
 .triangle{
   margin-right: 22px;
+  height:300px;
 }
 .triangle img{
   margin-top: 160px;
