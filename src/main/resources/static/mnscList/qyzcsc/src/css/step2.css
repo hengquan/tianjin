@@ -1,14 +1,15 @@
 html,body{
-  height: 1125px;
+  height: 560px;
+  background:#ffffff;
 }
 .page-main{
-  height: 700px;
+  height: 840px;
   padding-top: 30px;
 }
 .page-form-list{
   width: 610px;
-  height: 480px;
-  background:#f6f5f5;
+  height: 620px;
+  background:#ffffff;
   margin-bottom: 20px;
 }
 .page-form{
@@ -63,5 +64,5 @@ html,body{
   margin: 0 auto;
   padding-top: 0px;
   padding-bottom: 20px;
-  height: 520px;
+  height: 600px;
 }
