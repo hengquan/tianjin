@@ -1,4 +1,5 @@
 body{
+   
    min-width: 1200px;
    background: #F2F2F2;
 }
@@ -187,7 +188,7 @@ html,body{
 /*涓讳綋*/
 .page-main{
     margin-bottom:25px;
-    margin-top: 35px;
+    /*margin-top: 35px;*/
     background: white;
     border-radius: 5px;
 }
@@ -317,15 +318,17 @@ html,body{
 }
 .page-form{
     display: none;
+    background: #ffffff;
 }
 .page-form.active{
     display: block;
+   
 }
 
 .form-bottom-btns{
     margin-top: 30px;
-    padding-left: 150px;
-    padding-right: 60px;
+    padding-left: 650px;
+    padding-right: 60px;    
 }
 .form-btn{
     width: 160px;
@@ -403,4 +406,93 @@ html,body{
 }
 p{
   color: white;
+}
+
+#inrto-nav{
+}
+#inrto-nav:after{
+    display: block;
+    content: '';
+    visibility: hidden;
+    clear: both;
+}
+#inrto-nav .intro-nav-cell{
+    display: block;
+    float: left;
+	margin-left:20px;
+	margin-top:6px;
+	margin-right:20px;
+}
+#inrto-nav .intro-nav-right-btn{
+	margin-top:600px;
+    width: 60px;
+    background: url("../images/toRight.png") no-repeat;
+    background-size: 100% auto;
+    background-position: center center;
+    height: 60px;
+    float: left;
+    margin: 0 0px;
+}
+.pro_nav{
+	width: 1200px;
+	height: 110px;
+	background-color: #FFFFFF;
+	margin-bottom: 8px;
+}
+.pro li{
+	float: left;
+	margin-left: -13px;
+	margin-top: 24px;
+	width: 156px;
+	height: 64px;
+	background-image: url(../image/sec.png) ;
+	color: #000;
+}
+.pro .frist{
+	background-image: url(../image/first.png);
+	margin-top: 24px;
+	margin-left: 20px;
+}
+.pro .last{
+background-image: url(../image/last.png)
+}
+.pro span{
+	font-size: 40px;
+	line-height: 64px;
+	margin-left: 26px;
+	margin-right: 8px;
+	float: left;
+}
+.pro .frist span{
+	margin-left: 20px;
+}
+.pro p{
+	display: block;
+	font-size: 14px;
+	color: #cbccce;
+}
+.fir-p{
+	margin-top: 14px;
+}
+#inrto-nav  .pro li span{
+    color: #000;
+}
+#inrto-nav  .pro li,#inrto-nav  .pro li p{
+    color: #cbccce;
+}
+
+#inrto-nav  .pro li.intro-current span, #inrto-nav  .pro li:hover span{
+    color: #fff;
+}
+#inrto-nav  .pro li.intro-current,#inrto-nav  .pro li.intro-current p,#inrto-nav  .pro li.intro-current span,#inrto-nav  .pro li.intro-current,#inrto-nav  .pro li:hover p,#inrto-nav  .pro li:hover span{
+    color: #fff;
+}
+
+#inrto-nav  .pro li.intro-current,#inrto-nav  .pro li:hover{
+    background-position: -164px center;
+}
+
+
+#inrto-nav  .pro li.intro-used span{
+    color: #cbccce;
 }

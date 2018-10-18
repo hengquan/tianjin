@@ -22,6 +22,8 @@
  * content: 包含内容(html)
  * padding: 填充值
  * backgroundColor：背景颜色
+    noTriangle: 不要三角
+    borderColor: 边框颜色
  * color：字体颜色
  * radius：圆角
  * area：[宽， 高]
@@ -40,15 +42,13 @@
  *
  */
 
-
-
-
 (function (window) {
 
     var rootObj = {},
         IntroduceTipsArr = [],
         IntroduceTipsCurrent = 0,
         IntroduceTipsStep = -1,
+        btnCallBackPrev = '',
         $el = '';
     var IntroduceTipsList = function (obj) {
         rootObj = obj
@@ -69,6 +69,7 @@
             if (targetObj.callBack && targetObj.callBack instanceof Function){
                 targetObj.callBack({list: IntroduceTipsCurrent, step: IntroduceTipsStep})
             }
+
             new IntroduceTips(targetObj, IntroduceTipsListNext)
         } else {
             new IntroduceControl().cleanOld()
@@ -79,6 +80,7 @@
         }
         new IntroStepMenu().init()
     }
+
 
     /*****************
      * 跳转控制
@@ -116,29 +118,30 @@
     }
     // 创建DOM
     IntroStepMenu.prototype.createDom = function () {
-        var $innerHtml = '',
+        var $innerHtml = '<ul class="pro">',
             $navRoot = $(rootObj.nav.el),
             _list = rootObj.nav.list;
         $navRoot.html('')
         for(var i = 0; i< _list.length; i++){
 
             var moreClass = ''
+            if (i === 0){
+                moreClass += 'frist '
+            }
+            if (i === (_list.length-1)){
+                moreClass += 'last '
+            }
 
             if (IntroduceTipsCurrent === i){
-                moreClass = 'intro-current'
+                moreClass += 'intro-current'
             }
             if (IntroduceTipsCurrent > i){
-                moreClass = 'intro-used'
+                moreClass += 'intro-used'
             }
 
-            $innerHtml += '<div class="intro-nav-cell '+moreClass+'">'+_list[i]+'</div>'
-
-
-
-            if (i < _list.length - 1){
-                $innerHtml += '<div class="intro-nav-right-btn"></div>'
-            }
+            $innerHtml += '<li class="  '+moreClass+'"><span>'+(i+1)+'</span>'+_list[i]+'</li>'
         }
+        $innerHtml += '</ul>'
         $navRoot.append($innerHtml)
     }
 
@@ -192,6 +195,8 @@
         this.$root = $(this.opt.el) // 跟节点
         this.$rootWidth = this.$root.outerWidth()
         this.$rootHeight = this.$root.outerHeight()
+        this.$rootY = this.$root.offset().top
+        this.$rootX = this.$root.offset().left
         this.$dom = ''  // 要插入的dom节点
         this.arrowWidth = 10
     }
@@ -218,40 +223,56 @@
         var $TipsArrow = $('<div class="tips-arrow">')
         var $btn = $('<div class="tips-btn" >'+this.opt.nextBtn.content+'</div>')
 
+
         $btn.on("click",function(){
-            if (_this.callBack instanceof Function){
-                _this.callBack()
+            btnCallBackPrev = _this.opt.nextBtn.callBack
+            if (btnCallBackPrev instanceof Function){
+                btnCallBackPrev()
             } else {
-                new IntroduceControl().cleanOld()
+
+                if (_this.callBack instanceof Function){
+                    _this.callBack()
+                } else {
+                    new IntroduceControl().cleanOld()
+                }
             }
+
         });
         $TipsArrow.addClass(this.opt.direction)
         this.initArrowCss($TipsArrow)
         $TipsDom.append($TipsContext)
-        $TipsDom.append($TipsArrow)
-        $TipsDom.append($btn)
+        if (this.opt.noTriangle !== true){
+            $TipsDom.append($TipsArrow)
+        }
+        if (this.opt.nextBtn.noBtn !== true){
+            $TipsDom.append($btn)
+        }
         this.$dom = $TipsDom
     }
     // 初始化dom位置
     IntroduceTips.prototype.initPosition = function () {
         var left,
             top;
+        var joinX = this.$rootX + this.opt.X,
+            joinY = this.$rootY + this.opt.Y;
         switch (this.opt.direction) {
+
+
             case 'top':
-                left = this.opt.X  - this.opt.area[0] / 2 + this.arrowWidth
-                top = this.opt.Y - this.opt.area[1] - this.arrowWidth * 2 -  this.opt.distance
+                left = joinX - this.opt.area[0] / 2 + this.arrowWidth
+                top = joinY - this.opt.area[1] - this.arrowWidth * 2 -  this.opt.distance
                 break;
             case 'right':
-                left = this.opt.X + this.arrowWidth * 2 + this.opt.distance
-                top = this.opt.Y - this.opt.area[1] / 2 + this.arrowWidth
+                left = joinX + this.arrowWidth * 2 + this.opt.distance
+                top = joinY - this.opt.area[1] / 2 + this.arrowWidth
                 break;
             case 'bottom':
-                left = this.opt.X  - this.opt.area[0] / 2 - this.arrowWidth
-                top = this.opt.Y + this.arrowWidth * 2 + this.opt.distance
+                left = joinX  - this.opt.area[0] / 2 - this.arrowWidth
+                top = joinY + this.arrowWidth * 2 + this.opt.distance
                 break;
             case 'left':
-                left = this.opt.X - this.opt.area[0] - this.arrowWidth * 2 - this.opt.distance
-                top = this.opt.Y - this.opt.area[1] / 2 - this.arrowWidth
+                left = joinX - this.opt.area[0] - this.arrowWidth * 2 - this.opt.distance
+                top = joinY - this.opt.area[1] / 2 - this.arrowWidth
                 break;
         }
 
@@ -289,6 +310,12 @@
             'boxSizing':'border-box'
 
         })
+        if (this.opt.borderColor){
+            this.$dom.css({
+                'border': '1px solid ' + this.opt.borderColor,
+            })
+
+        }
     }
     // 设置arrow样式
     IntroduceTips.prototype.initArrowCss = function ($TipsArrow) {

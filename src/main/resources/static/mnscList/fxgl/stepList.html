@@ -38,17 +38,9 @@
         <div id="inrto-nav">
         </div>
 	 </div>
-      <!--  <div class="pro_nav">		
-		        	<ul class="pro">
-						<li class="frist"> <span>1</span><p class="fir-p">进入系统</p><p>用户密码登录</p></li>
-						<li><span>2</span><p class="fir-p">选择类型</p><p>确认所选类型</p></li>
-						<li><span>3</span><p class="fir-p">选择类型</p><p>确认所选类型</p></li>						
-						<li class="last"><span>4</span><p class="fir-p">选择类型</p><p>确认所选类型</p></li>
-					</ul>			
-        </div>-->
         <!--主体-->
          <div class="page-main">
-            <div class="head_title"><span id="msg">企业管理中心</span></div>               
+            <div class="head_title"><span id="msg"><B>模拟实操具体操作区</B></span></div>               
             <div class="content_border" >
               <div class="page-form-list"  id="page-form-list">
                   <iframe src="" frameborder="0" id="tipsMain" ></iframe>
@@ -65,7 +57,6 @@
 <div class="pt-footer">
   <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
 </div>
-
 <script>
     $(function(){
         new IntroduceTipsList({
@@ -73,10 +64,12 @@
             nav: {
                 el: '#inrto-nav',
                 list:[
-                    '1.登录进入系统',
-                    '2.选择费项目录管理',
-                    '3.新建费项目录',
-                    '4.启用费项目录'
+                    '<p class="fir-p">进入系统</p><p>用户密码登录</p>',
+                    '<p class="fir-p">企业中心</p><p>选中目录管理</p>',                   
+                    '<p class="fir-p">新增目录</p><p>填写目录信息</p>',
+                    '<p class="fir-p">目录搜索</p><p>展开折叠查询</p>',
+                    '<p class="fir-p">目录启用</p><p>启动目录操作</p>',
+                    '<p class="fir-p">目录停用</p><p>停用目录操作</p>'         
                 ]
             },
             iframe:{
@@ -89,8 +82,8 @@
                     srcUrl: './stepTips1.html',
                     steps:[
 					  {
-                            X: 645,
-                            Y: 760,
+                            X: 600,
+                            Y: 460,
                             distance: 10,
                             direction: 'bottom',
                             content: '<div class="intro-indent">输入用户名密码后，请点击<span class="special">“登录”</span>按钮，进入企业中心，进行操作。</div>',
@@ -103,38 +96,43 @@
                                 content: '知道了',
                                 backgroundColor: '#990000'
                             },
-                            callBack: function (obj) {
-                                console.log(obj);
+                            callBack: function (obj) {     
+							     console.log(obj);                       
                             }	
-						}	
+						},						
+						 {
+                            X: 610,
+                            Y: 420,
+                            distance: 10,
+                            direction: 'bottom',
+							noTriangle: true,
+                            borderColor: 'red',
+                            content: '',
+                            padding: 10,
+                           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+							backgroundColor: 'transparent', //透明颜色
+                            color: '#fff',
+                            radius: 5,
+                            area: [100,50],
+                            nextBtn: {
+                                content: '登录',
+                                backgroundColor: '#000000',
+								callBack: function (obj) {
+                                    nextPage();
+                                }
+                            },
+                            callBack: function (obj) {
+                           	      console.log(obj);
+                            }	
+						}		
 					]
                 },
                 {
                     srcUrl: './stepTips2.html',
-                    steps:[
-
+                    steps:[                       
                         {
-                            X: 1220,
-                            Y: 370,
-                            distance: 10,
-                            direction: 'bottom',
-                            content: '<div class="intro-indent">搜索分为简单搜索和复杂搜索，通过<span class="special">“展开/收回”</span>按钮进行控制。</div>',
-                            padding: 10,
-                            backgroundColor: 'rgba(0,0,0,0.6)',
-                            color: '#fff',
-                            radius: 5,
-                            area: [200, 150],
-                            nextBtn: {
-                                content: '知道了',
-                                backgroundColor: 'blue'
-                            },
-                            callBack: function (obj) {
-                                console.log(obj);
-                            }
-                        },
-                        {
-                            X: 180,
-                            Y: 720,
+                            X:80,
+                            Y: 440,
                             distance: 10,
                             direction: 'right',
                             content: '<div class="intro-indent">进入企业管理中心，展开左侧菜单，选中价格中心<span class="special">“收费目录管理”</span>，右侧工作区展示费项目录检索页面</div>',
@@ -152,8 +150,8 @@
                             }
                         },
                         {
-                            X: 350,
-                            Y: 500,
+                            X: 260,
+                            Y:210,
                             distance: 10,
                             direction: 'bottom',
                             content: '<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增收费目录，请点击<span class="special">“新增”</span>按钮，将进入新增费项目录页面。</div>',
@@ -170,14 +168,38 @@
                                 console.log(obj);
                             }
                         },
+						 {
+                            X: 260,
+                            Y: 180,
+                            distance: 10,
+                            direction: 'bottom',
+							noTriangle: true,
+                            borderColor: 'red',
+                            content: '',
+                            padding: 10,
+                           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+							backgroundColor: 'transparent', //透明颜色
+                            color: '#fff',
+                            radius: 5,
+                            area: [100,50],
+                            nextBtn: {
+                                content: '新增',
+                                backgroundColor: '#000000',
+								callBack: function (obj) {
+                                nextPage(); }	
+                            },
+                            callBack: function (obj) {
+                           	      console.log(obj);
+                            }	
+						},	
                     ]
                 },
                 {
                     srcUrl: './stepTips3.html',
                     steps:[
                         {
-                            X: 430,
-                            Y: 400,
+                            X: 330,
+                            Y: 120,
                             distance: 10,
                             direction: 'bottom',
                             content: '<div class="intro-indent">弹出收费目录新增页面，页面中<span class="special">“带红*部分”</span>是必填想，需正确填写。</div>',
@@ -195,8 +217,8 @@
                             }
                         },
                         {
-                            X: 600,
-                            Y: 720,
+                            X: 500,
+                            Y: 320,
                             distance: 10,
                             direction: 'bottom',
                             content: '<div class="intro-indent">新增收费目录，请点击<span class="special">“新增”</span>按钮，将进入新增费项目录页面。</div>',
@@ -218,10 +240,29 @@
                 {
                     srcUrl: './stepTips4.html',
                     steps:[
+                      {
+                        X: 1100,
+                        Y: 60,
+                        distance: 10,
+                        direction: 'bottom',
+                        content: '<div class="intro-indent">搜索分为简单搜索和复杂搜索，通过<span class="special">“展开/收回”</span>按钮进行控制。</div>',
+                        padding: 10,
+                        backgroundColor: 'rgba(0,0,0,0.6)',
+                        color: '#fff',
+                        radius: 5,
+                        area: [200, 150],
+                        nextBtn: {
+                            content: '知道了',
+                            backgroundColor: 'blue'
+                        },
+                        callBack: function (obj) {
+                            console.log(obj);
+                        }
+                    },
 
                         {
-                            X: 1145,
-                            Y: 600,
+                            X: 1040,
+                            Y: 310,
                             distance: 10,
                             direction: 'bottom',
                             content: '<div class="intro-indent">新增收费目录完成后，返回列表，请点击<span class="special">“启用”</span>链接，将进入新增费项目录页面。</div>',
@@ -240,6 +281,56 @@
                         }
                     ]
                 },
+                {
+                  srcUrl: './stepTips5.html',
+                  steps:[
+                    
+                      {
+                          X: 1040,
+                          Y: 310,
+                          distance: 10,
+                          direction: 'bottom',
+                          content: '<div class="intro-indent">新增收费目录完成后，返回列表，请点击<span class="special">“启用”</span>链接，将进入新增费项目录页面。</div>',
+                          padding: 10,
+                          backgroundColor: 'rgba(0,0,0,0.6)',
+                          color: '#fff',
+                          radius: 5,
+                          area: [200, 150],
+                          nextBtn: {
+                              content: '知道了',
+                              backgroundColor: '#990000'
+                          },
+                          callBack: function (obj) {
+                              console.log(obj);
+                          }
+                      }
+                  ]
+              },
+              {
+                srcUrl: './stepTips6.html',
+                steps:[
+                  
+                    {
+                        X: 1040,
+                        Y: 310,
+                        distance: 10,
+                        direction: 'bottom',
+                        content: '<div class="intro-indent">新增收费目录完成后，返回列表，请点击<span class="special">“停用”</span>链接，将进入新增费项目录页面。</div>',
+                        padding: 10,
+                        backgroundColor: 'rgba(0,0,0,0.6)',
+                        color: '#fff',
+                        radius: 5,
+                        area: [200, 150],
+                        nextBtn: {
+                            content: '知道了',
+                            backgroundColor: '#990000'
+                        },
+                        callBack: function (obj) {
+                            console.log(obj);
+                        }
+                    }
+                ]
+            },
             ]
         })
     })

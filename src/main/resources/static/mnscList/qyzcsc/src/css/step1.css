@@ -8,7 +8,7 @@ html,body{
 background: white;
 }
 .page-main{
-  height: 760px;
+  height: 860px;
   position: relative;
 }
 .pay_button{
@@ -22,8 +22,7 @@ iframe{
 }
 .page-form-list img{
   display: inline-block;
-  width: 1115px;
-  height: 550px;
+  width: 1115px; 
   margin-left: 17px;
 }
 /*ÆøÅİµÄÉèÖÃ*/

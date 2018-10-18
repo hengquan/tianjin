@@ -1,3 +1,60 @@
+body, h1, h2, h3, h4, h5, h6, div, p, dl, dt, dd, ol, ul, li, form, table, th, td, a, img, span, strong, var, em, input, textarea, select, option {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+  font-family: "Microsoft yahei", "SimHei";
+}
+select{
+	
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  border:none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  border: 0;
+}
+
+input, select, textarea {
+  outline: 0;
+}
+
+
+
+.introduce-container{
+  position: relative;
+}
+.introduceImg{
+  width: 500px;
+  height: auto;
+  border: 1px solid red;
+}
+.tips-btn{
+
+  background: #2c67c5;
+  position: absolute;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -40px;
+  text-indent: 0;
+}
+
+.intro-indent{
+  text-indent: 30px;
+}
+
 /*模拟实操按钮*/
 .pay_button span{
   display: inline-block;
