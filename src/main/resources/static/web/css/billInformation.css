@@ -1,6 +1,7 @@
 /*Êµ²ÙÄÚÈİ*/
 html{
   overflow: auto;
+  height: auto;
 }
 .bill{
   width: 1200px;

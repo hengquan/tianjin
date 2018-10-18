@@ -1,7 +1,7 @@
 /*贸易类型*/
 html{
   overflow: auto;
-  height: 1120px;
+  height: 820px;
 }
 iframe{
   margin-top: -40px;
@@ -35,7 +35,7 @@ body{
   width: 1150px;
   margin: 0 auto;
   border: 1px solid #ddd;
-  height: 550px;
+  height: 400px;
 }
 .foreign_trade{
   width: 1000px;
