@@ -51,6 +51,8 @@
       <span>操作步骤</span>
     </div>
     <div class="czbz bgs">
+      <span class="left-btn" aria-hidden="true"><i class="glyphicon glyphicon-menu-left"></i></span>
+      <span class="right-btn" aria-hidden="true"><i class="glyphicon glyphicon-menu-right"></i></span>
       <div class="list">
         <ul>
           <!-- <li>
@@ -197,6 +199,7 @@ function toCourse(id) {
   window.open("./courseContent.html?id="+id, "_blank");
 }
 
+
 function initCzbz(url) {
   var jsonUrl="./demoJson/json_czbj.json";
   try {
@@ -210,18 +213,44 @@ function initCzbz(url) {
     data: "",
     dataType: "json",
     success: function (res) {
-        var html = ""
-        for(var i=0;i<res.list.length;i++) {
-          html+='<li>'
-            +'<div class="index"><p>'+(i+1)+'</p></div>'
-            +'<h2>'+res.list[i].title+'</h2>'
-            +'<div class="txt">'+res.list[i].txt+'</div>'
-            +'<span class="sanjiao"><img src="../../tjsrc/images/sanjiao.jpg"></span>'
-          +'</li>'
-        }   
-        $(".list ul").html(html)    
+      var html = ""
+      for(var i=0;i<res.list.length;i++) {
+        html+='<li>'
+          +'<div class="index"><p>'+(i+1)+'</p></div>'
+          +'<h2>'+res.list[i].title+'</h2>'
+          +'<div class="txt">'+res.list[i].txt+'</div>'
+          +'<span class="sanjiao"><img src="../../tjsrc/images/sanjiao.jpg"></span>'
+        +'</li>'
+      }   
+      $(".list ul").html(html);
+      if(res.list.length<= 6) {
+        $(".left-btn,.right-btn").css("display","none")
+      }else {
+        $(".left-btn,.right-btn").css("display","block")
+      }
     }
   });
 }
+
+var index = 0;
+$(".czbz").on("click",".left-btn",function (param) {
+  if(index <= 0) {
+    index = 0
+  }else {
+    index -= 1
+    var step = index * 17
+    $(".czbz ul").animate({"left":"-"+step+"%"})
+  }
+});
+
+$(".czbz").on("click",".right-btn",function (param) { 
+  if(index >= $(".czbz").find("li").length-6 ) {
+  } else {
+    index+=1
+    var step = index * 17
+    $(".czbz ul").animate({"left":"-"+step+"%"})
+  }
+})
+
 </script>
 </html>
