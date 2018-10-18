@@ -109,6 +109,7 @@
                     </div>
                   </div>
 
+<!-- 
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
                       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="createTime">企&emsp;&emsp;业</label>
@@ -117,6 +118,7 @@
                       </div>
                     </div>
                   </div>
+-->
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
                       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="createTime">人&emsp;&emsp;员</label>
@@ -202,6 +204,7 @@ function initCate() {
     }
   });
 }
+
 function parseUrl() {
   var objTypes=getUrlParam("objTypes");
   if (objTypes) {
@@ -224,7 +227,7 @@ function refresh() {
 
 function initTable() {
 //forType=1为企业端获得学习日志
-  TableInit(queryParams).Init('${gateway}/tj/getXxrzList?forType=1', [
+  TableInit(queryParams).Init('${gateway}/tj/getXxrzList?forType=0', [
   {
     field : 'objType',
     title : '类型',
@@ -249,8 +252,9 @@ function initTable() {
     title : '对象名称',
     sortable : false,
     formatter: function(value, row, index) {
-      if (!value) return row.moduleName;
-      else return value;
+      console.log(row);
+      if (!value) return row.moduleName
+      else return value
     }
   }, {
     field : 'groupName',

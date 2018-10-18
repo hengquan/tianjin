@@ -186,6 +186,7 @@ public class TjController {
             @RequestParam(required=false) String forType,
             @RequestParam(required=false) String objTypes,
             @RequestParam(required=false) String moduleNames,
+            @RequestParam(required=false) String catNames,
             @RequestParam(required=false) String compName,
             @RequestParam(required=false) String userName,
             @RequestParam(required=false) String date1,
@@ -212,18 +213,27 @@ public class TjController {
             //设置page
             PageHelper.offsetPage(offset, limit);
             Map<String, Object> param=new HashMap<String, Object>();
+
             String objSql="";
             if (!StringUtils.isBlank(objTypes)) {
                 objSql=objTypes.replaceAll(",", "' or obj_type='");
                 objSql="(obj_type='"+objSql+"')";
             }
             param.put("objSql", objSql);//所选择的人员的id列表
+
             String moduleSql="";
             if (!StringUtils.isBlank(moduleNames)) {
                 moduleSql=moduleNames.replaceAll(",", "' or visit_module_id='");
                 moduleSql="(visit_module_id='"+moduleSql+"')";
             }
             param.put("moduleSql", moduleSql);//所选择的人员的id列表
+
+            String catSql="";
+            if (!StringUtils.isBlank(catNames)) {
+                catSql=catNames.replaceAll(",", "')>0 or instr(cat_name, '");
+                catSql="(instr(cat_name, '"+catSql+"')>0)";
+            }
+            param.put("catSql", catSql);//所选择的人员的id列表
 
             param.put("compName", compName);//所选择的人员的id列表
             param.put("userName", userName);//所选择的人员的id列表
@@ -244,7 +254,7 @@ public class TjController {
                 newXxrz.put("objType", xxrz.get("OBJ_TYPE")==null?"":xxrz.get("OBJ_TYPE"));
                 newXxrz.put("objId", xxrz.get("OBJ_ID")==null?"":xxrz.get("OBJ_ID"));
                 newXxrz.put("objName", xxrz.get("OBJ_NAME")==null?"":xxrz.get("OBJ_NAME"));
-                newXxrz.put("catName", xxrz.get("CAT_NAME")==null?"":xxrz.get("CAT_NAME"));
+                newXxrz.put("catNames", xxrz.get("CAT_NAME")==null?"":xxrz.get("CAT_NAME"));
                 newXxrz.put("visitorId", xxrz.get("VISITOR_ID")==null?"":xxrz.get("VISITOR_ID"));
                 newXxrz.put("visitorName", xxrz.get("VISITOR_NAME")==null?"":xxrz.get("VISITOR_NAME"));
                 newXxrz.put("groupId", xxrz.get("GROUP_ID")==null?"":xxrz.get("GROUP_ID"));

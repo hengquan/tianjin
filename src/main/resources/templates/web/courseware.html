@@ -121,9 +121,9 @@ function getOneItem(itemData) {
   if (itemData.imgUrl) $itemHtmlObj.append("<img src='"+itemData.imgUrl+"' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
   else $itemHtmlObj.append("<img src='./web/images/kj_default.jpg' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
   $itemHtmlObj.append('<div class="name_title" style="cursor:pointer;" onclick=toCourse("'+itemData.id+'")><div class="name_top"><p>'+itemData.name+'</p><div class="name_detail">'
-      +'<span class="img_left"><img src="/web/images/rs.jpg" style="margin-left:-10px;"></span><span class="rs">2.5万</span><span style="margin-left:40px;">'+timeStr+'</span></div></div></div>');
+      +'<span class="img_left"><img src="./web/images/rs.jpg" style="margin-left:-10px;"></span><span class="rs">2.5万</span><span style="margin-left:40px;">'+timeStr+'</span></div></div></div>');
 
-  return $itemHtmlObj;
+  return $itemHtmlObj;  
 }
 
 function toCourse(id) {
