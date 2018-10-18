@@ -608,7 +608,7 @@ public class ApiController {
                 if (StringUtils.isBlank(lv.getVisitSysId())) lv.setVisitSysId("1");
                 ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
                 if (companyInfo!=null&&companyInfo.getData()!=null) {
-                    lv.setGroupId(companyInfo.getData().getCompanyId());
+                    lv.setGroupId(companyInfo.getData().getId());
                     lv.setGroupName(companyInfo.getData().getCompanyNameZh());
                 }
                 lv.setVisitModuleId("在线练习");
@@ -720,7 +720,6 @@ public class ApiController {
                 if (!StringUtils.isBlank(lv.getObjType())) {
                     LogVisitMemory.getInstance().put2Queue(lv);
                 }
-                System.out.println("===insertLog==================================");
             }
             retMap.put("returnCode", "000");
         } catch(Exception e) {
