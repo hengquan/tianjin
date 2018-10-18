@@ -1,54 +1,50 @@
-html{
-  height: 1030px;
+html,body{
+  height: 560px;
+  background:#ffffff;
 }
 .page-main{
-  height: 620px;
+  height: 840px;
   padding-top: 30px;
-}
-
-.page-form-list{
-  padding-top: 35px;
-}
-.pay_button{
-  margin-top: 55px;
 }
 .page-form-list{
   width: 610px;
-  height: 370px;
+  height: 620px;
+  background:#ffffff;
+  margin-bottom: 20px;
+}
+.page-form{
+  padding-top: 25px;
+  margin-right: 30px;
 }
 .model{
-  width: 436px;
-  height: 405px;
+  width: 432px;
+  height: 460px;
+  background: rgba(0,0,0,0.6);
   border-radius: 20px;
-  background:rgba(0,0,0,.6);
-  margin-left: 16px;
-  margin-right: 22px;
+  font-size: 18px;
   color: white;
   line-height: 0px;
-  font-size: 18px;
+  margin-left:18px;
+  margin-right: 25px;
+  margin-top: -25px;
 }
-.triangle{
-  margin-right: 19px;
-  height:200px;
+.model p{
+  margin-left: 25px;
+   margin-top: 30px;
 }
-.triangle img{
-  margin-top: 170px;
-}
-.model,.triangle,.page-form-list{
+.model,.page-form-list,.triangle{
   float: left;
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
-.write{
-  color: #f46227;
-  font-size: 25px;
+  margin-top: 25px;
+  margin-bottom: 38px;
+  
 }
 .model>p>span{
   color: #f46227;
 }
-.model p{
-  margin-left: 25px;
-  margin-top: 30px;
+.triangle{
+  margin-right: 19px;
+  margin-top: 235px;
+  height:300px;
 }
 .model img{
   margin-right: 8px;
@@ -56,17 +52,19 @@ html{
 .model .finger{
   margin-left:30px;
 }
+
+.pay_button{
+  margin-top: 55px;
+}
 #form-submit2{
   margin-left: 40px;
 }
-
-
-/*±ß¿òÄÚÈÝµÄÑùÊ½*/
-.content_border1{
+/*ï¿½ß¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½*/
+.content_border{
   border: 1px solid #cccccc;
-  height: 450px;
   width: 1150px;
   margin: 0 auto;
+  padding-top: 0px;
+  padding-bottom: 20px;
+  height: 600px;
 }
-
-

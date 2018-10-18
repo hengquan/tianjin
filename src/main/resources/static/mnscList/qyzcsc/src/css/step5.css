@@ -1,5 +1,6 @@
 html,body{
-    height: 1095px;
+      height: 660px;
+      background:#ffffff;
 }
 .page-main{  
   padding-top: 30px;
@@ -24,6 +25,7 @@ html,body{
     font-size: 24px;
     margin-left: 119px;
     margin-top: 36px;
+    color: white;
 }
 .danger span{
     font-size: 32px;
@@ -42,6 +44,7 @@ html,body{
 }
 p{
   display: block;
+  color: white;
 }
 /*边框内容的样式*/
 .content_border1{
