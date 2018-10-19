@@ -1,11 +1,11 @@
 /*Êµ²ÙÄÚÈİ*/
 html{
   overflow: auto;
-  height: auto;
+  height: 1200px;
 }
 .bill{
   width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto;  
 }
 .billList{
   margin: 35px auto 0;

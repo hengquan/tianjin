@@ -1,7 +1,7 @@
 /*贸易类型*/
 html{
   overflow: auto;
-  height: 820px;
+  height:800px;
 }
 iframe{
   margin-top: -40px;
@@ -35,7 +35,7 @@ body{
   width: 1150px;
   margin: 0 auto;
   border: 1px solid #ddd;
-  height: 400px;
+  height: 410px;
 }
 .foreign_trade{
   width: 1000px;
@@ -86,7 +86,7 @@ body{
 .paymentList_bottom{
   width: 1200px;
   margin: 25px auto 0;
-  height: 250px;
+  height: 50px;
   background: white;
 }
 .relevant span{
@@ -167,7 +167,7 @@ body{
   display: inline-block;
   font-size: 14px;
   color: white;
-   width: 300px;
+  width: 300px;
   margin-top: 26px;
   text-indent: 20px;
   margin-left: 15px;
