@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>实操-企业注册信息</title>
+    <title>实操-收费目录设置信息</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="src/css/reset.css">
     <link rel="stylesheet" href="src/css/header-footer.css">
     <link rel="stylesheet" href="src/css/home.css">
     <link rel="stylesheet" href="src/css/main.css">
     <link rel="stylesheet" href="src/css/step2.css">
-    <script src="src/js/jquery.js"></script>
-    <script src="src/js/main.js"></script>
+    <script src="../src/js/jquery.js"></script>
+    <script src="../src/js/main.js"></script>
     <script src="../../web/layer/layer.js"></script>
-    <script src="./libs/jquery/jquery-1.12.4.js"></script>
-    <script src="./src/js/introduce.class.js"></script>
+    <script src="../libs/jquery/jquery-1.12.4.js"></script>
+    <script src="../src/js/introduce.class.js"></script>
 </head>
 <body>
 <div class="page-warp page-home-net">
@@ -170,7 +170,7 @@
                         },
 						 {
                             X: 260,
-                            Y: 180,
+                            Y: 166,
                             distance: 10,
                             direction: 'bottom',
 							noTriangle: true,
@@ -234,7 +234,31 @@
                             callBack: function (obj) {
                                 console.log(obj);
                             }
-                        }
+                        },
+                        {
+                          X: 500,
+                          Y: 280,
+                          distance: 10,
+                          direction: 'bottom',
+						noTriangle: true,
+                          borderColor: 'red',
+                          content: '',
+                          padding: 10,
+                         // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+						backgroundColor: 'transparent', //透明颜色
+                          color: '#fff',
+                          radius: 5,
+                          area: [100,50],
+                          nextBtn: {
+                              content: '保存',
+                              backgroundColor: '#000000',
+							callBack: function (obj) {
+                              nextPage(); }	
+                          },
+                          callBack: function (obj) {
+                         	      console.log(obj);
+                          }	
+					}
                     ]
                 },
                 {
@@ -262,7 +286,7 @@
 
                         {
                             X: 1040,
-                            Y: 310,
+                            Y: 400,
                             distance: 10,
                             direction: 'bottom',
                             content: '<div class="intro-indent">新增收费目录完成后，返回列表，请点击<span class="special">“启用”</span>链接，将进入新增费项目录页面。</div>',
@@ -278,32 +302,80 @@
                             callBack: function (obj) {
                                 console.log(obj);
                             }
-                        }
+                        },
+		                    {
+		                      X: 1040,
+		                      Y: 360,
+		                      distance: 10,
+		                      direction: 'bottom',
+						noTriangle: true,
+		                      borderColor: 'red',
+		                      content: '',
+		                      padding: 10,
+		                     // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+						backgroundColor: 'transparent', //透明颜色
+		                      color: '#fff',
+		                      radius: 5,
+		                      area: [100,50],
+		                      nextBtn: {
+		                          content: '启用',
+		                          backgroundColor: '#000000',
+							callBack: function (obj) {
+		                          nextPage(); }	
+		                      },
+		                      callBack: function (obj) {
+		                     	      console.log(obj);
+		                      }	
+					}
                     ]
                 },
                 {
                   srcUrl: './stepTips5.html',
                   steps:[
                     
-                      {
-                          X: 1040,
-                          Y: 310,
-                          distance: 10,
-                          direction: 'bottom',
-                          content: '<div class="intro-indent">新增收费目录完成后，返回列表，请点击<span class="special">“启用”</span>链接，将进入新增费项目录页面。</div>',
-                          padding: 10,
-                          backgroundColor: 'rgba(0,0,0,0.6)',
-                          color: '#fff',
-                          radius: 5,
-                          area: [200, 150],
-                          nextBtn: {
-                              content: '知道了',
-                              backgroundColor: '#990000'
-                          },
-                          callBack: function (obj) {
-                              console.log(obj);
-                          }
+                    {
+                      X: 580,
+                      Y: 330,
+                      distance: 10,
+                      direction: 'bottom',
+                      content: '<div class="intro-indent">弹出启动确认提示，请点击<span class="special">“确认”</span>按钮，目录启用成功，返回列表。</div>',
+                      padding: 10,
+                      backgroundColor: 'rgba(0,0,0,0.6)',
+                      color: '#fff',
+                      radius: 5,
+                      area: [200, 150],
+                      nextBtn: {
+                          content: '知道了',
+                          backgroundColor: '#990000'
+                      },
+                      callBack: function (obj) {
+                          console.log(obj);
                       }
+                  },
+                  {
+                    X: 580,
+                    Y: 290,
+                    distance: 10,
+                    direction: 'bottom',
+			noTriangle: true,
+                    borderColor: 'red',
+                    content: '',
+                    padding: 10,
+                   // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+			backgroundColor: 'transparent', //透明颜色
+                    color: '#fff',
+                    radius: 5,
+                    area: [100,50],
+                    nextBtn: {
+                        content: '确定',
+                        backgroundColor: '#000000',
+				callBack: function (obj) {
+                        nextPage(); }	
+                    },
+                    callBack: function (obj) {
+                   	      console.log(obj);
+                    }	
+		}
                   ]
               },
               {
@@ -311,11 +383,11 @@
                 steps:[
                   
                     {
-                        X: 1040,
+                        X: 1050,
                         Y: 310,
                         distance: 10,
                         direction: 'bottom',
-                        content: '<div class="intro-indent">新增收费目录完成后，返回列表，请点击<span class="special">“停用”</span>链接，将进入新增费项目录页面。</div>',
+                        content: '<div class="intro-indent">启动成功后，返回目录列表，如停用请点击<span class="special">“停用”</span>链接，将进入新增费项目录页面。</div>',
                         padding: 10,
                         backgroundColor: 'rgba(0,0,0,0.6)',
                         color: '#fff',

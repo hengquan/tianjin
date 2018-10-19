@@ -4,6 +4,7 @@ body{
 }
 html{
   overflow: auto;
+  height:760px;
 }
 .pay{
   width: 1200px;
@@ -13,7 +14,7 @@ html{
   width: 1200px;
   margin-top: 35px;
   background: white;
-  height: 480px;
+  height: 540px;
   padding-top: 20px;
   border-radius: 5px;
   position:relative ;
