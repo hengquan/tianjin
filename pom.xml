@@ -5,8 +5,8 @@
 	<parent>
 		<groupId>cn.taiji</groupId>
 		<artifactId>taiji-pom</artifactId>
-		<version>1.0.6-RELEASES</version>
-		<relativePath />
+		<version>1.0.11-RELEASES</version>
+		<relativePath/>
 	</parent>
 	<artifactId>tianjin-unifiedfee-ot</artifactId>
 	<name>tianjin-unifiedfee-ot</name>
@@ -31,11 +31,17 @@
 			<groupId>cn.taiji</groupId>
 			<artifactId>taiji-util</artifactId>
 		</dependency>
-		<!-- jpa持久层模块 -->
-		<dependency>
-			<groupId>cn.taiji</groupId>
-			<artifactId>taiji-jpa</artifactId>
-		</dependency>
+        <!-- jpa持久层模块 -->
+        <dependency>
+            <groupId>cn.taiji</groupId>
+            <artifactId>taiji-jpa</artifactId>
+        </dependency>
+        <!-- 获得企业信息 -->
+        <dependency>
+            <groupId>cn.taiji</groupId>
+            <artifactId>taiji-company</artifactId>
+            <version>1.0.0-RELEASES</version>
+        </dependency>
 		<!-- web模块 -->
 		<dependency>
 			<groupId>cn.taiji</groupId>

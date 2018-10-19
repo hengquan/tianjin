@@ -84,11 +84,10 @@ body {
             var dataList = data.data;
             for (var i = 0; i < dataList.length; i++) {
               //查主图片是否有值无值显示默认图
-              var mainUrl = dataList[i].mainUrl;
-              console.log(mainUrl);
-              if (mainUrl == '' || mainUrl == null) mainUrl = "./web/images/mnsc_default.jpg";
+              var imgUrl = dataList[i].imgUrl;
+              if (!imgUrl) imgUrl = "./web/images/mnsc_default.jpg";
               html += '<div class="col-md-3">'
-                  + '<img src="'+ mainUrl +'" alt="">'
+                  + '<img src="'+ imgUrl +'" alt="">'
                   + '<div class="model_bg" onclick=toSimulation("'
                   + dataList[i].mnscUrl + '?objId=' + dataList[i].id
                   + '")></div>' + '<div class="explain">' + '<p>'

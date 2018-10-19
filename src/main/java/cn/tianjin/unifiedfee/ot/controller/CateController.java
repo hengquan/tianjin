@@ -21,7 +21,6 @@ import com.spiritdata.framework.core.model.tree.TreeNode;
 import com.spiritdata.framework.util.DateUtils;
 
 import cn.taiji.oauthbean.dto.UserInfo;
-import cn.taiji.web.base.controller.BaseController;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.Category;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
@@ -35,7 +34,7 @@ import com.spiritdata.framework.core.model.tree.TreeNodeBean;
 
 @RequestMapping("/cate")
 @Controller
-public class CateController extends BaseController {
+public class CateController {
     @Autowired
     private CategoryService categoryService;
     @Autowired //注入Service

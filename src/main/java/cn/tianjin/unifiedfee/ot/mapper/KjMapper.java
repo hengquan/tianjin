@@ -22,7 +22,7 @@ public interface KjMapper {
 
     List<Kj> getDataListByIds(Kj kj);
 
-    public List<Kj> find4Web(Map<String, Object> param);
+    public List<Map<String,Object>> find4Web(Map<String, Object> param);
 
     public List<Kj> findRefKj4Web(Map<String, Object> param);
 

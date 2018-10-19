@@ -1,149 +1,32 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>在线学习</title>
-  <!-- 1 bootstrap的css -->
-  <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
-  <!--公共css-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./libs/bootstrap-3.3.7-dist/css/bootstrap.css">
   <link rel="stylesheet" href="./web/css/pt-main.css">
-  <link rel="stylesheet" href="./web/css/index1.css">
-  <!--页面css-->
-  <link rel="stylesheet" href="./web/css/trainingCourseware.css">
-  <!--引入字体的css-->
-  <link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
-  <script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
-  <!--bootstrap的js-->
-  <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
-  <!--页面js-->
-  <script type="text/javascript" src="./web/js/main.js"></script>
-<style>
-html {overflow: hidden;}
-body {background: white;}
-</style>
+  <link rel="stylesheet" href="./tjsrc/css/rest.css">
+  <link rel="stylesheet" href="./tjsrc/css/zxxx.css">
+  
+  <script src="./libs/jquery/jquery-1.12.4.js"></script>
+  <script src="./libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-<!--主视口 -->
-<div class="pt-view pt-open" style="padding-left: 0px;">
-  <!--主窗口导航条开始-->
-  <div class="pt-bread">
-  <ul class="nav" id="myTab">
-    <li><a href="javascript:void(0)" data-toggle="tab" class="active1" cateId="">全部分类</a></li>
-    <li><a href="javascript:void(0)" data-toggle="tab" cateId="1">法规类</a></li>
-    <li><a href="javascript:void(0)" data-toggle="tab" cateId="2">政策类</a></li>
-    <li><a href="javascript:void(0)" data-toggle="tab" cateId="3">收费类</a></li>
-    <li><a href="javascript:void(0)" data-toggle="tab" cateId="4">放行类</a></li>
-    <li><a href="javascript:void(0)" data-toggle="tab" cateId="5">理货类</a></li>
-    <li><a href="javascript:void(0)" data-toggle="tab" cateId="6">出口类</a></li>
-    <li><a href="javascript:void(0)" data-toggle="tab" cateId="7">进口类</a></li>
-  </ul>
+  <div class="container-fluid">
+    <ul class="tag-box col-sm-12">
+      <li class="on">全部分类</li>
+    </ul>
+    <div class="search-box">
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" placeholder="" id="searchStr" aria-describedby="basic-addon1">
+        <span class="input-group-addon search-btn"><span class="glyphicon glyphicon-search"></span>搜索</span>
+      </div>
+    </div>
+    <ul class="row listbox">
+    </ul>
   </div>
-  <!--搜索框-->
-  <div class="search_input">
-    <span class="search_left"><input type="text" id="searchStr" style="padding-left:10px;"></span>
-    <span class="search_right">
-      <span>
-        <img src="./web/images/sousu1.png"/>
-        <span class="search">搜索</span>
-      </span>
-    </span>
-  </div>
-  <!--内容窗口-->
-  <div class="tab-content">
-  </div>
-</div>
-<!--主视口 结束-->
-
-<script>
-$(document).ready(function(){
-  $("a[cateId='']").click();
-  $(".search").click(function(){
-    getKjList($(".active1").attr("cateId"), $("#searchStr").val());
-  });
-});
-
-$('#myTab a').click(function () {
-  $(this).addClass('active1');
-  getKjList($(this).attr("cateId"), $("#searchStr").val());
-});
-
-function getKjList(cateId, searchStr) {
-  if (!cateId) cateId="";
-  if (!searchStr) searchStr="";
-  var _data={
-    "categoryId":cateId,
-    "searchStr":searchStr,
-    "pageNo":-1 //不分页
-  };
-  $.ajax({
-    type: 'post',
-    url: "./train/getKjList",
-    data: _data,
-    dataType:'json',
-    success: function (data) { //成功后的回调函数
-      var returnCode= data.returnCode;
-    console.log(data);
-      $(".tab-content").html("");
-      if (returnCode == '00') {
-        var kjList = data.data;
-        console.log(kjList);
-        var kjPannelHtml=$("<div class='tab-pane active' id='allClassification'></div>");
-        var newRow, newTop;
-        for (var i=0; i<kjList.length; i++) {
-          if (i%3==0) {
-            if (i!=0) kjPannelHtml.append(newTop);
-            if (i==0) newTop=$("<div class='top'></div>");
-            else newTop=$("<div class='bottom'></div>");
-            newRow=$("<div class='row'></div>");
-            newTop.append(newRow);
-          }
-          var oneJqueryHtmlObj=getOneItem(kjList[i]);
-          newRow.append(oneJqueryHtmlObj);
-        }
-        kjPannelHtml.append(newTop);
-        $(".tab-content").append(kjPannelHtml);
-      } else if (returnCode == '01') {
-
-      }
-    },
-    error: function (e) {
-      console.log("网络连接失败！");
-    }
-  });
-}
-
-function getOneItem(itemData) {
-  var $itemHtmlObj=$("<div class='col-md-4'></div>");
-
-  //./web/images/111.jpg
-  var timeStr=itemData.createDate;
-  if (timeStr) timeStr=timeStr.substring(0,10)+"&nbsp;发布";
-  if (itemData.imgUrl) $itemHtmlObj.append("<img src='"+itemData.imgUrl+"' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
-  else $itemHtmlObj.append("<img src='./web/images/kj_default.jpg' alt='' onclick='toCourse(\""+itemData.id+"\")'>");
-  $itemHtmlObj.append('<div class="name_title" style="cursor:pointer;" onclick=toCourse("'+itemData.id+'")><div class="name_top"><p>'+itemData.name+'</p><div class="name_detail">'
-      +'<span class="img_left"><img src="./web/images/rs.jpg" style="margin-left:-10px;"></span><span class="rs">2.5万</span><span style="margin-left:40px;">'+timeStr+'</span></div></div></div>');
-
-  return $itemHtmlObj;  
-}
-
-function toCourse(id) {
-  window.open("./courseContent.html?id="+id, "_blank");
-}
-</script>
-<script type="text/javascript">
-var _gatherData={};
-_gatherData.visitModuleId="课件列表";
-_gatherData.objType="ts_kj";
-//_gatherData.objId=getUrlParam("id");
-(function () {
-  var ma = document.createElement('script');
-  ma.type = 'text/javascript';
-  ma.async = true;
-  ma.src = "./tjsrc/js/ma.js";
-  var s = document.getElementsByTagName('script')[0];
-  s.parentNode.insertBefore(ma, s);
-}
-)();
-</script>
 </body>
+<script src="./tjsrc/js/zxxx.js"></script>
 </html>
