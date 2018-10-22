@@ -105,4 +105,12 @@ public class LogVisitService {
     public List<Map<String, Object>> getXxrzList(Map<String, Object> param) {
         return logDao.getXxrzList(param);
     }
+
+    public int getVisitCount(String objType, String objId) {
+        Map<String,Object> param = new HashMap<String,Object>();
+        param.put("objId", objId);
+        param.put("objType", objType);
+        Integer i=null;
+        return logDao.getVisitCount(param);
+    }
 }

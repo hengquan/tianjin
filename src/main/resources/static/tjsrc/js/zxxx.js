@@ -62,8 +62,6 @@ $(function() {
 });
 
 function getKjList(cateId, searchStr) {
-  alert(cateId);
-  alert(searchStr);
   if (!cateId) cateId="";
   if (!searchStr) searchStr="";
   var _data={
@@ -71,20 +69,18 @@ function getKjList(cateId, searchStr) {
     "searchStr":searchStr,
     "pageNo":-1 //不分页
   };
-  console.log(_data);
   $.ajax({
     type: 'post',
     url: "./train/getKjList",
     data: _data,
     dataType:'json',
     success: function (res) {
-      console.log(res);
-      $(".listbox").append("")
+      $(".listbox").html("")
       if(res.returnCode=='00') {
         var html = ""
         for(var i = 0;i < res.data.length; i++) {
-          html += '<li class="col-sm-4s">'
-              +'<div class="con" title="'+res.data[i].name+'">'
+          html += '<li class="col-sm-3s">'
+              +'<div class="con" title="'+res.data[i].name+'" onclick="toCourse(\''+res.data[i].id+'\')">'
               +'<div class="pic"><img src="'+(res.data[i].imgUrl || "../../tjsrc/images/mnsc_default.jpg")+'"></div>'
               +'<div class="botoom">'
                   +'<h2>'+res.data[i].name+'</h2>'
@@ -106,4 +102,8 @@ function getKjList(cateId, searchStr) {
       console.log("网络连接失败！");
     }
   });
+}
+
+function toCourse(id) {
+  window.open("./courseContent.html?id="+id, "_blank");
 }

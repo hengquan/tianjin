@@ -35,6 +35,7 @@ import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.entity.LogVisit;
 import cn.tianjin.unifiedfee.ot.entity.SJ;
 import cn.tianjin.unifiedfee.ot.logvisit.LogVisitMemory;
+import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
 import cn.tianjin.unifiedfee.ot.service.ArchiveService;
 import cn.tianjin.unifiedfee.ot.service.CategoryService;
@@ -49,7 +50,7 @@ public class ApiController {
 //    private int _DEFALT_PS=10;//default page size
     @Autowired
     private CategoryService categoryService;
-    @Autowired // 注入Service
+    @Autowired
     public UserService userService;
     @Autowired
     private KjService kjService;
@@ -57,8 +58,10 @@ public class ApiController {
     private SjService sjService;
     @Autowired
     private ArchiveService archiveService;
-    @Autowired // 注入Service
+    @Autowired
     public SystemCompanyRemote companyRemote;
+    @Autowired
+    public LogVisitService logVisitService;
 
     //    @RequestMapping("getCateData")
 //    @ResponseBody
@@ -398,7 +401,9 @@ public class ApiController {
             }
             if (m.get("kjUrl")==null) m.put("kjUrl", "");
             if (m.get("fileName")==null) m.put("fileName", "");
-            
+            //获得课件访问量
+            int logVisitCount=logVisitService.getVisitCount("ts_kj", kjId);
+            m.put("logVisitCount", logVisitCount);
             retMap.put("returnCode","00");
             retMap.put("data", m);
         } catch(Exception e) {

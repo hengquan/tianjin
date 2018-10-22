@@ -44,11 +44,10 @@
       <span class="course_name"></span>
       <div class="course_mid">
         <span><img src="./web/images/rs.jpg" alt="" class="course_right_img"></span>
-        <span class="course_count">2.5万</span>
+        <span class="course_count"></span>
         <span class="course_time"></span>
       </div>
-      <div class="course_description">
-      </div>
+      <div class="course_description"></div>
       <div class="study_btn">
         <button class="start_study btn w120" onclick="toLearning()">开始学习</button>
       </div>
@@ -57,15 +56,15 @@
   <!--同类课程-->
   <div class="_gap"><span>相关课件<div class="border"></div></span></div>
   <div class="_detail_bottom">
-    <div class="row">
-    </div>
+    <div class="row"></div>
   </div>
   <!--相关练习-->
   <div class="_gap">
     <span>相关练习<div class="border"></div></span>
-    <div class="learnBtn" onclick="toStartPractice()">现在开始练习</div>
+    <div class="learnBtn" onclick="toStartPractice()">开始练习</div>
   </div>
   <div class="tm_area">
+  <!-- 
     <div class="tmrow">
       <div class="tm">
         <p>练习题目：新企业用户注册后，下一步工作是什么？</p>
@@ -96,6 +95,7 @@
         </div>
       </div>
     </div>
+     -->
   </div>
 </div>
 
@@ -137,6 +137,7 @@ function initPage() {
     data: _data,
     dataType:'json',
     success: function (data) { //成功后的回调函数
+      console.log(data);
       var img_url="./web/images/kj_default.jpg";
       var returnCode=data.returnCode;
       if (returnCode=='00') {
@@ -150,6 +151,8 @@ function initPage() {
         $(".course_right .course_time").html(""+tmpVal);
         tmpVal=(data.data.remarks?data.data.remarks:"");
         $(".course_right .course_description").html(tmpVal);
+        tmpVal=(data.data.logVisitCount?data.data.logVisitCount:"0");
+        $(".course_count").html(tmpVal);
       }
       if (data.data.imgUrl) img_url=data.data.imgUrl;
       $("._course_img img").attr("src", img_url);

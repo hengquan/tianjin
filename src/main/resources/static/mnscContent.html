@@ -192,7 +192,7 @@ function initXgkc() {
 }
 function getOneXgkcHtml(oneKj) {
   var _img_url=(oneKj.imgUrl?oneKj.imgUrl:"./web/images/kj_default.jpg");
-  var _html='<li><div class="tpic" style="cursor:pointer" onclick="toCourse(\''+oneKj.id+'\')"><img src="'+_img_url+'"><div class="infos">'+oneKj.name+'</div></div></li>';
+  var _html='<li><div class="tpic" style="cursor:pointer" onclick="toCourse(\''+oneKj.id+'\')"><img src="'+_img_url+'"><div class="infos"><p>'+oneKj.name+'</p></div></div></li>';
   return _html;
 }
 
