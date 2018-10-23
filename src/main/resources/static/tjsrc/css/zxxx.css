@@ -2,17 +2,28 @@
   margin: 0;
   padding: 0;
 }
-.con{
-  border-radius: 10px;
+.con {
+  border-radius:5px;
   overflow: hidden;
+  font-family:Microsoft YaHei;
+  cursor:pointer;
 }
 .listbox {
-  padding-top: 20px;
+  padding-top: 30px;
+  margin: 0 auto;
+  margin-left:5px;
+}
+.listbox::after {
+  content:"";
+  display: block;
+  clear: both;
 }
 .listbox li {
-  border-radius: 10px;
   overflow: hidden;
   margin-bottom: 20px;
+  float: left;
+  width: 300px;
+  margin-left: 30px;
 }
 .btns {
   width: 80%;
@@ -31,12 +42,14 @@
   padding-bottom: 40px;
 }
 .listbox h2 {
-  height: 30px;
-  line-height: 30px;
+  height: 50px;
+  line-height: 50px;
   text-align: left;
   font-weight: bold;
   font-size: 20px;
-  padding: 0 20px;
+  margin: 0 15px;
+  width: 290px; overflow: hidden; white-space: nowrap;text-overflow: ellipsis;
+  font-family:Microsoft YaHei;
 }
 .listbox p {
   text-align: center;
@@ -50,20 +63,21 @@
   margin-right: 5px;
 }
 .tag-box {
-  height: 40px;
-  line-height: 40px;
+  height: 60px;
+  line-height: 60px;
   margin-bottom: 30px;
   border-bottom: 2px solid #abc3cf;
 }
-.tag-box {
-
-}
 .tag-box li {
-  float: left;
-  margin-right: 50px;
   cursor: pointer;
-  height: 39px;
+  float: left;
+  margin-right: 55px;
+  margin-left: 15px;
+  height: 60px;
+  line-height: 60px;
   font-size: 16px;
+  color:#C3C3C3;
+  font-family:Microsoft YaHei;
 }
 .tag-box li:last-of-type {
   margin-right: 0;
@@ -71,12 +85,12 @@
 .tag-box li.on {
   font-weight: bold;
   border-bottom: 3px solid #2e66bd;
-  
-  
+  color:black;
 }
 .search-box {
-  width: 60%;
+  width: 600px;
   margin: 0 auto;
+  margin-left: 150px;
 }
 .input-group-addon:last-child {
   background: #2e66bd;
@@ -85,7 +99,9 @@
   cursor: pointer;
 }
 .row-box {
-  padding: 0 5px;
+  padding: 0 10px;
+  font-size: 14px;
+  font-family:Microsoft YaHei;
 }
 .row-box .left{
   float: left;
@@ -99,12 +115,14 @@
   display: inline-block;
   width: 15px;
   vertical-align: 1px;
+  margin-right: 10px;
 }
 .pic {
-  height: 215px;
+  width: 300px;
+  height: 220px;
   overflow: hidden;
 }
 .pic img {
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 220px;
 }

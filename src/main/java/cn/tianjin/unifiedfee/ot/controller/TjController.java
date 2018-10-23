@@ -26,8 +26,8 @@ import com.spiritdata.framework.util.DateUtils;
 
 import cn.taiji.format.result.ObjectResponseResult;
 import cn.taiji.oauthbean.dto.UserInfo;
-import cn.taiji.system.domain.CompanyBasicInfo;
-import cn.taiji.web.company.remote.SystemCompanyRemote;
+import cn.taiji.company.remote.SystemCompanyRemote;
+import cn.taiji.company.system.CompanyBasicInfo;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.LogVisit;
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;

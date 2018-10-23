@@ -1,6 +1,8 @@
 package cn.tianjin.unifiedfee.ot.web;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.pagehelper.PageHelper;
+//import com.github.pagehelper.PageHelper;
 import com.spiritdata.framework.core.model.tree.TreeNode;
 import com.spiritdata.framework.core.model.tree.TreeNodeBean;
 import com.spiritdata.framework.util.DateUtils;
@@ -23,16 +25,17 @@ import com.spiritdata.framework.util.RequestUtils;
 import com.spiritdata.framework.util.SequenceUUID;
 import com.spiritdata.framework.util.TreeUtils;
 
+import cn.taiji.company.remote.SystemCompanyRemote;
 import cn.taiji.format.result.ObjectResponseResult;
 import cn.taiji.oauthbean.dto.UserInfo;
-import cn.taiji.system.domain.CompanyBasicInfo;
-import cn.taiji.web.company.remote.SystemCompanyRemote;
+import cn.taiji.company.system.CompanyBasicInfo;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
 import cn.tianjin.unifiedfee.ot.entity.LogVisit;
 import cn.tianjin.unifiedfee.ot.entity.SJ;
 import cn.tianjin.unifiedfee.ot.logvisit.LogVisitMemory;
+import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
 import cn.tianjin.unifiedfee.ot.service.ArchiveService;
 import cn.tianjin.unifiedfee.ot.service.CategoryService;
@@ -44,10 +47,10 @@ import cn.tianjin.unifiedfee.ot.util.HttpPush;
 @RequestMapping("/train")
 public class ApiController {
     //@Value("${page.web.pagesize.default}")
-    private int _DEFALT_PS=10;//default page size
+//    private int _DEFALT_PS=10;//default page size
     @Autowired
     private CategoryService categoryService;
-    @Autowired // 注入Service
+    @Autowired
     public UserService userService;
     @Autowired
     private KjService kjService;
@@ -55,8 +58,10 @@ public class ApiController {
     private SjService sjService;
     @Autowired
     private ArchiveService archiveService;
-    @Autowired // 注入Service
+    @Autowired
     public SystemCompanyRemote companyRemote;
+    @Autowired
+    public LogVisitService logVisitService;
 
     //    @RequestMapping("getCateData")
 //    @ResponseBody
@@ -180,7 +185,9 @@ public class ApiController {
                 if (!c.isLeaf()&&c.getChildCount()>0) {
                     List<Map<String, Object>> new_cl=new ArrayList<Map<String, Object>>();
                     for (TreeNode<? extends TreeNodeBean> _c:c.getChildren()) {
-                        new_cl.add(_toTreeMap(_c));
+                        if (((CategoryNode)(_c.getTnEntity())).getIsvalid()==1) {
+                            new_cl.add(_toTreeMap(_c));
+                        }
                     }
                     retTree.put("children", new_cl);
                 }
@@ -191,11 +198,13 @@ public class ApiController {
                 Map<String, Object> one=null;//new HashMap<String, Object>();
                 List<TreeNode<? extends TreeNodeBean>> l=TreeUtils.getDeepList(c);
                 for (TreeNode<? extends TreeNodeBean> _n: l) {
-                    one=new HashMap<String, Object>();
-                    one.put("id", _n.getId());
-                    one.put("name", _n.getTreePathName("-", 0));
-                    one.put("parentId", _n.getParentId());
-                    retList.add(one);
+                    if (((CategoryNode)(_n.getTnEntity())).getIsvalid()==1) {
+                        one=new HashMap<String, Object>();
+                        one.put("id", _n.getId());
+                        one.put("name", _n.getTreePathName("-", 0));
+                        one.put("parentId", _n.getParentId());
+                        retList.add(one);
+                    }
                 }
                 data.put("resultType", "list");
                 data.put("list", retList);
@@ -251,9 +260,14 @@ public class ApiController {
                 retMap.put("messageInfo","无用户登录");
                 return retMap;
             }
+            //先不分页
+            /*
             //处理分页
             if (pageNo==0) pageNo=1;
-            if (pageSize==-1) pageSize=_DEFALT_PS;
+            if (pageSize==-1) pageSize=100;
+            // 设置page，若pageNo=-1,则不分页
+            if (pageNo!=-1) PageHelper.offsetPage(pageNo,pageSize);
+            */
             //处理分类
             String flQuery="";
             if (!StringUtils.isBlank(categoryId)) {
@@ -272,51 +286,45 @@ public class ApiController {
                 }
             }
             if (!StringUtils.isBlank(flQuery)) flQuery=flQuery.substring(4);
-            // 设置page，若pageNo=-1,则不分页
-            if (pageNo!=-1) PageHelper.offsetPage(pageNo,pageSize);
             // 获取参数
             Map<String, Object> param=new HashMap<String, Object>();
             param.put("flQuery", flQuery);
             if (!StringUtils.isBlank(searchStr)) searchStr=searchStr.replaceAll("'", "");
             param.put("searchStr", searchStr);
             // 查询数据
-            List<Kj> kjs=kjService.find4Web(param);
+            List<Map<String, Object>> kjs=kjService.find4Web(param);
             if (kjs==null||kjs.size()==0) {
                 retMap.put("returnCode","99");
                 retMap.put("messageInfo","列表为空");
                 return retMap;
-            }
-            //查询相关图片
-            String orSql="";
-            for (Kj kj: kjs) {
-                orSql+=" or obj_id='"+kj.getId()+"'";
-            }
-            if (!StringUtils.isBlank(orSql)) orSql=orSql.substring(4);
-            List<CommArchive> al=archiveService.getArchiveByObjIds("ts_KJ", "img", orSql);
-            List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
-            for (Kj kj:kjs) {
-                Map<String, Object> m=_getKjMap(kj);
-                if (al!=null) {
-                    for (CommArchive ca: al) {
-                        if (ca.getObjId().equals(kj.getId())) {
-                            m.put("imgUrl", ca.getFileUrl());
-                        }
-                    }
+            } else {
+                List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+                for (int i=0; i<kjs.size(); i++) {
+                    Map<String, Object> one=getKjMap(kjs.get(i));
+                    retL.add(one);
                 }
-                if (m.get("imgUrl")==null) {//默认图片
-//                    m.put("imgUrl", "/images/defaultKJ.png");
-                    m.put("imgUrl", "");
-                }
-                retL.add(m);
+                retMap.put("returnCode", "00");
+                retMap.put("data", retL);
             }
-            retMap.put("returnCode","00");
-            retMap.put("data",retL);
         } catch(Exception e) {
             e.printStackTrace();
             retMap.put("returnCode","01");
             retMap.put("messageInfo",e.toString());
         }
         return retMap;
+    }
+    private Map<String, Object> getKjMap(Map<String, Object> kjm) {
+        Map<String, Object> km=new HashMap<String, Object>();
+        km.put("id", kjm.get("ID"));
+        km.put("catNames", kjm.get("KJ_CAT_NAMES"));
+        km.put("name", kjm.get("KJ_NAME"));
+        km.put("remarks", kjm.get("REMARKS"));
+        try {
+            km.put("createDate", DateUtils.convert2LocalStr("yyyy-MM-dd HH:mm:ss", new Date(((Timestamp)kjm.get("CREATE_DATE")).getTime())));
+        } catch(Exception e) {
+        }
+        km.put("visitCount", kjm.get("LOGVISITCOUNT"));
+        return km;
     }
     private Map<String, Object> _getKjMap(Kj kj) {
         Map<String, Object> m=new HashMap<String, Object>();
@@ -393,7 +401,9 @@ public class ApiController {
             }
             if (m.get("kjUrl")==null) m.put("kjUrl", "");
             if (m.get("fileName")==null) m.put("fileName", "");
-            
+            //获得课件访问量
+            int logVisitCount=logVisitService.getVisitCount("ts_kj", kjId);
+            m.put("logVisitCount", logVisitCount);
             retMap.put("returnCode","00");
             retMap.put("data", m);
         } catch(Exception e) {

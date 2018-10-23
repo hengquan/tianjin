@@ -1,9 +1,9 @@
 .courseware{
   width: 1200px;
   margin: 0 auto;
-  height:1100px;
+  height:auto;
 }
-body{
+body {
   background: #f2f2f2;
 }
 .bg_img{
@@ -133,6 +133,7 @@ body{
   width: 820px;
   height: 70px;
   margin-top: 25px;
+  font-size:14px;
 }
 .study_btn .start_study{
   background: #2e66bd;
@@ -371,7 +372,7 @@ html{
   margin-right:15px;
 }
 ._name_title{
-  height:92px;
+  height:55px;
   margin-left:13px;
   width: 220px;
   border-radius: 0 0  5px 5px;
@@ -379,7 +380,9 @@ html{
   text-align: center;
 }
 ._name_title p{
-  font-size: 18px;
+  font-size: 16px;
+  padding: 0 5px;
+  width: 210px; overflow: hidden; white-space: nowrap;text-overflow: ellipsis;
 }
 
 /*题目内容*/

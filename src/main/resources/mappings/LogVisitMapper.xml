@@ -546,4 +546,9 @@ select upCateName, count(distinct obj_id) count from (
       </if>
 	group by c.name
   </select>
+
+
+  <select id="getVisitCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+    select count(*) from log_visit where obj_type=#{objType} and obj_id=#{objId}
+  </select>
 </mapper>

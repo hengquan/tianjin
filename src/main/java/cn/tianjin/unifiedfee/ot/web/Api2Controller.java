@@ -59,10 +59,8 @@ public class Api2Controller {
      * 
      * @param request
      * @param response
-     * @param categoryId
-     *            分类ID，若为空，获得所有分类
-     * @param searchStr
-     *            查询字符串，若为空，获得所有摸拟实操
+     * @param categoryId 分类ID，若为空，获得所有分类
+     * @param searchStr 查询字符串，若为空，获得所有摸拟实操
      * @return
      */
     @RequestMapping("getMnscList")
@@ -83,25 +81,29 @@ public class Api2Controller {
                 retMap.put("messageInfo", "无用户登录");
                 return retMap;
             }
-            // 处理分页
-            if (pageNo == -1)
-                pageNo = 1;
-            if (pageSize == -1)
-                pageSize = _DEFALT_PS;
-            // 设置分页
-            // PageHelper.offsetPage(pageNo, pageSize);
-            // 查询列表
+//            // 处理分页
+//            if (pageNo == -1)
+//                pageNo = 1;
+//            if (pageSize == -1)
+//                pageSize = _DEFALT_PS;
+//            // 设置分页
+//            // PageHelper.offsetPage(pageNo, pageSize);
+//            // 查询列表
             map.put("categoryId", categoryId);
             map.put("searchStr", searchStr);
-            List<Mnsc> mnscs = mnscService.getPageData(map);
-            // 放入分页
-            // PageInfo<Mnsc> pageList = new PageInfo<Mnsc>(mnscs);
+            List<Map<String, Object>> mnscs = mnscService.getMnscList4web(map);
+
             if (mnscs == null || mnscs.size() == 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "列表为空");
             } else {
+                List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+                for (int i=0; i<mnscs.size(); i++) {
+                    Map<String, Object> one=getMnscMap(mnscs.get(i));
+                    retL.add(one);
+                }
                 retMap.put("returnCode", "00");
-                retMap.put("data", mnscs);
+                retMap.put("data", retL);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,7 +149,6 @@ public class Api2Controller {
                 retMap.put("messageInfo", "信息为空");
             } else {
                 //获得该模拟实操的访问数量
-                
                 retMap.put("returnCode", "00");
                 retMap.put("data", mnsc);
             }
@@ -165,8 +166,7 @@ public class Api2Controller {
      * 
      * @param request
      * @param response
-     * @param mainId
-     *            摸拟实操ID，不允许为空
+     * @param mainId 摸拟实操ID，不允许为空
      * @return
      */
     @RequestMapping("getMnscRefKjList")
