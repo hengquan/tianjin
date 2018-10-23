@@ -28,6 +28,19 @@
             </li>
         </ul>
         <div class="center row">
+            <div class="col-xs-4">
+              <h2><span>模拟实操</span></h2>
+              <div id="mnscStat" style="width: 100%;height:260px;"></div>
+            </div>
+            <div class="col-xs-4">
+              <h2><span>在线课件</span></h2>
+              <div id="kjStat" style="width: 100%;height:260px;"></div>
+            </div>
+            <div class="col-xs-4">
+              <h2><span>最近访问</span></h2>
+              <div id="visitLine" style="width: 100%;height:260px;"></div>
+            </div>
+        <!-- 
             <div class="left col-xs-6">
                 <h2><span><a href="mnsc/list">模拟实操</a></span></h2>
                 <div id="main" style="width: 100%;height:400px;"></div>
@@ -36,6 +49,7 @@
                 <h2><span><a href="kj/list">学习课件</a></span></h2>
                 <div id="main2" style="width: 100%;height:400px;"></div>
             </div>
+        -->
         </div>
         <div class="bottom">
             <p><strong>近期日志</strong></p>
@@ -52,22 +66,26 @@
 <!-- <script src="${gateway}/tjsrc/js/index.js"></script> -->
 
 <script>
-var myChart = echarts.init(document.getElementById('main'));
-var myChart2 = echarts.init(document.getElementById('main2'));
+var mnscChart = echarts.init(document.getElementById('mnscStat'));
+var kjChart = echarts.init(document.getElementById('kjStat'));
+var visitChart = echarts.init(document.getElementById('visitLine'));
 
 $(function() {
   //统计数据
   logVisitCount();
   //模拟实操柱图
   getMnscStat();
-  //最新课件数据//
+  //最新课件数据
   getKjStat();
+  //折线图
+  getVisitStat();
   //所有日志
   getAllLogVisitList(10);
 
   window.onresize = function(){
-    myChart.resize();
-    myChart2.resize();
+    mnscChart.resize();
+    kjChart.resize();
+    visitChart.resize();
   }
 });
 
@@ -110,8 +128,287 @@ function logVisitCount() {
   });
 }
 
-
 function getMnscStat() {
+  $.ajax({
+    type: 'post',
+    url: "${gateway}/train/getMnscStat",
+    data: null,
+    dataType: 'json',
+    cache: false,
+    success: function(res) {
+      if (res.returnCode=='00') {
+        // 指定图表的配置项和数据
+        var catAry=[], data1=[], data2=[];
+        for (var j=0; j<res.data.length; j++) {
+          catAry.push(res.data[j].catName);
+          data1.push(res.data[j].allKjCatCount);
+          data2.push(res.data[j].recentVisitKjCatCount);
+        }
+        data1=[5,6,7,4,3,5,4];
+        data2=[23,45,33,12,34,12,9];
+        var option = {
+            tooltip: {
+              trigger: 'item',
+              formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data: ["法规类","政策类","收费类","放行类","理货类","出口类","进口类"]
+            },
+            series: [
+                {
+                    name: '模拟实操分类',
+                    type: 'pie',
+                    radius: ['50%', '70%'],
+                    center: ['50%','60%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: [
+                        {value:11,name:"法规类"},
+                        {value:22,name:"政策类"},
+                        {value:5,name:"收费类"},
+                        {value:30,name:"放行类"},
+                        {value:36,name:"理货类"},
+                        {value:16,name:"出口类"},
+                        {value:8,name:"进口类"}
+                    ]
+                }
+            ]
+        };
+        mnscChart.setOption(option);
+        mnscChart.resize();
+      }
+    },
+    error: function() { //失败回调函数
+      layer.alert("获取信息失败");
+    }
+  });
+}
+
+//课件最新数据
+function getKjStat() {
+  $ .ajax({
+    type: 'post',
+    url: "./train/getKjStat",
+    data: null,
+    dataType: 'json',
+    cache: false,
+    success: function(res) {
+      if (res.returnCode=='00') {
+        // 指定图表的配置项和数据
+        var catAry=[], data1=[], data2=[];
+        for (var j=0; j<res.data.length; j++) {
+          catAry.push(res.data[j].catName);
+          data1.push(res.data[j].allKjCatCount);
+          data2.push(res.data[j].recentVisitKjCatCount);
+        }
+        data1=[11,16,9,14,8,9,5];
+        data2=[33,35,43,22,24,32,17];
+        var option = {
+            tooltip: {
+              trigger: 'item',
+              formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data: ["法规类","政策类","收费类","放行类","理货类","出口类","进口类"]
+            },
+            series: [
+                {
+                    name: '模拟实操分类',
+                    type: 'pie',
+                    radius: ['50%', '70%'],
+                    center: ['50%','60%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: [
+                        {value:11,name:"法规类"},
+                        {value:22,name:"政策类"},
+                        {value:5,name:"收费类"},
+                        {value:30,name:"放行类"},
+                        {value:36,name:"理货类"},
+                        {value:16,name:"出口类"},
+                        {value:8,name:"进口类"}
+                    ]
+                }
+            ]
+        };
+        kjChart.setOption(option);
+        kjChart.resize();
+      }
+    },
+    error: function() { //失败回调函数
+      layer.alert("获取信息失败");
+    }
+  });
+}
+
+function getVisitStat() {
+  $.ajax({
+    type: 'post',
+    url: "${gateway}/train/getMnscStat",
+    data: null,
+    dataType: 'json',
+    cache: false,
+    success: function(res) {
+      if (res.returnCode=='00') {
+        // 指定图表的配置项和数据
+        var catAry=[], data1=[], data2=[];
+        for (var j=0; j<res.data.length; j++) {
+          catAry.push(res.data[j].catName);
+          data1.push(res.data[j].allKjCatCount);
+          data2.push(res.data[j].recentVisitKjCatCount);
+        }
+        data1=[5,6,7,4,3,5,4];
+        data2=[23,45,33,12,34,12,9];
+        var option = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:["法规类","政策类","收费类","放行类","理货类","出口类","进口类"]
+                },
+                grid: {
+                    left: '1%',
+                    right: '5%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ["10月1日","10月2日","10月3日","10月4日","10月5日","10月6日","10月7日"]
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name:'法规类',
+                        type:'line',
+                        stack: '总量',
+                        data:[120, 132, 101, 134, 90, 230, 210]
+                    },
+                    {
+                        name:'政策类',
+                        type:'line',
+                        stack: '总量',
+                        data:[220, 182, 191, 234, 290, 330, 310]
+                    },
+                    {
+                        name:'收费类',
+                        type:'line',
+                        stack: '总量',
+                        data:[220, 182, 191, 234, 290, 330, 310]
+                    },
+                    {
+                        name:'放行类',
+                        type:'line',
+                        stack: '总量',
+                        data:[220, 182, 191, 234, 290, 330, 310]
+                    },
+                    {
+                        name:'理货类',
+                        type:'line',
+                        stack: '总量',
+                        data:[220, 182, 191, 234, 290, 330, 310]
+                    },
+                    {
+                        name:'出口类',
+                        type:'line',
+                        stack: '总量',
+                        data:[220, 182, 191, 234, 290, 330, 310]
+                    },
+                    {
+                        name:'进口类',
+                        type:'line',
+                        stack: '总量',
+                        data:[220, 182, 191, 234, 290, 330, 310]
+                    }
+                ]
+            };
+        visitChart.setOption(option);
+        visitChart.resize();
+      }
+    },
+    error: function() { //失败回调函数
+      layer.alert("获取信息失败");
+    }
+  });
+}
+
+function getAllLogVisitList(rownum) {
+  var data = {"rownum": rownum};
+  $.ajax({
+    type: "get",
+    url: "./train/getAllLogVisitList",
+    data: data,
+    dataType: "json",
+    success: function (res) {
+      if(res.returnCode==00) {
+        var html = ""
+        for(var j=0;j<res.data.length;j++) {
+          var groupName=res.data[j].groupName;
+          if (groupName) groupName="【"+groupName+"】";
+          else groupName="";
+          if (res.data[j].visitorName) groupName+="【"+res.data[j].visitorName+"】";
+          if (groupName) {
+            if (res.data[j].objType=='在线练习') {
+              html+= '<li class="row"><div class="right col-xs-9">'+groupName+'练习了：<span>习题【'+res.data[j].objName+'】</span></div><div class="col-xs-3 date">'+res.data[j].visitTime+'</div></li>'
+            } else
+            if (res.data[j].objType=='模拟实操展示') {
+              html+= '<li class="row"><div class="right col-xs-9">'+groupName+'操作了：<span>模拟实操【'+res.data[j].objName+'】</span></div><div class="col-xs-3 date">'+res.data[j].visitTime+'</div></li>'
+            } else
+            if (res.data[j].objType=='课件展示') {
+              html+= '<li class="row"><div class="right col-xs-9">'+groupName+'学习了：<span>课件【'+res.data[j].objName+'】</span></div><div class="col-xs-3 date">'+res.data[j].visitTime+'</div></li>'
+            }
+          }
+        }
+        $(".logList").html(html)
+      }
+    }
+  });
+}
+
+/*
+
+function getMnscStat_bak() {
   $.ajax({
     type: 'post',
     url: "${gateway}/train/getMnscStat",
@@ -155,7 +452,7 @@ function getMnscStat() {
 }
 
 //课件最新数据
-function getKjStat() {
+function getKjStat_bak() {
   $ .ajax({
     type: 'post',
     url: "./train/getKjStat",
@@ -198,38 +495,7 @@ function getKjStat() {
   });
 }
 
-function getAllLogVisitList(rownum) {
-  var data = {"rownum": rownum};
-  $.ajax({
-    type: "get",
-    url: "./train/getAllLogVisitList",
-    data: data,
-    dataType: "json",
-    success: function (res) {
-      if(res.returnCode==00) {
-        var html = ""
-        for(var j=0;j<res.data.length;j++) {
-          var groupName=res.data[j].groupName;
-          if (groupName) groupName="【"+groupName+"】";
-          else groupName="";
-          if (res.data[j].visitorName) groupName+="【"+res.data[j].visitorName+"】";
-          if (groupName) {
-            if (res.data[j].objType=='在线练习') {
-              html+= '<li class="row"><div class="right col-xs-9">'+groupName+'练习了：<span>习题【'+res.data[j].objName+'】</span></div><div class="col-xs-3 date">'+res.data[j].visitTime+'</div></li>'
-            } else
-            if (res.data[j].objType=='模拟实操展示') {
-              html+= '<li class="row"><div class="right col-xs-9">'+groupName+'操作了：<span>模拟实操【'+res.data[j].objName+'】</span></div><div class="col-xs-3 date">'+res.data[j].visitTime+'</div></li>'
-            } else
-            if (res.data[j].objType=='课件展示') {
-              html+= '<li class="row"><div class="right col-xs-9">'+groupName+'学习了：<span>课件【'+res.data[j].objName+'】</span></div><div class="col-xs-3 date">'+res.data[j].visitTime+'</div></li>'
-            }
-          }
-        }
-        $(".logList").html(html)
-      }
-    }
-  });
-}
+*/
 </script>
 
 <script type="text/javascript">
