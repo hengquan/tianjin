@@ -234,6 +234,7 @@ public class MnscService {
         Date createDate = mInfo.getCreateDate();
         String createdate = format.format(createDate);
         if (StringUtils.isNotEmpty(createdate)) mInfo.setCreatedate(createdate);
+        //获得
         return mInfo;
     }
 

@@ -5,6 +5,16 @@ body {
   margin: 0;
   padding: 0;
 }
+.pic {
+  width: 280px;
+  height: 212px;
+  border-radius: 5px;
+}
+.pic img{
+  width: 280px;
+  height: 212px;
+  border-radius: 5px;
+}
 ._gap{
   width: 1200px;
   height: 60px;
@@ -52,13 +62,11 @@ body {
   padding: 30px 0;
 }
 .info h2 {
-  font-size: 18px;
-  font-weight: bold;
-  padding-top: 2%;
-  padding-bottom:3%;
-}
-.info .stae {
-
+  font-size: 24px;
+  margin-top: 9px;
+  margin-bottom:18px;
+  font-family:'Microsoft YaHei';
+  color:black;
 }
 .eay {
   display: inline-block;
@@ -69,10 +77,11 @@ body {
 .time {
   margin-left: 30px;
 }
-.js {  
-  padding-top: 1%; 
+.js {
+  margin-top:25px;
+  padding-top: 10px; 
   padding-right: 10%;
-  font-size: 16px;
+  font-size: 14px;
   font-family:'Microsoft YaHei';
 }
 .ks-btn {
