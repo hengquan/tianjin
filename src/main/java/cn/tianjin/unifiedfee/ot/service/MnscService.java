@@ -291,4 +291,8 @@ public class MnscService {
     public List<Map<String, Object>> getMnscList4web(Map<String, Object> map) {
         return dao.getMnscList4Web(map);
     }
+
+    public List<Map<String, Object>> getMnscPieState() {
+        return dao.getMnscPieState();
+    }
 }

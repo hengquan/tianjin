@@ -1,6 +1,7 @@
 package cn.tianjin.unifiedfee.ot.web;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -653,5 +654,179 @@ public class Api2Controller {
             retMap.put("messageInfo", e.toString());
         }
         return retMap;
+    }
+
+    /**
+     * 1.6.9、获得课件统计信息，为后台首页<br>
+     * 这里是为饼图服务的，获得的数据是课件各分类的统计数据，注意是有效的课件
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("getKjPieStat")
+    @ResponseBody
+    public Map<String, Object> getKjPieStat(HttpServletRequest request, HttpServletResponse response) {
+        HttpPush.responseInfo(response);// 跨域
+        // 返回结果
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+
+            //1-获得有效分类
+            List<Map<String, Object>> cl=categoryService.getCateList4View(null, 0);
+            //2-获得有效分类的
+            List<Map<String, Object>> pieData=kjService.getKjPieState();
+            //组合数据
+            List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+            for (Map<String, Object> cm: cl) {
+                Map<String, Object> m=new HashMap<String, Object>();
+                String catName=(String)cm.get("text");
+                m.put("name", catName);
+                m.put("value", "0");
+                for (Map<String,Object> stat: pieData) {
+                    if ((stat.get("CATNAME")).equals(catName)) {
+                        m.put("value", stat.get("CATCOUNT"));
+                        break;
+                    }
+                }
+                retL.add(m);
+            }
+            retMap.put("returnCode", "00");
+            retMap.put("data", retL);
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+
+    /**
+     * 1.6.10、获得模拟实操统计信息，为后台首页<br>
+     * 这里是为饼图服务的，获得的数据是模拟实操各分类的统计数据，注意是有效的模拟实操
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("getMnscPieStat")
+    @ResponseBody
+    public Map<String, Object> getMnscPieStat(HttpServletRequest request, HttpServletResponse response) {
+        HttpPush.responseInfo(response);// 跨域
+        // 返回结果
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+
+            //1-获得有效分类
+            List<Map<String, Object>> cl=categoryService.getCateList4View(null, 0);
+            //2-获得有效分类的
+            List<Map<String, Object>> pieData=mnscService.getMnscPieState();
+            //组合数据
+            List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+            for (Map<String, Object> cm: cl) {
+                Map<String, Object> m=new HashMap<String, Object>();
+                String catName=(String)cm.get("text");
+                m.put("name", catName);
+                m.put("value", "0");
+                for (Map<String,Object> stat: pieData) {
+                    if ((stat.get("CATNAME")).equals(catName)) {
+                        m.put("value", stat.get("CATCOUNT"));
+                        break;
+                    }
+                }
+                retL.add(m);
+            }
+            retMap.put("returnCode", "00");
+            retMap.put("data", retL);
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+    
+
+    /**
+     * 1.6.11、获得最近7天按分类分布的访问量。为后台首页<br>
+     * 这里是为分类折线图做准备
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("getVisitStat")
+    @ResponseBody
+    public Map<String, Object> getVisitStat(HttpServletRequest request, HttpServletResponse response) {
+        HttpPush.responseInfo(response);// 跨域
+        // 返回结果
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        try {
+            UserInfo ui = userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+
+            //1-获得有效分类
+            List<Map<String, Object>> cl=categoryService.getCateList4View(null, 0);
+            //2-获得最近7天的字符串数组
+            Calendar now = Calendar.getInstance();
+            String[] dayStrAry=new String[7];
+            dayStrAry[6]=getMonthDay(now);
+            for (int i=5; i>=0; i--) {
+                now.add(Calendar.DATE, -1);
+                dayStrAry[i]=getMonthDay(now);
+            }
+            //3-获得访问数据
+            List<Map<String, Object>> logData=logVisitService.getVisitStatLate(1,7);
+
+            //组合数据
+            List<Map<String, Object>> retL=new ArrayList<Map<String, Object>>();
+            for (Map<String, Object> cm: cl) {
+                List<Integer> numList=new ArrayList<Integer>();
+                for (int i=0; i<dayStrAry.length; i++) numList.add(0);
+
+                Map<String, Object> m=new HashMap<String, Object>();
+                String catName=(String)cm.get("text");
+                m.put("name", catName);
+                for (Map<String,Object> stat: logData) {
+                    boolean find=false;
+                    if ((stat.get("CATNAME")).equals(catName)) {
+                        for (int j=0; j<dayStrAry.length; j++) {
+                            if (stat.get("DATE").equals(dayStrAry[j])) {
+                                numList.set(j, Integer.parseInt(""+stat.get("NUM")));
+                                find=true;
+                                break;
+                            }
+                        }
+                    }
+                    if (find) break;
+                }
+                m.put("numList", numList);
+                retL.add(m);
+            }
+            retMap.put("returnCode", "00");
+            retMap.put("data", retL);
+            retMap.put("dayAry", dayStrAry);
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+    private String getMonthDay(Calendar c) {
+        return (c.get(Calendar.MONTH)+1)+"月"+c.get(Calendar.DATE)+"日";
     }
 }

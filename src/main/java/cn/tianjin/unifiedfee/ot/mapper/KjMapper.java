@@ -31,4 +31,6 @@ public interface KjMapper {
     List<Map<String, Object>> getNewKjList(Map<String, Object> map);
 
     List<Map<String, Object>> getKjStateByCate();
+
+    List<Map<String, Object>> getKjPieState();
 }

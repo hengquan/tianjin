@@ -530,8 +530,8 @@ select upCateName, count(distinct obj_id) count from (
   <!--课件统计 -->
   <select id="getcatkjtj" resultType="java.util.HashMap" parameterType="java.util.HashMap">
     select c.name catname,count(distinct s.id) coutkj ,count(distinct t.obj_id) countxxkj,count(distinct t.visitor_name) countxxrs,count(t.obj_id) countxxcs,
-	case    when count(distinct s.id) = 0 then 0
-	        when count(distinct s.id) > 0 then ROUND(count(distinct t.obj_id)/count(distinct s.id)*100,2) end countxxbl
+	case when count(distinct s.id) = 0 then 0
+	     when count(distinct s.id) > 0 then ROUND(count(distinct t.obj_id)/count(distinct s.id)*100,2) end countxxbl
 	from category c left join  ts_kj s on c.id = s.kj_cat_id 
 	left join log_visit t on  s.id = t.obj_id 
 	<if test="date1!=null and date1!=''">
@@ -547,8 +547,14 @@ select upCateName, count(distinct obj_id) count from (
 	group by c.name
   </select>
 
-
   <select id="getVisitCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
     select count(*) from log_visit where obj_type=#{objType} and obj_id=#{objId}
+  </select>
+
+  <select id="getLateDay" resultType="Map" parameterType="java.util.Map">
+    select cat_name as catName, to_char(create_date,'mm')||'月'||to_char(create_date,'dd')||'日' as "DATE", count(*) as num from v_loglist
+    where (obj_type='ts_kj' or obj_type='ts_mnsc') and obj_id is not null and cat_name is not null
+    and create_date>(sysdate-${lateDay})
+    group by cat_name, to_char(create_date,'mm')||'月'||to_char(create_date,'dd')||'日'
   </select>
 </mapper>

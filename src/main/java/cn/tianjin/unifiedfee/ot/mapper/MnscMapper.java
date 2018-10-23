@@ -27,4 +27,6 @@ public interface MnscMapper {
     List<Map<String, Object>> getMnscStateByCate();
 
     List<Map<String, Object>> getMnscList4Web(Map<String, Object> map);
+
+    List<Map<String, Object>> getMnscPieState();
 }
