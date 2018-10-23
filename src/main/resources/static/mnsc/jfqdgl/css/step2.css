@@ -1,0 +1,224 @@
+/*贸易类型*/
+html{
+  overflow: auto; 
+}
+iframe{
+  margin-top: -40px;
+}
+body{
+  background: white;
+}
+.trade{
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+.trade_type{
+  background: white;
+  height: 630px;
+  margin-top: 35px;
+  padding-top: 20px;
+  border-radius: 5px;
+}
+.trade_type p{
+   font-size: 16px;
+   height: 45px;
+   border: 1px solid #ddd;
+   width: 1150px;
+   margin:0 auto ;
+   background: #EEF2F6;
+   line-height: 40px;
+   padding-left: 8px;
+}
+.trade_type .trades{
+  width: 1150px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  height: 410px;
+}
+.foreign_trade{
+  width: 1000px;
+  height: 175px;
+  margin-top: 30px;
+  margin-left: 33px;
+}
+.internal_trade{
+  width: 1000px;
+  height: 175px;
+  margin-left: 33px;
+}
+.foreign_trade span{
+  display: inline-block;
+  width: 355px;
+  height: 173px;
+  text-align: center;
+  line-height: 173px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+.foreign_trade span:first-child{
+  background: #f3bd51;
+  margin-right: 1px;
+}
+.foreign_trade span:last-child{
+  background: #ff6c6c;
+  margin-left: -3px;
+}
+.internal_trade span:first-child{
+  background: #07abe0;
+  margin-right: 1px;
+}
+.internal_trade span:last-child{
+   background: #55c794;
+   margin-left: -3px;
+}
+.internal_trade span{
+  display: inline-block;
+  width: 355px;
+  height: 173px;
+  text-align: center;
+  line-height: 173px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+/*底部相关*/
+.paymentList_bottom{
+  width: 1200px;
+  margin: 25px auto 0;
+  height: 50px;
+  background: white;
+}
+.relevant span{
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color:white;
+  background: gainsboro;
+  border-radius: 0 0 5px 5px;
+  margin-left: 25px;
+  font-size: 14px;
+}
+.relevant a{
+  color: white;
+}
+.relevant .active{
+  background: #f46227;
+}
+.relevant_practice{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+.practice_title p{
+  font-size: 16px;
+}
+.practice_title span{
+  font-size: 16px;
+  color: #C3C3C3;
+}
+.relevant_practice div:first-child{
+  margin-left: -30px;
+}
+/*气泡*/
+.model_bg{
+  position: absolute;
+  top: 226px;
+  left: 805px;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,255,0.5);
+  z-index: 999;
+  display: none;
+  width: 335px;
+  height:230px;
+  border-radius:10px;
+}
+.triangle{
+  position: absolute;
+  top: 370px;
+  left: 785px;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  display: none;
+  width: 0;
+  height: 0;
+  border-top:20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid rgba(0,0,255,0.5);
+}
+.model_bg p{
+  display: inline-block;
+  margin-left: 154px;
+  width: 50px;
+  height:25px;
+  border: 1px solid white;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 27px;
+  font-size: 14px;
+  color: white;
+}
+.model_bg span:first-child{
+  display: inline-block;
+  font-size: 14px;
+  color: white;
+  width: 300px;
+  margin-top: 26px;
+  text-indent: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.model_bg span:last-child{
+  color: #feef00;
+  margin-top: 10px;
+  text-indent: 5px;
+}
+
+/*练习按钮*/
+.pay_button{
+  display: flex;
+  height: 40px;
+}
+.pay_button span{
+  display: inline-block;
+  width: 140px;
+  height: 35px;
+  border-radius: 20px;
+  font-size: 16px;
+  text-align: center;
+  color: white;
+  margin-top: -122px;
+  line-height: 35px;
+}
+.pay_button .previousPage{
+  background-color: #f46227;
+  margin-right:15px;
+  margin-left: 364px;
+}
+.pay_button span:hover{
+  cursor: pointer;
+}
+.pay_button .repractice{
+  background-color: #148bff;
+  margin-right: 15px;
+}
+.pay_button .nextPage{
+  background-color: #f46227;
+}
+
+.model_bg .notes {
+  display: inline-block;
+  font-size: 14px;
+  color: white;
+  width: 300px;
+  margin-top: 22px;
+  text-indent: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+

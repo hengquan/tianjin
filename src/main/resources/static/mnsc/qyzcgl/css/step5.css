@@ -1,0 +1,61 @@
+html,body{
+     background:#ffffff;
+}
+.page-main{  
+  padding-top: 30px;
+  height: 600px;      
+}
+.model{
+    width: 800px;
+    height: 350px;
+    background: rgba(0,0,0,0.6);
+    float: left;
+    border-radius: 20px;
+    margin-left: 200px;
+    margin-top: 20px;
+}
+
+.model p:first-child{
+    font-size: 42px;
+    margin-left: 70px;
+    margin-top: 60px;
+}
+.tilte{
+    font-size: 24px;
+    margin-left: 319px;
+    color: white;
+}
+.danger{
+    font-size: 24px;
+    margin-left: 119px;
+    margin-top: 26px;
+    color: white;
+}
+.danger span{
+    font-size: 32px;
+    color: orange;
+    margin-left: 0px;
+    margin-top: 26px;
+}
+.model .name{
+    margin-left: 194px;
+    font-size: 32px;
+    color: orange;
+    margin-top:56px;
+}
+.pay_button .repractice{
+    margin-top: 60px;
+    margin-left: 550px;
+}
+p{
+  display: block;
+  color: white;
+}
+/*边框内容的样式*/
+.content_border1{
+  border: 1px solid #cccccc;
+  height: 400px;
+  width: 1150px;
+  margin: 0 auto;
+
+}
