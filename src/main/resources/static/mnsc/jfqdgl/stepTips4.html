@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实操- 获取提单信息</title>
+    <!-- <!-- 1 bootstrap的css -->
+    <link rel="stylesheet" href="../resource/css/bootstrap.css">
+  <link rel="stylesheet" href="../resource/css/reset.css">
+  <link rel="stylesheet" href="../resource/css/header-footer.css">
+  <link rel="stylesheet" href="../resource/css/home.css">
+  <link rel="stylesheet" href="../resource/css/main.css">
+  <link rel="stylesheet" href="css/step3.css">
+  <script src="../resource/js/jquery.js"></script>
+  <script src="../resource/js/main.js"></script>
+  <script src="../resource/js/layer.js"></script>
+  <script src="../resource/js/introduce.class.js"></script>
+  <script>
+        $(function(){
+            setTimeout(function () {
+                $(".model_bg").fadeIn("slow");
+                $(".triangle").fadeIn("slow");
+            },2000);
+        })
+    </script>
+  <style>
+    body{
+     height: 400px;
+    }
+    .show1{
+      display: none;
+    }
+    .model_bg{
+      position: absolute;
+      top: 100px;
+      left:10px;
+      bottom: 0;
+      right: 0;
+      background: rgba(0,0,255,.5);
+      z-index: 999;
+      display: none;
+      width: 350px;
+      height:267px;
+      border-radius:5px;
+      padding-top: 45px;
+    }
+    .triangle{
+      position: absolute;
+      top: 82px;
+      left:45px;
+      bottom: 0;
+      right: 0;
+      z-index: 999;
+      display:none;
+      width: 0;
+      height: 0;
+      border-left:18px solid transparent;
+      border-right: 18px solid transparent;
+      border-bottom: 18px solid rgba(0,0,255,.5);
+    }
+    .model_text{
+      width:320px;
+      margin: 0 auto;
+    }
+    .model_text .entry{
+      margin-top: -21px;
+      font-size: 14px;
+      color: white;
+      margin-left: 29px;
+    }
+    .model_text .know{
+      display: inline-block;
+      margin-left: 135px;
+      width: 50px;
+      height: 25px;
+      border: 1px solid white;
+      line-height: 25px;
+      text-align: center;
+      border-radius: 5px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: white;
+    }
+    .model_text div{
+      font-size: 14px;
+      color: white;
+      margin-left: 30px;
+      margin-bottom: 5px;
+    }
+    .model_text .odd{
+      margin-left: 73px;
+      color: #feef00;
+    }
+    .model_bg4{
+      position: absolute;
+      top: 13px;
+      left: 536px;
+      bottom: 0;
+      right: 0;
+      background: rgba(0,0,255,.5);
+      z-index: 999;
+      display: none;
+      width: 290px;
+      height:185px;
+      border-radius:5px;
+      padding-top: 45px;
+    }
+    .triangle4{
+      position: absolute;
+      top: 71px;
+      left:518px;
+      bottom: 0;
+      right: 0;
+      z-index: 999;
+      display:none;
+      width: 0;
+      height: 0;
+      border-top:18px solid transparent;
+      border-bottom: 18px solid transparent;
+      border-right: 18px solid rgba(0,0,255,.5);
+    }
+    .model_text4{
+      width: 245px;
+      margin: 0 auto;
+    }
+    .model_text4 .entry{
+      margin-top: -11px;
+      font-size: 14px;
+      color: white;
+      text-indent: 24px;
+    }
+    .model_text4 .know{
+      display: inline-block;
+      margin-left: 100px;
+      width: 50px;
+      height: 25px;
+      border: 1px solid white;
+      line-height: 25px;
+      text-align: center;
+      border-radius: 5px;
+      margin-top: 35px;
+      font-size: 14px;
+      color: white;
+    }
+    .button1 span{
+      display: inline-block;
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 5px;
+    }
+    .button1 span:first-child{
+      margin-left: 630px;
+    }
+
+  </style>
+</head>
+<body>             
+          <!--提单信息-->
+          <div class="table_detail" style="border: none">
+            <div >
+              <span><strong>※</strong>提单号</span>
+              <span><input type="text"></span>
+              <span><strong>※</strong>船名</span>
+              <span><input type="text"></span>
+              <span><strong>※</strong>船次</span>
+              <span><input type="text"></span>
+            </div>
+            <div class="button1">
+              <span style="background:#20c1ed "onclick="toExtract()">提取信息</span>
+              <span style="background:#408eba ">查询</span>
+              <span style="background: #f01c00">删除</span>
+            </div>
+          </div>                  
+          <!--已提单信息-->
+          <div class="table_detail table_detail1 show1" style="border: none;border-top: 1px solid #ccc;margin-top: 30px">
+            <div class="border1">
+              <span>已提单信息</span>
+            </div>
+            <div>
+              <table class="table table-bordered" style="margin-top: -78px;width: 1140px">
+                <tbody>
+                <tr style="background-color: #EEF2F6">
+                  <td><input type="checkbox"></td>
+                  <td>提单号</td>
+                  <td>中文船名</td>
+                  <td>英文船名</td>
+                  <td>航次</td>
+                  <td>集装箱信息</td>
+                  <td>散杂货信息</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td>002</td>
+                  <td>太阳号</td>
+                  <td>SUN</td>
+                  <td>12</td>
+                  <td class="term">1项</td>
+                  <td class="term">0项</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td>001</td>
+                  <td>太阳号</td>
+                  <td>SUN</td>
+                  <td>12</td>
+                  <td class="term">3项</td>
+                  <td class="term">0项</td>
+                </tr>
+                </tbody>               
+              </table>
+            </div>
+          </div>
+
+<script>
+    $('#myTab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+        $(this).addClass('active1')
+    })
+    $(function(){
+        $('.relevant span').click(function(){
+            $(this).addClass('active').siblings().removeClass('active')
+        })
+    })
+    function show1() {
+        $(this).addClass('active').siblings().removeClass('active')
+        $("#show1").show()
+        $("#show").hide()
+    }
+    function show2() {
+        $(this).addClass('active').siblings().removeClass('active')
+        $("#show1").hide()
+        $("#show").show()
+    }
+
+    function toList() {
+        window.location.href = "step4.html"
+    }
+    //气泡消失
+    function toHide() {
+        $(".model_bg").hide()
+        $(".triangle").hide()
+    }
+
+    /*下一页*/
+    function nextPage() {
+        window.location.href = "step5.html"
+    }
+    function previousPage() {
+        window.location.href = "step3.html"
+    }
+
+    function toKnow() {
+      $(".model_bg4").hide()
+      $(".triangle4").hide()
+    }
+
+//    点击取消信息，显示隐藏内容
+  function toExtract() {
+    $(".show1").show()
+    $(".model_bg4").show()
+    $(".triangle4").show()
+  }
+</script>
+</body>
+</html>

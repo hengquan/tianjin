@@ -10,3 +10,8 @@
   </div> 
 </body>
 </html>
+<script>
+    var parentFrame = window.parent.document.getElementById("tipsMain");//获取父窗口的iframe	
+	parentFrame.style.height = "550px";
+	alert(parentFrame.style.height);  
+</script>

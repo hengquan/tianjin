@@ -1,13 +1,11 @@
 html,body{
-  background:#ffffff;
+    background:#ffffff;
 }
-.page-main{
-  height: 540px;
+.page-main{  
   padding-top: 30px;
 }
 .page-form-list{
-  width: 610px;
-  height: 500px;
+  width: 610px; 
   background:#ffffff;
   margin-bottom: 20px;
 }
@@ -17,7 +15,7 @@ html,body{
 }
 .model{
   width: 432px;
-  height: 400px;
+  height: 460px;
   background: rgba(0,0,0,0.6);
   border-radius: 20px;
   font-size: 18px;
@@ -54,14 +52,4 @@ html,body{
 
 .pay_button{
   margin-top: 55px;
-}
-
-/*�߿�����������ʽ*/
-.content_border{
-  border: 1px solid #cccccc;
-  width: 1150px;
-  margin: 0 auto;
-  padding-top: 0px;
-  padding-bottom: 20px;
-  height: 400px;
 }
