@@ -239,4 +239,8 @@ public class KjService {
     public List<Map<String, Object>> getKjStateByCate() {
         return dao.getKjStateByCate();
     }
+
+    public List<Map<String, Object>> getKjPieState() {
+        return dao.getKjPieState();
+    }
 }
