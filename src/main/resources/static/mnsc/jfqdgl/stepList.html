@@ -303,10 +303,30 @@
                 },
                 callBack: function (obj) {
                   console.log(obj);
-                }
+                },
               },
-
+              
               {
+                X: 710,
+                Y: 56,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [100, 50],
+                nextBtn: {
+                  content: '提取信息',
+                  backgroundColor: '#000000',
+                },
+                           
+              },
+               {
                 X: 140,
                 Y: 200,
                 distance: 10,
@@ -321,10 +341,12 @@
                   content: '知道了',
                   backgroundColor: '#990000'
                 },
-                callBack: function (obj) {
+                callBack: function (obj) {                    
+                  document.getElementById("tipsMain").contentWindow.toExtract();                  
                   console.log(obj);
-                }
+                } 
               },
+              
               {
                 X: 40,
                 Y: 170,
