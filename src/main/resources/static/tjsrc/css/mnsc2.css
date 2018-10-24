@@ -89,9 +89,11 @@ body {
   line-height: 40px;
   background: #2e66bd;
   color: #fff;
+  font-size:14px;
   text-align: center;
   border-radius: 5px;
   cursor: pointer;
+  padding:0px;
 }
 .czbz {
   margin-top: 3px;

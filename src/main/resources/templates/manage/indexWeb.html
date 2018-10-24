@@ -79,11 +79,15 @@ iframe{
             -->
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjXYXX()">学员学习</a></h3>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjXYXX()">学员统计-管理员</a></h3>
             </li>
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toXxrz4comp()">学习日志</a></h3>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toXxrz4comp()">学员日志-管理员</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toXxrz4user()">学习日志-学员</a></h3>
             </li>
           </ul>
         </li>
@@ -190,8 +194,15 @@ function toZXXX() {
 function toZXLX() {
   $("#mainframe").attr("src","./entryPractice.html");
 }
+
+//学员日志-管理员
 function toXxrz4comp() {
+  alert("ABC");
   $("#mainframe").attr("src","${gateway}/xxrz4comp");
+}
+//学习日志-学员
+function toXxrz4comp() {
+  $("#mainframe").attr("src","${gateway}/xxrz4user");
 }
 //=======================================================
 //管理端首页

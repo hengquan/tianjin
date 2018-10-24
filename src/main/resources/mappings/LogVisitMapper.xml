@@ -411,12 +411,16 @@ order by create_date desc
 	</select>
 
     <select id="getVisitCountByUi" resultType="java.util.HashMap" parameterType="java.lang.String">
-      select obj_type, count(*) count from log_visit where visitor_id=#{userId} and (obj_type is not null and length(obj_type)>0)
+      select obj_type, count(*) count from log_visit
+      where visitor_id=#{userId} and (obj_type is not null and length(obj_type)>0)
+      and (obj_type!='admin_mainpage' and obj_type!='student_profile' and visit_module_id!='模拟实操列表' and visit_module_id!='课件列表')
       group by obj_type
     </select>
 
     <select id="getAllVisitCount" resultType="java.util.HashMap" parameterType="java.lang.String">
-      select obj_type, count(*) count from log_visit where (obj_type is not null and length(obj_type)>0)
+      select obj_type, count(*) count from log_visit
+      where (obj_type is not null and length(obj_type)>0)
+      and (obj_type!='admin_mainpage' and obj_type!='student_profile' and visit_module_id!='模拟实操列表' and visit_module_id!='课件列表')
       group by obj_type
     </select>
 
@@ -508,7 +512,7 @@ select upCateName, count(distinct obj_id) count from (
   <select id="getXxrzList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
     select * from v_loglist
     where
-      (obj_type!='admin_mainpage' and obj_type!='student_profile')
+      (obj_type!='admin_mainpage' and obj_type!='student_profile' and visit_module_id!='模拟实操列表' and visit_module_id!='课件列表')
       <if test="objSql!=null and objSql!=''">and ${objSql}</if>
       <if test="moduleSql!=null and moduleSql!=''">and ${moduleSql}</if>
       <if test="catSql!=null and catSql!=''">and ${catSql}</if>
