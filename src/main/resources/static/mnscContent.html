@@ -145,7 +145,7 @@ function initPage() {
         $(".js").html(mnsc.remarks);
         $(".ks-btn").on("click", function(){
           var url=mnsc.mnscUrl;
-          url=url.substr(url.indexOf("mnscList"));
+          url=url.substr(url.indexOf("mnsc"));
           url="./"+url;
           window.open(url, "_blank");
         });
@@ -204,7 +204,7 @@ function toCourse(id) {
 function initCzbz(url) {
   var jsonUrl="./demoJson/json_czbj.json";
   try {
-    var subUrl=url.substr(url.indexOf("mnscList"));
+    var subUrl=url.substr(url.indexOf("mnsc"));
     subUrl=subUrl.substr(0, subUrl.lastIndexOf("/"));
     jsonUrl="./"+subUrl+"/json_step.json";
   } catch(e) {}
