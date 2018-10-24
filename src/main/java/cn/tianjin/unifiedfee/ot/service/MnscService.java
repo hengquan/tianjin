@@ -176,9 +176,9 @@ public class MnscService {
                 }
             }
         }
-        //获取相当附件信息
+        // 获取相当附件信息
         List<CommArchive> commArchives = commArchiveMapper.selectByObjId(mnsc.getId());
-        if(commArchives!=null && commArchives.size()>0){
+        if (commArchives != null && commArchives.size() > 0) {
             mnsc.setCommArchives(commArchives);
         }
         // 处理日期
@@ -195,7 +195,7 @@ public class MnscService {
     }
 
     public Mnsc get(String mnscId) {
-//        return dao.get(mnscId);
+        // return dao.get(mnscId);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         // 获取主表信息
         Mnsc mInfo = dao.get(mnscId);
@@ -213,7 +213,7 @@ public class MnscService {
             }
             if (StringUtils.isNotEmpty(ids)) {
                 ids = ids.substring(1);
-                Kj kjParam=new Kj();
+                Kj kjParam = new Kj();
                 kjParam.setIds(ids);
                 mInfo.setKjids(ids);
                 List<Kj> kjs = kjDao.getDataListByIds(kjParam);
@@ -228,17 +228,17 @@ public class MnscService {
                 }
             }
         }
-        //处理相关附件
+        // 处理相关附件
         List<CommArchive> commArchives = commArchiveMapper.selectByObjId(mnscId);
-        if(commArchives!=null && commArchives.size()>0){
+        if (commArchives != null && commArchives.size() > 0) {
             mInfo.setCommArchives(commArchives);
         }
-        //处理日期
+        // 处理日期
         Date createDate = mInfo.getCreateDate();
         String createdate = format.format(createDate);
         if (StringUtils.isNotEmpty(createdate)) mInfo.setCreatedate(createdate);
+
         //获得访问数据
-        //获得课件访问量
         int logVisitCount=logVisitService.getVisitCount("ts_mnsc", mnscId);
         mInfo.setLogVisitCount(logVisitCount);
         return mInfo;
@@ -285,9 +285,9 @@ public class MnscService {
 //    }
 
     public List<Map<String, Object>> getNewMnscList(Integer rownum, String userId) {
-        Map<String,Object> map = new HashMap<String,Object>();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("rownum", rownum);
-//        map.put("userId", userId);
+        // map.put("userId", userId);
         return dao.getNewMnscList(map);
     }
 
@@ -301,5 +301,9 @@ public class MnscService {
 
     public List<Map<String, Object>> getMnscPieState() {
         return dao.getMnscPieState();
+    }
+
+    public boolean updateIsvalid(Mnsc mnsc) {
+        return dao.update(mnsc) > 0 ? true : false;
     }
 }

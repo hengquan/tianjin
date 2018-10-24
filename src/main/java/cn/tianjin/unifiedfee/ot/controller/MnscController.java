@@ -136,8 +136,9 @@ public class MnscController {
         // 跨域
         HttpPush.responseInfo(response);
         try {
-            // 添加数据
-            boolean result = mnscService.delete(mnsc);
+            // 逻辑删除数据
+            mnsc.setIsvalid(2);
+            boolean result = mnscService.updateIsvalid(mnsc);
             if (result)
                 map.put("resultCode", "100");
             else

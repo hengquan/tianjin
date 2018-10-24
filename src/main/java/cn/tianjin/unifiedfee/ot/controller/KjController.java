@@ -150,8 +150,9 @@ public class KjController {
         // 跨域
         HttpPush.responseInfo(response);
         try {
-            // 添加数据
-            boolean result = kjService.delete(kj);
+            // 逻辑删除数据
+            kj.setIsvalid(2);
+            boolean result = kjService.updateIsvalid(kj);
             if (result)
                 map.put("resultCode", "100");
             else

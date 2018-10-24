@@ -176,7 +176,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from ts_MNSC
-		where 1=1
+		where isvalid != 2
 		<if test="categoryId != '' and categoryId != null">
 			and mnsc_cat_id = #{categoryId}
 		</if>
@@ -211,7 +211,10 @@
 		select
 		<include refid="Base_Column_List" />
 		from ts_MNSC
-		where rownum &lt;= #{rownum}
+		where 
+		isvalid != 2
+		and
+		rownum &lt;= #{rownum}
 		order by sort,create_date desc
 	</select>
 

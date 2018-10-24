@@ -153,12 +153,12 @@ public class KjService {
                 }
             }
         }
-        //处理相关附件
+        // 处理相关附件
         List<CommArchive> commArchives = commArchiveMapper.selectByObjId(kj.getId());
-        if(commArchives!=null && commArchives.size()>0){
+        if (commArchives != null && commArchives.size() > 0) {
             kj.setCommArchives(commArchives);
         }
-        //处理日期
+        // 处理日期
         Date createDate = kj.getCreateDate();
         String createdate = format.format(createDate);
         if (StringUtils.isNotEmpty(createdate))
@@ -185,7 +185,7 @@ public class KjService {
         return kjs;
     }
 
-    public List<Map<String,Object>> find4Web(Map<String, Object> param) {
+    public List<Map<String, Object>> find4Web(Map<String, Object> param) {
         return dao.find4Web(param);
     }
 
@@ -230,9 +230,9 @@ public class KjService {
     }
 
     public List<Map<String, Object>> getNewKjList(Integer rownum, String userId) {
-        Map<String,Object> map = new HashMap<String,Object>();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("rownum", rownum);
-//        map.put("userId", userId);
+        // map.put("userId", userId);
         return dao.getNewKjList(map);
     }
 
@@ -242,5 +242,9 @@ public class KjService {
 
     public List<Map<String, Object>> getKjPieState() {
         return dao.getKjPieState();
+    }
+
+    public boolean updateIsvalid(Kj kj) {
+        return dao.update(kj) > 0 ? true : false;
     }
 }
