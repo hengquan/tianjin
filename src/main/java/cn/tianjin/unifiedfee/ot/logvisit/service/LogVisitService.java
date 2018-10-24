@@ -110,7 +110,21 @@ public class LogVisitService {
         Map<String,Object> param = new HashMap<String,Object>();
         param.put("objId", objId);
         param.put("objType", objType);
-        Integer i=null;
         return logDao.getVisitCount(param);
+    }
+
+    /**
+     * 获得最近count周期的访问数据，按不同分类的维度，目前仅为天
+     * @param type 最近周期的类型，1=天
+     * @param count 周期数
+     * @return
+     */
+    public List<Map<String, Object>> getVisitStatLate(int type, int count) {
+        if (type==1) {
+            Map<String,Object> param = new HashMap<String,Object>();
+            param.put("lateDay", count);
+            return logDao.getLateDay(param);
+        }
+        return null;
     }
 }

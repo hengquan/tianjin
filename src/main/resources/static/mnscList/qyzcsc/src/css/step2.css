@@ -1,14 +1,13 @@
 html,body{
-  height: 560px;
   background:#ffffff;
 }
 .page-main{
-  height: 840px;
+  height: 540px;
   padding-top: 30px;
 }
 .page-form-list{
   width: 610px;
-  height: 620px;
+  height: 500px;
   background:#ffffff;
   margin-bottom: 20px;
 }
@@ -18,7 +17,7 @@ html,body{
 }
 .model{
   width: 432px;
-  height: 460px;
+  height: 400px;
   background: rgba(0,0,0,0.6);
   border-radius: 20px;
   font-size: 18px;
@@ -44,7 +43,7 @@ html,body{
 .triangle{
   margin-right: 19px;
   margin-top: 235px;
-  height:300px;
+  height:200px;
 }
 .model img{
   margin-right: 8px;
@@ -64,5 +63,5 @@ html,body{
   margin: 0 auto;
   padding-top: 0px;
   padding-bottom: 20px;
-  height: 600px;
+  height: 400px;
 }

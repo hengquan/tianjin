@@ -285,4 +285,8 @@
       select case when instr(kj_cat_names, '-')=0 then kj_cat_names else substr(kj_cat_names, 0, instr(kj_cat_names, '-')-1) end as upCateName from ts_kj 
     ) group by upCateName
     </select>
+
+    <select id="getKjPieState" resultType="Map" parameterType="java.util.Map">
+    select kj_cat_names catName, count(*) catCount from ts_kj where isvalid=1 group by kj_cat_names
+    </select>
 </mapper>

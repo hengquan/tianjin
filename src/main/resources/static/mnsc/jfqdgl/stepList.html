@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>实操-缴费清单录入操作</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="../resource/css/reset.css">
+  <link rel="stylesheet" href="../resource/css/header-footer.css">
+  <link rel="stylesheet" href="../resource/css/home.css">
+  <link rel="stylesheet" href="../resource/css/main.css">
+  <link rel="stylesheet" href="../resource/css/step-list.css">
+  <script src="../resource/js/jquery.js"></script>
+  <script src="../resource/js/main.js"></script>
+  <script src="../resource/js/layer.js"></script>
+  <script src="../resource/js/introduce.class.js"></script>
+</head>
+
+<body>
+  <div class="page-warp page-home-net">
+    <!-- logo-导航 -->
+    <div class="page-top-wrap">
+      <!--头部-->
+      <div class="header-wrap">
+        <div class="banxin header">
+          <div class="fl header-logo">
+            <img src="../resource/image/LOGO@2x.png" alt="" class="logo">
+            <span class="header-name">天津市港口统一收费服务平台</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav_bar">
+        <span>缴费清单录入</span>
+        <div class="border"></div>
+      </div>
+    </div>
+    <div class="page-container">
+      <div class="pro_nav">
+        <div id="inrto-nav"></div>
+      </div>
+      <!--主体-->
+      <div class="page-main">
+        <div class="head_title"><span id="msg"><B>模拟实操具体操作区</B></span></div>
+        <div class="content_border">
+          <div class="page-form-list" id="page-form-list">
+            <iframe src="" frameborder="0" id="tipsMain"  scrolling="no"></iframe>
+          </div>
+        </div>
+        <div class="pay_button">
+          <span class="previousPage" onclick="prevPage()">上一步</span>
+          <span class="repractice" onclick="rePage()">重新练习</span>
+          <span class="nextPage" onclick="nextPage()">下一步</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-footer">
+  <!--
+  <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+  -->
+  </div>
+  <script>
+    $(function () {
+      new IntroduceTipsList({
+        el: '#page-form-list',
+        nav: {
+          el: '#inrto-nav',
+          list: [
+            '<p class="fir-p">清单列表</p><p>新增缴费清单</p>',
+            '<p class="fir-p">选择类型</p><p>确定清单类型</p>',
+            '<p class="fir-p">清单录入</p><p>填写清单信息</p>',
+            '<p class="fir-p">提单信息</p><p>提取提单信息</p>',
+            '<p class="fir-p">费项设置</p><p>费项单元设置</p>',
+            '<p class="fir-p">录入完毕</p><p>清单打印导出</p>'
+          ]
+        },
+        iframe: {
+          el: '#tipsMain',
+          width: '100%',
+          //height: '660px'
+        },
+        list: [{
+            srcUrl: './stepTips1.html',
+            steps: [{
+                X: 600,
+                Y: 200,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">此处为缴费清单列表，此时无数据，新建缴费清单，将在此显示！请进行<span class="special">“新建”</span>缴费清单</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [200, 150],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+              { X: 90,
+              Y: 130,
+              distance: 10,
+              direction: 'bottom',
+              content: '<div class="intro-indent">现在让我们新建缴费清单，首先请点击<span class="special">“新增”</span>按钮，进入缴费清单新增页面，进行操作。</div>',
+              padding: 10,
+              backgroundColor: 'rgba(0,0,0,0.6)',
+              color: '#fff',
+              radius: 5,
+              area: [200, 150],
+              nextBtn: {
+                content: '知道了',
+                backgroundColor: '#990000'
+              },
+              callBack: function (obj) {
+                console.log(obj);
+              }
+            },
+              {
+                X: 90,
+                Y: 90,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [100, 50],
+                nextBtn: {
+                  content: '新增',
+                  backgroundColor: '#000000',
+                  callBack: function (obj) {
+                    nextPage();
+                  }
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              }
+            ]
+          },
+          {
+            srcUrl: './stepTips2.html',
+            steps: [{
+                X: 680,
+                Y: 180,
+                distance: 10,
+                direction: 'right',
+                content: '<div class="intro-indent">录入清单第一步请从左侧选项中选择您所需要录入的贸易类型：<br><span class="special"> “外贸进口、外贸出口、内贸进港、内贸离港” </span><br>注：一个缴费清单只能确认一种贸易类型，缴费清单贸易类型确认后不允许更改</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.3)',
+                color: '#fff',
+                radius: 5,
+                area: [340, 200],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: 'blue'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },              
+              {
+                X: 220,
+                Y: 36,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [200, 50],
+                nextBtn: {
+                  content: '外贸进口',
+                  backgroundColor: '#000000',
+                  callBack: function (obj) {
+                    nextPage();
+                  }
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+            ]
+          },
+          {
+            srcUrl: './stepTips3.html',
+            steps: [{
+                X: 430,
+                Y: 120,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">1. ※ 部分为必填项，请分别填写：<span class="special"> "币制、放行方式、最晚结算日期、社会信息代码”</span>必须填写<br> 2. 联系方式固定电话需加区号</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [240, 180],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+              {
+                X: 460,
+                Y: 310,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">缴费方信息部分的企业名称必填,<span class="special">“+号进行选择”</span>按钮，信息选择页面。</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [300, 100],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: 'blue'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+              {
+                X: 460,
+                Y: 530,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">然后进行收费方信息录入，录入之后点击<span class="special">“保存”</span>按钮以后，进行提单信息的选择。</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [300, 100],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: 'blue'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+              {
+                X: 610,
+                Y: 632,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [100, 50],
+                nextBtn: {
+                  content: '保存',
+                  backgroundColor: '#000000',
+                  callBack: function (obj) {
+                    nextPage();
+                  }
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              }
+            ]
+          },
+          {
+            srcUrl: './stepTips4.html',
+            steps: [{
+                X: 680,
+                Y: 90,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">1. <strong style="color: red">※</strong>    部分为必填项，请分别填写：</p><p>“提单号、船名、船次”</p>'
+                  +'<div>2.船名信息可填写中文或船名，只填写一个</div>'
+                  +'<div>3.至少关联一个提单号，才能进行费项编辑</div>'
+                  +'<div>4.无法获取的提单，可通过模板上传，再次获取</div>'
+                  +'<div>5.点击<span style="color:#feef00 ">"提取信息"</span>,提取相应的提单信息</div></div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [350, 180],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: 'blue'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                },
+              },
+              
+              {
+                X: 710,
+                Y: 56,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [100, 50],
+                nextBtn: {
+                  content: '提取信息',
+                  backgroundColor: '#000000',
+                },
+                           
+              },
+               {
+                X: 140,
+                Y: 200,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">已提取提单信息,请进行下一步费项单元设置操作,选中需要录入的项，进入费项设置。</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [200, 150],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {                    
+                  document.getElementById("tipsMain").contentWindow.toExtract();                  
+                  console.log(obj);
+                } 
+              },
+              
+              {
+                X: 40,
+                Y: 170,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [100, 50],
+                nextBtn: {
+                  content: '选中',
+                  backgroundColor: '#000000',
+                  callBack: function (obj) {
+                    nextPage();
+                  } 
+                }
+              }
+            ]
+          },
+          {
+            srcUrl: './stepTips5.html',
+            steps: [
+
+              {
+                X: 480,
+                Y: 140,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">创建费项单元,首先设置相关属性,然后进行费项设置并添加货物信息，</p>'
+                  +'<div>注：1.至少有一个费项单元，也可以添加多个费项单元</div>'
+                  +'<div>2.一个费项单元只能选择一种货物类型</div>'
+                  +'<div>3.每个费项单元下有不同的费项明细、集装箱或货物信息</div></div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [400, 180],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+              {
+                X: 540,
+                Y: 260,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">所有配置完成后，点<span class="special">“保存”</span>按钮，完成此次缴费清单的录入。</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [300, 100],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: 'blue'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+              {
+                X: 540,
+                Y: 120,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [100, 50],
+                nextBtn: {
+                  content: '确定',
+                  backgroundColor: '#000000',
+                  callBack: function (obj) {
+                    nextPage();
+                  }
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              }
+            ]
+          },
+          {
+            srcUrl: './stepTips6.html',
+            steps: [
+
+              {
+                X: 150,
+                Y: 10,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">恭喜您清单录入完成. 你可以进行缴费清单的打印和导出操作!。</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [200, 150],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              }
+            ]
+          },
+        ]
+      })
+    })
+
+    function nextPage() {
+      new IntroduceControl().nextPage()
+    }
+
+    function prevPage() {
+      new IntroduceControl().prevPage()
+    }
+
+    function rePage() {
+      new IntroduceControl().rePage()
+    }
+    $("#inrto-nav").on("click","li",function (param) { 
+      console.log($(this).index())
+      var index = $(this).index()
+      new IntroduceControl().restPage(index)
+    });
+    //changeIframHeight("300px");
+  //根据ID获取iframe对象
+  var iframe = document.getElementById('tipsMain')
+  iframe.onload = function() {
+  	  //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
+      var ifrheight =  iframe.contentWindow.document.documentElement.scrollHeight || iframe.contentDocument.body.scrollHeight
+      iframe.height = ifrheight + 20
+      console.log(ifrheight)
+  }
+  </script>
+</body>
+
+</html>
