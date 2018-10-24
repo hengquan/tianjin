@@ -15,12 +15,13 @@ import com.spiritdata.framework.util.SequenceUUID;
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
-import cn.tianjin.unifiedfee.ot.entity.LogVisit;
+//import cn.tianjin.unifiedfee.ot.entity.LogVisit;
 import cn.tianjin.unifiedfee.ot.entity.Mnsc;
 import cn.tianjin.unifiedfee.ot.entity.MnscRefSource;
+import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
 import cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper;
 import cn.tianjin.unifiedfee.ot.mapper.KjMapper;
-import cn.tianjin.unifiedfee.ot.mapper.LogVisitMapper;
+//import cn.tianjin.unifiedfee.ot.mapper.LogVisitMapper;
 import cn.tianjin.unifiedfee.ot.mapper.MnscMapper;
 import cn.tianjin.unifiedfee.ot.mapper.MnscRefSourceMapper;
 
@@ -34,8 +35,10 @@ public class MnscService {
     private MnscRefSourceMapper mnscRefDao;
     @Autowired
     private CommArchiveMapper commArchiveMapper;
+//    @Autowired
+//    private LogVisitMapper logVisitMapper;
     @Autowired
-    private LogVisitMapper logVisitMapper;
+    private LogVisitService logVisitService;
 
     // 获取分页数据
     public List<Mnsc> getPageData(Map<String, Object> retMap) {
@@ -234,49 +237,52 @@ public class MnscService {
         Date createDate = mInfo.getCreateDate();
         String createdate = format.format(createDate);
         if (StringUtils.isNotEmpty(createdate)) mInfo.setCreatedate(createdate);
-        //获得
+        //获得访问数据
+        //获得课件访问量
+        int logVisitCount=logVisitService.getVisitCount("ts_mnsc", mnscId);
+        mInfo.setLogVisitCount(logVisitCount);
         return mInfo;
     }
 
     public List<Mnsc> getDataListByIds(Mnsc mnsc) {
         return dao.getDataListByIds(mnsc);
     }
-
-    public List<Mnsc> getMnscList(Integer rownum) {
-        List<Mnsc> mnscList = dao.getMnscList(rownum);
-        if (mnscList != null && mnscList.size() > 0) {
-            for (Mnsc mnsc : mnscList) {
-                String objId = mnsc.getId();
-                // 查看模拟实操访问人数
-                List<LogVisit> logVisits = logVisitMapper.getDataByObjId(objId);
-                if (logVisits != null && logVisits.size() > 0) {
-                    mnsc.setLogVisitCount(logVisits.size());
-                } else {
-                    mnsc.setLogVisitCount(0);
-                }
-                // 查该模拟实操的缩略图
-                List<CommArchive> commArchives = commArchiveMapper.selectByObjId(objId);
-                if (commArchives != null && commArchives.size() > 0) {
-                    for (CommArchive commArchive : commArchives) {
-                        String archiveType = commArchive.getArchiveType();
-                        if (StringUtils.isNotEmpty(archiveType)) {
-                            if (archiveType.equals("img")) {
-                                String fileUrl = commArchive.getFileUrl();
-                                if (StringUtils.isNotEmpty(fileUrl))
-                                    mnsc.setMainUrl(fileUrl);
-                            }
-                        }
-                    }
-                }
-                // 日期格式
-                Date createDate = mnsc.getCreateDate();
-                SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
-                String str = format.format(createDate);
-                mnsc.setCreatedate(str);
-            }
-        }
-        return mnscList;
-    }
+//
+//    public List<Mnsc> getMnscList(Integer rownum) {
+//        List<Mnsc> mnscList = dao.getMnscList(rownum);
+//        if (mnscList != null && mnscList.size() > 0) {
+//            for (Mnsc mnsc : mnscList) {
+//                String objId = mnsc.getId();
+//                // 查看模拟实操访问人数
+//                List<LogVisit> logVisits = logVisitMapper.getDataByObjId(objId);
+//                if (logVisits != null && logVisits.size() > 0) {
+//                    mnsc.setLogVisitCount(logVisits.size());
+//                } else {
+//                    mnsc.setLogVisitCount(0);
+//                }
+//                // 查该模拟实操的缩略图
+//                List<CommArchive> commArchives = commArchiveMapper.selectByObjId(objId);
+//                if (commArchives != null && commArchives.size() > 0) {
+//                    for (CommArchive commArchive : commArchives) {
+//                        String archiveType = commArchive.getArchiveType();
+//                        if (StringUtils.isNotEmpty(archiveType)) {
+//                            if (archiveType.equals("img")) {
+//                                String fileUrl = commArchive.getFileUrl();
+//                                if (StringUtils.isNotEmpty(fileUrl))
+//                                    mnsc.setMainUrl(fileUrl);
+//                            }
+//                        }
+//                    }
+//                }
+//                // 日期格式
+//                Date createDate = mnsc.getCreateDate();
+//                SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+//                String str = format.format(createDate);
+//                mnsc.setCreatedate(str);
+//            }
+//        }
+//        return mnscList;
+//    }
 
     public List<Map<String, Object>> getNewMnscList(Integer rownum, String userId) {
         Map<String,Object> map = new HashMap<String,Object>();
