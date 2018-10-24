@@ -106,7 +106,7 @@ public class WebDispatchUrl {
         return "/manage/tj/tjXyxx";
     }
 
-    //--统计相关-2学习日志
+    //--统计相关-学员日志
     @RequestMapping("xxrz4comp")
     public String toTjXxrz4comp(HttpServletRequest request, Model model) {
         //获得参数

@@ -57,7 +57,8 @@
     //通过伪装成Image对象，请求后端脚本
     var img = new Image(1, 1);
     //var src = 'http://localhost:18081/train/gatherData?args=' + encodeURIComponent(args);
-    var src = 'http://1.202.219.107:8088/ot-server/train/gatherData?args=' + encodeURIComponent(args);
+    //var src = 'http://1.202.219.107:8088/ot-server/train/gatherData?args=' + encodeURIComponent(args);
+    var src = './train/gatherData?args=' + encodeURIComponent(args);
     if (paramUrl) src+="&"+paramUrl;
     img.src = src;
 })();
