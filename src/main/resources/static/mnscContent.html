@@ -43,8 +43,8 @@
       <div class="info col-sm-9" style="padding-left:53px;">
         <h2 id="mnscName">价格管理 收费项目管理</h2>
         <p class="stat"><span class="eay"><img src="./tjsrc/images/rs.jpg"></span><span class="num"></span><span class="time">2018-09-27</span></p>
-        <p class="js">企业收费目录设置</p>
-        <div class="ks-btn">开始学习</div>
+        <p class="js" style="height:90px;"></p>
+        <div class="btn w120 ks-btn">开始学习</div>
       </div>
     </div>
     <div class="tlkc bgs" style="margin-top:20px;">
@@ -252,6 +252,33 @@ $(".czbz").on("click",".right-btn",function (param) {
     $(".czbz ul").animate({"left":"-"+step+"%"})
   }
 })
-
 </script>
+
+<script type="text/javascript">
+var objId = '';
+//获取参数
+var url = location.search;
+if (url != '') {
+  url = url.substr(1);
+  var split = url.split("=");
+  if (split[0] == 'objId') {
+    objId = split[1];
+  }
+}
+console.log(objId);
+var _gatherData = {};
+_gatherData.visitModuleId = "模拟实操学习";
+_gatherData.objType = "ts_mnsc";
+_gatherData.objId = objId;
+(function() {
+  var ma = document.createElement('script');
+  ma.type = 'text/javascript';
+  ma.async = true;
+  //ma.src = "/tjsrc/js/ma.js";
+  ma.src = "./tjsrc/js/ma.js";
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ma, s);
+})();
+</script>
+
 </html>

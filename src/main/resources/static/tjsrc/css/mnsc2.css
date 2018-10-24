@@ -78,22 +78,20 @@ body {
   margin-left: 30px;
 }
 .js {
-  margin-top:25px;
+  margin-top:10px;
   padding-top: 10px; 
   padding-right: 10%;
   font-size: 14px;
   font-family:'Microsoft YaHei';
 }
 .ks-btn {
-  width: 90px;
-  height: 25px;
-  line-height: 25px;
+  height: 40px;
+  line-height: 40px;
   background: #2e66bd;
   color: #fff;
   text-align: center;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 3%;
 }
 .czbz {
   margin-top: 3px;
