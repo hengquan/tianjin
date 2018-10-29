@@ -67,14 +67,13 @@
         nav: {
           el: '#inrto-nav',
           list: [
-            '<p class="fir-p">清单列表</p><p>新增缴费清单</p>',            
-            '<p class="fir-p">清单录入</p><p>填写清单信息</p>',
-            '<p class="fir-p">选择企业</p><p>选择收费单位</p>',
-            '<p class="fir-p">提单信息</p><p>提取提单信息</p>',
-            '<p class="fir-p">费项设置</p><p>费项单元设置</p>',
-            '<p class="fir-p">选择费项</p><p>弹出选择费项</p>',
-            '<p class="fir-p">清单保存</p><p>保存清单操作</p>',
-            '<p class="fir-p">清单删除</p><p>删除清党操作</p>'
+            '<p class="fir-p">模板列表</p><p>新增收费模板</p>',            
+            '<p class="fir-p">模板添加</p><p>设定收费模板</p>',
+            '<p class="fir-p">选择项目</p><p>设定收费项目</p>',
+            '<p class="fir-p">保存项目</p><p>继续模板设定</p>',
+            '<p class="fir-p">选择价格</p><p>选择价格操作</p>',
+            '<p class="fir-p">基础信息</p><p>填写基础信息</p>',
+            '<p class="fir-p">保存模板</p><p>模板管理操作</p>'
           ]
         },
         iframe: {
@@ -86,10 +85,10 @@
             srcUrl: './stepTips1.html',
             steps: [{
                 X: 600,
-                Y: 320,
+                Y: 240,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">此处为缴费清单列表，此时无数据，新建缴费清单，将在此显示！请进行<span class="special">“新增”</span>缴费清单</div>',
+                content: '<div class="intro-indent">此处为收费模板列表，此时无数据，新建收费模板，将在此显示！请进行<span class="special">“新增”</span>收费模板！</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
@@ -103,11 +102,11 @@
                   console.log(obj);
                 }
               },
-              { X: 480,
-              Y: 260,
+              { X: 310,
+              Y: 160,
               distance: 10,
               direction: 'bottom',
-              content: '<div class="intro-indent">现在让我们新建缴费清单，首先请点击<span class="special">“新增”</span>按钮，进入缴费清单新增页面，进行操作。</div>',
+              content: '<div class="intro-indent">现在让我们新增收费模板，首先请点击<span class="special">“新增”</span>按钮，进入收费模板新增页面，进行操作。</div>',
               padding: 10,
               backgroundColor: 'rgba(0,0,0,0.6)',
               color: '#fff',
@@ -122,8 +121,8 @@
               }
             },
               {
-                X: 470,
-                Y: 220,
+                X: 310,
+                Y: 126,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -151,17 +150,17 @@
           {
             srcUrl: './stepTips2.html',
             steps: [{
-                X: 480,
-                Y: 200,
+                X: 430,
+                Y: 140,
                 distance: 10,
                 direction: 'right',
-                content: '<div class="intro-indent">录入清单第一步请从左侧选项中选择您所需要录入的贸易类型：<br><span class="special"> “外贸进口、外贸出口、内贸进港、内贸离港” </span><br>'
+                content: '<div class="intro-indent">在此录入新增模板的信息,模板名称根据<span class="special">需求</span>进行设定，其余项目均为下拉选择想。<br>'
                 		+'<br>注：※项目必须进行录入</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
                 radius: 5,
-                area: [300, 180],
+                area: [240, 180],
                 nextBtn: {
                   content: '知道了',
                   backgroundColor: 'blue'
@@ -171,8 +170,8 @@
                 }
               },         
               {
-                X: 600,
-                Y: 280,
+                X: 230,
+                Y: 180,
                 distance: 10,
                 direction: 'bottom',
                 content: '<div class="intro-indent">缴费企业名称必须入炉，录入方式点击<br><span class="special"> “+” 按钮，</span>'
@@ -191,21 +190,21 @@
                 }
               }, 
               {
-                X: 600,
-                Y: 244,
-                distance: 10,
+                X: 242,
+                Y: 136,
+                distance: 20,
                 direction: 'bottom',
                 noTriangle: true,
                 borderColor: 'red',
                 content: '',
-                padding: 10,
+                padding: 20,
                 // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
                 backgroundColor: 'transparent', //透明颜色
                 color: '#fff',
-                radius: 5,
-                area: [200, 50],
+                radius: 10,
+                area: [150, 50],
                 nextBtn: {
-                  content: '选择企业',
+                  content: '选择项目',
                   backgroundColor: '#000000',
                   callBack: function (obj) {
                     nextPage();
@@ -220,16 +219,16 @@
           {
             srcUrl: './stepTips3.html',
             steps: [{
-                X: 830,
-                Y: 220,
+                X: 230,
+                Y: 240,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">在此页面进行收费企业选择，录入收费企业的信用代码，点击<span class="special"> "查询”</span>按钮，显示所查询到的信息</div>',
+                content: '<div class="intro-indent">在此页面进行收费项目选择，选中目录后，选中需要选择的项目，<span class="special"> "在选择的项目”</span>进行勾选。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
                 radius: 5,
-                area: [240, 180],
+                area: [240, 120],
                 nextBtn: {
                   content: '知道了',
                   backgroundColor: '#990000'
@@ -240,10 +239,10 @@
               },
               {
                 X: 860,
-                Y: 310,
+                Y: 250,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">在企业信息列表中，选择相应的企业，并点击,<span class="special">“添加”</span>按钮，完成收费企业的选择，相关信息一并写入缴费清单中。</div>',
+                content: '<div class="intro-indent">选中的收费项目，将在此显示，确定进行添加,<span class="special">“确定”</span>按钮，完成收费项目的选择，相关信息一并写入收费模板中。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
@@ -258,225 +257,8 @@
                 }
               },              
               {
-                X: 830,
-                Y: 270,
-                distance: 10,
-                direction: 'bottom',
-                noTriangle: true,
-                borderColor: 'red',
-                content: '',
-                padding: 10,
-                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-                backgroundColor: 'transparent', //透明颜色
-                color: '#fff',
-                radius: 5,
-                area: [100, 50],
-                nextBtn: {
-                  content: '添加',
-                  backgroundColor: '#000000',
-                  callBack: function (obj) {
-                    nextPage();
-                  }
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              }
-            ]
-          },
-          {
-            srcUrl: './stepTips4.html',
-            steps: [{
-                X: 960,
-                Y: 120,
-                distance: 10,
-                direction: 'bottom',
-                content: '<div class="intro-indent">基础信息和收费单位设置完毕后，进行提单信息添加，具体操作：<br><div>1. <strong style="color: red">※</strong>    部分为必填项，请分别填写：</p><p>“提单号、船名、船次”</p></div>'
-                  +'<div>2.船名信息可填写中文或船名，只填写一个</div>'
-                  +'<div>3.至少关联一个提单号，才能进行费项编辑</div>'
-                  +'<div>4.无法获取的提单，可通过模板上传，再次获取</div>'
-                  +'<div>5.点击<span style="color:#feef00 ">"提取信息"</span>,提取相应的提单信息</div></div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [350, 240],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: 'blue'
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                },
-              },
-              
-              {
-                X: 940,
-                Y: 80,
-                distance: 10,
-                direction: 'bottom',
-                noTriangle: true,
-                borderColor: 'red',
-                content: '',
-                padding: 10,
-                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-                backgroundColor: 'transparent', //透明颜色
-                color: '#fff',
-                radius: 5,
-                area: [100, 50],
-                nextBtn: {
-                  content: '提取信息',
-                  backgroundColor: '#000000',
-                },
-                           
-              },
-               {
-                X: 500,
-                Y: 300,
-                distance: 10,
-                direction: 'bottom',
-                content: '<div class="intro-indent">已提取提单信息,请点击<span style="color:#feef00 ">"添加"</span>按钮进行下一步费项单元设置操作,选中需要录入的项，进入费项设置。</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [200, 150],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: '#990000'
-                },
-                callBack: function (obj) { 
-                  console.log(obj);
-                } 
-              },
-              
-              {
-                X: 1040,
-                Y: 80,
-                distance: 10,
-                direction: 'bottom',
-                noTriangle: true,
-                borderColor: 'red',
-                content: '',
-                padding: 10,
-                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-                backgroundColor: 'transparent', //透明颜色
-                color: '#fff',
-                radius: 5,
-                area: [100, 50],
-                nextBtn: {
-                  content: '添加',
-                  backgroundColor: '#000000',
-                  callBack: function (obj) {
-                    nextPage();
-                  } 
-                }
-              }
-            ]
-          },
-          {
-            srcUrl: './stepTips5.html',
-            steps: [
-
-              {
-                X: 100,
-                Y: 180,
-                distance: 10,
-                direction: 'right',
-                content: '<div class="intro-indent">费项设置，首先需要确定费项，费项的来源有三类，分别是，</p>'
-                  +'<div>1.标准费项：政府订价的标准费项</div>'
-                  +'<div>2.费项模板：企业自定义的费项说明</div>'
-                  +'<div>3.历史清单：从历史的缴费清单中进行导入</div></div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [400, 180],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: '#990000'
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              },
-             
-              {
-                X: 130,
-                Y: 130,
-                distance: 10,
-                direction: 'bottom',
-                noTriangle: true,
-                borderColor: 'red',
-                content: '',
-                padding: 10,
-                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-                backgroundColor: 'transparent', //透明颜色
-                color: '#fff',
-                radius: 5,
-                area: [100, 50],
-                nextBtn: {
-                  content: '标准费项',
-                  backgroundColor: '#000000',
-                  callBack: function (obj) {
-                    nextPage();
-                  }
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              }
-            ]
-          },
-          {
-            srcUrl: './stepTips6.html',
-            steps: [
-
-              {
-                X: 650,
-                Y: 200,
-                distance: 10,
-                direction: 'bottom',
-                content: '<div class="intro-indent">通过录入查询条件，点击<span style="color:#feef00 ">"查询"</span>按钮，进行标准费项查询</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [200, 150],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: '#990000'
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              },
-              {
-                X: 100,
-                Y: 320,
-                distance: 10,
-                direction: 'right',
-                content: '<div class="intro-indent">根据清单情况，选择所需费项，</p>'
-                  +'<div>注：1.在列表中选中所要缴费的费项，</div>'
-                  +'<div>2.费项选择可同时选择多中费项信息</div>'
-                  +'<div>3.选择完毕后，点击<span style="color:#feef00 ">"确定"</span>按钮，标准费项的选择！</div></div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [300, 160],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: '#990000'
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              },
-             
-              {
-                X: 510,
-                Y: 140,
+                X: 868,
+                Y: 214,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -502,15 +284,165 @@
             ]
           },
           {
+            srcUrl: './stepTips4.html',
+            steps: [{
+                X: 900,
+                Y: 300,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">收费项目设定之后，需要对收费项目的几个进行设定，点击<span class="special">“选择价格”</span>俺就，进入价格选择设定页面。</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [240, 140],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: 'blue'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                },
+              },
+              
+              {
+                X: 900,
+                Y: 260,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [100, 50],
+                nextBtn: {
+                  content: '选择价格',
+                  backgroundColor: '#000000',
+                  callBack: function (obj) {
+                    nextPage();
+                  }
+                },
+                           
+              }
+            ]
+          },
+          {
+            srcUrl: './stepTips5.html',
+            steps: [
+
+              {
+                X: 1000,
+                Y: 220,
+                distance: 10,
+                direction: 'left',
+                content: '<div class="intro-indent">在此页面中将全部显示该项目下的所有价格，在选定的价格后面点击<span class="special">“选择”</span>完成收费项目的几个选择</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [240, 140],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+             
+              {
+                X: 1000,
+                Y: 130,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [100, 50],
+                nextBtn: {
+                  content: '选择',
+                  backgroundColor: '#000000',
+                  callBack: function (obj) {
+                    nextPage();
+                  }
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              }
+            ]
+          },
+          {
+            srcUrl: './stepTips6.html',
+            steps: [
+
+              {
+                X: 550,
+                Y: 100,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">设定完毕收费项目和价格后，进行基础信息的填写和选择，点击<span style="color:#feef00 ">"保存"</span>按钮，完成收费模板的添加</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [200, 150],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+              
+             
+              {
+                X: 480,
+                Y: 480,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [100, 50],
+                nextBtn: {
+                  content: '保存',
+                  backgroundColor: '#000000',
+                  callBack: function (obj) {
+                    nextPage();
+                  }
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              }
+            ]
+          },
+          {
             srcUrl: './stepTips7.html',
             steps: [
 
               {
-                X: 740,
-                Y: 160,
+                X: 1040,
+                Y: 260,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">费项设置完毕后，点击<span style="color:#feef00 ">"保存"</span>按钮就会提示信息保存成功，同时可进行费项的删除。</div>',
+                content: '<div class="intro-indent">费项模板设置完毕后，点击<span style="color:#feef00 ">"保存"</span>按钮返回列表，同时可进行收费模板的修改、启用、停用和删除。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
@@ -528,52 +460,7 @@
                 }
               }
             ]
-          },
-          {
-            srcUrl: './stepTips8.html',
-            steps: [
-              {
-                X: 100,
-                Y: 380,
-                distance: 10,
-                direction: 'right',
-                content: '<div class="intro-indent">在清单的费项中，选择需要删除的费项，然后点击<span style="color:#feef00 ">"删除"</span>按钮，进行删除操作！</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [300, 150],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: '#990000'
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              },
-
-
-              {
-                X: 840,
-                Y: 170,
-                distance: 10,
-                direction: 'bottom',
-                content: '<div class="intro-indent">完成收费项目的删除，收费项目的添加与删除操作完毕!。</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [200, 150],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: '#990000',                 
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              }
-            ]
-          },
+          },          
         ]
       })
     })
