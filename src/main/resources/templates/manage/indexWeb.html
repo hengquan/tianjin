@@ -71,10 +71,12 @@ iframe{
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXXX()">在线学习</a></h3>
             </li>
+            <!-- 
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXLX()">在线练习</a></h3>
             </li>
+             -->
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjXYXX()">学员统计-管理员</a></h3>
@@ -195,12 +197,10 @@ function toZXLX() {
 
 //学员日志-管理员
 function toXxrz4comp() {
-  alert("企业管理员日志");
   $("#mainframe").attr("src","${gateway}/xxrz4comp");
 }
 //学习日志-学员
 function toXxrz4user() {
-  alert("企业用户日志");
   $("#mainframe").attr("src","${gateway}/xxrz4user");
 }
 //=======================================================
