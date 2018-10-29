@@ -429,10 +429,11 @@ order by create_date desc
     select distinct visitor_id,visitor_name from log_visit where group_id=#{compId}
   </select>
 
-  <!-- WH::得到某一企业，某个时间端内，各类学习情况的总数 -->
+  <!-- WH::得到某一企业，某个时间段内，各类学习情况的总数 -->
   <select id="getXyxxSumList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
     select obj_type,count(obj_id) fx from log_visit
     where group_id=#{compId} and (obj_id is not null and length(trim(obj_id))>0)
+      and ((obj_type!='admin_mainpage' and obj_type!='student_profile' and visit_module_id!='模拟实操列表' and visit_module_id!='课件列表'))
       <if test="userIds!=null and userIds!=''">
       and ${userIds}
       </if>
@@ -448,12 +449,13 @@ order by create_date desc
       </if>
     group by obj_type
   </select>
-  <!-- WH::得到某一企业，某个时间端内，各学员的学习统计，行转列 -->
+  <!-- WH::得到某一企业，某个时间段内，各学员的学习统计，行转列 -->
   <select id="getXyxxList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
     select *
     from (
       select NVL(visitor_name, '未知') user_name, obj_type, count(obj_id) fx from log_visit
       where visit_module_id is not null and obj_id is not null and length(trim(obj_id))>0
+      and ((obj_type!='admin_mainpage' and obj_type!='student_profile' and visit_module_id!='模拟实操列表' and visit_module_id!='课件列表'))
       and group_id=#{compId}
       <if test="userIds!=null and userIds!=''">
       and ${userIds}
@@ -513,6 +515,13 @@ select upCateName, count(distinct obj_id) count from (
     select * from v_loglist
     where
       (obj_type!='admin_mainpage' and obj_type!='student_profile' and visit_module_id!='模拟实操列表' and visit_module_id!='课件列表')
+      <if test="userIds!=null and userIds!=''">
+      and ${userIds}
+      </if>
+
+      <if test="compId!=null and compId!=''">and group_id=#{compId}</if>
+      <if test="userId!=null and userId!=''">and visitor_id=#{userId}</if>
+
       <if test="objSql!=null and objSql!=''">and ${objSql}</if>
       <if test="moduleSql!=null and moduleSql!=''">and ${moduleSql}</if>
       <if test="catSql!=null and catSql!=''">and ${catSql}</if>

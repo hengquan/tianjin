@@ -184,11 +184,12 @@ public class TjController {
     @ResponseBody
     public Map<String, Object> getXxrzList(HttpServletRequest request, HttpServletResponse response,
             @RequestParam(required=false) String forType,
+            @RequestParam(required=false) String userIds,
             @RequestParam(required=false) String objTypes,
             @RequestParam(required=false) String moduleNames,
             @RequestParam(required=false) String catNames,
             @RequestParam(required=false) String compName,
-            @RequestParam(required=false) String userName,
+            @RequestParam(required=false) String userName,//多个用户名称
             @RequestParam(required=false) String date1,
             @RequestParam(required=false) String date2,
             @RequestParam(value="offset", defaultValue="1") int offset,
@@ -199,20 +200,36 @@ public class TjController {
         Map<String, Object> retMap=new HashMap<String, Object>();
         try {
             UserInfo ui=userService.getUserInfo();
-            if (ui == null) {
+            if (ui==null) {
                 retMap.put("returnCode", "02");
                 retMap.put("messageInfo", "无用户登录");
                 return retMap;
             }
             if (StringUtils.isBlank(forType)) forType="1";//为管理端获得内容
 
+            String compId="";
+            String userId="";
             if (!"1".equals(forType)) {//若不是为管理端，要获得当前的用户和企业信息
-                
+                if ("2".equals(forType)) {//企业管理员
+                    //获得用户所在企业
+                    ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
+                    if (companyInfo!=null&&companyInfo.getData()!=null) {
+                        compId=companyInfo.getData().getCompanyId();
+                    } else {//这是测试代码，用guanliyuan进行测试
+                        compId="98311111234523456B";
+                    }
+                } else
+                if ("3".equals(forType)) {//企业人员
+                    userId=ui.getUserId();
+                }
             }
 
             //设置page
             PageHelper.offsetPage(offset, limit);
             Map<String, Object> param=new HashMap<String, Object>();
+
+            param.put("compId", compId);
+            param.put("userId", userId);
 
             String objSql="";
             if (!StringUtils.isBlank(objTypes)) {
@@ -237,10 +254,16 @@ public class TjController {
 
             param.put("compName", compName);//所选择的人员的id列表
             param.put("userName", userName);//所选择的人员的id列表
+
+            if (!StringUtils.isBlank(userIds)) {
+                userIds=userIds.replaceAll(",", "' or visitor_id='");
+                userIds="(visitor_id='"+userIds+"')";
+            }
+            param.put("userIds", userIds);//所选择的人员的id列表
             param.put("date1", date1);//开始时间
             param.put("date2", date2);//结束时间
+
             List<Map<String, Object>> _xxrzl=catService.getXxrzList(param);
-            
             PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_xxrzl);
             if (_xxrzl==null||_xxrzl.size()==0) {
                 return null;
