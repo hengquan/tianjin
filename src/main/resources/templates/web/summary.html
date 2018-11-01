@@ -185,7 +185,7 @@ function getMnscList(rownum) {
         var html = ""
         for(var j=0;j<res.data.length;j++) {
           html+= '<li class="col-sm-6s" style="padding-left:0;">'
-            +'<div class="con" style="cursor:pointer" onclick="toSimulation(\''+res.data[j].mnscUrl+'\')">'
+            +'<div class="con" style="cursor:pointer" onclick="toSimulation(\''+res.data[j].id+'\')">'
               +'<div class="pic"><img src="'+(res.data[j].imgUrl || "./tjsrc/images/mnsc_default.jpg")+'"></div>'
               +'<div class="botoom">'
                 +'<h2>'+res.data[j].mnscName+'</h2>'
@@ -280,12 +280,15 @@ function getMyLogVisitList(rownum) {
 }
 
 function toCourse(id) {
+  if (!id) return;
+  if (id=='null') return;
   window.open("./courseContent.html?id="+id, "_blank");
 }
-function toSimulation(url) {
-  if (!url) return;
-  if (url=='null') return;
-  window.open(url);
+function toSimulation(id) {
+  if (!id) return;
+  if (id=='null') return;
+//window.open(url);
+  window.open("./mnscContent.html?objId="+id, "_blank");
 }
 </script>
 

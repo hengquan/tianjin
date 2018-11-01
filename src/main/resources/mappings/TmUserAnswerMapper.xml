@@ -97,4 +97,9 @@
       </if>
     </trim>
   </insert>
+
+  <select id="getUserAnswerList" resultMap="BaseResultMap" parameterType="Map">
+    select * from a_SJ_tm_user_answer
+    where sj_id=#{sjId} and user_id=#{userId}
+  </select>
 </mapper>

@@ -60,9 +60,9 @@ public class WebDispatchUrl {
     }
 
     /*在线练习*/
-    @RequestMapping("onlineExercise")
+    @RequestMapping("onlineexer")
     public String toExercise() {
-        return "/web/practice";
+        return "/web/onlineexer";
     }
 
     /*播放课件*/

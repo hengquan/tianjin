@@ -246,7 +246,7 @@ public class SjService {
 
     /**
      * 试卷提交
-     * @param sj 试卷对昂
+     * @param sj 试卷对象
      * @param answers 答案字符串
      * @param resultType 返回类型，是否返回答案，1返回，其他不返回
      * @return
@@ -347,5 +347,66 @@ public class SjService {
         dataM.put("score", score);
         dataM.put("tmList", ml);
         return  dataM;
+    }
+
+    /**
+     * 获得某用户的考试列表
+     * @param param
+     * @return
+     */
+    public List<Map<String, Object>> getSjList4User(Map<String, Object> param) {
+        List<Map<String, Object>> sjList=sjDao.getSjList4User(param);
+        if (sjList==null||sjList.size()==0) return null;
+
+        //处理每一项
+        for (Map<String, Object> sjXX: sjList) {
+            //首先，得到试卷中的题目
+            List<Tm> tmL=tmDao.getTmListTySjId(sjXX.get("ID")+"");
+            if (tmL==null||tmL.size()==0) continue;
+
+            //得到题目中的正确选项
+            Map<String, String> okAnswerMap=new HashMap<String, String>();
+            String okAnswer="";
+            for (Tm tm: tmL) {
+                List<TmSelect> selects=selectDao.getselectData(tm.getId());
+                for (int j=0; j<selects.size(); j++) {
+                    if (selects.get(j).getIsAnswer()==1) {
+                        okAnswer+=","+selects.get(j).getTmSelectSign();
+                    }
+                }
+                okAnswerMap.put(tm.getId(), okAnswer);
+            }
+            //得到用户的答案
+            param.clear();
+            param.put("sjId", sjXX.get("ID"));
+            param.put("userId", sjXX.get("USER_ID"));
+            List<TmUserAnswer> uaL=tmAnswerDao.getUserAnswerList(param);
+            int count=0;
+            for (TmUserAnswer tua: uaL) {
+                //判断是否答对了
+                okAnswer=okAnswerMap.get(tua.getTmId());
+                if (StringUtils.isBlank(okAnswer)) continue;
+                String userAnswer=tua.getAnswer();
+                if (StringUtils.isBlank(userAnswer)) continue;
+                String[] aa=userAnswer.split(",");
+                int n=0;
+                for (; n<aa.length; n++) {
+                    if (okAnswer.indexOf(aa[n].trim())==-1) break;
+                }
+                if (n==aa.length) count++;
+            }
+            sjXX.put("OK_COUNT", count);
+        }
+        return sjList;
+    }
+
+    public Map<String, Object> changeState(String id, int i) {
+        Map<String, Object> param=new HashMap<String, Object>();
+        param.put("id", id);
+        param.put("state", 5);
+        sjDao.changeState(param);
+        param.clear();
+        param.put("returnCode", "00");
+        return param;
     }
 }
