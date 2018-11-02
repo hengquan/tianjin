@@ -265,9 +265,8 @@ public class TjController {
 
             List<Map<String, Object>> _xxrzl=catService.getXxrzList(param);
             PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_xxrzl);
-            if (_xxrzl==null||_xxrzl.size()==0) {
-                return null;
-            }
+            if (_xxrzl==null||_xxrzl.size()==0) return null;
+
             //处理每一项
             List<Map<String, Object>> cl=new ArrayList<Map<String, Object>>();
             for (Map<String, Object> xxrz: _xxrzl) {

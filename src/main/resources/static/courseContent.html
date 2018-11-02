@@ -49,7 +49,7 @@
       </div>
       <div class="course_description"></div>
       <div class="study_btn">
-        <button class="start_study btn w120" onclick="toLearning()">开始学习</button>
+        <button class="start_study btn w120" style="cursor:pointer;" onclick="toLearning()">开始学习</button>
       </div>
     </div>
   </div>
@@ -61,7 +61,7 @@
   <!--相关练习-->
   <div class="_gap">
     <span>相关练习<div class="border"></div></span>
-    <div class="learnBtn" onclick="toStartPractice()">开始练习</div>
+    <div class="learnBtn" style="cursor:pointer;" onclick="toStartPractice()">开始练习</div>
   </div>
   <div class="tm_area">
   <!-- 
@@ -265,7 +265,7 @@ function toLearning() {
   window.location.href="./onlineLearning.html?kjId="+getUrlParam("id");
 }
 function  toStartPractice() {
-  window.open("entryPractice.html")
+  window.open("./entryPractice.html")
 }
 /**
  <span style="margin-left: -28px">

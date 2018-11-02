@@ -693,6 +693,50 @@ public class ApiController {
     }
 
     /**
+     * 1.4.4、获得答题完毕的试卷内容<br>
+     * @param request
+     * @param response
+     * @param id 试卷Id
+     * @return
+     */
+    @RequestMapping("showSj")
+    @ResponseBody
+    public Map<String, Object> showSj(HttpServletRequest request, HttpServletResponse response,
+        @RequestParam(required=false) String id) {
+        HttpPush.responseInfo(response);//跨域
+
+        Map<String, Object> retMap=new HashMap<String, Object>();
+        try {
+            UserInfo ui=userService.getUserInfo();
+            if (ui==null) {
+                retMap.put("returnCode","02");
+                retMap.put("messageInfo","无用户登录");
+                return retMap;
+            }
+            //1-处理参数
+            if (StringUtils.isBlank(id)) {//若分类为空，则相关对象必须有
+                retMap.put("returnCode","03");
+                retMap.put("messageInfo","试卷Id为空");
+                return retMap;
+            }
+            SJ sj=sjService.getSjById(id);
+            if (sj==null) {
+                retMap.put("returnCode","04");
+                retMap.put("messageInfo","试卷Id无对应试卷");
+                return retMap;
+            }
+            Map<String, Object> sjResult=sjService.getSj4Show(sj);
+            retMap.put("returnCode","00");
+            retMap.put("data", sjResult);
+        } catch(Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode","01");
+            retMap.put("messageInfo",e.toString());
+        }
+        return retMap;
+    }
+
+    /**
      * 1.5.1、数据收集<br>
      * 学员答题后，提交试卷的答案。
      * @param request

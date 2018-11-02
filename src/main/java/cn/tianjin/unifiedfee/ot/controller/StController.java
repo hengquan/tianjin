@@ -29,7 +29,6 @@ import cn.tianjin.unifiedfee.ot.util.HttpPush;
 @RequestMapping("/st")
 @Controller
 public class StController {
-
     @Autowired
     private StService stService;
     @Autowired

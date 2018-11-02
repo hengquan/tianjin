@@ -95,9 +95,7 @@
       <if test="state != null" >
         state,
       </if>
-      <if test="createDate != null" >
-        create_date,
-      </if>
+      create_date,
       <if test="createBy != null" >
         create_by,
       </if>
@@ -143,17 +141,15 @@
         #{diffType,jdbcType=INTEGER},
       </if>
       <if test="beginTime != null" >
-        #{beginTime,jdbcType=DATE},
+        #{beginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="endTime != null" >
-        #{endTime,jdbcType=DATE},
+        #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="state != null" >
         #{state,jdbcType=INTEGER},
       </if>
-      <if test="createDate != null" >
-        #{createDate,jdbcType=DATE},
-      </if>
+      sysdate,
       <if test="createBy != null" >
         #{createBy,jdbcType=VARCHAR},
       </if>
@@ -200,10 +196,10 @@
         diff_type=#{diffType,jdbcType=INTEGER},
       </if>
       <if test="beginTime != null" >
-        begin_time=#{beginTime,jdbcType=DATE},
+        begin_time=#{beginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="endTime != null" >
-        end_time=#{endTime,jdbcType=DATE},
+        end_time=#{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="state != null" >
         state=#{state,jdbcType=INTEGER},
@@ -211,4 +207,24 @@
     </set>
     where id=#{id}
   </update>
+
+  <select id="getSjList4User" resultType="Map" parameterType="java.util.Map">
+    select a.* from q_sj a where a.user_id=#{userId} and state!=5
+    <if test="catSql!=null and catSql!=''">and ${catSql}</if>
+    <if test="date1!=null and date1!=''">
+      <![CDATA[
+      and a.create_date>to_date('${date1}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+      <if test="date2!=null and date2!=''">
+      <![CDATA[
+      and a.create_date<to_date('${date2}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+    order by a.create_date desc
+  </select>
+
+  <select id="changeState" parameterType="java.util.Map">
+    update q_sj set state=#{state,jdbcType=INTEGER} where id=#{id,jdbcType=VARCHAR}
+  </select>
 </mapper>

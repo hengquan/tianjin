@@ -72,11 +72,11 @@ iframe{
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXXX()">在线学习</a></h3>
             </li>
             <!-- 
+             -->
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXLX()">在线练习</a></h3>
             </li>
-             -->
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
                 <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjXYXX()">学员统计-管理员</a></h3>
@@ -192,7 +192,7 @@ function toZXXX() {
 }
 //在线练习
 function toZXLX() {
-  $("#mainframe").attr("src","./zxlxList.html");
+  $("#mainframe").attr("src","${gateway}/onlineexer");
 }
 
 //学员日志-管理员

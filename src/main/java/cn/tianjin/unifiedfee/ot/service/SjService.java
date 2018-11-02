@@ -1,5 +1,7 @@
 package cn.tianjin.unifiedfee.ot.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,6 +35,7 @@ import cn.tianjin.unifiedfee.ot.model.CategoryNode;
  */
 @Service
 public class SjService {
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     @Autowired
     private TmMapper tmDao;
     @Autowired
@@ -246,12 +249,13 @@ public class SjService {
 
     /**
      * 试卷提交
-     * @param sj 试卷对昂
+     * @param sj 试卷对象
      * @param answers 答案字符串
      * @param resultType 返回类型，是否返回答案，1返回，其他不返回
      * @return
+     * @throws ParseException 
      */
-    public Map<String, Object> commitSj(SJ sj, String answers, int resultType, String beginTime, String endTime) {
+    public Map<String, Object> commitSj(SJ sj, String answers, int resultType, String beginTime, String endTime) throws ParseException {
         //首先，得到试卷中的题目
         List<Tm> tmL=tmDao.getTmListTySjId(sj.getId());
         if (tmL==null||tmL.size()==0) return null;
@@ -330,8 +334,8 @@ public class SjService {
         }
         //更新试卷表
         sj.setScore(score);
-        sj.setEndTime(new Date());
-        sj.setBeginTime(new Date());
+        sj.setBeginTime(format.parse(beginTime));
+        sj.setEndTime(format.parse(endTime));
         sj.setState(2);//答题完成
         sjDao.update(sj);
         //组织返回值
@@ -344,6 +348,137 @@ public class SjService {
         dataM.put("name", sj.getSjName());
         dataM.put("diffType", sj.getDiffType());
         dataM.put("sjScore", sj.getScore());
+        dataM.put("score", score);
+        dataM.put("tmList", ml);
+        return  dataM;
+    }
+
+    /**
+     * 获得某用户的考试列表
+     * @param param
+     * @return
+     */
+    public List<Map<String, Object>> getSjList4User(Map<String, Object> param) {
+        List<Map<String, Object>> sjList=sjDao.getSjList4User(param);
+        if (sjList==null||sjList.size()==0) return null;
+
+        //处理每一项
+        for (Map<String, Object> sjXX: sjList) {
+            //首先，得到试卷中的题目
+            List<Tm> tmL=tmDao.getTmListTySjId(sjXX.get("ID")+"");
+            if (tmL==null||tmL.size()==0) continue;
+
+            //得到题目中的正确选项
+            Map<String, String> okAnswerMap=new HashMap<String, String>();
+            String okAnswer="";
+            for (Tm tm: tmL) {
+                List<TmSelect> selects=selectDao.getselectData(tm.getId());
+                for (int j=0; j<selects.size(); j++) {
+                    if (selects.get(j).getIsAnswer()==1) {
+                        okAnswer+=","+selects.get(j).getTmSelectSign();
+                    }
+                }
+                okAnswerMap.put(tm.getId(), okAnswer);
+            }
+            //得到用户的答案
+            param.clear();
+            param.put("sjId", sjXX.get("ID"));
+            param.put("userId", sjXX.get("USER_ID"));
+            List<TmUserAnswer> uaL=tmAnswerDao.getUserAnswerList(param);
+            int count=0;
+            for (TmUserAnswer tua: uaL) {
+                //判断是否答对了
+                okAnswer=okAnswerMap.get(tua.getTmId());
+                if (StringUtils.isBlank(okAnswer)) continue;
+                String userAnswer=tua.getAnswer();
+                if (StringUtils.isBlank(userAnswer)) continue;
+                String[] aa=userAnswer.split(",");
+                int n=0;
+                for (; n<aa.length; n++) {
+                    if (okAnswer.indexOf(aa[n].trim())==-1) break;
+                }
+                if (n==aa.length) count++;
+            }
+            sjXX.put("OK_COUNT", count);
+        }
+        return sjList;
+    }
+
+    public Map<String, Object> changeState(String id, int i) {
+        Map<String, Object> param=new HashMap<String, Object>();
+        param.put("id", id);
+        param.put("state", 5);
+        sjDao.changeState(param);
+        param.clear();
+        param.put("returnCode", "00");
+        return param;
+    }
+
+    /**
+     * 获得答题完毕的试卷内容
+     * @param sj
+     * @return
+     */
+    public Map<String, Object> getSj4Show(SJ sj) {
+        //首先，得到试卷中的题目
+        List<Tm> tmL=tmDao.getTmListTySjId(sj.getId());
+        //其次，得到试卷的答案
+        Map<String, Object> param=new HashMap<String, Object>();
+        param.clear();
+        param.put("sjId", sj.getId());
+        param.put("userId", sj.getUserId());
+        List<TmUserAnswer> uaL=tmAnswerDao.getUserAnswerList(param);
+        
+        List<Map<String, Object>> ml=new ArrayList<Map<String, Object>>();
+        int score=0;//总分
+        int i=0;
+        for (i=0; i<tmL.size(); i++) {
+            String okAnswer="";
+            Map<String, Object> oneTm=getTmMap(tmL.get(i), i);
+            List<TmSelect> selects=selectDao.getselectData(tmL.get(i).getId());
+            if (selects!=null&&selects.size()>0) {
+                List<Map<String, Object>> tmSelects=new ArrayList<Map<String, Object>>();
+                for (int j=0; j<selects.size(); j++) {
+                    tmSelects.add(getSelectMap(selects.get(j)));
+                    if (selects.get(j).getIsAnswer()==1) {
+                        okAnswer+=","+selects.get(j).getTmSelectSign();
+                    }
+                }
+                oneTm.put("tmItems", tmSelects);
+            }
+            ml.add(oneTm);
+            if (!StringUtils.isBlank(okAnswer)) {
+                oneTm.put("tmAnswer", okAnswer.substring(1));
+            }
+            //找到答案
+            oneTm.put("answerType", 0);//0-未答题;1-答对了;2-达错了
+            oneTm.put("youAnswer", "");
+            for (TmUserAnswer tua: uaL) {
+                if (tua.getTmId().equals(tmL.get(i).getId())) {
+                    String youAnswer=tua.getAnswer();
+                    oneTm.put("youAnswer", youAnswer);
+                    oneTm.put("answerType", 2);
+                    String[] aa=youAnswer.split(",");
+                    int n=0;
+                    for (; n<aa.length; n++) {
+                        if (okAnswer.indexOf(aa[n].trim())==-1) break;
+                    }
+                    if (n==aa.length)  oneTm.put("answerType", 1);
+                }
+            }
+        }
+
+        //组织返回值
+        Map<String, Object> dataM=new HashMap<String, Object>();
+        String refType=sj.getRefTabname();
+        if (refType!=null&&refType.indexOf("_")>0) refType=refType.substring(refType.indexOf("_")+1);
+        dataM.put("id", sj.getId());
+        dataM.put("name", sj.getSjName());
+        dataM.put("diffType", sj.getDiffType());
+        dataM.put("sjScore", sj.getScore());
+        dataM.put("catNames", sj.getSjCatNames());
+        dataM.put("beginTime", format.format(sj.getBeginTime()));
+        dataM.put("endTime", format.format(sj.getEndTime()));
         dataM.put("score", score);
         dataM.put("tmList", ml);
         return  dataM;
