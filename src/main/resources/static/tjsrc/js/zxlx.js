@@ -15,6 +15,7 @@ var count=0;
 var startTime;
 
 $(function (param) {
+  $("body").hide();
   //获得分类
   $.ajax({
     type: "get",
@@ -34,9 +35,7 @@ $(function (param) {
         else html+= '<option value="'+arr[j].id+'">'+arr[j].name+'</option>';
       }
       $(".selectpicker").html(html);
-      window.setTimeout(function(){
-        $(".selectpicker").selectpicker();
-      }, 100);
+      $('.selectpicker').selectpicker('refresh');
     }
   });
 
@@ -62,6 +61,7 @@ $(function (param) {
     $(".scsj-btn").on("click",buildPaper);
     // 提交试卷
     $(".sub-btn").on("click",commitSj);
+    $("body").show();
   }
 });
 
@@ -122,6 +122,7 @@ function showSj(id) {
         $(".zfs").html(zfs);
         $(".zts").html(res.data.tmList.length);
         $(".dd").html(okCount);
+        $("body").show();
       }
     }
   });
@@ -172,6 +173,7 @@ function dt(id) {
         $(".dd").html(okCount);
         // 提交试卷
         $(".sub-btn").on("click",commitSj);
+        $("body").show();
       }
     }
   });
