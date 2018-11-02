@@ -93,7 +93,6 @@ function showSj(id) {
         $(".sub-btn").css("display","block").addClass('disable-btn');
         $("#table").show();
         $("#zts").html(res.data.tmList.length);
-        $("#dd").html(0);
         var html = ""
         var zfs = 0;
         var okCount=0;
@@ -128,19 +127,69 @@ function showSj(id) {
   });
 }
 
+//作答之前的试卷
+function dt(id) {
+  var _data={"id": id};
+  $.ajax({
+    type: "get",
+    url: "./train/showSj",
+    data: _data,
+    dataType: "json",
+    success: function (res) {
+      if(res.returnCode == 00) {
+        $(".times").css("display","block").css("cursor", "pointer").html("开始练习");
+
+        $(".empty").css("display","none");
+        $(".lxt").css("display","block");
+        $(".lxt").html(res.data.name);
+        $(".sub-btn").css("display","block").addClass('disable-btn');
+        $(".times").css("display","block").on("click",start);
+        $("#table").show();
+        $("#zts").html(res.data.tmList.length);
+        $("#dd").html(0);
+        var html = ""
+        var zfs = 0;
+        var okCount=0;
+        sjData = res.data;
+        for(var i=0;i<res.data.tmList.length;i++) {
+          zfs+=res.data.tmList[i].tmScore
+          if(res.data.tmList[i].tmType == "多选题") {
+            html += '<li><h3 class="title"><span>'+(i*1+1)+'、</span>【多选题】'+res.data.tmList[i].tmDesc+/*'【'+res.data.tmList[i].tmScore+'分】*/'</h3>'
+              +tplCheckbox(res.data.tmList[i].tmItems,res.data.tmList[i].tmId);
+          }else if(res.data.tmList[i].tmType == "单选题") {
+            html += '<li><h3 class="title"><span>'+(i*1+1)+'、</span>【单选题】'+res.data.tmList[i].tmDesc+/*'【'+res.data.tmList[i].tmScore+'分】*/'</h3>'
+            +tplRadio(res.data.tmList[i].tmItems,res.data.tmList[i].tmId)
+          }else if(res.data.tmList[i].tmType == "判断题") {
+            html += '<li><h3 class="title"><span>'+(i*1+1)+'、</span>【判断题】'+res.data.tmList[i].tmDesc+/*'【'+res.data.tmList[i].tmScore+'分】*/'</h3>'
+            +tplRadio(res.data.tmList[i].tmItems,res.data.tmList[i].tmId)
+          }
+          html+='<div class="tm-result" id="tm-result-'+res.data.tmList[i].tmId+'"><span class="zqda"></span><span class="ndda"></span></div></li>';
+          if (res.data.tmList[i].answerType==1) okCount++;
+        }
+        $(".topic-list").html(html);
+        $(".zfs").html(zfs);
+        $(".zts").html(res.data.tmList.length);
+        $(".dd").html(okCount);
+        // 提交试卷
+        $(".sub-btn").on("click",commitSj);
+      }
+    }
+  });
+}
+
 function tplCheckbox(res,tmid) {
   var html = ""
   for(var i = 0;i<res.length;i++) {
-   html += '<p><span><input type="checkbox" disabled=disabled name="'+tmid+'" value="'+res[i].itemSign+'"></span>'+res[i].itemSign+'、'+res[i].itemDesc+'</p>'
+   html += '<p><span><input type="checkbox" disabled=disabled name="'+tmid+'" value="'+res[i].itemSign+'"></span>'+res[i].itemSign+'、'+res[i].itemDesc+'</p>';
   }   
   return html
 }
 function tplRadio(res,tmid) {
- var html = ""
+ var html = "";
   for(var i = 0;i<res.length;i++) {
-   html += '<p><span><input type="radio" disabled=disabled name="'+tmid+'" value="'+res[i].itemSign+'"></span>'+res[i].itemSign+'、'+res[i].itemDesc+'</p>'
-  }   
-  return html
+   html += '<p><span><input type="radio" disabled=disabled name="'+tmid+'" value="'+res[i].itemSign+'"></span>'+res[i].itemSign+'、'+res[i].itemDesc+'</p>';
+  }
+  return html;
 }
 
 function buildPaper() {
@@ -166,8 +215,8 @@ function buildPaper() {
     success: function (res) {
       if(res.returnCode == 00) {
         $(".lxt").html(res.data.name);
-        $(".empty").css("display","none")
-        $(".lxt").css("display","block")
+        $(".empty").css("display","none");
+        $(".lxt").css("display","block");
         $(".times").html("开始练习");
         $(".times").css("display","block").on("click",start);
         $(".sub-btn").css("display","block").addClass('disable-btn');
