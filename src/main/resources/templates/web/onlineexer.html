@@ -247,9 +247,11 @@ function delSj(id) {
   layer.confirm('确定要删除吗？', {btn : [ '确定', '取消' ]},
     function(index) {
       layer.close(index);
+      ajaxDel(id);
     }
   );
   function ajaxDel(id) {
+    alert(id);
     $.ajax({
       type : "post",
       url : '${gateway}/sj/delSj',

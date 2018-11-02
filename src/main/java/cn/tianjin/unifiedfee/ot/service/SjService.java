@@ -422,6 +422,7 @@ public class SjService {
     public Map<String, Object> getSj4Show(SJ sj) {
         //首先，得到试卷中的题目
         List<Tm> tmL=tmDao.getTmListTySjId(sj.getId());
+        if (tmL==null||tmL.size()==0) return null;
         //其次，得到试卷的答案
         Map<String, Object> param=new HashMap<String, Object>();
         param.clear();
@@ -453,17 +454,20 @@ public class SjService {
             //找到答案
             oneTm.put("answerType", 0);//0-未答题;1-答对了;2-达错了
             oneTm.put("youAnswer", "");
-            for (TmUserAnswer tua: uaL) {
-                if (tua.getTmId().equals(tmL.get(i).getId())) {
-                    String youAnswer=tua.getAnswer();
-                    oneTm.put("youAnswer", youAnswer);
-                    oneTm.put("answerType", 2);
-                    String[] aa=youAnswer.split(",");
-                    int n=0;
-                    for (; n<aa.length; n++) {
-                        if (okAnswer.indexOf(aa[n].trim())==-1) break;
+            if (uaL!=null&&uaL.size()>0) {
+                for (TmUserAnswer tua: uaL) {
+                    if (tua.getTmId().equals(tmL.get(i).getId())) {
+                        String youAnswer=tua.getAnswer();
+                        if (StringUtils.isBlank(youAnswer)) continue;
+                        oneTm.put("youAnswer", youAnswer);
+                        oneTm.put("answerType", 2);
+                        String[] aa=youAnswer.split(",");
+                        int n=0;
+                        for (; n<aa.length; n++) {
+                            if (okAnswer.indexOf(aa[n].trim())==-1) break;
+                        }
+                        if (n==aa.length)  oneTm.put("answerType", 1);
                     }
-                    if (n==aa.length)  oneTm.put("answerType", 1);
                 }
             }
         }
@@ -477,8 +481,8 @@ public class SjService {
         dataM.put("diffType", sj.getDiffType());
         dataM.put("sjScore", sj.getScore());
         dataM.put("catNames", sj.getSjCatNames());
-        dataM.put("beginTime", format.format(sj.getBeginTime()));
-        dataM.put("endTime", format.format(sj.getEndTime()));
+        if (sj.getBeginTime()!=null) dataM.put("beginTime", format.format(sj.getBeginTime()));
+        if (sj.getEndTime()!=null) dataM.put("endTime", format.format(sj.getEndTime()));
         dataM.put("score", score);
         dataM.put("tmList", ml);
         return  dataM;

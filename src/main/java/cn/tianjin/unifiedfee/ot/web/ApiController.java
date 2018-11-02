@@ -726,8 +726,13 @@ public class ApiController {
                 return retMap;
             }
             Map<String, Object> sjResult=sjService.getSj4Show(sj);
-            retMap.put("returnCode","00");
-            retMap.put("data", sjResult);
+            if (sjResult==null) {
+                retMap.put("returnCode","05");
+                retMap.put("messageInfo","试卷信息为空");
+            } else {
+                retMap.put("returnCode","00");
+                retMap.put("data", sjResult);
+            }
         } catch(Exception e) {
             e.printStackTrace();
             retMap.put("returnCode","01");
