@@ -88,8 +88,9 @@ html {
 		<div class="row clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
 				<form class="form-horizontal pt-form-full" role="form" id="form">
-					<input type="hidden" name="id" id="objId"> <input
-						type="hidden" name="kjids" id="kjids">
+					<input type="hidden" name="id" id="objId"> 
+					<input type="hidden" name="kjids" id="kjids">
+					<input type="hidden" name="commArchiveId" id="commArchiveId">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
@@ -108,8 +109,7 @@ html {
 								<div class="input-group">
 									<select id="mnscCatId" name="mnscCatId" class="selectpicker"
 										data-actions-box="true" data-live-search="true" title="请选择"
-										onchange="selOnchange()">
-										${optionHtml}
+										onchange="selOnchange()"> ${optionHtml}
 									</select> <input type="hidden" class="form-control" name="mnscCatNames"
 										id="mnscCatNames" />
 								</div>
@@ -205,6 +205,8 @@ html {
 	<br>
 	<br>
 	<script>
+    //虚拟tableId
+    var timestamp = Date.parse(new Date());
     //初始化分类
     //selfenlei();
     //附件相关
@@ -299,16 +301,8 @@ html {
         dataType : 'json',
         cache : false,
         success : function(data) {
-          //上传附件
-          var objId = data.objId;
-          if (objId != '') {
-            $("#objId").val(objId);
-            setTimeout(function() {
-              $("#file-1").fileinput('upload');
-              parent.refresh();
-              closeMy();
-            }, 500);
-          }
+          parent.refresh();
+          closeMy();
         },
         error : function() { //失败回调函数
           parent.refresh();
@@ -440,17 +434,16 @@ html {
     $("#file-1").fileinput({
       theme : "explorer", //主题
       language : 'zh',
-      uploadUrl : "../file/upload",// 上传请求路径
+      uploadUrl : "${gateway}/file/upload",// 上传请求路径
       allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg' ],//允许上传的文件后缀       
-      uploadAsync : false, //是否允许异步上传
-      showUpload : false,//是否显示上传按钮
+      uploadAsync : true, //是否允许异步上传
+      showUpload : true,//是否显示上传按钮
       showCaption : false,//是否显示容器
       dropZoneEnabled : false,//是否显示拖拽区域 
       removeFromPreviewOnError : true,//是否移除校验文件失败的文件
       uploadExtraData : function(previewId, index) { //额外参数 返回json数组  
-        var objId = $("#objId").val();
         return {
-          'objId' : objId,
+          'objId' : timestamp,
           'objTabname' : 'ts_mnsc',
           'archiveType' : 'img'
         // commId 为全局变量，可以给控件上传额外参数  
@@ -465,6 +458,9 @@ html {
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : false,
       initialPreview : imgJson,//['<img src="http://1.202.219.107:8082/ot-server/ot/image/111.jpg" class="file-preview-image">'], //显示图片
+      initialPreviewConfig : [ {
+        url : '${gateway}/file/delete?id=1',//删除controller映射
+      } ],
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片
@@ -476,9 +472,16 @@ html {
         'jpeg' : '<i class="fa fa-file-photo-o text-primary"></i>'
       },
     });
+    //导入文件上传完成之后的事件
+    $("#file-1").on("fileuploaded", function(event, data, previewId, index) {
+      var data = data.response;
+      var commArchiveId = data.commArchiveId;
+      $("#commArchiveId").val(commArchiveId);
+      alert(commArchiveId);
+    });
 
     //初始化页面信息
-    function initialize(){
+    function initialize() {
       //获取参数
       var url = location.search;
       if (url != '') {
@@ -486,68 +489,69 @@ html {
         $("#baocun").attr("onclick", "editMnsc()");
         url = url.substr(1);
         var split = url.split("=");
-        $.ajax({
-          type : 'post',
-          url : "${gateway}/mnsc/get",
-          data : {
-            "id" : split[1]
-          },
-          dataType : 'json',
-          cache : false,
-          success : function(data) {
-            var html = '<tr>'
-                + '<th>课件名称</th>'
-                + '<th>分类名称</th>'
-                + '<th>创建人</th>'
-                + '<th>创建时间</th>'
-                + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
-                + '</tr>';
-            var mnsc = data.data;
-            $("#objId").val(mnsc.id);
-            $("#mnscName").val(mnsc.mnscName);
-            $("#mnscUrl").val(mnsc.mnscUrl);
-            $("input[type=radio][name=isvalid]").each(function(i, e) {
-              if ($(this).val() == mnsc.isvalid)
-                $(this).iCheck('check');
-            });
-            $("#sort").val(mnsc.sort);
-            $("#remarks").val(mnsc.remarks);
-            $("#mnscCatId").val(mnsc.mnscCatId);
-            $("#mnscCatId").selectpicker('val', mnsc.mnscCatId);
-            $("#mnscCatNames").val(mnsc.mnscCatNames);
-            //获取相关课件列表
-            $("#kjids").val(mnsc.kjids);
-            var dataList = mnsc.kjs;
-            if (dataList != null) {
-              for (var i = 0; i < dataList.length; i++) {
-                html += '<tr>'
-                    + '<td>'
-                    + dataList[i].kjName
-                    + '</td>'
-                    + '<td>'
-                    + dataList[i].kjCatNames
-                    + '</td>'
-                    + '<td>'
-                    + dataList[i].createName
-                    + '</td>'
-                    + '<td>'
-                    + dataList[i].createdate
-                    + '</td>'
-                    + '<th onclick="removeTr(this)" thisval="'
-                    + dataList[i].id
-                    + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+        $
+            .ajax({
+              type : 'post',
+              url : "${gateway}/mnsc/get",
+              data : {
+                "id" : split[1]
+              },
+              dataType : 'json',
+              cache : false,
+              success : function(data) {
+                var html = '<tr>'
+                    + '<th>课件名称</th>'
+                    + '<th>分类名称</th>'
+                    + '<th>创建人</th>'
+                    + '<th>创建时间</th>'
+                    + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
                     + '</tr>';
+                var mnsc = data.data;
+                $("#objId").val(mnsc.id);
+                $("#mnscName").val(mnsc.mnscName);
+                $("#mnscUrl").val(mnsc.mnscUrl);
+                $("input[type=radio][name=isvalid]").each(function(i, e) {
+                  if ($(this).val() == mnsc.isvalid)
+                    $(this).iCheck('check');
+                });
+                $("#sort").val(mnsc.sort);
+                $("#remarks").val(mnsc.remarks);
+                $("#mnscCatId").val(mnsc.mnscCatId);
+                $("#mnscCatId").selectpicker('val', mnsc.mnscCatId);
+                $("#mnscCatNames").val(mnsc.mnscCatNames);
+                //获取相关课件列表
+                $("#kjids").val(mnsc.kjids);
+                var dataList = mnsc.kjs;
+                if (dataList != null) {
+                  for (var i = 0; i < dataList.length; i++) {
+                    html += '<tr>'
+                        + '<td>'
+                        + dataList[i].kjName
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].kjCatNames
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].createName
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].createdate
+                        + '</td>'
+                        + '<th onclick="removeTr(this)" thisval="'
+                        + dataList[i].id
+                        + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+                        + '</tr>';
+                  }
+                  $("#theTable").html(html);
+                }
+              },
+              error : function() { //失败回调函数
+                alert("获取信息失败");
               }
-              $("#theTable").html(html);
-            }
-          },
-          error : function() { //失败回调函数
-            alert("获取信息失败");
-          }
-        });
+            });
       }
     }
-    
+
     //渲染分类
     function selfenlei() {
       $.ajax({
@@ -564,7 +568,7 @@ html {
               html += '<option value="'+ msgs[i].id +'">' + msgs[i].name
                   + '</option>'
             }
-            if(html != '')
+            if (html != '')
               $("#mnscCatId").html(html);
           } else {
             layer.msg(data.messageInfo);

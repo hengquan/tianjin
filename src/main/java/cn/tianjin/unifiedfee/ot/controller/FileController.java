@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -39,8 +40,11 @@ public class FileController {
 
     @RequestMapping("/upload")
     @ResponseBody
-    public Map<String, Object> upload(CommArchive commArchive, MultipartFile[] files, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String, Object> upload(CommArchive commArchive, MultipartFile[] files, HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
         HttpPush.responseInfo(response);// 跨域
+        //附件表ID
+        String commArchiveId = "";
         System.out.println("------------进入上传文件---------------");
         Map<String, Object> map = new HashMap<String, Object>();
         String fileName = "";
@@ -63,16 +67,20 @@ public class FileController {
                     commArchive.setFilePath("/ot/image/");
                     commArchive.setFileUrl(fileUrl);
                     commArchiveService.insert(commArchive);
+                    String id = commArchive.getId();
+                    if(StringUtils.isNotEmpty(id))
+                        commArchiveId = id;
                 }
             }
         }
-        map.put("fileName", fileName);
+        map.put("commArchiveId", commArchiveId);
         return map;
     }
 
     @RequestMapping("/uploadTemp")
     @ResponseBody
-    public Map<String, Object> uploadTemp(CommArchive commArchive, MultipartFile[] files, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String, Object> uploadTemp(CommArchive commArchive, MultipartFile[] files, HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
         HttpPush.responseInfo(response);// 跨域
         System.out.println("------------进入上传文件---------------");
         Map<String, Object> map = new HashMap<String, Object>();
@@ -96,6 +104,19 @@ public class FileController {
         }
         map.put("fileName", fileName);
         map.put("fileUrl", fileUrl);
+        return map;
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Map<String, Object> delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpPush.responseInfo(response);// 跨域
+        System.out.println("------------进入删除文件---------------");
+        Map<String, Object> map = new HashMap<String, Object>();
+        String id = request.getParameter("id") == null ? "" : request.getParameter("id").toString();
+        System.out.println("-------------------------------");
+        System.out.println(id);
+        System.out.println("-------------------------------");
         return map;
     }
 }

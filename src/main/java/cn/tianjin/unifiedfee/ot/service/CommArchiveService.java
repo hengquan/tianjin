@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.spiritdata.framework.util.SequenceUUID;
 
 import cn.tianjin.unifiedfee.ot.entity.CommArchive;
-import cn.tianjin.unifiedfee.ot.entity.KjRefSource;
 import cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper;
 
 @Service
@@ -31,7 +30,11 @@ public class CommArchiveService {
     }
 
     // 获取单条信息
-    public KjRefSource get(CommArchive commArchive) throws Exception {
+    public CommArchive get(CommArchive commArchive) throws Exception {
         return dao.get(commArchive.getId());
+    }
+
+    public CommArchive get(String id) {
+        return dao.get(id);
     }
 }

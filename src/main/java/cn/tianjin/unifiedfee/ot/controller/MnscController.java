@@ -19,7 +19,9 @@ import com.github.pagehelper.PageInfo;
 
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
+import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.Mnsc;
+import cn.tianjin.unifiedfee.ot.service.CommArchiveService;
 import cn.tianjin.unifiedfee.ot.service.MnscService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
@@ -31,6 +33,8 @@ public class MnscController {
     private MnscService mnscService;
     @Autowired
     public UserService userService;
+    @Autowired
+    private CommArchiveService commArchiveService;
 
     // 获取分页数据
     @RequestMapping("getPageData")
@@ -42,7 +46,7 @@ public class MnscController {
         Map<String, Object> retMap = new HashMap<String, Object>();
         // 请求参数
         Map<String, Object> map = new HashMap<String, Object>();
-        //获取请求参数
+        // 获取请求参数
         String mnscName = request.getParameter("mnscName");
         String mnscUrl = request.getParameter("mnscUrl");
         String mnscCatId = request.getParameter("mnscCatId");
@@ -54,14 +58,14 @@ public class MnscController {
         HttpPush.responseInfo(response);
         // 设置page
         PageHelper.offsetPage(pageNum, pageSize);
-        //设置参数
+        // 设置参数
         map.put("searchStr", mnscName);
         map.put("categoryId", mnscCatId);
         map.put("mnscUrl", mnscUrl);
         map.put("score", score);
         map.put("createStart", createStart);
         map.put("createEnd", createEnd);
-        if (!StringUtils.isBlank(isvalid)&&(!"1,0".equals(isvalid))&&(!"0,1".equals(isvalid))) {
+        if (!StringUtils.isBlank(isvalid) && (!"1,0".equals(isvalid)) && (!"0,1".equals(isvalid))) {
             map.put("isvalid", isvalid);
         }
         System.out.println("--------------------------------");
@@ -82,6 +86,9 @@ public class MnscController {
     @RequestMapping("insert")
     @ResponseBody
     public Map<String, Object> insert(Mnsc mnsc, HttpServletRequest request, HttpServletResponse response) {
+        // 获取参数
+        String commArchiveId = request.getParameter("commArchiveId") == null ? ""
+                : request.getParameter("commArchiveId").toString();
         // 获取用户数据
         UserInfo user = userService.getUserInfo();
         // 返回数据
@@ -91,13 +98,17 @@ public class MnscController {
         try {
             // 添加数据
             boolean result = mnscService.insert(mnsc, user);
-            String id = mnsc.getId();
-            if (StringUtils.isNotEmpty(id))
-                map.put("objId", id);
-            if (result)
+            if (result) {
+                if (StringUtils.isNotEmpty(commArchiveId)) {
+                    String mnscId = mnsc.getId();
+                    CommArchive commArchive = commArchiveService.get(commArchiveId);
+                    commArchive.setObjId(mnscId);
+                    commArchiveService.update(commArchive);
+                }
                 map.put("resultCode", "100");
-            else
+            } else {
                 map.put("resultCode", "101");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,6 +121,9 @@ public class MnscController {
     public Map<String, Object> update(Mnsc mnsc, HttpServletRequest request, HttpServletResponse response) {
         // 获取用户数据
         UserInfo user = userService.getUserInfo();
+        // 获取参数
+        String commArchiveId = request.getParameter("commArchiveId") == null ? ""
+                : request.getParameter("commArchiveId").toString();
         // 返回数据
         Map<String, Object> map = new HashMap<String, Object>();
         // 跨域
@@ -117,10 +131,17 @@ public class MnscController {
         try {
             // 修改数据
             boolean result = mnscService.update(mnsc, user);
-            if (result)
+            if (result) {
+                if (StringUtils.isNotEmpty(commArchiveId)) {
+                    String mnscId = mnsc.getId();
+                    CommArchive commArchive = commArchiveService.get(commArchiveId);
+                    commArchive.setObjId(mnscId);
+                    commArchiveService.update(commArchive);
+                }
                 map.put("resultCode", "100");
-            else
+            } else {
                 map.put("resultCode", "101");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

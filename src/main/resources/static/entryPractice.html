@@ -21,8 +21,8 @@
   <script src="./tjsrc/js/bootstrap-select.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script type="text/javascript" src="./web/layer/layer.js"></script>
+  <script src="./src/js/train.common.js"></script>
   <script src="./tjsrc/js/zxlx.js"></script>
-  <script type="text/javascript" src="./web/layer/layer.js"></script>
 
 <style type="text/css">
 /*生成练习之前页面*/
@@ -75,75 +75,67 @@ input:disabled{
   </div>
 </div>
 <!-- 头部条  结束 -->
-  <div class="_gap" style="margin-top:0px;">
-     <span>在线练习
-     <div class="border"></div>
-     </span>
-  </div>
-  <div class="box container-fluid">    
-    <div class="con-box">
-      <div class="inp-box">
-        <div class="txt"><span>分类:</span></div>
-        <div class="inp">
-            <select class="selectpicker" multiple>
-                <option value="1" selected>法规类</option>
-                <option value="2">政策类</option>
-                <option value="3">收费类</option>
-                <option value="4">放行类</option>
-                <option value="5">理货类</option>
-                <option value="6">出口类</option>
-                <option value="7">进口类</option>
-            </select>
-        </div>
-        <div class="txt"><span>难易程度：</span></div>
-        <div class="widget-sider ny">
-          <div class="" id="slider-range" style="margin-top: 6px;"></div>
-          <p>
-            <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold; text-align: center;width:100%;" disabled>
-          </p>
-        </div>
+<div class="_gap" style="margin-top:0px;">
+  <span>在线练习
+    <div class="border"></div>
+  </span>
+</div>
+<div class="box container-fluid">    
+  <div class="con-box">
+    <div class="inp-box">
+      <div class="txt"><span>分类:</span></div>
+      <div class="inp">
+        <select class="selectpicker" multiple></select>
+      </div>
+      <div class="txt"><span>难易程度：</span></div>
+      <div class="widget-sider ny">
+        <div class="" id="slider-range" style="margin-top: 6px;"></div>
+        <p>
+          <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold; text-align: center;width:100%;" disabled>
+        </p>
+      </div>
 
-        <div class="txt" style="margin-left:10px;"><span>题目数量：</span></div>
-        <div class="inp input-group" style="width:75px;margin-left:-5px;">             
-            <input type="text" class="form-control nums" value="10" style=" width:70px;margin-top:1px;border-radius: 3px;">
-        </div>
-        <div class="scsj-btn">生成练习</div>
+      <div class="txt" style="margin-left:10px;"><span>题目数量：</span></div>
+      <div class="inp input-group" style="width:75px;margin-left:-5px;">             
+        <input type="text" class="form-control nums" value="10" style=" width:70px;margin-top:1px;border-radius: 3px;">
       </div>
-      <div class="topic-box">
-        <div class="num-box">
-          <table id="table" class="sample" style="display:none;">
-            <thead>
-              <tr>
-                <th>&nbsp;答&emsp;对&nbsp;</th>
-                <th style="border-right: 1px solid #3e83c9;">总题数</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="dd">0</td>
-                <td class="zts">0</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="times" style="cursor:pointer">马上开始练习</div>
-        <div class="empty">
-          <div onclick="buildPaper()">
-            <span><img src="./web/images/lianxi.jpg" alt=""></span>
-            <p id="emptyMsg">马上生成练习吧！</p>
-          </div>
-        </div>
-        <h3 class="lxt" sytle="padding-left:10px:font-weight:bold;">练习题</h3>
-        <ul class="topic-list">
-          <!-- <li>
-            <h3 class="title"><span>1、</span>【多选题】多选题，多选题，多选题，多选题【30分】</h3>
-            <p><span><input type="checkbox"></span>A、增加选项</p>
-          </li> -->
-        </ul>
-        <div id="commitSj" class="sub-btn disable-btn">提交练习</div>
+      <div class="scsj-btn">生成练习</div>
+    </div>
+    <div class="topic-box">
+      <div class="num-box">
+        <table id="table" class="sample" style="display:none;">
+          <thead>
+            <tr>
+              <th>&nbsp;答&emsp;对&nbsp;</th>
+              <th style="border-right: 1px solid #3e83c9;">总题数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="dd">0</td>
+              <td class="zts">0</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+      <div class="times" style="cursor:pointer">开始练习</div>
+      <div class="empty">
+        <div onclick="buildPaper()">
+          <span><img src="./web/images/lianxi.jpg" alt=""></span>
+          <p id="emptyMsg">马上生成练习吧！</p>
+        </div>
+      </div>
+      <h3 class="lxt" sytle="padding-left:10px:font-weight:bold;">练习题</h3>
+      <ul class="topic-list">
+        <!-- <li>
+          <h3 class="title"><span>1、</span>【多选题】多选题，多选题，多选题，多选题【30分】</h3>
+          <p><span><input type="checkbox"></span>A、增加选项</p>
+        </li> -->
+      </ul>
+      <div id="commitSj" class="sub-btn disable-btn">提交练习</div>
     </div>
   </div>
+</div>
 
 <!--公共底部-->
 <div class="pt-footer">
