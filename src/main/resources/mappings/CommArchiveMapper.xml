@@ -86,6 +86,43 @@
 		</trim>
 	</insert>
 
+
+
+
+	<update id="update" parameterType="cn.tianjin.unifiedfee.ot.entity.CommArchive">
+		update comm_archive
+		<set>
+			<if test="fileName != null">
+				file_name = #{fileName},
+			</if>
+			<if test="filePath != null">
+				file_path = #{filePath},
+			</if>
+			<if test="fileUrl != null">
+				file_url = #{fileUrl},
+			</if>
+			<if test="isShow != null">
+				is_show = #{isShow},
+			</if>
+			<if test="objTabname != null">
+				obj_tabname = #{objTabname},
+			</if>
+			<if test="objId != null">
+				obj_id = #{objId},
+			</if>
+			<if test="archiveType != null">
+				archive_type = #{archiveType},
+			</if>
+			<if test="sort != null">
+				sort = #{sort},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
 	<select id="getArchiveByObjIds" resultMap="BaseResultMap"
 		parameterType="Map">
 		select
@@ -98,11 +135,17 @@
 		</if>
 		order by obj_id, archive_type, sort desc
 	</select>
-  <!-- 查所对应的所有的列表信息 -->
+	<!-- 查所对应的所有的列表信息 -->
 	<select id="selectByObjId" resultMap="BaseResultMap">
 		select
 		<include refid="Blob_Column_List" />
 		from comm_archive
 		where obj_id = #{objId}
+	</select>
+
+	<select id="get" resultMap="BaseResultMap">
+		select
+		<include refid="Blob_Column_List" />
+		from comm_archive where id = #{id}
 	</select>
 </mapper>
