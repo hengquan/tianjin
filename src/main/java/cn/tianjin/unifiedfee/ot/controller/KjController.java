@@ -19,7 +19,9 @@ import com.github.pagehelper.PageInfo;
 
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.web.security.UserService;
+import cn.tianjin.unifiedfee.ot.entity.CommArchive;
 import cn.tianjin.unifiedfee.ot.entity.Kj;
+import cn.tianjin.unifiedfee.ot.service.CommArchiveService;
 import cn.tianjin.unifiedfee.ot.service.KjRefSourceService;
 import cn.tianjin.unifiedfee.ot.service.KjService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
@@ -33,6 +35,8 @@ public class KjController {
     public UserService userService;
     @Autowired
     public KjRefSourceService kjRefSourceService;
+    @Autowired
+    private CommArchiveService commArchiveService;
 
     // 获取分页数据
     @RequestMapping("getPageData")
@@ -74,7 +78,7 @@ public class KjController {
         }
         param.put("kjIds", ids);
         param.put("disable", disable);
-        if (!StringUtils.isBlank(isvalid)&&(!"1,0".equals(isvalid))&&(!"0,1".equals(isvalid))) {
+        if (!StringUtils.isBlank(isvalid) && (!"1,0".equals(isvalid)) && (!"0,1".equals(isvalid))) {
             param.put("isvalid", isvalid);
         }
         System.out.println("----------------------");
@@ -94,6 +98,11 @@ public class KjController {
     @RequestMapping("insert")
     @ResponseBody
     public Map<String, Object> insert(Kj kj, HttpServletRequest request, HttpServletResponse response) {
+        // 获取参数
+        String commArchiveMp4Id = request.getParameter("commArchiveMp4Id") == null ? ""
+                : request.getParameter("commArchiveMp4Id").toString();
+        String commArchiveImgId = request.getParameter("commArchiveImgId") == null ? ""
+                : request.getParameter("commArchiveImgId").toString();
         // 获取用户数据
         UserInfo user = userService.getUserInfo();
         // 返回数据
@@ -103,15 +112,22 @@ public class KjController {
         try {
             // 添加数据
             boolean result = kjService.insert(kj, user);
-            String id = kj.getId();
-            if (StringUtils.isNotEmpty(id))
-                map.put("objId", id);
-            else
-                map.put("objId", "");
-            if (result)
+            String kjId = kj.getId();
+            if (result) {
+                if (StringUtils.isNotEmpty(commArchiveMp4Id)) {
+                    CommArchive commArchive = commArchiveService.get(commArchiveMp4Id);
+                    commArchive.setObjId(kjId);
+                    commArchiveService.update(commArchive, "ts_kj", "main");
+                }
+                if (StringUtils.isNotEmpty(commArchiveImgId)) {
+                    CommArchive commArchive = commArchiveService.get(commArchiveImgId);
+                    commArchive.setObjId(kjId);
+                    commArchiveService.update(commArchive, "ts_kj", "img");
+                }
                 map.put("resultCode", "100");
-            else
+            } else {
                 map.put("resultCode", "101");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -122,6 +138,11 @@ public class KjController {
     @RequestMapping("update")
     @ResponseBody
     public Map<String, Object> update(Kj kj, String id, HttpServletRequest request, HttpServletResponse response) {
+        // 获取参数
+        String commArchiveMp4Id = request.getParameter("commArchiveMp4Id") == null ? ""
+                : request.getParameter("commArchiveMp4Id").toString();
+        String commArchiveImgId = request.getParameter("commArchiveImgId") == null ? ""
+                : request.getParameter("commArchiveImgId").toString();
         // 获取用户数据
         UserInfo user = userService.getUserInfo();
         // 返回数据
@@ -131,10 +152,24 @@ public class KjController {
         try {
             // 更新数据
             boolean result = kjService.update(kj, user);
-            if (result)
+            String kjId = kj.getId();
+            if (result) {
+                if (StringUtils.isNotEmpty(commArchiveMp4Id)) {
+                    // 添加
+                    CommArchive commArchive = commArchiveService.get(commArchiveMp4Id);
+                    commArchive.setObjId(kjId);
+                    commArchiveService.update(commArchive, "ts_kj", "main");
+                }
+                if (StringUtils.isNotEmpty(commArchiveImgId)) {
+                    // 添加
+                    CommArchive commArchive = commArchiveService.get(commArchiveImgId);
+                    commArchive.setObjId(kjId);
+                    commArchiveService.update(commArchive, "ts_kj", "img");
+                }
                 map.put("resultCode", "100");
-            else
+            } else {
                 map.put("resultCode", "101");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

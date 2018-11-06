@@ -17,4 +17,6 @@ public interface CommArchiveMapper {
     int delete(CommArchive commArchive);
 
     CommArchive get(String id);
+
+    int delObjTableNameAndObjId(Map<String, Object> parm);
 }

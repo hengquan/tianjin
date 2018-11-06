@@ -88,9 +88,9 @@ html {
 		<div class="row clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
 				<form class="form-horizontal pt-form-full" role="form" id="form">
-					<input type="hidden" name="id" id="objId"> 
-					<input type="hidden" name="kjids" id="kjids">
-					<input type="hidden" name="commArchiveId" id="commArchiveId">
+					<input type="hidden" name="id" id="objId"> <input
+						type="hidden" name="kjids" id="kjids"> <input
+						type="hidden" name="commArchiveId" id="commArchiveId">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
@@ -205,8 +205,6 @@ html {
 	<br>
 	<br>
 	<script>
-    //虚拟tableId
-    var timestamp = Date.parse(new Date());
     //初始化分类
     //selfenlei();
     //附件相关
@@ -442,6 +440,8 @@ html {
       dropZoneEnabled : false,//是否显示拖拽区域 
       removeFromPreviewOnError : true,//是否移除校验文件失败的文件
       uploadExtraData : function(previewId, index) { //额外参数 返回json数组  
+        //虚拟tableId
+        var timestamp = Date.parse(new Date());
         return {
           'objId' : timestamp,
           'objTabname' : 'ts_mnsc',
@@ -477,7 +477,6 @@ html {
       var data = data.response;
       var commArchiveId = data.commArchiveId;
       $("#commArchiveId").val(commArchiveId);
-      alert(commArchiveId);
     });
 
     //初始化页面信息
