@@ -103,7 +103,7 @@ public class MnscController {
                     String mnscId = mnsc.getId();
                     CommArchive commArchive = commArchiveService.get(commArchiveId);
                     commArchive.setObjId(mnscId);
-                    commArchiveService.update(commArchive);
+                    commArchiveService.update(commArchive, "ts_mnsc", "img");
                 }
                 map.put("resultCode", "100");
             } else {
@@ -136,7 +136,7 @@ public class MnscController {
                     String mnscId = mnsc.getId();
                     CommArchive commArchive = commArchiveService.get(commArchiveId);
                     commArchive.setObjId(mnscId);
-                    commArchiveService.update(commArchive);
+                    commArchiveService.update(commArchive, "ts_mnsc", "img");
                 }
                 map.put("resultCode", "100");
             } else {

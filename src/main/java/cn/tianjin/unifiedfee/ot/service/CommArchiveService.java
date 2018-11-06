@@ -1,5 +1,8 @@
 package cn.tianjin.unifiedfee.ot.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +23,9 @@ public class CommArchiveService {
     }
 
     // 更新
-    public boolean update(CommArchive commArchive) throws Exception {
+    public boolean update(CommArchive commArchive, String objTableName, String archiveType) throws Exception {
+        // 删除
+        delObjTableNameAndObjId(commArchive.getObjId(), objTableName,archiveType);
         return dao.update(commArchive) > 0 ? true : false;
     }
 
@@ -36,5 +41,14 @@ public class CommArchiveService {
 
     public CommArchive get(String id) {
         return dao.get(id);
+    }
+
+    public Boolean delObjTableNameAndObjId(String kjId, String objTableName, String archiveType) {
+        // 删除
+        Map<String, Object> parm = new HashMap<String, Object>();
+        parm.put("objTabname", objTableName);
+        parm.put("objId", kjId);
+        parm.put("archiveType", archiveType);
+        return dao.delObjTableNameAndObjId(parm) > 0 ? true : false;
     }
 }

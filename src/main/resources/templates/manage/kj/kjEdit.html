@@ -95,7 +95,9 @@ html {
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">
 				<form class="form-horizontal pt-form-full" role="form" id="form">
 					<input type="hidden" name="id" id="objId"> <input
-						type="hidden" name="ids" id="ids">
+						type="hidden" name="ids" id="ids"> <input type="hidden"
+						name="commArchiveMp4Id" id="commArchiveMp4Id"> <input
+						type="hidden" name="commArchiveImgId" id="commArchiveImgId">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
@@ -114,8 +116,7 @@ html {
 								<div class="input-group">
 									<select id="kjCatId" name="kjCatId" class="selectpicker"
 										data-actions-box="true" data-live-search="true" title="请选择"
-										onchange="selOnchange()">
-                    ${optionHtml}
+										onchange="selOnchange()"> ${optionHtml}
 									</select> <input type="hidden" class="form-control" name="kjCatNames"
 										id="kjCatNames" />
 								</div>
@@ -289,21 +290,8 @@ html {
         dataType : 'json',
         cache : false,
         success : function(data) {
-          //上传附件
-          var objId = data.objId;
-          if (objId != '') {
-            $("#objId").val(objId);
-            setTimeout(function() {
-              $("#file-1").fileinput('upload');
-              parent.refresh();
-              closeMy();
-            }, 200);
-            setTimeout(function() {
-              $("#file-2").fileinput('upload');
-              parent.refresh();
-              closeMy();
-            }, 400);
-          }
+          parent.refresh();
+          closeMy();
         },
         error : function() { //失败回调函数
           parent.refresh();
@@ -432,34 +420,22 @@ html {
       //删除行
       $(obj).parent().remove();
     }
-
-    /* $("#file-1").fileinput({
-      uploadUrl: "${gateway}/file/uploadTemp",
-      maxFileSize: 0,
-      dropZoneEnabled: false,//是否显示拖拽区域
-      browseOnZoneClick: true,
-      showUpload: true,//是否显示上传按钮
-      showRemove : false,//显示移除按钮,跟随文本框的那个
-      maxFilesNum: 1
-    }).on("fileuploaded", function(event, data, previewId, index) {
-      console.log("========================")
-      console.log(data);
-      console.log(data.response.fileUrl);
-    }); */
+    //上传视频
     $("#file-1").fileinput({
       theme : "explorer", //主题
       language : 'zh',
       uploadUrl : "${gateway}/file/upload",// 上传请求路径
       allowedFileExtensions : [ 'mp4' ],//允许上传的文件后缀       
-      uploadAsync : false, //是否允许异步上传
-      showUpload : false,//是否显示上传按钮
+      uploadAsync : true, //是否允许异步上传
+      showUpload : true,//是否显示上传按钮
       showCaption : false,//是否显示容器
       dropZoneEnabled : false,//是否显示拖拽区域 
       removeFromPreviewOnError : true,//是否移除校验文件失败的文件
       uploadExtraData : function(previewId, index) { //额外参数 返回json数组  
-        var objId = $("#objId").val();
+        //虚拟tableId
+        var timestamp = Date.parse(new Date());
         return {
-          'objId' : objId,
+          'objId' : timestamp,
           'objTabname' : 'ts_kj',
           'archiveType' : 'main'
         // commId 为全局变量，可以给控件上传额外参数  
@@ -474,6 +450,9 @@ html {
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : false,
       initialPreview : videoJson, //显示图片
+      initialPreviewConfig : [ {
+        url : '${gateway}/file/delete?id=1',//删除controller映射
+      } ],
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片
@@ -485,21 +464,28 @@ html {
         'jpeg' : '<i class="fa fa-file-photo-o text-primary"></i>'
       },
     });
-    //上传文件
+    //导入文件上传完成之后的事件
+    $("#file-1").on("fileuploaded", function(event, data, previewId, index) {
+      var data = data.response;
+      var commArchiveId = data.commArchiveId;
+      $("#commArchiveMp4Id").val(commArchiveId);
+    });
+    //上传图片
     $("#file-2").fileinput({
       theme : "explorer", //主题
       language : 'zh',
       uploadUrl : "${gateway}/file/upload",// 上传请求路径
       allowedFileExtensions : [ 'jpg', 'gif', 'png', 'jpeg' ],//允许上传的文件后缀    
-      uploadAsync : false, //是否允许异步上传
-      showUpload : false,//是否显示上传按钮
+      uploadAsync : true, //是否允许异步上传
+      showUpload : true,//是否显示上传按钮
       showCaption : false,//是否显示容器
       dropZoneEnabled : false,//是否显示拖拽区域 
       removeFromPreviewOnError : true,//是否移除校验文件失败的文件
       uploadExtraData : function(previewId, index) { //额外参数 返回json数组  
-        var objId = $("#objId").val();
+        //虚拟tableId
+        var timestamp = Date.parse(new Date());
         return {
-          'objId' : objId,
+          'objId' : timestamp,
           'objTabname' : 'ts_kj',
           'archiveType' : 'img'
         // commId 为全局变量，可以给控件上传额外参数  
@@ -514,6 +500,9 @@ html {
       maxFileSize : 0, //允许文件上传大小
       overwriteInitial : true,
       initialPreview : imgJson, //显示图片
+      initialPreviewConfig : [ {
+        url : '${gateway}/file/delete?id=1',//删除controller映射
+      } ],
       previewFileIcon : '<i class="fa fa-file"></i>',
       initialPreviewAsData : true, // defaults markup  
       preferIconicPreview : false, // 是否优先显示图标  false 即优先显示图片
@@ -525,98 +514,91 @@ html {
         'jpeg' : '<i class="fa fa-file-photo-o text-primary"></i>'
       },
     });
-
-    function testUpload() {
-      alert("ABC4");
-      var formData = new FormData($('#uploadForm')[0]);
-      //  var formData = new FormData();
-      //formData.append("myfile", document.getElementById("file3").files[0]);
-      console.log(formData);
-      $.ajax({
-        url : "${gateway}/file/uploadTemp",
-        type : "POST",
-        data : formData,
-        contentType : false,
-        processData : false,
-        success : function(data) {
-          console.log("========================")
-          console.log(data);
-        },
-        error : function() {
-          alert("上传失败！");
-        }
-      });
-    }
+    //导入文件上传完成之后的事件
+    $("#file-2").on("fileuploaded", function(event, data, previewId, index) {
+      var data = data.response;
+      var commArchiveId = data.commArchiveId;
+      $("#commArchiveImgId").val(commArchiveId);
+    });
+    //删除文件之后的事件
+    $('#input-id').on('filesuccessremove', function(event, id) {
+      if (some_processing_function(id)) {
+        console.log('Uploaded thumbnail successfully removed');
+      } else {
+        return false; // abort the thumbnail removal
+      }
+    });
 
     //初始化页面信息
-    function initialize(){
-	    var url = location.search;
-	    if (url != '') {
-	      //变成修改
-	      $("#baocun").attr("onclick", "editKj()");
-	      url = url.substr(1);
-	      var split = url.split("=");
-	      $.ajax({
-	        type : 'post',
-	        url : "${gateway}/kj/get",
-	        data : {
-	          "id" : split[1]
-	        },
-	        dataType : 'json',
-	        cache : false,
-	        success : function(data) {
-	          var html = '<tr>'
-	              + '<th>课件名称</th>'
-	              + '<th>分类名称</th>'
-	              + '<th>创建人</th>'
-	              + '<th>创建时间</th>'
-	              + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
-	              + '</tr>';
-	          var kj = data.data;
-	          $("#objId").val(kj.id);
-	          $("#kjName").val(kj.kjName);
-	          $("#sort").val(kj.sort);
-	          $("#remarks").val(kj.remarks);
-	          $("input[type=radio][name=isvalid]").each(function(i, e) {
-	            if ($(this).val() == kj.isvalid)
-	              $(this).iCheck('check');
-	          });
-	          $("#kjCatId").val(kj.kjCatId);
-	          $("#kjCatNames").val(kj.kjCatNames);
-	          $("#kjCatId").selectpicker('val', kj.kjCatId);
-	          //获取相关课件列表
-	          $("#ids").val(kj.ids);
-	          var dataList = kj.kjs;
-	          if (dataList != null) {
-	            for (var i = 0; i < dataList.length; i++) {
-	              html += '<tr>'
-	                  + '<td>'
-	                  + dataList[i].kjName
-	                  + '</td>'
-	                  + '<td>'
-	                  + dataList[i].kjCatNames
-	                  + '</td>'
-	                  + '<td>'
-	                  + dataList[i].createName
-	                  + '</td>'
-	                  + '<td>'
-	                  + dataList[i].createdate
-	                  + '</td>'
-	                  + '<th onclick="removeTr(this)" thisval="'
-	                  + dataList[i].id
-	                  + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
-	                  + '</tr>';
-	            }
-	            $("#theTable").html(html);
-	          }
-	        },
-	        error : function() { //失败回调函数
-	          alert("获取信息失败");
-	        }
-	      });
-	    }
+    function initialize() {
+      var url = location.search;
+      if (url != '') {
+        //变成修改
+        $("#baocun").attr("onclick", "editKj()");
+        url = url.substr(1);
+        var split = url.split("=");
+        $
+            .ajax({
+              type : 'post',
+              url : "${gateway}/kj/get",
+              data : {
+                "id" : split[1]
+              },
+              dataType : 'json',
+              cache : false,
+              success : function(data) {
+                var html = '<tr>'
+                    + '<th>课件名称</th>'
+                    + '<th>分类名称</th>'
+                    + '<th>创建人</th>'
+                    + '<th>创建时间</th>'
+                    + '<th><span class="glyphicon glyphicon-plus" aria-hidden="true" onclick="selectItem()"></span></th>'
+                    + '</tr>';
+                var kj = data.data;
+                $("#objId").val(kj.id);
+                $("#kjName").val(kj.kjName);
+                $("#sort").val(kj.sort);
+                $("#remarks").val(kj.remarks);
+                $("input[type=radio][name=isvalid]").each(function(i, e) {
+                  if ($(this).val() == kj.isvalid)
+                    $(this).iCheck('check');
+                });
+                $("#kjCatId").val(kj.kjCatId);
+                $("#kjCatNames").val(kj.kjCatNames);
+                $("#kjCatId").selectpicker('val', kj.kjCatId);
+                //获取相关课件列表
+                $("#ids").val(kj.ids);
+                var dataList = kj.kjs;
+                if (dataList != null) {
+                  for (var i = 0; i < dataList.length; i++) {
+                    html += '<tr>'
+                        + '<td>'
+                        + dataList[i].kjName
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].kjCatNames
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].createName
+                        + '</td>'
+                        + '<td>'
+                        + dataList[i].createdate
+                        + '</td>'
+                        + '<th onclick="removeTr(this)" thisval="'
+                        + dataList[i].id
+                        + '"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></th>'
+                        + '</tr>';
+                  }
+                  $("#theTable").html(html);
+                }
+              },
+              error : function() { //失败回调函数
+                alert("获取信息失败");
+              }
+            });
+      }
     }
-    
+
     //渲染分类
     function selfenlei() {
       $.ajax({
@@ -633,7 +615,7 @@ html {
               html += '<option value="'+ msgs[i].id +'">' + msgs[i].name
                   + '</option>'
             }
-            if(html != '')
+            if (html != '')
               $("#kjCatId").html(html);
           } else {
             layer.msg(data.messageInfo);
