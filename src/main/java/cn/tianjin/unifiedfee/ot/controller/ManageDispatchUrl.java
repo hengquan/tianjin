@@ -212,7 +212,7 @@ public class ManageDispatchUrl {
                     if (archiveType.equals("img")) {
                         String fileUrl = commArchive.getFileUrl();
                         if (StringUtils.isNotEmpty(fileUrl)) {
-                            String src = "<img src='" + fileUrl + "' class='file-preview-image'>";
+                            String src = "<img src='" + fileUrl + "' class='kv-preview-data file-preview-image' >";
                             imgJsons += "," + src;
                         }
                     }
