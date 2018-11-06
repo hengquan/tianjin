@@ -3,54 +3,30 @@
 <head>
 <meta charset="UTF-8">
   <title>分类查看</title>
-  <!-- 1 bootstrap基础css -->
-  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" >
-  <!-- 2 table表格css -->
-  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet" >
-  <!-- 3 treeview树css -->
-  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css" rel="stylesheet" >
-  <!-- 4 datetimepicker时间选择css -->
-  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet" >
-  <!-- 5 select选择框css -->
-  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css" rel="stylesheet" >
-  <!-- 6 fileinput上传文件css -->
-  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css" rel="stylesheet" >
-  <!-- 7 icheck单选+多选css -->
+  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet">
+  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css" rel="stylesheet">
+  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css" rel="stylesheet">
+  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css" rel="stylesheet">
   <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css" rel="stylesheet">
-  <!-- 8 Validator验证css -->
-  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css" rel="stylesheet" >
-  <!-- 9 layer弹框css -->
-  <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet" >
-  <!-- 10 引入字体css -->
+  <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css" rel="stylesheet">
+  <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
   <link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css" rel="stylesheet">
-  <!-- 11 页面样式css -->
-  <link href="${gateway}/src/css/pt-main.css" rel="stylesheet" >
+  <link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
-  <!-- 优先引入jquery1.12.4版本 -->
   <script src="${gateway}/libs/jquery/jquery-1.12.4.js"></script>
-  <!-- 1 bootstrap基础js -->
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-  <!-- 2 table表格js -->
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
-  <!-- 2 table列表数据js 可删除？ -->
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
-  <!-- 3 treeview树js -->
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
-  <!-- 4 datetimepicker时间选择js -->
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
-  <!-- 5 select选择框js -->
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
-  <!-- 6 fileinput上传文件js -->
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
-  <!-- 6 fileinput中文包js -->
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
-  <!-- 7 icheck单选+多选js -->
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
-  <!-- 8 Validator验证js -->
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
-  <!-- 9 layer弹框js -->
   <script src="${gateway}/libs/layer/layer.js"></script>
-  <!-- 11 页面js -->
   <script src="${gateway}/src/js/main.js"></script>
   <script src="${gateway}/src/js/train.common.js"></script>
 
@@ -76,71 +52,31 @@
   <br>
   <div class="container" style="margin-left:80px;">
     <div class="row clearfix">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column col-center-block">
-      <form class="form-horizontal pt-form-full" role="form" id="form">
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-          <div class="form-group">
-            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align:right;" for="title">名&emsp;&emsp;称：</label>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 value-div">
-              <span id="cateName"></span>
-            </div>
-          </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group">
+          <table class="table table-bordered">
+            <tr>
+              <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="background-color: #F0F0F0">&emsp;名&emsp;称：</td>
+              <td class="col-lg-10 col-md-10 col-sm-10 col-xs-10" colspan="3"><span id="cateName"></span></td>
+            </tr>
+            <tr>
+              <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="background-color: #F0F0F0">&emsp;排&emsp;序：</td>
+              <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span id="sort"></span></td>
+              <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="background-color: #F0F0F0">&emsp;状&emsp;态：</td>
+              <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span id="valid"></span></td>
+            </tr>
+            <tr>
+              <td style="width: 151px; background-color: #F0F0F0">&emsp;创建人：</td>
+              <td><span id="createName"></span></td>
+              <td style="width: 151px; background-color: #F0F0F0">创建时间：</td>
+              <td><span id="createDate"></span></td>
+            </tr>
+            <tr>
+              <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="background-color: #F0F0F0">&emsp;说&emsp;明：</td>
+              <td class="col-lg-10 col-md-10 col-sm-10 col-xs-10" colspan="3" style="text-align: left"><span id="remarks" style="text-align: left"></span></td>
+            </tr>
+          </table>
         </div>
-        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-          <div class="form-group">
-            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align:right;" for="upName"></label>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs6"></div>
-          </div>
-        <!-- 
-          <div class="form-group">
-            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align:right;" for="upName">上&emsp;&emsp;级：</label>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs6 value-div">
-              <span id="upName"></span>
-            </div>
-          </div>
-         -->
-        </div>
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-          <div class="form-group">
-            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align:right;" for="sort">排&emsp;&emsp;序：</label>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 value-div">
-              <span id="sort"></span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-          <div class="form-group">
-            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align:right;" for="valid">状&emsp;&emsp;态：</label>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs6 value-div">
-              <span id="valid"></span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-          <div class="form-group">
-            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align:right;" for="createName">&emsp;创建人：</label>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 value-div">
-              <span id="createName"></span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-          <div class="form-group">
-            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align:right;" for="createDate">创建时间：</label>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs6 value-div">
-              <span id="createDate"></span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <div class="form-group">
-            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-align:right;" for="remarks">备&emsp;&emsp;注：</label>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-              <textarea class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="remarks"></textarea>
-            </div>
-          </div>
-        </div>
-        </form>
       </div>
     </div>
   </div>
