@@ -107,9 +107,8 @@
 												for="lunch">分类</label>
 											<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
 												<select id="kjCatId" class="selectpicker"
-                            data-actions-box="true" data-live-search="true" title="请选择">
-												  <option value="">全部</option>
-                          ${optionHtml}
+													data-actions-box="true" data-live-search="true" title="请选择">
+													<option value="">全部</option> ${optionHtml}
 												</select>
 											</div>
 										</div>
@@ -125,14 +124,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- ———————— -->
-					<div class="form-group">
-						<button type="submit" onclick="addKj()"
-							class="btn w160 btn-lg btn-default btn-primary">保存</button>
-						<button type="button" class="btn w160 btn-lg btn-default"
-							onclick="closeMy()">取消</button>
-					</div>
-					<!-- ———————— -->
 					<!--内容区容器-->
 					<div class="pt-main">
 						<!--bootstrap 表格-->
@@ -144,6 +135,14 @@
 							</div>
 						</div>
 					</div>
+					<!-- ———————— -->
+					<div class="form-group" style="margin-left:150px">
+						<button type="submit" onclick="addKj()"
+							class="btn w160 btn-lg btn-default btn-primary">添加</button>
+						<button type="button" class="btn w160 btn-lg btn-default"
+							onclick="closeMy()">取消</button>
+					</div>
+					<!-- ———————— -->
 				</div>
 			</div>
 			<!--主视口 结束-->
@@ -152,30 +151,30 @@
 
 	<script src="${gateway}/src/js/pt-tree.js"></script>
 	<script>
-/*     //渲染分类
-    $.ajax({
-      type : 'post',
-      url : "${gateway}/train/getCateData",
-      dataType : 'json',
-      cache : false,
-      success : function(data) {
-        var returnCode = data.returnCode;
-        if (returnCode == '00') {
-          var html = '<option>全部</option>';
-          var msgs = data.data.list;
-          for (var i = 0; i < msgs.length; i++) {
-            html += '<option value="'+ msgs[i].id +'">' + msgs[i].name
-                + '</option>'
-          }
-          $("#kjCatId").html(html);
-        } else {
-          layer.msg(data.messageInfo);
-        }
-      },
-      error : function() { //失败回调函数
-        layer.msg("获取分类失败！");
-      }
-    }); */
+    /*     //渲染分类
+     $.ajax({
+     type : 'post',
+     url : "${gateway}/train/getCateData",
+     dataType : 'json',
+     cache : false,
+     success : function(data) {
+     var returnCode = data.returnCode;
+     if (returnCode == '00') {
+     var html = '<option>全部</option>';
+     var msgs = data.data.list;
+     for (var i = 0; i < msgs.length; i++) {
+     html += '<option value="'+ msgs[i].id +'">' + msgs[i].name
+     + '</option>'
+     }
+     $("#kjCatId").html(html);
+     } else {
+     layer.msg(data.messageInfo);
+     }
+     },
+     error : function() { //失败回调函数
+     layer.msg("获取分类失败！");
+     }
+     }); */
     //获取参数
     var objId = '';
     var url = location.search;
