@@ -240,6 +240,14 @@ html {
               }
             }
           },
+          mnscCatId : {
+            message : '分类验证失败',
+            validators : {
+              notEmpty : {
+                message : '分类不能为空'
+              }
+            }
+          },
           mnscCatNames : {
             message : '分类验证失败',
             validators : {
@@ -309,6 +317,11 @@ html {
       });
     }
     function editMnsc() {
+      var validatorObj = $('#form').data("bootstrapValidator");
+      var aa = validatorObj.validate();
+      var flag = validatorObj.isValid();
+      if (!flag)
+        return;
       $.ajax({
         type : 'post',
         url : "${gateway}/mnsc/update",
