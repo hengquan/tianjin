@@ -228,10 +228,9 @@
       if (row.isvalid=='0') {
         btnArray.push('<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("' + value + '")>修改</button>');
         btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red pt-success" onclick="changeValid(\''+ value + '\', \''+row.tmHtml+'\',\''+row.parentName+'\', 1)">启用</button>');
+        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.tmHtml+'\',\''+row.parentName+'\', 2)">删除</button>');
       }
-      btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.tmHtml+'\',\''+row.parentName+'\', 2)">删除</button>');
-      return btnArray.join('');
-     
+      return btnArray.join('');     
     }
  
  // 操作启用、停用、删除
@@ -278,7 +277,7 @@
     function addItem() {
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        title : '<span class="text-color">添加题目信息</span>',//请修改span中间的内容
+        title : '<span class="text-color">新增题目信息</span>',//请修改span中间的内容
         shadeClose : true,//开启阴影关闭
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
