@@ -148,4 +148,9 @@
 		<include refid="Blob_Column_List" />
 		from comm_archive where id = #{id}
 	</select>
+
+	<delete id="delObjTableNameAndObjId">
+		delete from comm_archive where obj_id = #{objId} and
+		obj_tabname = #{objTabname} and archive_type = #{archiveType}
+	</delete>
 </mapper>
