@@ -439,7 +439,7 @@ html {
       if (!flag) return;
       $.ajax({
         type : 'post',
-        url : "${gateway}/st/insert",
+        url : "${gateway}/st/insert?isvalid=1",
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
@@ -460,11 +460,10 @@ html {
     }   
     function addTmcache() {
       if (!($("#objId").val())){
-        $("#isvalid").val("3");
 	      $.ajax({
 	        type : 'post',
 	        url : "${gateway}/st/insert",
-	        data : $("#form").serialize(),
+	        data : _data,
 	        dataType : 'json',
 	        cache : false,
 	        success : function(data) {
