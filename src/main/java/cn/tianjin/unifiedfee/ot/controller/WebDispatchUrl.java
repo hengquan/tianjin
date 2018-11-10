@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import cn.taiji.format.result.ObjectResponseResult;
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.company.remote.SystemCompanyRemote;
-import cn.taiji.company.system.CompanyBasicInfo;
+import cn.taiji.company.system.CompanyInfo;
 import cn.taiji.web.menu.remote.SecurityMenuRemote;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
@@ -79,10 +79,10 @@ public class WebDispatchUrl {
         UserInfo ui=userService.getUserInfo();
         if (ui!=null) {
             //获得用户所在企业
-            ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
+            ObjectResponseResult<CompanyInfo> companyInfo=companyRemote.findCompanyBankInfoList(ui.getUserId());
             if (companyInfo!=null&&companyInfo.getData()!=null) {
                 Map<String, Object> param=new HashMap<String, Object>();
-                param.put("compId", companyInfo.getData().getCompanyId());
+                param.put("compId", companyInfo.getData().getId());
                 List<Map<String, Object>> ul=catService.getCompUserList(param);
                 if (ul!=null&&ul.size()>0) {
                     for (Map<String, Object> u: ul) {
@@ -113,11 +113,10 @@ public class WebDispatchUrl {
         UserInfo ui=userService.getUserInfo();
         if (ui!=null) {
             //获得用户所在企业
-            ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
-            System.out.println("=================================================================");
+            ObjectResponseResult<CompanyInfo> companyInfo=companyRemote.findCompanyBankInfoList(ui.getUserId());
             if (companyInfo!=null&&companyInfo.getData()!=null) {
                 Map<String, Object> param=new HashMap<String, Object>();
-                param.put("compId", companyInfo.getData().getCompanyId());
+                param.put("compId", companyInfo.getData().getId());
                 List<Map<String, Object>> ul=catService.getCompUserList(param);
                 if (ul!=null&&ul.size()>0) {
                     for (Map<String, Object> u: ul) {
