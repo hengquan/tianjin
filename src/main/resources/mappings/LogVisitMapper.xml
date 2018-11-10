@@ -559,6 +559,25 @@ select upCateName, count(distinct obj_id) count from (
       </if>
 	group by c.name
   </select>
+  <!--模拟实操统计 -->
+  <select id="getcatmnsctj" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select c.name catname,count(distinct s.id) coutkj ,count(distinct t.obj_id) countxxkj,count(distinct t.visitor_name) countxxrs,count(t.obj_id) countxxcs,
+	case when count(distinct s.id) = 0 then 0
+	     when count(distinct s.id) > 0 then ROUND(count(distinct t.obj_id)/count(distinct s.id)*100,2) end countxxbl
+	from category c left join  ts_mnsc s on c.id = s.kj_cat_id 
+	left join log_visit t on  s.id = t.obj_id 
+	<if test="date1!=null and date1!=''">
+      <![CDATA[
+      and t.create_date>to_date('${date1}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+      <if test="date2!=null and date2!=''">
+      <![CDATA[
+      and t.create_date<to_date('${date2}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+	group by c.name
+  </select>
 
   <select id="getVisitCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
     select count(*) from log_visit where obj_type=#{objType} and obj_id=#{objId}

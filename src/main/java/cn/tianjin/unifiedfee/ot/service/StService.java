@@ -90,10 +90,18 @@ public class StService {
 	                tmSelect.setIsAnswer(0);
 	            tmSelect.setSort(2);
 	            selectDao.insertSelective(tmSelect); 
-	          }     
+	          }
+	        this.deleteTmp();
 	        return dao.insert(tm) >  0 ? tm.getId() : "";
 	      
 	  }	
+	//删除临时
+	public void deleteTmp() {
+	    dao.deleteTmpSel(3);
+	    dao.deleteTmp(3);
+	}
+	
+	
 	//添加选项	
 	public String insertselect(Tm tm,UserInfo user) throws Exception {
 	    String restr = "000";

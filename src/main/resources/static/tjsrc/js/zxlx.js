@@ -31,7 +31,7 @@ $(function (param) {
         }
       }
       for(var j=0;j<arr.length;j++) {
-        if (j==0) html+= '<option value="'+arr[j].id+'" selected>'+arr[j].name+'</option>';
+        if (j==0) html+= '<option value="'+arr[j].id+'">'+arr[j].name+'</option>';
         else html+= '<option value="'+arr[j].id+'">'+arr[j].name+'</option>';
       }
       $(".selectpicker").html(html);

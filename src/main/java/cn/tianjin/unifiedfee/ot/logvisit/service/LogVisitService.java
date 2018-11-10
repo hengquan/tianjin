@@ -50,8 +50,12 @@ public class LogVisitService {
     {
         List<LogVisit> loglist  = logDao.getcatkjtj(param);
         return loglist;
+    }    
+    public List<LogVisit>  getcatmnsctj(Map<String, Object> param)
+    {
+        List<LogVisit> loglist  = logDao.getcatkjtj(param);
+        return loglist;
     }
-    
 
     public List<LogVisit> getLogVisitList(Integer rownum) {
         return logDao.getLogVisitList(rownum);

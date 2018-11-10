@@ -34,8 +34,8 @@ public interface LogVisitMapper {
 
     List<Map<String, Object>> getXxrzList(Map<String, Object> param);
 
-    List<LogVisit> getcatkjtj(Map<String, Object> param);
-
+    List<LogVisit> getcatkjtj(Map<String, Object> param);    
+    List<LogVisit> getcatmnsctj(Map<String, Object> param);
     int getVisitCount(Map<String, Object> param);
 
     List<Map<String, Object>> getLateDay(Map<String, Object> param);

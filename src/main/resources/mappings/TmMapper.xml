@@ -202,4 +202,14 @@
     from q_tm a, q_sj_tm b
     where a.id=b.tm_id and b.sj_id=#{value}
   </select>
+  <delete id="deleteTmpSel" parameterType="java.lang.Integer">
+		delete   from q_tm_select t
+		where exists (select * 
+		from q_tm s  
+		Where t.tm_id=s.id and s.isvalid =#{isvalid})
+  </delete>
+  <delete id="deleteTmp" parameterType="java.lang.Integer">
+		delete from q_tm t
+		where ISVALID = #{isvalid}
+  </delete>   
 </mapper>

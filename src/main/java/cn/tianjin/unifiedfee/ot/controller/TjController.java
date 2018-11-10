@@ -307,14 +307,32 @@ public class TjController {
             @RequestParam(required=false) String date2,
             @RequestParam(value="offset", defaultValue="1") int offset,
             @RequestParam(value="limit", defaultValue="10") int limit) {
-           Map<String, Object> param=new HashMap<String, Object>();  
-           param.put("date1", date1);//开始时间
-           param.put("date2", date2);//结束时间
-           Map<String, Object> map = new HashMap<String, Object>();
-           List<LogVisit> loglist = catService.getcatkjtj(param);
-           PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
-           map.put("total", pageList.getTotal());
-           map.put("rows", pageList.getList());
-           return map;
+        Map<String, Object> param=new HashMap<String, Object>();  
+        param.put("date1", date1);//开始时间
+        param.put("date2", date2);//结束时间
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<LogVisit> loglist = catService.getcatkjtj(param);
+        PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
+        map.put("total", pageList.getTotal());
+        map.put("rows", pageList.getList());
+        return map;
+    }
+    @RequestMapping("getcatmnsctj")
+    @ResponseBody
+    public Map<String, Object> getcatmnsctj(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(required=false) String userIds,
+            @RequestParam(required=false) String date1,
+            @RequestParam(required=false) String date2,
+            @RequestParam(value="offset", defaultValue="1") int offset,
+            @RequestParam(value="limit", defaultValue="10") int limit) {
+        Map<String, Object> param=new HashMap<String, Object>();  
+        param.put("date1", date1);//开始时间
+        param.put("date2", date2);//结束时间
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<LogVisit> loglist = catService.getcatkjtj(param);
+        PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
+        map.put("total", pageList.getTotal());
+        map.put("rows", pageList.getList());
+        return map;
     }
 }

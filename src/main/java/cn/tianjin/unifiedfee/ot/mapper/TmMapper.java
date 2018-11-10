@@ -19,4 +19,6 @@ public interface TmMapper {
     public List<Tm> getTmList4sj(Map<String, Object> param);
     public List<Tm> getTmList4sjCates(Map<String, Object> param);
     public List<Tm> getTmListTySjId(String id);
+    void deleteTmpSel(int isvalid);
+    void deleteTmp(int isvalid);
 }
