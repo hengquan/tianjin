@@ -101,7 +101,7 @@ html {
                        	   <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="title"><span>※ </span>分类</label>
                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">	
                             	   <select id="catid" name="catid" class="selectpicker" class="selectpicker"
-                                    data-live-search="true" title="请选择" >										
+                                    data-live-search="true" title="请选择" onchange="selOnchange()">										
 									    <option value="1">法规类</option>
 						                <option value="2">政策类</option>
 						                <option value="3">收费类</option>
@@ -422,17 +422,11 @@ html {
       });  
     }   
     function addTmcache() {
-      if (!($("#objId").val())){
-        $("#isvalid").val("3");
-        var _date = $("#form").serialize();
-        _date.isvalid = 3;
-        alert(_date.isvalid);
-        alert(($("#isvalid").val()));
+      if (!($("#objId").val())){        
 	      $.ajax({
 	        type : 'post',
-	        url : "${gateway}/st/insert",
-	        data : _date,
-	        
+	        url : "${gateway}/st/insert?isvalid=3",
+	        data :  $("#form").serialize(),	        
 	        dataType : 'json',
 	        cache : false,
 	        success : function(data) {

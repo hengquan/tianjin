@@ -91,7 +91,7 @@ public class StService {
 	            tmSelect.setSort(2);
 	            selectDao.insertSelective(tmSelect); 
 	          }
-	        //this.deleteTmp();
+	        this.deleteTmp();
 	        return dao.insert(tm) >  0 ? tm.getId() : "";
 	      
 	  }	

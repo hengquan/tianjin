@@ -121,6 +121,7 @@ public class StController {
         Map<String, Object> map = new HashMap<String, Object>();
         // 跨域
         HttpPush.responseInfo(response);
+        tm.setIsvalid(Integer.valueOf(request.getParameter("isvalid")));
         try {
             // 添加数据
             String newId = stService.insert(tm,user);
