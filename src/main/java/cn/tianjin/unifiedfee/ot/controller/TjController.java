@@ -27,7 +27,7 @@ import com.spiritdata.framework.util.DateUtils;
 import cn.taiji.format.result.ObjectResponseResult;
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.company.remote.SystemCompanyRemote;
-import cn.taiji.company.system.CompanyBasicInfo;
+import cn.taiji.company.system.CompanyInfo;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.entity.LogVisit;
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
@@ -70,7 +70,7 @@ public class TjController {
                 return retMap;
             }
             //获得用户所在企业
-            ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
+            ObjectResponseResult<CompanyInfo> companyInfo=companyRemote.findCompanyBankInfoList(ui.getUserId());
             if (companyInfo==null||companyInfo.getData()==null) {
                 //return null;
             }
@@ -212,9 +212,9 @@ public class TjController {
             if (!"1".equals(forType)) {//若不是为管理端，要获得当前的用户和企业信息
                 if ("2".equals(forType)) {//企业管理员
                     //获得用户所在企业
-                    ObjectResponseResult<CompanyBasicInfo> companyInfo=companyRemote.findCompanyInfo(ui.getUserId());
+                    ObjectResponseResult<CompanyInfo> companyInfo=companyRemote.findCompanyBankInfoList(ui.getUserId());
                     if (companyInfo!=null&&companyInfo.getData()!=null) {
-                        compId=companyInfo.getData().getCompanyId();
+                        compId=companyInfo.getData().getId();
                     } else {//这是测试代码，用guanliyuan进行测试
                         compId="98311111234523456B";
                     }
