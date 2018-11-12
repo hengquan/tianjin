@@ -60,6 +60,7 @@
                       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="objType">类&emsp;&emsp;型</label>
                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                         <select id="objType" class="selectpicker" title="请选择" data-actions-box="true" data-live-search="true">
+                          <option value="">请选择</option>
                           <option value="ts_kj">课件</option>
                           <option value="ts_mnsc">模拟实操</option>
                           <option value="q_sj">练习</option>
@@ -190,6 +191,7 @@ function initCate() {
       if (result.returnCode=='00') {
         if (result.data&&result.data.tree&&result.data.tree.nodes) {
           var l=result.data.tree.nodes;
+          $('#catName.selectpicker').append("<option value=''>请选择</option>");
           for (var i=0;i<l.length;i++) {
             $('#catName.selectpicker').append("<option value="+l[i].id+">"+l[i].text+"</option>");
           }

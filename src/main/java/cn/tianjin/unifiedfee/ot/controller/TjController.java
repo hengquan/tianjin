@@ -246,7 +246,7 @@ public class TjController {
             param.put("moduleSql", moduleSql);//所选择的人员的id列表
 
             String catSql="";
-            if (!StringUtils.isBlank(catNames)) {
+            if (!StringUtils.isBlank(catNames)&&!"请选择".equals(catNames)) {
                 catSql=catNames.replaceAll(",", "')>0 or instr(cat_name, '");
                 catSql="(instr(cat_name, '"+catSql+"')>0)";
             }
