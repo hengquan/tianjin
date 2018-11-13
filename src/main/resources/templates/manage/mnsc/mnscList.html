@@ -121,8 +121,8 @@
 												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 													<select id="mnscCatId" class="selectpicker"
 														data-actions-box="true" data-live-search="true"
-														title="请选择">
-														<option value="">全部</option>
+														title="请选择分类">
+														<option value="">清空</option>
                             ${optionHtml}
 													</select>
 												</div>
@@ -133,10 +133,11 @@
 												<label class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
 													for="valid" style="text-align: right;">&emsp;状&emsp;态</label>
 												<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-													<select id="isvalid" name="isvalid" multiple
+													<select id="isvalid" name="isvalid"
 														autocomplete="off" class="selectpicker"
 														data-actions-box="true" data-live-search="true"
 														title="请选择状态">
+														<option value="">清空</option>
 														<option value="1">启用</option>
 														<option value="0">停用</option>
 													</select>
@@ -412,20 +413,12 @@
       formatter : operateFormatter
     } ]);
     function queryParams(params) {
-      var selectedValues = [];
-      var count=$("#isvalid option").length;
-      for(var i=0;i<count;i++){
-        if ($("#isvalid").get(0).options[i].selected) {
-          selectedValues.push($("#isvalid").get(0).options[i].value);
-        }
-      }
-      var data = selectedValues.join(",");
       return {
         mnscName : $("#mnscName").val(),
         mnscCatId : $("#mnscCatId").val(),
         createStart : $("#createStart").val(),
         createEnd : $("#createEnd").val(),
-        isvalid : data,
+        isvalid : $("#isvalid").val(),
         // 使用page size分页
         limit : params.limit, //页面大小
         offset : params.offset
