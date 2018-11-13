@@ -477,39 +477,84 @@ order by create_date desc
     )
     order by (kj_count+mnsc_count+NVL(sj_count,0))
   </select>
+
+  <!-- WH::得到企业，各类学习情况的总数 -->
+  <select id="getQytjSumList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select obj_type,count(obj_id) fx from log_visit
+    where (obj_id is not null and length(trim(obj_id))>0)
+      and ((obj_type!='admin_mainpage' and obj_type!='student_profile' and visit_module_id!='模拟实操列表' and visit_module_id!='课件列表'))
+      <if test="date1!=null and date1!=''">
+      <![CDATA[
+      and create_date>to_date('${date1}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+      <if test="date2!=null and date2!=''">
+      <![CDATA[
+      and create_date<to_date('${date2}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+    group by obj_type
+  </select>
+  <!-- WH::得到企业统计，行转列 -->
+  <select id="getQytjList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select *
+    from (
+      select NVL(group_name, '未知') group_name, obj_type, count(obj_id) fx from log_visit
+      where visit_module_id is not null and obj_id is not null and length(trim(obj_id))>0
+      and ((obj_type!='admin_mainpage' and obj_type!='student_profile' and visit_module_id!='模拟实操列表' and visit_module_id!='课件列表'))
+      <if test="compIds!=null and compIds!=''">
+      and ${compIds}
+      </if>
+      <if test="date1!=null and date1!=''">
+      <![CDATA[
+      and create_date>to_date('${date1}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+      <if test="date2!=null and date2!=''">
+      <![CDATA[
+      and create_date<to_date('${date2}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+      group by group_name, obj_type
+    )
+    pivot(
+      sum(fx) for obj_type in ('ts_kj' kj_count, 'ts_mnsc' mnsc_count, 'q_sj' sj_count)
+    )
+    order by (kj_count+mnsc_count+NVL(sj_count,0))
+  </select>
+
   <!-- WH::得到所有顶级分类的课件分类 -->
   <select id="getKjStateByCate" resultType="java.util.HashMap" parameterType="java.util.HashMap">
-select upCateName, count(distinct obj_id) count from (
-  select a.obj_id obj_id, case when instr(kj_cat_names, '-')=0 then kj_cat_names else substr(kj_cat_names, 0, instr(kj_cat_names, '-')-1) end as upCateName from log_visit a, ts_kj b
-  where a.obj_type='ts_kj' and a.obj_id=b.id
-<choose>
-  <when test="dayCount!=null and dayCount!=''">
-    and b.create_date>(sysdate-${dayCount})
-  </when>
-  <otherwise>
-    and b.create_date>(sysdate-30)
-  </otherwise>
-</choose>
-) group by upCateName
+  select upCateName, count(distinct obj_id) count from (
+    select a.obj_id obj_id, case when instr(kj_cat_names, '-')=0 then kj_cat_names else substr(kj_cat_names, 0, instr(kj_cat_names, '-')-1) end as upCateName from log_visit a, ts_kj b
+    where a.obj_type='ts_kj' and a.obj_id=b.id
+    <choose>
+    <when test="dayCount!=null and dayCount!=''">
+      and b.create_date>(sysdate-${dayCount})
+    </when>
+    <otherwise>
+      and b.create_date>(sysdate-30)
+    </otherwise>
+    </choose>
+  ) group by upCateName
   </select>
 
   <!-- WH::得到所有顶级分类的模拟实操分布数量 -->
   <select id="getMnscStateByCate" resultType="java.util.HashMap" parameterType="java.util.HashMap">
-select upCateName, count(distinct obj_id) count from (
-  select a.obj_id obj_id, case when instr(mnsc_cat_names, '-')=0 then mnsc_cat_names else substr(mnsc_cat_names, 0, instr(mnsc_cat_names, '-')-1) end as upCateName
-  from log_visit a, ts_mnsc b
-  where a.obj_type='ts_mnsc' and a.obj_id=b.id
-<choose>
-  <when test="dayCount!=null and dayCount!=''">
-    and b.create_date>(sysdate-${dayCount})
-  </when>
-  <otherwise>
-    and b.create_date>(sysdate-30)
-  </otherwise>
-</choose>
-) group by upCateName
+  select upCateName, count(distinct obj_id) count from (
+    select a.obj_id obj_id, case when instr(mnsc_cat_names, '-')=0 then mnsc_cat_names else substr(mnsc_cat_names, 0, instr(mnsc_cat_names, '-')-1) end as upCateName
+    from log_visit a, ts_mnsc b
+    where a.obj_type='ts_mnsc' and a.obj_id=b.id
+    <choose>
+    <when test="dayCount!=null and dayCount!=''">
+      and b.create_date>(sysdate-${dayCount})
+    </when>
+    <otherwise>
+      and b.create_date>(sysdate-30)
+    </otherwise>
+    </choose>
+  ) group by upCateName
   </select>
-
   <!-- WH::得到所有的信息日志信息，为管理端 -->
   <select id="getXxrzList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
     select * from v_loglist
@@ -564,7 +609,7 @@ select upCateName, count(distinct obj_id) count from (
     select c.name catname,count(distinct s.id) coutkj ,count(distinct t.obj_id) countxxkj,count(distinct t.visitor_name) countxxrs,count(t.obj_id) countxxcs,
 	case when count(distinct s.id) = 0 then 0
 	     when count(distinct s.id) > 0 then ROUND(count(distinct t.obj_id)/count(distinct s.id)*100,2) end countxxbl
-	from category c left join  ts_mnsc s on c.id = s.kj_cat_id 
+	from category c left join  ts_mnsc s on c.id = s.mnsc_cat_id 
 	left join log_visit t on  s.id = t.obj_id 
 	<if test="date1!=null and date1!=''">
       <![CDATA[
@@ -577,6 +622,30 @@ select upCateName, count(distinct obj_id) count from (
       ]]>
       </if>
 	group by c.name
+  </select>
+
+  <!--企业统计 -->
+  <select id="getcatcomptj" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select c.name catname,count(distinct s.id) coutkj ,count(distinct t.obj_id) countxxkj,count(distinct t.visitor_name) countxxrs,count(t.obj_id) countxxcs,
+    case when count(distinct s.id) = 0 then 0
+         when count(distinct s.id) > 0 then ROUND(count(distinct t.obj_id)/count(distinct s.id)*100,2) end countxxbl
+    from category c left join  ts_mnsc s on c.id = s.kj_cat_id 
+    left join log_visit t on  s.id = t.obj_id 
+    <if test="date1!=null and date1!=''">
+      <![CDATA[
+      and t.create_date>to_date('${date1}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+      <if test="date2!=null and date2!=''">
+      <![CDATA[
+      and t.create_date<to_date('${date2}', 'YYYY-MM-DD')
+      ]]>
+      </if>
+    group by c.name
+  </select>
+  <select id="getDistinctCamp" resultType="java.util.HashMap">
+  select group_id, group_name from v_loglist where group_name is not null and length(group_name)>0
+  group by group_name, group_id
   </select>
 
   <select id="getVisitCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">

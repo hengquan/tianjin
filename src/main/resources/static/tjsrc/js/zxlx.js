@@ -139,7 +139,6 @@ function dt(id) {
     success: function (res) {
       if(res.returnCode == 00) {
         $(".times").css("display","block").css("cursor", "pointer").html("开始练习");
-
         $(".empty").css("display","none");
         $(".lxt").css("display","block");
         $(".lxt").html(res.data.name);
