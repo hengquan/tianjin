@@ -46,14 +46,18 @@ public class LogVisitService {
         }
         return logDao.getDataByObjType(objType);
     }
-    public List<LogVisit>  getcatkjtj(Map<String, Object> param)
-    {
-        List<LogVisit> loglist  = logDao.getcatkjtj(param);
+    public List<LogVisit> getcatkjtj(Map<String, Object> param) {
+        List<LogVisit> loglist=logDao.getcatkjtj(param);
         return loglist;
-    }    
-    public List<LogVisit>  getcatmnsctj(Map<String, Object> param)
-    {
-        List<LogVisit> loglist  = logDao.getcatkjtj(param);
+    }
+
+    public List<LogVisit> getcatmnsctj(Map<String, Object> param) {
+        List<LogVisit> loglist=logDao.getcatmnsctj(param);
+        return loglist;
+    }
+
+    public List<LogVisit> getcatcomptj(Map<String, Object> param) {
+        List<LogVisit> loglist=logDao.getcatcomptj(param);
         return loglist;
     }
 
@@ -130,5 +134,20 @@ public class LogVisitService {
             return logDao.getLateDay(param);
         }
         return null;
+    }
+
+    /*
+     * 获得企业名称，只在日志表中出现的
+     */
+    public List<Map<String, Object>> getDistinctCamp() {
+        return logDao.getDistinctCamp();
+    }
+
+    public List<Map<String, Object>> getQytjList(Map<String, Object> param) {
+        return logDao.getQytjList(param);
+    }
+
+    public List<Map<String, Object>> getQytjSumList(Map<String, Object> param) {
+        return logDao.getQytjSumList(param);
     }
 }

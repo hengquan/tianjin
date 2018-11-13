@@ -88,10 +88,10 @@ public class TjController {
             param.put("date1", date1);//开始时间
             param.put("date2", date2);//结束时间
             List<Map<String, Object>> _xyxxl=catService.getXyxxList(param);
-            PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_xyxxl);
             if (_xyxxl==null||_xyxxl.size()==0) {
                 return null;
             }
+            PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_xyxxl);
             //对数据进行处理
             //获得企业的总数，总课件数，总模拟实操数，总考试次数
             List<Map<String, Object>> _suml=catService.getXyxxSumList(param);
@@ -153,6 +153,121 @@ public class TjController {
                 newXyxx.put("sjRatio", tmpVal);
 
                 cl.add(newXyxx);
+            }
+            retMap.put("total", pageList.getTotal());
+            retMap.put("rows", cl);
+            return retMap;
+        } catch (Exception e) {
+            e.printStackTrace();
+            retMap.put("returnCode", "01");
+            retMap.put("messageInfo", e.toString());
+        }
+        return retMap;
+    }
+
+    /**
+     * 获得企业统计列表，为系统管理员
+     * @param compIds 
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("getQytjList")
+    @ResponseBody
+    public Map<String, Object> getQytjList(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(required=false) String compIds,
+            @RequestParam(required=false) String date1,
+            @RequestParam(required=false) String date2,
+            @RequestParam(value="offset", defaultValue="1") int offset,
+            @RequestParam(value="limit", defaultValue="10") int limit) {
+        // 跨域
+        HttpPush.responseInfo(response);
+
+        Map<String, Object> retMap=new HashMap<String, Object>();
+        try {
+            UserInfo ui=userService.getUserInfo();
+            if (ui == null) {
+                retMap.put("returnCode", "02");
+                retMap.put("messageInfo", "无用户登录");
+                return retMap;
+            }
+
+            //设置page
+            PageHelper.offsetPage(offset, limit);
+            Map<String, Object> param=new HashMap<String, Object>();
+            if (!StringUtils.isBlank(compIds)) {
+                compIds=compIds.replaceAll(",", "' or group_id='");
+                compIds="(group_id='"+compIds+"')";
+            }
+            param.put("compIds", compIds);//所选择的人员的id列表
+            param.put("date1", date1);//开始时间
+            param.put("date2", date2);//结束时间
+            List<Map<String, Object>> _qytjl=catService.getQytjList(param);
+            if (_qytjl==null||_qytjl.size()==0) {
+                return null;
+            }
+            PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_qytjl);
+            //对数据进行处理
+            //获得企业的总数，总课件数，总模拟实操数，总考试次数
+            List<Map<String, Object>> _suml=catService.getQytjSumList(param);
+            Map<String, Object> sumMap=new HashMap<String, Object>();
+            sumMap.put("allKj", "0");
+            sumMap.put("allMnsc", "0");
+            sumMap.put("allSj", "0");
+            if (_suml!=null&&_suml.size()>0) {
+                for (Map<String, Object> _sum: _suml) {
+                    if ("ts_mnsc".equals(_sum.get("OBJ_TYPE"))) {
+                        sumMap.put("allMnsc", _sum.get("FX"));
+                    } else
+                    if ("ts_kj".equals(_sum.get("OBJ_TYPE"))) {
+                        sumMap.put("allKj", _sum.get("FX"));
+                    } else
+                    if ("q_sj".equals(_sum.get("OBJ_TYPE"))) {
+                        sumMap.put("allSj", _sum.get("FX"));
+                    }
+                }
+            }
+            //处理每一项
+            List<Map<String, Object>> cl=new ArrayList<Map<String, Object>>();
+            for (Map<String, Object> qytj: _qytjl) {
+                Map<String, Object> newQytj=new HashMap<String, Object>();
+                newQytj.put("groupName", qytj.get("GROUP_NAME")==null?"":qytj.get("GROUP_NAME"));
+                newQytj.put("kjCount", qytj.get("KJ_COUNT")==null?0:qytj.get("KJ_COUNT"));
+                newQytj.put("mnscCount", qytj.get("MNSC_COUNT")==null?0:qytj.get("MNSC_COUNT"));
+                newQytj.put("sjCount", qytj.get("SJ_COUNT")==null?0:qytj.get("SJ_COUNT"));
+                newQytj.putAll(sumMap);
+                //计算比例-模拟实操
+                String tmpVal="-";
+                try {
+                    tmpVal="-";
+                    if (!"0".equals(newQytj.get("allMnsc")+"")) {
+                        tmpVal=accuracy(Double.parseDouble(newQytj.get("mnscCount")+""), Double.parseDouble(newQytj.get("allMnsc")+""),2);
+                    }
+                } catch(Exception e) {
+                }
+                newQytj.put("mnscRatio", tmpVal);
+                //计算比例-课件
+                tmpVal="-";
+                try {
+                    tmpVal="-";
+                    if (!"0".equals(newQytj.get("allKj")+"")) {
+                        tmpVal=accuracy(Double.parseDouble(newQytj.get("kjCount")+""), Double.parseDouble(newQytj.get("allKj")+""),2);
+                    }
+                } catch(Exception e) {
+                }
+                newQytj.put("kjRatio", tmpVal);
+                //计算比例-试卷练习
+                tmpVal="-";
+                try {
+                    tmpVal="-";
+                    if (!"0".equals(newQytj.get("allSj")+"")) {
+                        tmpVal=accuracy(Double.parseDouble(newQytj.get("sjCount")+""), Double.parseDouble(newQytj.get("allSj")+""),2);
+                    }
+                } catch(Exception e) {
+                }
+                newQytj.put("sjRatio", tmpVal);
+
+                cl.add(newQytj);
             }
             retMap.put("total", pageList.getTotal());
             retMap.put("rows", cl);
@@ -246,7 +361,7 @@ public class TjController {
             param.put("moduleSql", moduleSql);//所选择的人员的id列表
 
             String catSql="";
-            if (!StringUtils.isBlank(catNames)&&!"请选择".equals(catNames)) {
+            if (!StringUtils.isBlank(catNames)&&!"请选择".equals(catNames)&&!"清空".equals(catNames)) {
                 catSql=catNames.replaceAll(",", "')>0 or instr(cat_name, '");
                 catSql="(instr(cat_name, '"+catSql+"')>0)";
             }
@@ -329,7 +444,30 @@ public class TjController {
         param.put("date1", date1);//开始时间
         param.put("date2", date2);//结束时间
         Map<String, Object> map = new HashMap<String, Object>();
-        List<LogVisit> loglist = catService.getcatkjtj(param);
+        List<LogVisit> loglist = catService.getcatmnsctj(param);
+        PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
+        map.put("total", pageList.getTotal());
+        map.put("rows", pageList.getList());
+        return map;
+    }
+
+    /**
+     * 企业统计
+     * @return
+     */
+    @RequestMapping("getcatcomptj")
+    @ResponseBody
+    public Map<String, Object> getcatcomptj(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(required=false) String userIds,
+            @RequestParam(required=false) String date1,
+            @RequestParam(required=false) String date2,
+            @RequestParam(value="offset", defaultValue="1") int offset,
+            @RequestParam(value="limit", defaultValue="10") int limit) {
+        Map<String, Object> param=new HashMap<String, Object>();  
+        param.put("date1", date1);//开始时间
+        param.put("date2", date2);//结束时间
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<LogVisit> loglist = catService.getcatcomptj(param);
         PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
         map.put("total", pageList.getTotal());
         map.put("rows", pageList.getList());

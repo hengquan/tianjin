@@ -2,76 +2,31 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>学员信息</title>
-<!-- 1 bootstrap基础css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
-  rel="stylesheet">
-<!-- 2 table表格css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
-  rel="stylesheet">
-<!-- 3 treeview树css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
-  rel="stylesheet">
-<!-- 4 datetimepicker时间选择css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
-  rel="stylesheet">
-<!-- 5 select选择框css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
-  rel="stylesheet">
-<!-- 6 fileinput上传文件css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
-  rel="stylesheet">
-<!-- 7 icheck单选+多选css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
-  rel="stylesheet">
-<!-- 8 Validator验证css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
-  rel="stylesheet">
-<!-- 10 引入字体css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
-  rel="stylesheet">
-<!-- 11 页面样式css -->
+<title>企业统计</title>
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css" rel="stylesheet">
 <link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
-<!-- 优先引入jquery1.12.4版本 -->
 <script src="${gateway}/libs/jquery/jquery-1.12.4.js"></script>
-<!-- 1 bootstrap基础js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<!-- 2 table表格js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
-<!-- 3 table列表数据js simple-table -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
-<!-- 4 treeview树js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
-<!-- 5 datetimepicker时间选择js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
-<!-- 6 select选择框js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
-<!-- 7 fileinput上传文件js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
-<!-- 8 fileinput中文包js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
-<!-- 9 icheck单选+多选js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
-<!-- 10 Validator验证js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
-<!-- 11 layer弹框js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <script src="${gateway}/libs/layer/layer.js"></script>
-<!-- 9 layer弹框css -->
 <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
-<!-- 12 页面js -->
 <script src="${gateway}/src/js/main.js"></script>
 
 <style>
@@ -88,7 +43,7 @@
       <div class="pt-view pt-open" style="padding-left: 0px;">
         <!--带横线标题-->
         <div class="pt-bread">
-          <h3>学员学习</h3>
+          <h3>企业统计</h3>
         </div>
         <div class="pt-main pt-padding">
           <!--搜索条-->
@@ -98,9 +53,9 @@
                 <form class="form-inline">
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
-                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="userIds">选择人员</label>
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="compIds">选择企业</label>
                       <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                        <select id="userIds" name="userIds" class="selectpicker" data-actions-box="true"  data-live-search="true" title="请选择">
+                        <select id="compIds" name="userIds" class="selectpicker" data-actions-box="true"  data-live-search="true" title="请选择">
                           <option value="">清空</option>
                           ${optionHtml}
                         </select>
@@ -242,11 +197,11 @@ function lookItem(e) {
   });
 }
 
-TableInit(queryParams).Init('${gateway}/tj/getXyxxList', [
+TableInit(queryParams).Init('${gateway}/tj/getQytjList', [
  //第一行
  [{
-    field : 'userName',
-    title : '学员名称',
+    field : 'groupName',
+    title : '企业名称',
     sortable : false,
     colspan:1,
     rowspan:2,
@@ -316,15 +271,15 @@ TableInit(queryParams).Init('${gateway}/tj/getXyxxList', [
 
 function queryParams(params) {
   var selectedValues = [];
-  var count=$("#userIds option").length;
+  var count=$("#compIds option").length;
   for(var i=0;i<count;i++){
-    if ($("#userIds").get(0).options[i].selected) {
-      selectedValues.push($("#userIds").get(0).options[i].value);
+    if ($("#compIds").get(0).options[i].selected) {
+      selectedValues.push($("#compIds").get(0).options[i].value);
     }
   }
   var data={
     //组织其他参数
-    userIds: selectedValues.join(","),
+    compIds: selectedValues.join(","),
     date1: $("#date1").find("input").val(),
     date2: $("#date2").find("input").val(),
     limit : params.limit, //页面大小

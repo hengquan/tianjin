@@ -1,5 +1,6 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.taiji.company.system.CompanyInfo;
 import cn.taiji.format.result.ObjectResponseResult;
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.system.domain.SysResource;
@@ -424,8 +426,27 @@ public class ManageDispatchUrl {
     // --统计相关-3模拟实操
     @RequestMapping("tj/mnsc")
     public String toTjMnsc(HttpServletRequest request) {
-        return "/manage/tj/tjNnsc";
+        return "/manage/tj/tjmnsc";
     }
+
+    // --统计相关-2课件统计
+    @RequestMapping("tj/qy")
+    public String toTjQy(HttpServletRequest request, Model model) {
+        //获得企业的人员
+        String optionHtml="";
+        UserInfo ui=userService.getUserInfo();
+        if (ui!=null) {//获得企业
+            List<Map<String, Object>> cl=catService.getDistinctCamp();
+            if (cl!=null&&cl.size()>0) {
+                for (Map<String, Object> comp: cl) {
+                    optionHtml+="<option value='"+comp.get("GROUP_ID")+"'>"+comp.get("GROUP_NAME")+"</option>";
+                }
+            }
+        }
+        model.addAttribute("optionHtml", optionHtml);
+        return "/manage/tj/tjQytj";
+    }
+
 
     // --统计相关-4综合
     @RequestMapping("tj/zh")

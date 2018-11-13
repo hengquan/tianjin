@@ -122,11 +122,15 @@ iframe{
             </li>
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toQytj()">企业统计</a></h3>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toKjtj()">课件统计</a></h3>
             </li>
             <li class="pt-menu-child">
                 <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toKjtj()">课件统计</a></h3>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toTjMNSC()">模拟实操统计</a></h3>
+            </li>
+            <li class="pt-menu-child">
+                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
+                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toQytj()">企业统计</a></h3>
             </li>
           </ul>
         </li>
@@ -227,6 +231,10 @@ function tm() {
 //统计-学习日志
 function toXxrz4Admin() {
   $("#mainframe").attr("src","${gateway}/tj/xxrz4admin");
+}
+//企业统计-管理端
+function toQytj() {
+  $("#mainframe").attr("src","${gateway}/tj/qy");
 }
 //课件统计
 function toKjtj() {
