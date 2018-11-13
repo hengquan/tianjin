@@ -134,14 +134,19 @@ public class MnscController {
         try {
             // 修改数据
             boolean result = mnscService.update(mnsc, user);
+            String mnscId = mnsc.getId();
+            String type = "0";// 0未保存，1已保存
             if (result) {
                 if (StringUtils.isNotEmpty(commArchiveId)) {
-                    String mnscId = mnsc.getId();
                     CommArchive commArchive = commArchiveService.get(commArchiveId);
                     commArchive.setObjId(mnscId);
                     commArchiveService.update(commArchive, "ts_mnsc", "img");
+                    // 已保存
+                    type = "1";
                 }
                 map.put("resultCode", "100");
+                map.put("objId", mnscId);
+                map.put("type", type);
             } else {
                 map.put("resultCode", "101");
             }

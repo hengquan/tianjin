@@ -156,20 +156,23 @@ public class KjController {
             // 更新数据
             boolean result = kjService.update(kj, user);
             String kjId = kj.getId();
+            String type = "0";// 0未保存，1已保存
             if (result) {
-                if (StringUtils.isNotEmpty(commArchiveMp4Id)) {
-                    // 添加
+                if (StringUtils.isNotEmpty(commArchiveMp4Id) && StringUtils.isNotEmpty(commArchiveImgId)) {
+                    // 视频
                     CommArchive commArchive = commArchiveService.get(commArchiveMp4Id);
                     commArchive.setObjId(kjId);
                     commArchiveService.update(commArchive, "ts_kj", "main");
-                }
-                if (StringUtils.isNotEmpty(commArchiveImgId)) {
-                    // 添加
-                    CommArchive commArchive = commArchiveService.get(commArchiveImgId);
-                    commArchive.setObjId(kjId);
-                    commArchiveService.update(commArchive, "ts_kj", "img");
+                    // 图片
+                    CommArchive commArchive1 = commArchiveService.get(commArchiveImgId);
+                    commArchive1.setObjId(kjId);
+                    commArchiveService.update(commArchive1, "ts_kj", "img");
+                    // 已保存
+                    type = "1";
                 }
                 map.put("resultCode", "100");
+                map.put("objId", kjId);
+                map.put("type", type);
             } else {
                 map.put("resultCode", "101");
             }
