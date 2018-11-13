@@ -62,6 +62,8 @@ public class FileController {
                     System.out.println(downloadEndpoint + objectName);
                     System.out.println("--------------------------------");
                     fileUrl = downloadEndpoint + objectName;
+                    //删除
+                    commArchiveService.delObjTableNameAndObjId(commArchive.getObjId(), commArchive.getObjTabname(), commArchive.getArchiveType());
                     // 添加附件
                     commArchive.setFileName(fileName);
                     commArchive.setFilePath("/ot/image/");
