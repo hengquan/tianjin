@@ -206,6 +206,8 @@ html {
 	<br>
 	<br>
 	<script>
+    var fileUploadImgIsOk = "false";
+    var fileUploadVideoIsOk = "false";
     //初始化分类信息
     //selfenlei();
     //附件相关
@@ -296,20 +298,8 @@ html {
           var type = data.type;
           if (objId != '') {
             $("#fileId").val(objId);
-            if (type == '0') {
-              $("#file-1").fileinput('upload');
-              $("#file-2").fileinput('upload');
-            }
           }
-          var index = layer.load(0, {
-            shade : false
-          }); //0代表加载的风格，支持0-2
-          setTimeout(function() {
-            layer.close(index);
-            //关闭子菜单刷新
-            parent.refresh();
-            closeMy();
-          }, 3000);
+          loading(type);
         },
         error : function() { //失败回调函数
           parent.refresh();
@@ -335,20 +325,8 @@ html {
           var type = data.type;
           if (objId != '') {
             $("#fileId").val(objId);
-            if (type == '0') {
-              $("#file-1").fileinput('upload');
-              $("#file-2").fileinput('upload');
-            }
           }
-          var index = layer.load(0, {
-            shade : false
-          }); //0代表加载的风格，支持0-2
-          setTimeout(function() {
-            layer.close(index);
-            //关闭子菜单刷新
-            parent.refresh();
-            closeMy();
-          }, 3000);
+          loading(type);
         },
         error : function() { //失败回调函数
           parent.refresh();
@@ -512,6 +490,8 @@ html {
       var data = data.response;
       var commArchiveId = data.commArchiveId;
       $("#commArchiveMp4Id").val(commArchiveId);
+      //完成
+      fileUploadVideoIsOk = "true";
     });
     //上传图片
     $("#file-2").fileinput({
@@ -565,6 +545,8 @@ html {
       var data = data.response;
       var commArchiveId = data.commArchiveId;
       $("#commArchiveImgId").val(commArchiveId);
+      //完成
+      fileUploadImgIsOk = "true";
     });
     //删除文件之后的事件
     $('#input-id').on('filesuccessremove', function(event, id) {
@@ -609,9 +591,11 @@ html {
                   if ($(this).val() == kj.isvalid)
                     $(this).iCheck('check');
                 });
+                $('#kjCatId').selectpicker();
                 $("#kjCatId").val(kj.kjCatId);
                 $("#kjCatNames").val(kj.kjCatNames);
                 $("#kjCatId").selectpicker('val', kj.kjCatId);
+                $('#kjCatId').selectpicker('refresh');
                 //获取相关课件列表
                 $("#ids").val(kj.ids);
                 var dataList = kj.kjs;
@@ -671,6 +655,28 @@ html {
           layer.msg("获取分类失败！");
         }
       });
+    }
+    //上传关闭loading
+    function loading(type) {
+      if (type == '0') {
+        $("#file-1").fileinput('upload');
+        $("#file-2").fileinput('upload');
+        var index = layer.load(1, {
+          shade : false
+        }); //0代表加载的风格，支持0-2
+        setInterval(function() {
+          console.log(fileUploadVideoIsOk);
+          console.log(fileUploadImgIsOk);
+          if (fileUploadVideoIsOk == 'true' || fileUploadImgIsOk == 'true') {
+            layer.close(index);
+            parent.refresh();
+            closeMy();
+          }
+        }, 1000);
+      } else {
+        parent.refresh();
+        closeMy();
+      }
     }
   </script>
 </body>
