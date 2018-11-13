@@ -65,7 +65,6 @@
             var ifrheight =  iframe.contentWindow.document.documentElement.scrollHeight || iframe.contentDocument.body.scrollHeight
 
             iframe.height = ifrheight + 20
-            console.log(ifrheight)
         }
         if (!IntroduceTipsArr[IntroduceTipsCurrent]){
             new IntroduceControl().cleanOld()

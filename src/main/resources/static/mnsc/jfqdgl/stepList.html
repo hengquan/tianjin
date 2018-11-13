@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../resource/css/home.css">
   <link rel="stylesheet" href="../resource/css/main.css">
   <link rel="stylesheet" href="../resource/css/step-list.css">
+  <link rel="stylesheet" href="../resource/css/pt-main.css">
   <script src="../resource/js/jquery.js"></script>
   <script src="../resource/js/main.js"></script>
   <script src="../resource/js/layer.js"></script>
@@ -25,8 +26,12 @@
         <div class="banxin header">
           <div class="fl header-logo">
             <img src="../resource/image/LOGO@2x.png" alt="" class="logo">
-            <span class="header-name">天津市港口统一收费服务平台</span>
+            <span class="header-name">天津市港口统一收费服务平台-<strong>线上培训子系统</strong></span>
           </div>
+    <!--右侧关闭窗口-->
+    <div class="pt-fr pt-user-info">
+      <div><a style="color: #ffffff;font-size:12px;" onclick="closeWin()">关闭&emsp;</a></div>
+    </div>
         </div>
       </div>
       <div class="nav_bar">
@@ -100,7 +105,6 @@
                   backgroundColor: '#990000'
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               },
               { X: 480,
@@ -118,7 +122,6 @@
                 backgroundColor: '#990000'
               },
               callBack: function (obj) {
-                console.log(obj);
               }
             },
               {
@@ -143,7 +146,6 @@
                   }
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               }
             ]
@@ -167,7 +169,6 @@
                   backgroundColor: 'blue'
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               },         
               {
@@ -187,7 +188,6 @@
                   backgroundColor: 'blue'
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               }, 
               {
@@ -212,7 +212,6 @@
                   }
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               },
             ]
@@ -235,7 +234,6 @@
                   backgroundColor: '#990000'
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               },
               {
@@ -254,7 +252,6 @@
                   backgroundColor: 'blue'
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               },              
               {
@@ -279,7 +276,6 @@
                   }
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               }
             ]
@@ -306,7 +302,6 @@
                   backgroundColor: 'blue'
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 },
               },
               
@@ -345,8 +340,7 @@
                   content: '知道了',
                   backgroundColor: '#990000'
                 },
-                callBack: function (obj) { 
-                  console.log(obj);
+                callBack: function (obj) {
                 } 
               },
               
@@ -397,7 +391,6 @@
                   backgroundColor: '#990000'
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               },
              
@@ -423,7 +416,6 @@
                   }
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               }
             ]
@@ -431,7 +423,6 @@
           {
             srcUrl: './stepTips6.html',
             steps: [
-
               {
                 X: 650,
                 Y: 200,
@@ -448,7 +439,6 @@
                   backgroundColor: '#990000'
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               },
               {
@@ -470,7 +460,6 @@
                   backgroundColor: '#990000'
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               },
              
@@ -496,7 +485,6 @@
                   }
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               }
             ]
@@ -504,7 +492,6 @@
           {
             srcUrl: './stepTips7.html',
             steps: [
-
               {
                 X: 740,
                 Y: 160,
@@ -524,7 +511,6 @@
                   }
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               }
             ]
@@ -548,11 +534,8 @@
                   backgroundColor: '#990000'
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               },
-
-
               {
                 X: 840,
                 Y: 170,
@@ -569,7 +552,6 @@
                   backgroundColor: '#990000',                 
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
               }
             ]
@@ -601,7 +583,6 @@
   	  //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
       var ifrheight =  iframe.contentWindow.document.documentElement.scrollHeight || iframe.contentDocument.body.scrollHeight
       iframe.height = ifrheight + 20
-      console.log(ifrheight)
   }
   </script>
 </body>
