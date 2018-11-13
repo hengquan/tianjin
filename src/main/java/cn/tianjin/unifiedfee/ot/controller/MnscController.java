@@ -65,9 +65,7 @@ public class MnscController {
         map.put("score", score);
         map.put("createStart", createStart);
         map.put("createEnd", createEnd);
-        if (!StringUtils.isBlank(isvalid) && (!"1,0".equals(isvalid)) && (!"0,1".equals(isvalid))) {
-            map.put("isvalid", isvalid);
-        }
+        map.put("isvalid", isvalid);
         System.out.println("--------------------------------");
         System.out.println(isvalid);
         System.out.println(isvalid);
@@ -98,14 +96,19 @@ public class MnscController {
         try {
             // 添加数据
             boolean result = mnscService.insert(mnsc, user);
+            String mnscId = mnsc.getId();
+            String type = "0";// 0未保存，1已保存
             if (result) {
                 if (StringUtils.isNotEmpty(commArchiveId)) {
-                    String mnscId = mnsc.getId();
                     CommArchive commArchive = commArchiveService.get(commArchiveId);
                     commArchive.setObjId(mnscId);
                     commArchiveService.update(commArchive, "ts_mnsc", "img");
+                    // 已保存
+                    type = "1";
                 }
                 map.put("resultCode", "100");
+                map.put("objId", mnscId);
+                map.put("type", type);
             } else {
                 map.put("resultCode", "101");
             }

@@ -78,9 +78,7 @@ public class KjController {
         }
         param.put("kjIds", ids);
         param.put("disable", disable);
-        if (!StringUtils.isBlank(isvalid) && (!"1,0".equals(isvalid)) && (!"0,1".equals(isvalid))) {
-            param.put("isvalid", isvalid);
-        }
+        param.put("isvalid", isvalid);
         System.out.println("----------------------");
         System.out.println(isvalid);
         System.out.println("----------------------");
@@ -113,18 +111,23 @@ public class KjController {
             // 添加数据
             boolean result = kjService.insert(kj, user);
             String kjId = kj.getId();
+            String type = "0";// 0未保存，1已保存
             if (result) {
-                if (StringUtils.isNotEmpty(commArchiveMp4Id)) {
+                if (StringUtils.isNotEmpty(commArchiveMp4Id) && StringUtils.isNotEmpty(commArchiveImgId)) {
+                    // 视频
                     CommArchive commArchive = commArchiveService.get(commArchiveMp4Id);
                     commArchive.setObjId(kjId);
                     commArchiveService.update(commArchive, "ts_kj", "main");
-                }
-                if (StringUtils.isNotEmpty(commArchiveImgId)) {
-                    CommArchive commArchive = commArchiveService.get(commArchiveImgId);
-                    commArchive.setObjId(kjId);
-                    commArchiveService.update(commArchive, "ts_kj", "img");
+                    // 图片
+                    CommArchive commArchive1 = commArchiveService.get(commArchiveImgId);
+                    commArchive1.setObjId(kjId);
+                    commArchiveService.update(commArchive1, "ts_kj", "img");
+                    // 已保存
+                    type = "1";
                 }
                 map.put("resultCode", "100");
+                map.put("objId", kjId);
+                map.put("type", type);
             } else {
                 map.put("resultCode", "101");
             }
