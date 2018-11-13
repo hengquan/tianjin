@@ -319,3 +319,15 @@ function toStep4(){
 function toStep5(){
   window.location.href ="step5.html"
 }
+
+
+function closeWin() {
+  var browserName=navigator.appName;
+  if (browserName=="Microsoft Internet Explorer") { 
+    window.parent.opener = "whocares"; 
+    window.parent.close(); 
+  } else {
+    window.open('', '_self', '');
+    window.close();
+  }
+}
