@@ -74,7 +74,7 @@ public class ManageDispatchUrl {
                 // ObjectResponseResult<List<SysResource>>
                 // result=securityMenuService.findMenuByUsername(ui.getUsername());
                 ObjectResponseResult<List<SysResource>> result = securityMenuRemote
-                        .findMenuByUsernameAndSysname(ui.getUsername(), "ot-server", ui.getUseType());
+                        .findMenuByUsernameAndSysname(ui.getUserId(), "ot-server", ui.getUseType());
                 if (result != null && result.getData() != null && result.getData().size() > 0) {
                     // List<SysResource> l=findTrainMenu(result.getData(),
                     // trainNameId);

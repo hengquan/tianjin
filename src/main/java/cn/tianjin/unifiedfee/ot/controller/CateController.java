@@ -1,5 +1,7 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,34 +20,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.spiritdata.framework.core.model.tree.TreeNode;
+import com.spiritdata.framework.core.model.tree.TreeNodeBean;
 import com.spiritdata.framework.util.DateUtils;
 
 import cn.taiji.oauthbean.dto.UserInfo;
-import cn.taiji.web.security.UserService;
+import cn.taiji.web.base.controller.BaseController;
 import cn.tianjin.unifiedfee.ot.entity.Category;
 import cn.tianjin.unifiedfee.ot.model.CategoryNode;
 import cn.tianjin.unifiedfee.ot.service.CategoryService;
 import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
-import com.spiritdata.framework.core.model.tree.TreeNodeBean;
-
 @RequestMapping("/cate")
 @Controller
-public class CateController {
+public class CateController extends BaseController{
     @Autowired
     private CategoryService categoryService;
-    @Autowired //注入Service
-    public UserService userService;
 
     @RequestMapping("get")
     @ResponseBody
     public Map<String, Object> get(String id, HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> retMap=new HashMap<String, Object>();
         try {
-            UserInfo ui=userService.getUserInfo();
+            UserInfo ui=this.getUserInfo();
             if (ui == null) {
                 retMap.put("returnCode", "02");
                 retMap.put("messageInfo", "无用户登录");
@@ -86,7 +82,7 @@ public class CateController {
     public Map<String, Object> save(Category cate, HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> retMap=new HashMap<String, Object>();
         try {
-            UserInfo ui=userService.getUserInfo();
+            UserInfo ui=this.getUserInfo();
             if (ui == null) {
                 retMap.put("returnCode", "02");
                 retMap.put("messageInfo", "无用户登录");
@@ -108,7 +104,7 @@ public class CateController {
             @RequestParam(required=false, value="valid", defaultValue="-1") int valid) {
         Map<String, Object> retMap=new HashMap<String, Object>();
         try {
-            UserInfo ui=userService.getUserInfo();
+            UserInfo ui=this.getUserInfo();
             if (ui == null) {
                 retMap.put("returnCode", "02");
                 retMap.put("messageInfo", "无用户登录");

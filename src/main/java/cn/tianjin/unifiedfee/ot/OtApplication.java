@@ -18,7 +18,7 @@ import cn.tianjin.unifiedfee.ot.logvisit.LogVisitListener;
 @SpringBootApplication
 @EnableFeignClients({"cn.taiji","cn.tianjin.unifiedfee"})
 @ComponentScan({"cn.taiji","cn.tianjin.unifiedfee"})
-@MapperScan("cn.tianjin.unifiedfee.ot.mapper")
+@MapperScan("cn.tianjin.unifiedfee")
 @EnableAutoConfiguration
 @ServletComponentScan
 @Configuration
