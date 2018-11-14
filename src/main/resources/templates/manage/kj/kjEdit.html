@@ -165,7 +165,7 @@ html {
 							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
 								<input id="file-1" type="file" multiple class="file"
 									name="files" data-overwrite-initial="false"
-									data-max-file-count="1"><br /> <b>(注：请上传视频文件，大小在10M以内，支持格式：mp4)</b>
+									data-max-file-count="1"><br /> <b>(注：请上传视频文件，大小在10M以内，支持格式：mp4,avi,dat,3gp,mov,rmvb)</b>
 							</div>
 						</div>
 					</div>
@@ -443,7 +443,7 @@ html {
       theme : "explorer", //主题
       language : 'zh',
       uploadUrl : "${gateway}/file/upload",// 上传请求路径
-      allowedFileExtensions : [ 'mp4' ],//允许上传的文件后缀       
+      allowedFileExtensions : [ 'mp4','avi','dat','3gp','mov','rmvb' ],//允许上传的文件后缀       
       uploadAsync : true, //是否允许异步上传
       showUpload : true,//是否显示上传按钮
       showCaption : false,//是否显示容器
