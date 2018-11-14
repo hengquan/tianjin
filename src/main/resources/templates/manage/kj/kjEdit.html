@@ -67,7 +67,8 @@
 <!-- 7 icheck单选+多选js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
 <!-- 8 Validator验证js -->
-<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
+<script
+	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <!-- 9 layer弹框js -->
 <script src="${gateway}/libs/layer/layer.js"></script>
 <!-- 11 页面js -->
@@ -657,21 +658,40 @@ html {
     }
     //上传关闭loading
     function loading(type) {
+      //视频
+      var videoFile = $("#file-1").val();
+      //图片
+      var imgFile = $("#file-2").val();
       if (type == '0') {
-        $("#file-1").fileinput('upload');
-        $("#file-2").fileinput('upload');
-        var index = layer.load(1, {
-          shade : false
-        }); //0代表加载的风格，支持0-2
-        setInterval(function() {
-          console.log(fileUploadVideoIsOk);
-          console.log(fileUploadImgIsOk);
-          if (fileUploadVideoIsOk == 'true' || fileUploadImgIsOk == 'true') {
-            layer.close(index);
-            parent.refresh();
-            closeMy();
-          }
-        }, 1000);
+        if (imgFile != null && imgFile != "") {
+          $("#file-2").fileinput('upload');
+          var index = layer.load(1, {
+            shade : false
+          });
+          setInterval(function() {
+            console.log(fileUploadImgIsOk);
+            if (fileUploadImgIsOk == 'true') {
+              layer.close(index);
+            }
+          }, 1000);
+        }
+        if (videoFile != null && videoFile != "") {
+          $("#file-1").fileinput('upload');
+          var index1 = layer.load(1, {
+            shade : false
+          });
+          setInterval(function() {
+            console.log(fileUploadVideoIsOk);
+            if (fileUploadVideoIsOk == 'true') {
+              layer.close(index1);
+              parent.refresh();
+              closeMy();
+            }
+          }, 1000);
+        }else{
+          parent.refresh();
+          closeMy();
+        }
       } else {
         parent.refresh();
         closeMy();

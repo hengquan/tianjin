@@ -610,19 +610,25 @@ html {
     }
     //上传关闭loading
     function loading(type) {
+      var imgFile = $("#file-1").val();
       if (type == '0') {
-        $("#file-1").fileinput('upload');
-        var index = layer.load(1, {
-          shade : false
-        }); //0代表加载的风格，支持0-2
-        setInterval(function() {
-          console.log(fileUploadIsOk);
-          if (fileUploadIsOk == 'true') {
-            layer.close(index);
-            parent.refresh();
-            closeMy();
-          }
-        }, 1000);
+        if (imgFile != null && imgFile != "") {
+          $("#file-1").fileinput('upload');
+          var index = layer.load(1, {
+            shade : false
+          }); //0代表加载的风格，支持0-2
+          setInterval(function() {
+            console.log(fileUploadIsOk);
+            if (fileUploadIsOk == 'true') {
+              layer.close(index);
+              parent.refresh();
+              closeMy();
+            }
+          }, 1000);
+        } else {
+          parent.refresh();
+          closeMy();
+        }
       } else {
         parent.refresh();
         closeMy();

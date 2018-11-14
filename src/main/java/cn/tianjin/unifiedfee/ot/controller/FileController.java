@@ -76,6 +76,7 @@ public class FileController {
             }
         }
         map.put("commArchiveId", commArchiveId);
+        System.out.println(map.toString());
         return map;
     }
 
