@@ -259,17 +259,16 @@ function getMyLogVisitList(rownum) {
     data: data,
     dataType: "json",
     success: function (res) {
-      console.log(res)
       if(res.returnCode==00) {
         var html = ""
         for(var j=0;j<res.data.length;j++) {
           if (res.data[j].objType=='在线练习') {
             html+= '<li class="row"><div class="right col-xs-6">我练习了：<span>习题【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
           } else
-          if (res.data[j].objType=='模拟实操展示') {
+          if (res.data[j].objType=='模拟实操展示'||res.data[j].objType=='模拟实操学习') {
             html+= '<li class="row"><div class="right col-xs-6">我操作了：<span>模拟实操【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
           } else
-          if (res.data[j].objType=='课件展示') {
+          if (res.data[j].objType=='课件展示'||res.data[j].objType=='课件学习') {
           html+= '<li class="row"><div class="right col-xs-6">我学习了：<span>课件【'+res.data[j].objName+'】</span></div><div class="col-xs-6 date">'+res.data[j].visitTime+'</div></li>'
           }
         }

@@ -336,6 +336,7 @@ public class TjController {
                 } else
                 if ("3".equals(forType)) {//企业人员
                     userId=ui.getUserId();
+                    userId="ff808081670cad5f016710d5a3110009";
                 }
             }
 

@@ -421,8 +421,9 @@ public class Api2Controller {
                 retMap.put("messageInfo", "无用户登录");
                 return retMap;
             }
-            // 查询
-            List<Map<String, Object>> logVisitList = logVisitService.getMyLogVisitList(rownum,ui.getUserId());
+            // 查询 ff808081670cad5f016710d5a3110009
+            //List<Map<String, Object>> logVisitList = logVisitService.getMyLogVisitList(rownum,ui.getUserId());
+            List<Map<String, Object>> logVisitList = logVisitService.getMyLogVisitList(rownum,"ff808081670cad5f016710d5a3110009");
             if (logVisitList == null || logVisitList.size() <= 0) {
                 retMap.put("returnCode", "99");
                 retMap.put("messageInfo", "信息为空");
