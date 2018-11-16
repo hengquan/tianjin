@@ -329,7 +329,7 @@ public class TjController {
                     //获得用户所在企业
                     ObjectResponseResult<CompanyInfo> companyInfo=companyRemote.findCompanyBankInfoList(ui.getUserId());
                     if (companyInfo!=null&&companyInfo.getData()!=null) {
-                        compId=companyInfo.getData().getId();
+                        compId=companyInfo.getData().getUniscid();
                     } else {//这是测试代码，用guanliyuan进行测试
                         compId="98311111234523456B";
                     }

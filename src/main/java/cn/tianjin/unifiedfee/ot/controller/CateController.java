@@ -32,7 +32,7 @@ import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
 @RequestMapping("/cate")
 @Controller
-public class CateController extends BaseController{
+public class CateController extends BaseController {
     @Autowired
     private CategoryService categoryService;
 

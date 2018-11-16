@@ -618,7 +618,7 @@ public class ApiController {
                 if (StringUtils.isBlank(lv.getVisitSysId())) lv.setVisitSysId("1");
                 ObjectResponseResult<CompanyInfo> companyInfo=companyRemote.findCompanyBankInfoList(ui.getUserId());
                 if (companyInfo!=null&&companyInfo.getData()!=null) {
-                    lv.setGroupId(companyInfo.getData().getId());
+                    lv.setGroupId(companyInfo.getData().getUniscid());
                     lv.setGroupName(companyInfo.getData().getEntname());
                 }
                 lv.setVisitModuleId("在线练习");
@@ -773,7 +773,7 @@ public class ApiController {
 
                 ObjectResponseResult<CompanyInfo> companyInfo=companyRemote.findCompanyBankInfoList(ui.getUserId());
                 if (companyInfo!=null&&companyInfo.getData()!=null&&!"无企业信息".equals(companyInfo.getMsg())) {
-                    lv.setGroupId(companyInfo.getData().getId());
+                    lv.setGroupId(companyInfo.getData().getUniscid());
                     lv.setGroupName(companyInfo.getData().getEntname());
                 }
                 if (!StringUtils.isBlank(lv.getObjType())) {

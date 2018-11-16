@@ -82,7 +82,7 @@ public class WebDispatchUrl {
             ObjectResponseResult<CompanyInfo> companyInfo=companyRemote.findCompanyBankInfoList(ui.getUserId());
             if (companyInfo!=null&&companyInfo.getData()!=null) {
                 Map<String, Object> param=new HashMap<String, Object>();
-                param.put("compId", companyInfo.getData().getId());
+                param.put("compId", companyInfo.getData().getUniscid());
                 List<Map<String, Object>> ul=catService.getCompUserList(param);
                 if (ul!=null&&ul.size()>0) {
                     for (Map<String, Object> u: ul) {
@@ -116,7 +116,7 @@ public class WebDispatchUrl {
             ObjectResponseResult<CompanyInfo> companyInfo=companyRemote.findCompanyBankInfoList(ui.getUserId());
             if (companyInfo!=null&&companyInfo.getData()!=null) {
                 Map<String, Object> param=new HashMap<String, Object>();
-                param.put("compId", companyInfo.getData().getId());
+                param.put("compId", companyInfo.getData().getUniscid());
                 List<Map<String, Object>> ul=catService.getCompUserList(param);
                 if (ul!=null&&ul.size()>0) {
                     for (Map<String, Object> u: ul) {
