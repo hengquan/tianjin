@@ -43,7 +43,6 @@
  */
 
 (function (window) {
-
     var rootObj = {},
         IntroduceTipsArr = [],
         IntroduceTipsCurrent = 0,
@@ -63,7 +62,6 @@
             //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
             iframe.height = "auto"
             var ifrheight =  iframe.contentWindow.document.documentElement.scrollHeight || iframe.contentDocument.body.scrollHeight
-
             iframe.height = ifrheight + 20
         }
         if (!IntroduceTipsArr[IntroduceTipsCurrent]){
@@ -88,7 +86,6 @@
         }
         new IntroStepMenu().init()
     }
-
 
     /*****************
      * 跳转控制
@@ -235,22 +232,19 @@
         var $TipsDom = $('<div class="tips-container">')
         var $TipsContext = this.opt.content
         var $TipsArrow = $('<div class="tips-arrow">')
-        var $btn = $('<div class="tips-btn" >'+this.opt.nextBtn.content+'</div>')
-
+        var $btn = $('<div class="tips-btn" '+(this.opt.nextBtn.backgroundColor=='transparent'?' style="background:transparent" ':'')+'>'+this.opt.nextBtn.content+'</div>')
 
         $btn.on("click",function(){
             btnCallBackPrev = _this.opt.nextBtn.callBack
             if (btnCallBackPrev instanceof Function){
                 btnCallBackPrev()
             } else {
-
                 if (_this.callBack instanceof Function){
                     _this.callBack()
                 } else {
                     new IntroduceControl().cleanOld()
                 }
             }
-
         });
         $TipsArrow.addClass(this.opt.direction)
         this.initArrowCss($TipsArrow)
@@ -265,13 +259,10 @@
     }
     // 初始化dom位置
     IntroduceTips.prototype.initPosition = function () {
-        var left,
-            top;
+        var left, top;
         var joinX = this.$rootX + this.opt.X,
             joinY = this.$rootY + this.opt.Y;
         switch (this.opt.direction) {
-
-
             case 'top':
                 left = joinX - this.opt.area[0] / 2 + this.arrowWidth
                 top = joinY - this.opt.area[1] - this.arrowWidth * 2 -  this.opt.distance
@@ -289,20 +280,6 @@
                 top = joinY - this.opt.area[1] / 2 - this.arrowWidth
                 break;
         }
-
-        /*
-
-        if (left < 0){
-            left  = 0
-        } else if (left + this.opt.area[0] + this.arrowWidth * 2 > this.$rootWidth){
-            left = this.$rootWidth - this.opt.area[0] - this.arrowWidth * 2
-        }
-        if (top < 0){
-            top  = 0
-        } else if (top + this.opt.area[1] > this.$rootHeight){
-            top = this.$rootHeight - this.opt.area[1]
-        }
-        */
 
         this.$dom.css({
             'left': left,
