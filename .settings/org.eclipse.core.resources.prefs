@@ -8,6 +8,7 @@ encoding//src/main/resources/application-dev.properties=UTF-8
 encoding//src/main/resources/application-prod.properties=UTF-8
 encoding//src/main/resources/application-prod.properties.cao.properties=UTF-8
 encoding//src/main/resources/application-test.properties=UTF-8
+encoding//src/main/resources/static/mnsc/jfqdgl/json_step.json=UTF-8
 encoding//src/main/resources/static/mnsc/qyzcgl/stepTips2.html=UTF-8
 encoding//src/main/resources/static/mnsc/qyzcgl/stepTips3.html=UTF-8
 encoding//src/main/resources/static/mnsc/resource/css/home.css=UTF-8
