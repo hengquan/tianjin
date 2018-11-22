@@ -2,18 +2,12 @@
 <head>
 <meta charset="UTF-8">
 <title>在线学习</title>
-<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap.css"
-  rel="stylesheet">
-<!-- 2 table表格css -->
-<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
-  rel="stylesheet">
-<!-- 3 treeview树css -->
-<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
-  rel="stylesheet">
-<!--公共css-->
+
+<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet">
+<link href="./libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css" rel="stylesheet">
 <link rel="stylesheet" href="./web/css/pt-main.css">
 <link rel="stylesheet" href="./web/css/index1.css">
-<!--页面css-->
 <link rel="stylesheet" href="./web/css/index2.css">
 <!--引入字体的css-->
 <link rel="stylesheet" href="./web/bootstrap/fonts/iconfont.css">
@@ -23,23 +17,20 @@
 <!--页面js-->
 <script type="text/javascript" src="./web/js/main.js"></script>
 <style>
-html {
-  overflow: hidden;
-}
 body {
   background: white;
 }
 .enterBtn {
-    font-size: 14px;
-    text-align: center;
-    width: 160px;
-    height: 30px;
-    background:#f46227;
-    color: white;
-    line-height: 30px;
-    margin: 10px auto 0;
-    border-radius: 3px;
-    cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  width: 160px;
+  height: 30px;
+  background:#f46227;
+  color: white;
+  line-height: 30px;
+  margin: 10px auto 0;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 </style>
@@ -47,17 +38,15 @@ body {
 
 <body>
   <!--主菜单内容-->
-  <div class="pt-page">
-    <div class="pt-root-container">
-      <!--主视口 -->
-      <div class="pt-view pt-open" style="padding-left: 0px;">
-        <!--带横线标题-->
-        <div class="pt-bread">
-          <h3>模拟实操</h3>
-        </div>
-        <!--模拟实操内容-->
-        <div class="tab-content" id="htmlContent"></div>
+  <div>
+    <!--主视口 -->
+    <div class="pt-view" style="padding-left: 0px;">
+      <!--带横线标题-->
+      <div class="pt-bread">
+        <h3>模拟实操</h3>
       </div>
+      <!--模拟实操内容-->
+      <div class="tab-content" id="htmlContent"></div>
     </div>
   </div>
   <script>
@@ -91,8 +80,8 @@ body {
                   + '<div class="model_bg" onclick=toSimulation("'
                   + dataList[i].mnscUrl + '?objId=' + dataList[i].id
                   + '")></div>' + '<div class="explain">' + '<p>'
-                  + dataList[i].mnscName + '</p><br>' 
-                  + '<div class="enterBtn" onclick=toSimulation("'
+                  + dataList[i].mnscName + '</p>' 
+                  + '<div class="enterBtn" style="margin-top:25px;" onclick=toSimulation("'
                   + dataList[i].mnscUrl + '?objId=' + dataList[i].id
                   + '")>进入实操</div>' + '</div>' + '</div>';
               if ((i + 1) % 4 == 0) {
