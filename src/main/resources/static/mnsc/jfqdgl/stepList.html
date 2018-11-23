@@ -108,7 +108,7 @@
                 }
               },
               { X: 480,
-              Y: 260,
+              Y: 240,
               distance: 10,
               direction: 'bottom',
               content: '<div class="intro-indent">现在让我们新建缴费清单，首先请点击<span class="special">“新增”</span>按钮，进入缴费清单新增页面，进行操作。</div>',
@@ -125,8 +125,8 @@
               }
             },
               {
-                X: 470,
-                Y: 220,
+                X: 480,
+                Y: 196,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -373,18 +373,15 @@
 
               {
                 X: 100,
-                Y: 180,
+                Y: 200,
                 distance: 10,
                 direction: 'right',
-                content: '<div class="intro-indent">费项设置，首先需要确定费项，费项的来源有三类，分别是，</p>'
-                  +'<div>1.标准费项：政府订价的标准费项</div>'
-                  +'<div>2.费项模板：企业自定义的费项说明</div>'
-                  +'<div>3.历史清单：从历史的缴费清单中进行导入</div></div>',
+                content: '<div class="intro-indent">费项设置，选择在价格中心定义的价格模板，选中后再进行设定。</p>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
                 radius: 5,
-                area: [400, 180],
+                area: [200, 150],
                 nextBtn: {
                   content: '知道了',
                   backgroundColor: '#990000'
@@ -394,8 +391,8 @@
               },
              
               {
-                X: 137,
-                Y: 130,
+                X: 120,
+                Y: 150,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -406,7 +403,7 @@
                 backgroundColor: 'transparent', //透明颜色
                 color: '#fff',
                 radius: 5,
-                area: [110, 50],
+                area: [120, 50],
                 nextBtn: {
                   content: '',//标准费项
                   backgroundColor: 'transparent',
@@ -423,8 +420,8 @@
             srcUrl: './stepTips6.html',
             steps: [
               {
-                X: 650,
-                Y: 200,
+                X: 600,
+                Y: 140,
                 distance: 10,
                 direction: 'bottom',
                 content: '<div class="intro-indent">通过录入查询条件，点击<span style="color:#feef00 ">"查询"</span>按钮，进行标准费项查询</div>',
@@ -463,8 +460,8 @@
               },
              
               {
-                X: 510,
-                Y: 140,
+                X: 470,
+                Y: 90,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -492,10 +489,28 @@
             srcUrl: './stepTips7.html',
             steps: [
               {
-                X: 740,
-                Y: 160,
+                X: 160,
+                Y: 180,
                 distance: 10,
-                direction: 'bottom',
+                direction: 'right',
+                content: '<div class="intro-indent">除了选择费项模板中的费项外，还可以重新<span style="color:#feef00 ">按照总价进行</span>设定</p>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [240, 120],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {
+                }
+              },
+              {
+                X: 480,
+                Y: 520,
+                distance: 10,
+                direction: 'top',
                 content: '<div class="intro-indent">费项设置完毕后，点击<span style="color:#feef00 ">"保存"</span>按钮就会提示信息保存成功，同时可进行费项的删除。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
@@ -518,8 +533,8 @@
             srcUrl: './stepTips8.html',
             steps: [
               {
-                X: 100,
-                Y: 380,
+                X: 220,
+                Y: 280,
                 distance: 10,
                 direction: 'right',
                 content: '<div class="intro-indent">在清单的费项中，选择需要删除的费项，然后点击<span style="color:#feef00 ">"删除"</span>按钮，进行删除操作！</div>',
@@ -536,8 +551,8 @@
                 }
               },
               {
-                X: 840,
-                Y: 170,
+                X: 640,
+                Y: 110,
                 distance: 10,
                 direction: 'bottom',
                 content: '<div class="intro-indent">完成收费项目的删除，收费项目的添加与删除操作完毕!。</div>',
