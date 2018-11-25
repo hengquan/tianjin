@@ -571,26 +571,26 @@ html {
             if (fileUploadIsOk == 'true') {
               layer.close(index);
               try {
-                parent.refresh("保存成功");
+                parent.refresh("保存成功!");
               } catch(e) {
-                parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+                parent.document.getElementById("mainframe").contentWindow.refresh("保存成功!");
               }
               closeMy();
             }
           }, 1000);
         } else {
           try {
-            parent.refresh("保存成功");
+            parent.refresh("保存成功!");
           } catch(e) {
-            parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+            parent.document.getElementById("mainframe").contentWindow.refresh("保存成功!");
           }
           closeMy();
         }
       } else {
         try {
-          parent.refresh("保存成功");
+          parent.refresh("保存成功!");
         } catch(e) {
-          parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+          parent.document.getElementById("mainframe").contentWindow.refresh("保存成功!");
         }
         closeMy();
       }
