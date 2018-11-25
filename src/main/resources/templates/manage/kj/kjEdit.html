@@ -681,18 +681,18 @@ html {
             if (fileUploadVideoIsOk == 'true') {
               layer.close(index1);
               try {
-                parent.refresh("保存成功");
+                parent.refresh("保存成功!");
               } catch(e) {
-                parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+                parent.document.getElementById("mainframe").contentWindow.refresh("保存成功!");
               }
               closeMy();
             }
           }, 1000);
         }else{
           try {
-            parent.refresh("保存成功");
+            parent.refresh("保存成功!");
           } catch(e) {
-            parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+            parent.document.getElementById("mainframe").contentWindow.refresh("保存成功!");
           }
           closeMy();
         }
@@ -700,7 +700,7 @@ html {
         try {
           parent.refresh();
         } catch(e) {
-          parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+          parent.document.getElementById("mainframe").contentWindow.refresh("保存成功!");
         }
         closeMy();
       }

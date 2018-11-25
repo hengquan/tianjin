@@ -402,9 +402,9 @@ html {
         success : function(data) {
           if (data.resultCode=='00') {
             try {
-              parent.refresh("保存成功");
+              parent.refresh("保存成功!");
             } catch(e) {
-              parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+              parent.document.getElementById("mainframe").contentWindow.refresh("保存成功!");
             }
             closeMy(); 
           } else {
@@ -459,16 +459,19 @@ html {
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
-        success : function(data) {           
-          alert(parent.document.getElementById("mainframe").tmHtml);
-          parent.document.getElementById("mainframe").refresh("保存成功");
+        success : function(data) {          
+          try {
+            parent.refresh("保存成功!");
+          } catch(e) {
+            parent.document.getElementById("mainframe").contentWindow.refresh("保存成功!");
+          }
           closeMy(); 
         },
         error : function() { //失败回调函数
           try {
-            parent.refresh("保存成功");
+            parent.refresh("保存成功!");
           } catch(e) {
-            parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+            parent.document.getElementById("mainframe").contentWindow.refresh("保存成功!");
           }
           closeMy(); 
         }
