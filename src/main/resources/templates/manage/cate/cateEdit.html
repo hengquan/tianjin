@@ -204,20 +204,22 @@ $(function () {
       cache : false,//false是不缓存，true为缓存
       async : true,//true为异步，false为同步
       success : function(result) {
-        if (result.returnCode != '00') {
+        if (result.returnCode!='00') {
           layer.alert(result.messageInfo);
           return false;
         } else {
           //刷新列表
           try {
-            parent.refresh();
+            parent.refresh("保存成功");
           } catch(e) {
-            parent.document.getElementById("mainframe").contentWindow.refresh();
+            parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
           }
           closeMy();
         }
       },
-      error : function() {
+      error : function(XMLHttpRequest, textStatus, errorThrown) {
+        var m="系统错误：<br>statu=" + XMLHttpRequest.status + "<br>readyState=" + XMLHttpRequest.readyState + "<br>text=" + textStatus + "<br>errThrown=" + errorThrown
+        layer.error("保存分类失败!<br>"+m);
       }
     });
     return false;

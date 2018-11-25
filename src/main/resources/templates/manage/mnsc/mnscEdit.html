@@ -263,9 +263,9 @@ html {
           }
           loading(type);
         },
-        error : function() { //失败回调函数
-          parent.refresh();
-          closeMy();
+        error : function(XMLHttpRequest, textStatus, errorThrown) {
+          var m="系统错误：<br>statu=" + XMLHttpRequest.status + "<br>readyState=" + XMLHttpRequest.readyState + "<br>text=" + textStatus + "<br>errThrown=" + errorThrown
+          layer.error("添加模拟实操失败!<br>"+m);
         }
       });
     }
@@ -290,9 +290,9 @@ html {
           }
           loading(type);
         },
-        error : function() { //失败回调函数
-          parent.refresh();
-          closeMy();
+        error : function(XMLHttpRequest, textStatus, errorThrown) {
+          var m="系统错误：<br>statu=" + XMLHttpRequest.status + "<br>readyState=" + XMLHttpRequest.readyState + "<br>text=" + textStatus + "<br>errThrown=" + errorThrown
+          layer.error("保存模拟实操失败!<br>"+m);
         }
       });
     }
@@ -570,16 +570,28 @@ html {
             console.log(fileUploadIsOk);
             if (fileUploadIsOk == 'true') {
               layer.close(index);
-              parent.refresh();
+              try {
+                parent.refresh("保存成功");
+              } catch(e) {
+                parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+              }
               closeMy();
             }
           }, 1000);
         } else {
-          parent.refresh();
+          try {
+            parent.refresh("保存成功");
+          } catch(e) {
+            parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+          }
           closeMy();
         }
       } else {
-        parent.refresh();
+        try {
+          parent.refresh("保存成功");
+        } catch(e) {
+          parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+        }
         closeMy();
       }
     }

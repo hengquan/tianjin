@@ -401,7 +401,11 @@ html {
         cache : false,
         success : function(data) {
           if (data.resultCode=='00') {
-            parent.refresh("保存成功");
+            try {
+              parent.refresh("保存成功");
+            } catch(e) {
+              parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+            }
             closeMy(); 
           } else {
             layer.error("添加失败");
@@ -461,7 +465,11 @@ html {
           closeMy(); 
         },
         error : function() { //失败回调函数
-          parent.refresh("保存成功");
+          try {
+            parent.refresh("保存成功");
+          } catch(e) {
+            parent.document.getElementById("mainframe").contentWindow.refresh("保存成功");
+          }
           closeMy(); 
         }
       });

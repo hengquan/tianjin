@@ -426,7 +426,8 @@
       //页码
       };
     }
-    function refresh() {
+    function refresh(msg) {
+      if (msg) layer.msg(msg);
       $("#tb_departments").bootstrapTable('refresh');
     }
     //搜索

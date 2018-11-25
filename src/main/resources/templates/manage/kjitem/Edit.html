@@ -375,18 +375,30 @@ html {
             $("#objId").val(objId);
             setTimeout(function() {
               $("#file-1").fileinput('upload');
-              parent.refresh();
+              try {
+                parent.refresh();
+              } catch(e) {
+                parent.document.getElementById("mainframe").contentWindow.refresh();
+              }
               closeMy();
             }, 200);
             setTimeout(function() {
               $("#file-2").fileinput('upload');
-              parent.refresh();
+              try {
+                parent.refresh();
+              } catch(e) {
+                parent.document.getElementById("mainframe").contentWindow.refresh();
+              }
               closeMy();
             }, 400);
           }
         },
         error : function() { //失败回调函数
-          parent.refresh();
+          try {
+            parent.refresh();
+          } catch(e) {
+            parent.document.getElementById("mainframe").contentWindow.refresh();
+          }
           closeMy();
         }
       });
@@ -399,11 +411,19 @@ html {
         dataType : 'json',
         cache : false,
         success : function(data) {
-          parent.refresh();
+          try {
+            parent.refresh();
+          } catch(e) {
+            parent.document.getElementById("mainframe").contentWindow.refresh();
+          }
           closeMy();
         },
         error : function() { //失败回调函数
-          parent.refresh();
+          try {
+            parent.refresh();
+          } catch(e) {
+            parent.document.getElementById("mainframe").contentWindow.refresh();
+          }
           closeMy();
         }
       });

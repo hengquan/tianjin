@@ -400,7 +400,8 @@
     function sel() {
       $("#tb_departments").bootstrapTable('refresh');
     }
-    function refresh() {
+    function refresh(msg) {
+      if (msg) layer.msg(msg);
       $("#tb_departments").bootstrapTable('refresh');
     }
   </script>

@@ -325,7 +325,8 @@ function lookItem(e) {
   });
 }
 
-function refresh() {
+function refresh(msg) {
+  if (msg) layer.msg(msg);
   $("#tb_departments").bootstrapTable('refresh');
 }
 
