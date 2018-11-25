@@ -262,7 +262,7 @@
           dataType : 'json',
           cache : false,
           success : function(data) {
-            layer.msg((valid==1?"启用":(valid==2?"删除":"停用"))+"成功!");           
+            layer.msg((valid==1?"启用":(valid==2?"删除":"停用"))+"成功!");
             $("#tb_departments").bootstrapTable('refresh');
           },
           error : function() { //失败回调函数
@@ -357,7 +357,8 @@
     function sel() {       
       $("#tb_departments").bootstrapTable('refresh');
     }
-    function refresh() {
+    function refresh(msg) {
+      if (msg) layer.msg(msg);
       $("#tb_departments").bootstrapTable('refresh');
     }
     function openKj() {

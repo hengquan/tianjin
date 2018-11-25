@@ -57,22 +57,7 @@
                 <form class="form-inline">
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
-                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="objType">类&emsp;&emsp;型</label>
-                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <select id="objType" class="selectpicker" title="请选择" data-actions-box="true" data-live-search="true">
-                          <option value="">清空</option>
-                          <option value="ts_kj">课件</option>
-                          <option value="ts_mnsc">模拟实操</option>
-                          <option value="q_sj">练习</option>
-                          <!-- <option value="student_profile">学员概况</option> -->
-                          <!-- <option value="admin_mainpage">管理首页</option> -->
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <div class="form-group">
-                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="catName">分&emsp;&emsp;类</label>
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;" for="catName">培训分类</label>
                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                         <select id="catName" class="selectpicker" title="请选择" data-actions-box="true" data-live-search="true">
                           <!-- <option value="课件列表">课件列表</option>
@@ -86,9 +71,24 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="form-group">
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;" for="objType">学习类型</label>
+                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <select id="objType" class="selectpicker" title="请选择" data-actions-box="true" data-live-search="true">
+                          <option value="">清空</option>
+                          <option value="ts_kj">课件</option>
+                          <option value="ts_mnsc">模拟实操</option>
+                          <option value="q_sj">练习</option>
+                          <!-- <option value="student_profile">学员概况</option> -->
+                          <!-- <option value="admin_mainpage">管理首页</option> -->
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div class="form-group">
-                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="createTime">统计时间</label>
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;" for="createTime">学习时间</label>
                       <div id="date1" class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
                         <input class="form-control datetimepicker" name="begin" size="16" type="text" value="" style="padding-left:10px;">
                         <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
@@ -112,17 +112,17 @@
 
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
-                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="createTime">企&emsp;&emsp;业</label>
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;" for="createTime">企业名称</label>
                       <div id="date1" class="date col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" id="compName" placeholder="企业名称">
+                        <input type="text" class="form-control" id="compName">
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
-                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="createTime">人&emsp;&emsp;员</label>
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;" for="createTime">人员姓名</label>
                       <div id="date1" class="date col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" id="userName" placeholder="人员名称">
+                        <input type="text" class="form-control" id="userName">
                       </div>
                     </div>
                   </div>
@@ -228,11 +228,11 @@ function initTable() {
   TableInit(queryParams).Init('${gateway}/tj/getXxrzList?forType=1', [
   {
     field : 'catNames',
-    title : '分类',
+    title : '培训分类',
     sortable : false
   }, {
     field : 'objType',
-    title : '类型',
+    title : '学习类型',
     sortable : false,
     formatter: function(value, row, index){
       if (value=='ts_kj') return '课件';
@@ -255,15 +255,15 @@ function initTable() {
     }
   }, {
     field : 'groupName',
-    title : '企业',
+    title : '企业名称',
     sortable : false
   }, {
     field : 'visitorName',
-    title : '人员',
+    title : '人员姓名',
     sortable : false
   }, {
     field : 'createDate',
-    title : '时间',
+    title : '学习时间',
     sortable : false
   }
   ]);

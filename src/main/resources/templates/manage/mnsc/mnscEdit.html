@@ -3,76 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <title>input</title>
-<!-- 1 bootstrap基础css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
-	rel="stylesheet">
-<!-- 2 table表格css -->
-<link
-	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
-	rel="stylesheet">
-<!-- 3 treeview树css -->
-<link
-	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
-	rel="stylesheet">
-<!-- 4 datetimepicker时间选择css -->
-<link
-	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
-	rel="stylesheet">
-<!-- 5 select选择框css -->
-<link
-	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
-	rel="stylesheet">
-<!-- 6 fileinput上传文件css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
-	rel="stylesheet">
-<!-- 7 icheck单选+多选css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
-	rel="stylesheet">
-<!-- 8 Validator验证css -->
-<link
-	href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
-	rel="stylesheet">
-<!-- 9 layer弹框css -->
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css" rel="stylesheet">
 <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
-<!-- 10 引入字体css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
-	rel="stylesheet">
-<!-- 11 页面样式css -->
 <link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
-<!-- 优先引入jquery1.12.4版本 -->
 <script src="${gateway}/libs/jquery/jquery-1.12.4.js"></script>
-<!-- 1 bootstrap基础js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<!-- 2 table表格js -->
-<script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
-<!-- 2 table列表数据js 可删除？ -->
-<script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
-<!-- 3 treeview树js -->
-<script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
-<!-- 4 datetimepicker时间选择js -->
-<script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
-<!-- 5 select选择框js -->
-<script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
-<!-- 6 fileinput上传文件js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
-<!-- 6 fileinput中文包js -->
-<script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
-<!-- 7 icheck单选+多选js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
-<!-- 8 Validator验证js -->
-<script
-	src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
-<!-- 9 layer弹框js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <script src="${gateway}/libs/layer/layer.js"></script>
-<!-- 11 页面js -->
 <script src="${gateway}/src/js/main.js"></script>
+
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css" rel="stylesheet">
+
 <style>
 html {
 	overflow-x: hidden;
@@ -81,8 +38,6 @@ html {
 </style>
 </head>
 <body>
-	<br>
-	<br>
 	<br>
 	<div class="container">
 		<div class="row clearfix">
@@ -95,8 +50,8 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>名&emsp;称</label>
-							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+									※ </span>名称</label>
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
 								<input type="text" class="form-control" name="mnscName"
 									id="mnscName" />
 							</div>
@@ -104,24 +59,9 @@ html {
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span>
-									※ </span>分&emsp;类</label>
-							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-								<div class="input-group">
-									<select id="mnscCatId" name="mnscCatId" class="selectpicker"
-										data-actions-box="true" data-live-search="true" title="请选择"
-										onchange="selOnchange()"> ${optionHtml}
-									</select> <input type="hidden" class="form-control" name="mnscCatNames"
-										id="mnscCatNames" />
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
 									※ </span>地&emsp;址</label>
-							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
 								<input type="text" class="form-control" name="mnscUrl"
 									id="mnscUrl" />
 							</div>
@@ -129,9 +69,20 @@ html {
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title"><span>
-									※ </span>状&emsp;态</label>
-							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span>
+									※ </span>分&emsp;类</label>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<div class="input-group">
+									<select id="mnscCatId" name="mnscCatId" class="selectpicker"
+										data-actions-box="true" data-live-search="true" title="请选择"
+										onchange="selOnchange()"> ${optionHtml}
+									</select> <input type="hidden" class="form-control" name="mnscCatNames"
+										id="mnscCatNames" />
+								</div>
+							</div>						
+							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-6" for="title"><span>
+									※ </span>状态</label>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
 								<label class="radio-inline"> <input type="radio"
 									name="isvalid" value="1" checked>启用
 								</label> <label class="radio-inline"> <input type="radio"
@@ -143,8 +94,8 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="title">&emsp;排&emsp;序</label>
-							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-								<input type="text" class="form-control" name="sort" id="sort"
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+								<input type="number" class="form-control" name="sort" id="sort"
 									value="100" />
 							</div>
 						</div>
@@ -152,7 +103,7 @@ html {
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6" for="biaozhun">&emsp;说&emsp;明</label>
-							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
 								<textarea id="remarks" class="form-control" name="remarks"
 									style="min-height: 108px"></textarea>
 							</div>
@@ -162,23 +113,21 @@ html {
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><span
 								class="cfff"> ※ </span>展示图片</label>
-							<div class="col-lg-8col-md-8 col-sm-8 col-xs-6">
+							<div class="col-lg-10 col-md-10 col-sm10 col-xs-6">
 								<input id="file-1" type="file" multiple class="file"
 									name="files" data-overwrite-initial="false"
 									data-min-file-count="1"><br /> <b>(注：请上传229x174，大小在2M以内的展示图片，支持格式：jpg,gif,png,jpeg)</b>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-						style="margin-top: 10px">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<label class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
-								style="padding-top: 5px; text-align: left; border-top: 1px solid #cecece;">相关课件</label>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-10" > <span class="cfff"> ※ </span>相关课件</label>
 						</div>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="form-group">
-							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<table class="table table-striped" id="theTable">
 									<tr>
 										<th>名称</th>

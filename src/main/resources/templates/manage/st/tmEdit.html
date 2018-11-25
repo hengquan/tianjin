@@ -128,8 +128,8 @@ html {
                             <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1"  for="title"><span> ※ </span>类型</label>
                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                 <select id="tmType" name="tmType" class="selectpicker"
-                                    onchange="classify(this)" data-live-search="true" title="请选择">
-                                    <option value="单选题">单选题</option>
+                                    onchange="classify(this)" data-live-search="true" >
+                                    <option value="单选题" checked>单选题</option>
                                     <option value="多选题">多选题</option>
                                     <option value="判断题">判断题</option>
                                 </select>
@@ -163,12 +163,12 @@ html {
                         </div>
                     </div>     
                  </form>
-                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="selectbtn" style="display: none;">
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="selectbtn" >
                                  <button onclick="addTmcache()" 
                                         class="btn w120  btn btn-info" >添加选项及答案</button>                     
                              </div>   
                        </div>         
-                <div class="pt-main" id = "pt-main" style="display :none">
+                <div class="pt-main" id = "pt-main" >
                     <!--bootstrap 表格-->
                     <div class="row">
                         <div class="col-lg-12 col-md-10 col-sm-11 col-xs-12" >
@@ -353,6 +353,8 @@ html {
       }
     });
     function getDetailData(tmId) {
+      alert('${gateway}/st/getselctData?id=' + tmId);
+      
       TableInit().Init('${gateway}/st/getselctData?id=' + tmId, [  {
         field : 'tmSelectSign',
         title : '选项标号',
@@ -400,14 +402,14 @@ html {
         cache : false,
         success : function(data) {
           if (data.resultCode=='00') {
-            parent.refresh();
+            parent.refresh("保存成功");
             closeMy(); 
           } else {
             layer.error("添加失败");
           }
         },
         error : function() { //失败回调函数
-          alert("保存成功");
+           layer.error("操作失败");
           //parent.refresh();
          // closeMy();         
         }
@@ -430,7 +432,7 @@ html {
               }
             },
             error : function() { //失败回调函数
-              alert("异常无法操作");
+              layer.error("异常无法操作");
               //parent.refresh();
              // closeMy();         
             }
@@ -454,14 +456,12 @@ html {
         data : $("#form").serialize(),
         dataType : 'json',
         cache : false,
-        success : function(data) {
-          alert("保存成功");    
-          parent.refresh();
-            closeMy(); 
+        success : function(data) {            
+          parent.refresh("保存成功");
+          closeMy(); 
         },
         error : function() { //失败回调函数
-          alert("保存成功");
-          parent.refresh();
+          parent.refresh("保存成功");
           closeMy(); 
         }
       });
@@ -562,14 +562,15 @@ html {
             $("#tb_departments").bootstrapTable('refresh');
           },
           error : function() { //失败回调函数
-            alert("删除失败");
+            layer.msg("删除失败");
           }
         });
       } else if (mymessage == false) {
         return false;
       }
     }
-  function refresh() {   
+  function refresh(msg) {
+    if (msg) layer.msg(msg);
     $("#tb_departments").bootstrapTable('refresh');
   }
  

@@ -216,27 +216,29 @@ html {
          dataType : 'json',
          cache : false,
          success : function(data) {     
-           if (data.resultCode=="002")
-             alert("题目的标号重复，请重新设置");
-           if (data.resultCode=="003")
-             alert("单选题只能有一个正确答案，请重新设置");
-           if  (data.resultCode=="001"){
-             alert("保存成功");            
-             if (getUrlParam("isvalid")==3)
-             	parent.location.href='${gateway}/st/edit?id='+$("#objId").val();
+           if (data.resultCode=="002") layer.msg("题目的标号重复，请重新设置");
+           if (data.resultCode=="003") layer.msg("单选题只能有一个正确答案，请重新设置");
+           if  (data.resultCode=="001") {
+             if (getUrlParam("isvalid")==3){
+             	//parent.location.href='${gateway}/st/edit?id='+$("#objId").val();
+             	alert("111111111111111");
+             	parent.document.getElementById("objId").value=$("#objId").val();
+             	alert(parent.document.getElementById("objId").value);
+             	parent.getDetailData($("#objId").val());
+             	parent.refresh("保存成功");
+             }
              else
-                parent.refresh();
+               parent.refresh("保存成功");
              closeMy();
            }
            if  (data.resultCode=="000")
-           {
-             alert("保存成功");
-             parent.refresh();
+           {             
+             parent.refresh("保存成功");
              closeMy();
            }
          },
          error : function() { //失败回调函数
-           alert("保存失败");
+           parent.refresh("保存失败");
          }
        });  
       }
@@ -248,11 +250,11 @@ html {
           dataType : 'json',
           cache : false,
           success : function(data) {
-            parent.refresh();
+            parent.refresh("保存成功");
             closeMy();
           },
           error : function() { //失败回调函数
-            alert("修改失败");
+            parent.refresh("保存失败");;
           }
         });
       }

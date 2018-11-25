@@ -240,6 +240,7 @@ public class StController {
     public Map<String, Object> getselectData(Tm tm, HttpServletRequest request, HttpServletResponse response) {
         // 返回数据
         Map<String, Object> map = new HashMap<String, Object>();    
+        tm.setId(request.getParameter("id"));
         // 跨域
         HttpPush.responseInfo(response);
         List<TmSelect> Tms = stService.getselectData(tm);        

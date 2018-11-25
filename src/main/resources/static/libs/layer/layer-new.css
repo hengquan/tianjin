@@ -1,8 +1,8 @@
-/*弹框外圆角*/
+/*寮规澶栧渾瑙�*/
     .layui-layer{
       border-radius: 4px;
     }
-    /*弹框title*/
+    /*寮规title*/
     .layui-layer-title {
       padding:0 10%;
       height: 60px;
@@ -15,13 +15,13 @@
       background-color: #fff;
       border-radius: 2px 2px 0 0;
     }
-    /*新加的class*/
+    /*鏂板姞鐨刢lass*/
     .text-color{
       /*padding: 11px 4px;*/
       padding:0 4px 8px 4px;
       border-bottom: 4px solid #2E66BD;
     }
-    /*弹框关闭按钮*/
+    /*寮规鍏抽棴鎸夐挳*/
     .layui-layer-setwin .layui-layer-close1 {
       background-position: 0px -62px;
       cursor: pointer;
