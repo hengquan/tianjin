@@ -330,13 +330,13 @@ public class TjController {
                     ObjectResponseResult<CompanyInfo> companyInfo=companyRemote.findCompanyBankInfoList(ui.getUserId());
                     if (companyInfo!=null&&companyInfo.getData()!=null) {
                         compId=companyInfo.getData().getUniscid();
-                    } else {//这是测试代码，用guanliyuan进行测试
-                        compId="98311111234523456B";
+//                    } else {//这是测试代码，用guanliyuan进行测试
+//                        compId="98311111234523456B";
                     }
                 } else
                 if ("3".equals(forType)) {//企业人员
                     userId=ui.getUserId();
-                    userId="ff808081670cad5f016710d5a3110009";
+                    //userId="ff808081670cad5f016710d5a3110009";
                 }
             }
 

@@ -209,7 +209,11 @@ $(function () {
           return false;
         } else {
           //刷新列表
-          parent.refresh();
+          try {
+            parent.refresh();
+          } catch(e) {
+            parent.document.getElementById("mainframe").contentWindow.refresh();
+          }
           closeMy();
         }
       },
