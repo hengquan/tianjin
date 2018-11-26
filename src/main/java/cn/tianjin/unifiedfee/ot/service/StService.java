@@ -226,9 +226,13 @@ public class StService {
         if (tmtype.equals("0")){
              int isanswer = 0;
              isanswer = tmselect.getIsAnswer();
-             if (isanswer==1&tmselect.getIsAnswer()!=tmptmselect.getIsAnswer()) {
+             if (isanswer==1) {
                  tmp =this.getselectAnswer(tm);
-                 if  (tmp.size()>0) {
+                 if  (tmp.size()>0 & tmptmselect.getIsAnswer()!=1) {
+                     restr="003";
+                     return restr;
+                }
+                 if  (tmp.size()>1) {
                      restr="003";
                      return restr;
                 }

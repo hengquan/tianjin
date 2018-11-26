@@ -166,9 +166,9 @@ public class StController {
         HttpPush.responseInfo(response);
         boolean result;        
         List<TmSelect> tmselects = stService.getselectallAnswer(tm); 
-        if (tmselects.size()==0&tm.getIsvalid()==1&tm.getTmType()!="选择题") {
-            map.put("resultCode", "003");
-        }else {
+        if (tmselects.size()==0&tm.getIsvalid()==1)  map.put("resultCode", "003");
+        else if (tmselects.size()>0&tm.getIsvalid()==1&"单选题".equals(tm.getTmType())) map.put("resultCode", "004");
+        else{
             try {
                 // 更新数据
                 result = stService.update(tm);

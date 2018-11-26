@@ -447,6 +447,10 @@ html {
                layer.msg("没有正确设置选项，必须设置选项及正确答案！");
                return;
             }
+            if (data.resultCode=='004') {              
+              layer.msg("单选题只能有一个正确答案！");
+              return;
+           }
           }
           try {
 	         parent.refresh("保存成功!");
