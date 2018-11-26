@@ -237,7 +237,7 @@ html {
             getDetailData(split);
           },
           error : function() { //失败回调函数
-            alert("获取信息失败");
+            layer.msg("获取信息失败");
           }
         });
       }else{
@@ -332,9 +332,7 @@ html {
       }
     });
     function getDetailData(tmId) {
-      alert('${gateway}/st/getselctData?id=' + tmId);
-      
-      TableInit().Init('${gateway}/st/getselctData?id=' + tmId, [  {
+     TableInit().Init('${gateway}/st/getselctData?id=' + tmId, [  {
         field : 'tmSelectSign',
         title : '选项标号',
         sortable : false
