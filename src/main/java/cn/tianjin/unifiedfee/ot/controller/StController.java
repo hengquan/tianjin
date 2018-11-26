@@ -142,11 +142,12 @@ public class StController {
         UserInfo user=userService.getUserInfo();
         // 返回数据
         Map<String, Object> map = new HashMap<String, Object>();
+        String tmtype = request.getParameter("tmtype"); 
         // 跨域
         HttpPush.responseInfo(response);
         try {
             // 添加数据
-            String result = stService.insertselect(tm,user);            
+            String result = stService.insertselect(tm,user,tmtype);            
                 map.put("resultCode", result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -165,7 +166,7 @@ public class StController {
         HttpPush.responseInfo(response);
         boolean result;        
         List<TmSelect> tmselects = stService.getselectallAnswer(tm); 
-        if (tmselects.size()==0) {
+        if (tmselects.size()==0&tm.getIsvalid()==1&tm.getTmType()!="选择题") {
             map.put("resultCode", "003");
         }else {
             try {
@@ -209,15 +210,13 @@ public class StController {
     public Map<String, Object> updateSelct(TmSelect tm,String id, HttpServletRequest request, HttpServletResponse response) {
         // 返回数据
         Map<String, Object> map = new HashMap<String, Object>();
+        String tmtype = request.getParameter("tmtype");
         // 跨域
         HttpPush.responseInfo(response);
         try {
             // 更新数据
-            boolean result = stService.updateSelct(tm);
-            if (result)
-                map.put("resultCode", "100");
-            else
-                map.put("resultCode", "101");
+            String result = stService.updateSelct(tm,tmtype);
+            map.put("resultCode", result);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -63,13 +63,9 @@
 <script src="${gateway}/libs/layer/layer.js"></script>
 <!-- 11 页面js -->
 <script src="${gateway}/src/js/main.js"></script>
-<style>
-html {
-	overflow: scroll;
-}
-</style>
+
 </head>
-<body>
+<body  scroll="no">
 <br>
 	<div class="pt-page">			
 		<div class="pt-main pt-padding">
@@ -150,7 +146,7 @@ html {
             $("#baocun").attr("onclick", "editSelect()");
           },
           error : function() { //失败回调函数
-            alert("获取信息失败");
+            layer.msg("获取信息失败");
           }
         });
       }
@@ -203,6 +199,7 @@ html {
 	    if (r != null) return unescape(r[2]); return null; //返回参数值
 	}
      function addSelect() { 
+       var tmtype = getUrlParam("tmtype") ;
        var validatorObj=$('#form').data("bootstrapValidator");
        var aa=validatorObj.validate();
        var flag=validatorObj.isValid();
@@ -211,7 +208,7 @@ html {
        var flag = 0;
        $.ajax({
          type : 'post',
-         url : "${gateway}/st/insertselect",
+         url : "${gateway}/st/insertselect?tmtype="+tmtype,
          data : $("#form").serialize(),
          dataType : 'json',
          cache : false,
@@ -242,15 +239,19 @@ html {
        });  
       }
       function editSelect() {
+        tmtype = getUrlParam("tmtype") ;
         $.ajax({
           type : 'post',
-          url : "${gateway}/st/updateSelct",
+          url : "${gateway}/st/updateSelct?tmtype="+tmtype,
           data : $("#form").serialize(),
           dataType : 'json',
           cache : false,
           success : function(data) {
+            if (data.resultCode=="002") layer.msg("题目的标号重复，请重新设置");
+            if (data.resultCode=="003") layer.msg("单选题只能有一个正确答案，请重新设置");
+            if  (data.resultCode=="001") {
             parent.refresh("保存成功");
-            closeMy();
+            closeMy();}
           },
           error : function() { //失败回调函数
             parent.refresh("保存失败");;

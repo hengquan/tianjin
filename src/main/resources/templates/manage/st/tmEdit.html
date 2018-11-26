@@ -339,7 +339,8 @@ html {
       }, {
         field : 'tmSelectDesc',
         title : '选项描述',
-        sortable : false
+        sortable : false,
+        width:400
       }, {
         field : 'sort',
         title : '显示顺序',
@@ -371,7 +372,8 @@ html {
       var flag=validatorObj.isValid();
       if (!flag) return;
       var val=$('input:radio[name="isvalid"]:checked').val();
-      if (val==1){
+      var tmtype =document.getElementById("tmType").selectedIndex; 
+      if (val==1&tmtype!=2){
         layer.msg("选项还没有设置，请设置选项！");
       	return;
       }      
@@ -404,7 +406,7 @@ html {
       if (!($("#objId").val())){        
           $.ajax({
             type : 'post',
-            url : "${gateway}/st/insert?isvalid=3",
+            url : "${gateway}/st/insert?isvalid=3&tmtype="+document.getElementById("tmType").selectedIndex,
             data :  $("#form").serialize(),            
             dataType : 'json',
             cache : false,
@@ -471,12 +473,12 @@ html {
       layer.open({
         type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
         title : '<span class="text-color">选择课件</span>',//请修改span中间的内容
-        shadeClose : true,//开启阴影关闭
+        shadeClose : false,//开启阴影关闭
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
-        area : [ '80%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '${gateway}/kj/list4st?type=checkbox', 'yes' ]
+        area : [ '90%', '100%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : [ '${gateway}/kj/list4st?type=checkbox', 'no' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -489,7 +491,7 @@ html {
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
         area : [ '80%', '90%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '${gateway}/mnsc/list4st?type=checkbox', 'yes' ]
+        content : [ '${gateway}/mnsc/list4st?type=checkbox', 'no' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -501,8 +503,8 @@ html {
         closeBtn : 1, //不显示关闭按钮
         shade : 0.6,
         maxmin : false,//开启最大化最小化按钮
-        area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-        content : [ '${gateway}/st/selectEdit?flag=0&isvalid='+isvalid+'&id='+$("#objId").val(), 'no' ]
+        area : [ '90%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
+        content : [ '${gateway}/st/selectEdit?tmtype='+document.getElementById("tmType").selectedIndex+'&isvalid='+isvalid+'&flag=0&id='+$("#objId").val(), 'no' ]
       //如果不想出现滚动条['content.html', 'no']
       });
     }
@@ -531,18 +533,18 @@ html {
       } else{        
         document.getElementById("selectbtn").style.display = "none";
         document.getElementById("pt-main").style.display = "none";
-      }
+      }      
     }
     function editItem(e) {
       layer.open({
       type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-      title : '<span class="text-color">修改选项信息</span>',//请修改span中间的内容
+      title : '<span class="text-color">修改选项及答案</span>',//请修改span中间的内容
       shadeClose : true,//开启阴影关闭
       closeBtn : 1, //不显示关闭按钮
       shade : 0.6,
       maxmin : false,//开启最大化最小化按钮
-      area : [ '90%', '80%' ],//此处可以改为100%，该数值按UI图比例算出
-      content : ['${gateway}/st/selectEdit?flag=1&id='+e,'no']//如果不想出现滚动条['content.html', 'no']  
+      area : [ '90%', '83%' ],//此处可以改为100%，该数值按UI图比例算出
+      content : ['${gateway}/st/selectEdit?tmtype='+document.getElementById("tmType").selectedIndex+'&flag=1&id='+e,'no']//如果不想出现滚动条['content.html', 'no']  
     });
   }
   function deleteItem(e) {
