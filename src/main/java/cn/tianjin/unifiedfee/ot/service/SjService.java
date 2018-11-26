@@ -372,6 +372,7 @@ public class SjService {
             Map<String, String> okAnswerMap=new HashMap<String, String>();
             String okAnswer="";
             for (Tm tm: tmL) {
+                okAnswer="";
                 List<TmSelect> selects=selectDao.getselectData(tm.getId());
                 for (int j=0; j<selects.size(); j++) {
                     if (selects.get(j).getIsAnswer()==1) {
