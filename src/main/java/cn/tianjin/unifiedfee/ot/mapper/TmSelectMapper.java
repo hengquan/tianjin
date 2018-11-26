@@ -17,5 +17,6 @@ public interface TmSelectMapper {
     int  delete(TmSelect record);
     List<TmSelect> getselectSign(TmSelect tmselect);
     List<TmSelect> getselectAnswer(TmSelect tmselect);
+    List<TmSelect> getselectallAnswer(TmSelect tmselect);
     
 }

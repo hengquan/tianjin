@@ -230,6 +230,7 @@ function initTable() {
   {
     field : 'catNames',
     title : '培训分类',
+    width : 200,
     sortable : false
   }, {
     field : 'objType',
@@ -250,6 +251,7 @@ function initTable() {
     field : 'objName',
     title : '名称',
     sortable : false,
+    width : 300,
     formatter: function(value, row, index) {
       if (!value) return row.moduleName;
       else return value;
