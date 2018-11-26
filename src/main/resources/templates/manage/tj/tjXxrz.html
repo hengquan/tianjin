@@ -207,8 +207,9 @@ function parseUrl() {
   var objTypes=getUrlParam("objTypes");
   if (objTypes) {
     $("#objType option").each(function (i, e) {
+      $(this).removeAttr("selected");
       if ($(this).val()==objTypes) {
-        $(this)[0].selected=true;;
+        $(this).attr("selected", "true");
       }
     });
     $('#objType').selectpicker('refresh'); 
