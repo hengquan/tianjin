@@ -109,6 +109,7 @@
       IntroduceTipsListNext()
     }
     IntroduceControl.prototype.rePage = function () {
+        IntroduceTipsCurrent =0
         IntroduceTipsStep = -1
         IntroduceTipsListNext()
     }
