@@ -114,6 +114,7 @@ function getUrlParam(name) {
 }
 
 var _data={"kjId":getUrlParam("id")};
+var catNames=null;
 
 function closeWin() {
   var browserName=navigator.appName;
@@ -138,8 +139,8 @@ function initPage() {
     data: _data,
     dataType:'json',
     success: function (data) { //成功后的回调函数
-      console.log(data);
       var img_url="./web/images/kj_default.jpg";
+      catNames=data.data.catNames;
       var returnCode=data.returnCode;
       if (returnCode=='00') {
         if (data.data.imgUrl) img_url=data.data.imgUrl;
@@ -266,7 +267,9 @@ function toLearning() {
   window.location.href="./onlineLearning.html?kjId="+getUrlParam("id");
 }
 function  toStartPractice() {
-  window.open("./entryPractice.html")
+  var url="./entryPractice.html";
+  if (catNames) url+="?catNames="+encodeURIComponent(catNames);
+  window.open(url);
 }
 /**
  <span style="margin-left: -28px">
