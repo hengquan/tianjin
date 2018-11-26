@@ -122,6 +122,10 @@ function showSj(id) {
         $(".zfs").html(zfs);
         $(".zts").html(res.data.tmList.length);
         $(".dd").html(okCount);
+        $(".inp-box").hide();
+        $(".times").css({"position":"block", "margin-top":"45px", "bottom":"30px"});
+        $(".topic-box").css("padding-top", "10px");
+        $(".sample").css("margin-top", "60px");
         $("body").show();
       }
     }
