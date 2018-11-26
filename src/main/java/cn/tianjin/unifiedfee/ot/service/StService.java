@@ -277,13 +277,18 @@ public class StService {
 	    tmselect.setTmId(tm.getId());
 	    tmselect.setTmSelectSign(tm.getTmSelectSign());
         return selectDao.getselectSign(tmselect);
-    }
-	
+    }	
 	public List<TmSelect> getselectAnswer (Tm tm) { 
         TmSelect tmselect = new TmSelect();
         tmselect.setTmId(tm.getId());
         tmselect.setTmSelectSign(tm.getTmSelectSign());
         return selectDao.getselectAnswer(tmselect);
+    }	
+	public List<TmSelect> getselectallAnswer (Tm tm) { 
+        TmSelect tmselect = new TmSelect();
+        tmselect.setTmId(tm.getId());
+        tmselect.setTmSelectSign(tm.getTmSelectSign());
+        return selectDao.getselectallAnswer(tmselect);
     }
 	public TmSelect getselect(TmSelect entity) throws Exception {
 	    TmSelect tm = new TmSelect();

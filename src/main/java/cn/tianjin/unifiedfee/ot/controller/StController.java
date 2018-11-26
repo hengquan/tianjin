@@ -163,15 +163,21 @@ public class StController {
         Map<String, Object> map = new HashMap<String, Object>();
         // 跨域
         HttpPush.responseInfo(response);
-        try {
-            // 更新数据
-            boolean result = stService.update(tm);
-            if (result)
-                map.put("resultCode", "100");
-            else
-                map.put("resultCode", "101");
-        } catch (Exception e) {
-            e.printStackTrace();
+        boolean result;        
+        List<TmSelect> tmselects = stService.getselectallAnswer(tm);        
+        if (tmselects.size()==0) {
+            map.put("resultCode", "003");
+        }else {
+            try {
+                // 更新数据
+                result = stService.update(tm);
+                if (result)
+                    map.put("resultCode", "001");
+                else
+                    map.put("resultCode", "002");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return map;
     }

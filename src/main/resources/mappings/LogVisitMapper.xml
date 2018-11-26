@@ -591,7 +591,7 @@ order by create_date desc
 
   <!--课件统计 -->
   <select id="getcatkjtj" resultType="java.util.HashMap" parameterType="java.util.HashMap">
-    select c.name catname,count(distinct s.id) coutkj ,count(distinct t.obj_id) countxxkj,count(distinct t.visitor_name) countxxrs,count(t.obj_id) countxxcs,
+    select c.sort catsort, c.name catname,count(distinct s.id) coutkj ,count(distinct t.obj_id) countxxkj,count(distinct t.visitor_name) countxxrs,count(t.obj_id) countxxcs,
 	case when count(distinct s.id) = 0 then 0
 	     when count(distinct s.id) > 0 then ROUND(count(distinct t.obj_id)/count(distinct s.id)*100,2) end countxxbl
 	from category c left join  ts_kj s on c.id = s.kj_cat_id 
@@ -606,11 +606,11 @@ order by create_date desc
       and t.create_date<to_date('${date2}', 'YYYY-MM-DD')
       ]]>
       </if>
-	group by c.name
+	group by  c.sort ,c.name
   </select>
   <!--模拟实操统计 -->
   <select id="getcatmnsctj" resultType="java.util.HashMap" parameterType="java.util.HashMap">
-    select c.name catname,count(distinct s.id) coutkj ,count(distinct t.obj_id) countxxkj,count(distinct t.visitor_name) countxxrs,count(t.obj_id) countxxcs,
+    select c.sort catsort, c.name catname,count(distinct s.id) coutkj ,count(distinct t.obj_id) countxxkj,count(distinct t.visitor_name) countxxrs,count(t.obj_id) countxxcs,
 	case when count(distinct s.id) = 0 then 0
 	     when count(distinct s.id) > 0 then ROUND(count(distinct t.obj_id)/count(distinct s.id)*100,2) end countxxbl
 	from category c left join  ts_mnsc s on c.id = s.mnsc_cat_id 
@@ -625,7 +625,7 @@ order by create_date desc
       and t.create_date<to_date('${date2}', 'YYYY-MM-DD')
       ]]>
       </if>
-	group by c.name
+	group by  c.sort ,c.name
   </select>
 
   <!--企业统计 -->

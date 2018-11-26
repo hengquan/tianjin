@@ -125,11 +125,16 @@
 	         and tm_select_sign= #{tmSelectSign,jdbcType=VARCHAR}
 	      </if>   	 
   </select>    
-    <select id="getselectAnswer" resultMap="BaseResultMap"  >
+  <select id="getselectAnswer" resultMap="BaseResultMap"  >
 		select  a.id, a.tm_id,a.tm_select_sign,a.tm_select_desc,a.is_answer,a.sort		
 		from q_TM_select a,q_tm b 
 		where tm_id = #{tmId,jdbcType=VARCHAR} and a.tm_id=b.id and a.is_answer = 1	and b.tm_type='单选题'	  	 
   </select>  
+  <select id="getselectallAnswer" resultMap="BaseResultMap"  >
+		select  a.id, a.tm_id,a.tm_select_sign,a.tm_select_desc,a.is_answer,a.sort		
+		from q_TM_select a,q_tm b 
+		where tm_id = #{tmId,jdbcType=VARCHAR} and a.tm_id=b.id and a.is_answer = 1  and b.isValid = 0	 
+  </select> 
   <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Blob_Column_List" />
