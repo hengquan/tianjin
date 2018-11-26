@@ -164,7 +164,7 @@ public class StController {
         // 跨域
         HttpPush.responseInfo(response);
         boolean result;        
-        List<TmSelect> tmselects = stService.getselectallAnswer(tm);        
+        List<TmSelect> tmselects = stService.getselectallAnswer(tm); 
         if (tmselects.size()==0) {
             map.put("resultCode", "003");
         }else {
@@ -179,6 +179,27 @@ public class StController {
                 e.printStackTrace();
             }
         }
+        return map;
+    }
+    @RequestMapping("updateIsvalid")
+    @ResponseBody
+    public Map<String, Object> updateIsvalid(Tm tm,String id, HttpServletRequest request, HttpServletResponse response) {
+        // 返回数据
+        Map<String, Object> map = new HashMap<String, Object>();
+        // 跨域
+        HttpPush.responseInfo(response);
+        boolean result;        
+        try {
+                // 更新数据
+            result = stService.update(tm);
+            if (result)
+               map.put("resultCode", "001");
+            else
+               map.put("resultCode", "002");
+      } catch (Exception e) {
+                e.printStackTrace();
+       }
+        
         return map;
     }
     //修改选项和答案    
