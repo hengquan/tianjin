@@ -217,11 +217,11 @@
            if (data.resultCode=="003") layer.msg("单选题只能有一个正确答案，请重新设置");
            if  (data.resultCode=="001") {
              if (getUrlParam("isvalid")==3){
-             	parent.location.href='${gateway}/st/edit?id='+$("#objId").val();
-             	//parent.document.getElementById("objId").value=$("#objId").val();
-             	//alert(parent.document.getElementById("objId").value);
-             	//parent.getDetailData($("#objId").val());
-             	//parent.refresh("保存成功");
+             	//parent.location.href='${gateway}/st/edit?id='+$("#objId").val();
+             	parent.document.getElementById("objId").value=$("#objId").val();
+             	alert(parent.document.getElementById("objId").value);
+             	parent.getDetailData($("#objId").val());
+             	parent.refresh("保存成功");
              }
              else
                parent.refresh("保存成功");

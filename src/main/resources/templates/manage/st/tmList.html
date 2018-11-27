@@ -217,25 +217,25 @@
     function operateFormatter(value, row, index) {
       var btnArray=[];      
       if (row.isvalid=='1') {
-        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.tmHtml+'\',\''+row.parentName+'\', 0)">停用</button>');
+        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', 0)">停用</button>');
       } else 
       if (row.isvalid=='0') {
         btnArray.push('<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick=editItem("' + value + '")>修改</button>');
-        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red pt-success" onclick="changeValid(\''+ value + '\', \''+row.tmHtml+'\',\''+row.parentName+'\', 1)">启用</button>');
-        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', \''+row.tmHtml+'\',\''+row.parentName+'\', 2)">删除</button>');
+        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red pt-success" onclick="changeValid(\''+ value + '\', 1)">启用</button>');
+        btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red" onclick="changeValid(\''+ value + '\', 2)">删除</button>');
       }
       return btnArray.join('');     
     }
  
  // 操作启用、停用、删除
- function changeValid(e, tmHtml, pn, type) {
+ function changeValid(e, type) {
   if (type==1) {
     ajaxChangeValid(e, type);
   } else {   
     var ty="停用";
     if (type==2) ty="删除";
     if (type==2) {
-      layer.confirm('要'+ty+'题目"'+tmHtml+'"吗？', {btn : [ '确定', '取消' ]},
+      layer.confirm('要'+ty+'该题目吗？', {btn : [ '确定', '取消' ]},
         function(index) {
           layer.close(index);
           ajaxChangeValid(e, type);

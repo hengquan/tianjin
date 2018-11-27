@@ -167,6 +167,7 @@ html {
 
     <br>
     <script>
+    var _local_tmid="";
     //
     //table
     // 2.返回操作模版[按钮颜色暂不确定]
@@ -331,8 +332,12 @@ html {
         },    
       }
     });
+    function getById() {
+      return { id:_local_tmid };
+    }
     function getDetailData(tmId) {
-     TableInit().Init('${gateway}/st/getselctData?id=' + tmId, [  {
+      _local_tmid=tmId;
+      TableInit(getById).Init('${gateway}/st/getselctData', [  {
         field : 'tmSelectSign',
         title : '选项标号',
         sortable : false
