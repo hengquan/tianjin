@@ -75,6 +75,7 @@ body {
 }
 .scsj-btn {
   width: 90px;
+  margin-top:-5px;
   height: 35px;
   line-height: 35px;
   background: #2e66bd;

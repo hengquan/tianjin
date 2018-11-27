@@ -35,6 +35,19 @@ $(function (param) {
         else html+= '<option value="'+arr[j].id+'">'+arr[j].name+'</option>';
       }
       $(".selectpicker").html(html);
+
+      var catNames=getUrlParam("catNames");
+      if (catNames) {
+        catNames=decodeURIComponent(catNames);
+        $(".selectpicker option").each(function (i, e) {
+          $(this).removeAttr("selected");
+          var sp=catNames.split(",");
+          for (var i=0; i<sp.length; i++) {
+            var oneC=sp[i].trim();
+            if ($(this).text()==oneC) $(this).attr("selected", "true");
+          }
+        });
+      }
       $('.selectpicker').selectpicker('refresh');
     }
   });
@@ -50,7 +63,7 @@ $(function (param) {
   });
   $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) +" - " + $( "#slider-range" ).slider( "values", 1 ) );
   //获得参数
-  var id=getUrlParam("id");
+  var id=getUrlParam("id");  
   var type=getUrlParam("type");
   if (id) {
     if (type==1) dt(id);//答题
@@ -141,6 +154,7 @@ function dt(id) {
     data: _data,
     dataType: "json",
     success: function (res) {
+      console.log(res);
       if(res.returnCode == 00) {
         $(".times").css("display","block").css("cursor", "pointer").html("开始练习");
         $(".empty").css("display","none");
@@ -174,6 +188,8 @@ function dt(id) {
         $(".zfs").html(zfs);
         $(".zts").html(res.data.tmList.length);
         $(".dd").html(okCount);
+        // 生成试卷
+        $(".scsj-btn").on("click",buildPaper);
         // 提交试卷
         $(".sub-btn").on("click",commitSj);
         $("body").show();

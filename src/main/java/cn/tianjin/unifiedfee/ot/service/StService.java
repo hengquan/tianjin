@@ -69,7 +69,7 @@ public class StService {
 	        tmSelect.setCreateBy(tm.getCreateBy());
 	        tmSelect.setCreateName(tm.getCreateName());
 	        /*判断题的处理*/
-	        if (tm.getTmType().equals("判断题")){          
+	        if ("判断题".equals(tm.getTmType())){          
 	            /*插入正确*/
 	            tmSelect.setId(SequenceUUID.getPureUUID());
 	            tmSelect.setTmSelectSign("A");
@@ -103,7 +103,7 @@ public class StService {
 	
 	
 	//添加选项	
-	public String insertselect(Tm tm,UserInfo user) throws Exception {
+	public String insertselect(Tm tm,UserInfo user,String tmtype) throws Exception {
 	    String restr = "000";
         tm.setCreateBy(user.getUserId());
         tm.setCreateName(user.getUsername());
@@ -114,15 +114,17 @@ public class StService {
             restr="002";
             return restr;
         }
-         int isanswer = 0;
-         isanswer = tm.getIsAnswer();
-         if (isanswer==1) {
-             tmp =this.getselectAnswer(tm);
-             if  (tmp.size()>0) {
-                 restr="003";
-                 return restr;
-            }
-         }
+        if ("0".equals(tmtype)) {
+             int isanswer = 0;
+             isanswer = tm.getIsAnswer();
+             if (isanswer==1) {
+                 tmp =this.getselectAnswer(tm);
+                 if  (tmp.size()>0) {
+                     restr="003";
+                     return restr;
+                }
+             }
+        }
          tmSelect.setId(SequenceUUID.getPureUUID());
          tmSelect.setTmId(tm.getId());
          tmSelect.setSort(tm.getSort());
@@ -209,9 +211,42 @@ public class StService {
 		return dao.update(entity) > 0 ? true : false;
 	}
     //修改选项和答案 updateSelct
-	public boolean updateSelct(TmSelect entity) throws Exception {
-       return selectDao.update(entity) > 0 ? true : false;
+	public String updateSelct(TmSelect tmselect,String tmtype) throws Exception {
+	    String restr = "000";        
+        List<TmSelect> tmp = null; 
+        TmSelect tmptmselect = getselect(tmselect);
+        Tm tm = new Tm();
+        tm.setId(tmptmselect.getTmId());
+        tm.setTmSelectSign(tmselect.getTmSelectSign());
+        tmp =this.getselectSign(tm);
+        if (tmp.size()>0&!tmptmselect.getTmSelectSign().equals(tmselect.getTmSelectSign())) {
+            restr="002";
+            return restr;
+        }
+        if (tmtype.equals("0")){
+             int isanswer = 0;
+             isanswer = tmselect.getIsAnswer();
+             if (isanswer==1) {
+                 tmp =this.getselectAnswer(tm);
+                 if  (tmp.size()>0 & tmptmselect.getIsAnswer()!=1) {
+                     restr="003";
+                     return restr;
+                }
+                 if  (tmp.size()>1) {
+                     restr="003";
+                     return restr;
+                }
+             }
+            }
+         boolean flag; 
+         flag = selectDao.update(tmselect)> 0 ? true : false;;
+         if (flag)
+             restr="001";
+            else restr="000";                       
+        return restr;  
+       
     }
+	
 	// 删除
 	public boolean delete(Tm entity) throws Exception {
 		return dao.delete(entity) > 0 ? true : false;
