@@ -218,8 +218,7 @@
            if  (data.resultCode=="001") {
              if (getUrlParam("isvalid")==3){
              	//parent.location.href='${gateway}/st/edit?id='+$("#objId").val();
-             	parent.document.getElementById("objId").value=$("#objId").val();
-             	alert(parent.document.getElementById("objId").value);
+             	parent.document.getElementById("objId").value=$("#objId").val();             	
              	parent.getDetailData($("#objId").val());
              	parent.refresh("保存成功");
              }
