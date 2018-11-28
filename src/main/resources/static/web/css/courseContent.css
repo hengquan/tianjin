@@ -429,3 +429,6 @@ html{
 .oneItem {
   margin-left:10px;
 }
+.nav_header .pt-system-info .pt-fl img{
+  height:30px;width:30px;
+}

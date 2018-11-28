@@ -8,8 +8,9 @@ body{
   color: #3092F6;
 }
 .page-home-net .banxin {
-  width: 1200px;
+  width: 100%;
   margin: 0 auto;
+  padding: 0 50px;
 }
 .page-home-net {
   font-family: "Microsoft Yahei"
@@ -48,7 +49,8 @@ body{
     }
     .page-home-net .header-logo .logo {
       width: 30px;
-      margin-right: 12px;
+      margin-right:0px;
+      margin-top:-2px;
     }
     .page-home-net .header-logreg{
       font-size:16px;
