@@ -295,10 +295,10 @@ html {
       },
       fields: {
         tmHtml: {
-          message: '题目不能为空',
+          message: '题目信息不能为空',
           validators: {
             notEmpty: {
-              message: '题目不能为空'
+              message: '题目信息不能为空'
             }
           }
         },        
@@ -376,12 +376,14 @@ html {
       var aa=validatorObj.validate();
       var flag=validatorObj.isValid();
       if (!flag) return;
+/*
       var val=$('input:radio[name="isvalid"]:checked').val();
       var tmtype =document.getElementById("tmType").selectedIndex; 
       if (val==1&tmtype!=2){
         layer.msg("选项还没有设置，请设置选项！");
       	return;
       }      
+ */
       $.ajax({
         type : 'post',
         url : "${gateway}/st/insert",
