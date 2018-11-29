@@ -29,7 +29,7 @@ iframe{
     <!--左侧系统名称-->
     <div class="pt-fl pt-system-info" >
       <div class="pt-logo pt-fl"><img src="${gateway}/src/images/LOGO@2x.png" alt=""></div>
-      <div class="pt-slogen pt-fr">天津市港口统一收费服务管理平台 -<strong>线上培训子系统</strong></div>
+      <div class="pt-slogen pt-fr">天津市港口统一收费服务管理平台-<strong>线上培训子系统</strong></div>
     </div>
     <!--右侧用户信息-->
     <div class="pt-fr pt-user-info">
@@ -55,25 +55,6 @@ iframe{
       <!--菜单列表-->
       <div class="pt-menu"><ul>
         ${menuHtml}
-        <!--为调试用
-        <li class="pt-menu-list">
-          <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
-          <h3 class="pt-menu-title"><a href="#">新增功能</a></h3>
-          <ul class="pt-second-menu">
-            <li class="pt-menu-child">
-                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toKJGL()">课件-new管理</a></h3>
-            </li>
-            <li class="pt-menu-child">
-                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toWebMNSC()">模拟实操</a></h3>
-            </li>
-            <li class="pt-menu-child">
-                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXXX()">在线学习</a></h3>
-            </li>
-          </ul>
-        </li>-->
       </ul></div>
     </div>
     <!--左侧菜单 结束-->
@@ -95,7 +76,12 @@ iframe{
 <script>
 $(document).ready(function() {
   //默认点击第一个可用的菜单
-  
+  $("a").each(function(){
+    if ($(this).html()=="首页") {
+      $(this).click();
+      return;
+    }
+  });
 });
 
 function showMenu(url) {
@@ -121,24 +107,6 @@ function changePwd() {
       layer.close(index);
     }
   });
-}
-
-//学员概况
-function toKJGL(){
-  $("#mainframe").attr("src","${gateway}/kjitme/list");
-}
-
-//学员概况
-function toXYGK(){
-  $("#mainframe").attr("src","${gateway}/summary");
-}
-//模拟实操
-function toWebMNSC(){
-  $("#mainframe").attr("src","${gateway}/practice");
-}
-//在线学习
-function toZXXX() {
-  $("#mainframe").attr("src","${gateway}/courseware");
 }
 </script>
 
