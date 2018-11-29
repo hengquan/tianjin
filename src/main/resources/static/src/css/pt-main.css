@@ -184,6 +184,10 @@ ul {
   height: 30px;
   margin-right: 10px;
 }
+.pt-topbar .pt-system-info .pt-logo img {
+  width: 30px;
+  height: 30px;
+}
 .pt-topbar .pt-system-info .pt-slogen {
   font-size: 16px;
 }
