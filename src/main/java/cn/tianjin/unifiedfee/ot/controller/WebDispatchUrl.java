@@ -44,6 +44,7 @@ public class WebDispatchUrl {
     /*学员概况*/
     @RequestMapping("summary")
     public String toSummary() {
+        System.out.println("=====学员概况");
         return "/web/summary";
     }
 
