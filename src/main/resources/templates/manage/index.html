@@ -102,7 +102,7 @@ function changePwd() {
     shade: 0.6,
     maxmin: false, //开启最大化最小化按钮
     area: ['62.5%', '83%'], //此处可以改为100%，该数值按UI图比例算出
-    content: "${outerRoot}/system-server/support/co-user/password", //如果不想出现滚动条['content.html', 'no']
+    content: "${innerRoot}/system-server/support/co-user/password", //如果不想出现滚动条['content.html', 'no']
     end:function() {
       layer.close(index);
     }
