@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.tianjin.unifiedfee.ot.mapper.AllCompanyMapper">
+	<resultMap id="BaseResultMap" type="cn.tianjin.unifiedfee.ot.entity.AllCompany">
+		<result column="id" property="id" jdbcType="VARCHAR" />
+		<result column="uniscid" property="uniscid" jdbcType="VARCHAR" />
+		<result column="entname" property="entname" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Blob_Column_List">
+		id, uniscid, entname
+	</sql>
+	<insert id="insert" parameterType="cn.tianjin.unifiedfee.ot.entity.AllCompany">
+		insert into allCompany
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uniscid != null">
+				uniscid,
+			</if>
+			<if test="entname != null">
+				entname,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="uniscid != null">
+				#{uniscid,jdbcType=VARCHAR},
+			</if>
+			<if test="entname != null">
+				#{entname,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update">
+		update allCompany
+		<set>
+			<if test="kjName != null">
+				uniscid = #{uniscid},
+			</if>
+			<if test="kjCatId != null">
+				entname = #{entname},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Blob_Column_List" />
+		from allCompany
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="delete" parameterType="java.lang.String">
+		delete from allCompany
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+	
+	<delete id="deleteAll">
+		delete from allCompany
+	</delete>
+
+</mapper>
