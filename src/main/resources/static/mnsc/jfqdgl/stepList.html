@@ -48,7 +48,7 @@
         <div class="head_title"><span id="msg"><B>模拟实操具体操作区</B></span></div>
         <div class="content_border">
           <div class="page-form-list" id="page-form-list">
-            <iframe src="" frameborder="0" id="tipsMain"  scrolling="no"></iframe>
+            <iframe src="" frameborder="0" id="tipsMain"  scrolling="no"></iframe>            
           </div>
         </div>
         <div class="pay_button">
@@ -170,49 +170,26 @@
                 },
                 callBack: function (obj) {
                 }
-              },         
+              }, 
               {
-                X: 560,
-                Y: 200,
+                X: 880,
+                Y: 300,
                 distance: 10,
-                direction: 'bottom',
-                content: '<div class="intro-indent">缴费企业名称必须入炉，录入方式点击<br><span class="special"> “+” 按钮，</span>'
-                		+'系统将弹出企业查询窗口，进行企业信息查询</div>',
+                direction: 'left',
+                content: '<div class="intro-indent">规格选择首先需要选择目录，然后选择规格，在选定的规格行的最后一列点击<span class="special"> "选择”</span>按钮，进行规格选择操作。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
                 radius: 5,
-                area: [300, 150],
+                area: [200, 150],
                 nextBtn: {
                   content: '知道了',
-                  backgroundColor: 'blue'
+                  backgroundColor: '#990000'
                 },
-                callBack: function (obj) {
-                }
-              }, 
-              {
-                X: 560,
-                Y: 140,
-                distance: 10,
-                direction: 'bottom',
-                noTriangle: true,
-                borderColor: 'red',
-                content: '',
-                padding: 10,
-                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-                backgroundColor: 'transparent', //透明颜色
-                color: '#fff',
-                radius: 5,
-                area: [50, 50],
-                nextBtn: {
-                  content: '',
-                  backgroundColor: 'transparent',
-                  callBack: function (obj) {
-                    nextPage();
-                  }
-                },
-                callBack: function (obj) {
-                }
+                callBack: function (obj) {                    
+                  document.getElementById("tipsMain").contentWindow.setpic("./images/step2-2.png");                  
+                  console.log(obj);
+                } 
               },
             ]
           },
