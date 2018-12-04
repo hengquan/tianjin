@@ -6,7 +6,6 @@ body, h1, h2, h3, h4, h5, h6, div, p, dl, dt, dd, ol, ul, li, form, table, th, t
   font-family: "Microsoft yahei", "SimHei";
 }
 select{
-	
   appearance:none;
   -moz-appearance:none;
   -webkit-appearance:none;
@@ -36,8 +35,8 @@ input, select, textarea {
   border: 1px solid red;
 }
 .tips-btn{
-
   background: #2c67c5;
+/*  background: transparent; */
   position: absolute;
   text-align: center;
   width: 80px;
@@ -142,4 +141,7 @@ p{
 }
 .head_title span{
   margin-left: 10px;
+}
+.tips-container {
+  cursor:pointer;
 }
