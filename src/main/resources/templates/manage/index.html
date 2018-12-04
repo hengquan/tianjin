@@ -35,7 +35,7 @@ iframe{
     <div class="pt-fr pt-user-info">
       <div class="pt-logout pt-fr"><a style="color: #ffffff" href="/oauth/logout?state=${gateway}">退出</a></div>
       <div class="pt-settings pt-fr" onclick="gobackIndex()">返回首页</div>
-      <div class="pt-settings pt-fr" onclick="changePwd()">修改密码</div>
+      <!-- <div class="pt-settings pt-fr" onclick="changePwd()">修改密码</div>-->
       <div class="pt-settings pt-fr"></div>
       <!--用户头像姓名-->
       <div class="pt-user pt-fr">
@@ -102,7 +102,7 @@ function changePwd() {
     shade: 0.6,
     maxmin: false, //开启最大化最小化按钮
     area: ['62.5%', '83%'], //此处可以改为100%，该数值按UI图比例算出
-    content: "${outerRoot}/system-server/support/co-user/password", //如果不想出现滚动条['content.html', 'no']
+    content: "${innerRoot}/system-server/support/co-user/password", //如果不想出现滚动条['content.html', 'no']
     end:function() {
       layer.close(index);
     }

@@ -45,9 +45,7 @@ public class WebDispatchUrl {
 
     /*学员概况*/
     @RequestMapping("summary")
-    public String toSummary(HttpServletRequest request, HttpServletResponse response) {
-        HttpPush.responseInfo(response);// 跨域
-        System.out.println("=============测试测试=======");
+    public String toSummary() {
         return "/web/summary";
     }
 
