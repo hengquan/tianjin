@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>实操-电子执照下载管理</title>
+  <title>实操-APP扫码登录</title>
   <link rel="stylesheet" href="">
   <link rel="stylesheet" href="../resource/css/reset.css">
   <link rel="stylesheet" href="../resource/css/header-footer.css">
@@ -72,26 +72,28 @@
         nav: {
           el: '#inrto-nav',
           list: [
-            '<p class="fir-p">进入系统</p><p>用户密码登录</p>',
-            '<p class="fir-p">企业中心</p><p>选中目录管理</p>',
-            '<p class="fir-p">新增目录</p><p>填写目录信息</p>',
-            '<p class="fir-p">目录搜索</p><p>展开折叠查询</p>',
-            '<p class="fir-p">目录启用</p><p>启动目录操作</p>',
-            '<p class="fir-p">目录停用</p><p>停用目录操作</p>'
+            '<p class="fir-p">扫码下载</p><p>下载安装APP</p>',
+            '<p class="fir-p">下载证书</p><p>验证下载证书</p>',
+            '<p class="fir-p">密码设定</p><p>证书下载成功</p>',
+            '<p class="fir-p">选择证书</p><p>扫码登录操作</p>',
+            '<p class="fir-p">密码验证</p><p>登录APP</p>',
+            '<p class="fir-p">惬意中心</p><p>进行业务办理</p>'            
           ]
         },
         iframe: {
           el: '#tipsMain',
           width: '100%',        
         },
-        list: [{
+        list: [
+                 
+          {
             srcUrl: './stepTips1.html',
             steps: [{
-                X: 600,
-                Y: 460,
+                X: 800,
+                Y: 160,
                 distance: 10,
-                direction: 'bottom',
-                content: '<div class="intro-indent">输入用户名密码后，请点击<span class="special">“登录”</span>按钮，进入企业中心，进行操作。</div>',
+                direction: 'right',
+                content: '<div class="intro-indent">扫码登录第一步进行<span class="special">“港讯通APP”</span>的下载安装，在门户底部有下载二维码，扫左侧二维码也可以。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
@@ -99,71 +101,31 @@
                 area: [200, 150],
                 nextBtn: {
                   content: '知道了',
-                  backgroundColor: '#990000'
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              },
-              {
-                X: 590,
-                Y: 420,
-                distance: 10,
-                direction: 'bottom',
-                noTriangle: true,
-                borderColor: 'red',
-                content: '',
-                padding: 10,
-                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-                backgroundColor: 'transparent', //透明颜色
-                color: '#fff',
-                radius: 5,
-                area: [70, 50],
-                nextBtn: {
-                  content: '',//登录
-                  backgroundColor: 'transparent',
+                  backgroundColor: '#990000',
                   callBack: function (obj) {
-                    nextPage();
-                  }
+                      nextPage();
+                      console.log(obj);
+                    }
                 },
                 callBack: function (obj) {
                   console.log(obj);
                 }
-              }
+              },              
             ]
           },
           {
             srcUrl: './stepTips2.html',
             steps: [{
-                X: 80,
-                Y: 480,
-                distance: 10,
-                direction: 'right',
-                content: '<div class="intro-indent">进入企业管理中心，展开左侧菜单，选中价格中心<span class="special">“收费目录管理”</span>，右侧工作区展示费项目录检索页面</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [300, 130],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: 'blue'
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              },
-              {
-                X: 300,
-                Y: 200,
+                X: 480,
+                Y: 320,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新增收费目录，请点击<span class="special">“新增”</span>按钮，将进入新增费项目录页面。</div>',
+                content: '<div class="intro-indent">APP安装完毕后，打开APP跳过欢迎页后，进入登录页面，点击<span class="special">“下载证书”</span>，进入下载证书操作。</div></div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
                 radius: 5,
-                area: [300, 100],
+                area: [240, 130],
                 nextBtn: {
                   content: '知道了',
                   backgroundColor: 'blue'
@@ -173,8 +135,27 @@
                 }
               },
               {
-                X: 340,
-                Y: 150,
+                X: 720,
+                Y: 240,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">下载证书的第一步进行身份验证，正确输入<span class="special">“证照、姓名、身份证”</span>细腻些后，点击<span class="special">“下一步”</span>，进入口令设定环节。</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [240, 150],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: 'blue'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+              {
+                X: 800,
+                Y: 240,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -202,16 +183,16 @@
           {
             srcUrl: './stepTips3.html',
             steps: [{
-                X: 300,
-                Y: 150,
+                X: 360,
+                Y: 200,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">弹出收费目录新增页面，页面中<span class="special">“带红*部分”</span>是必填想，需正确填写。</div>',
+                content: '<div class="intro-indent">需要输入验证码，注册手机会接受到<span class="special">“验证码短信”</span>，同时设置口令，注意<span class="special">“签名口令和确认口令保持一致”</span>，点击<span class="special">“激活”</span>后完成设置。</div>',
                 padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
+                backgroundColor: '#666600',
                 color: '#fff',
                 radius: 5,
-                area: [200, 150],
+                area: [240, 180],
                 nextBtn: {
                   content: '知道了',
                   backgroundColor: '#990000'
@@ -221,41 +202,19 @@
                 }
               },
               {
-                X: 500,
-                Y: 380,
+                X: 780,
+                Y: 300,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">新增收费目录，请点击<span class="special">“保存”</span>按钮，将进入新增费项目录页面。</div>',
+                content: '<div class="intro-indent">证书验证下载后，返回APP的<span class="special">“登录”</span>页面，可进行证书的选择<span class="special">“选择证书”</span>后，弹出证书列表进行选择</div>',
                 padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
+                backgroundColor: '#666600',
                 color: '#fff',
                 radius: 5,
-                area: [300, 100],
+                area: [240, 150],
                 nextBtn: {
                   content: '知道了',
-                  backgroundColor: 'blue'
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              },
-              {
-                X: 550,
-                Y: 334,
-                distance: 10,
-                direction: 'bottom',
-                noTriangle: true,
-                borderColor: 'red',
-                content: '',
-                padding: 10,
-                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-                backgroundColor: 'transparent', //透明颜色
-                color: '#fff',
-                radius: 5,
-                area: [80, 50],
-                nextBtn: {
-                  content: '',//保存
-                  backgroundColor: 'transparent',
+                  backgroundColor: '#990000',
                   callBack: function (obj) {
                     nextPage();
                   }
@@ -263,75 +222,54 @@
                 callBack: function (obj) {
                   console.log(obj);
                 }
-              }
+              },              
             ]
           },
           {
             srcUrl: './stepTips4.html',
-            steps: [{
-                X: 1100,
-                Y: 70,
-                distance: 10,
-                direction: 'bottom',
-                content: '<div class="intro-indent">搜索分为简单搜索和复杂搜索，通过<span class="special">“展开/收回”</span>按钮进行控制。</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [200, 150],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: 'blue'
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
+            steps: [ {
+              X: 360,
+              Y: 300,
+              distance: 10,
+              direction: 'bottom',
+              content: '<div class="intro-indent">完成证书选择操作后，选择的<span class="special">“企业”</span>后，并显示证书。点击<span class="special">“扫码认证”</span>进入扫码登录环节</div>',
+              padding: 10,
+              backgroundColor: '#666600',
+              color: '#fff',
+              radius: 5,
+              area: [240, 150],
+              nextBtn: {
+                content: '知道了',
+                backgroundColor: '#990000',                
               },
+              callBack: function (obj) {
+                console.log(obj);
+              }
+            }, 
 
               {
-                X: 1040,
-                Y: 400,
+                X: 800,
+                Y: 300,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">新增收费目录完成后，返回列表，请点击<span class="special">“启用”</span>链接，将进入新增费项目录页面。</div>',
+                content: '<div class="intro-indent">APP将调用手机摄像头，进行<span class="special">“扫码操作”</span>，扫码成功后需要进行密码的录入和杨正。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
                 radius: 5,
-                area: [200, 150],
+                area: [200, 120],
                 nextBtn: {
                   content: '知道了',
-                  backgroundColor: '#990000'
+                  backgroundColor: '#990000',
+                  callBack: function (obj) {
+                      nextPage();
+                    }
                 },
                 callBack: function (obj) {
                   console.log(obj);
                 }
               },
-              {
-                X: 1060,
-                Y: 370,
-                distance: 10,
-                direction: 'bottom',
-                noTriangle: true,
-                borderColor: 'red',
-                content: '',
-                padding: 10,
-                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-                backgroundColor: 'transparent', //透明颜色
-                color: '#fff',
-                radius: 5,
-                area: [40, 30],
-                nextBtn: {
-                  content: '',//启用
-                  backgroundColor: 'transparent',
-                  callBack: function (obj) {
-                    nextPage();
-                  }
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              }
+              
             ]
           },
           {
@@ -340,10 +278,10 @@
 
               {
                 X: 580,
-                Y: 330,
+                Y: 420,
                 distance: 10,
-                direction: 'bottom',
-                content: '<div class="intro-indent">弹出启动确认提示，请点击<span class="special">“确认”</span>按钮，目录启用成功，返回列表。</div>',
+                direction: 'top',
+                content: '<div class="intro-indent">输入下载证书时设定的密码，<span class="special">“密码验证成功”</span>进入APP，在pp中展示相关业务数据，同时登录企业中心成功。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
@@ -351,29 +289,7 @@
                 area: [200, 150],
                 nextBtn: {
                   content: '知道了',
-                  backgroundColor: '#990000'
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              },
-              {
-                X: 600,
-                Y: 290,
-                distance: 10,
-                direction: 'bottom',
-                noTriangle: true,
-                borderColor: 'red',
-                content: '',
-                padding: 10,
-                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-                backgroundColor: 'transparent', //透明颜色
-                color: '#fff',
-                radius: 5,
-                area: [100, 50],
-                nextBtn: {
-                  content: '',//确定
-                  backgroundColor: 'transparent',
+                  backgroundColor: '#990000',
                   callBack: function (obj) {
                     nextPage();
                   }
@@ -381,19 +297,19 @@
                 callBack: function (obj) {
                   console.log(obj);
                 }
-              }
-            ]
-          },
+              },
+          	]	
+           },          
           {
             srcUrl: './stepTips6.html',
             steps: [
 
               {
-                X: 1060,
-                Y: 400,
+                X: 280,
+                Y: 200,
                 distance: 10,
-                direction: 'bottom',
-                content: '<div class="intro-indent">启动成功后，返回目录列表，如停用请点击<span class="special">“停用”</span>链接，将进入新增费项目录页面。</div>',
+                direction: 'right',
+                content: '<div class="intro-indent">进入企业中心，在左侧菜单中选择需要办理的业务，进行业务办理。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
@@ -406,9 +322,9 @@
                 callBack: function (obj) {
                   console.log(obj);
                 }
-              }
+              },             
             ]
-          },
+          },  
         ]
       })
     })

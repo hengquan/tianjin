@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实操- 获取清单明细</title>
+    <!-- <!-- 1 bootstrap的css -->
+    <link rel="stylesheet" href="../../web/bootstrap/css/bootstrap.css">
+    <!--公共css-->
+    <link rel="stylesheet" href="../../web/css/pt-main.css">
+    <link rel="stylesheet" href="../../web/css/index1.css">
+    <!--页面css-->
+    <link rel="stylesheet" href="../../web/css/billInformation.css">
+    <!--引入字体的css-->
+    <link rel="stylesheet" href="../../web/bootstrap/fonts/iconfont.css">
+
+    <script type="text/javascript" src="../../web/js/jquery-1.12.4.js"></script>
+    <!--bootstrap的js-->
+    <script type="text/javascript" src="../../web/bootstrap/js/bootstrap.min.js"></script>
+    <!--表格table.js-->
+    <script type="text/javascript" src="../../web/bootstrap/js/bootstrap-table.min.js"></script>
+    <!--页面js-->
+    <script type="text/javascript" src="../../web/js/main.js"></script>
+    <script>
+        $(function(){
+            setTimeout(function () {
+                $(".model_bg").fadeIn("slow");
+                $(".triangle").fadeIn("slow");
+            },2000);
+        })
+    </script>
+  <style>
+    html{
+      height: 750px;
+    }
+    .model_bg{
+      position: absolute;
+      top: 69px;
+      left: 38px;
+      bottom: 0;
+      right: 0;
+      background: rgba(0,0,255,.5);
+      z-index: 999;
+      display:none;
+      width: 255px;
+      height:166px;
+      border-radius:5px;
+      padding-top: 45px;
+    }
+    .triangle{
+      position: absolute;
+      top: 51px;
+      left:66px;
+      bottom: 0;
+      right: 0;
+      z-index: 999;
+      display: none;
+      width: 0;
+      height: 0;
+      border-left:18px solid transparent;
+      border-right: 18px solid transparent;
+      border-bottom: 18px solid rgba(0,0,255,.5);
+    }
+    .model_text{
+      width:225px;
+      margin: 0 auto;
+    }
+    .model_text .entry{
+      margin-top: -13px;
+      font-size: 14px;
+      color: white;
+    }
+    .model_text .know{
+      display: inline-block;
+      margin-left: 90px;
+      width: 50px;
+      height: 25px;
+      border: 1px solid white;
+      line-height: 25px;
+      text-align: center;
+      border-radius: 5px;
+      margin-top: 39px;
+      font-size: 14px;
+      color: white;
+    }
+    .model_text div{
+      font-size: 14px;
+      color: white;
+      margin-left: 30px;
+      margin-bottom: 5px;
+    }
+
+
+  </style>
+</head>
+<body>
+<!-- 头部条 -->
+<div class="pt-topbar">
+    <div class="nav_header">
+        <!--左侧系统名称-->
+        <div class="pt-fl pt-system-info">
+            <div class="pt-logo pt-fl"><img src="../../web/images/LOGO@2x.png" alt=""></div>
+            <div class="pt-slogen pt-fr">天津市港口统一收费服务管理平台-<strong>企业中心</strong></div>
+        </div>
+        <!--右侧用户信息-->
+        <div class="pt-fr pt-user-info">
+            <div class="pt-settings pt-fr"><img src="" alt=""></div>
+        </div>
+    </div>
+</div>
+<!-- 头部条  结束 -->
+<div class="bill">
+
+  <div class="nav_bar">
+        <span>收费清单录入</span>
+        <div class="border"></div>
+    </div>
+    <!--清单明细-->
+    <div class="billList">
+        <!--清单明细-->
+        <div id="list" class="tab-pane ">
+          <div class="head_title"><span id="msg">清单明细</span></div>
+          <div class="frame">
+            <!--清单明细-->
+            <div class="table_detail" style="border: none">
+              <div class="button1" style="margin-left: 1px;margin-top: -45px">
+                <span style="background:#408eba;">打印预览</span>
+                <span style="background:#408eba; ">导出表格</span>
+              </div>
+              <table class="table table-bordered" style="width: 1130px;margin: 20px auto 0">
+                <tbody>
+                <tr>
+                  <td>收费类型</td>
+                  <td >费项名称</td>
+                  <td>子项名称</td>
+                  <td>计费规格</td>
+                  <td>计费单位</td>
+                  <td>数量</td>
+                  <td>单价</td>
+                  <td>总价</td>
+                  <td >定价类型</td>
+                  <td>价格说明</td>
+                </tr>
+                <tr >
+                  <td rowspan="2">常规收费</td>
+                  <td >停泊费</td>
+                  <td>停泊费</td>
+                  <td>国际航线B</td>
+                  <td>元/计费吨/小时</td>
+                  <td>1</td>
+                  <td>0.10</td>
+                  <td>0.10</td>
+                  <td >政府指导价</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td >托轮费</td>
+                  <td>托轮费</td>
+                  <td>(国际航线)220-260米</td>
+                  <td>元/拖轮艘次</td>
+                  <td>1</td>
+                  <td>6000.00</td>
+                  <td>6000.00</td>
+                  <td >政府指导价</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td colspan="4" style="text-align: right">小计：</td>
+                  <td colspan="6" style="text-align: left">6000.10</td>
+                </tr>
+                <tr>
+                  <td colspan="4" style="text-align: right">合计：</td>
+                  <td colspan="6" style="text-align: left">6000.10</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="model_bg ">
+              <div class="model_text">
+                <p class="entry">恭喜您清单录入完成.
+                  你可以进行打印,导出操作!</p>
+                <span onclick="toHide()" class="know">知道了</span>
+              </div>
+            </div>
+            <div class="triangle"></div>
+            <div>
+              <span style="margin-left: 9px">显示第1到第2条记录，总共2条记录</span>
+            </div>
+          </div>
+          <div class="pay_button">
+                <span class="previousPage" onclick="previousPage()" style="margin-left: 450px">上一步</span>
+                <span class="repractice" onclick="repractice()">重新练习</span>
+            </div>
+        </div>
+    </div>    
+</div>
+<!--公共底部-->
+<div class="pt-footer">
+    <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+</div>
+<script>
+    $('#myTab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+        $(this).addClass('active1')
+    })
+    $(function(){
+        $('.relevant span').click(function(){
+            $(this).addClass('active').siblings().removeClass('active')
+        })
+    })
+    function show1() {
+        $(this).addClass('active').siblings().removeClass('active')
+        $("#show1").show()
+        $("#show").hide()
+    }
+    function show2() {
+        $(this).addClass('active').siblings().removeClass('active')
+        $("#show1").hide()
+        $("#show").show()
+    }
+
+    function toList() {
+        window.location.href = "step4.html"
+    }
+    //气泡消失
+    function toHide() {
+        $(".model_bg").hide()
+        $(".triangle").hide()
+        $(".model_bg1").show()
+        $(".triangle1").show()
+    }
+    function toHide1() {
+        $(".model_bg1").hide()
+        $(".triangle1").hide()
+        $(".model_bg2").show()
+        $(".triangle2").show()
+    }
+    function toHide2() {
+        $(".model_bg2").hide()
+        $(".triangle2").hide()
+    }
+    /*下一页*/
+    function previousPage() {
+        window.location.href = "step5.html"
+    }
+</script>
+</body>
+</html>

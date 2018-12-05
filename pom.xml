@@ -18,7 +18,7 @@
   <!-- D:\work\projects\tianjin\extlibs E:\workSpace\tianjin-unifiedfee-ot\extlibs\ D:\work\projects\tianjin\extlibs -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <localLibDir>E:\workSpace\tianjin-unifiedfee-ot\extlibs\</localLibDir>
+    <localLibDir>D:\work\projects\tianjin\extlibs\</localLibDir>
   </properties>
 
 	<dependencies>
@@ -94,10 +94,9 @@
 			<groupId>com.spiritdata</groupId>
 			<artifactId>BasicPlat</artifactId>
 			<version>0.2.0.01</version>
-			<scope>system</scope>
-			<systemPath>${localLibDir}/BasicPlat-0.2.0.01.jar</systemPath>
+			<scope>system</scope>		
+			<systemPath>${localLibDir}/BasicPlat-0.2.0.01.jar</systemPath>	
 		</dependency>
-
 	</dependencies>
 
 	<build>
