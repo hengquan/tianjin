@@ -63,13 +63,9 @@
 <script src="${gateway}/libs/layer/layer.js"></script>
 <!-- 11 页面js -->
 <script src="${gateway}/src/js/main.js"></script>
-<style>
-html {
-	overflow: scroll;
-}
-</style>
+
 </head>
-<body>
+<body  scroll="no">
 <br>
 	<div class="pt-page">			
 		<div class="pt-main pt-padding">
@@ -80,7 +76,7 @@ html {
 						<div class="form-group">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="title"><span>
 									※ </span>选项描述</label>
-							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">								
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">								
 								<textarea id="tmSelectDesc" class="form-control" name="tmSelectDesc"
 									style="min-height: 120px"></textarea>
 							</div>
@@ -97,15 +93,15 @@ html {
 									<option value="0">否</option>																
 								</select>
 							</div>						
-							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="title"><span>
-									※ </span>标号</label>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-21" for="title" style="text-align: right"><span>
+									※ </span>选项标号</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 								<input type="text" class="form-control" name="tmSelectSign" id="tmSelectSign" />
 							</div>						
-							<label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="biaozhun">
+							<label class="col-lg-2vcol-md-2 col-sm-2 col-xs-2" for="biaozhun" style="text-align: right">
 								<span> ※ </span>顺序
 							</label>
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 								<input type="text" class="form-control" name="sort" id="sort" />							
 							</div>							
 						</div>
@@ -150,7 +146,7 @@ html {
             $("#baocun").attr("onclick", "editSelect()");
           },
           error : function() { //失败回调函数
-            alert("获取信息失败");
+            layer.msg("获取信息失败");
           }
         });
       }
@@ -167,7 +163,7 @@ html {
           message: '选项',
           validators: {
             notEmpty: {
-              message: '选项不能为空'
+              message: '选项描述不能为空'
             }
           }
         },        
@@ -203,6 +199,7 @@ html {
 	    if (r != null) return unescape(r[2]); return null; //返回参数值
 	}
      function addSelect() { 
+       var tmtype = getUrlParam("tmtype") ;
        var validatorObj=$('#form').data("bootstrapValidator");
        var aa=validatorObj.validate();
        var flag=validatorObj.isValid();
@@ -211,48 +208,52 @@ html {
        var flag = 0;
        $.ajax({
          type : 'post',
-         url : "${gateway}/st/insertselect",
+         url : "${gateway}/st/insertselect?tmtype="+tmtype,
          data : $("#form").serialize(),
          dataType : 'json',
          cache : false,
          success : function(data) {     
-           if (data.resultCode=="002")
-             alert("题目的标号重复，请重新设置");
-           if (data.resultCode=="003")
-             alert("单选题只能有一个正确答案，请重新设置");
-           if  (data.resultCode=="001"){
-             alert("保存成功");            
-             if (getUrlParam("isvalid")==3)
-             	parent.location.href='${gateway}/st/edit?id='+$("#objId").val();
+           if (data.resultCode=="002") layer.msg("题目的标号重复，请重新设置");
+           if (data.resultCode=="003") layer.msg("单选题只能有一个正确答案，请重新设置");
+           if  (data.resultCode=="001") {
+             if (getUrlParam("isvalid")==3){
+             	//parent.location.href='${gateway}/st/edit?id='+$("#objId").val();
+             	parent.document.getElementById("objId").value=$("#objId").val();             	
+             	parent.getDetailData($("#objId").val());
+             	parent.refresh("保存成功");
+             }
              else
-                parent.refresh();
+               parent.refresh("保存成功");
              closeMy();
            }
            if  (data.resultCode=="000")
-           {
-             alert("保存成功");
-             parent.refresh();
+           {             
+             parent.refresh("保存成功");
              closeMy();
            }
          },
          error : function() { //失败回调函数
-           alert("保存失败");
+           parent.refresh("保存失败");
          }
        });  
       }
       function editSelect() {
+        tmtype = getUrlParam("tmtype") ;
         $.ajax({
           type : 'post',
-          url : "${gateway}/st/updateSelct",
+          url : "${gateway}/st/updateSelct?tmtype="+tmtype,
           data : $("#form").serialize(),
           dataType : 'json',
           cache : false,
           success : function(data) {
-            parent.refresh();
-            closeMy();
+            if (data.resultCode=="002") layer.msg("题目的标号重复，请重新设置");
+            if (data.resultCode=="003") layer.msg("单选题只能有一个正确答案，请重新设置");
+            if  (data.resultCode=="001") {
+            parent.refresh("保存成功");
+            closeMy();}
           },
           error : function() { //失败回调函数
-            alert("修改失败");
+            parent.refresh("保存失败");;
           }
         });
       }

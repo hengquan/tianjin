@@ -1,5 +1,5 @@
 .row{
-    margin-top: 20px;
+  margin-top: 20px;
 }
 .model_bg{
     position: absolute;
@@ -103,6 +103,7 @@
     font-size: 18px;
     text-align: center;
     margin-top: 6px;
+    padding-top:10px;
 }
 .system{
     width: 200px;

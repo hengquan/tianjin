@@ -3,75 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <title>列表页</title>
-<!-- 1 bootstrap基础css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css"
-  rel="stylesheet">
-<!-- 2 table表格css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css"
-  rel="stylesheet">
-<!-- 3 treeview树css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css"
-  rel="stylesheet">
-<!-- 4 datetimepicker时间选择css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css"
-  rel="stylesheet">
-<!-- 5 select选择框css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css"
-  rel="stylesheet">
-<!-- 6 fileinput上传文件css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css"
-  rel="stylesheet">
-<!-- 7 icheck单选+多选css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css"
-  rel="stylesheet">
-<!-- 8 Validator验证css -->
-<link
-  href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css"
-  rel="stylesheet">
-<!-- 10 引入字体css -->
-<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css"
-  rel="stylesheet">
-<!-- 11 页面样式css -->
+
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-treeview.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap-select.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/fileinput.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/icheck-blue.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css" rel="stylesheet">
+<link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css" rel="stylesheet">
 <link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
-<!-- 优先引入jquery1.12.4版本 -->
 <script src="${gateway}/libs/jquery/jquery-1.12.4.js"></script>
-<!-- 1 bootstrap基础js -->
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<!-- 2 table表格js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
-<!-- 3 table列表数据js simple-table -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
-<!-- 4 treeview树js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
-<!-- 5 datetimepicker时间选择js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
-<!-- 6 select选择框js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
-<!-- 7 fileinput上传文件js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table-data.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-treeview.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
-<!-- 8 fileinput中文包js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
-<!-- 9 icheck单选+多选js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/fileinput_locale_zh.js"></script>
 <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/icheck.min.js"></script>
-<!-- 10 Validator验证js -->
-<script
-  src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
-<!-- 11 layer弹框js -->
+<script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <script src="${gateway}/libs/layer/layer.js"></script>
-<!-- 9 layer弹框css -->
 <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
-<!-- 12 页面js -->
 <script src="${gateway}/src/js/main.js"></script>
 
 <style>
@@ -100,67 +56,51 @@
                 <form class="form-inline">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div class="form-group">
-                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="cataName"  style="text-align:right;">名&emsp;称</label>
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="cataName">名称</label>
                       <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                         <input type="text" class="form-control" id="cateName" placeholder="名称">
                       </div>
                     </div>
                   </div>
-                  <!-- 
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                  <!--隐藏部分包裹 -->
+                  <div class="hiddenorshow pt-search-filter">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="form-group">
-                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="keyword" style="text-align:right;">模糊3查找</label>
-                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <input type="text" class="form-control" id="keyword" placeholder="关键词">
-                      </div>
-                    </div>
-                  </div>
-                   -->
-                  <!-- 隐藏部分包裹 -->
-                  <span class="hiddenorshow pt-search-filter">
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <div class="form-group">
-                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" for="valid" style="text-align:right;">状&emsp;态</label>
-      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-        <select id="valid" name="valid" multiple autocomplete="off" class="selectpicker" data-actions-box="true"  data-live-search="true" title="请选则状态">
-      <option value="1">启用</option>
-      <option value="0">停用</option>
-        </select>
-      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                    <div class="form-group">
-                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="cataName"  style="text-align:right;"></label>
-                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="valid">状态</label>
+                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <select id="valid" name="valid" multiple autocomplete="off" class="selectpicker" data-actions-box="true"  data-live-search="true" title="请选则状态">
+                          <option value="1">启用</option>
+                          <option value="0">停用</option>
+                        </select>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div class="form-group">
-                      <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4" for="createName" style="text-align:right;">创建人</label>
-                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="createName" style="text-align:right;padding-left:0px;">创建人</label>
+                      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                         <input type="text" class="form-control" id="createName" placeholder="创建人姓名">
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="form-group">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-align:right;" for="createTime">创建时间</label>
-                      <div id="date1" class="date col-lg-4 col-md-4 col-sm-6 col-xs-4" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2" for="createTime">创建时间</label>
+                      <div id="date1" class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
                         <input class="form-control datetimepicker" name="begin1" size="16" type="text" value="" style="padding-left:10px;">
                         <span class="add-on" style="height:40px"><i class="icon-th"></i></span>
                       </div>
-                      <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align: center">到</label>
-                      <div id="date2" class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
+                      <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:center;padding-left:0px;">~</label>
+                      <div id="date2" class="date col-lg-5 col-md-5 col-sm-5 col-xs-5" style="margin-top:0px;" data-date="2018-09-30" data-date-format="yyyy-mm-dd">
                         <input class="form-control datetimepicker" name="begin2" size="16" type="text" value="" style="padding-left:10px;">
                         <span class="add-on" style="height: 40px"><i class="icon-th"></i></span>
                       </div>
                       </div>
                     </div>
+
                   </div>
-                  </span>
                   <!-- 示例搜索按钮 -->
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div class="form-group">
@@ -169,7 +109,6 @@
                   </div>
                 </form>
               </div>
-
               <div class="column pt-btn-line">
                 <button type="button" class="btn w120 btn-default btn-primary" onclick='editItem()'>新增</button>
               </div>
@@ -314,34 +253,35 @@ function ajaxChangeValid(id ,valid) {
 }
 
 function editItem(e, type) {
-  var title = '新增分类信息';
-  if (type == 2) title = '修改分类信息';
-  layer.open({
+  var title = '新增分类';
+  if (type == 2) title = '修改分类';
+  top.layer.open({
     type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
     title : '<span class="text-color">' + title + '</span>',//请修改span中间的内容
-    shadeClose : true,//开启阴影关闭
+    shadeClose : false,//开启阴影关闭
     closeBtn : 1, //不显示关闭按钮
     shade : 0.6,
     maxmin : false,//开启最大化最小化按钮
-    area : [ '60%', '100%' ],//此处可以改为100%，该数值按UI图比例算出
+    area : [ '55%', '70%' ],//此处可以改为100%，该数值按UI图比例算出
     content : '${gateway}/cate/edit?id='+e//如果不想出现滚动条['content.html', 'no']
   });
 }
 
 function lookItem(e) {
-  layer.open({
+  top.layer.open({
     type : 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-    title : '<span class="text-color">查看分类信息</span>',//请修改span中间的内容
-    shadeClose : true,//开启阴影关闭
+    title : '<span class="text-color">分类详情</span>',//请修改span中间的内容
+    shadeClose : false,//开启阴影关闭
     closeBtn : 1, //不显示关闭按钮
     shade : 0.6,
     maxmin : false,//开启最大化最小化按钮
-    area : [ '60%', '60%' ],//此处可以改为100%，该数值按UI图比例算出
+    area : [ '60%', '50%' ],//此处可以改为100%，该数值按UI图比例算出
     content : '${gateway}/cate/view?id='+e//如果不想出现滚动条['content.html', 'no']
   });
 }
 
-function refresh() {
+function refresh(msg) {
+  if (msg) layer.msg(msg);
   $("#tb_departments").bootstrapTable('refresh');
 }
 
@@ -418,7 +358,7 @@ function formatParent(value) {
 // 2.返回操作模版[按钮颜色暂不确定]
 function operateFormatter(value, row, index) {
   var btnArray=[];
-  btnArray.push('<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick="lookItem(\''+value+ '\')">查看</button>');
+  btnArray.push('<button type="button" class="RoleOflook btn btn-xs btn-default btn-link" onclick="lookItem(\''+value+ '\')">详情</button>');
   if (row.valid==0) {//可以修改
     btnArray.push('<button type="button" class="RoleOfedit btn btn-xs btn-default btn-link" onclick="editItem(\''+value+ '\', 2)">修改</button>');
     btnArray.push('<button type="button" class="RoleOfdelete btn btn-xs btn-default btn-link-red pt-success" onclick="changeValid(\''+ value + '\', \''+row.name+'\',\''+row.parentName+'\', 1)">启用</button>');

@@ -20,7 +20,7 @@
     <!--左侧系统名称-->
     <div class="pt-fl pt-system-info">
       <div class="pt-logo pt-fl"><img src="./web/images/LOGO@2x.png" alt=""></div>
-      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台-<strong>线上培训子系统</strong></div>
+      <div class="pt-slogen pt-fr">天津市港口统一收费服务管理平台-<strong>线上培训子系统</strong></div>
     </div>
     <!--右侧关闭窗口-->
     <div class="pt-fr pt-user-info">
@@ -50,20 +50,21 @@
       <div class="course_description"></div>
       <div class="study_btn">
         <button class="start_study btn w120" style="cursor:pointer;" onclick="toLearning()">开始学习</button>
+        <button class="start_study btn w120" style="cursor:pointer; margin-left:10px;   background: #f46227;" onclick="toStartPractice()">开始练习</button>
       </div>
     </div>
   </div>
   <!--同类课程-->
   <div class="_gap"><span>相关课件<div class="border"></div></span></div>
-  <div class="_detail_bottom">
+  <div class="_detail_bottom" style="margin-bottom:40px;">
     <div class="row"></div>
   </div>
   <!--相关练习-->
-  <div class="_gap">
+  <div class="_gap" style="display:none;">
     <span>相关练习<div class="border"></div></span>
     <div class="learnBtn" style="cursor:pointer;" onclick="toStartPractice()">开始练习</div>
   </div>
-  <div class="tm_area">
+  <div class="tm_area" style="display:none;">
   <!-- 
     <div class="tmrow">
       <div class="tm">
@@ -113,6 +114,7 @@ function getUrlParam(name) {
 }
 
 var _data={"kjId":getUrlParam("id")};
+var catNames=null;
 
 function closeWin() {
   var browserName=navigator.appName;
@@ -137,8 +139,8 @@ function initPage() {
     data: _data,
     dataType:'json',
     success: function (data) { //成功后的回调函数
-      console.log(data);
       var img_url="./web/images/kj_default.jpg";
+      catNames=data.data.catNames;
       var returnCode=data.returnCode;
       if (returnCode=='00') {
         if (data.data.imgUrl) img_url=data.data.imgUrl;
@@ -265,7 +267,9 @@ function toLearning() {
   window.location.href="./onlineLearning.html?kjId="+getUrlParam("id");
 }
 function  toStartPractice() {
-  window.open("./entryPractice.html")
+  var url="./entryPractice.html";
+  if (catNames) url+="?catNames="+encodeURIComponent(catNames);
+  window.open(url);
 }
 /**
  <span style="margin-left: -28px">

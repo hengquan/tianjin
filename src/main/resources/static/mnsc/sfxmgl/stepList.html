@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +27,7 @@
         <div class="banxin header">
           <div class="fl header-logo">
             <img src="../resource/image/LOGO@2x.png" alt="" class="logo">
-            <span class="header-name">天津市港口统一收费服务平台-<strong>线上培训子系统</strong></span>
+            <span class="header-name">天津市港口统一收费服务管理平台-<strong>线上培训子系统</strong></span>
           </div>
     <!--右侧关闭窗口-->
     <div class="pt-fr pt-user-info">
@@ -53,7 +54,7 @@
         </div>
         <div class="pay_button">
           <span class="previousPage" onclick="prevPage()">上一步</span>
-          <span class="repractice" onclick="rePage()">重新练习</span>
+          <span class="repractice" onclick="rePage()">重新开始</span>
           <span class="nextPage" onclick="nextPage()">下一步</span>
         </div>
       </div>
@@ -109,7 +110,7 @@
                 }
               },
               {
-                X: 497,
+                X: 510,
                 Y: 146,
                 distance: 10,
                 direction: 'bottom',
@@ -139,7 +140,7 @@
             srcUrl: './stepTips2.html',
             steps: [{
                 X: 120,
-                Y: 200,
+                Y: 160,
                 distance: 10,
                 direction: 'bottom',
                 content: '<div class="intro-indent">在左侧显示所有的标准收费目录，选择需要设定的标准目录，选中后目录变成<span class="special"> “蓝色” </span>后继续操作</div>',
@@ -158,7 +159,7 @@
               },         
               {
                 X: 240,
-                Y: 280,
+                Y: 380,
                 distance: 10,
                 direction: 'right',
                 content: '<div class="intro-indent">在中间显示选中目录的所有收费项目,对需要设定的项目进行<span class="special"> “选中”</span>操作，将显示在右侧</div>',
@@ -224,8 +225,8 @@
           {
             srcUrl: './stepTips3.html',
             steps: [{
-                X: 460,
-                Y: 320,
+                X:500,
+                Y: 420,
                 distance: 10,
                 direction: 'left',
                 content: '<div class="intro-indent">在此页面可进行删除操作，对需要删除的项目进行，<span class="special"> "选中”</span>操作，选中后可进行相应操作。</div>',
@@ -262,8 +263,8 @@
                 }
               },              
               {
-                X: 670,
-                Y: 340,
+                X: 720,
+                Y: 360,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -274,7 +275,7 @@
                 backgroundColor: 'transparent', //透明颜色
                 color: '#fff',
                 radius: 5,
-                area: [100, 50],
+                area: [80, 50],
                 nextBtn: {
                   content: '',//添加
                   backgroundColor: 'transparent',
@@ -292,10 +293,10 @@
             srcUrl: './stepTips4.html',
             steps: [{
                 X: 1060,
-                Y: 320,
+                Y: 300,
                 distance: 10,
                 direction: 'left',
-                content: '<div class="intro-indent">在此页面可进行价格相关的操作，选中需要进行价格操作的项目后，点击<span class="special"> "价格查看”</span>操作，进行价格列表查看。</div>',
+                content: '<div class="intro-indent">在此页面可进行价格相关的操作，选中需要进行价格操作的项目后，如果是<span class="special">“政府定价”</span>，请点击<span class="special"> "查看价格”</span>操作，进行价格列表查看。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
@@ -388,7 +389,7 @@
             srcUrl: './stepTips6.html',
             steps: [
               {
-                X: 1060,
+                X: 960,
                 Y: 320,
                 distance: 10,
                 direction: 'left',
@@ -407,29 +408,8 @@
                 },
               }, 
               {
-                X: 300,
-                Y: 320,
-                distance: 10,
-                direction: 'right',
-                content: '<div class="intro-indent">进入价格管理显示列个列表，如需新增点击<span class="special"> "新增”</span>按钮，进行价格新增操作。</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [200, 140],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: '#990000'
-                },
-                callBack: function (obj) {
-                  document.getElementById("tipsMain").contentWindow.setpic("./images/step6.png");      
-                  console.log(obj);
-                }
-              },
-             
-              {
-                X: 145,
-                Y: 164,
+                X: 970,
+                Y: 270,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -440,7 +420,47 @@
                 backgroundColor: 'transparent', //透明颜色
                 color: '#fff',
                 radius: 5,
-                area: [120, 50],
+                area: [80, 50],
+                nextBtn: {
+                  content: '',//提取信息
+                  backgroundColor: 'transparent',
+                }
+              },
+              {
+                X: 300,
+                Y: 280,
+                distance: 10,
+                direction: 'right',
+                content: '<div class="intro-indent">进入价格管理显示列个列表，如需需要修改价格，点击<span class="special"> "编辑”</span>按钮，进行价格编辑操作。</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [200, 140],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {
+                  document.getElementById("tipsMain").contentWindow.setpic("./images/step6-1.png");      
+                  console.log(obj);
+                }
+              },
+             
+              {
+                X: 940,
+                Y: 210,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [50, 50],
                 nextBtn: {
                   content: '',//新增
                   backgroundColor: 'transparent',
@@ -458,16 +478,16 @@
             srcUrl: './stepTips7.html',
             steps: [
               {
-                X: 740,
-                Y: 120,
+                X: 600,
+                Y: 300,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">新增价格首先需要进行规格的选择，点击<span class="special"> "选择规格”</span>按钮，进行规格选择操作。</div>',
+                content: '<div class="intro-indent">价格编辑主要完成收费价格的设定，收费价格在有政府规定的范围是，所设置的<span class="special"> "价格区间”</span>必须在政府圭迪昂的<span class="special"> "价格区间”</span>之内。正确设定后，请点击<span class="special"> "保存”</span>按钮。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
                 radius: 5,
-                area: [200, 150],
+                area: [300, 150],
                 nextBtn: {
                   content: '知道了',
                   backgroundColor: '#990000'
@@ -475,50 +495,10 @@
                 callBack: function (obj) {
                   console.log(obj);
                 } 
-              },              
-              {
-                X: 880,
-                Y: 300,
-                distance: 10,
-                direction: 'left',
-                content: '<div class="intro-indent">规格选择首先需要选择目录，然后选择规格，在选定的规格行的最后一列点击<span class="special"> "选择”</span>按钮，进行规格选择操作。</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [200, 150],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: '#990000'
-                },
-                callBack: function (obj) {                    
-                  document.getElementById("tipsMain").contentWindow.setpic("./images/step7-2.png");                  
-                  console.log(obj);
-                } 
               },
               {
-                X: 480,
-                Y: 200,
-                distance: 10,
-                direction: 'bottom',
-                content: '<div class="intro-indent">规格选择完毕后，对需要设定的其他属性进行设定，其中<span class="special"> "*”</span>属性为必须设定属性，设定后点击击<span class="special"> "保存”</span>按钮，完成设定操作。</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [200, 150],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: '#990000'
-                },
-                callBack: function (obj) {                    
-                  document.getElementById("tipsMain").contentWindow.setpic("./images/step7-3.png");                  
-                  console.log(obj);
-                } 
-              },
-              {
-                X: 480,
-                Y: 488,
+                X: 510,
+                Y: 430,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -529,9 +509,49 @@
                 backgroundColor: 'transparent', //透明颜色
                 color: '#fff',
                 radius: 5,
-                area: [100, 50],
+                area: [160, 50],
                 nextBtn: {
-                  content: '',//确定
+                  content: '',//提取信息
+                  backgroundColor: 'transparent',
+                }
+              },
+              
+              {
+                X: 990,
+                Y: 260,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">设定好企业收费的标准后，收费项目需要进行公示处理，才能使用，点击中<span class="special"> "公示”</span>后，弹出公示提示，点击<span class="special"> "确定”</span>按钮，完成设定操作。</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [240, 150],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) { 
+                  document.getElementById("tipsMain").contentWindow.setpic("./images/step7-1.png"); 
+                  console.log(obj);
+                } 
+              },  
+              {
+                X: 620,
+                Y: 310,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [80, 50],
+                nextBtn: {
+                  content: '',//新增
                   backgroundColor: 'transparent',
                   callBack: function (obj) {
                     nextPage();
@@ -540,7 +560,7 @@
                 callBack: function (obj) {
                   console.log(obj);
                 }
-              },
+              }
             ]
           },
           
@@ -549,7 +569,7 @@
             steps: [
               {
                 X: 1060,
-                Y: 280,
+                Y: 480,
                 distance: 10,
                 direction: 'left',
                 content: '<div class="intro-indent">在收费项目的列表中，选择需要删除的收费项目，然后点击<span style="color:#feef00 ">"删除"</span>按钮，进行删除操作！</div>',

@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>天津市港口统一收费服务平台-线上培训子系统</title>
+  <title>天津市港口统一收费服务管理平台-线上培训子系统</title>
 
   <link href="${gateway}/libs/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" >
-  <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet" >
   <link href="${gateway}/libs/bootstrap-3.3.7-dist/fonts/iconfont.css" rel="stylesheet">
   <link href="${gateway}/src/css/pt-main.css" rel="stylesheet">
 
@@ -14,6 +13,7 @@
   <script src="${gateway}/libs/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
   <script src="${gateway}/libs/layer/layer.js"></script>
   <script src="${gateway}/src/js/main.js"></script>
+  <link href="${gateway}/libs/layer/layer-new.css" rel="stylesheet">
 <style>
 iframe{
   width: 100%;
@@ -29,13 +29,13 @@ iframe{
     <!--左侧系统名称-->
     <div class="pt-fl pt-system-info" >
       <div class="pt-logo pt-fl"><img src="${gateway}/src/images/LOGO@2x.png" alt=""></div>
-      <div class="pt-slogen pt-fr">天津市港口统一收费服务平台 -<strong>线上培训子系统</strong></div>
+      <div class="pt-slogen pt-fr">天津市港口统一收费服务管理平台-<strong>线上培训子系统</strong></div>
     </div>
     <!--右侧用户信息-->
     <div class="pt-fr pt-user-info">
       <div class="pt-logout pt-fr"><a style="color: #ffffff" href="/oauth/logout?state=${gateway}">退出</a></div>
       <div class="pt-settings pt-fr" onclick="gobackIndex()">返回首页</div>
-      <div class="pt-settings pt-fr" onclick="changePwd()">修改密码</div>
+      <!-- <div class="pt-settings pt-fr" onclick="changePwd()">修改密码</div>-->
       <div class="pt-settings pt-fr"></div>
       <!--用户头像姓名-->
       <div class="pt-user pt-fr">
@@ -55,25 +55,6 @@ iframe{
       <!--菜单列表-->
       <div class="pt-menu"><ul>
         ${menuHtml}
-        <!--为调试用
-        <li class="pt-menu-list">
-          <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
-          <h3 class="pt-menu-title"><a href="#">新增功能</a></h3>
-          <ul class="pt-second-menu">
-            <li class="pt-menu-child">
-                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toKJGL()">课件-new管理</a></h3>
-            </li>
-            <li class="pt-menu-child">
-                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toWebMNSC()">模拟实操</a></h3>
-            </li>
-            <li class="pt-menu-child">
-                <span class="glyphicon  glyphicon-th-large" aria-hidden="true"></span>
-                <h3 class="pt-menu-title"><a href="javascript:void(0);" onclick="toZXXX()">在线学习</a></h3>
-            </li>
-          </ul>
-        </li>-->
       </ul></div>
     </div>
     <!--左侧菜单 结束-->
@@ -95,7 +76,12 @@ iframe{
 <script>
 $(document).ready(function() {
   //默认点击第一个可用的菜单
-  
+  $("a").each(function(){
+    if ($(this).html()=="首页") {
+      $(this).click();
+      return;
+    }
+  });
 });
 
 function showMenu(url) {
@@ -116,29 +102,11 @@ function changePwd() {
     shade: 0.6,
     maxmin: false, //开启最大化最小化按钮
     area: ['62.5%', '83%'], //此处可以改为100%，该数值按UI图比例算出
-    content: "${outerRoot}/system-server/support/co-user/password", //如果不想出现滚动条['content.html', 'no']
+    content: "${innerRoot}/system-server/support/co-user/password", //如果不想出现滚动条['content.html', 'no']
     end:function() {
       layer.close(index);
     }
   });
-}
-
-//学员概况
-function toKJGL(){
-  $("#mainframe").attr("src","${gateway}/kjitme/list");
-}
-
-//学员概况
-function toXYGK(){
-  $("#mainframe").attr("src","${gateway}/summary");
-}
-//模拟实操
-function toWebMNSC(){
-  $("#mainframe").attr("src","${gateway}/practice");
-}
-//在线学习
-function toZXXX() {
-  $("#mainframe").attr("src","${gateway}/courseware");
 }
 </script>
 

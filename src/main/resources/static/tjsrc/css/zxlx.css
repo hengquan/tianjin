@@ -75,6 +75,7 @@ body {
 }
 .scsj-btn {
   width: 90px;
+  margin-top:-5px;
   height: 35px;
   line-height: 35px;
   background: #2e66bd;
@@ -150,7 +151,7 @@ table td {
   text-align: center;
 }
 .times {
-   width: 200px;
+  width: 200px;
   height: 40px;
   text-align: center;
   line-height: 40px;
@@ -159,11 +160,11 @@ table td {
   background: #fb8201;
   font-size: 18px;
   position: relative;
-  bottom: 50px;
+  bottom: 30px;
   margin:0 auto;
   display: none;
   cursor: pointer;
-  margin-top:80px;
+  margin-top:60px;
 }
 .sub-btn {
   width: 160px;

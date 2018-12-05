@@ -64,6 +64,7 @@ html,body{
 }
 .pt-fr {
   float: right;
+  margin-right:80px;
 }
 .pt-user-info {
   font-size: 12px;
