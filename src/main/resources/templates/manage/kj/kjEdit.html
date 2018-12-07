@@ -561,8 +561,7 @@ html {
         $("#baocun").attr("onclick", "editKj()");
         url = url.substr(1);
         var split = url.split("=");
-        $
-            .ajax({
+        $.ajax({
               type : 'post',
               url : "${gateway}/kj/get",
               data : {
