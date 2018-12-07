@@ -175,16 +175,13 @@
      layer.msg("获取分类失败！");
      }
      }); */
+  function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg); //匹配目标参数
+    if (r != null) return unescape(r[2]); return null; //返回参数值
+  }
     //获取参数
-    var objId = '';
-    var url = location.search;
-    if (url != '') {
-      url = url.substr(1);
-      var split = url.split("=");
-      if (split[0] == 'kjIds') {
-        objId = split[1];
-      }
-    }
+    var objId=getUrlParam('kjIds');
     // 时间选择
     $('.datetimepicker').datetimepicker({
       language : 'zh',
