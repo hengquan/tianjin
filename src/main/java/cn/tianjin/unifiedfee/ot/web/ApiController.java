@@ -319,6 +319,10 @@ public class ApiController {
         km.put("catNames", kjm.get("KJ_CAT_NAMES"));
         km.put("name", kjm.get("KJ_NAME"));
         km.put("remarks", kjm.get("REMARKS"));
+        if (kjm.get("IMGURL")!=null) {
+            String imgUrl=(String)kjm.get("IMGURL");
+            if (!StringUtils.isBlank(imgUrl.trim())) km.put("imgUrl", kjm.get("IMGURL"));
+        }
         try {
             km.put("createDate", DateUtils.convert2LocalStr("yyyy-MM-dd HH:mm:ss", new Date(((Timestamp)kjm.get("CREATE_DATE")).getTime())));
         } catch(Exception e) {
