@@ -146,23 +146,21 @@ public class KjService {
                     for (Kj oneKj : kjs) {
                         Date createDate = oneKj.getCreateDate();
                         String createdate = format.format(createDate);
-                        if (StringUtils.isNotEmpty(createdate))
-                            oneKj.setCreatedate(createdate);
+                        if (StringUtils.isNotEmpty(createdate)) oneKj.setCreatedate(createdate);
                     }
                     kj.setKjs(kjs);
                 }
             }
+            // 处理相关附件
+            List<CommArchive> commArchives = commArchiveMapper.selectByObjId(kj.getId());
+            if (commArchives != null && commArchives.size() > 0) {
+                kj.setCommArchives(commArchives);
+            }
+            // 处理日期
+            Date createDate = kj.getCreateDate();
+            String createdate = format.format(createDate);
+            if (StringUtils.isNotEmpty(createdate)) kj.setCreatedate(createdate);
         }
-        // 处理相关附件
-        List<CommArchive> commArchives = commArchiveMapper.selectByObjId(kj.getId());
-        if (commArchives != null && commArchives.size() > 0) {
-            kj.setCommArchives(commArchives);
-        }
-        // 处理日期
-        Date createDate = kj.getCreateDate();
-        String createdate = format.format(createDate);
-        if (StringUtils.isNotEmpty(createdate))
-            kj.setCreatedate(createdate);
         return kj;
     }
 

@@ -464,8 +464,7 @@ html {
         $("#baocun").attr("onclick", "editMnsc()");
         url = url.substr(1);
         var split = url.split("=");
-        $
-            .ajax({
+        $.ajax({
               type : 'post',
               url : "${gateway}/mnsc/get",
               data : {

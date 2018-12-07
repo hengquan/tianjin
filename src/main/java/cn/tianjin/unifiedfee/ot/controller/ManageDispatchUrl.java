@@ -1,6 +1,7 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import cn.taiji.company.system.CompanyInfo;
 import cn.taiji.format.result.ObjectResponseResult;
 import cn.taiji.oauthbean.dto.UserInfo;
 import cn.taiji.system.domain.SysResource;
@@ -51,11 +51,12 @@ public class ManageDispatchUrl {
     public CommArchiveMapper commArchiveMapper;
     @Autowired
     private CategoryService categoryService;
+    
 
     @Value("${ot-server.prefix}")
     private String prefix;
-    // @Value("${ot-server.manage.role.name}")
-    // private String trainNameId;
+    @Value("${spring.global.static-url}")
+    private String staticUrl;
 
     // =============================以下为页面跳转
     /* 后台管理首页 index页 */
@@ -69,22 +70,30 @@ public class ManageDispatchUrl {
             UserInfo ui = userService.getUserInfo();
             if (ui != null) {
                 model.addAttribute("username", ui.getUsername());
-                model.addAttribute("userImg",
-                        "http://1.202.219.107:8088/pm-server-innerweb/src/images/defaultAvatar@2x.png");
-                // ObjectResponseResult<List<SysResource>>
-                // result=securityMenuService.findMenuByUsername(ui.getUsername());
-                ObjectResponseResult<List<SysResource>> result = securityMenuRemote
-                        .findMenuByUsernameAndSysname(ui.getUserId(), "ot-server", ui.getUseType());
+                model.addAttribute("userImg",staticUrl+"/src/images/defaultAvatar@2x.png");
+                ObjectResponseResult<List<SysResource>> result = securityMenuRemote.findMenuByUsernameAndSysname(ui.getUserId(), "ot-server", ui.getUseType());
                 if (result != null && result.getData() != null && result.getData().size() > 0) {
-                    // List<SysResource> l=findTrainMenu(result.getData(),
-                    // trainNameId);
-                    /**
-                     * 测试代码 List<SysResource> _ret=new ArrayList<SysResource>();
-                     * for (SysResource s: l) if
-                     * (s.getResourcesName().equals("培训中心"))
-                     * {_ret.add(s);break;} l=_ret;
-                     */
                     List<SysResource> l = result.getData().get(0).getChildren();
+                    if (l!=null) {
+                        //根据seq排序
+                        Collections.sort(l, new Comparator<SysResource>() {
+                            @Override
+                            public int compare(SysResource o1, SysResource o2) {
+                                return o1.getSeq().compareTo(o2.getSeq());
+                            }
+                        });
+                        for (int i=0; i<l.size(); i++) {
+                            SysResource m1=l.get(i);
+                            if (m1.getChildren()!=null && m1.getChildren().size()>0) {
+                                Collections.sort(m1.getChildren(), new Comparator<SysResource>() {
+                                    @Override
+                                    public int compare(SysResource o1, SysResource o2) {
+                                        return o1.getSeq().compareTo(o2.getSeq());
+                                    }
+                                });
+                            }
+                        }
+                    }
                     if (l != null) {
                         for (int i = 0; i < l.size(); i++) {
                             SysResource m1 = l.get(i);
