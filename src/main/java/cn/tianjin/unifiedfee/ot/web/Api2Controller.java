@@ -71,13 +71,15 @@ public class Api2Controller {
             @RequestParam(defaultValue = "-1", required = false) int pageNo,
             @RequestParam(defaultValue = "-1", required = false) int pageSize) {
         HttpPush.responseInfo(response);// 跨域
+        //获取参数
+        String portal = request.getParameter("portal")==null?"":request.getParameter("portal").toString();
         // 返回结果
         Map<String, Object> retMap = new HashMap<String, Object>();
         // 请求参数
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             UserInfo ui = userService.getUserInfo();
-            if (ui == null) {
+            if (ui == null && StringUtils.isEmpty(portal)) {
                 retMap.put("returnCode", "02");
                 retMap.put("messageInfo", "无用户登录");
                 return retMap;
@@ -129,11 +131,13 @@ public class Api2Controller {
     public Map<String, Object> getMnscInfo(HttpServletRequest request, HttpServletResponse response,
             @RequestParam(required = false) String mnscId) {
         HttpPush.responseInfo(response);// 跨域
+        //获取参数
+        String portal = request.getParameter("portal")==null?"":request.getParameter("portal").toString();
         // 返回结果
         Map<String, Object> retMap = new HashMap<String, Object>();
         try {
             UserInfo ui = userService.getUserInfo();
-            if (ui == null) {
+            if (ui == null && StringUtils.isEmpty(portal)) {
                 retMap.put("returnCode", "02");
                 retMap.put("messageInfo", "无用户登录");
                 return retMap;
@@ -175,11 +179,13 @@ public class Api2Controller {
     public Map<String, Object> getMnscRefKjList(HttpServletRequest request, HttpServletResponse response,
             @RequestParam(required = false) String mnscId) {
         HttpPush.responseInfo(response);// 跨域
+        //获取参数
+        String portal = request.getParameter("portal")==null?"":request.getParameter("portal").toString();
         // 返回结果
         Map<String, Object> retMap = new HashMap<String, Object>();
         try {
             UserInfo ui = userService.getUserInfo();
-            if (ui == null) {
+            if (ui == null && StringUtils.isEmpty(portal)) {
                 retMap.put("returnCode", "02");
                 retMap.put("messageInfo", "无用户登录");
                 return retMap;
