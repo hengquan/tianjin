@@ -479,7 +479,7 @@
               Y: 440,
               distance: 10,
               direction: 'bottom',
-              content: '<div class="intro-indent">在缴费清单的详情页面，显示清单的基础信息和费项信息，在页面的底部点击<span class="special">“确认”</span>按钮，完成该清单的确认操作。</div>',
+              content: '<div class="intro-indent">在缴费清单的详情页面，显示清单的基础信息和费项信息，在页面的底部点击<span class="special">“缴款”</span>按钮，进入缴款操作。</div>',
               padding: 10,
               backgroundColor: 'rgba(0,0,0,0.6)',
               color: '#fff',
@@ -523,28 +523,30 @@
           }, 
             {
               srcUrl: './stepTips7.html',
-              steps: [{
-                  X: 660,
-                  Y: 360,
-                  distance: 10,
-                  direction: 'bottom',
-                  content: '<div class="intro-indent">确定进行批量确认后，系统提示本次批量处理的单据数量，点击<span class="special">“确认”</span>后，完成批量确认，点<span class="special">“取消”</span>，批量确认取消。</div></div>',
-                  padding: 10,
-                  backgroundColor: 'rgba(0,0,0,0.6)',
-                  color: '#fff',
-                  radius: 5,
-                  area: [240, 130],
-                  nextBtn: {
-                    content: '知道了',
-                    backgroundColor: 'blue'
+              steps: [
+                  {
+                    X: 180,
+                    Y: 540,
+                    distance: 10,
+                    direction: 'top',
+                    content: '<div class="intro-indent">进入缴款环节，首先确认支付信息，确认无误，选择<span class="special">“支付方式”</span>后，进入支付页面，进行支付操作。</div></div>',
+                    padding: 10,
+                    backgroundColor: '#666600',
+                    color: '#fff',
+                    radius: 5,
+                    area: [240, 150],
+                    nextBtn: {
+                      content: '知道了',
+                      backgroundColor: '#990000',
+                      callBack: function (obj) {
+                          nextPage();
+                        }
+                    },
+                    callBack: function (obj) {
+                      console.log(obj);
+                    }
                   },
-                  callBack: function (obj) {
-                    console.log(obj);
-                  }
-                },                           
-              ]
-            },
-            ]
+               ] 
           },  
         ]
       })
