@@ -78,20 +78,14 @@ public class Api2Controller {
         // 请求参数
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            UserInfo ui = userService.getUserInfo();
-            if (ui == null && StringUtils.isEmpty(portal)) {
-                retMap.put("returnCode", "02");
-                retMap.put("messageInfo", "无用户登录");
-                return retMap;
+//            UserInfo ui = userService.getUserInfo();
+            if(StringUtils.isEmpty(portal) || !portal.equals("portal")){
+//                if (ui == null) {
+//                    retMap.put("returnCode", "02");
+//                    retMap.put("messageInfo", "无用户登录");
+//                    return retMap;
+//                }
             }
-//            // 处理分页
-//            if (pageNo == -1)
-//                pageNo = 1;
-//            if (pageSize == -1)
-//                pageSize = _DEFALT_PS;
-//            // 设置分页
-//            // PageHelper.offsetPage(pageNo, pageSize);
-//            // 查询列表
             map.put("categoryId", categoryId);
             map.put("searchStr", searchStr);
             List<Map<String, Object>> mnscs = mnscService.getMnscList4web(map);
@@ -136,11 +130,13 @@ public class Api2Controller {
         // 返回结果
         Map<String, Object> retMap = new HashMap<String, Object>();
         try {
-            UserInfo ui = userService.getUserInfo();
-            if (ui == null && StringUtils.isEmpty(portal)) {
-                retMap.put("returnCode", "02");
-                retMap.put("messageInfo", "无用户登录");
-                return retMap;
+//            UserInfo ui = userService.getUserInfo();
+            if(StringUtils.isEmpty(portal) || !portal.equals("portal")){
+//                if (ui == null) {
+//                    retMap.put("returnCode", "02");
+//                    retMap.put("messageInfo", "无用户登录");
+//                    return retMap;
+//                }
             }
             if (StringUtils.isEmpty(mnscId)) {
                 retMap.put("returnCode", "03");
@@ -184,11 +180,13 @@ public class Api2Controller {
         // 返回结果
         Map<String, Object> retMap = new HashMap<String, Object>();
         try {
-            UserInfo ui = userService.getUserInfo();
-            if (ui == null && StringUtils.isEmpty(portal)) {
-                retMap.put("returnCode", "02");
-                retMap.put("messageInfo", "无用户登录");
-                return retMap;
+//            UserInfo ui = userService.getUserInfo();
+            if(StringUtils.isEmpty(portal) || !portal.equals("portal")){
+//                if (ui == null) {
+//                    retMap.put("returnCode", "02");
+//                    retMap.put("messageInfo", "无用户登录");
+//                    return retMap;
+//                }
             }
             if (StringUtils.isEmpty(mnscId)) {
                 retMap.put("returnCode", "03");
