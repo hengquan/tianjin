@@ -90,13 +90,13 @@
 			<optional>true</optional>
 		</dependency>
 		<!-- 引入平台包 -->
-		<dependency>
-			<groupId>com.spiritdata</groupId>
-			<artifactId>BasicPlat</artifactId>
-			<version>0.2.0.01</version>
-			<scope>system</scope>		
-			<systemPath>${localLibDir}/BasicPlat-0.2.0.01.jar</systemPath>	
-		</dependency>
+    <dependency>
+      <groupId>com.spiritdata</groupId>
+      <artifactId>BasicPlat</artifactId>
+      <version>0.2.0.01</version>
+      <scope>system</scope>   
+      <systemPath>${localLibDir}/BasicPlat-0.2.0.01.jar</systemPath>  
+    </dependency>
 	</dependencies>
 
 	<build>
