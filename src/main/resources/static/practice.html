@@ -88,33 +88,55 @@ a:link {
 </head>
 
 <body>
-	<!--主菜单内容-->
-	<div class="container">
-		<!-- 站内导航 -->
-		<div class="position_wrap">
-			<div class="w1200 list-header">
-				<img src="./web/images/dot.png" alt="" class="list-header-mark">&emsp;
-				<span class="list-header-title"><a
-					href="#" onclick="gotoSY()" class="active">首页</a></span>
-				<span>&gt;</span> <span class="list-header-title"><a
-					href="#" onclick="gotoFW()" class="active">服务指南</a></span>
-				<span>&gt;</span> <span class="list-header-active">模拟实操</span>
+	<div id="message">
+		<!--主菜单内容-->
+		<div class="container">
+			<!-- 站内导航 -->
+			<div class="position_wrap">
+				<div class="w1200 list-header">
+					<img src="./web/images/dot.png" alt="" class="list-header-mark">&emsp;
+					<span class="list-header-title"><a href="#"
+						onclick="gotoSY()" class="active">首页</a></span> <span>&gt;</span> <span
+						class="list-header-title"><a href="#" onclick="gotoFW()"
+						class="active">服务指南</a></span> <span>&gt;</span> <span
+						class="list-header-active">模拟实操</span>
+				</div>
 			</div>
-		</div>
-		<!--模拟实操内容-->
-		<div id="mnscContent">
-			<div>&nbsp;</div>
-			<div class="tab-content" id="htmlContent" align="center"></div>
-			<div>&nbsp;</div>
+			<!--模拟实操内容-->
+			<div id="mnscContent">
+				<div>&nbsp;</div>
+				<div class="tab-content" id="htmlContent" align="center"></div>
+				<div>&nbsp;</div>
+			</div>
 		</div>
 	</div>
 	<script>
-	  function gotoSY(){
-	    top.location.href="http://60.28.236.138:8989/preview/outsidewai/";
-	    return false;
-	  }
-	  function gotoFW(){
-      top.location.href="http://60.28.236.138:8989/preview/outsidewai/fuwu/";
+    window.onload = function() {
+      resetHeight()
+    }
+    $(document).ajaxComplete(function(event, xhr, settings) {
+
+    });
+    $(function() {
+      resetHeight()
+      setInterval(function() {
+        resetHeight()
+      }, 200)
+    })
+    window.addEventListener('resize', resetHeight);
+    function resetHeight() {
+      var winHeight = document.getElementById('message').offsetHeight;
+      // console.log(winHeight);
+      window.parent.postMessage(winHeight, '*');
+    }
+  </script>
+	<script>
+    function gotoSY() {
+      top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
+      return false;
+    }
+    function gotoFW() {
+      top.location.href = "http://60.28.236.138:8989/preview/outsidewai/fuwu/";
       return false;
     }
     $(document).ready(function() {
