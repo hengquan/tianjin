@@ -362,12 +362,12 @@ public class ApiController {
 
         Map<String, Object> retMap=new HashMap<String, Object>();
         try {
-            UserInfo ui=userService.getUserInfo();
-            if (ui==null) {
-                retMap.put("returnCode","02");
-                retMap.put("messageInfo","无用户登录");
-                return retMap;
-            }
+//            UserInfo ui=userService.getUserInfo();
+//            if (ui==null) {
+//                retMap.put("returnCode","02");
+//                retMap.put("messageInfo","无用户登录");
+//                return retMap;
+//            }
             if (StringUtils.isBlank(kjId)) {
                 retMap.put("returnCode","03");
                 retMap.put("messageInfo","课件Id为空");
@@ -434,12 +434,12 @@ public class ApiController {
 
         Map<String, Object> retMap=new HashMap<String, Object>();
         try {
-            UserInfo ui=userService.getUserInfo();
-            if (ui==null) {
-                retMap.put("returnCode","02");
-                retMap.put("messageInfo","无用户登录");
-                return retMap;
-            }
+//            UserInfo ui=userService.getUserInfo();
+//            if (ui==null) {
+//                retMap.put("returnCode","02");
+//                retMap.put("messageInfo","无用户登录");
+//                return retMap;
+//            }
             if (StringUtils.isBlank(kjId)) {
                 retMap.put("returnCode","03");
                 retMap.put("messageInfo","课件Id为空");
@@ -511,12 +511,12 @@ public class ApiController {
 
         Map<String, Object> retMap=new HashMap<String, Object>();
         try {
-            UserInfo ui=userService.getUserInfo();
-            if (ui==null) {
-                retMap.put("returnCode","02");
-                retMap.put("messageInfo","无用户登录");
-                return retMap;
-            }
+//            UserInfo ui=userService.getUserInfo();
+//            if (ui==null) {
+//                retMap.put("returnCode","02");
+//                retMap.put("messageInfo","无用户登录");
+//                return retMap;
+//            }
             //1-处理参数
             if (StringUtils.isBlank(refType)) {
                 retMap.put("returnCode","03");

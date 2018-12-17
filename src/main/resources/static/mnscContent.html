@@ -117,7 +117,6 @@ function closeWin() {
   }
 }
 
-var _data={"mnscId":getUrlParam("objId")};
 
 $(document).ready(function(){
   initPage();
@@ -125,6 +124,7 @@ $(document).ready(function(){
 
 //主课件填充
 function initPage() {
+	var _data={"mnscId":getUrlParam("objId"),"portal":"portal"};
   $.ajax({
     type: 'post',
     url: "./train/getMnscInfo",
@@ -168,7 +168,7 @@ function initPage() {
 //相关课件填充
 function initXgkc() {
   $("#xgkcList").html("");
-  var _data={"mnscId":getUrlParam("objId")};
+  var _data={"mnscId":getUrlParam("objId"),"portal":"portal"};
   $.ajax({
     type: 'post',
     url: "./train/getMnscRefKjList", 
