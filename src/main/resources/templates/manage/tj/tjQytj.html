@@ -44,6 +44,8 @@
         <!--带横线标题-->
         <div class="pt-bread">
           <h3>企业统计</h3>
+          <!-- 添加展开按钮 -->
+          <button type="button" id="ptsearchfilter" class="btn btn-primary pt-zkbtn">展开</button>
         </div>
         <div class="pt-main pt-padding">
           <!--搜索条-->
@@ -76,10 +78,101 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="form-group">
-                      <button type="button" class="btn btn-default btn-primary w120" onclick="search()">统计</button>
+                      <button type="button" class="btn btn-default btn-primary w80" onclick="search()">统计</button>
+                      <button type="button" class="btn btn-default btn-primary w80" onclick="exp()">导出</button>
                     </div>
+                  </div>
+                  <!--隐藏部分包裹 -->
+                  <div class="hiddenorshow pt-search-filter">
+                  <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                      <div class="form-group">
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">课件学习数</label>
+                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <select id="kjcsType" name="kjcsType" class="selectpicker" data-actions-box="true" title="请选择">
+                          <option value="0">大于</option>
+                          <option value="2">小于</option>
+                          <option value="1">等于</option>
+                        </select>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                        <input class="form-control" id="kjcs" size="16" type="number" value="" style="padding-left:10px;">
+                      </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2">课件占比(%)</label>
+                      <div class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;">
+                        <input class="form-control" id="kjzb1" size="16" type="text" value="" style="padding-left:10px;">
+                      </div>
+                      <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="createTime">~</label>
+                      <div class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;">
+                        <input class="form-control" id="kjzb2" size="16" type="text" value="" style="padding-left:10px;">
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                      <div class="form-group">
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">实操学习数</label>
+                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <select id="sccsType" name="sccsType" class="selectpicker" data-actions-box="true" title="请选择">
+                          <option value="0">大于</option>
+                          <option value="2">小于</option>
+                          <option value="1">等于</option>
+                        </select>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                        <input class="form-control" id="sccs" size="16" type="number" value="" style="padding-left:10px;">
+                      </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2">实操占比(%)</label>
+                      <div class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;">
+                        <input class="form-control" id="sczb1" size="16" type="text" value="" style="padding-left:10px;" title="%">
+                      </div>
+                      <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="createTime">~</label>
+                      <div class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;">
+                        <input class="form-control" id="sczb2" size="16" type="text" value="" style="padding-left:10px;">
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                      <div class="form-group">
+                      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">练习次数</label>
+                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <select id="lxcsType" name="lxcsType" class="selectpicker" data-actions-box="true" title="请选择">
+                          <option value="0">大于</option>
+                          <option value="2">小于</option>
+                          <option value="1">等于</option>
+                        </select>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                        <input class="form-control" id="lxcs" size="16" type="number" value="" style="padding-left:10px;">
+                      </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2">练习占比(%)</label>
+                      <div class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;">
+                        <input class="form-control" id="lxzb1" size="16" type="text" value="" style="padding-left:10px;">
+                      </div>
+                      <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1" for="createTime">~</label>
+                      <div class="date col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:0px;">
+                        <input class="form-control" id="lxzb2" size="16" type="text" value="" style="padding-left:10px;">
+                      </div>
+                    </div>
+                    </div>
+                  </div>
                   </div>
                 </form>
               </div>
@@ -88,13 +181,9 @@
           <!--内容区容器-->
           <div class="pt-main">
             <!--bootstrap 表格-->
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="table-wrap">
-                  <table id="tb_departments"></table>
-                </div>
-              </div>
-            </div>
+            <div class="row"><div class="col-sm-12"><div class="table-wrap">
+              <table id="tb_departments"></table>
+            </div></div></div>
           </div>
         </div>
       </div>
@@ -282,9 +371,22 @@ function queryParams(params) {
     compIds: selectedValues.join(","),
     date1: $("#date1").find("input").val(),
     date2: $("#date2").find("input").val(),
-    limit : params.limit, //页面大小
-    offset : params.offset //页码
+    kjcsType: $("#kjcsType").val(),
+    kjcs: $("#kjcs").val(),
+    kjzb1: $("#kjzb1").val(),
+    kjzb2: $("#kjzb2").val(),
+    sccsType: $("#sccsType").val(),
+    sccs: $("#sccs").val(),
+    sczb1: $("#sczb1").val(),
+    sczb2: $("#sczb2").val(),
+    lxcsType: $("#lxcsType").val(),
+    lxcs: $("#lxcs").val(),
+    lxzb1: $("#lxzb1").val(),
+    lxzb2: $("#lxzb2").val(),
+    limit: params.limit, //页面大小
+    offset: params.offset //页码
   };
+  console.log(data);
   return data;
 }
 function formatNumAlignRight(value) {

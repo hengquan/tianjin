@@ -178,6 +178,18 @@ public class TjController {
             @RequestParam(required=false) String compIds,
             @RequestParam(required=false) String date1,
             @RequestParam(required=false) String date2,
+            @RequestParam(required=false) String kjcsType,
+            @RequestParam(required=false) String kjcs,
+            @RequestParam(required=false) String kjzb1,
+            @RequestParam(required=false) String kjzb2,
+            @RequestParam(required=false) String sccsType,
+            @RequestParam(required=false) String sccs,
+            @RequestParam(required=false) String sczb1,
+            @RequestParam(required=false) String sczb2,
+            @RequestParam(required=false) String lxcsType,
+            @RequestParam(required=false) String lxcs,
+            @RequestParam(required=false) String lxzb1,
+            @RequestParam(required=false) String lxzb2,
             @RequestParam(value="offset", defaultValue="1") int offset,
             @RequestParam(value="limit", defaultValue="10") int limit) {
         // 跨域
@@ -197,17 +209,11 @@ public class TjController {
             Map<String, Object> param=new HashMap<String, Object>();
             if (!StringUtils.isBlank(compIds)) {
                 compIds=compIds.replaceAll(",", "' or group_id='");
-                compIds="(group_id='"+compIds+"')";
+                compIds="group_id='"+compIds;
             }
             param.put("compIds", compIds);//所选择的人员的id列表
             param.put("date1", date1);//开始时间
             param.put("date2", date2);//结束时间
-            List<Map<String, Object>> _qytjl=logService.getQytjList(param);
-            if (_qytjl==null||_qytjl.size()==0) {
-                return null;
-            }
-            PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_qytjl);
-            //对数据进行处理
             //获得企业的总数，总课件数，总模拟实操数，总考试次数
             List<Map<String, Object>> _suml=logService.getQytjSumList(param);
             Map<String, Object> sumMap=new HashMap<String, Object>();
@@ -227,6 +233,95 @@ public class TjController {
                     }
                 }
             }
+
+            //组织其他的参数
+            String filterSql="";
+            float ftemp=0f;
+            //课件
+            if (!StringUtils.isBlank(kjcsType)&&!StringUtils.isBlank(kjcs)) {
+                try {
+                    Long.parseLong(kjcs);//判断是否是数值
+                    if ("0".equals(kjcsType)) filterSql+=" and kj_count>"+kjcs;
+                    if ("1".equals(kjcsType)) filterSql+=" and kj_count="+kjcs;
+                    if ("2".equals(kjcsType)) filterSql+=" and kj_count<"+kjcs;
+                } catch(Exception e) {
+                }
+            }
+            ftemp=Float.parseFloat(""+sumMap.get("allKj"));
+            if (!StringUtils.isBlank(kjzb1)) {
+                try {
+                    Float.parseFloat(kjzb1);
+                    filterSql+=" and kj_count>="+ftemp*Float.parseFloat(kjzb1)*0.01f;
+                } catch(Exception e) {
+                }
+            }
+            if (!StringUtils.isBlank(kjzb2)) {
+                try {
+                    Float.parseFloat(kjzb2);
+                    filterSql+=" and kj_count<="+ftemp*Float.parseFloat(kjzb2)*0.01f;
+                } catch(Exception e) {
+                }
+            }
+            //模拟实操
+            if (!StringUtils.isBlank(sccsType)&&!StringUtils.isBlank(sccs)) {
+                try {
+                    Long.parseLong(sccs);//判断是否是数值
+                    if ("0".equals(sccsType)) filterSql+=" and mnsc_count>"+sccs;
+                    if ("1".equals(sccsType)) filterSql+=" and mnsc_count="+sccs;
+                    if ("2".equals(sccsType)) filterSql+=" and mnsc_count<"+sccs;
+                } catch(Exception e) {
+                }
+            }
+            ftemp=Float.parseFloat(""+sumMap.get("allMnsc"));
+            if (!StringUtils.isBlank(sczb1)) {
+                try {
+                    Float.parseFloat(sczb1);
+                    filterSql+=" and mnsc_count>="+ftemp*Float.parseFloat(sczb1)*0.01f;
+                } catch(Exception e) {
+                }
+            }
+            if (!StringUtils.isBlank(sczb2)) {
+                try {
+                    Float.parseFloat(sczb2);
+                    filterSql+=" and mnsc_count<="+ftemp*Float.parseFloat(sczb2)*0.01f;
+                } catch(Exception e) {
+                }
+            }
+            //在线练习
+            if (!StringUtils.isBlank(lxcsType)&&!StringUtils.isBlank(lxcs)) {
+                try {
+                    Long.parseLong(lxcs);//判断是否是数值
+                    if ("0".equals(lxcsType)) filterSql+=" and sj_count>"+lxcs;
+                    if ("1".equals(lxcsType)) filterSql+=" and sj_count="+lxcs;
+                    if ("2".equals(lxcsType)) filterSql+=" and sj_count<"+lxcs;
+                } catch(Exception e) {
+                }
+            }
+            ftemp=Float.parseFloat(""+sumMap.get("allSj"));
+            if (!StringUtils.isBlank(lxzb1)) {
+                try {
+                    Float.parseFloat(lxzb1);
+                    filterSql+=" and sj_count>="+ftemp*Float.parseFloat(lxzb1)*0.01f;
+                } catch(Exception e) {
+                }
+            }
+            if (!StringUtils.isBlank(lxzb2)) {
+                try {
+                    Float.parseFloat(lxzb2);
+                    filterSql+=" and sj_count<="+ftemp*Float.parseFloat(lxzb2)*0.01f;
+                } catch(Exception e) {
+                }
+            }
+            if (!StringUtils.isBlank(filterSql)) {
+                param.put("filterSql", filterSql.substring(5));
+            }
+
+            List<Map<String, Object>> _qytjl=logService.getQytjList(param);
+            if (_qytjl==null||_qytjl.size()==0) {
+                return null;
+            }
+            PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_qytjl);
+            //对数据进行处理
             //处理每一项
             List<Map<String, Object>> cl=new ArrayList<Map<String, Object>>();
             for (Map<String, Object> qytj: _qytjl) {

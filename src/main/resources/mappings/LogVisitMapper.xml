@@ -17,10 +17,10 @@
     <result column="method" property="method" jdbcType="VARCHAR" />
     <result column="req_param" property="reqParam" jdbcType="VARCHAR" />
     <result column="visitor_type" property="visitorType" jdbcType="VARCHAR" />
-        <result column="visitor_id" property="visitorId" jdbcType="VARCHAR" />
-        <result column="visitor_name" property="visitorName" jdbcType="VARCHAR" />
-        <result column="group_id" property="groupId" jdbcType="VARCHAR" />
-        <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="visitor_id" property="visitorId" jdbcType="VARCHAR" />
+    <result column="visitor_name" property="visitorName" jdbcType="VARCHAR" />
+    <result column="group_id" property="groupId" jdbcType="VARCHAR" />
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
     <result column="client_ip" property="clientIp" jdbcType="VARCHAR" />
     <result column="point_info" property="pointInfo" jdbcType="VARCHAR" />
     <result column="device_type" property="deviceType" jdbcType="INTEGER" />
@@ -565,9 +565,14 @@ order by create_date desc
       sum(fx) for obj_type in ('ts_kj' kj_count, 'ts_mnsc' mnsc_count, 'q_sj' sj_count)
     )
   )
+  <where suffixOverrides="and">
   <if test="compIds!=null and compIds!=''">
-  where ${compIds}
+  and (${compIds})
   </if>
+  <if test="filterSql!=null and filterSql!=''">
+  and (${filterSql})
+  </if>
+  </where>
   order by (NVL(kj_count,0)+NVL(mnsc_count,0)+NVL(sj_count,0)) desc
   </select>
 
