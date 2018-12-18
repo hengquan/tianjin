@@ -97,6 +97,22 @@
       <scope>system</scope>   
       <systemPath>${localLibDir}/BasicPlat-0.2.0.01.jar</systemPath>  
     </dependency>
+    <!-- poi office -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.9</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.9</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml-schemas</artifactId>
+      <version>3.9</version>
+    </dependency>
 	</dependencies>
 
 	<build>
