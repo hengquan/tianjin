@@ -41,7 +41,7 @@ public class TjController {
     @Autowired
     public SystemCompanyRemote companyRemote;
     @Autowired //从日志表汇出统计信息
-    public LogVisitService catService;
+    public LogVisitService logService;
 
     /**
      * 获得学员学习的统计列表，企业的学员学习
@@ -87,14 +87,14 @@ public class TjController {
             param.put("userIds", userIds);//所选择的人员的id列表
             param.put("date1", date1);//开始时间
             param.put("date2", date2);//结束时间
-            List<Map<String, Object>> _xyxxl=catService.getXyxxList(param);
+            List<Map<String, Object>> _xyxxl=logService.getXyxxList(param);
             if (_xyxxl==null||_xyxxl.size()==0) {
                 return null;
             }
             PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_xyxxl);
             //对数据进行处理
             //获得企业的总数，总课件数，总模拟实操数，总考试次数
-            List<Map<String, Object>> _suml=catService.getXyxxSumList(param);
+            List<Map<String, Object>> _suml=logService.getXyxxSumList(param);
             Map<String, Object> sumMap=new HashMap<String, Object>();
             sumMap.put("allKj", "0");
             sumMap.put("allMnsc", "0");
@@ -202,14 +202,14 @@ public class TjController {
             param.put("compIds", compIds);//所选择的人员的id列表
             param.put("date1", date1);//开始时间
             param.put("date2", date2);//结束时间
-            List<Map<String, Object>> _qytjl=catService.getQytjList(param);
+            List<Map<String, Object>> _qytjl=logService.getQytjList(param);
             if (_qytjl==null||_qytjl.size()==0) {
                 return null;
             }
             PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_qytjl);
             //对数据进行处理
             //获得企业的总数，总课件数，总模拟实操数，总考试次数
-            List<Map<String, Object>> _suml=catService.getQytjSumList(param);
+            List<Map<String, Object>> _suml=logService.getQytjSumList(param);
             Map<String, Object> sumMap=new HashMap<String, Object>();
             sumMap.put("allKj", "0");
             sumMap.put("allMnsc", "0");
@@ -379,7 +379,7 @@ public class TjController {
             param.put("date1", date1);//开始时间
             param.put("date2", date2);//结束时间
 
-            List<Map<String, Object>> _xxrzl=catService.getXxrzList(param);
+            List<Map<String, Object>> _xxrzl=logService.getXxrzList(param);
             PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_xxrzl);
             if (_xxrzl==null||_xxrzl.size()==0) return null;
 
@@ -427,7 +427,7 @@ public class TjController {
         param.put("date1", date1);//开始时间
         param.put("date2", date2);//结束时间
         Map<String, Object> map = new HashMap<String, Object>();
-        List<LogVisit> loglist = catService.getcatkjtj(param);
+        List<LogVisit> loglist = logService.getcatkjtj(param);
         PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
         map.put("total", pageList.getTotal());
         map.put("rows", pageList.getList());
@@ -445,7 +445,7 @@ public class TjController {
         param.put("date1", date1);//开始时间
         param.put("date2", date2);//结束时间
         Map<String, Object> map = new HashMap<String, Object>();
-        List<LogVisit> loglist = catService.getcatmnsctj(param);
+        List<LogVisit> loglist = logService.getcatmnsctj(param);
         PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
         map.put("total", pageList.getTotal());
         map.put("rows", pageList.getList());
@@ -468,7 +468,7 @@ public class TjController {
         param.put("date1", date1);//开始时间
         param.put("date2", date2);//结束时间
         Map<String, Object> map = new HashMap<String, Object>();
-        List<LogVisit> loglist = catService.getcatcomptj(param);
+        List<LogVisit> loglist = logService.getcatcomptj(param);
         PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
         map.put("total", pageList.getTotal());
         map.put("rows", pageList.getList());
