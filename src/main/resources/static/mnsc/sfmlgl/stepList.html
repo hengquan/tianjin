@@ -439,6 +439,26 @@
       console.log(ifrheight)
   }
   </script>
+<script type="text/javascript">
+function getUrlParam(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+  var r = window.location.search.substr(1).match(reg); //匹配目标参数
+  if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+var objId=getUrlParam("objId");
+var _gatherData = {};
+_gatherData.visitModuleId = "模拟实操学习";
+_gatherData.objType = "ts_mnsc";
+_gatherData.objId = objId;
+(function() {
+  var ma = document.createElement('script');
+  ma.type = 'text/javascript';
+  ma.async = true;
+  ma.src = "../../tjsrc/js/ma.js";
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ma, s);
+})();
+</script>
 </body>
 
 </html>
