@@ -66,10 +66,15 @@ public class StController {
             }
         }
         // 放入分页
-        PageInfo<Tm> pageList = new PageInfo<Tm>(Tms);
-        // 返回
-        map.put("total", pageList.getTotal());
-        map.put("rows", pageList.getList());
+        if (Tms!=null) {
+            PageInfo<Tm> pageList = new PageInfo<Tm>(Tms);
+            // 返回
+            map.put("total", pageList.getTotal());
+            map.put("rows", pageList.getList());
+        } else {
+            map.put("total", null);
+            map.put("rows", 0);
+        }
         return map;
     }
     //题目课件
@@ -103,11 +108,17 @@ public class StController {
                     tm.setStrcreatedate(strcreatedate);
             }
         }
-        // 放入分页
-        PageInfo<Tm> pageList = new PageInfo<Tm>(Tms);
-        // 返回
-        map.put("total", pageList.getTotal());
-        map.put("rows", pageList.getList());
+        if (Tms!=null) {
+            // 放入分页
+            PageInfo<Tm> pageList = new PageInfo<Tm>(Tms);
+            // 返回
+            map.put("total", pageList.getTotal());
+            map.put("rows", pageList.getList());
+        } else {
+            // 返回
+            map.put("total", null);
+            map.put("rows", 0);
+        }
         return map;
     }
 

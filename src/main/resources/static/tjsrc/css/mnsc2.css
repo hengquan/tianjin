@@ -138,9 +138,11 @@ body {
   overflow-x:hidden;
 }
 .list ul {
-  display: -webkit-box;
-  display: -ms-box;
-  display: -o-box;
+  display: -webkit-box; 
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex; 
+  display: flex; 
   position: relative;
   /*
   width: 100%;
@@ -154,10 +156,6 @@ body {
   display: block;
   width: 0;
   height: 0;
-}
-.list ul li {
-  float:left;
-  position:relative;
 }
 .list ul li {
   font-family:'Microsoft YaHei';
