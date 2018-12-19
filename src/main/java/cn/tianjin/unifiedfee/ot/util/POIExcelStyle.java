@@ -15,6 +15,7 @@ public class POIExcelStyle {
     private HSSFCellStyle _COMMON_CELL=null;//基本单元-剧中
     private HSSFCellStyle _NUM_CELL=null;//数值单元
     private HSSFCellStyle _MEMO_CELL=null;//大段文字
+    private HSSFCellStyle _HEAD_MERGE_CELL=null;//表头合并
 
     private HSSFCellStyle _COMMON_CELL_alignleft=null;  //基本单元-靠左
     private HSSFCellStyle _COMMON_CELL_alignright=null; //基本单元-靠右
@@ -27,6 +28,7 @@ public class POIExcelStyle {
         this.build_COMMON_CELL(workbook);
         this.build_NUM_CELL(workbook);
         this.build_MEMO_CELL(workbook);
+        this.build_HEAD_MERGE_CELL(workbook);
     }
     private void _setDefaultBorder(HSSFCellStyle s) {
         s.setBorderTop(HSSFBorderFormatting.BORDER_THIN);
@@ -124,6 +126,20 @@ public class POIExcelStyle {
         _MEMO_CELL.setWrapText(true);
         _MEMO_CELL.setFont(font);
     }
+    private void build_HEAD_MERGE_CELL(HSSFWorkbook workbook) {
+        HSSFFont font = workbook.createFont();
+        font.setFontName("黑体");
+        font.setFontHeightInPoints((short)12);
+        font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+
+        _HEAD_MERGE_CELL=workbook.createCellStyle();
+        _setDefaultBorder(_HEAD_MERGE_CELL);
+        _HEAD_MERGE_CELL.setFillForegroundColor(HSSFColor.GREY_25_PERCENT.index);
+        _HEAD_MERGE_CELL.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+        _HEAD_MERGE_CELL.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+        _HEAD_MERGE_CELL.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+        _HEAD_MERGE_CELL.setFont(font);
+    }
 
     public HSSFCellStyle getTitleStyle() {
         return _TITLE;
@@ -152,5 +168,8 @@ public class POIExcelStyle {
     }
     public HSSFCellStyle getMemoCellStyle() {
         return _MEMO_CELL;
+    }
+    public HSSFCellStyle getHeadMergeStyle() {
+        return _HEAD_MERGE_CELL;
     }
 }

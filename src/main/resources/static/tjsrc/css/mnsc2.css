@@ -147,6 +147,7 @@ body {
   overflow-x: auto;
   */
 }
+
 .list ul::after {
   content:"";
   clear: both;
@@ -154,13 +155,16 @@ body {
   width: 0;
   height: 0;
 }
-.list li {
+.list ul li {
+  float:left;
+  position:relative;
+}
+.list ul li {
   font-family:'Microsoft YaHei';
-  width: 15%;
-  position: relative;
-  margin-left: 2%;
+  width:15%;
+  position:relative;
+  margin-left:2%;
   font-size: 16px;
-  
 }
 .list li:last-child .sanjiao {
   display: none;
