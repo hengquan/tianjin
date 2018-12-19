@@ -565,13 +565,11 @@ order by create_date desc
       sum(fx) for obj_type in ('ts_kj' kj_count, 'ts_mnsc' mnsc_count, 'q_sj' sj_count)
     )
   )
-  <where suffixOverrides="and">
-  <if test="compIds!=null and compIds!=''">
-  and (${compIds})
-  </if>
-  <if test="filterSql!=null and filterSql!=''">
-  and (${filterSql})
-  </if>
+  <where>
+    <trim  prefix="" suffix="" suffixOverrides="and">
+      <if test="compIds!=null and compIds!=''">and (${compIds})</if>
+      <if test="filterSql!=null and filterSql!=''">and (${filterSql})</if>
+    </trim>
   </where>
   order by (NVL(kj_count,0)+NVL(mnsc_count,0)+NVL(sj_count,0)) desc
   </select>
