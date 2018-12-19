@@ -157,11 +157,11 @@ public class CateController extends BaseController {
         PageHelper.offsetPage(offset, limit);
         //查询数据
         List<Map<String, Object>> cl=categoryService.getPageData(param);
-        PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(cl);
-
-        Map<String, Object> m=categoryService.getTreeData();
-        List<Object> list=(List<Object>)m.get("DataList");
         if (cl!=null) {
+            PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(cl);
+
+            Map<String, Object> m=categoryService.getTreeData();
+            List<Object> list=(List<Object>)m.get("DataList");
             List<Map<String,Object>> cList=new ArrayList<Map<String,Object>>();
             for (Object _ct: list) {
                 TreeNode<CategoryNode> cn=(TreeNode<CategoryNode>)_ct;

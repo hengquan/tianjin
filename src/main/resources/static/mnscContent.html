@@ -124,7 +124,7 @@ $(document).ready(function(){
 
 //主课件填充
 function initPage() {
-	var _data={"mnscId":getUrlParam("objId"),"portal":"portal"};
+  var _data={"mnscId":getUrlParam("objId"),"portal":"portal"};
   $.ajax({
     type: 'post',
     url: "./train/getMnscInfo",
@@ -146,7 +146,7 @@ function initPage() {
         $(".ks-btn").on("click", function(){
           var url=mnsc.mnscUrl;
           url=url.substr(url.indexOf("mnsc"));
-          url="./"+url;
+          url="./"+url+"?objId="+getUrlParam("objId");
           window.open(url, "_blank");
         });
         //获得相关课程
@@ -200,7 +200,6 @@ function toCourse(id) {
   window.open("./courseContent.html?id="+id, "_blank");
 }
 
-
 function initCzbz(url) {
   var jsonUrl="./demoJson/json_czbj.json";
   try {
@@ -253,28 +252,4 @@ $(".czbz").on("click",".right-btn",function (param) {
   }
 })
 </script>
-
-<script type="text/javascript">
-function getUrlParam(name) {
-  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-  var r = window.location.search.substr(1).match(reg); //匹配目标参数
-  if (r != null) return unescape(r[2]); return null; //返回参数值
-}
-
-var objId=getUrlParam(objId);
-
-var _gatherData = {};
-_gatherData.visitModuleId = "模拟实操学习";
-_gatherData.objType = "ts_mnsc";
-_gatherData.objId = objId;
-(function() {
-  var ma = document.createElement('script');
-  ma.type = 'text/javascript';
-  ma.async = true;
-  ma.src = "./tjsrc/js/ma.js";
-  var s = document.getElementsByTagName('script')[0];
-  s.parentNode.insertBefore(ma, s);
-})();
-</script>
-
 </html>

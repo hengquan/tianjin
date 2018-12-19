@@ -100,9 +100,7 @@ public class TjController {
             param.put("date1", date1);//开始时间
             param.put("date2", date2);//结束时间
             List<Map<String, Object>> _xyxxl=logService.getXyxxList(param);
-            if (_xyxxl==null||_xyxxl.size()==0) {
-                return null;
-            }
+            if (_xyxxl==null||_xyxxl.size()==0) return null;
             PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_xyxxl);
             //对数据进行处理
             //获得企业的总数，总课件数，总模拟实操数，总考试次数
@@ -785,9 +783,7 @@ public class TjController {
             }
 
             List<Map<String, Object>> _qytjl=logService.getQytjList(param);
-            if (_qytjl==null||_qytjl.size()==0) {
-                return null;
-            }
+            if (_qytjl==null||_qytjl.size()==0) return null;
             PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_qytjl);
             //对数据进行处理
             //处理每一项
@@ -943,8 +939,8 @@ public class TjController {
             param.put("date2", date2);//结束时间
 
             List<Map<String, Object>> _xxrzl=logService.getXxrzList(param);
-            PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_xxrzl);
             if (_xxrzl==null||_xxrzl.size()==0) return null;
+            PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(_xxrzl);
 
             //处理每一项
             List<Map<String, Object>> cl=new ArrayList<Map<String, Object>>();
@@ -991,9 +987,14 @@ public class TjController {
         param.put("date2", date2);//结束时间
         Map<String, Object> map = new HashMap<String, Object>();
         List<LogVisit> loglist = logService.getcatkjtj(param);
-        PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
-        map.put("total", pageList.getTotal());
-        map.put("rows", pageList.getList());
+        if (loglist!=null) {
+            PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
+            map.put("total", pageList.getTotal());
+            map.put("rows", pageList.getList());
+        } else {
+            map.put("total", null);
+            map.put("rows", 0);
+        }
         return map;
     }
     @RequestMapping("getcatmnsctj")
@@ -1009,9 +1010,14 @@ public class TjController {
         param.put("date2", date2);//结束时间
         Map<String, Object> map = new HashMap<String, Object>();
         List<LogVisit> loglist = logService.getcatmnsctj(param);
-        PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
-        map.put("total", pageList.getTotal());
-        map.put("rows", pageList.getList());
+        if (loglist!=null) {
+            PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
+            map.put("total", pageList.getTotal());
+            map.put("rows", pageList.getList());
+        } else {
+            map.put("total", null);
+            map.put("rows", 0);
+        }
         return map;
     }
 
@@ -1032,9 +1038,14 @@ public class TjController {
         param.put("date2", date2);//结束时间
         Map<String, Object> map = new HashMap<String, Object>();
         List<LogVisit> loglist = logService.getcatcomptj(param);
-        PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
-        map.put("total", pageList.getTotal());
-        map.put("rows", pageList.getList());
+        if (loglist!=null) {
+            PageInfo<LogVisit> pageList = new PageInfo<LogVisit>(loglist);
+            map.put("total", pageList.getTotal());
+            map.put("rows", pageList.getList());
+        } else {
+            map.put("total", null);
+            map.put("rows", 0);
+        }
         return map;
     }
 }

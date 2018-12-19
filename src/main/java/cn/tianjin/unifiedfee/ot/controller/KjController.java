@@ -84,11 +84,17 @@ public class KjController {
         System.out.println("----------------------");
         // 查询数据
         List<Kj> kjs = kjService.getPageData(param);
-        // 放入分页
-        PageInfo<Kj> pageList = new PageInfo<Kj>(kjs);
-        // 返回
-        map.put("total", pageList.getTotal());
-        map.put("rows", pageList.getList());
+        if (kjs!=null) {
+            // 放入分页
+            PageInfo<Kj> pageList = new PageInfo<Kj>(kjs);
+            // 返回
+            map.put("total", pageList.getTotal());
+            map.put("rows", pageList.getList());
+        } else {
+            // 返回
+            map.put("total", null);
+            map.put("rows", 0);
+        }
         return map;
     }
 

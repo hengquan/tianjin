@@ -52,11 +52,17 @@ public class KjitemController {
         param.put("kjName", kjName);
         // 查询数据
         List<Kjitem> kjs = kjitemService.getPageData(param);
-        // 放入分页
-        PageInfo<Kjitem> pageList = new PageInfo<Kjitem>(kjs);
-        // 返回
-        map.put("total", pageList.getTotal());
-        map.put("rows", pageList.getList());
+        if (kjs!=null) {
+            // 放入分页
+            PageInfo<Kjitem> pageList = new PageInfo<Kjitem>(kjs);
+            // 返回
+            map.put("total", pageList.getTotal());
+            map.put("rows", pageList.getList());
+        } else {
+            // 返回
+            map.put("total", null);
+            map.put("rows", 0);
+        }
         return map;
     }
 
