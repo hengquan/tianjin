@@ -190,6 +190,7 @@
       <!--主视口 结束-->
     </div>
   </div>
+<iframe style="display:none;" name="expForm" id="expForm" action=""></iframe>
 
 <script src="${gateway}/src/js/pt-tree.js"></script>
 <script>
@@ -270,6 +271,36 @@ function search() {
   $("#tb_departments").bootstrapTable('refresh',{pageNumber:1});
   //$("#tb_departments").bootstrapTable('selectPage',1);
 }
+//导出
+function exp() {
+  var selectedValues = [];
+  var count=$("#compIds option").length;
+  for(var i=0;i<count;i++){
+    if ($("#compIds").get(0).options[i].selected) {
+      selectedValues.push($("#compIds").get(0).options[i].value);
+    }
+  }
+  //组织其他参数
+  var urlParam="?compIds="+encodeURIComponent(selectedValues.join(","));
+  urlParam+="&date1="+$("#date1").find("input").val();
+  urlParam+="&date2="+ $("#date2").find("input").val();
+  urlParam+="&kjcsType="+ $("#kjcsType").val();
+  urlParam+="&kjcs="+$("#kjcs").val();
+  urlParam+="&kjzb1="+$("#kjzb1").val();
+  urlParam+="&kjzb2="+$("#kjzb2").val();
+  urlParam+="&sccsType="+$("#sccsType").val();
+  urlParam+="&sccs="+$("#sccs").val();
+  urlParam+="&sczb1="+$("#sczb1").val();
+  urlParam+="&sczb2="+$("#sczb2").val();
+  urlParam+="&lxcsType="+$("#lxcsType").val();
+  urlParam+="&lxcs="+$("#lxcs").val();
+  urlParam+="&lxzb1="+$("#lxzb1").val();
+  urlParam+="&lxzb2="+$("#lxzb2").val();
+
+  url="${gateway}/tj/expQytjList"+urlParam;
+  $("#expForm").attr("src", url);
+}
+
 function refresh() {
   $("#tb_departments").bootstrapTable('refresh');
 }
@@ -386,7 +417,6 @@ function queryParams(params) {
     limit: params.limit, //页面大小
     offset: params.offset //页码
   };
-  console.log(data);
   return data;
 }
 function formatNumAlignRight(value) {
