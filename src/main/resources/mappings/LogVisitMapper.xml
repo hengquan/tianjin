@@ -365,13 +365,11 @@
   </select>
   
   <select id="getLogVisitList" resultMap="BaseResultMap">
-    select <include refid="Blob_Column_List" />
-    from log_Visit
-    order by create_date desc limit ${rownum}
+    select * from  (select <include refid="Blob_Column_List" /> from log_Visit order by create_date desc) where rownum &lt;= #{rownum}
   </select>
   
   <select id="getMyLogVisitList" resultType="Map" parameterType="java.util.Map">
-select * from (
+select * from (select * from (
 select
   case
     when obj_type='ts_kj' then (select kj_name from ts_kj where id=log_visit.obj_id)
@@ -382,8 +380,8 @@ from log_visit
 where (obj_id is not null and length(trim(obj_id))>0 and obj_id!='null') and (obj_type is not null and length(trim(obj_type))>0 and obj_type!='null') and
 (obj_type!='admin_mainpage' and obj_type!='student_profile' and visit_module_id!='模拟实操列表' and visit_module_id!='课件列表')
 ) 
-where obj_name is not null and rownum &lt;= #{rownum} and visitor_id=#{userId}
-order by create_date desc
+where obj_name is not null and visitor_id=#{userId}
+order by create_date desc) where rownum &lt;= #{rownum}
   </select>
   
     <select id="getAllLogVisitList" resultType="Map" parameterType="java.util.Map">
