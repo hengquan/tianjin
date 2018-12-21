@@ -365,11 +365,9 @@
   </select>
   
   <select id="getLogVisitList" resultMap="BaseResultMap">
-    select
-    <include refid="Blob_Column_List" />
+    select <include refid="Blob_Column_List" />
     from log_Visit
-    where rownum &lt;= #{rownum}
-    order by create_date desc
+    order by create_date desc limit ${rownum}
   </select>
   
   <select id="getMyLogVisitList" resultType="Map" parameterType="java.util.Map">
