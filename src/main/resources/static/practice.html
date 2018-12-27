@@ -96,9 +96,7 @@ body {
 				<div class="w1200 list-header">
 					<img src="./web/images/dot.png" alt="" class="list-header-mark">&emsp;
 					<span class="list-header-title"><a href="#"
-						onclick="gotoSY()" class="active">首页</a></span> <span>&gt;</span> <span
-						class="list-header-title"><a href="#" onclick="gotoFW()"
-						class="active">服务指南</a></span> <span>&gt;</span> <span
+						onclick="gotoSY()" class="active">首页</a></span><span>&gt;</span> <span
 						class="list-header-active">模拟实操</span>
 				</div>
 			</div>
@@ -132,11 +130,17 @@ body {
   </script>
 	<script>
     function gotoSY() {
+      //试运行
       top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
+      //正式
+      //top.location.href = "http://60.28.236.179/preview/outsidewai/";
       return false;
     }
     function gotoFW() {
+      //试运行
       top.location.href = "http://60.28.236.138:8989/preview/outsidewai/fuwu/";
+      //正式
+      //top.location.href = "http://60.28.236.179/preview/outsidewai/fuwu/";
       return false;
     }
     $(document).ready(function() {
