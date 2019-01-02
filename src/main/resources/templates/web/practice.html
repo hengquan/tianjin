@@ -77,7 +77,7 @@ body {
               if (!imgUrl) imgUrl = "./web/images/mnsc_default.jpg";
               html += '<div class="col-md-3">'
                   + '<img src="'+ imgUrl +'" alt="">'
-                  + '<div class="model_bg" onclick=toSimulation("'
+                  + '<div class="model_bg" style="border-bottom:2px solid rgb(52,83,145);" onclick=toSimulation("'
                   + dataList[i].mnscUrl + '?objId=' + dataList[i].id
                   + '")></div>' + '<div class="explain">' + '<p>'
                   + dataList[i].mnscName + '</p>' 

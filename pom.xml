@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>cn.taiji</groupId>
 		<artifactId>taiji-pom</artifactId>
-		<version>1.1.3-RELEASES</version>
+        <version>1.1.3-RELEASES</version>
 		<relativePath />
 	</parent>
 	<artifactId>tianjin-unifiedfee-ot</artifactId>
