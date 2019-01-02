@@ -117,7 +117,6 @@ function closeWin() {
   }
 }
 
-
 $(document).ready(function(){
   initPage();
 });
@@ -192,7 +191,7 @@ function initXgkc() {
 }
 function getOneXgkcHtml(oneKj) {
   var _img_url=(oneKj.imgUrl?oneKj.imgUrl:"./web/images/kj_default.jpg");
-  var _html='<li><div class="tpic" style="cursor:pointer" onclick="toCourse(\''+oneKj.id+'\')"><img src="'+_img_url+'"><div class="infos"><p>'+oneKj.name+'</p></div></div></li>';
+  var _html='<li><div class="tpic" style="cursor:pointer" onclick="toCourse(\''+oneKj.id+'\')"><img src="'+_img_url+'" style="width:270px; height:150px;"><div class="infos"><p>'+oneKj.name+'</p></div></div></li>';
   return _html;
 }
 
@@ -227,6 +226,7 @@ function initCzbz(url) {
         $(".left-btn,.right-btn").css("display","none")
       }else {
         $(".left-btn,.right-btn").css("display","block")
+        $(".list ul").css("width", "134%")
       }
     }
   });

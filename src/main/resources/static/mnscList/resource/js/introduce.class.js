@@ -60,9 +60,8 @@
         var iframe = document.getElementById('tipsMain')
         iframe.onload = function() {
             //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
-            iframe.height = "auto"
-            var ifrheight =  iframe.contentWindow.document.documentElement.scrollHeight || iframe.contentDocument.body.scrollHeight
-            iframe.height = ifrheight + 20
+            var imgs=iframe.contentWindow.document.getElementsByTagName("img");
+            iframe.height = imgs[0].height+15
         }
         if (!IntroduceTipsArr[IntroduceTipsCurrent]){
             new IntroduceControl().cleanOld()

@@ -131,16 +131,9 @@ body {
 	<script>
     function gotoSY() {
       //试运行
-      top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
+      //top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
       //正式
-      //top.location.href = "http://60.28.236.179/preview/outsidewai/";
-      return false;
-    }
-    function gotoFW() {
-      //试运行
-      top.location.href = "http://60.28.236.138:8989/preview/outsidewai/fuwu/";
-      //正式
-      //top.location.href = "http://60.28.236.179/preview/outsidewai/fuwu/";
+      top.location.href = "http://60.28.236.179/preview/outsidewai/";
       return false;
     }
     $(document).ready(function() {
@@ -180,11 +173,11 @@ body {
                       + '?objId='
                       + dataList[i].id
                       + '")></div>'
-                      + '<div class="explain">'
-                      + '<p>'
+                      + '<div class="explain" style="border-top:2px solid rgb(52,83,145);">'
+                      + '<p style="padding-top: 10px;">'
                       + dataList[i].mnscName
                       + '</p>'
-                      + '<div class="enterBtn" style="margin-top:25px;" onclick=toSimulation("'
+                      + '<div class="enterBtn" style="margin-top:15px;" onclick=toSimulation("'
                       + dataList[i].mnscUrl + '?objId=' + dataList[i].id
                       + '")>进入实操</div>' + '</div>' + '</div>';
                   if ((i + 1) % 4 == 0) {
