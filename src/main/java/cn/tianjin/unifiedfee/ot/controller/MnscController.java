@@ -73,10 +73,15 @@ public class MnscController {
         // 查询数据
         List<Mnsc> mnscs = mnscService.getPageData(map);
         // 放入分页
-        PageInfo<Mnsc> pageList = new PageInfo<Mnsc>(mnscs);
-        // 返回
-        retMap.put("total", pageList.getTotal());
-        retMap.put("rows", pageList.getList());
+        if (mnscs!=null) {
+            PageInfo<Mnsc> pageList = new PageInfo<Mnsc>(mnscs);
+            // 返回
+            retMap.put("total", pageList.getTotal());
+            retMap.put("rows", pageList.getList());
+        } else {
+            retMap.put("total", null);
+            retMap.put("rows", 0);
+        }
         return retMap;
     }
 

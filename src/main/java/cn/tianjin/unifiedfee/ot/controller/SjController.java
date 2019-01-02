@@ -84,8 +84,8 @@ public class SjController {
             param.put("date2", date2);//结束时间
 
             List<Map<String, Object>> sjList=sjService.getSjList4User(param);
-            PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(sjList);
             if (sjList==null||sjList.size()==0) return null;
+            PageInfo<Map<String, Object>> pageList=new PageInfo<Map<String, Object>>(sjList);
 
             //处理每一项
             List<Map<String, Object>> cl=new ArrayList<Map<String, Object>>();

@@ -241,8 +241,7 @@ function initTempSj() {
   });
 }
 function getOneTmHtml(oneTm) {
-  var _html=
-  '<div class="tmrow"><div class="tm">'+
+  var _html='<div class="tmrow"><div class="tm">'+
     '<p>'+oneTm.tmIndex+'、'+oneTm.tmDesc+'</p>'+
     '<div class="answer">';
   if (oneTm.tmItems) {
@@ -255,7 +254,6 @@ function getOneTmHtml(oneTm) {
       _html+='<span>'+oneTm.tmItems[i].itemSign+'、'+oneTm.tmItems[i].itemDesc+'</span></span>';
     }
   }
-
   _html+='</div></div></div>';
   return _html;
 }

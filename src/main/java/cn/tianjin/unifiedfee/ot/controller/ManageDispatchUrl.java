@@ -46,7 +46,7 @@ public class ManageDispatchUrl {
     @Autowired // 注入Service
     public SecurityMenuRemote securityMenuRemote;
     @Autowired
-    public LogVisitService catService;
+    public LogVisitService logService;
     @Autowired // 注入Service
     public CommArchiveMapper commArchiveMapper;
     @Autowired
@@ -445,7 +445,7 @@ public class ManageDispatchUrl {
         String optionHtml="";
         UserInfo ui=userService.getUserInfo();
         if (ui!=null) {//获得企业
-            List<Map<String, Object>> cl=catService.getDistinctCamp();
+            List<Map<String, Object>> cl=logService.getDistinctCamp();
             if (cl!=null&&cl.size()>0) {
                 for (Map<String, Object> comp: cl) {
                     optionHtml+="<option value='"+comp.get("GROUP_ID")+"'>"+comp.get("GROUP_NAME")+"</option>";

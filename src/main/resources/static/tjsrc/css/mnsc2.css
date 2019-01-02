@@ -138,15 +138,19 @@ body {
   overflow-x:hidden;
 }
 .list ul {
-  display: -webkit-box;
-  display: -ms-box;
-  display: -o-box;
+  display: -webkit-box; 
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex; 
+  display: flex; 
   position: relative;
+  width:100%;
   /*
   width: 100%;
   overflow-x: auto;
   */
 }
+
 .list ul::after {
   content:"";
   clear: both;
@@ -154,13 +158,12 @@ body {
   width: 0;
   height: 0;
 }
-.list li {
+.list ul li {
   font-family:'Microsoft YaHei';
-  width: 15%;
-  position: relative;
-  margin-left: 2%;
+  width:15%;
+  position:relative;
+  margin-left:2%;
   font-size: 16px;
-  
 }
 .list li:last-child .sanjiao {
   display: none;
