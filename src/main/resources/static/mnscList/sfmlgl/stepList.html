@@ -88,18 +88,21 @@
             srcUrl: './stepTips1.html',
             steps: [{
                 X: 600,
-                Y: 460,
+                Y: 420,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">输入用户名密码后，请点击<span class="special">“登录”</span>按钮，进入企业中心，进行操作。</div>',
+                content: '<div class="intro-indent">在平台首页，点击右上角“登录”按钮，显示登录二维码，通过手机港讯通APP进行<span class="special">“扫码登录”</span>，进入企业中心，进行费项目录设置。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
                 radius: 5,
-                area: [200, 150],
+                area: [260, 160],
                 nextBtn: {
                   content: '知道了',
-                  backgroundColor: '#990000'
+                  backgroundColor: '#990000',
+                    callBack: function (obj) {
+                      nextPage();
+                    }
                 },
                 callBack: function (obj) {
                   console.log(obj);
@@ -206,7 +209,7 @@
                 Y: 150,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">弹出收费目录新增页面，页面中<span class="special">“带红*部分”</span>是必填想，需正确填写。</div>',
+                content: '<div class="intro-indent">弹出收费目录新增页面，页面中<span class="special">“带红*部分”</span>是必填项，需正确填写。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
