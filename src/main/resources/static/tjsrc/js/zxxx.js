@@ -80,14 +80,14 @@ function getKjList(cateId, searchStr) {
         var html = ""
         for(var i = 0;i < res.data.length; i++) {
           html += '<li class="col-sm-3s">'
-              +'<div class="con" title="'+res.data[i].name+'" onclick="toCourse(\''+res.data[i].id+'\')">'
+              +'<div class="con" onclick="toCourse(\''+res.data[i].id+'\')">'
               +'<div class="pic"><img src="'+(res.data[i].imgUrl || "./tjsrc/images/mnsc_default.jpg")+'"></div>'
               +'<div class="botoom">'
                   +'<h2>'+res.data[i].name+'</h2>'
                   +'<div class="row-box">'
                     +'<div class="left">'
-                      +'<span class="eay"><img src="./tjsrc/images/rs.jpg"></span>'
-                      +'<span class="num">'+res.data[i].visitCount+'</span>'
+                      +'<span class="eay" title="学习次数"><img src="./tjsrc/images/rs.jpg"></span>'
+                      +'<span class="num" title="学习次数">'+res.data[i].visitCount+'</span>'
                     +'</div>'
                     +'<div class="right"><span>'+res.data[i].createDate+'</span></div>'
                   +'</div>'

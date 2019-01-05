@@ -92,12 +92,13 @@
     function IntroduceControl() {
     }
     IntroduceControl.prototype.nextPage = function () {
+        if (IntroduceTipsCurrent>=(IntroduceTipsArr.length-1)) return;
         IntroduceTipsCurrent ++
         IntroduceTipsStep = -1
-        console.log(IntroduceTipsCurrent)
         IntroduceTipsListNext()
     }
     IntroduceControl.prototype.prevPage = function () {
+        if (IntroduceTipsCurrent==0) reutrn;
         IntroduceTipsCurrent --
         IntroduceTipsStep = -1
         IntroduceTipsListNext()
