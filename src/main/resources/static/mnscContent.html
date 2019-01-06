@@ -66,10 +66,10 @@
         </ul>
       </div>
     </div>
-    <div class="tlkc bgs" style="margin-top:20px;">
+    <div class="tlkc bgs xgkjtitle" style="margin-top:20px;">
       <span>相关课件</span>
     </div>
-    <div class="xgkc-box bgs">
+    <div class="xgkc-box bgs xgkjlist">
       <ul id="xgkcList"><!--
         <li>
           <div class="tpic">
@@ -101,11 +101,15 @@
 </div>
 </body>
 <script>
+
 function getUrlParam(name) {
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
   var r = window.location.search.substr(1).match(reg); //匹配目标参数
   if (r != null) return unescape(r[2]); return null; //返回参数值
 }
+var front=getUrlParam("front");
+front=(front==1);
+
 function closeWin() {
   var browserName=navigator.appName;
   if (browserName=="Microsoft Internet Explorer") { 
@@ -184,6 +188,11 @@ function initXgkc() {
         }
       }
       $("#xgkcList").html(tlkcHtml);
+      if (front) {
+        $(".xgkjtitle").hide();
+        $(".xgkjlist").hide();
+        $(".czbz").css("margin-bottom","40px");
+      }
     },
     error: function (e) {
     }
@@ -252,6 +261,6 @@ $(".czbz").on("click",".right-btn",function (param) {
     $(".czbz ul").animate({"left":"-"+step+"%"})
   }
 })
-$
+
 </script>
 </html>
