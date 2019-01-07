@@ -56,34 +56,46 @@
         IntroduceTipsCurrent = 0
         IntroduceTipsListNext()
     }
+    function _initButton() {
+      if (IntroduceTipsCurrent==0) {
+        $(".previousPage").css({"cursor":"not-allowed","background-color":"#e5e5e5"});
+        $(".nextPage").css({"cursor":"pointer","background-color":"#f46227"});
+      } else if (IntroduceTipsCurrent==(IntroduceTipsArr.length-1)){
+        $(".previousPage").css({"cursor":"pointer","background-color":"#f46227"});
+        $(".nextPage").css({"cursor":"not-allowed","background-color":"#e5e5e5"});
+      } else {
+        $(".previousPage").css({"cursor":"pointer","background-color":"#f46227"});
+        $(".nextPage").css({"cursor":"pointer","background-color":"#f46227"});
+      }
+    }
     function IntroduceTipsListNext () {
-        var iframe = document.getElementById('tipsMain')
-        iframe.onload = function() {
-            //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
-            var imgs=iframe.contentWindow.document.getElementsByTagName("img");
-            iframe.height = imgs[0].height+15
+      _initButton();
+      var iframe = document.getElementById('tipsMain')
+      iframe.onload = function() {
+        //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
+        var imgs=iframe.contentWindow.document.getElementsByTagName("img");
+        iframe.height = imgs[0].height+15
+      }
+      if (!IntroduceTipsArr[IntroduceTipsCurrent]){
+        new IntroduceControl().cleanOld()
+        return
+      }
+      var targetObj = {}
+      if (IntroduceTipsArr[IntroduceTipsCurrent].steps.length - 1 > IntroduceTipsStep){
+        IntroduceTipsStep ++
+        targetObj = IntroduceTipsArr[IntroduceTipsCurrent].steps[IntroduceTipsStep]
+        if (targetObj.callBack && targetObj.callBack instanceof Function){
+            targetObj.callBack({list: IntroduceTipsCurrent, step: IntroduceTipsStep})
         }
-        if (!IntroduceTipsArr[IntroduceTipsCurrent]){
-            new IntroduceControl().cleanOld()
-            return
-        }
-        var targetObj = {}
-        if (IntroduceTipsArr[IntroduceTipsCurrent].steps.length - 1 > IntroduceTipsStep){
-            IntroduceTipsStep ++
-            targetObj = IntroduceTipsArr[IntroduceTipsCurrent].steps[IntroduceTipsStep]
-            if (targetObj.callBack && targetObj.callBack instanceof Function){
-                targetObj.callBack({list: IntroduceTipsCurrent, step: IntroduceTipsStep})
-            }
-
-            new IntroduceTips(targetObj, IntroduceTipsListNext)
-        } else {
-            new IntroduceControl().cleanOld()
-        }
-        if (IntroduceTipsArr[IntroduceTipsCurrent].steps.length === 0){
-            IntroduceTipsStep = 0
-            new IntroduceTips({}).changeFrame()
-        }
-        new IntroStepMenu().init()
+        new IntroduceTips(targetObj, IntroduceTipsListNext)
+      } else {
+        new IntroduceControl().cleanOld()
+      }
+      if (IntroduceTipsArr[IntroduceTipsCurrent].steps.length === 0){
+        IntroduceTipsStep = 0
+        new IntroduceTips({}).changeFrame()
+      }
+      new IntroStepMenu().init()
     }
 
     /*****************
@@ -92,16 +104,16 @@
     function IntroduceControl() {
     }
     IntroduceControl.prototype.nextPage = function () {
-        if (IntroduceTipsCurrent>=(IntroduceTipsArr.length-1)) return;
-        IntroduceTipsCurrent ++
-        IntroduceTipsStep = -1
-        IntroduceTipsListNext()
+      if (IntroduceTipsCurrent>=(IntroduceTipsArr.length-1)) return;
+      IntroduceTipsCurrent++
+      IntroduceTipsStep = -1
+      IntroduceTipsListNext()
     }
     IntroduceControl.prototype.prevPage = function () {
-        if (IntroduceTipsCurrent==0) reutrn;
-        IntroduceTipsCurrent --
-        IntroduceTipsStep = -1
-        IntroduceTipsListNext()
+      if (IntroduceTipsCurrent==0) return;
+      IntroduceTipsCurrent--
+      IntroduceTipsStep = -1
+      IntroduceTipsListNext()
     }
     IntroduceControl.prototype.restPage = function (index) {
       IntroduceTipsCurrent = index
@@ -109,55 +121,40 @@
       IntroduceTipsListNext()
     }
     IntroduceControl.prototype.rePage = function () {
-        IntroduceTipsCurrent =0
-        IntroduceTipsStep = -1
-        IntroduceTipsListNext()
+      IntroduceTipsCurrent =0
+      IntroduceTipsStep = -1
+      IntroduceTipsListNext()
     }
     IntroduceControl.prototype.cleanOld = function () {
-        $el = $(rootObj.el)
-        $($el).find('.tips-container').remove()
+      $el = $(rootObj.el)
+      $($el).find('.tips-container').remove()
     }
-
 
     /*******************
      * 创建步骤菜单
      */
     function IntroStepMenu () {
-
     }
     IntroStepMenu.prototype.init = function () {
-        this.createDom()
+      this.createDom()
     }
     // 创建DOM
     IntroStepMenu.prototype.createDom = function () {
-        var $innerHtml = '<ul class="pro">',
-            $navRoot = $(rootObj.nav.el),
-            _list = rootObj.nav.list;
-        $navRoot.html('')
-        for(var i = 0; i< _list.length; i++){
-
-            var moreClass = ''
-            if (i === 0){
-                moreClass += 'frist '
-            }
-            if (i === (_list.length-1)){
-                moreClass += 'last '
-            }
-
-            if (IntroduceTipsCurrent === i){
-                moreClass += 'intro-current'
-            }
-            if (IntroduceTipsCurrent > i){
-                moreClass += 'intro-used'
-            }
-
-            $innerHtml += '<li class="  '+moreClass+'"><span>'+(i+1)+'</span>'+_list[i]+'</li>'
-        }
-        $innerHtml += '</ul>'
-        $navRoot.append($innerHtml)
+      var $innerHtml = '<ul class="pro">',
+          $navRoot = $(rootObj.nav.el),
+          _list = rootObj.nav.list;
+      $navRoot.html('')
+      for(var i = 0; i< _list.length; i++){
+        var moreClass = ''
+        if (i === 0) moreClass += 'frist '
+        if (i === (_list.length-1)) moreClass += 'last '
+        if (IntroduceTipsCurrent === i) moreClass += 'intro-current'
+        if (IntroduceTipsCurrent > i) moreClass += 'intro-used'
+        $innerHtml += '<li class="  '+moreClass+'"><span>'+(i+1)+'</span>'+_list[i]+'</li>'
+      }
+      $innerHtml += '</ul>'
+      $navRoot.append($innerHtml)
     }
-
-
 
     /*******************
      * 创建tips
