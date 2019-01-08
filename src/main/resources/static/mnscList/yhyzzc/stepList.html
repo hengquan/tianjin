@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>实操-APP扫码登录</title>
+  <title>实操-银行验证注册</title>
   <link rel="stylesheet" href="">
   <link rel="stylesheet" href="../resource/css/reset.css">
   <link rel="stylesheet" href="../resource/css/header-footer.css">
@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="nav_bar">
-        <span>APP扫码登录</span>
+        <span>银行验证注册</span>
         <div class="border"></div>
       </div>
     </div>
@@ -72,12 +72,10 @@
         nav: {
           el: '#inrto-nav',
           list: [
-            '<p class="fir-p">扫码下载</p><p>下载安装APP</p>',
-            '<p class="fir-p">下载证书</p><p>验证下载证书</p>',
-            '<p class="fir-p">密码设定</p><p>证书下载成功</p>',
-            '<p class="fir-p">选择证书</p><p>扫码登录操作</p>',
-            '<p class="fir-p">密码验证</p><p>登录APP</p>',
-            '<p class="fir-p">企业中心</p><p>进行业务办理</p>'            
+            '<p class="fir-p">企业管理员信息</p><p>填写管理员信息</p>',
+            '<p class="fir-p">公司信息</p><p>填写公司信息</p>',
+            '<p class="fir-p">银行卡信息</p><p>填写银行卡信息</p>',
+            '<p class="fir-p">银行卡激活</p><p>填写激活信息</p>',          
           ]
         },
         iframe: {
@@ -93,7 +91,7 @@
                 Y: 160,
                 distance: 10,
                 direction: 'right',
-                content: '<div class="intro-indent">扫码登录第一步进行<span class="special">“港迅通APP”</span>的下载安装，在门户底部有下载二维码，扫左侧二维码也可以。</div>',
+                content: '<div class="intro-indent">银行验证注册第一步进行，填写企业管理员信息，带<span class="special">“※”</span>为必填项。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
@@ -102,15 +100,54 @@
                 nextBtn: {
                   content: '知道了',
                   backgroundColor: '#990000',
-                  callBack: function (obj) {
-                      nextPage();
-                      console.log(obj);
-                    }
                 },
                 callBack: function (obj) {
                   console.log(obj);
                 }
-              },              
+              },
+              {
+                X: 720,
+                Y: 240,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">填写信息后，阅读使用协议，并点击我已阅读，进行银行验证注册</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [240, 150],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: 'blue'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+              {
+                X: 1000,
+                Y: 60,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [120, 50],
+                nextBtn: {
+                  content: '',
+                  backgroundColor: 'transparent',
+                  callBack: function (obj) {
+                    nextPage();
+                  }
+                },
+                callBack: function (obj) {
+                }
+              },  
             ]
           },
           {
@@ -120,7 +157,7 @@
                 Y: 320,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">APP安装完毕后，打开APP跳过欢迎页后，进入登录页面，点击<span class="special">“下载证书”</span>，进入下载证书操作。</div></div>',
+                content: '<div class="intro-indent">填写公司名称和社会信用代码后，点击<span class="special">下一步</span>。</div></div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
@@ -135,27 +172,8 @@
                 }
               },
               {
-                X: 720,
-                Y: 240,
-                distance: 10,
-                direction: 'bottom',
-                content: '<div class="intro-indent">下载证书的第一步进行身份验证，正确输入<span class="special">“证照、姓名、身份证”</span>信息后，点击<span class="special">“下一步”</span>，进入口令设定环节。</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [240, 150],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: 'blue'
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              },
-              {
-                X: 800,
-                Y: 240,
+                X: 1000,
+                Y: 60,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -166,18 +184,17 @@
                 backgroundColor: 'transparent', //透明颜色
                 color: '#fff',
                 radius: 5,
-                area: [130, 50],
+                area: [120, 50],
                 nextBtn: {
-                  content: '',//新增
+                  content: '',
                   backgroundColor: 'transparent',
                   callBack: function (obj) {
                     nextPage();
                   }
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
-              },
+              },  
             ]
           },
           {
@@ -187,7 +204,7 @@
                 Y: 200,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">需要输入验证码，注册手机会接收到<span class="special">“验证码短信”</span>，同时设置口令，注意<span class="special">“签名口令和确认口令保持一致”</span>，点击<span class="special">“激活”</span>后完成设置。</div>',
+                content: '<div class="intro-indent">填写银行卡信息，带<span class="special">“※”</span>为必填项,填写完成后点击<span class="special">“保存”</span></div>',
                 padding: 10,
                 backgroundColor: '#666600',
                 color: '#fff',
@@ -200,29 +217,69 @@
                 callBack: function (obj) {
                   console.log(obj);
                 }
-              },
+              },                      
               {
-                X: 780,
-                Y: 300,
+                X: 1000,
+                Y: 60,
                 distance: 10,
                 direction: 'bottom',
-                content: '<div class="intro-indent">证书验证下载后，返回APP的<span class="special">“登录”</span>页面，可进行证书的选择，<span class="special">“选择证书”</span>后，弹出证书列表进行选择</div>',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [120, 50],
+                nextBtn: {
+                  content: '',
+                  backgroundColor: 'transparent',
+                },
+              },
+              {
+                X: 360,
+                Y: 200,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">注册成功后点<span class="special">“前往激活”</span></div>',
                 padding: 10,
                 backgroundColor: '#666600',
                 color: '#fff',
                 radius: 5,
-                area: [240, 150],
+                area: [240, 180],
                 nextBtn: {
                   content: '知道了',
-                  backgroundColor: '#990000',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {
+                  document.getElementById("tipsMain").contentWindow.setpic("./images/step3-2.png"); 
+                }
+              },
+              {
+                X: 1000,
+                Y: 60,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [120, 50],
+                nextBtn: {
+                  content: '',
+                  backgroundColor: 'transparent',
                   callBack: function (obj) {
                     nextPage();
                   }
                 },
                 callBack: function (obj) {
-                  console.log(obj);
                 }
-              },              
+              },
             ]
           },
           {
@@ -232,7 +289,7 @@
               Y: 300,
               distance: 10,
               direction: 'bottom',
-              content: '<div class="intro-indent">完成证书选择操作后，选择的<span class="special">“企业”</span>的企业名称将显示。点击<span class="special">“扫码认证”</span>进入扫码登录环节</div>',
+              content: '<div class="intro-indent">填写收到短信中的流水号，收款企业收到附言中的的激活码，以及验证码，点击<span class="special">“激活”</span>。</div>',
               padding: 10,
               backgroundColor: '#666600',
               color: '#fff',
@@ -245,113 +302,60 @@
               callBack: function (obj) {
                 console.log(obj);
               }
-            }, 
-
-              {
-                X: 800,
-                Y: 300,
-                distance: 10,
-                direction: 'bottom',
-                content: '<div class="intro-indent">APP将调用手机摄像头，进行<span class="special">“扫码操作”</span>，扫码成功后需要进行密码的录入和验证。</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [200, 130],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: '#990000',
-                  callBack: function (obj) {
-                      nextPage();
-                    }
-                },
+            },
+            {
+              X: 1000,
+              Y: 60,
+              distance: 10,
+              direction: 'bottom',
+              noTriangle: true,
+              borderColor: 'red',
+              content: '',
+              padding: 10,
+              // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+              backgroundColor: 'transparent', //透明颜色
+              color: '#fff',
+              radius: 5,
+              area: [120, 50],
+              nextBtn: {
+                content: '',
+                backgroundColor: 'transparent',
                 callBack: function (obj) {
-                  console.log(obj);
+                  nextPage();
                 }
               },
-              
-            ]
-          },
-          {
-            srcUrl: './stepTips5.html',
-            steps: [
-
-              {
-                X: 580,
-                Y: 420,
-                distance: 10,
-                direction: 'top',
-                content: '<div class="intro-indent">输入下载证书时设定的密码，<span class="special">“密码验证成功”</span>进入APP，在APP中展示相关业务数据，同时登录企业中心成功。</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [200, 150],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: '#990000',
-                  callBack: function (obj) {
-                    nextPage();
-                  }
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              },
-          	]	
-           },          
-          {
-            srcUrl: './stepTips6.html',
-            steps: [
-
-              {
-                X: 280,
-                Y: 200,
-                distance: 10,
-                direction: 'right',
-                content: '<div class="intro-indent">进入企业中心，在左侧菜单中选择需要办理的业务，进行业务办理。</div>',
-                padding: 10,
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                color: '#fff',
-                radius: 5,
-                area: [200, 150],
-                nextBtn: {
-                  content: '知道了',
-                  backgroundColor: '#990000'
-                },
-                callBack: function (obj) {
-                  console.log(obj);
-                }
-              },             
-            ]
-          },  
-        ]
-      })
+              callBack: function (obj) {
+              }
+            },
+          ]
+        },
+      ]
     })
+  })
 
-    function nextPage() {
-      new IntroduceControl().nextPage()
-    }
+  function nextPage() {
+    new IntroduceControl().nextPage()
+  }
 
-    function prevPage() {
-      new IntroduceControl().prevPage()
-    }
+  function prevPage() {
+    new IntroduceControl().prevPage()
+  }
 
-    function rePage() {
-      new IntroduceControl().rePage()
-    }
-    $("#inrto-nav").on("click","li",function (param) { 
-      console.log($(this).index())
-      var index = $(this).index()
-      new IntroduceControl().restPage(index)
-    });
-    //changeIframHeight("300px");
+  function rePage() {
+    new IntroduceControl().rePage()
+  }
+  $("#inrto-nav").on("click","li",function (param) { 
+    console.log($(this).index())
+    var index = $(this).index()
+    new IntroduceControl().restPage(index)
+  });
+  //changeIframHeight("300px");
   //根据ID获取iframe对象
-   var iframe = document.getElementById('tipsMain')
-   iframe.onload = function() {
-  	  //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
-      var ifrheight =  iframe.contentWindow.document.documentElement.scrollHeight || iframe.contentDocument.body.scrollHeight
-      iframe.height = ifrheight + 20
+  var iframe = document.getElementById('tipsMain')
+  iframe.onload = function() {
+	  //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
+    var ifrheight =  iframe.contentWindow.document.documentElement.scrollHeight || iframe.contentDocument.body.scrollHeight
+    iframe.height = ifrheight + 20
   }
   </script>
 </body>
