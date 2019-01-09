@@ -73,9 +73,11 @@
           el: '#inrto-nav',
           list: [
             '<p class="fir-p">企业管理员信息</p><p>填写基础信息</p>',
-            '<p class="fir-p">公司信息</p><p>填写公司信息</p>',
+            '<p class="fir-p">填写公司信息</p><p>填写公司信息</p>',
             '<p class="fir-p">银行卡信息</p><p>填写银行信息</p>',
-            '<p class="fir-p">银行卡激活</p><p>填写激活信息</p>',          
+            '<p class="fir-p">跳转激活页面</p><p>注册成功跳转</p>',
+            '<p class="fir-p">银行卡激活</p><p>填写激活信息</p>',
+            '<p class="fir-p">激活成功</p><p>提示激活成功</p>',
           ]
         },
         iframe: {
@@ -235,11 +237,21 @@
                 nextBtn: {
                   content: '',
                   backgroundColor: 'transparent',
+                  callBack: function (obj) {
+                    nextPage();
+                  },
+                },
+                callBack: function (obj) {
+                  console.log(obj);
                 },
               },
-              {
+            ]
+          },
+          {
+            srcUrl: './stepTips4.html',
+            steps: [{
                 X: 580,
-                Y: 390,
+                Y: 410,
                 distance: 10,
                 direction: 'bottom',
                 content: '<div class="intro-indent">注册成功后点<span class="special">“前往激活”</span></div>',
@@ -253,12 +265,12 @@
                   backgroundColor: '#990000'
                 },
                 callBack: function (obj) {
-                  document.getElementById("tipsMain").contentWindow.setpic("./images/step3-2.png"); 
+                  console.log(obj);
                 }
               },
               {
-                X: 610,
-                Y: 340,
+                X: 630,
+                Y: 360,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -278,18 +290,19 @@
                   }
                 },
                 callBack: function (obj) {
+                  console.log(obj);
                 }
               },
             ]
           },
           {
-            srcUrl: './stepTips4.html',
+            srcUrl: './stepTips5.html',
             steps: [ {
               X: 420,
               Y: 420,
               distance: 10,
               direction: 'bottom',
-              content: '<div class="intro-indent">填写收到短信中的<span class="special">“流水号”</span>，收款企业收到附言中的的<span class="special">“激活码”</span>，以及验证码，点击<span class="special">“激活”</span>,完成银行验证注册。</div>',
+              content: '<div class="intro-indent">填写收到短信中的<span class="special">“流水号”</span>，收款企业收到附言中的的<span class="special">“激活码”</span>，以及验证码，点击<span class="special">“激活”</span>。</div>',
               padding: 10,
               backgroundColor: 'rgba(0,0,0,0.6)',
               color: '#fff',
@@ -320,15 +333,42 @@
               nextBtn: {
                 content: '',
                 backgroundColor: 'transparent',
+                callBack: function (obj) {
+                  nextPage();
+                }
               },
               callBack: function (obj) {
+                console.log(obj);
               }
             },
           ]
         },
-      ]
-    })
-  })
+        {
+          srcUrl: './stepTips6.html',
+          steps: [ {
+            X: 480,
+            Y: 360,
+            distance: 10,
+            direction: 'bottom',
+            content: '<div class="intro-indent">页面提示激活成功,完成银行验证注册。</div>',
+            padding: 10,
+            backgroundColor: 'rgba(0,0,0,0.6)',
+            color: '#fff',
+            radius: 5,
+            area: [180, 120],
+            nextBtn: {
+              content: '知道了',
+              backgroundColor: '#990000',                
+            },
+            callBack: function (obj) {
+              console.log(obj);
+            }
+          }
+        ]
+      },
+     ]
+   })
+ })
 
   function nextPage() {
     new IntroduceControl().nextPage()
