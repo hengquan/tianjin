@@ -1,114 +1,114 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
-<title>在线学习</title>
+<title>模拟实操</title>
 <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css"
-	rel="stylesheet">
+    rel="stylesheet">
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <style>
 body {
-	background: white;
+    background: white;
 }
 
 .enterBtn {
-	font-size: 14px;
-	text-align: center;
-	width: 160px;
-	height: 30px;
-	background: #f46227;
-	color: white;
-	line-height: 20px;
-	border-radius: 3px;
-	cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    width: 160px;
+    height: 30px;
+    background: #f46227;
+    color: white;
+    line-height: 20px;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .col-md-3 .explain {
-	width: 230px;
-	height: 100px;
-	background: #f8f8f8;
-	border-radius: 0 0 5px 5px;
+    width: 230px;
+    height: 100px;
+    background: #f8f8f8;
+    border-radius: 0 0 5px 5px;
 }
 
 .col-md-3 p {
-	font-size: 18px;
+    font-size: 18px;
 }
 
 .imgMsg {
-	width: 230px;
-	height: 175px;
+    width: 230px;
+    height: 175px;
 }
 
 .enterBtn {
-	font-size: 14px;
-	text-align: center;
-	width: 160px;
-	height: 30px;
-	background: #f46227;
-	color: white;
-	line-height: 30px;
-	margin: 10px auto 0;
-	border-radius: 3px;
-	cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    width: 160px;
+    height: 30px;
+    background: #f46227;
+    color: white;
+    line-height: 30px;
+    margin: 10px auto 0;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .position_wrap {
-	height: 88px;
-	line-height: 88px;
-	font-size: 22px;
-	letter-spacing: 1.2px;
-	-webkit-box-sizing: content-box;
-	-moz-box-sizing: content-box;
-	box-sizing: content-box;
+    height: 88px;
+    line-height: 88px;
+    font-size: 22px;
+    letter-spacing: 1.2px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
 }
 
 .container span {
-	color: #888888;
+    color: #888888;
 }
 
 .container .active{
-	color: #888888;
-	text-decoration: none;
+    color: #888888;
+    text-decoration: none;
 }
 
 .container .list-header-active {
-	color: #3D7EEA;
+    color: #3D7EEA;
 }
 
 #mnscContent {
-	background-color: #eeeeee;
+    background-color: #eeeeee;
 }
 
 .container {
-	width: 1200px;
-	margin: 0 auto;
-	position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
 }
 </style>
 </head>
 
 <body>
-	<div id="message">
-		<!--主菜单内容-->
-		<div class="container">
-			<!-- 站内导航 -->
-			<div class="position_wrap">
-				<div class="w1200 list-header">
-					<img src="./web/images/dot.png" alt="" class="list-header-mark">&emsp;
-					<span class="list-header-title"><a href="#"
-						onclick="gotoSY()" class="active">首页</a></span><span>&gt;</span> <span
-						class="list-header-active">模拟实操</span>
-				</div>
-			</div>
-			<!--模拟实操内容-->
-			<div id="mnscContent">
-				<div>&nbsp;</div>
-				<div class="tab-content" id="htmlContent" align="center"></div>
-				<div>&nbsp;</div>
-			</div>
-		</div>
-	</div>
-	<script>
+    <div id="message">
+        <!--主菜单内容-->
+        <div class="container">
+            <!-- 站内导航 -->
+            <div class="position_wrap">
+                <div class="w1200 list-header">
+                    <img src="./web/images/dot.png" alt="" class="list-header-mark">&emsp;
+                    <span class="list-header-title"><a href="#"
+                        onclick="gotoSY()" class="active">首页</a></span><span>&gt;</span> <span
+                        class="list-header-active">模拟实操</span>
+                </div>
+            </div>
+            <!--模拟实操内容-->
+            <div id="mnscContent">
+                <div>&nbsp;</div>
+                <div class="tab-content" id="htmlContent" align="center"></div>
+                <div>&nbsp;</div>
+            </div>
+        </div>
+    </div>
+    <script>
     window.onload = function() {
       resetHeight()
     }
@@ -128,12 +128,12 @@ body {
       window.parent.postMessage(winHeight, '*');
     }
   </script>
-	<script>
+    <script>
     function gotoSY() {
       //试运行
       //top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
       //正式
-      top.location.href = "http://60.28.236.179/preview/outsidewai/";
+      top.location.href = "http://60.28.236.179/";
       return false;
     }
     $(document).ready(function() {
@@ -213,7 +213,7 @@ body {
       window.open(url);
     }
   </script>
-	<script type="text/javascript">
+    <script type="text/javascript">
     var _gatherData = {};
     _gatherData.visitModuleId = "模拟实操列表";
     _gatherData.objType = "ts_mnsc";

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow-x:hidden;">
+
+<head>
+  <meta charset="UTF-8">
+  <title>实操-银行验证注册</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="../resource/css/reset.css">
+  <link rel="stylesheet" href="../resource/css/header-footer.css">
+  <link rel="stylesheet" href="../resource/css/home.css">
+  <link rel="stylesheet" href="../resource/css/main.css">
+  <link rel="stylesheet" href="../resource/css/step-list.css">
+
+  <script src="../resource/js/jquery.js"></script>
+  <script src="../resource/js/main.js"></script>
+  <script src="../resource/js/layer.js"></script>
+  <script src="../resource/js/introduce.class.js"></script>
+</head>
+
+<body>
+  <div class="page-warp page-home-net">
+    <!-- logo-导航 -->
+    <div class="page-top-wrap">
+      <!--头部-->
+      <div class="header-wrap">
+        <div class="banxin header">
+          <div class="fl header-logo">
+            <img src="../resource/image/LOGO@2x.png" alt="" class="logo">
+            <span class="header-name">天津市港口统一管理服务管理平台-<strong>线上培训子系统</strong></span>
+          </div>
+    <!--右侧关闭窗口-->
+    <div class="pt-fr pt-user-info">
+      <div><a style="color: #ffffff;font-size:12px;" onclick="closeWin()">关闭&emsp;</a></div>
+    </div>
+        </div>
+      </div>
+      <div class="nav_bar">
+        <span>银行验证注册</span>
+        <div class="border"></div>
+      </div>
+    </div>
+    <div class="page-container">
+      <div class="pro_nav">
+        <div id="inrto-nav"></div>
+      </div>
+      <!--主体-->
+      <div class="page-main">
+        <div class="head_title"><span id="msg"><B>模拟实操具体操作区</B></span></div>
+        <div class="content_border">
+          <div class="page-form-list" id="page-form-list">
+            <iframe src="" frameborder="0" id="tipsMain"  scrolling="no"></iframe>
+          </div>
+        </div>
+        <div class="pay_button">
+          <span class="previousPage" onclick="prevPage()">上一步</span>
+          <span class="repractice" onclick="rePage()">重新开始</span>
+          <span class="nextPage" onclick="nextPage()">下一步</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-footer">
+  <!--
+  <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+  -->
+  </div>
+  <script>
+    $(function () {
+      new IntroduceTipsList({
+        el: '#page-form-list',
+        nav: {
+          el: '#inrto-nav',
+          list: [
+            '<p class="fir-p">企业管理员信息</p><p>填写基础信息</p>',
+            '<p class="fir-p">公司信息</p><p>填写公司信息</p>',
+            '<p class="fir-p">银行卡信息</p><p>填写银行信息</p>',
+            '<p class="fir-p">银行卡激活</p><p>填写激活信息</p>',          
+          ]
+        },
+        iframe: {
+          el: '#tipsMain',
+          width: '100%',        
+        },
+        list: [
+                 
+          {
+            srcUrl: './stepTips1.html',
+            steps: [{
+                X: 890,
+                Y: 360,
+                distance: 10,
+                direction: 'right',
+                content: '<div class="intro-indent">银行验证注册第一步进行，填写企业管理员信息，带<span class="special">“※”</span>为必填项。</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [200, 150],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000',
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+              {
+                X: 280,
+                Y: 610,
+                distance: 10,
+                direction: 'left',
+                content: '<div class="intro-indent">填写信息后，阅读使用协议，并点击我已阅读，进行银行验证注册</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [240, 120],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: 'blue'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+              {
+                X: 723,
+                Y: 643,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [250, 80],
+                nextBtn: {
+                  content: '',
+                  backgroundColor: 'transparent',
+                  callBack: function (obj) {
+                    nextPage();
+                  }
+                },
+                callBack: function (obj) {
+                }
+              },  
+            ]
+          },
+          {
+            srcUrl: './stepTips2.html',
+            steps: [{
+                X: 840,
+                Y: 420,
+                distance: 10,
+                direction: 'right',
+                content: '<div class="intro-indent">填写公司名称和社会信用代码后，点击<span class="special">“下一步”</span>。</div></div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [240, 130],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: 'blue'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },
+              {
+                X: 440,
+                Y: 462,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [280, 80],
+                nextBtn: {
+                  content: '',
+                  backgroundColor: 'transparent',
+                  callBack: function (obj) {
+                    nextPage();
+                  }
+                },
+                callBack: function (obj) {
+                }
+              },  
+            ]
+          },
+          {
+            srcUrl: './stepTips3.html',
+            steps: [{
+                X: 990,
+                Y: 400,
+                distance: 10,
+                direction: 'right',
+                content: '<div class="intro-indent">填写银行卡信息，带<span class="special">“※”</span>为必填项,填写完成后点击<span class="special">“保存”</span></div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [240, 120],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {
+                  console.log(obj);
+                }
+              },                      
+              {
+                X: 578,
+                Y: 525,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [160, 50],
+                nextBtn: {
+                  content: '',
+                  backgroundColor: 'transparent',
+                },
+              },
+              {
+                X: 580,
+                Y: 390,
+                distance: 10,
+                direction: 'bottom',
+                content: '<div class="intro-indent">注册成功后点<span class="special">“前往激活”</span></div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [180, 80],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {
+                  document.getElementById("tipsMain").contentWindow.setpic("./images/step3-2.png"); 
+                }
+              },
+              {
+                X: 610,
+                Y: 340,
+                distance: 10,
+                direction: 'bottom',
+                noTriangle: true,
+                borderColor: 'red',
+                content: '',
+                padding: 10,
+                // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+                backgroundColor: 'transparent', //透明颜色
+                color: '#fff',
+                radius: 5,
+                area: [120, 50],
+                nextBtn: {
+                  content: '',
+                  backgroundColor: 'transparent',
+                  callBack: function (obj) {
+                    nextPage();
+                  }
+                },
+                callBack: function (obj) {
+                }
+              },
+            ]
+          },
+          {
+            srcUrl: './stepTips4.html',
+            steps: [ {
+              X: 420,
+              Y: 600,
+              distance: 10,
+              direction: 'bottom',
+              content: '<div class="intro-indent">填写收到短信中的流水号，收款企业收到附言中的的激活码，以及验证码，点击<span class="special">“激活”</span>。</div>',
+              padding: 10,
+              backgroundColor: 'rgba(0,0,0,0.6)',
+              color: '#fff',
+              radius: 5,
+              area: [220, 150],
+              nextBtn: {
+                content: '知道了',
+                backgroundColor: '#990000',                
+              },
+              callBack: function (obj) {
+                console.log(obj);
+              }
+            },
+            {
+              X: 1000,
+              Y: 60,
+              distance: 10,
+              direction: 'bottom',
+              noTriangle: true,
+              borderColor: 'red',
+              content: '',
+              padding: 10,
+              // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+              backgroundColor: 'transparent', //透明颜色
+              color: '#fff',
+              radius: 5,
+              area: [120, 50],
+              nextBtn: {
+                content: '',
+                backgroundColor: 'transparent',
+                callBack: function (obj) {
+                  nextPage();
+                }
+              },
+              callBack: function (obj) {
+              }
+            },
+          ]
+        },
+      ]
+    })
+  })
+
+  function nextPage() {
+    new IntroduceControl().nextPage()
+  }
+
+  function prevPage() {
+    new IntroduceControl().prevPage()
+  }
+
+  function rePage() {
+    new IntroduceControl().rePage()
+  }
+  $("#inrto-nav").on("click","li",function (param) { 
+    console.log($(this).index())
+    var index = $(this).index()
+    new IntroduceControl().restPage(index)
+  });
+  //changeIframHeight("300px");
+  //根据ID获取iframe对象
+  var iframe = document.getElementById('tipsMain')
+  iframe.onload = function() {
+	  //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
+    var ifrheight =  iframe.contentWindow.document.documentElement.scrollHeight || iframe.contentDocument.body.scrollHeight
+    iframe.height = ifrheight + 20
+  }
+  </script>
+</body>
+
+</html>
