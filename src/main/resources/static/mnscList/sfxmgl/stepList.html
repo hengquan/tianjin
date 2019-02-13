@@ -76,10 +76,10 @@
             '<p class="fir-p">项目列表</p><p>收费项目列表</p>',            
             '<p class="fir-p">添加关联</p><p>选择关联项目</p>',
             '<p class="fir-p">删除管理</p><p>删除选中关联</p>',
-            '<p class="fir-p">选择操作</p><p>选择价格查看</p>',
-            '<p class="fir-p">价格查看</p><p>价格详细列表</p>',
-            '<p class="fir-p">选择操作</p><p>选择价格管理</p>',
-            '<p class="fir-p">价格管理</p><p>价格设定操作</p>',
+            '<p class="fir-p">政府定价</p><p>查看价格信息</p>',
+            '<p class="fir-p">市场调节价</p><p>确定价格项目</p>',           
+            '<p class="fir-p">价格设定</p><p>价格设定操作</p>', 
+            '<p class="fir-p">价格公示</p><p>价格平台公示</p>',
             '<p class="fir-p">项目管理</p><p>收费项目删除</p>'
           ]
         },
@@ -325,19 +325,13 @@
                 radius: 5,
                 area: [100, 50],
                 nextBtn: {
-                  content: '',//查看价格
-                  backgroundColor: 'transparent',
-                  callBack: function (obj) {
-                    nextPage();
-                  } 
-                }
-              }
-            ]
-          },
-          {
-            srcUrl: './stepTips5.html',
-            steps: [
-
+                  content: '',//标准费项
+                  backgroundColor: 'transparent',                  
+                 },
+                 callBack: function (obj) {
+                 }
+              },
+           
               {
                 X: 460,
                 Y: 280,
@@ -351,11 +345,12 @@
                 area: [240, 140],
                 nextBtn: {
                   content: '知道了',
-                  backgroundColor: '#990000'
+                  backgroundColor: 'blue'
                 },
                 callBack: function (obj) {
+                  document.getElementById("tipsMain").contentWindow.setpic("./images/step4-1.png");      
                   console.log(obj);
-                }
+                },
               },
              
               {
@@ -386,14 +381,14 @@
             ]
           },
           {
-            srcUrl: './stepTips6.html',
+            srcUrl: './stepTips5.html',
             steps: [
               {
                 X: 960,
                 Y: 320,
                 distance: 10,
                 direction: 'left',
-                content: '<div class="intro-indent">在此页面可进行价格相关的操作，选中需要进行价格操作的项目后，点击<span class="special"> "价格管理”</span>操作，进行价格列表管理。</div>',
+                content: '<div class="intro-indent">在此页面对<span class="special">“市场调节价”</span>进行价格相关的操作，选中需要进行价格操作的项目后，点击<span class="special"> "价格管理”</span>操作，进行价格列表管理。</div>',
                 padding: 10,
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
@@ -442,7 +437,7 @@
                   backgroundColor: '#990000'
                 },
                 callBack: function (obj) {
-                  document.getElementById("tipsMain").contentWindow.setpic("./images/step6-1.png");      
+                  document.getElementById("tipsMain").contentWindow.setpic("./images/step5-1.png");      
                   console.log(obj);
                 }
               },
@@ -475,7 +470,7 @@
             ]
           },
           {
-            srcUrl: './stepTips7.html',
+            srcUrl: './stepTips6.html',
             steps: [
               {
                 X: 600,
@@ -513,9 +508,16 @@
                 nextBtn: {
                   content: '',//提取信息
                   backgroundColor: 'transparent',
+                  callBack: function (obj) {
+                    nextPage();
+                  }
                 }
               },
-              
+              ]
+          },
+          {
+            srcUrl: './stepTips7.html',
+            steps: [
               {
                 X: 990,
                 Y: 260,
@@ -532,7 +534,7 @@
                   backgroundColor: '#990000'
                 },
                 callBack: function (obj) { 
-                  document.getElementById("tipsMain").contentWindow.setpic("./images/step7-1.png"); 
+                  //document.getElementById("tipsMain").contentWindow.setpic("./images/step7-1.png"); 
                   console.log(obj);
                 } 
               },  
