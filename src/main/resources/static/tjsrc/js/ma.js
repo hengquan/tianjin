@@ -59,9 +59,9 @@
     //var src = 'http://localhost:18080/train/gatherData?args=' + encodeURIComponent(args);
     //var src = 'http://1.202.219.107:8088/ot-server/train/gatherData?args=' + encodeURIComponent(args);
     //试运行
-    var src = 'http://60.28.236.148/ot-server/train/gatherData?args=' + encodeURIComponent(args);
+    //var src = 'http://60.28.236.148/ot-server/train/gatherData?args=' + encodeURIComponent(args);
     //正式
-    //var src = 'http://60.28.236.129/ot-server/train/gatherData?args=' + encodeURIComponent(args);
+    var src = 'http://60.28.236.129/ot-server/train/gatherData?args=' + encodeURIComponent(args);
     if (paramUrl) src+="&"+paramUrl;
     img.src = src;
 })();
