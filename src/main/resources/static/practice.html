@@ -2,20 +2,19 @@
 <head>
 <meta charset="UTF-8">
 <title>模拟实操</title>
-<!-- <link href="https://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css"
-    rel="stylesheet">
-<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-<script src="https://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script> -->
-
-
+<!-- https -->
 <script type="text/javascript" src="https://ocap.shangwuju.tj.gov.cn/moni_api/web/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://ocap.shangwuju.tj.gov.cn/moni_api/web/js/jquery-1.12.4.js"></script>
 <link rel="stylesheet" href="https://ocap.shangwuju.tj.gov.cn/moni_api/web/bootstrap/css/bootstrap.css">
 
+<!-- http -->
+<!-- <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
+<link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css"> -->
 
 <style>
 body {
-    background: white;
+  background: white;
 }
 
 .enterBtn {
@@ -101,7 +100,7 @@ body {
             <!-- 站内导航 -->
             <div class="position_wrap">
                 <div class="w1200 list-header">
-                    <img src="./web/images/dot.png" alt="" class="list-header-mark">&emsp;
+                    <img src="https://ocap.shangwuju.tj.gov.cn/moni_api/web/images/dot.png" alt="" class="list-header-mark">&emsp;
                     <span class="list-header-title"><a href="#"
                         onclick="gotoSY()" class="active">首页</a></span><span>&gt;</span> <span
                         class="list-header-active">模拟实操</span>
@@ -119,9 +118,6 @@ body {
     window.onload = function() {
       resetHeight()
     }
-    $(document).ajaxComplete(function(event, xhr, settings) {
-
-    });
     $(function() {
       resetHeight()
       setInterval(function() {
@@ -154,11 +150,10 @@ body {
       var data = {
         "portal" : "portal"
       };
-      $
-          .ajax({
+      $.ajax({
             type : 'post',
             /* url : "./train/getMnscList", */
-            url : "https://ocap.shangwuju.tj.gov.cn/moni_api/train/getMnscList",
+            url : "https://ocap.shangwuju.tj.gov.cn/moni_api/train/getMnscList", 
             data : data,
             dataType : 'json',
             cache : false,
@@ -173,7 +168,8 @@ body {
                   //查主图片是否有值无值显示默认图
                   var imgUrl = dataList[i].imgUrl;
                   if (!imgUrl)
-                    imgUrl = "./web/images/mnsc_default.jpg";
+                    /* imgUrl = "./web/images/mnsc_default.jpg"; */
+                    imgUrl = "https://ocap.shangwuju.tj.gov.cn/moni_api/web/images/mnsc_default.jpg";
                   html += '<div class="col-md-3">'
                       + '<img class="imgMsg" src="'+ imgUrl +'" alt="">'
                       + '<div class="model_bg" onclick=toSimulation("'
@@ -217,7 +213,8 @@ body {
 
     //  收费清单录入模拟实操
     function toSimulation(url) {
-      url = "https://ocap.shangwuju.tj.gov.cn/moni_api/mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1";
+      url = "https://ocap.shangwuju.tj.gov.cn/moni_api/mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1"; 
+      /* url = "./mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1"; */
       window.open(url);
     }
   </script>
@@ -230,7 +227,8 @@ body {
       var ma = document.createElement('script');
       ma.type = 'text/javascript';
       ma.async = true;
-      ma.src = "./tjsrc/js/ma.js";
+      /* ma.src = "./tjsrc/js/ma.js"; */
+      ma.src = "https://ocap.shangwuju.tj.gov.cn/moni_api/tjsrc/js/ma.js";
       var s = document.getElementsByTagName('script')[0];
       s.parentNode.insertBefore(ma, s);
     })();
