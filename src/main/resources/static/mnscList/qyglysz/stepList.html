@@ -73,7 +73,7 @@
       nav: {
         el: '#inrto-nav',
         list: [
-          '<p class="fir-p">权限模板</p><p>处理公司权限模板</p>',            
+          '<p class="fir-p">权限模板</p><p>管理公司权限</p>',            
           '<p class="fir-p">新增角色</p><p>设定新增角色</p>',
           '<p class="fir-p">授权资源</p><p>设定授权资源</p>',
           '<p class="fir-p">用户管理</p><p>管理公司用户</p>',
@@ -91,8 +91,8 @@
         {
            srcUrl: './stepTips1.html',
            steps: [{
-             X: 200,
-             Y: 220,
+             X: 180,
+             Y: 180,
              distance: 10,
              direction: 'right',
              content: '<div class="intro-indent">此处为权限模板列表，所有角色将在此显示，点击<span class="special">“新增”</span>进行新增角色。</div>',
@@ -352,8 +352,8 @@
         {
           srcUrl: './stepTips6.html',
           steps: [{
-             X: 950,
-             Y: 230,
+             X: 965,
+             Y: 340,
              distance: 10,
              direction: 'bottom',
              content: '<div class="intro-indent">如果用户信息有误，管理员可以点击<br><span class="special"> “修改” </span>进入用户修改页面。<br>',
@@ -370,8 +370,8 @@
              }
           },
           {
-            X: 970,
-            Y: 220,
+            X: 975,
+            Y: 310,
             distance: 10,
             direction: 'bottom',
             noTriangle: true,
@@ -382,7 +382,7 @@
             backgroundColor: 'transparent', //透明颜色
             color: '#fff',
             radius: 5,
-            area: [40, 40],
+            area: [20, 20],
             nextBtn: {
               content: '',
               backgroundColor: 'transparent',
@@ -457,7 +457,7 @@
           },
           {
             X: 1000,
-            Y: 243,
+            Y: 256,
             distance: 10,
             direction: 'bottom',
             noTriangle: true,
@@ -468,7 +468,7 @@
             backgroundColor: 'transparent', //透明颜色
             color: '#fff',
             radius: 5,
-            area: [40, 40],
+            area: [20, 20],
             nextBtn: {
               content: '',
               backgroundColor: 'transparent',
@@ -524,8 +524,8 @@
         {
           srcUrl: './stepTips8.html',
           steps: [{
-             X: 900,
-             Y: 240,
+             X: 930,
+             Y: 440,
              distance: 10,
              direction: 'left',
              content: '<div class="intro-indent">管理员可以对用户进行<span class="special"> “授权” </span>请点击<span class="special"> “角色” </span>进入授权页面。</div>',
@@ -542,8 +542,8 @@
              }
           },
           {
-            X: 955,
-            Y: 243,
+            X: 945,
+            Y: 400,
             distance: 10,
             direction: 'bottom',
             noTriangle: true,
@@ -554,7 +554,7 @@
             backgroundColor: 'transparent', //透明颜色
             color: '#fff',
             radius: 5,
-            area: [40, 40],
+            area: [20,20],
             nextBtn: {
               content: '',
               backgroundColor: 'transparent',
@@ -568,12 +568,12 @@
             Y: 260,
             distance: 10,
             direction: 'left',
-            content: '<div class="intro-indent">此处可以选择<span class="special"> “角色” </span>。</div>',
+            content: '<div class="">此处可以选择<span class="special">“角色”</span>。</div>',
             padding: 10,
             backgroundColor: 'rgba(0,0,0,0.6)',
             color: '#fff',
             radius: 5,
-            area: [200, 120],
+            area: [200, 80],
             nextBtn: {
               content: '知道了',
               backgroundColor: '#990000',
@@ -587,7 +587,7 @@
             Y: 270,
             distance: 10,
             direction: 'left',
-            content: '<div class="intro-indent">选中角色后点击<span class="special"> “修改” </span>，完成后角色授权。</div>',
+            content: '<div class="intro-indent">选中角色后点击<span class="special"> “保存” </span>，完成后角色授权。</div>',
             padding: 10,
             backgroundColor: 'rgba(0,0,0,0.6)',
             color: '#fff',
@@ -603,16 +603,16 @@
           },
           {
              X: 580,
-             Y: 232,
+             Y: 248,
              distance: 10,
              direction: 'bottom',
-             noTriangle: true,
-             borderColor: 'red',
-             content: '',
-             padding: 10,
+             noTriangle:true,
+             borderColor:'red',
+             content:'',
+             padding:10,
              // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-             backgroundColor: 'transparent', //透明颜色
-             color: '#fff',
+             backgroundColor:'transparent', //透明颜色
+             color:'#fff',
              radius: 5,
              area: [160, 40],
              nextBtn: {
@@ -620,7 +620,7 @@
                backgroundColor: 'transparent',
              },
              callBack: function (obj) {
-               document.getElementById("tipsMain").contentWindow.setpic("./images/005-用户修改.png"); 
+               document.getElementById("tipsMain").contentWindow.setpic("./images/007-02角色-带保存.png"); 
              }
           }]
         },
