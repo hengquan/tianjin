@@ -16,7 +16,7 @@ public class SpringUtils implements ApplicationContextAware {
         }
     }
 
-  //获取applicationContext
+    //获取applicationContext
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
     }
