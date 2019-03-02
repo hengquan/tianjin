@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow-x:hidden;">
+
+<head>
+  <meta charset="UTF-8">
+  <title>模拟实操-企业退费单管理</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="../resource/css/reset.css">
+  <link rel="stylesheet" href="../resource/css/header-footer.css">
+  <link rel="stylesheet" href="../resource/css/home.css">
+  <link rel="stylesheet" href="../resource/css/main.css">
+  <link rel="stylesheet" href="../resource/css/step-list.css">
+
+  <script src="../resource/js/jquery.js"></script>
+  <script src="../resource/js/main.js"></script>
+  <script src="../resource/js/layer.js"></script>
+  <script src="../resource/js/introduce.class.js"></script>
+</head>
+
+<body>
+  <div class="page-warp page-home-net">
+    <!-- logo-导航 -->
+    <div class="page-top-wrap">
+      <!--头部-->
+      <div class="header-wrap">
+        <div class="banxin header">
+          <div class="fl header-logo">
+            <img src="../resource/image/LOGO@2x.png" alt="" class="logo">
+            <span class="header-name">天津市港口统一收费管理服务平台-<strong>线上培训子系统</strong></span>
+          </div>
+         <!--右侧关闭窗口-->
+         <div class="pt-fr pt-user-info">
+           <div><a style="color: #ffffff;font-size:12px;" onclick="closeWin()">关闭&emsp;</a></div>
+         </div>
+        </div>
+      </div>
+      <div class="nav_bar">
+        <span>企业退费单申请</span>
+        <div class="border"></div>
+      </div>
+    </div>
+    <div class="page-container">
+      <div class="pro_nav">
+        <div id="inrto-nav"></div>
+      </div>
+      <!--主体-->
+      <div class="page-main">
+        <div class="head_title"><span id="msg"><B>模拟实操具体操作区</B></span></div>
+        <div class="content_border">
+          <div class="page-form-list" id="page-form-list">
+            <iframe src="" frameborder="0" id="tipsMain"  scrolling="no"></iframe>            
+          </div>
+        </div>
+        <div class="pay_button">
+          <span class="previousPage" onclick="prevPage()">上一步</span>
+          <span class="repractice" onclick="rePage()">重新开始</span>
+          <span class="nextPage" onclick="nextPage()">下一步</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-footer">
+  <!--
+  <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+  -->
+  </div>
+  
+<script>
+$(function () {
+  new IntroduceTipsList({
+    el: '#page-form-list',
+    nav: {
+      el: '#inrto-nav',
+      list: [
+        '<p class="fir-p">退费单列表</p><p>企业退单管理入口</p>',            
+        '<p class="fir-p">数据录入</p><p>录入退费单基本信息</p>',
+        '<p class="fir-p">退费信息</p><p>选择企业的退费信息</p>',
+        '<p class="fir-p">货主信息</p><p>非货主录入货主信息</p>',
+        '<p class="fir-p">提交信息</p><p>提交信息二维码确认</p>',
+        '<p class="fir-p">已提交退费单</p><p>查看已提交的退费单信息</p>',
+        '<p class="fir-p">提交限制</p><p>企业提交信息的要求</p>',
+        '<p class="fir-p">退费单查询</p><p>查询企业的退费单</p>',
+      ]
+    },
+    iframe: {
+      el: '#tipsMain',
+      width: '100%',
+    },
+    list: [{
+    //第一页
+      srcUrl: './stepTips1.html',
+      steps: [{
+        X: 180,
+        Y: 180,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">管理员登录后，点击<span class="special">“权限模板”</span>，此处为权限模板列表，所有角色将在此显示，点击<span class="special">“新增”</span>进行新增角色。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [200, 160],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000',
+        },
+        callBack: function (obj) {
+        }
+      }, {
+        X: 255,
+        Y: 145,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [120, 50],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent',
+          callBack: function (obj) {
+            nextPage();
+          }
+        },
+        callBack: function (obj) {
+        }
+      }]
+    },
+      {
+        srcUrl: './stepTips2.html',
+        steps: [{
+          X: 320,
+          Y: 170,
+          distance: 10,
+          direction: 'bottom',
+          content: '<div class="intro-indent">进入新增角色页面，填写基础信息，带<span class="special"> “※”</span>为必填项，'
+               +'填写完信息后，点击<span class="special">“保存”</span>进入<span class="special">“授权资源”</span>。</div>',
+          padding: 10,
+          backgroundColor: 'rgba(0,0,0,0.6)',
+          color: '#fff',
+          radius: 5,
+          area: [300, 150],
+          nextBtn: {
+            content: '知道了',
+            backgroundColor: '#990000',
+          },
+           callBack: function (obj) {
+          }
+        },
+        {
+           X: 580,
+           Y: 200,
+           distance: 10,
+           direction: 'bottom',
+           noTriangle: true,
+           borderColor: 'red',
+           content: '',
+           padding: 10,
+           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+           backgroundColor: 'transparent', //透明颜色
+           color: '#fff',
+           radius: 5,
+           area: [180, 40],
+           nextBtn: {
+             content: '',
+             backgroundColor: 'transparent',
+             callBack: function (obj) {
+               nextPage();
+             }
+           },
+           callBack: function (obj) {   
+           }
+        }]
+      },
+      {
+        srcUrl: './stepTips3.html',
+        steps: [{
+           X: 580,
+           Y: 460,
+           distance: 10,
+           direction: 'top',
+           content: '<div class="intro-indent">进入授权资源页面，对新添加的角色授以相对应的功能及资源，点击<br><span class="special"> “保存” </span>返回列表页。<br>',
+           padding: 10,
+           backgroundColor: 'rgba(0,0,0,0.6)',
+           color: '#fff',
+           radius: 5,
+           area: [230, 140],
+           nextBtn: {
+             content: '知道了',
+             backgroundColor: '#990000',
+           },
+           callBack: function (obj) {
+           }
+        },
+        {
+           X: 522,
+           Y: 410,
+           distance: 10,
+           direction: 'bottom',
+           noTriangle: true,
+           borderColor: 'red',
+           content: '',
+           padding: 10,
+           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+           backgroundColor: 'transparent', //透明颜色
+           color: '#fff',
+           radius: 5,
+           area: [130, 50],
+           nextBtn: {
+             content: '',
+             backgroundColor: 'transparent',
+             callBack: function (obj) {
+               nextPage();
+             }
+           },
+           callBack: function (obj) {
+           }
+        }]
+     },
+     {
+        srcUrl: './stepTips4.html',
+        steps: [{
+           X: 190,
+           Y: 140,
+           distance: 10,
+           direction: 'right',
+           content: '<div class="intro-indent">此处为企业用户列表，所有用户将在此显示，点击<br><span class="special"> “新增” </span>进入用户新增页面。<br>',
+           padding: 10,
+           backgroundColor: 'rgba(0,0,0,0.6)',
+           color: '#fff',
+           radius: 5,
+           area: [240, 130],
+           nextBtn: {
+             content: '知道了',
+             backgroundColor: '#990000',
+           },
+           callBack: function (obj) {
+           }
+        },
+        {
+           X: 260,
+           Y: 100,
+           distance: 10,
+           direction: 'bottom',
+           noTriangle: true,
+           borderColor: 'red',
+           content: '',
+           padding: 10,
+           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+           backgroundColor: 'transparent', //透明颜色
+           color: '#fff',
+           radius: 5,
+           area: [120, 40],
+           nextBtn: {
+             content: '',
+             backgroundColor: 'transparent',
+             callBack: function (obj) {
+               nextPage();
+             }
+           },
+        }]
+     },  
+     {  
+        srcUrl: './stepTips5.html',
+        steps: [{
+           X: 340,
+           Y: 310,
+           distance: 10,
+           direction: 'bottom',
+           content: '<div class="intro-indent">进入新增用户页面，填写基础信息，带<span class="special"> “※” </span>号为必填项。<br>',
+           padding: 10,
+           backgroundColor: 'rgba(0,0,0,0.6)',
+           color: '#fff',
+           radius: 5,
+           area: [200, 100],
+           nextBtn: {
+             content: '知道了',
+             backgroundColor: '#990000',
+           },
+           callBack: function (obj) {
+           }
+        },
+        {
+          X: 360,
+          Y: 340,
+          distance: 10,
+          direction: 'left',
+          content: '<div class="intro-indent"><span class="special"> “角色添加” </span>也可以选多个。<br></div>',
+          padding: 10,
+          backgroundColor: 'rgba(0,0,0,0.6)',
+          color: '#fff',
+          radius: 5,
+          area: [200, 120],
+          nextBtn: {
+            content: '知道了',
+            backgroundColor: '#990000',
+          },
+          callBack: function (obj) {
+            document.getElementById("tipsMain").contentWindow.setpic("./images/004-03用户添加-带角色.png"); 
+          }
+        },
+        {
+          X: 480,
+          Y: 270,
+          distance: 10,
+          direction: 'left',
+          content: '<div class="intro-indent">在您确定<span class="special"> “身份证号” </span>不重复的情况下，点击<span class="special"> “保存” </span>，添加成功返回用户列表页。</div>',
+          padding: 10,
+          backgroundColor: 'rgba(0,0,0,0.6)',
+          color: '#fff',
+          radius: 5,
+          area: [200, 120],
+          nextBtn: {
+            content: '知道了',
+            backgroundColor: '#990000',
+          },
+          callBack: function (obj) {
+            document.getElementById("tipsMain").contentWindow.setpic("./images/004-01用户添加-身份证号重复.png"); 
+          }
+        },
+        {
+           X: 585,
+           Y: 310,
+           distance: 10,
+           direction: 'bottom',
+           noTriangle: true,
+           borderColor: 'red',
+           content: '',
+           padding: 10,
+           backgroundColor: 'transparent', //透明颜色
+           color: '#fff',
+           radius: 5,
+           area: [130, 50],
+           nextBtn: {
+             content: '',
+             backgroundColor: 'transparent',
+             callBack: function (obj) {
+               nextPage();
+             }
+           },
+           callBack: function (obj) {
+           }
+        }]
+      },
+      {
+        srcUrl: './stepTips6.html',
+        steps: [{
+           X: 965,
+           Y: 340,
+           distance: 10,
+           direction: 'bottom',
+           content: '<div class="intro-indent">如果用户信息有误，管理员可以点击<br><span class="special"> “修改” </span>进入用户修改页面。<br>',
+           padding: 10,
+           backgroundColor: 'rgba(0,0,0,0.6)',
+           color: '#fff',
+           radius: 5,
+           area: [150, 130],
+           nextBtn: {
+             content: '知道了',
+             backgroundColor: '#990000',
+           },
+           callBack: function (obj) {
+           }
+        },
+        {
+          X: 975,
+          Y: 310,
+          distance: 10,
+          direction: 'bottom',
+          noTriangle: true,
+          borderColor: 'red',
+          content: '',
+          padding: 10,
+          // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+          backgroundColor: 'transparent', //透明颜色
+          color: '#fff',
+          radius: 5,
+          area: [20, 20],
+          nextBtn: {
+            content: '',
+            backgroundColor: 'transparent',
+          },
+          callBack: function (obj) {
+             
+          }
+        },
+        {
+          X: 360,
+          Y: 220,
+          distance: 10,
+          direction: 'bottom',
+          content: '<div class="intro-indent">带<span class="special"> “※” </span>为必填项，信息填写完城后，点击<span class="special"> “保存” </span>，返回用户列表页。</div>',
+          padding: 10,
+          backgroundColor: 'rgba(0,0,0,0.6)',
+          color: '#fff',
+          radius: 5,
+          area: [200, 120],
+          nextBtn: {
+            content: '知道了',
+            backgroundColor: '#990000',
+          },
+          callBack: function (obj) {
+            document.getElementById("tipsMain").contentWindow.setpic("./images/005-用户修改.png"); 
+          }
+        },
+        {
+           X: 590,
+           Y: 235,
+           distance: 10,
+           direction: 'bottom',
+           noTriangle: true,
+           borderColor: 'red',
+           content: '',
+           padding: 10,
+           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+           backgroundColor: 'transparent', //透明颜色
+           color: '#fff',
+           radius: 5,
+           area: [160, 40],
+           nextBtn: {
+             content: '',
+             backgroundColor: 'transparent',
+             callBack: function (obj) {
+               nextPage();
+             }
+           },
+           callBack: function (obj) {
+           }
+        }]
+      },
+      {
+        srcUrl: './stepTips7.html',
+        steps: [{
+           X: 990,
+           Y: 240,
+           distance: 10,
+           direction: 'bottom',
+           content: '<div class="intro-indent">管理员可以对用户进行<span class="special"> “启用” </span>或者<span class="special"> “禁用” </span>操作，点击<span class="special"> “禁用” </span>。</div>',
+           padding: 10,
+           backgroundColor: 'rgba(0,0,0,0.6)',
+           color: '#fff',
+           radius: 5,
+           area: [180, 130],
+           nextBtn: {
+             content: '知道了',
+             backgroundColor: '#990000',
+           },
+           callBack: function (obj) {
+           }
+        },
+        {
+          X: 1000,
+          Y: 256,
+          distance: 10,
+          direction: 'bottom',
+          noTriangle: true,
+          borderColor: 'red',
+          content: '',
+          padding: 10,
+          // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+          backgroundColor: 'transparent', //透明颜色
+          color: '#fff',
+          radius: 5,
+          area: [20, 20],
+          nextBtn: {
+            content: '',
+            backgroundColor: 'transparent',
+          },
+          callBack: function (obj) {
+             
+          }
+        },
+        {
+          X: 560,
+          Y: 240,
+          distance: 10,
+          direction: 'left',
+          content: '<div class="intro-indent">确认更改后，点击<span class="special"> “确认” </span>，完成后，将返回用户列表页。</div>',
+          padding: 10,
+          backgroundColor: 'rgba(0,0,0,0.6)',
+          color: '#fff',
+          radius: 5,
+          area: [200, 120],
+          nextBtn: {
+            content: '知道了',
+            backgroundColor: '#990000',
+          },
+          callBack: function (obj) {
+            document.getElementById("tipsMain").contentWindow.setpic("./images/006-启用禁用.png"); 
+          }
+        },
+        {
+           X: 730,
+           Y: 230,
+           distance: 10,
+           direction: 'bottom',
+           noTriangle: true,
+           borderColor: 'red',
+           content: '',
+           padding: 10,
+           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+           backgroundColor: 'transparent', //透明颜色
+           color: '#fff',
+           radius: 5,
+           area: [80, 40],
+           nextBtn: {
+             content: '',
+             backgroundColor: 'transparent',
+             callBack: function (obj) {
+               nextPage();
+             }
+           },
+           callBack: function (obj) {
+           }
+        }]
+      },
+      {
+        srcUrl: './stepTips8.html',
+        steps: [{
+           X: 930,
+           Y: 440,
+           distance: 10,
+           direction: 'left',
+           content: '<div class="intro-indent">管理员可以对用户进行<span class="special"> “授权” </span>请点击<span class="special"> “角色” </span>进入授权页面。</div>',
+           padding: 10,
+           backgroundColor: 'rgba(0,0,0,0.6)',
+           color: '#fff',
+           radius: 5,
+           area: [180, 130],
+           nextBtn: {
+             content: '知道了',
+             backgroundColor: '#990000',
+           },
+           callBack: function (obj) {
+           }
+        },
+        {
+          X: 945,
+          Y: 400,
+          distance: 10,
+          direction: 'bottom',
+          noTriangle: true,
+          borderColor: 'red',
+          content: '',
+          padding: 10,
+          // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+          backgroundColor: 'transparent', //透明颜色
+          color: '#fff',
+          radius: 5,
+          area: [20,20],
+          nextBtn: {
+            content: '',
+            backgroundColor: 'transparent',
+          },
+          callBack: function (obj) {
+             
+          }
+        },
+        {
+          X: 380,
+          Y: 260,
+          distance: 10,
+          direction: 'left',
+          content: '<div class="">此处可以选择<span class="special">“角色”</span>。</div>',
+          padding: 10,
+          backgroundColor: 'rgba(0,0,0,0.6)',
+          color: '#fff',
+          radius: 5,
+          area: [200, 80],
+          nextBtn: {
+            content: '知道了',
+            backgroundColor: '#990000',
+          },
+          callBack: function (obj) {
+            document.getElementById("tipsMain").contentWindow.setpic("./images/007-01授权-带角色.png"); 
+          }
+        },
+        {
+          X: 560,
+          Y: 270,
+          distance: 10,
+          direction: 'left',
+          content: '<div class="intro-indent">选中角色后点击<span class="special"> “保存” </span>，完成后角色授权。</div>',
+          padding: 10,
+          backgroundColor: 'rgba(0,0,0,0.6)',
+          color: '#fff',
+          radius: 5,
+          area: [200, 120],
+          nextBtn: {
+            content: '知道了',
+            backgroundColor: '#990000',
+          },
+          callBack: function (obj) {
+            document.getElementById("tipsMain").contentWindow.setpic("./images/007-02角色-带保存.png"); 
+          }
+        },
+        {
+           X: 580,
+           Y: 248,
+           distance: 10,
+           direction: 'bottom',
+           noTriangle:true,
+           borderColor:'red',
+           content:'',
+           padding:10,
+           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+           backgroundColor:'transparent', //透明颜色
+           color:'#fff',
+           radius: 5,
+           area: [160, 40],
+           nextBtn: {
+             content: '',
+             backgroundColor: 'transparent',
+           },
+           callBack: function (obj) {
+             document.getElementById("tipsMain").contentWindow.setpic("./images/007-02角色-带保存.png"); 
+           }
+        }]
+      },
+    ]
+  })
+})
+
+function nextPage() {
+  new IntroduceControl().nextPage()
+}
+function prevPage() {
+  new IntroduceControl().prevPage()
+}
+function rePage() {
+  new IntroduceControl().rePage()
+}
+
+$("#inrto-nav").on("click","li",function (param) { 
+  var index = $(this).index()
+  new IntroduceControl().restPage(index)
+});
+
+//根据ID获取iframe对象
+var iframe = document.getElementById('tipsMain')
+iframe.onload = function() {
+  //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
+  var ifrheight =  iframe.contentWindow.document.documentElement.scrollHeight || iframe.contentDocument.body.scrollHeight
+  iframe.height = ifrheight + 20
+}
+</script>
+
+<script type="text/javascript">
+function getUrlParam(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+  var r = window.location.search.substr(1).match(reg); //匹配目标参数
+  if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+var objId=getUrlParam("objId");
+var _gatherData = {};
+_gatherData.visitModuleId = "模拟实操学习";
+_gatherData.objType = "ts_mnsc";
+_gatherData.objId = objId;
+(function() {
+  var ma = document.createElement('script');
+  ma.type = 'text/javascript';
+  ma.async = true;
+  ma.src = "../../tjsrc/js/ma.js";
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ma, s);
+})();
+</script>
+
+</body>
+</html>
