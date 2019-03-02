@@ -77,9 +77,9 @@ $(function () {
         '<p class="fir-p">数据录入</p><p>录入基本信息</p>',
         '<p class="fir-p">退费信息</p><p>选择退费信息</p>',
         '<p class="fir-p">货主信息</p><p>录入货主信息</p>',
-        '<p class="fir-p">提交信息</p><p>二维码确认身份</p>',
-        '<p class="fir-p">已提交单据</p><p>已提交退费单</p>',
+        '<p class="fir-p">提交信息</p><p>扫码确认身份</p>',
         '<p class="fir-p">申请限制</p><p>核实提交信息</p>',
+        '<p class="fir-p">已提交单据</p><p>已提交退费单</p>',
         '<p class="fir-p">查询退费单</p><p>查询企业退费单</p>',
       ]
     },
@@ -87,30 +87,28 @@ $(function () {
       el: '#tipsMain',
       width: '100%',
     },
-    list: [{
-    //第一页
+    list: [{//第一页
       srcUrl: './stepTips1.html',
       steps: [{
         X: 340,
         Y: 220,
         distance: 10,
         direction: 'bottom',
-        content: '<div class="intro-indent">企业操作员扫码登录企业中心后，点击<span class="special">“退费单申请”</span>，进入申请页面，在<span class="special">“待提交退费单”</span>页签，勾选“我已阅读同意遵守 《港建费退费申请须知》”或点击链接，查看申请须知。',
+        content: '<div class="intro-indent">企业操作员扫码登录企业中心后，点击<span class="special">“退费单申请”</span>，进入申请页面，在<span class="special">“待提交退费单”</span>页签，点击链接，查看申请须知。</div>',
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.6)',
         color: '#fff',
         radius: 5,
-        area: [230, 200],
+        area: [230, 180],
         nextBtn: {
           content: '知道了',
-          backgroundColor: '#990000',
+          backgroundColor: '#990000'
         },
         callBack: function (obj) {
-//          document.getElementById("tipsMain").contentWindow.setpic("./images/004-03用户添加-带角色.png"); 
         }
       }, {
         X: 349,
-        Y: 185,
+        Y: 175,
         distance: 10,
         direction: 'bottom',
         noTriangle: true,
@@ -120,7 +118,62 @@ $(function () {
         backgroundColor: 'transparent', //透明颜色
         color: '#fff',
         radius: 5,
-        area: [200, 20],
+        area: [200, 40],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent'
+        },
+        callBack: function (obj) {
+        }
+      }, {
+        X: 340,
+        Y: 60,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent"><br/>请认真阅读《港建费退付申请须知》。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [160, 120],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-001001.png");
+        }
+      }, {
+        X: 240,
+        Y: 225,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">必须先勾选“我已阅读同意遵守 《港建费退费申请须知》”，才能点击<span class="special">“申请”</span>按钮，点击后弹出退费单录入界面。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [200, 180],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-001002.png");
+        }
+      }, {
+        X: 580,
+        Y: 125,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [105, 40],
         nextBtn: {
           content: '',
           backgroundColor: 'transparent',
@@ -131,395 +184,585 @@ $(function () {
         callBack: function (obj) {
         }
       }]
+    }, { //第二页
+      srcUrl: './stepTips2.html',
+      steps: [{
+        X: 545,
+        Y: 430,
+        distance: 10,
+        direction: 'top',
+        content: '<div class="intro-indent">进入退费单录入页面，填写基本信息，其中客户名称和银行账号是根据登录企业人员自动填充的。<br/><br/>'
+            +'<strong>注</strong>：<br/>'
+            +'1-带<span class="special"> “※”</span>为必填项；<br/>'
+            +'2-“退费金额”不需要人工填写，系统将根据所选择的退费信息。<br/><br/>'
+            +'必填项都填写正确后，方可进行<span class="special">“暂存”</span>和<span class="special">“选择退费信息”</span>。<br/><br/>'
+            +'<span class="special">“暂存”</span>可以把当前录入的信息暂时保存在“待提交退费单”列表。<br/>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [440, 260],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+          callBack: function (obj) {
+        }
+      }, {
+        X: 545,
+        Y: 385,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [82, 40],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent'
+        },
+        callBack: function (obj) {   
+        }
+      }, {
+        X: 440,
+        Y: 305,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">点击退费单编号调出暂存的单据，继续编辑录入。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [180, 130],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-001000.png");
+        }
+      }, {
+        X: 425,
+        Y: 255,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [110, 40],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent'
+        },
+        callBack: function (obj) {   
+        }
+      }, {
+        X: 660,
+        Y: 370,
+        distance: 10,
+        direction: 'top',
+        content: '<div class="intro-indent">点击<span class="special">“选择退费信息”</span>按钮，选择退费信息。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [180, 130],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-002000.png");
+        }
+      }, {
+        X: 638,
+        Y: 326,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [118, 45],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent',
+          callBack: function (obj) {
+            nextPage();
+          }
+        },
+        callBack: function (obj) {   
+        }
+      }]
+    }, {//第三页
+      srcUrl: './stepTips3.html',
+      steps: [{
+        X: 580,
+        Y: 520,
+        distance: 10,
+        direction: 'top',
+        content: '<div class="intro-indent">在“选择-退费信息”页面，平台根据企业缴纳港建费的情况按月智能汇总出企业所需要处理的退费信息，<br><br>'
+            +'包括：<span class="special">统计年月、交易笔数、退费比例、交易总金额、退费金额</span><br>'
+            +'其中：退费金额=交易总金额*退费比例<br><br>'
+            +'在表格第一列“选择框”中选中一条或几条退费信息作为本月要申请的退费业务。<br>'
+            +'退费信息列表支持翻页。<br>'
+            +'点击<span class="special"> “确认” </span>返回信息录入页，所选信息将出现在“基本信息”页签下方的表格中。<br>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [300, 320],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+        }
+      }, {
+        X: 584,
+        Y: 472,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [120, 50],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent'
+        },
+        callBack: function (obj) {
+        }
+      }, {
+        X: 330,
+        Y: 460,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">注意：这里共有4笔交易，总交易笔数在“非货主”企业录入货主信息时要用到。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [200, 180],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-003001.png");
+        }
+      }, {
+        X: 330,
+        Y: 260,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">若是企业为货主在基本信息页就可以提交单据。</div><br><div class="intro-indent">若是非货主企业，请在企业类型中选择非货主。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [200, 180],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+        }
+      }, {
+        X: 323,
+        Y: 212,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [80, 40],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent',
+          callBack: function (obj) {
+            nextPage();
+          }
+        },
+        callBack: function (obj) {
+        }
+      }]
+    }, {//第四页
+      srcUrl: './stepTips4.html',
+      steps: [{
+        X: 330,
+        Y: 260,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">选择“非货主”后，企业必须录入真实的货主信息，系统才能受理。<br><br>页面中会出现“下一页”按钮和"货主信息"页签，'
+           +'点击<span class="special">下一步</span>或<span class="special">货主信息</span>，跳转至“货主信息”页签</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [200, 220],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+        }
+      }, {
+        X: 154,
+        Y: 226,
+        distance: 10,
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [80, 40],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent'
+        },
+        callBack: function (obj) {
+        }
+      }, {
+        X: 163,
+        Y: 110,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">可采用新增货主信息或导入数据的方式增加后主信息。<br><br>'
+           +'<strong>注</strong>：这里录入的货主信息条目数必须和单据交易笔数相同，在本例中1月有两笔交易，2月有两笔交易，共4条交易，因此在此必须录入4条信息。<br><br>'
+           +'首先，用<span class="special">“新增货主信息”</span>方式录入数据。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [300, 270],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-005001.png");
+        }
+      }, {
+        X: 110,
+        Y: 62,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [130, 40],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent'
+        }
+      }, {
+        X: 615,
+        Y: 420,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">在弹出的“货主信息录入窗口”录入所需信息，点击暂存，窗口关闭，货主信息新增到货主信息列表。<br><br>'
+           +'<strong>注</strong>：带<span class="special"> “※”</span>为必填项。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [240, 180],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-005002.png");
+        }
+      }, {
+        X: 585,
+        Y: 372,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [100, 50],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent'
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-005004.png");
+        }
+      }, {
+        X: 270,
+        Y: 110,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">接下来，用<span class="special">“数据导入”</span>方式录入数据。<br><br>'
+            +'<strong>注</strong>：系统支持用同时两种方式录入数据，两种方式录入的数据将汇总到“货主信息”列表中。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [240, 200],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-005005.png");
+        }
+      }, {
+        X: 235,
+        Y: 55,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [120, 50],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent'
+        },
+        callBack: function (obj) {
+        }
+      }, {
+        X: 574,
+        Y: 330,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">下载电子表格模板，按照模板填写数据。选择文件，上传填好数据的电子表格文件，点击导入，完成数据导入功能。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [220, 170],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-005003.png");
+        }
+      }, {
+        X: 538,
+        Y: 285,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [120, 40],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent'
+        },
+        callBack: function (obj) {
+        }
+      }, {
+        X: 574,
+        Y: 330,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">货主信息列表列出了所录入的（手工录入和数据导入）信息。<br>'
+            +'1-修改：点击操作列的修改链接，在弹出的信息窗口中修改货主信息；<br>'
+            +'2-删除：在第一列中的选择框中选择需要删除的信息，点击红色的删除按钮删除货主西信息。<br><br>'
+            +'点击提交按钮，提交数据。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [280, 250],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000',
+          callBack: function (obj) {
+            nextPage();
+          }
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-005005.png");
+        }
+      }]
+    }, {//第五页
+      srcUrl: './stepTips5.html',
+      steps: [{
+        X: 440,
+        Y: 310,
+        distance: 10,
+        direction: 'left',
+        content: '<div class="intro-indent">提交退费单，需要扫码确认用户身份。有三个入口可以提交单据：<br>'
+            +'1-货主企业在基本信息页，填写信息，选择退费信息后，就可以“提交”；<br>'
+            +'2-非货主企业在货主信息页，按要求填写货主信息后，可以“提交”；<br>'
+            +'3-待提交退费单页面，在列表中选择需要提交的退费单（可对选），点击列表上方的“提交”按钮，可批量提交退费单；<br><br>'
+            +'三处点击提交后都会弹出身份确认二维码，操作员扫码确认通过后，退费单信息提交平台，平台进行审核。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [280, 330],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000',
+          callBack: function (obj) {
+            nextPage();
+          }
+        },
+        callBack: function (obj) {
+        }
+      }]
+    }, {//第六页
+      srcUrl: './stepTips6.html',
+      steps: [{
+        X: 450,
+        Y: 300,
+        distance: 10,
+        direction: 'left',
+        content: '<div class="intro-indent">退费单申请有如下规则和限制：<br>'
+            +'1-平台根据企业缴纳港建费的情况按月智能汇总出企业所需要处理的退费信息，每个企业每月会生成1条退费信息，一年有12条退费信息；<br>'
+            +'2-企业每月可以提交多次退费申请，比如5月份进行两次申请，第一次申请当年1、2月退费，第二次申请3、4月退费；<br>'
+            +'3-若“非货主”企业申请退费单，您所选择的退费信息的交易笔数的总数要和您所录入的货主信息的条目数相同，即使货主信息相同的，也必须再次录入，以保证这条规则成立；<br>'
+            +'<span class="special">4-<strong><span style="color:red">请认真如实填写申请信息</span></strong>，平台会根据企业提供的信息进行核实，若核实事实与信息不符,退费单将被退回，当月有被“退回”的单据，则其他退费单据不能再次提交；</span><br>'
+            +'5-若出现以上情况，企业仍可录入或修改未提交的退费单，在下一个自然月提交退费申请。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [320, 400],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000',
+          callBack: function (obj) {
+            nextPage();
+          }
+        },
+        callBack: function (obj) {
+        }
+      }]
+    },{//第七页
+      srcUrl: './stepTips7.html',
+      steps: [{
+        X: 800,
+        Y: 250,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">已提交退费单中列出提交的退费单列表，可跟踪已提交的退费单的处理情况和付款情况。<br>'
+          +'单据状态：<span class="special">已提交、未提交、退回、已审批</span>；'
+          +'退费标识：<span class="special">未退费、已退费</span>。<br><br>'
+          +'退费单可根据录入时间范围进行查询，点击“重置”按钮，可以清空查询条件。<br><br></div>'
+          +'点击表格中的<span class="special">“操作记录”</span>可查看该条数据的操作日志；<br>'
+          +'点击表征中的<span class="special">“退费单编号”</span>可查看该退费单的详细信息。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [300, 320],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+        }
+      }, {
+        X: 294,
+        Y: 238,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [70, 30],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent',
+        },
+        callBack: function (obj) {
+        }
+      }, {
+        X: 600,
+        Y: 150,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">操作记录窗口，列出对该条退费单的操作日志，包括：<span class="special">操作人名称、操作时间、版本、操作日志</span>。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [200, 150],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-007004.png");
+        }
+      },
+      {
+         X: 730,
+         Y: 230,
+         distance: 10,
+         direction: 'bottom',
+         noTriangle: true,
+         borderColor: 'red',
+         content: '',
+         padding: 10,
+         // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+         backgroundColor: 'transparent', //透明颜色
+         color: '#fff',
+         radius: 5,
+         area: [80, 40],
+         nextBtn: {
+           content: '',
+           backgroundColor: 'transparent',
+           callBack: function (obj) {
+             nextPage();
+           }
+         },
+         callBack: function (obj) {
+         }
+      }]
     },
-      {
-        srcUrl: './stepTips2.html',
-        steps: [{
-          X: 320,
-          Y: 170,
-          distance: 10,
-          direction: 'bottom',
-          content: '<div class="intro-indent">进入新增角色页面，填写基础信息，带<span class="special"> “※”</span>为必填项，'
-               +'填写完信息后，点击<span class="special">“保存”</span>进入<span class="special">“授权资源”</span>。</div>',
-          padding: 10,
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          color: '#fff',
-          radius: 5,
-          area: [300, 150],
-          nextBtn: {
-            content: '知道了',
-            backgroundColor: '#990000',
-          },
-           callBack: function (obj) {
-          }
-        },
-        {
-           X: 580,
-           Y: 200,
-           distance: 10,
-           direction: 'bottom',
-           noTriangle: true,
-           borderColor: 'red',
-           content: '',
-           padding: 10,
-           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-           backgroundColor: 'transparent', //透明颜色
-           color: '#fff',
-           radius: 5,
-           area: [180, 40],
-           nextBtn: {
-             content: '',
-             backgroundColor: 'transparent',
-             callBack: function (obj) {
-               nextPage();
-             }
-           },
-           callBack: function (obj) {   
-           }
-        }]
-      },
-      {
-        srcUrl: './stepTips3.html',
-        steps: [{
-           X: 580,
-           Y: 460,
-           distance: 10,
-           direction: 'top',
-           content: '<div class="intro-indent">进入授权资源页面，对新添加的角色授以相对应的功能及资源，点击<br><span class="special"> “保存” </span>返回列表页。<br>',
-           padding: 10,
-           backgroundColor: 'rgba(0,0,0,0.6)',
-           color: '#fff',
-           radius: 5,
-           area: [230, 140],
-           nextBtn: {
-             content: '知道了',
-             backgroundColor: '#990000',
-           },
-           callBack: function (obj) {
-           }
-        },
-        {
-           X: 522,
-           Y: 410,
-           distance: 10,
-           direction: 'bottom',
-           noTriangle: true,
-           borderColor: 'red',
-           content: '',
-           padding: 10,
-           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-           backgroundColor: 'transparent', //透明颜色
-           color: '#fff',
-           radius: 5,
-           area: [130, 50],
-           nextBtn: {
-             content: '',
-             backgroundColor: 'transparent',
-             callBack: function (obj) {
-               nextPage();
-             }
-           },
-           callBack: function (obj) {
-           }
-        }]
-     },
-     {
-        srcUrl: './stepTips4.html',
-        steps: [{
-           X: 190,
-           Y: 140,
-           distance: 10,
-           direction: 'right',
-           content: '<div class="intro-indent">此处为企业用户列表，所有用户将在此显示，点击<br><span class="special"> “新增” </span>进入用户新增页面。<br>',
-           padding: 10,
-           backgroundColor: 'rgba(0,0,0,0.6)',
-           color: '#fff',
-           radius: 5,
-           area: [240, 130],
-           nextBtn: {
-             content: '知道了',
-             backgroundColor: '#990000',
-           },
-           callBack: function (obj) {
-           }
-        },
-        {
-           X: 260,
-           Y: 100,
-           distance: 10,
-           direction: 'bottom',
-           noTriangle: true,
-           borderColor: 'red',
-           content: '',
-           padding: 10,
-           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-           backgroundColor: 'transparent', //透明颜色
-           color: '#fff',
-           radius: 5,
-           area: [120, 40],
-           nextBtn: {
-             content: '',
-             backgroundColor: 'transparent',
-             callBack: function (obj) {
-               nextPage();
-             }
-           },
-        }]
-     },  
-     {  
-        srcUrl: './stepTips5.html',
-        steps: [{
-           X: 340,
-           Y: 310,
-           distance: 10,
-           direction: 'bottom',
-           content: '<div class="intro-indent">进入新增用户页面，填写基础信息，带<span class="special"> “※” </span>号为必填项。<br>',
-           padding: 10,
-           backgroundColor: 'rgba(0,0,0,0.6)',
-           color: '#fff',
-           radius: 5,
-           area: [200, 100],
-           nextBtn: {
-             content: '知道了',
-             backgroundColor: '#990000',
-           },
-           callBack: function (obj) {
-           }
-        },
-        {
-          X: 360,
-          Y: 340,
-          distance: 10,
-          direction: 'left',
-          content: '<div class="intro-indent"><span class="special"> “角色添加” </span>也可以选多个。<br></div>',
-          padding: 10,
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          color: '#fff',
-          radius: 5,
-          area: [200, 120],
-          nextBtn: {
-            content: '知道了',
-            backgroundColor: '#990000',
-          },
-          callBack: function (obj) {
-            document.getElementById("tipsMain").contentWindow.setpic("./images/004-03用户添加-带角色.png"); 
-          }
-        },
-        {
-          X: 480,
-          Y: 270,
-          distance: 10,
-          direction: 'left',
-          content: '<div class="intro-indent">在您确定<span class="special"> “身份证号” </span>不重复的情况下，点击<span class="special"> “保存” </span>，添加成功返回用户列表页。</div>',
-          padding: 10,
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          color: '#fff',
-          radius: 5,
-          area: [200, 120],
-          nextBtn: {
-            content: '知道了',
-            backgroundColor: '#990000',
-          },
-          callBack: function (obj) {
-            document.getElementById("tipsMain").contentWindow.setpic("./images/004-01用户添加-身份证号重复.png"); 
-          }
-        },
-        {
-           X: 585,
-           Y: 310,
-           distance: 10,
-           direction: 'bottom',
-           noTriangle: true,
-           borderColor: 'red',
-           content: '',
-           padding: 10,
-           backgroundColor: 'transparent', //透明颜色
-           color: '#fff',
-           radius: 5,
-           area: [130, 50],
-           nextBtn: {
-             content: '',
-             backgroundColor: 'transparent',
-             callBack: function (obj) {
-               nextPage();
-             }
-           },
-           callBack: function (obj) {
-           }
-        }]
-      },
-      {
-        srcUrl: './stepTips6.html',
-        steps: [{
-           X: 965,
-           Y: 340,
-           distance: 10,
-           direction: 'bottom',
-           content: '<div class="intro-indent">如果用户信息有误，管理员可以点击<br><span class="special"> “修改” </span>进入用户修改页面。<br>',
-           padding: 10,
-           backgroundColor: 'rgba(0,0,0,0.6)',
-           color: '#fff',
-           radius: 5,
-           area: [150, 130],
-           nextBtn: {
-             content: '知道了',
-             backgroundColor: '#990000',
-           },
-           callBack: function (obj) {
-           }
-        },
-        {
-          X: 975,
-          Y: 310,
-          distance: 10,
-          direction: 'bottom',
-          noTriangle: true,
-          borderColor: 'red',
-          content: '',
-          padding: 10,
-          // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-          backgroundColor: 'transparent', //透明颜色
-          color: '#fff',
-          radius: 5,
-          area: [20, 20],
-          nextBtn: {
-            content: '',
-            backgroundColor: 'transparent',
-          },
-          callBack: function (obj) {
-             
-          }
-        },
-        {
-          X: 360,
-          Y: 220,
-          distance: 10,
-          direction: 'bottom',
-          content: '<div class="intro-indent">带<span class="special"> “※” </span>为必填项，信息填写完城后，点击<span class="special"> “保存” </span>，返回用户列表页。</div>',
-          padding: 10,
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          color: '#fff',
-          radius: 5,
-          area: [200, 120],
-          nextBtn: {
-            content: '知道了',
-            backgroundColor: '#990000',
-          },
-          callBack: function (obj) {
-            document.getElementById("tipsMain").contentWindow.setpic("./images/005-用户修改.png"); 
-          }
-        },
-        {
-           X: 590,
-           Y: 235,
-           distance: 10,
-           direction: 'bottom',
-           noTriangle: true,
-           borderColor: 'red',
-           content: '',
-           padding: 10,
-           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-           backgroundColor: 'transparent', //透明颜色
-           color: '#fff',
-           radius: 5,
-           area: [160, 40],
-           nextBtn: {
-             content: '',
-             backgroundColor: 'transparent',
-             callBack: function (obj) {
-               nextPage();
-             }
-           },
-           callBack: function (obj) {
-           }
-        }]
-      },
-      {
-        srcUrl: './stepTips7.html',
-        steps: [{
-           X: 990,
-           Y: 240,
-           distance: 10,
-           direction: 'bottom',
-           content: '<div class="intro-indent">管理员可以对用户进行<span class="special"> “启用” </span>或者<span class="special"> “禁用” </span>操作，点击<span class="special"> “禁用” </span>。</div>',
-           padding: 10,
-           backgroundColor: 'rgba(0,0,0,0.6)',
-           color: '#fff',
-           radius: 5,
-           area: [180, 130],
-           nextBtn: {
-             content: '知道了',
-             backgroundColor: '#990000',
-           },
-           callBack: function (obj) {
-           }
-        },
-        {
-          X: 1000,
-          Y: 256,
-          distance: 10,
-          direction: 'bottom',
-          noTriangle: true,
-          borderColor: 'red',
-          content: '',
-          padding: 10,
-          // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-          backgroundColor: 'transparent', //透明颜色
-          color: '#fff',
-          radius: 5,
-          area: [20, 20],
-          nextBtn: {
-            content: '',
-            backgroundColor: 'transparent',
-          },
-          callBack: function (obj) {
-             
-          }
-        },
-        {
-          X: 560,
-          Y: 240,
-          distance: 10,
-          direction: 'left',
-          content: '<div class="intro-indent">确认更改后，点击<span class="special"> “确认” </span>，完成后，将返回用户列表页。</div>',
-          padding: 10,
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          color: '#fff',
-          radius: 5,
-          area: [200, 120],
-          nextBtn: {
-            content: '知道了',
-            backgroundColor: '#990000',
-          },
-          callBack: function (obj) {
-            document.getElementById("tipsMain").contentWindow.setpic("./images/006-启用禁用.png"); 
-          }
-        },
-        {
-           X: 730,
-           Y: 230,
-           distance: 10,
-           direction: 'bottom',
-           noTriangle: true,
-           borderColor: 'red',
-           content: '',
-           padding: 10,
-           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-           backgroundColor: 'transparent', //透明颜色
-           color: '#fff',
-           radius: 5,
-           area: [80, 40],
-           nextBtn: {
-             content: '',
-             backgroundColor: 'transparent',
-             callBack: function (obj) {
-               nextPage();
-             }
-           },
-           callBack: function (obj) {
-           }
-        }]
-      },
       {
         srcUrl: './stepTips8.html',
         steps: [{
