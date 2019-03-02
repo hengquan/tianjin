@@ -73,14 +73,14 @@ $(function () {
     nav: {
       el: '#inrto-nav',
       list: [
-        '<p class="fir-p">退费单列表</p><p>企业退单管理入口</p>',            
-        '<p class="fir-p">数据录入</p><p>录入退费单基本信息</p>',
-        '<p class="fir-p">退费信息</p><p>选择企业的退费信息</p>',
-        '<p class="fir-p">货主信息</p><p>非货主录入货主信息</p>',
-        '<p class="fir-p">提交信息</p><p>提交信息二维码确认</p>',
-        '<p class="fir-p">已提交退费单</p><p>查看已提交的退费单信息</p>',
-        '<p class="fir-p">提交限制</p><p>企业提交信息的要求</p>',
-        '<p class="fir-p">退费单查询</p><p>查询企业的退费单</p>',
+        '<p class="fir-p">申请退费单</p><p>勾选申请须知</p>',            
+        '<p class="fir-p">数据录入</p><p>录入基本信息</p>',
+        '<p class="fir-p">退费信息</p><p>选择退费信息</p>',
+        '<p class="fir-p">货主信息</p><p>录入货主信息</p>',
+        '<p class="fir-p">提交信息</p><p>二维码确认身份</p>',
+        '<p class="fir-p">已提交单据</p><p>已提交退费单</p>',
+        '<p class="fir-p">申请限制</p><p>核实提交信息</p>',
+        '<p class="fir-p">查询退费单</p><p>查询企业退费单</p>',
       ]
     },
     iframe: {
@@ -91,25 +91,26 @@ $(function () {
     //第一页
       srcUrl: './stepTips1.html',
       steps: [{
-        X: 180,
-        Y: 180,
+        X: 340,
+        Y: 220,
         distance: 10,
-        direction: 'right',
-        content: '<div class="intro-indent">管理员登录后，点击<span class="special">“权限模板”</span>，此处为权限模板列表，所有角色将在此显示，点击<span class="special">“新增”</span>进行新增角色。</div>',
+        direction: 'bottom',
+        content: '<div class="intro-indent">企业操作员扫码登录企业中心后，点击<span class="special">“退费单申请”</span>，进入申请页面，在<span class="special">“待提交退费单”</span>页签，勾选“我已阅读同意遵守 《港建费退费申请须知》”或点击链接，查看申请须知。',
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.6)',
         color: '#fff',
         radius: 5,
-        area: [200, 160],
+        area: [230, 200],
         nextBtn: {
           content: '知道了',
           backgroundColor: '#990000',
         },
         callBack: function (obj) {
+//          document.getElementById("tipsMain").contentWindow.setpic("./images/004-03用户添加-带角色.png"); 
         }
       }, {
-        X: 255,
-        Y: 145,
+        X: 349,
+        Y: 185,
         distance: 10,
         direction: 'bottom',
         noTriangle: true,
@@ -119,7 +120,7 @@ $(function () {
         backgroundColor: 'transparent', //透明颜色
         color: '#fff',
         radius: 5,
-        area: [120, 50],
+        area: [200, 20],
         nextBtn: {
           content: '',
           backgroundColor: 'transparent',
