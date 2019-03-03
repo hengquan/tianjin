@@ -79,8 +79,7 @@ $(function () {
         '<p class="fir-p">货主信息</p><p>录入货主信息</p>',
         '<p class="fir-p">提交信息</p><p>扫码确认身份</p>',
         '<p class="fir-p">申请限制</p><p>核实提交信息</p>',
-        '<p class="fir-p">已提交单据</p><p>已提交退费单</p>',
-        '<p class="fir-p">查询退费单</p><p>查询企业退费单</p>',
+        '<p class="fir-p">已提交单据</p><p>已提交退费单</p>'
       ]
     },
     iframe: {
@@ -94,7 +93,8 @@ $(function () {
         Y: 220,
         distance: 10,
         direction: 'bottom',
-        content: '<div class="intro-indent">企业操作员扫码登录企业中心后，点击<span class="special">“退费单申请”</span>，进入申请页面，在<span class="special">“待提交退费单”</span>页签，点击链接，查看申请须知。</div>',
+        content: '<div class="intro-indent">企业操作员扫码登录企业中心后，点击<span class="special">“退费单申请”</span>，进入申请页面，在<span class="special">“待提交退费单”</span>页签。<br>'
+            +'在申请退费单前，需勾选“我已阅读同意遵守 《港建费退费申请须知》”的选项，或点击链接，查看申请须知。</div>',
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.6)',
         color: '#fff',
@@ -178,7 +178,7 @@ $(function () {
           content: '',
           backgroundColor: 'transparent',
           callBack: function (obj) {
-            document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-001001.png"); 
+            nextPage(); 
           }
         },
         callBack: function (obj) {
@@ -193,8 +193,8 @@ $(function () {
         direction: 'top',
         content: '<div class="intro-indent">进入退费单录入页面，填写基本信息，其中客户名称和银行账号是根据登录企业人员自动填充的。<br/><br/>'
             +'<strong>注</strong>：<br/>'
-            +'1-带<span class="special"> “※”</span>为必填项；<br/>'
-            +'2-“退费金额”不需要人工填写，系统将根据所选择的退费信息。<br/><br/>'
+            +'1-带<span class="special">“※”</span>为必填项；<br/>'
+            +'2-“退费金额”不需要人工填写，系统将根据所选择的退费信息计算。<br/><br/>'
             +'必填项都填写正确后，方可进行<span class="special">“暂存”</span>和<span class="special">“选择退费信息”</span>。<br/><br/>'
             +'<span class="special">“暂存”</span>可以把当前录入的信息暂时保存在“待提交退费单”列表。<br/>',
         padding: 10,
@@ -280,7 +280,7 @@ $(function () {
           backgroundColor: '#990000'
         },
         callBack: function (obj) {
-          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-002000.png");
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-002001.png");
         }
       }, {
         X: 638,
@@ -312,17 +312,17 @@ $(function () {
         Y: 520,
         distance: 10,
         direction: 'top',
-        content: '<div class="intro-indent">在“选择-退费信息”页面，平台根据企业缴纳港建费的情况按月智能汇总出企业所需要处理的退费信息，<br><br>'
-            +'包括：<span class="special">统计年月、交易笔数、退费比例、交易总金额、退费金额</span><br>'
-            +'其中：退费金额=交易总金额*退费比例<br><br>'
+        content: '<div class="intro-indent">在“选择-退费信息”页面，平台根据企业缴纳港建费的情况按月智能汇总出企业所需要处理的退费信息。<br><br>'
+            +'包括：<span class="special">“统计年月、交易笔数、退费比例、交易总金额、退费金额”</span>；<br>'
+            +'其中：退费金额=交易总金额 * 退费比例。<br><br>'
             +'在表格第一列“选择框”中选中一条或几条退费信息作为本月要申请的退费业务。<br>'
-            +'退费信息列表支持翻页。<br>'
+            +'退费信息列表支持翻页。<br><br>'
             +'点击<span class="special"> “确认” </span>返回信息录入页，所选信息将出现在“基本信息”页签下方的表格中。<br>',
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.6)',
         color: '#fff',
         radius: 5,
-        area: [300, 320],
+        area: [300, 340],
         nextBtn: {
           content: '知道了',
           backgroundColor: '#990000'
@@ -414,7 +414,7 @@ $(function () {
         distance: 10,
         direction: 'right',
         content: '<div class="intro-indent">选择“非货主”后，企业必须录入真实的货主信息，系统才能受理。<br><br>页面中会出现“下一页”按钮和"货主信息"页签，'
-           +'点击<span class="special">下一步</span>或<span class="special">货主信息</span>，跳转至“货主信息”页签</div>',
+           +'点击<span class="special">“下一步”</span>或<span class="special">“货主信息”</span>，跳转至“货主信息”页签</div>',
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.6)',
         color: '#fff',
@@ -449,8 +449,8 @@ $(function () {
         Y: 110,
         distance: 10,
         direction: 'right',
-        content: '<div class="intro-indent">可采用新增货主信息或导入数据的方式增加后主信息。<br><br>'
-           +'<strong>注</strong>：这里录入的货主信息条目数必须和单据交易笔数相同，在本例中1月有两笔交易，2月有两笔交易，共4条交易，因此在此必须录入4条信息。<br><br>'
+        content: '<div class="intro-indent">可采用新增货主信息或导入数据的方式增加货主信息。<br><br>'
+           +'<strong>注</strong>：这里录入的货主信息条目数必须和单据交易笔数相同，在本例中一月有2笔交易，二月有2笔交易，共4条交易，因此在此必须录入4条信息。即使企业相同，也要重复录入4条信息。<br><br>'
            +'首先，用<span class="special">“新增货主信息”</span>方式录入数据。</div>',
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.6)',
@@ -487,7 +487,7 @@ $(function () {
         distance: 10,
         direction: 'right',
         content: '<div class="intro-indent">在弹出的“货主信息录入窗口”录入所需信息，点击暂存，窗口关闭，货主信息新增到货主信息列表。<br><br>'
-           +'<strong>注</strong>：带<span class="special"> “※”</span>为必填项。</div>',
+           +'<strong>注</strong>：带<span class="special">“※”</span>为必填项。</div>',
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.6)',
         color: '#fff',
@@ -526,7 +526,7 @@ $(function () {
         distance: 10,
         direction: 'right',
         content: '<div class="intro-indent">接下来，用<span class="special">“数据导入”</span>方式录入数据。<br><br>'
-            +'<strong>注</strong>：系统支持用同时两种方式录入数据，两种方式录入的数据将汇总到“货主信息”列表中。</div>',
+            +'<strong>注</strong>：系统同时支持用两种方式录入数据，两种方式录入的数据将汇总到“货主信息”列表中。</div>',
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.6)',
         color: '#fff',
@@ -602,7 +602,7 @@ $(function () {
         direction: 'right',
         content: '<div class="intro-indent">货主信息列表列出了所录入的（手工录入和数据导入）信息。<br>'
             +'1-修改：点击操作列的修改链接，在弹出的信息窗口中修改货主信息；<br>'
-            +'2-删除：在第一列中的选择框中选择需要删除的信息，点击红色的删除按钮删除货主西信息。<br><br>'
+            +'2-删除：在第一列中的选择框中选择需要删除的信息（可多选），点击红色的<span class="special">“删除”</span>按钮批量删除货主西信息。<br><br>'
             +'点击提交按钮，提交数据。</div>',
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.6)',
@@ -627,11 +627,11 @@ $(function () {
         Y: 310,
         distance: 10,
         direction: 'left',
-        content: '<div class="intro-indent">提交退费单，需要扫码确认用户身份。有三个入口可以提交单据：<br>'
-            +'1-货主企业在基本信息页，填写信息，选择退费信息后，就可以“提交”；<br>'
+        content: '<div class="intro-indent">提交退费单，需要扫码确认用户身份。有三处可以提交单据：<br>'
+            +'1-货主企业在基本信息页，填写信息，选择退费信息后，可以“提交”；<br>'
             +'2-非货主企业在货主信息页，按要求填写货主信息后，可以“提交”；<br>'
-            +'3-待提交退费单页面，在列表中选择需要提交的退费单（可对选），点击列表上方的“提交”按钮，可批量提交退费单；<br><br>'
-            +'三处点击提交后都会弹出身份确认二维码，操作员扫码确认通过后，退费单信息提交平台，平台进行审核。</div>',
+            +'3-待提交退费单页面，在列表中选择需要提交的退费单（可多选），点击列表上方的<span class="special">“提交”</span>按钮，可批量提交退费单；<br><br>'
+            +'提交后都会弹出二维码，需操作员扫码确认身份，通过后，退费单信息提交平台，平台进行审核。</div>',
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.6)',
         color: '#fff',
@@ -657,9 +657,9 @@ $(function () {
         content: '<div class="intro-indent">退费单申请有如下规则和限制：<br>'
             +'1-平台根据企业缴纳港建费的情况按月智能汇总出企业所需要处理的退费信息，每个企业每月会生成1条退费信息，一年有12条退费信息；<br>'
             +'2-企业每月可以提交多次退费申请，比如5月份进行两次申请，第一次申请当年1、2月退费，第二次申请3、4月退费；<br>'
-            +'3-若“非货主”企业申请退费单，您所选择的退费信息的交易笔数的总数要和您所录入的货主信息的条目数相同，即使货主信息相同的，也必须再次录入，以保证这条规则成立；<br>'
+            +'3-若“非货主”企业申请退费单，您所选择的退费信息的交易笔数的总数要和您所录入的货主信息的条目数相同，即使货主信息相同也要重复录入，保证本规则成立；<br>'
             +'<span class="special">4-<strong><span style="color:red">请认真如实填写申请信息</span></strong>，平台会根据企业提供的信息进行核实，若核实事实与信息不符,退费单将被退回，当月有被“退回”的单据，则其他退费单据不能再次提交；</span><br>'
-            +'5-若出现以上情况，企业仍可录入或修改未提交的退费单，在下一个自然月提交退费申请。</div>',
+            +'5-若出第4步所述情况，企业仍可录入或修改未提交的退费单，在下一个自然月提交退费申请。</div>',
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.6)',
         color: '#fff',
@@ -683,8 +683,8 @@ $(function () {
         distance: 10,
         direction: 'right',
         content: '<div class="intro-indent">已提交退费单中列出提交的退费单列表，可跟踪已提交的退费单的处理情况和付款情况。<br>'
-          +'单据状态：<span class="special">已提交、未提交、退回、已审批</span>；'
-          +'退费标识：<span class="special">未退费、已退费</span>。<br><br>'
+          +'单据状态：<span class="special">“已提交、未提交、退回、已审批”</span>；'
+          +'退费标识：<span class="special">“未退费、已退费”</span>。<br><br>'
           +'退费单可根据录入时间范围进行查询，点击“重置”按钮，可以清空查询条件。<br><br></div>'
           +'点击表格中的<span class="special">“操作记录”</span>可查看该条数据的操作日志；<br>'
           +'点击表征中的<span class="special">“退费单编号”</span>可查看该退费单的详细信息。</div>',
@@ -724,7 +724,7 @@ $(function () {
         Y: 150,
         distance: 10,
         direction: 'right',
-        content: '<div class="intro-indent">操作记录窗口，列出对该条退费单的操作日志，包括：<span class="special">操作人名称、操作时间、版本、操作日志</span>。</div>',
+        content: '<div class="intro-indent">操作记录窗口，列出对该条退费单的操作日志，包括：<span class="special">“操作人名称、操作时间、版本、操作日志”</span>。</div>',
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.6)',
         color: '#fff',
@@ -735,138 +735,87 @@ $(function () {
           backgroundColor: '#990000'
         },
         callBack: function (obj) {
-          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-007004.png");
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-007003.png");
         }
-      },
-      {
-         X: 730,
-         Y: 230,
-         distance: 10,
-         direction: 'bottom',
-         noTriangle: true,
-         borderColor: 'red',
-         content: '',
-         padding: 10,
-         // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-         backgroundColor: 'transparent', //透明颜色
-         color: '#fff',
-         radius: 5,
-         area: [80, 40],
-         nextBtn: {
-           content: '',
-           backgroundColor: 'transparent',
-           callBack: function (obj) {
-             nextPage();
-           }
-         },
-         callBack: function (obj) {
-         }
-      }]
-    },
-      {
-        srcUrl: './stepTips8.html',
-        steps: [{
-           X: 930,
-           Y: 440,
-           distance: 10,
-           direction: 'left',
-           content: '<div class="intro-indent">管理员可以对用户进行<span class="special"> “授权” </span>请点击<span class="special"> “角色” </span>进入授权页面。</div>',
-           padding: 10,
-           backgroundColor: 'rgba(0,0,0,0.6)',
-           color: '#fff',
-           radius: 5,
-           area: [180, 130],
-           nextBtn: {
-             content: '知道了',
-             backgroundColor: '#990000',
-           },
-           callBack: function (obj) {
-           }
-        },
-        {
-          X: 945,
-          Y: 400,
-          distance: 10,
-          direction: 'bottom',
-          noTriangle: true,
-          borderColor: 'red',
+      }, {
+        X: 414,
+        Y: 238,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [110, 30],
+        nextBtn: {
           content: '',
-          padding: 10,
-          // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-          backgroundColor: 'transparent', //透明颜色
-          color: '#fff',
-          radius: 5,
-          area: [20,20],
-          nextBtn: {
-            content: '',
-            backgroundColor: 'transparent',
-          },
-          callBack: function (obj) {
-             
-          }
+          backgroundColor: 'transparent',
         },
-        {
-          X: 380,
-          Y: 260,
-          distance: 10,
-          direction: 'left',
-          content: '<div class="">此处可以选择<span class="special">“角色”</span>。</div>',
-          padding: 10,
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          color: '#fff',
-          radius: 5,
-          area: [200, 80],
-          nextBtn: {
-            content: '知道了',
-            backgroundColor: '#990000',
-          },
-          callBack: function (obj) {
-            document.getElementById("tipsMain").contentWindow.setpic("./images/007-01授权-带角色.png"); 
-          }
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-007000.png");
+        }
+      }, {
+        X: 220,
+        Y: 78,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">退费单查看页面，若是“非货主”企业，还会出现<span class="special">“货主信息”</span>页签，点击该页签，切换到货主信息页查看货主信息内容。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [200, 170],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
         },
-        {
-          X: 560,
-          Y: 270,
-          distance: 10,
-          direction: 'left',
-          content: '<div class="intro-indent">选中角色后点击<span class="special"> “保存” </span>，完成后角色授权。</div>',
-          padding: 10,
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          color: '#fff',
-          radius: 5,
-          area: [200, 120],
-          nextBtn: {
-            content: '知道了',
-            backgroundColor: '#990000',
-          },
-          callBack: function (obj) {
-            document.getElementById("tipsMain").contentWindow.setpic("./images/007-02角色-带保存.png"); 
-          }
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-007001.png");
+        }
+      }, {
+        X: 193,
+        Y: 19,
+        distance: 10,
+        direction: 'bottom',
+        noTriangle: true,
+        borderColor: 'red',
+        content: '',
+        padding: 10,
+        // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
+        backgroundColor: 'transparent', //透明颜色
+        color: '#fff',
+        radius: 5,
+        area: [90, 44],
+        nextBtn: {
+          content: '',
+          backgroundColor: 'transparent',
         },
-        {
-           X: 580,
-           Y: 248,
-           distance: 10,
-           direction: 'bottom',
-           noTriangle:true,
-           borderColor:'red',
-           content:'',
-           padding:10,
-           // backgroundColor: 'rgba(0,0,0,0.6)',//背景颜色
-           backgroundColor:'transparent', //透明颜色
-           color:'#fff',
-           radius: 5,
-           area: [160, 40],
-           nextBtn: {
-             content: '',
-             backgroundColor: 'transparent',
-           },
-           callBack: function (obj) {
-             document.getElementById("tipsMain").contentWindow.setpic("./images/007-02角色-带保存.png"); 
-           }
-        }]
-      },
-    ]
+        callBack: function (obj) {
+        }
+      }, {
+        X: 420,
+        Y: 178,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">货主信息页，列出货主信息表。<br><br>包括如下信息：<span class="special">“货主企业名称、联系人、联系电话、办公电话”</span>。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [260, 140],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+          document.getElementById("tipsMain").contentWindow.setpic("./images/tfd-007002.png");
+        }
+      }]
+    }]
   })
 })
 
