@@ -2,18 +2,18 @@
 <head>
 <meta charset="UTF-8">
 <title>模拟实操</title>
-<!-- https
+<!-- https -->
 <script type="text/javascript" src="https://ocap.shangwuju.tj.gov.cn/moni_api/web/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://ocap.shangwuju.tj.gov.cn/moni_api/web/js/jquery-1.12.4.js"></script>
 <link rel="stylesheet" href="https://ocap.shangwuju.tj.gov.cn/moni_api/web/bootstrap/css/bootstrap.css">
--->
+
 
 <!-- http -->
-<!--  -->
+<!-- 
 <script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
 <link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
-
+ -->
 <style>
 body {
   background: white;
@@ -102,8 +102,8 @@ body {
             <!-- 站内导航 -->
             <div class="position_wrap">
                 <div class="w1200 list-header">
-                    <img src="./web/images/dot.png" alt="" class="list-header-mark">&emsp;
-                    <!-- <img src="https://ocap.shangwuju.tj.gov.cn/moni_api/web/images/dot.png" alt="" class="list-header-mark">&emsp; -->
+                    <!-- <img src="./web/images/dot.png" alt="" class="list-header-mark">&emsp; -->
+                    <img src="https://ocap.shangwuju.tj.gov.cn/moni_api/web/images/dot.png" alt="" class="list-header-mark">&emsp;
                     <span class="list-header-title"><a href="#"
                         onclick="gotoSY()" class="active">首页</a></span><span>&gt;</span> <span
                         class="list-header-active">模拟实操</span>
@@ -137,9 +137,9 @@ body {
     <script>
     function gotoSY() {
       //试运行
-      top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
+      //top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
       //正式
-      //top.location.href = "https://ocap.shangwuju.tj.gov.cn/";
+      top.location.href = "https://ocap.shangwuju.tj.gov.cn/";
       return false;
     }
     $(document).ready(function() {
@@ -155,8 +155,8 @@ body {
       };
       $.ajax({
             type : 'post',
-            url : "./train/getMnscList",
-            /* url : "https://ocap.shangwuju.tj.gov.cn/moni_api/train/getMnscList", */
+            /* url : "./train/getMnscList", */
+            url : "https://ocap.shangwuju.tj.gov.cn/moni_api/train/getMnscList",
             data : data,
             dataType : 'json',
             cache : false,
@@ -171,8 +171,8 @@ body {
                   //查主图片是否有值无值显示默认图
                   var imgUrl = dataList[i].imgUrl;
                   if (!imgUrl)
-                    imgUrl = "./web/images/mnsc_default.jpg";
-                    /* imgUrl = "https://ocap.shangwuju.tj.gov.cn/moni_api/web/images/mnsc_default.jpg"; */
+                    /* imgUrl = "./web/images/mnsc_default.jpg"; */
+                    imgUrl = "https://ocap.shangwuju.tj.gov.cn/moni_api/web/images/mnsc_default.jpg";
                   html += '<div class="col-md-3">'
                       + '<img class="imgMsg" src="'+ imgUrl +'" alt="">'
                       + '<div class="model_bg" onclick=toSimulation("'
@@ -216,8 +216,8 @@ body {
 
     //  收费清单录入模拟实操
     function toSimulation(url) {
-      url = "./mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1";
-      /* url = "https://ocap.shangwuju.tj.gov.cn/moni_api/mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1"; */
+      /* url = "./mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1"; */
+      url = "https://ocap.shangwuju.tj.gov.cn/moni_api/mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1";
       window.open(url);
     }
   </script>
@@ -230,8 +230,8 @@ body {
       var ma = document.createElement('script');
       ma.type = 'text/javascript';
       ma.async = true;
-      ma.src = "./tjsrc/js/ma.js";
-      /* ma.src = "https://ocap.shangwuju.tj.gov.cn/moni_api/tjsrc/js/ma.js"; */
+      /* ma.src = "./tjsrc/js/ma.js"; */
+      ma.src = "https://ocap.shangwuju.tj.gov.cn/moni_api/tjsrc/js/ma.js";
       var s = document.getElementsByTagName('script')[0];
       s.parentNode.insertBefore(ma, s);
     })();
