@@ -1,16 +1,16 @@
 <project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>cn.taiji</groupId>
-		<artifactId>taiji-pom</artifactId>
-		<version>1.1.3-RELEASES</version>
-		<relativePath />
-	</parent>
-	<artifactId>tianjin-unifiedfee-ot</artifactId>
-	<name>tianjin-unifiedfee-ot</name>
-	<url>http://maven.apache.org</url>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.taiji</groupId>
+    <artifactId>taiji-pom</artifactId>
+    <!-- <version>1.1.3-RELEASES</version> -->
+    <version>1.2.0-RELEASES</version>
+  </parent>
+  <artifactId>tianjin-unifiedfee-ot</artifactId>
+  <name>tianjin-unifiedfee-ot</name>
 
   <!-- E:\workSpace\tianjin-unifiedfee-ot\extlibs\ -->
   <!-- E:\workspace\tianjin-unifiedfee-ot\extlibs\ -->
@@ -21,75 +21,84 @@
     <localLibDir>D:\work\projects\tianjin\extlibs</localLibDir>
   </properties>
 
-	<dependencies>
-		<!-- 异常处理模块 -->
-		<dependency>
-			<groupId>cn.taiji</groupId>
-			<artifactId>taiji-exception</artifactId>
-		</dependency>
-		<!-- 工具包 -->
-		<dependency>
-			<groupId>cn.taiji</groupId>
-			<artifactId>taiji-util</artifactId>
-		</dependency>
-		<!-- jpa持久层模块 -->
-		<dependency>
-			<groupId>cn.taiji</groupId>
-			<artifactId>taiji-jpa</artifactId>
-		</dependency>
-		<!-- 获得企业信息 -->
-		<dependency>
-			<groupId>cn.taiji</groupId>
-			<artifactId>taiji-company</artifactId>
-			<version>1.0.3-RELEASES</version>
-		</dependency>
-		<!-- web模块 -->
-		<dependency>
-			<groupId>cn.taiji</groupId>
-			<artifactId>taiji-web</artifactId>
-		</dependency>
-		<!-- 服务间调用模块 -->
-		<dependency>
-			<groupId>cn.taiji</groupId>
-			<artifactId>taiji-interaction</artifactId>
-		</dependency>
-		<!-- 权限管理模块 -->
-		<dependency>
-			<groupId>cn.taiji</groupId>
-			<artifactId>taiji-security</artifactId>
-		</dependency>
-		<!-- 文件管理模块，引入依赖 -->
-		<dependency>
-			<groupId>cn.taiji</groupId>
-			<artifactId>taiji-file</artifactId>
-			<version>1.0.11-RELEASES</version>
-		</dependency>
-		<!-- 日志模块 -->
-		<dependency>
-			<groupId>cn.taiji</groupId>
-			<artifactId>taiji-logging</artifactId>
-		</dependency>
-		<!-- redis缓存 <dependency> <groupId>cn.taiji</groupId> <artifactId>taiji-redis</artifactId> 
-			</dependency> -->
-		<!-- 分页 -->
-		<dependency>
-			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>1.2.5</version>
-		</dependency>
-		<!-- mysql -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<!-- 这个需要为 optional = true 热部署才有效 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<!-- 引入平台包 -->
+  <dependencies>
+    <!-- 2-jpa持久层模块 -->
+    <dependency>
+      <groupId>cn.taiji</groupId>
+      <artifactId>taiji-jpa</artifactId>
+    </dependency>
+    <!-- 4-web模块 -->
+    <dependency>
+      <groupId>cn.taiji</groupId>
+      <artifactId>taiji-web</artifactId>
+    </dependency>
+    <!-- 5-异常处理模块 -->
+    <dependency>
+      <groupId>cn.taiji</groupId>
+      <artifactId>taiji-exception</artifactId>
+    </dependency>
+    <!-- 6-服务间调用模块 -->
+    <dependency>
+      <groupId>cn.taiji</groupId>
+      <artifactId>taiji-interaction</artifactId>
+    </dependency>
+    <!-- 7-工具包 -->
+    <dependency>
+      <groupId>cn.taiji</groupId>
+      <artifactId>taiji-util</artifactId>
+    </dependency>
+    <!-- 8-权限管理模块 -->
+    <dependency>
+      <groupId>cn.taiji</groupId>
+      <artifactId>taiji-security</artifactId>
+    </dependency>
+    <!-- 9-日志模块 -->
+    <dependency>
+      <groupId>cn.taiji</groupId>
+      <artifactId>taiji-logging</artifactId>
+    </dependency>
+    <!-- 10-redis缓存
+    <dependency>
+      <groupId>cn.taiji</groupId>
+      <artifactId>taiji-redis</artifactId> 
+    </dependency> -->
+    <!-- 11-文件管理模块，引入依赖 -->
+    <dependency>
+      <groupId>cn.taiji</groupId>
+      <artifactId>taiji-file</artifactId>
+      <version>1.2.0-RELEASES</version>
+    </dependency>
+    <!-- 14-文件管理模块，引入依赖 -->
+    <dependency>
+      <groupId>cn.taiji</groupId>
+      <artifactId>taiji-native</artifactId>
+      <version>1.2.0-RELEASES</version>
+    </dependency>
+    <!-- 获得企业信息 -->
+    <dependency>
+      <groupId>cn.taiji</groupId>
+      <artifactId>taiji-company</artifactId>
+	  <version>1.0.3-RELEASES</version>
+    </dependency>
+    <!-- 分页 -->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper-spring-boot-starter</artifactId>
+      <version>1.2.5</version>
+    </dependency>
+    <!-- mysql -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- 这个需要为 optional = true 热部署才有效 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <!-- 引入平台包 -->
     <dependency>
       <groupId>com.spiritdata</groupId>
       <artifactId>BasicPlat</artifactId>
@@ -113,46 +122,45 @@
       <artifactId>poi-ooxml-schemas</artifactId>
       <version>3.9</version>
     </dependency>
-<dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.8.4</version>
-</dependency>
-	</dependencies>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.4</version>
+    </dependency>
+  </dependencies>
 
-	<build>
-		<finalName>tjTrainAdmin</finalName>
-		<!--扫描类路径下的 xml文件, used by mybatis mapper -->
-		<resources>
-			<resource>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.xml</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*.*</include>
-				</includes>
-			</resource>
-			<!-- 扫描jar -->
-			<resource>
-				<directory>extlibs</directory>
-				<targetPath>BOOT-INF/lib/</targetPath>
-				<includes>
-					<include>**/*.jar</include>
-				</includes>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<fork>true</fork>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+  <build>
+    <finalName>tjTrainAdmin</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.*</include>
+        </includes>
+      </resource>
+      <!-- 扫描jar -->
+      <resource>
+        <directory>extlibs</directory>
+        <targetPath>BOOT-INF/lib/</targetPath>
+        <includes>
+          <include>**/*.jar</include>
+        </includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <fork>true</fork>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
