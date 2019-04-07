@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow-x:hidden;">
+
+<head>
+  <meta charset="UTF-8">
+  <title>模拟实操-清单流程查询</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="../resource/css/reset.css">
+  <link rel="stylesheet" href="../resource/css/header-footer.css">
+  <link rel="stylesheet" href="../resource/css/home.css">
+  <link rel="stylesheet" href="../resource/css/main.css">
+  <link rel="stylesheet" href="../resource/css/step-list.css">
+
+  <script src="../resource/js/jquery.js"></script>
+  <script src="../resource/js/main.js"></script>
+  <script src="../resource/js/layer.js"></script>
+  <script src="../resource/js/introduce.class.js"></script>
+</head>
+
+<body>
+  <div class="page-warp page-home-net">
+    <!-- logo-导航 -->
+    <div class="page-top-wrap">
+      <!--头部-->
+      <div class="header-wrap">
+        <div class="banxin header">
+          <div class="fl header-logo">
+            <img src="../resource/image/LOGO@2x.png" alt="" class="logo">
+            <span class="header-name">天津市港口统一收费管理服务平台-<strong>线上培训子系统</strong></span>
+          </div>
+         <!--右侧关闭窗口-->
+         <div class="pt-fr pt-user-info">
+           <div><a style="color: #ffffff;font-size:12px;" onclick="closeWin()">关闭&emsp;</a></div>
+         </div>
+        </div>
+      </div>
+      <div class="nav_bar">
+        <span>清单流程查询</span>
+        <div class="border"></div>
+      </div>
+    </div>
+    <div class="page-container">
+      <div class="pro_nav">
+        <div id="inrto-nav"></div>
+      </div>
+      <!--主体-->
+      <div class="page-main">
+        <div class="head_title"><span id="msg"><B>模拟实操具体操作区</B></span></div>
+        <div class="content_border">
+          <div class="page-form-list" id="page-form-list">
+            <iframe src="" frameborder="0" id="tipsMain"  scrolling="no"></iframe>            
+          </div>
+        </div>
+        <div class="pay_button">
+          <span class="previousPage" onclick="prevPage()">上一步</span>
+          <span class="repractice" onclick="rePage()">重新开始</span>
+          <span class="nextPage" onclick="nextPage()">下一步</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-footer">
+  <!--
+  <div class="pt-p">版权归属 @ 天津市港口统一管理中心 CopyRight 2018 技术支持电话：400-888-5678</div>
+  -->
+  </div>
+  
+<script>
+$(function () {
+  new IntroduceTipsList({
+    el: '#page-form-list',
+    nav: {
+      el: '#inrto-nav',
+      list: [
+        '<p class="fir-p">进入清单</p><p>进入清单查询</p>',            
+        '<p class="fir-p">查询清单</p><p>根据条件查询</p>',
+        '<p class="fir-p">点击单号</p><p>点击收费单号</p>',
+        '<p class="fir-p">流程图</p><p>查看单据流程图</p>'
+      ]
+    },
+    iframe: {
+      el: '#tipsMain',
+      width: '100%',
+    },
+    list: [{//第一页
+      srcUrl: './stepTips1.html',
+      steps: [{
+        X: 340,
+        Y: 140,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">企业操作员扫码登录企业中心后，点击<span class="special">“清单流程查询”</span>。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [170, 140],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000',
+          callBack: function (obj) {
+            nextPage();
+          }
+        },
+        callBack: function (obj) {
+        }
+      }]
+    }, { //第二页
+      srcUrl: './stepTips2.html',
+      steps: [{
+        X: 545,
+        Y: 230,
+        distance: 10,
+        direction: 'bottom',
+        content: '<div class="intro-indent">在查询页面以列表形式列出企业的缴费单。缴费单列表列出<span class="special">单号、缴费类型、缴费企业和收费企业名称、币种、金额、办理状态</span>等。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [250, 150],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000',
+          callBack: function (obj) {
+            nextPage();
+          }
+        },
+        callBack: function (obj) {
+        }
+      }]
+    }, {//第三页
+      srcUrl: './stepTips3.html',
+      steps: [{
+        X: 170,
+        Y: 210,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">点击列表中的缴费单号，进入单据流程图页面。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [160, 120],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000',
+          callBack: function (obj) {
+            nextPage();
+          }
+        },
+        callBack: function (obj) {
+        }
+      }]
+    }, {//第四页
+      srcUrl: './stepTips4.html',
+      steps: [{
+        X: 700,
+        Y: 420,
+        distance: 10,
+        direction: 'right',
+        content: '<div class="intro-indent">在单据流程页面，以图形方式列出<span class="special">“出单”、“确认”、“支付”、“到账”</span>直至<span class="special">“放行”</span>的整体流程。</div>',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        color: '#fff',
+        radius: 5,
+        area: [200, 160],
+        nextBtn: {
+          content: '知道了',
+          backgroundColor: '#990000'
+        },
+        callBack: function (obj) {
+        }
+      }]
+    }]
+  })
+})
+
+function nextPage() {
+  new IntroduceControl().nextPage()
+}
+function prevPage() {
+  new IntroduceControl().prevPage()
+}
+function rePage() {
+  new IntroduceControl().rePage()
+}
+
+$("#inrto-nav").on("click","li",function (param) { 
+  var index=$(this).index()
+  new IntroduceControl().restPage(index)
+});
+
+//根据ID获取iframe对象
+var iframe=document.getElementById('tipsMain')
+iframe.onload=function() {
+  //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
+  var ifrheight= iframe.contentWindow.document.documentElement.scrollHeight || iframe.contentDocument.body.scrollHeight
+  iframe.height=ifrheight + 20
+}
+</script>
+
+<script type="text/javascript">
+function getUrlParam(name) {
+  var reg=new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+  var r=window.location.search.substr(1).match(reg); //匹配目标参数
+  if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+var objId=getUrlParam("objId");
+var _gatherData={};
+_gatherData.visitModuleId="模拟实操学习";
+_gatherData.objType="ts_mnsc";
+_gatherData.objId=objId;
+(function() {
+  var ma=document.createElement('script');
+  ma.type='text/javascript';
+  ma.async=true;
+  ma.src="../../tjsrc/js/ma.js";
+  var s=document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ma, s);
+})();
+</script>
+
+</body>
+</html>
