@@ -28,7 +28,6 @@ import cn.tianjin.unifiedfee.ot.util.HttpPush;
 @RequestMapping("/mnsc")
 @Controller
 public class MnscController {
-
     @Autowired
     private MnscService mnscService;
     @Autowired

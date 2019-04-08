@@ -90,8 +90,8 @@ public class TjController {
             //设置page
             PageHelper.offsetPage(offset, limit);
             Map<String, Object> param=new HashMap<String, Object>();
-//            param.put("compId", companyInfo.getData().getCompanyId());
-            param.put("compId", "98311111234523456B"); //先写死，准备删除
+            param.put("compId", companyInfo.getData().getId());
+//            param.put("compId", "98311111234523456B"); //先写死，准备删除
             if (!StringUtils.isBlank(userIds)) {
                 userIds=userIds.replaceAll(",", "' or visitor_id='");
                 userIds="(visitor_id='"+userIds+"')";

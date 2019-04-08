@@ -504,12 +504,10 @@ public class ManageDispatchUrl {
             UserInfo ui = userService.getUserInfo();
             if (ui != null) {
                 model.addAttribute("username", ui.getUsername());
-                model.addAttribute("userImg",
-                        "http://1.202.219.107:8088/pm-server-innerweb/src/images/defaultAvatar@2x.png");
+                model.addAttribute("userImg", "http://1.202.219.107:8088/pm-server-innerweb/src/images/defaultAvatar@2x.png");
                 // ObjectResponseResult<List<SysResource>>
                 // result=securityMenuService.findMenuByUsername(ui.getUsername());
-                ObjectResponseResult<List<SysResource>> result = securityMenuRemote
-                        .findMenuByUsernameAndSysname(ui.getUsername(), "ot-server", ui.getUseType());
+                ObjectResponseResult<List<SysResource>> result = securityMenuRemote.findMenuByUsernameAndSysname(ui.getUsername(), "ot-server", ui.getUseType());
                 if (result != null && result.getData() != null && result.getData().size() > 0) {
                     // List<SysResource> l=findTrainMenu(result.getData(),
                     // trainNameId);
@@ -551,12 +549,14 @@ public class ManageDispatchUrl {
                         }
                     }
                 }
+            } else {
+                model.addAttribute("username", "未登录");
+                model.addAttribute("userImg", "/src/images/defaultAvatar@2x.png");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (!StringUtils.isBlank(indexHtml))
-            menuHtml = indexHtml + menuHtml;
+        if (!StringUtils.isBlank(indexHtml)) menuHtml = indexHtml + menuHtml;
         model.addAttribute("menuHtml", menuHtml);
         return "/manage/indexWeb";
     }

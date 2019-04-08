@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +19,6 @@ import cn.taiji.web.menu.remote.SecurityMenuRemote;
 import cn.taiji.web.security.UserService;
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
 import cn.tianjin.unifiedfee.ot.mapper.CommArchiveMapper;
-import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
 @Controller
 public class WebDispatchUrl {
@@ -93,7 +91,7 @@ public class WebDispatchUrl {
                 }
             }
             //测试，准备删除
-            Map<String, Object> param=new HashMap<String, Object>();
+/*            Map<String, Object> param=new HashMap<String, Object>();
             param.put("compId", "98311111234523456B");
             List<Map<String, Object>> ul=catService.getCompUserList(param);
             if (ul!=null&&ul.size()>0) {
@@ -101,7 +99,7 @@ public class WebDispatchUrl {
                     optionHtml+="<option value='"+u.get("VISITOR_ID")+"'>"+u.get("VISITOR_NAME")+"</option>";
                 }
             }
-        }
+*/        }
         model.addAttribute("optionHtml", optionHtml);
         return "/manage/tj/tjXyxx";
     }
