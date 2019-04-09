@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
-import cn.tianjin.unifiedfee.ot.util.HttpPush;
+//import cn.tianjin.unifiedfee.ot.util.HttpPush;
 
 /**
  * 对外提供接口的控制类
@@ -55,10 +56,10 @@ public class InterController {
             @RequestParam(required=false) String companyId,
             @RequestParam(required=false) String startDate,
             @RequestParam(required=false) String endDate,
-            @RequestParam(value="offset", defaultValue="1") int pageNo,
-            @RequestParam(value="limit", defaultValue="20") int pageSize) {
+            @RequestParam(value="pageNo", defaultValue="1") int pageNo,
+            @RequestParam(value="pageSize", defaultValue="20") int pageSize) {
         // 跨域
-        HttpPush.responseInfo(response);
+        //HttpPush.responseInfo(response);
 
         Map<String, Object> retMap=new HashMap<String, Object>();
         try {
@@ -91,6 +92,7 @@ public class InterController {
             //处理每一项
             List<Map<String, Object>> cl=new ArrayList<Map<String, Object>>();
             for (Map<String, Object> qytj: _qytjl) {
+                if (StringUtils.isNotBlank(companyId)&&!companyId.equals(qytj.get("GROUP_ID"))) continue;
                 Map<String, Object> newQytj=new HashMap<String, Object>();
                 newQytj.put("companyId", qytj.get("GROUP_ID")==null?"":qytj.get("GROUP_ID"));
                 newQytj.put("companyName", qytj.get("GROUP_NAME")==null?"":qytj.get("GROUP_NAME"));
@@ -98,7 +100,7 @@ public class InterController {
                 //计算比例-试卷练习
                 String tmpVal="-";
                 try {
-                    if (!"0".equals(newQytj.get("allSj")+"")) {
+                    if (!"0".equals(sumMap.get("allSj")+"")) {
                         tmpVal=TjController.accuracy(Double.parseDouble(newQytj.get("count")+""), Double.parseDouble(sumMap.get("allSj")+""),2);
                     }
                 } catch(Exception e) {
@@ -146,10 +148,8 @@ public class InterController {
             @RequestParam(required=false) String companyId,
             @RequestParam(required=false) String startDate,
             @RequestParam(required=false) String endDate,
-            @RequestParam(value="offset", defaultValue="1") int pageNo,
-            @RequestParam(value="limit", defaultValue="20") int pageSize) {
-        // 跨域
-        HttpPush.responseInfo(response);
+            @RequestParam(value="pageNo", defaultValue="1") int pageNo,
+            @RequestParam(value="pageSize", defaultValue="20") int pageSize) {
 
         Map<String, Object> retMap=new HashMap<String, Object>();
         try {
@@ -185,6 +185,7 @@ public class InterController {
             //处理每一项
             List<Map<String, Object>> cl=new ArrayList<Map<String, Object>>();
             for (Map<String, Object> qytj: _qytjl) {
+                if (StringUtils.isNotBlank(companyId)&&!companyId.equals(qytj.get("GROUP_ID"))) continue;
                 Map<String, Object> newQytj=new HashMap<String, Object>();
                 newQytj.put("companyId", qytj.get("GROUP_ID")==null?"":qytj.get("GROUP_ID"));
                 newQytj.put("companyName", qytj.get("GROUP_NAME")==null?"":qytj.get("GROUP_NAME"));
@@ -194,7 +195,7 @@ public class InterController {
                 String tmpVal="-";
                 try {
                     tmpVal="-";
-                    if (!"0".equals(newQytj.get("allMnsc")+"")) {
+                    if (!"0".equals(sumMap.get("allMnsc")+"")) {
                         tmpVal=TjController.accuracy(Double.parseDouble(newQytj.get("mnscCount")+""), Double.parseDouble(sumMap.get("allMnsc")+""),2);
                     }
                 } catch(Exception e) {
@@ -206,7 +207,7 @@ public class InterController {
                 tmpVal="-";
                 try {
                     tmpVal="-";
-                    if (!"0".equals(newQytj.get("allKj")+"")) {
+                    if (!"0".equals(sumMap.get("allKj")+"")) {
                         tmpVal=TjController.accuracy(Double.parseDouble(newQytj.get("kjCount")+""), Double.parseDouble(sumMap.get("allKj")+""),2);
                     }
                 } catch(Exception e) {

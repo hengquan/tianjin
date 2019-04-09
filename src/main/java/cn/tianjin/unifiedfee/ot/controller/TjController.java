@@ -416,8 +416,8 @@ public class TjController {
             String tmpVal="-";
             try {
                 tmpVal="-";
-                if (!"0".equals(newQytj.get("allMnsc")+"")) {
-                    tmpVal=accuracy(Double.parseDouble(newQytj.get("mnscCount")+""), Double.parseDouble(newQytj.get("allMnsc")+""),2);
+                if (!"0".equals(sumMap.get("allMnsc")+"")) {
+                    tmpVal=accuracy(Double.parseDouble(newQytj.get("mnscCount")+""), Double.parseDouble(sumMap.get("allMnsc")+""),2);
                 }
             } catch(Exception e) {
             }
@@ -426,8 +426,8 @@ public class TjController {
             tmpVal="-";
             try {
                 tmpVal="-";
-                if (!"0".equals(newQytj.get("allKj")+"")) {
-                    tmpVal=accuracy(Double.parseDouble(newQytj.get("kjCount")+""), Double.parseDouble(newQytj.get("allKj")+""),2);
+                if (!"0".equals(sumMap.get("allKj")+"")) {
+                    tmpVal=accuracy(Double.parseDouble(newQytj.get("kjCount")+""), Double.parseDouble(sumMap.get("allKj")+""),2);
                 }
             } catch(Exception e) {
             }
@@ -436,8 +436,8 @@ public class TjController {
             tmpVal="-";
             try {
                 tmpVal="-";
-                if (!"0".equals(newQytj.get("allSj")+"")) {
-                    tmpVal=accuracy(Double.parseDouble(newQytj.get("sjCount")+""), Double.parseDouble(newQytj.get("allSj")+""),2);
+                if (!"0".equals(sumMap.get("allSj")+"")) {
+                    tmpVal=accuracy(Double.parseDouble(newQytj.get("sjCount")+""), Double.parseDouble(sumMap.get("allSj")+""),2);
                 }
             } catch(Exception e) {
             }
@@ -799,8 +799,8 @@ public class TjController {
                 String tmpVal="-";
                 try {
                     tmpVal="-";
-                    if (!"0".equals(newQytj.get("allMnsc")+"")) {
-                        tmpVal=accuracy(Double.parseDouble(newQytj.get("mnscCount")+""), Double.parseDouble(newQytj.get("allMnsc")+""),2);
+                    if (!"0".equals(sumMap.get("allMnsc")+"")) {
+                        tmpVal=accuracy(Double.parseDouble(newQytj.get("mnscCount")+""), Double.parseDouble(sumMap.get("allMnsc")+""),2);
                     }
                 } catch(Exception e) {
                 }
@@ -809,8 +809,8 @@ public class TjController {
                 tmpVal="-";
                 try {
                     tmpVal="-";
-                    if (!"0".equals(newQytj.get("allKj")+"")) {
-                        tmpVal=accuracy(Double.parseDouble(newQytj.get("kjCount")+""), Double.parseDouble(newQytj.get("allKj")+""),2);
+                    if (!"0".equals(sumMap.get("allKj")+"")) {
+                        tmpVal=accuracy(Double.parseDouble(newQytj.get("kjCount")+""), Double.parseDouble(sumMap.get("allKj")+""),2);
                     }
                 } catch(Exception e) {
                 }
@@ -819,8 +819,8 @@ public class TjController {
                 tmpVal="-";
                 try {
                     tmpVal="-";
-                    if (!"0".equals(newQytj.get("allSj")+"")) {
-                        tmpVal=accuracy(Double.parseDouble(newQytj.get("sjCount")+""), Double.parseDouble(newQytj.get("allSj")+""),2);
+                    if (!"0".equals(sumMap.get("allSj")+"")) {
+                        tmpVal=accuracy(Double.parseDouble(newQytj.get("sjCount")+""), Double.parseDouble(sumMap.get("allSj")+""),2);
                     }
                 } catch(Exception e) {
                 }
