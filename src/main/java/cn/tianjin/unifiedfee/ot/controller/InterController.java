@@ -1,5 +1,6 @@
 package cn.tianjin.unifiedfee.ot.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import cn.taiji.company.remote.SystemCompanyRemote;
+import cn.tianjin.unifiedfee.ot.entity.AllCompany;
 import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
-//import cn.tianjin.unifiedfee.ot.util.HttpPush;
+import cn.tianjin.unifiedfee.ot.mapper.AllCompanyMapper;
 
 /**
  * 对外提供接口的控制类
@@ -28,9 +31,15 @@ import cn.tianjin.unifiedfee.ot.logvisit.service.LogVisitService;
 @Controller
 @RequestMapping("/tjtrain/stati")
 public class InterController {
+    SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+
     @Autowired //从日志表汇出统计信息
     public LogVisitService logService;
-
+    @Autowired
+    public SystemCompanyRemote companyRemote;
+    @Autowired
+    private AllCompanyMapper allCompanydao;
+    
     /**
      * 获得某企业的全体学员的练习情况——答题情况
      * 
@@ -63,6 +72,33 @@ public class InterController {
 
         Map<String, Object> retMap=new HashMap<String, Object>();
         try {
+            if (StringUtils.isNotBlank(companyId)) {
+                AllCompany companyInfo=allCompanydao.getByCompanyId(companyId);
+                if (companyInfo==null) {
+                    retMap.put("returnCode", "11");
+                    retMap.put("messageInfo", "companyId无对应企业");
+                    return retMap;
+                }
+            }
+            if (StringUtils.isNotBlank(startDate)) {
+                try {
+                    format.parse(startDate);
+                } catch(Exception e) {
+                    retMap.put("returnCode", "21");
+                    retMap.put("messageInfo", "开始日期不合法，合法日期如：2018-09-05");
+                    return retMap;
+                }
+            }
+            if (StringUtils.isNotBlank(endDate)) {
+                try {
+                    format.parse(endDate);
+                } catch(Exception e) {
+                    retMap.put("returnCode", "21");
+                    retMap.put("messageInfo", "结束日期不合法，合法日期如：2018-09-05");
+                    return retMap;
+                }
+            }
+
             //设置参数
             Map<String, Object> param=new HashMap<String, Object>();
             param.put("date1", startDate);//开始时间
@@ -109,15 +145,24 @@ public class InterController {
 
                 cl.add(newQytj);
             }
-            retMap.put("total", pageList.getTotal());
-            retMap.put("rows", cl);
+            if (cl.size()==0) {
+                retMap.put("returnCode", "01");
+                retMap.put("messageInfo", "列表为空");
+            } else {
+                if (StringUtils.isNotBlank(companyId)) {
+                    retMap.put("total", 1);
+                } else {
+                    retMap.put("total", pageList.getTotal());
+                }
+                retMap.put("rows", cl);
+            }
             return retMap;
         } catch (Exception e) {
             e.printStackTrace();
-            retMap.put("returnCode", "01");
+            retMap.put("returnCode", "99");
             retMap.put("messageInfo", e.toString());
+            return retMap;
         }
-        return retMap;
     }
 
     /**
@@ -153,8 +198,38 @@ public class InterController {
 
         Map<String, Object> retMap=new HashMap<String, Object>();
         try {
+            if (StringUtils.isNotBlank(companyId)) {
+                AllCompany companyInfo=allCompanydao.getByCompanyId(companyId);
+                if (companyInfo==null) {
+                    retMap.put("returnCode", "11");
+                    retMap.put("messageInfo", "companyId无对应企业");
+                    return retMap;
+                }
+            }
+            if (StringUtils.isNotBlank(startDate)) {
+                try {
+                    format.parse(startDate);
+                } catch(Exception e) {
+                    retMap.put("returnCode", "21");
+                    retMap.put("messageInfo", "开始日期不合法，合法日期如：2018-09-05");
+                    return retMap;
+                }
+            }
+            if (StringUtils.isNotBlank(endDate)) {
+                try {
+                    format.parse(endDate);
+                } catch(Exception e) {
+                    retMap.put("returnCode", "21");
+                    retMap.put("messageInfo", "结束日期不合法，合法日期如：2018-09-05");
+                    return retMap;
+                }
+            }
+
             //设置参数
             Map<String, Object> param=new HashMap<String, Object>();
+            if (StringUtils.isNotBlank(startDate)) {
+                
+            }
             param.put("date1", startDate);//开始时间
             param.put("date2", endDate);//结束时间
             //获得企业的总数，总课件数，总模拟实操数，总考试次数
@@ -216,14 +291,23 @@ public class InterController {
 
                 cl.add(newQytj);
             }
-            retMap.put("total", pageList.getTotal());
-            retMap.put("rows", cl);
+            if (cl.size()==0) {
+                retMap.put("returnCode", "01");
+                retMap.put("messageInfo", "列表为空");
+            } else {
+                if (StringUtils.isNotBlank(companyId)) {
+                    retMap.put("total", 1);
+                } else {
+                    retMap.put("total", pageList.getTotal());
+                }
+                retMap.put("rows", cl);
+            }
             return retMap;
         } catch (Exception e) {
             e.printStackTrace();
-            retMap.put("returnCode", "01");
+            retMap.put("returnCode", "99");
             retMap.put("messageInfo", e.toString());
+            return retMap;
         }
-        return retMap;
     }
 }

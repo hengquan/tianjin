@@ -54,6 +54,12 @@
 		from allCompany
 		where id = #{id,jdbcType=VARCHAR}
 	</select>
+	<select id="getByCompanyId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Blob_Column_List" />
+		from allCompany
+		where uniscid=#{value,jdbcType=VARCHAR}
+	</select>
 
 	<delete id="delete" parameterType="java.lang.String">
 		delete from allCompany

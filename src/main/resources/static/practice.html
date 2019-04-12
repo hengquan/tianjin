@@ -116,9 +116,11 @@ function resetHeight() {
 
 function gotoSY() {
   //试运行
-  top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
+  //top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
   //正式
   //top.location.href = "https://ocap.shangwuju.tj.gov.cn/";
+  //正式-移动
+  top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
   return false;
 }
 
@@ -138,6 +140,7 @@ $(function() {
   $.ajax({
     type : 'post',
     url : "./train/getMnscList",
+    /* url : "./train/getMnscList", */
     /* url : "https://ocap.shangwuju.tj.gov.cn/moni_api/train/getMnscList", */
     data : data,
     dataType : 'json',

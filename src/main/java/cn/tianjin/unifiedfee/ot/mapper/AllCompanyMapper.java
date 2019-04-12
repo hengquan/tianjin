@@ -6,4 +6,6 @@ public interface AllCompanyMapper {
     int insert(AllCompany allCompany);
 
     int deleteAll();
+
+    AllCompany getByCompanyId(String cId);
 }
