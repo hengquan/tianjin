@@ -1,0 +1,21 @@
+[Unit]
+# 项目描述
+Description=天津市港口统一收费管理服务平台-线上培训子系统
+
+[Service]
+# 启动命令
+ExecStart=/usr/bin/java \
+-jar /usr/tjkab/ot-server/tjTrainAdmin.jar \
+--logging.file=tjTrainAdmin.log \
+--logging.path=./
+# 先通过 kill -15停止，如果10秒后无法停止，通过kill -9强制停止
+TimeoutStopSec=10
+# 总是自动重启，除非通过systemctl stop方式停止
+Restart=always
+# 自动重启间隔时间
+RestartSec=15s
+# 工作目录，会影响启动命令 例如 logging.path=./ 会转化成 /usr/tjkab/pm-server/inner-web/
+WorkingDirectory=/usr/tjkab/ot-server
+
+[Install]
+WantedBy=multi-user.target
