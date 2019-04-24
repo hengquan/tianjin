@@ -85,7 +85,6 @@
           width: '100%',        
         },
         list: [
-                 
           {
             srcUrl: './stepTips1.html',
             steps: [{
@@ -108,8 +107,8 @@
                 }
               },
               {
-                X: 460,
-                Y: 480,
+                X: 430,
+                Y: 447,
                 distance: 10,
                 direction: 'left',
                 content: '<div class="intro-indent">填写信息后，阅读《使用协议》，并勾选<span class="special">“已经阅读并同意”</span>，选择<span class="special">“银行验证注册”</span>。</div>',
@@ -127,8 +126,8 @@
                 }
               },
               {
-                X: 733,
-                Y: 498,
+                X: 690,
+                Y: 455,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -139,7 +138,7 @@
                 backgroundColor: 'transparent', //透明颜色
                 color: '#fff',
                 radius: 5,
-                area: [200, 50],
+                area: [170, 50],
                 nextBtn: {
                   content: '',
                   backgroundColor: 'transparent',
@@ -155,8 +154,8 @@
           {
             srcUrl: './stepTips2.html',
             steps: [{
-                X: 640,
-                Y: 420,
+                X: 580,
+                Y: 350,
                 distance: 10,
                 direction: 'right',
                 content: '<div class="intro-indent">填写“企业名称”和“社会信用代码”后，点击<span class="special">“下一步”</span>。</div></div>',
@@ -174,8 +173,8 @@
                 }
               },
               {
-                X: 540,
-                Y: 332,
+                X: 500,
+                Y: 297,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -186,7 +185,7 @@
                 backgroundColor: 'transparent', //透明颜色
                 color: '#fff',
                 radius: 5,
-                area: [200, 50],
+                area: [170, 50],
                 nextBtn: {
                   content: '',
                   backgroundColor: 'transparent',
@@ -202,8 +201,26 @@
           {
             srcUrl: './stepTips3.html',
             steps: [{
-                X: 1020,
-                Y: 400,
+                X: 820,
+                Y: 450,
+                distance: 10,
+                direction: 'right',
+                content: '<div class="intro-indent">若公司已绑定银行卡，银行卡信息会自动带出，这里仅需录入<span class="special">开户行地址</span>，点击<span class="special">“保存”</span>到下一步。</div><br/><div class="intro-indent">下面展示无银行卡绑定时的操作。</div>',
+                padding: 10,
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                radius: 5,
+                area: [240, 190],
+                nextBtn: {
+                  content: '知道了',
+                  backgroundColor: '#990000'
+                },
+                callBack: function (obj) {
+                }
+              },
+              {
+                X: 670,
+                Y: 550,
                 distance: 10,
                 direction: 'right',
                 content: '<div class="intro-indent">填写银行卡信息，带<span class="special">“※”</span>为必填项，填写完成后点击<span class="special">“保存”</span>。</div>',
@@ -211,18 +228,18 @@
                 backgroundColor: 'rgba(0,0,0,0.6)',
                 color: '#fff',
                 radius: 5,
-                area: [240, 120],
+                area: [200, 140],
                 nextBtn: {
                   content: '知道了',
                   backgroundColor: '#990000'
                 },
                 callBack: function (obj) {
-                  console.log(obj);
+                  document.getElementById("tipsMain").contentWindow.setpic("./images/step3.png");
                 }
-              },                      
+              },
               {
-                X: 588,
-                Y: 545,
+                X: 624,
+                Y: 502,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -233,7 +250,7 @@
                 backgroundColor: 'transparent', //透明颜色
                 color: '#fff',
                 radius: 5,
-                area: [160, 50],
+                area: [150, 50],
                 nextBtn: {
                   content: '',
                   backgroundColor: 'transparent',
@@ -269,8 +286,8 @@
                 }
               },
               {
-                X: 640,
-                Y: 360,
+                X: 615,
+                Y: 340,
                 distance: 10,
                 direction: 'bottom',
                 noTriangle: true,
@@ -298,8 +315,8 @@
           {
             srcUrl: './stepTips5.html',
             steps: [ {
-              X: 420,
-              Y: 420,
+              X: 440,
+              Y: 368,
               distance: 10,
               direction: 'bottom',
               content: '<div class="intro-indent">填写收到短信中的“流水号”，收款企业收到附言中的“激活码”，以及“验证码”，点击<span class="special">“激活”</span>。</div>',
@@ -317,8 +334,8 @@
               }
             },
             {
-              X: 510,
-              Y: 365,
+              X: 488,
+              Y: 303,
               distance: 10,
               direction: 'bottom',
               noTriangle: true,
@@ -329,7 +346,7 @@
               backgroundColor: 'transparent', //透明颜色
               color: '#fff',
               radius: 5,
-              area: [180, 50],
+              area: [140, 50],
               nextBtn: {
                 content: '',
                 backgroundColor: 'transparent',
@@ -346,7 +363,7 @@
         {
           srcUrl: './stepTips6.html',
           steps: [ {
-            X: 480,
+            X: 620,
             Y: 360,
             distance: 10,
             direction: 'bottom',
