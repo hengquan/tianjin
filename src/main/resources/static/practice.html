@@ -22,9 +22,10 @@
 -->
 
 <!-- http 本地开发-->
-<script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
+<script type="text/javascript" src="https://ocap.shangwuju.tj.gov.cn/moni_api/web/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://ocap.shangwuju.tj.gov.cn/moni_api/web/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://ocap.shangwuju.tj.gov.cn/moni_api/web/bootstrap/css/bootstrap.css">
+
 <style>
 body {
   background: white;
@@ -85,7 +86,7 @@ body {
   color: #3D7EEA;
 }
 #mnscContent {
-  background-color: #eeeeee;
+  background-color: #fff
 }
 .container {
   width: 1200px;
@@ -93,16 +94,25 @@ body {
   position: relative;
 }
 .cat_title {
-  background-color: #eeeeee;
-  border-bottom: 1px solid #0f51bb;
-  height: 40px;
-  line-height: 40px;
+  background-color: #fff;
+  height: 36px;
+  line-height: 36px;
   font-size: 18px;
   color: rgb(51, 51, 51);
   padding-left:15px;
+  background-image:url(./tjsrc/images/box_bj.jpg);
 }
-.cat_title_ {
-  border-bottom: 1px solid #0f51bb;
+.cat_title div {
+  width:295px;
+  height:36px;
+  line-height:36px;
+  margin:auto;
+  font-size:24px;
+  color:#416ac0;
+  text-align:center;
+}
+.tab-content {
+  margin-bottom: 30px;
 }
 </style>
 </head>
@@ -123,12 +133,14 @@ body {
       </div>
       <!--模拟实操内容-->
       <div id="mnscContent">
+      <!-- 
         <div class="cat_title"><strong>管理类</strong></div>
         <div class="tab-content" id="htmlContent" align="center"></div>
         <div>&nbsp;</div>
         <div class="cat_title"><strong>管理类</strong></div>
         <div class="tab-content" id="htmlContent2" align="center"></div>
         <div>&nbsp;</div>
+      -->
       </div>
     </div>
   </div>
@@ -138,7 +150,7 @@ var webGateway="";本地开发+试运行
 var webGateway="http://117.131.199.80/ot-server"; 正式移动
 var webGateway="https://ocap.shangwuju.tj.gov.cn/moni_api"; 正式联通
 */
-var webGateway="";
+var webGateway="https://ocap.shangwuju.tj.gov.cn/moni_api"; //正式联通
 
 window.onload = function() {
   resetHeight();
@@ -153,7 +165,7 @@ function gotoSY() {
   //试运行
   //top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
   //正式
-  //top.location.href = "https://ocap.shangwuju.tj.gov.cn/";
+  top.location.href="https://ocap.shangwuju.tj.gov.cn/";
   //正式-移动
   //top.location.href = "http://117.131.199.86/preview/outsidewai/";
   //开发--空，没必要配置
@@ -181,7 +193,6 @@ $(function() {
     dataType : 'json',
     cache : false,
     success : function(data) {
-      console.log(data);
       var returnCode = data.returnCode;
       if (returnCode == '00') {
         var html = '';
@@ -198,84 +209,54 @@ $(function() {
           //查主图片是否有值无值显示默认图
           var imgUrl = dataList[i].imgUrl;
           if (!imgUrl) {
-            imgUrl = webGateway+"/web/images/mnsc_default.jpg";
-            /* imgUrl = "./web/images/mnsc_default.jpg"; */
             /* imgUrl = "https://ocap.shangwuju.tj.gov.cn/moni_api/web/images/mnsc_default.jpg"; */
+            /* imgUrl = "./web/images/mnsc_default.jpg"; */
+            /* imgUrl = webGateway+"/web/images/mnsc_default.jpg"; */
+            imgUrl = "./web/images/mnsc_default.jpg";
           }
           oneItemHtml=
             '<div class="col-md-3">'
-          +   '<img class="imgMsg" src="'+ imgUrl +'" alt="">'
-          +   '<div class="model_bg" onclick=toSimulation("' + dataList[i].mnscUrl + '?objId=' + dataList[i].id + '")></div>'
+          +   '<img class="imgMsg" src="'+imgUrl+'" alt="">'
+          +   '<div class="model_bg" onclick=toSimulation("'+dataList[i].mnscUrl+'?objId='+dataList[i].id+'")></div>'
           +   '<div class="explain" style="border-top:2px solid rgb(52,83,145);">'
-          +     '<p style="padding-top: 10px;">' + dataList[i].mnscName + '</p>'
-          +     '<div class="enterBtn" style="margin-top:15px;" onclick=toSimulation("' + dataList[i].mnscUrl + '?objId=' + dataList[i].id + '")>进入实操</div>'
+          +     '<p style="padding-top: 10px;">'+dataList[i].mnscName+'</p>'
+          +     '<div class="enterBtn" style="margin-top:15px;" onclick=toSimulation("'+dataList[i].mnscUrl+'?objId='+dataList[i].id+'")>进入实操</div>'
           +   '</div>'
           + '</div>';
 
           if (oldCatName!=dataList[i].catNames) {
+            catCount=0;
+            oldCatName=dataList[i].catNames;
             if (oneCatHtml) {
               if (oneLineHtml) {
                 oneLineHtml+='</div></div>';
                 oneCatHtml+=oneLineHtml;
               }
-              oneCatHtml+="</div>";
+              oneCatHtml+='</div>';
               allHtml+=oneCatHtml;
             }
-            oneCatHtml='<div class="cat_title">'+dataList[i].catNames+'</div><div class="tab-content" id="htmlContent" align="center">';
-
-            catCount==0;
-            oldCatName=dataList[i].catNames;
+            oneCatHtml='<div class="cat_title box_mnsc1"><div>'+dataList[i].catNames+'模拟实操</div></div><div class="tab-content" id="htmlContent" align="center">';
+            oneLineHtml='';
           }
           if (catCount%4==0) {//加一行
-            if (oneLineHtml) oneLineHtml+='</div></div>';
+            if (oneLineHtml) {
+              oneLineHtml+='</div></div>';
+              oneCatHtml+=oneLineHtml;
+            }
             oneLineHtml='<div class="row" style="margin-top:20px"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">';
           }
           oneLineHtml+=oneItemHtml;
           catCount++;
-//============
-          html += '<div class="col-md-3">'
-            + '<img class="imgMsg" src="'+ imgUrl +'" alt="">'
-            + '<div class="model_bg" onclick=toSimulation("'
-            + dataList[i].mnscUrl
-            + '?objId='
-            + dataList[i].id
-            + '")></div>'
-            + '<div class="explain" style="border-top:2px solid rgb(52,83,145);">'
-            + '<p style="padding-top: 10px;">'
-            + dataList[i].mnscName
-            + '</p>'
-            + '<div class="enterBtn" style="margin-top:15px;" onclick=toSimulation("'
-            + dataList[i].mnscUrl + '?objId=' + dataList[i].id
-            + '")>进入实操</div>' + '</div>' + '</div>';
-          if ((i + 1) % 4 == 0) {
-            contentHtml = contentHtml
-              + '<div class="row" style="margin-top:20px">'
-              + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">'
-              + html + '</div>' + '</div>';
-            html = '';
-          } else {
-            if (i >= dataList.length - 1) {
-              contentHtml = contentHtml
-                + '<div class="row" style="margin-top:20px">'
-                + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">'
-                + html + '</div>' + '</div>';
-              html = '';
-            }
-          }
         }
-
         if (oneCatHtml) {
           if (oneLineHtml) {
             oneLineHtml+='</div></div>';
             oneCatHtml+=oneLineHtml;
           }
-          oneCatHtml+="</div>";
+          oneCatHtml+='</div>';
           allHtml+=oneCatHtml;
         }
-        
-        $("#htmlContent").html(contentHtml);
-        $("#htmlContent2").html(contentHtml);
-//        $("#mnscContent").html(allHtml);
+        $("#mnscContent").html(allHtml);
       } else {
         alert(data.messageInfo);
       }
@@ -288,7 +269,7 @@ $(function() {
 
 //进入模拟实操学习页面
 function toSimulation(url) {
-  var url=webGateway+"/mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1";
+  var url="./mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1";
   /* var url = "./mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1"; */
   /* var url = "https://ocap.shangwuju.tj.gov.cn/moni_api/mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1"; */
   window.open(url);
@@ -303,7 +284,7 @@ function toSimulation(url) {
     var ma = document.createElement('script');
     ma.type = 'text/javascript';
     ma.async = true;
-    ma.src=webGateway+"/tjsrc/js/ma.js";
+    ma.src="./tjsrc/js/ma.js";
     /* ma.src = "./tjsrc/js/ma.js"; */
     /* ma.src = "https://ocap.shangwuju.tj.gov.cn/moni_api/tjsrc/js/ma.js"; */
     var s = document.getElementsByTagName('script')[0];
