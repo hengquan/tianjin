@@ -5,6 +5,7 @@ encoding//src/main/resources/bootstrap-dev.properties=UTF-8
 encoding//src/main/resources/bootstrap-prod-zs-lt-19.properties=UTF-8
 encoding//src/main/resources/bootstrap-prod.properties=UTF-8
 encoding//src/main/resources/bootstrap-prodm.properties=UTF-8
+encoding//src/main/resources/bootstrap-prodm01.properties=UTF-8
 encoding//src/main/resources/bootstrap-test.properties=UTF-8
 encoding//src/main/resources/bootstrap.properties=UTF-8
 encoding//src/main/resources/static/libs/layer/layer-new.css=UTF-8

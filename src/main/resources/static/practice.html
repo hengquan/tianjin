@@ -22,9 +22,9 @@
 -->
 
 <!-- http 本地开发-->
-<script type="text/javascript" src="https://ocap.shangwuju.tj.gov.cn/moni_api/web/js/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="https://ocap.shangwuju.tj.gov.cn/moni_api/web/bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://ocap.shangwuju.tj.gov.cn/moni_api/web/bootstrap/css/bootstrap.css">
+<script type="text/javascript" src="./web/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="./web/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="./web/bootstrap/css/bootstrap.css">
 
 <style>
 body {
@@ -88,6 +88,42 @@ body {
 #mnscContent {
   background-color: #fff
 }
+#navMap {
+  background-color: #EEE;
+  padding-bottom:40px;
+}
+#navBar {
+  width:1150px;
+  height:70px;
+  margin:0 auto;
+}
+#mapArea {
+  width:1150px;
+  height:1180px;
+  padding-left:10px;
+  margin:0 auto;
+}
+.barTitle {
+  width:1150px;
+  height:120px;
+  padding-top:30px;	
+  margin:0 auto;
+}
+.barTitle div {
+  text-align:center;
+  margin:0 auto;
+}
+.barTitle .barName {
+  color:#0043B6;
+  font-size:30px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+.barTitle .barSubscript {
+  color:#4C4C4C;
+  font-size:16px;
+  font-weight:400;
+}
 .container {
   width: 1200px;
   margin: 0 auto;
@@ -114,6 +150,41 @@ body {
 .tab-content {
   margin-bottom: 30px;
 }
+
+.hot-area {
+  position:relative;
+  cursor:pointer;
+}
+.hot-area-1 {
+  width:90px;height:68px;top:-70px;left:1050px;
+}
+.hot-area-map {
+  position:relative;
+  cursor:pointer;
+}
+.hot-area-map:hover {
+  border:1px solid #015AEC;
+  box-shadow: 0 0 10px #015AEC;
+}
+.hot-area-map-1 {
+  width:48px;height:88px;top:-1102px;left:620px;
+}
+.hot-area-map-2 {
+  width:46px;height:88px;top:-1073px;left:622px;
+}
+.hot-area-map-3 {
+  width:46px;height:142px;top:-1248px;left:1016px;
+}
+.hot-area-map-4 {
+  width:44px;height:142px;top:-1050px;left:539px;
+}
+.hot-area-map-4:hover {
+  border:1px solid #009943;
+  box-shadow: 0 0 10px #009943;
+}
+.hot-area-map-5 {
+  width:156px;height:156px;top:-855px;left:914px;
+}
 </style>
 </head>
 
@@ -124,11 +195,26 @@ body {
       <!-- 站内导航 -->
       <div class="position_wrap">
         <div class="w1200 list-header">
-          <!-- 正式移动      <img src="http://117.131.199.80/ot-server/web/images/dot.png" alt="" class="list-header-mark">&emsp;-->
+          <!-- 正式移动        <img src="http://117.131.199.80/ot-server/web/images/dot.png" alt="" class="list-header-mark">&emsp;-->
           <!-- 本地_试运行 <img src="./web/images/dot.png" alt="" class="list-header-mark">&emsp;-->
           <!-- *正式联通    <img src="https://ocap.shangwuju.tj.gov.cn/moni_api/web/images/dot.png" alt="" class="list-header-mark">&emsp;-->
           <img src="./web/images/dot.png" alt="" class="list-header-mark">&emsp;
           <span class="list-header-title"><a href="#" onclick="gotoSY()" class="active">首页</a></span><span>&gt;</span> <span class="list-header-active">模拟实操</span>
+        </div>
+      </div>
+      <div id="navMap">
+        <div class="barTitle"><div class="barName">港建费退付申请流程</div><div class="barSubscript">快速 ᆞ 高效 ᆞ 便捷</div></div>
+        <div id="navBar">
+          <img src="./tjsrc/images/navBar1.png"/>
+          <div class='hot-area hot-area-1' onclick='toggleNavMap()'></div>
+        </div>
+        <div id="mapArea">
+          <img src="./tjsrc/images/navMap.png"/>
+          <div class='hot-area hot-area-map hot-area-map-1' onclick='toMNSC_1()'></div>
+          <div class='hot-area hot-area-map hot-area-map-2' onclick='toMNSC_2()'></div>
+          <div class='hot-area hot-area-map hot-area-map-3' onclick='toMNSC_3()'></div>
+          <div class='hot-area hot-area-map hot-area-map-4' onclick='toMNSC_4()'></div>
+          <div class='hot-area hot-area-map hot-area-map-5' onclick='toMNSC_5()'></div>
         </div>
       </div>
       <!--模拟实操内容-->
@@ -146,11 +232,11 @@ body {
   </div>
 <script>
 /*
-var webGateway="";本地开发+试运行
+var webGateway="";//本地开发+试运行
 var webGateway="http://117.131.199.80/ot-server"; 正式移动
 var webGateway="https://ocap.shangwuju.tj.gov.cn/moni_api"; 正式联通
 */
-var webGateway="https://ocap.shangwuju.tj.gov.cn/moni_api"; //正式联通
+var webGateway="";//本地开发+试运行
 
 window.onload = function() {
   resetHeight();
@@ -162,13 +248,16 @@ function resetHeight() {
 }
 
 function gotoSY() {
+  /*
   //试运行
   //top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
   //正式
-  top.location.href="https://ocap.shangwuju.tj.gov.cn/";
+  //top.location.href="https://ocap.shangwuju.tj.gov.cn/";
   //正式-移动
   //top.location.href = "http://117.131.199.86/preview/outsidewai/";
   //开发--空，没必要配置
+  */
+  top.location.href = "http://60.28.236.138:8989/preview/outsidewai/";
 }
 
 var top = '<div class="tab-pane active tab_bottom"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 column">';
@@ -185,8 +274,8 @@ $(function() {
   $("a[cateId='']").click();
   var data = {"portal" : "portal"};
   $.ajax({
-    type : 'post',
-    url : "./train/getMnscList",
+    type:'post',
+    url:"./train/getMnscList",
     /* 移动正式+试运行+开发 url : "./train/getMnscList", */
     /* 正式联通  url : "https://ocap.shangwuju.tj.gov.cn/moni_api/train/getMnscList", */
     data : data,
@@ -198,7 +287,6 @@ $(function() {
         var html = '';
         var contentHtml = '';
         var dataList = data.data;
-
         var allHtml="";
         var oneItemHtml="";
         var oneLineHtml="";
@@ -209,9 +297,9 @@ $(function() {
           //查主图片是否有值无值显示默认图
           var imgUrl = dataList[i].imgUrl;
           if (!imgUrl) {
-            /* imgUrl = "https://ocap.shangwuju.tj.gov.cn/moni_api/web/images/mnsc_default.jpg"; */
-            /* imgUrl = "./web/images/mnsc_default.jpg"; */
-            /* imgUrl = webGateway+"/web/images/mnsc_default.jpg"; */
+            /* imgUrl = "https://ocap.shangwuju.tj.gov.cn/moni_api/web/images/mnsc_default.jpg"; 正式-联通*/
+            /* imgUrl = "./web/images/mnsc_default.jpg"; 试运行+测试*/
+            /* imgUrl = webGateway+"/web/images/mnsc_default.jpg"; 正式-移动*/
             imgUrl = "./web/images/mnsc_default.jpg";
           }
           oneItemHtml=
@@ -256,6 +344,7 @@ $(function() {
           oneCatHtml+='</div>';
           allHtml+=oneCatHtml;
         }
+        allHtml='<div class="barTitle"><div class="barName">模拟实操</div><div class="barSubscript">分步模拟 ᆞ 操作演练</div></div>'+allHtml;
         $("#mnscContent").html(allHtml);
       } else {
         alert(data.messageInfo);
@@ -269,16 +358,65 @@ $(function() {
 
 //进入模拟实操学习页面
 function toSimulation(url) {
+  /* var url = "./mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1"; 试运行+测试*/
+  /* var url = "https://ocap.shangwuju.tj.gov.cn/moni_api/mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1"; 正式-联通*/
   var url="./mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1";
-  /* var url = "./mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1"; */
-  /* var url = "https://ocap.shangwuju.tj.gov.cn/moni_api/mnscContent.html" + url.substr(url.indexOf("?"))+"&front=1"; */
   window.open(url);
 }
+function toggleNavMap() {
+  if ($("#mapArea").is(':hidden')) {
+    $("#navBar").find("img").attr("src", "./tjsrc/images/navBar1.png");
+    $("#mapArea").show();
+  } else {
+    $("#navBar").find("img").attr("src", "./tjsrc/images/navBar2.png");
+    $("#mapArea").hide();
+  }
+}
+function toMNSC_1() {//电子证照注册
+  /*
+   * 开发:toSimulation("/ot-server/mnscList/qyzcgl/stepList.html?objId=39a0144f18c64aac911aa23fd1773583");
+   * 测试-试运行:toSimulation("/ot-server/mnscList/qyzcgl/stepList.html?objId=39a0144f18c64aac911aa23fd1773583");
+   * 正式:toSimulation("");
+   */
+  toSimulation("/ot-server/mnscList/qyzcgl/stepList.html?objId=39a0144f18c64aac911aa23fd1773583");
+}
+function toMNSC_2() {//银行验证注册
+  /*
+   * 开发:toSimulation("/ot-server/mnscList/yhyzzc/stepList.html?objId=359f2053f60b46cb87f3b3a52ac7cabf");
+   * 测试-试运行:toSimulation("/ot-server/mnscList/yhyzzc/stepList.html?objId=b5036f9c15a744b387c60a66082982b6");
+   * 正式:toSimulation("");
+   */
+  toSimulation("/ot-server/mnscList/yhyzzc/stepList.html?objId=b5036f9c15a744b387c60a66082982b6");
+}
+function toMNSC_3() {//港讯通APP企业证书
+  /*
+   * 开发:toSimulation("/ot-server/mnscList/appsmdl/stepList.html?objId=6831f68a80d841a19e09d4875f1d4265");
+   * 测试-试运行:toSimulation("/ot-server/mnscList/appsmdl/stepList.html?objId=6c29e8970c614d1aa7a3036ecee8c713");
+   * 正式:、toSimulation("/ot-server/mnscList/appsmdl/stepList.html?objId=0e5bef57df0749a09176a65bb637fc4f");
+   */
+  toSimulation("/ot-server/mnscList/appsmdl/stepList.html?objId=6c29e8970c614d1aa7a3036ecee8c713");
+}
+function toMNSC_4() {//操作员角色
+  /*
+   * 开发:toSimulation("??");
+   * 测试-试运行:toSimulation("/ot-server/mnscList/qyglysz/stepList.html?objId=3133215c8aae4549985c782090d15279");
+   * 正式:toSimulation("/ot-server/mnscList/qyglysz/stepList.html?objId=9b1ec5762cdb4e3ea01f5252ee52f2dd");
+   */
+  toSimulation("/ot-server/mnscList/qyglysz/stepList.html?objId=3133215c8aae4549985c782090d15279");
+}
+function toMNSC_5() {//港建费退付
+  /*
+   * 开发:toSimulation("??");
+   * 测试-试运行:toSimulation("/ot-server/mnscList/tfdsqlr/stepList.html?objId=385e7c6359b540f8ab08b87df6ef2616");
+   * 正式:toSimulation("/ot-server/mnscList/tfdsqlr/stepList.html?objId=d7934afffc214658b013e34e3bf7e58e");
+   */
+  toSimulation("/ot-server/mnscList/tfdsqlr/stepList.html?objId=385e7c6359b540f8ab08b87df6ef2616");
+}
 </script>
-  <script type="text/javascript">
+<script type="text/javascript">
   var _gatherData = {};
-  _gatherData.visitModuleId = "模拟实操列表";
-  _gatherData.objType = "ts_mnsc";
+  _gatherData.visitModuleId="模拟实操列表";
+  _gatherData.objType="ts_mnsc";
   //_gatherData.objId=getUrlParam("id");
   (function() {
     var ma = document.createElement('script');
